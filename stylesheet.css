@@ -1,0 +1,128 @@
+.hidden {
+	display: none;
+}
+
+body {
+	display: flex;
+	margin: 0;
+	height: 100vh;
+	overflow: hidden;
+	flex-wrap: wrap;
+	background: #E5E5E5;
+}
+
+header {
+	width: 100%;
+	height: 3em;
+}
+
+nav {
+	background: #E5E5E5;
+	z-index: 1;
+	flex: 1 0 20%;
+}
+
+main {
+	height: 100%;
+	margin: 0 3em;
+	background: #606060;
+	flex: 2 0 50%;
+	position: relative;
+}
+
+#parts-list {
+	position: absolute;
+	height: 100%;
+	width: 11em;
+	left: -11em;
+	padding: 1em 0;
+	background: #222;
+	box-sizing: border-box;
+}
+
+.right-column {
+	flex: 1 0 20%;
+}
+
+.middle-column {
+	width: 100%;
+	height: 100%;
+	text-align: center;
+}
+
+.armor-label {
+	display: block;
+	position: relative;
+	width: 10em;
+	height: 2em;
+	left: 0;
+	padding: 0.5em;
+	background: #222;
+	color: white;
+	line-height: 2em;
+	transition: left 0.2s ease-out;
+}
+
+.armor-label:after {
+	content: "";
+	background: white;
+	border-radius: 50%;
+	height: 1em;
+	width: 1em;
+	float: right;
+	margin: 0.5em;
+}
+
+.armor-label:hover {
+	left: 8em;
+}
+
+:checked + .armor-label {
+	color: black;
+	background: #C4C4C4;
+}
+
+svg {
+	height: 100%;
+	position: relative;
+	z-index: 1;
+}
+
+.floor {
+	position: absolute;
+	bottom: 0;
+	width: 100%;
+	height: 10em;
+	background: #3A3A3A;
+}
+
+p {
+	margin: auto;
+}
+
+#selection {
+	margin: 14px 0;
+	padding: 14px 0;
+	border-bottom: black solid 1px;
+}
+
+.option-list {
+	display: none;
+}
+
+.selected {
+	display: unset;
+}
+
+.color-picker {
+	border: none;
+	padding: 0;
+	height: 3em;
+	width: 3em;
+}
+
+.color-label {
+	display: inline-block;
+	padding: 0.5em;
+	width: 7em;
+}
