@@ -16,10 +16,13 @@ function DOMNode (type, props, parent) {
 }
 
 function ColorPicker (affectedObject, parentName) {
-	parentName += "Colors";
-	var parent = find(parentName);
-	if (!parent)
-		parent = new DOMNode("div", {id: parentName, class: "option-list"}, find("colors"));
+	var parent = find(parentName + "Colors");
+	if (!parent) {
+		var total = new DOMNode("div", {id: parentName + "Options", class: "option-list"}, find("colors"));
+		var h = new DOMNode("button", {class: "option-name"}, total);
+		h.innerText = parentName + " Options";
+		parent = new DOMNode("div", {id: parentName + "Colors", class: "color-list"}, total);
+	}
 
 	var label = affectedObject.id + "Color";
 	var p = new DOMNode("input", {type: "color", id: label, class: "color-picker", value: "#ffffff"}, parent);
@@ -65,11 +68,15 @@ function redirectTo(target) {
 	}
 }
 
+function toggleOptions () {
+	find("colors").classList.toggle("options-expanded");
+}
+
 function pickArmorPiece () {
 	var prev = find("colors").querySelector(".selected");
 	if (prev)
 		prev.classList.remove("selected");
-	var name = this.id.replace("Style","Colors");
+	var name = this.id.replace("Style","Options");
 	var now = find(name);
 	now.classList.add("selected");
 	find("selection-name").innerHTML = this.nextElementSibling.innerText;

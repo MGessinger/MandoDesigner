@@ -6,7 +6,7 @@ body {
 	margin: 0;
 	height: 100vh;
 	overflow: hidden;
-	background: #E5E5E5;
+	font-family: "Helvetica Neue Light", "Helvetica Neue", Helvetica, Verdana, sans-serif;
 }
 
 #parts-list {
@@ -20,9 +20,8 @@ body {
 }
 
 .image-column {
-	width: auto;
-	height: 80%;
-	padding-top: 5%;
+	height: 100%;
+	margin-left: 3em;
 	background: #606060;
 	text-align: center;
 }
@@ -69,9 +68,8 @@ body {
 }
 
 svg {
-	height: 100%;
-	position: relative;
-	z-index: 1;
+	height: 80%;
+	padding: 3em 0;
 }
 
 .floor {
@@ -82,16 +80,14 @@ svg {
 	background: #3A3A3A;
 }
 
-p {
-	margin: auto;
-}
-
 .options-column {
 	float: right;
-	width: 3em;
+	width: 4em;
 	height: 100%;
 	background: #222;
+	color: white;
 	text-align: center;
+	font-size: 0.7em;
 }
 
 #options-toggle {
@@ -100,14 +96,39 @@ p {
 	border: none;
 	background-color: white;
 	background-size: contain;
-	background-image: url("options.png");
+	background-image: url("assets/options.png");
 }
 
 #selection {
 	display: none;
-	margin: 14px 0;
-	padding: 14px 0;
-	border-bottom: black solid 1px;
+	padding: 1em 2em;
+}
+
+.option-name {
+	display: none;
+	width: 100%;
+	margin: 0;
+	padding: 0.5em 2em;
+	border: none;
+	background: #484848;
+	font: inherit;
+	color: inherit;
+	text-align: left;
+	line-height: 1.5em;
+}
+
+.option-name:active {
+	background: #3A3A3A;
+}
+
+.option-name:after {
+	content: "";
+	height: 1.5em;
+	width: 1.5em;
+	background: Transparent no-repeat center;
+	background-size: contain;
+	background-image: url("assets/arrow.png");
+	float: right;
 }
 
 .option-list {
@@ -115,12 +136,13 @@ p {
 }
 
 .selected {
-	display: unset;
+	display: block;
 }
 
 .color-picker {
-	border: none;
+	border: 1px solid white;
 	padding: 0;
+	margin: 0.25em 0.5em;
 	height: 2em;
 	width: 2em;
 }
@@ -130,7 +152,7 @@ p {
 }
 
 .options-expanded {
-	width: 20em;
+	width: 28em;
 	text-align: unset;
 }
 
@@ -138,13 +160,24 @@ p {
 	background-color: #F8E71C;
 }
 
-.options-expanded #selection,
+.options-expanded .option-name {
+	display: block;
+}
+
+.options-expanded #selection {
+	display: block;
+}
+
+.options-expanded .color-list {
+	padding: 0.5em 2em;
+}
+
 .options-expanded .color-picker {
-	display: unset;
+	margin-left: 0;
 }
 
 .options-expanded .color-label {
 	display: inline-block;
 	padding: 0.5em;
-	width: 7em;
+	width: 4em;
 }
