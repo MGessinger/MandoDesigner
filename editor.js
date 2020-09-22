@@ -12,47 +12,67 @@ function DOMNode (type, props, parent) {
 	if (parent)
 		parent.appendChild(n);
 	this.node = n;
+	return n;
 }
 
-function newColorPicker (affectedObject, parentName) {
+function ColorPicker (affectedObject, parentName) {
+	parentName += "Colors";
 	var parent = find(parentName);
-	if (!parent) {
-		var node = new DOMNode("div", {id: parentName, class: "option-list"}, find("colors"));
-		parent = node.node;
-	}
+	if (!parent)
+		parent = new DOMNode("div", {id: parentName, class: "option-list"}, find("colors"));
 
 	var label = affectedObject.id + "Color";
-	var p = new DOMNode("input", {type: "color", id: label, class: "color-picker"}, parent);
+	var p = new DOMNode("input", {type: "color", id: label, class: "color-picker", value: "#ffffff"}, parent);
 	var l = new DOMNode("label", {for: label, class: "color-label"}, parent);
 
 	var oninput = function () {
-		affectedObject.setAttribute("fill", p.node.value);
-		l.node.innerHTML = affectedObject.id + "<br />" + p.node.value;
+		affectedObject.setAttribute("fill", p.value);
+		l.innerHTML = affectedObject.id + "<br />" + p.value;
 	}
-	p.node.addEventListener("input", oninput);
+	p.addEventListener("input", oninput);
 	oninput()
+}
+
+function ArmorGroup (name) {
+	var id = name + "Style"
+	var parent = find("parts-list");
+	var i = new DOMNode("input", {type: "radio", name: "armorpiece", class: "hidden", id: id}, parent);
+	i.addEventListener("input", pickArmorPiece);
+	var l = new DOMNode("label", {class: "armor-label", for: id}, parent);
+	l.innerHTML = name;
+	return i;
 }
 
 function MandoMaker (svg) {
 	var groups = svg.getElementsByTagName("title");
 	for (var i = 0; i < groups.length; i++) {
-		var name = groups[i].innerHTML + "Colors";
+		var g = groups[i].parentNode;
+		var name = groups[i].innerHTML;
 		var children = groups[i].parentNode.children;
+
+		var radio = new ArmorGroup(name);
+		g.addEventListener("click", redirectTo(radio));
 		for (var j = 1; j < children.length; j++)
-			newColorPicker(children[j], name);
+			new ColorPicker(children[j], name);
 	}
-	var checked = find("parts-list").querySelector(":checked");
-	pickArmorPiece(checked);
+	var first = find("parts-list").querySelector("[type = 'radio']");
+	first.click();
 }
 
-function pickArmorPiece (input) {
+function redirectTo(target) {
+	return function () {
+		target.click();
+	}
+}
+
+function pickArmorPiece () {
 	var prev = find("colors").querySelector(".selected");
 	if (prev)
 		prev.classList.remove("selected");
-	var name = input.id.replace("Style","Colors");
+	var name = this.id.replace("Style","Colors");
 	var now = find(name);
 	now.classList.add("selected");
-	find("selection-name").innerHTML = input.nextElementSibling.innerText;
+	find("selection-name").innerHTML = this.nextElementSibling.innerText;
 }
 
 function save () {

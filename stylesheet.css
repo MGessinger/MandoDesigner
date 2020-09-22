@@ -3,50 +3,36 @@
 }
 
 body {
-	display: flex;
 	margin: 0;
 	height: 100vh;
 	overflow: hidden;
-	flex-wrap: wrap;
 	background: #E5E5E5;
-}
-
-header {
-	width: 100%;
-	height: 3em;
-}
-
-nav {
-	background: #E5E5E5;
-	z-index: 1;
-	flex: 1 0 20%;
-}
-
-main {
-	height: 100%;
-	margin: 0 3em;
-	background: #606060;
-	flex: 2 0 50%;
-	position: relative;
 }
 
 #parts-list {
 	position: absolute;
+	z-index: 1;
+	left: 0;
 	height: 100%;
-	width: 11em;
-	left: -11em;
-	padding: 1em 0;
+	width: 3em;
 	background: #222;
-	box-sizing: border-box;
+	color: white;
 }
 
-.right-column {
-	flex: 1 0 20%;
+.image-column {
+	width: auto;
+	height: 80%;
+	padding-top: 5%;
+	background: #606060;
+	text-align: center;
 }
 
-.middle-column {
-	width: 100%;
-	height: 100%;
+.title {
+	position: relative;
+	margin: 0;
+	width: 9em;
+	background: #222;
+	line-height: 2em;
 	text-align: center;
 }
 
@@ -55,7 +41,7 @@ main {
 	position: relative;
 	width: 10em;
 	height: 2em;
-	left: 0;
+	left: -8em;
 	padding: 0.5em;
 	background: #222;
 	color: white;
@@ -74,7 +60,7 @@ main {
 }
 
 .armor-label:hover {
-	left: 8em;
+	left: 0;
 }
 
 :checked + .armor-label {
@@ -100,7 +86,25 @@ p {
 	margin: auto;
 }
 
+.options-column {
+	float: right;
+	width: 3em;
+	height: 100%;
+	background: #222;
+	text-align: center;
+}
+
+#options-toggle {
+	width: 3em;
+	height: 3em;
+	border: none;
+	background-color: white;
+	background-size: contain;
+	background-image: url("options.png");
+}
+
 #selection {
+	display: none;
 	margin: 14px 0;
 	padding: 14px 0;
 	border-bottom: black solid 1px;
@@ -117,11 +121,29 @@ p {
 .color-picker {
 	border: none;
 	padding: 0;
-	height: 3em;
-	width: 3em;
+	height: 2em;
+	width: 2em;
 }
 
 .color-label {
+	display: none;
+}
+
+.options-expanded {
+	width: 20em;
+	text-align: unset;
+}
+
+.options-expanded #options-toggle {
+	background-color: #F8E71C;
+}
+
+.options-expanded #selection,
+.options-expanded .color-picker {
+	display: unset;
+}
+
+.options-expanded .color-label {
 	display: inline-block;
 	padding: 0.5em;
 	width: 7em;
