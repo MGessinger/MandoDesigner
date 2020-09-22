@@ -19,28 +19,23 @@ body {
 	color: white;
 }
 
-.image-column {
-	height: 100%;
-	margin-left: 3em;
+.title {
+	display: block;
+	height: 4em;
 	background: #606060;
-	text-align: center;
 }
 
-.title {
-	margin: 0;
-	padding: 0;
-	height: 4em;
+#parts-list input {
+	display: none;
 }
 
 .armor-label {
 	display: block;
 	position: relative;
 	width: 10em;
-	height: 2em;
 	left: -8em;
 	padding: 0.5em;
 	background: #222;
-	color: white;
 	line-height: 2em;
 	transition: left 0.2s ease-out;
 }
@@ -64,27 +59,41 @@ body {
 	background: #C4C4C4;
 }
 
-svg {
-	height: 80%;
-	padding: 4em 0;
+.image-column {
+	height: 100%;
+	margin-left: 3em;
+	background: #606060;
+	text-align: center;
 }
 
-.floor {
-	position: absolute;
+svg {
+	height: 80%;
+	padding-top: 4em;
+}
+
+.settings {
+	position: fixed;
 	bottom: 0;
 	width: 100%;
-	height: 10em;
-	background: #3A3A3A;
+	margin: 0 -3em;
+}
+
+main button {
+	height: 2em;
+	min-width: 2em;
+	margin: 0 0.5em 1em 0;
+	background: white;
+	border: #C4C4C4 solid 1px;
+	border-radius: 0.5em;
 }
 
 .options-column {
 	float: right;
-	width: 4em;
+	width: 3em;
 	height: 100%;
 	background: #222;
 	color: white;
 	text-align: center;
-	font-size: 0.7em;
 }
 
 #options-toggle {
@@ -98,34 +107,15 @@ svg {
 
 #selection {
 	display: none;
-	padding: 1em 2em;
+	padding: 1.25em;
 }
 
 .option-name {
 	display: none;
-	width: 100%;
 	margin: 0;
-	padding: 0.5em 2em;
-	border: none;
+	padding: 0.5em 1.25em;
 	background: #484848;
-	font: inherit;
-	color: inherit;
-	text-align: left;
 	line-height: 1.5em;
-}
-
-.option-name:active {
-	background: #3A3A3A;
-}
-
-.option-name:after {
-	content: "";
-	height: 1.5em;
-	width: 1.5em;
-	background: Transparent no-repeat center;
-	background-size: contain;
-	background-image: url("assets/arrow.png");
-	float: right;
 }
 
 .option-list {
@@ -137,44 +127,49 @@ svg {
 }
 
 .color-picker {
-	border: 1px solid white;
-	padding: 0;
-	margin: 0.25em 0.5em;
 	height: 2em;
 	width: 2em;
+	margin: 0.25em 0;
+	padding: 0;
+	border: 1px solid white;
 }
 
 .color-label {
 	display: none;
+	margin-left: 3.5em;
+	margin-top: 0.5em;
+	line-height: 1em;
 }
 
 .options-expanded {
-	width: 28em;
+	width: 26em;
 	text-align: unset;
+	font-size: 0.7em;
 }
 
 .options-expanded #options-toggle {
 	background-color: #F8E71C;
 }
 
-.options-expanded .option-name {
-	display: block;
-}
-
-.options-expanded #selection {
+.options-expanded .option-name,
+.options-expanded #selection,
+.options-expanded .color-label {
 	display: block;
 }
 
 .options-expanded .color-list {
-	padding: 0.5em 2em;
+	padding: 1.25em 0;
+	margin: 0 1.5em;
+}
+
+.options-expanded .color-wrapper {
+	display: inline-block;
+	width: 33%;
+	height: 3em;
+	overflow-y: hidden;
+	padding-bottom: 0.75em;
 }
 
 .options-expanded .color-picker {
-	margin-left: 0;
-}
-
-.options-expanded .color-label {
-	display: inline-block;
-	padding: 0.5em;
-	width: 4em;
+	float: left;
 }

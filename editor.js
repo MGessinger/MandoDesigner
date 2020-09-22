@@ -19,8 +19,8 @@ function ColorPicker (affectedObject, parentName) {
 	var parent = find(parentName + "Colors");
 	if (!parent) {
 		var total = new DOMNode("div", {id: parentName + "Options", class: "option-list"}, find("colors"));
-		var h = new DOMNode("button", {class: "option-name"}, total);
-		h.innerText = parentName + " Options";
+		var h = new DOMNode("p", {class: "option-name"}, total);
+		h.innerText = parentName + " Options:";
 		parent = new DOMNode("div", {id: parentName + "Colors", class: "color-list"}, total);
 	}
 
@@ -37,13 +37,13 @@ function ColorPicker (affectedObject, parentName) {
 	input()
 }
 
-function ArmorGroup (name) {
+function ArmorGroup (name, fullname) {
 	var id = name + "Style"
 	var parent = find("parts-list");
 	var i = new DOMNode("input", {type: "radio", name: "armorpiece", class: "hidden", id: id}, parent);
 	i.addEventListener("input", pickArmorPiece);
 	var l = new DOMNode("label", {class: "armor-label", for: id}, parent);
-	l.innerHTML = name;
+	l.innerHTML = fullname;
 	return i;
 }
 
@@ -51,10 +51,11 @@ function MandoMaker (svg) {
 	var groups = svg.getElementsByTagName("title");
 	for (var i = 0; i < groups.length; i++) {
 		var g = groups[i].parentNode;
-		var name = groups[i].innerHTML;
+		var fullname = groups[i].innerHTML;
+		var name = fullname.split(/\s/)[0];
 		var children = g.children;
 
-		var radio = new ArmorGroup(name);
+		var radio = new ArmorGroup(name, fullname);
 		g.addEventListener("click", redirectTo(radio));
 		for (var j = 1; j < children.length; j++)
 			new ColorPicker(children[j], name);
