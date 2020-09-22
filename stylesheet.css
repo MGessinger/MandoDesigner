@@ -27,12 +27,9 @@ body {
 }
 
 .title {
-	position: relative;
 	margin: 0;
-	width: 9em;
-	background: #222;
-	line-height: 2em;
-	text-align: center;
+	padding: 0;
+	height: 4em;
 }
 
 .armor-label {
@@ -69,7 +66,7 @@ body {
 
 svg {
 	height: 80%;
-	padding: 3em 0;
+	padding: 4em 0;
 }
 
 .floor {

@@ -28,12 +28,13 @@ function ColorPicker (affectedObject, parentName) {
 	var p = new DOMNode("input", {type: "color", id: label, class: "color-picker", value: "#ffffff"}, parent);
 	var l = new DOMNode("label", {for: label, class: "color-label"}, parent);
 
-	var oninput = function () {
+	var input = function () {
 		affectedObject.setAttribute("fill", p.value);
 		l.innerHTML = affectedObject.id + "<br />" + p.value;
 	}
-	p.addEventListener("input", oninput);
-	oninput()
+	p.addEventListener("input", input);
+	affectedObject.addEventListener("click", redirectTo(p));
+	input()
 }
 
 function ArmorGroup (name) {
@@ -51,7 +52,7 @@ function MandoMaker (svg) {
 	for (var i = 0; i < groups.length; i++) {
 		var g = groups[i].parentNode;
 		var name = groups[i].innerHTML;
-		var children = groups[i].parentNode.children;
+		var children = g.children;
 
 		var radio = new ArmorGroup(name);
 		g.addEventListener("click", redirectTo(radio));
@@ -64,6 +65,7 @@ function MandoMaker (svg) {
 
 function redirectTo(target) {
 	return function () {
+		target.focus();
 		target.click();
 	}
 }
