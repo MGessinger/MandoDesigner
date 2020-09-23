@@ -11,9 +11,24 @@
 
 	</head>
 	<body>
-		<nav id="parts-list"><img class="title" src="assets/header.png"/></nav>
+		<nav>
+			<img class="title" src="assets/header.png"/>
+			<div id="parts-list">
+				<input type="radio" name="parts-list" id="HelmetBuyceStyle" />
+				<label for="HelmetBuyceStyle" class="armor-label">Helmet (Buy'ce)<span class="armor-icon">&#xE905;</span></label>
+				<input type="radio" name="parts-list" id="FlightSuitKuteStyle" />
+				<label for="FlightSuitKuteStyle" class="armor-label">Flight Suit (Kute)<span class="armor-icon">&#xE907;</span></label>
+				<input type="radio" name="parts-list" id="ChestHalcaburStyle" />
+				<label for="ChestHalcaburStyle" class="armor-label">Chest (Hal'cabur)<span class="armor-icon">&#xE908;</span></label>
+				<input type="radio" name="parts-list" id="LegsMotunburStyle" />
+				<label for="LegsMotunburStyle" class="armor-label">Thighs (Motun'bur)<span class="armor-icon">&#xE906;</span></label>
+				<input type="radio" name="parts-list" id="AccessoriesStyle" />
+				<label for="AccessoriesStyle" class="armor-label">Accessories (Motun'bur)<span class="armor-icon">&#xE904;</span></label>
+				<a class="armor-label download" id="download" download="Mando'ad.svg" href="">Download<span class="armor-icon">&#xE903;</span></a>
+			</div>
+		</nav>
 		<div class="options-column" id="colors">
-			<input type="button" id="options-toggle" title="Toggle Options menu" onclick="toggleOptions()"/>
+			<button id="options-toggle" title="Toggle Options menu" onclick="toggleOptions()">&#xE900;</button>
 			<div id="selection">
 				<p style="margin: 0">Selected part:</p>
 				<h2 id="selection-name" style="margin: 0"></h2>
@@ -23,10 +38,24 @@
 			<svg id="Mando" onload="new MandoMaker(this);" viewBox="0 0 478 668">
 				<g id="Artboard1" transform="matrix(0.639286,0,0,0.781536,-6.87063,0)">
 				<title>Helmet (Buy'ce)</title>
-				<path id="Range-Finder" transform="matrix(6.51769,0,0,5.33138,-1670.07,-63.2195)" d="M266.836,23.806L275.103,23.806L277.541,20.056L295.541,19.119L295.916,14.994L264.836,13.744L266.836,23.806Z" style="stroke:black;stroke-width:0.97px;"/>
+				<use id="Range Finder">
+				<symbol id="Left">
+				<path id="Optics" transform="matrix(6.51769,0,0,5.33138,-1670.07,-63.2195)" d="M266.836,23.806L275.103,23.806L277.541,20.056L295.541,19.119L295.916,14.994L264.836,13.744L266.836,23.806Z" style="stroke:black;stroke-width:0.97px;"/>
 				<path id="Shaft" transform="matrix(6.51769,0,0,5.33138,-1676.59,-63.2195)" d="M266.836,86.244L270.666,23.806L273.444,23.994L269.666,86.244L266.836,86.244Z" style="stroke:black;stroke-width:0.97px;"/>
-				<path id="Earcap-Right"  transform="matrix(6.51769,0,0,5.33138,-1676.59,-63.2195)" d="M273.444,81.494L270.353,81.681L269.353,86.181L265.728,85.994L263.603,109.244L260.791,109.431L260.372,117.803L262.791,117.803L260.228,143.994L265.478,148.244L271.103,91.806L273.444,91.619L273.444,81.494Z" style="stroke:black;stroke-width:0.97px;"/>
-				<path id="Earcap-Left"  transform="matrix(6.51769,0,0,5.33138,-1614.27,-104.871)" d="M358.056,156.056L362.541,149.431L358.056,103.556L351.791,99.619L358.056,156.056Z" style="stroke:black;stroke-width:0.97px;"/>
+				</symbol>
+				</use>
+				<use id="Ear Caps" width="200%" height="200%">
+				<symbol id="Both">
+				<path id="Left" transform="matrix(6.51769,0,0,5.33138,-1676.59,-63.2195)" d="M273.444,81.494L270.353,81.681L269.353,86.181L265.728,85.994L263.603,109.244L260.791,109.431L260.372,117.803L262.791,117.803L260.228,143.994L265.478,148.244L271.103,91.806L273.444,91.619L273.444,81.494Z" style="stroke:black;stroke-width:0.97px;"/>
+				<path id="Right"  transform="matrix(6.51769,0,0,5.33138,-1614.27,-104.871)" d="M358.056,156.056L362.541,149.431L358.056,103.556L351.791,99.619L358.056,156.056Z" style="stroke:black;stroke-width:0.97px;"/>
+				</symbol>
+				<symbol id="Left Only">
+				<path id="Earcap" transform="matrix(6.51769,0,0,5.33138,-1676.59,-63.2195)" d="M273.444,81.494L270.353,81.681L269.353,86.181L265.728,85.994L263.603,109.244L260.791,109.431L260.372,117.803L262.791,117.803L260.228,143.994L265.478,148.244L271.103,91.806L273.444,91.619L273.444,81.494Z" style="stroke:black;stroke-width:0.97px;"/>
+				</symbol>
+				<symbol id="Right Only">
+				<path id="Earcap"  transform="matrix(6.51769,0,0,5.33138,-1614.27,-104.871)" d="M358.056,156.056L362.541,149.431L358.056,103.556L351.791,99.619L358.056,156.056Z" style="stroke:black;stroke-width:0.97px;"/>
+				</symbol>
+				</use>
 				<path id="Dome" transform="matrix(6.9875,0,0,5.33138,-1809.21,-53.5781)" d="M314.702,47.941C338.002,48.423 356.79,67.824 356.938,91.709L356.939,91.994L362.814,150.182L356.939,150.682L330.064,167.682L314.702,168.391L314.702,168.432L314.258,168.411L313.814,168.432L313.814,168.391L298.452,167.682L271.577,150.682L265.702,150.182L271.577,91.994L271.578,91.709C271.727,67.824 290.515,48.423 313.814,47.941L313.814,47.932L314.093,47.933L314.258,47.934L314.424,47.933L314.702,47.932L314.702,47.941Z" style="stroke:black;stroke-width:0.94px;"/>
 				<path id="Eyes" transform="matrix(6.9875,0,0,5.33138,-1809.21,-53.5781)" d="M329.627,168.432L298.89,168.432C298.89,168.432 298.14,142.9 296.265,134.307C294.883,127.971 292.015,121.223 287.64,116.869C283.265,112.515 270.015,108.182 270.015,108.182L271.577,91.994C271.577,91.994 285.256,93.9 292.14,94.369C298.603,94.809 311.687,94.913 314.258,94.929C316.83,94.913 329.913,94.809 336.377,94.369C343.26,93.9 356.939,91.994 356.939,91.994L358.502,108.182C358.502,108.182 345.252,112.515 340.877,116.869C336.502,121.223 333.634,127.971 332.252,134.307C330.379,142.891 329.628,168.378 329.627,168.432Z" style="stroke:black;stroke-width:0.94px;"/>
 				<path id="Visor" transform="matrix(6.9875,0,0,5.33138,-1809.21,-53.5781)" d="M322.516,168.432L306,168.432L306,108.182C306,108.182 296.822,107.277 292.359,106.182C286.924,104.848 273.39,100.182 273.39,100.182L273.577,96.807C273.577,96.807 286.06,99.089 292.359,99.807C298.525,100.51 306.958,101.468 314.258,101.468C321.558,101.468 329.992,100.51 336.158,99.807C342.457,99.089 354.939,96.807 354.939,96.807L355.127,100.182C355.127,100.182 341.593,104.848 336.158,106.182C331.694,107.277 322.516,108.182 322.516,108.182L322.516,168.432Z" style="stroke:black;stroke-width:0.94px;"/>
@@ -40,11 +69,16 @@
 				</g>
 				</g>
 			</svg>
-			<div class="settings">
-				<button>&#9794;</button>
-				<button>&#9792;</button><br/>
-				<button>Change Background</button>
-			</div>
 		</main>
+		<footer>
+			<div class="settings">
+				<input type="radio" name="sex" class="toggle-sex" id="male">
+				<label for="male" class="label-sex">&#xe901;</label>
+				<input type="radio" name="sex" class="toggle-sex" id="female">
+				<label for="female" class="label-sex">&#xe902;</label>
+			</div>
+			<p class="credits">Designed &amp; Developed By <a class="credit" rel="noopener noreferrer">DesignDeviant</a> &amp; <a class="credit" href="https://github.com/MGessinger" target="_blank" rel="noopener noreferrer">Cin Vhetin</a>
+			<span class="image-credit">Background photo created by <a class="credit" href="https://www.freepik.com/kjpargeter" rel="noopener noreferrer" target="_blank">kjpargeter</a></span></p>
+		</footer>
 	</body>
 </html>

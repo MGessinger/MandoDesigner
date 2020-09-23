@@ -9,58 +9,133 @@ function DOMNode (type, props, parent) {
 	var n = document.createElement(type);
 	for (var p in props)
 		n.setAttribute(p, props[p]);
-	if (parent)
-		parent.appendChild(n);
-	this.node = n;
+	parent.appendChild(n);
 	return n;
 }
 
-function ColorPicker (affectedObject, parentName) {
-	var parent = find(parentName + "Colors");
-	if (!parent) {
-		var total = new DOMNode("div", {id: parentName + "Options", class: "option-list"}, find("colors"));
-		var h = new DOMNode("p", {class: "option-name"}, total);
-		h.innerText = parentName + " Options:";
-		parent = new DOMNode("div", {id: parentName + "Colors", class: "color-list"}, total);
-	}
-
-	var label = affectedObject.id + "Color";
-	var p = new DOMNode("input", {type: "color", id: label, class: "color-picker", value: "#ffffff"}, parent);
-	var l = new DOMNode("label", {for: label, class: "color-label"}, parent);
-
-	var input = function () {
-		affectedObject.setAttribute("fill", p.value);
-		l.innerHTML = affectedObject.id + "<br />" + p.value;
-	}
-	p.addEventListener("input", input);
-	affectedObject.addEventListener("click", redirectTo(p));
-	input()
+function ColorList (groupName, total) {
+	return DOMNode("div", {id: groupName + "Colors", class: "color-list"}, total);
 }
 
-function ArmorGroup (name, fullname) {
-	var id = name + "Style"
-	var parent = find("parts-list");
-	var i = new DOMNode("input", {type: "radio", name: "armorpiece", class: "hidden", id: id}, parent);
-	i.addEventListener("input", pickArmorPiece);
-	var l = new DOMNode("label", {class: "armor-label", for: id}, parent);
-	l.innerHTML = fullname;
-	return i;
+function OptionsList (groupName) {
+	var total = DOMNode("div", {id: groupName + "Options", class: "option-list"}, find("colors"));
+	var h = DOMNode("p", {class: "option-name"}, total);
+	var shortName = groupName.split(/ ?\(/)[0];
+	h.innerText = shortName + " Options:";
+	return total;
+}
+
+function ColorPicker (affectedObject, parent) {
+	var wrapper = DOMNode("div", {class: "color-wrapper"}, parent);
+
+	var label = affectedObject.id + "Color";
+	var color = DOMNode("input", {type: "color", id: label, class: "color-picker", value: "#ffffff"}, wrapper);
+	var l = DOMNode("label", {for: label, class: "color-label"}, wrapper);
+
+	var input = function () {
+		affectedObject.setAttribute("fill", color.value);
+		l.innerHTML = affectedObject.id + "<br />" + color.value;
+	}
+	color.addEventListener("input", input);
+	affectedObject.addEventListener("click", redirectTo(color));
+	input()
+	return color;
+}
+
+function ArmorComponent (SVGNode, parent, kwargs) {
+	switch (SVGNode.tagName.toLowerCase()) {
+		case "title":
+			return;
+		case "use":
+			return ArmorOptional(SVGNode, parent);
+		case "symbol":
+			var radio = ArmorGroup(SVGNode, SVGNode.id, parent, kwargs.list, "component-label");
+			radio.addEventListener("input", pickArmorComponent(kwargs.list, kwargs.use, SVGNode.id));
+			return radio;
+		default:
+			return ColorPicker(SVGNode, parent.querySelector(".color-list"));
+	}
+}
+
+function ArmorOptional (SVGNode, parent) {
+	var list = DOMNode("div", {id: SVGNode.id + "Options", class: "component-list"}, parent);
+
+	var d = DOMNode("div", {class: "component-check"}, list);
+	var l = SVGNode.id + "Checked";
+	var check = DOMNode("input", {type: "checkbox", id: l, checked: "true"}, d);
+	var label = DOMNode("label", {for: l}, d);
+	label.innerHTML = SVGNode.id;
+
+	var radios = DOMNode("div", {id: SVGNode.id + "List", class: "component-radio"}, list);
+	var ch = SVGNode.children;
+	var subLists = [];
+	for (var i = 0; i < ch.length; i++) {
+		var groupName = ch[i].id;
+		var subList = DOMNode("div", {id: groupName + "Options", class: "option-list"}, list);
+		ArmorComponent(ch[i], radios, {list: subList, use: SVGNode});
+		subLists.push(subList);
+	}
+	var first = radios.querySelector("input");
+	first.click();
+
+	check.addEventListener("click", function() {
+		var href = SVGNode.getAttribute("href");
+		var hide = "";
+		if (this.checked)
+			SVGNode.setAttribute("href", "#"+href);
+		else {
+			hide = "none";
+			SVGNode.setAttribute("href", href.slice(1));
+		}
+		radios.style.display = hide;
+		for (var i = 0; i < subLists.length; i++)
+			subLists[i].style.display = hide;
+	});
+}
+
+function ArmorGroup (g, fullname, radios, list, labelclass) {
+	var children = g.children;
+	var sanitizedName = fullname.replace(/\W/g,"");
+
+	ColorList(sanitizedName, list);
+	for (var j = 0; j < children.length; j++)
+		ArmorComponent(children[j], list);
+
+	var id = sanitizedName + "Style";
+	var radio = find(sanitizedName + "Style");
+	if (!radio) {
+		radio = DOMNode("input", {type: "radio", name: radios.id, id: id}, radios);
+		var label = DOMNode("label", {class: labelclass, for: id}, radios);
+		label.innerHTML = fullname;
+	}
+	g.addEventListener("click", redirectTo(radio));
+	return radio;
 }
 
 function MandoMaker (svg) {
 	var groups = svg.getElementsByTagName("title");
+	var radios = find("parts-list");
 	for (var i = 0; i < groups.length; i++) {
-		var g = groups[i].parentNode;
 		var fullname = groups[i].innerHTML;
-		var name = fullname.split(/\s/)[0];
-		var children = g.children;
-
-		var radio = new ArmorGroup(name, fullname);
-		g.addEventListener("click", redirectTo(radio));
-		for (var j = 1; j < children.length; j++)
-			new ColorPicker(children[j], name);
+		var sanitizedName = fullname.replace(/\W/g,"");
+		var list = OptionsList(sanitizedName);
+		var radio = ArmorGroup(groups[i].parentNode, groups[i].innerHTML, radios, list, "armor-label");
+		radio.addEventListener("input", pickArmorPiece(list, sanitizedName));
 	}
-	var first = find("parts-list").querySelector("[type = 'radio']");
+
+	find("download").addEventListener("click", function() {
+		if (svg.attributes['xmlns'] === undefined) {
+			svg.setAttribute('xmlns', 'http://www.w3.org/2000/svg');
+		}
+		if (svg.attributes['xmlns:xlink'] === undefined) {
+			svg.setAttribute('xmlns:xlink', 'http://www.w3.org/1999/xlink');
+		}
+		var data = '<?xml version="1.0" encoding="UTF-8"?>' + svg.outerHTML;
+		this.href = 'data:image/svg+xml;charset=UTF-8,' + encodeURIComponent(data);
+	});
+
+	var first = radios.querySelector("input");
+	first.checked = false;
 	first.click();
 }
 
@@ -71,29 +146,31 @@ function redirectTo(target) {
 	}
 }
 
+function pickArmorPiece (list, name) {
+	var now = find(name + "Options");
+	var sel = find("selection-name");
+	var p = list.parentNode;
+	return function() {
+		var components = p.children;
+		for (var i = 0; i < components.length; i++)
+			components[i].classList.remove("selected");
+		now.classList.add("selected");
+		sel.innerHTML = this.nextElementSibling.firstChild.data;
+	}
+}
+
+function pickArmorComponent (list, use, name) {
+	var now = find(name + "Options");
+	var p = list.parentNode;
+	return function() {
+		var components = p.children;
+		for (var i = 0; i < components.length; i++)
+			components[i].classList.remove("selected");
+		now.classList.add("selected");
+		use.setAttribute("href", "#"+name);
+	}
+}
+
 function toggleOptions () {
 	find("colors").classList.toggle("options-expanded");
-}
-
-function pickArmorPiece () {
-	var prev = find("colors").querySelector(".selected");
-	if (prev)
-		prev.classList.remove("selected");
-	var name = this.id.replace("Style","Options");
-	var now = find(name);
-	now.classList.add("selected");
-	find("selection-name").innerHTML = this.nextElementSibling.innerText;
-}
-
-function save () {
-	var so = find("Mando");
-	if (so.attributes['xmlns'] === undefined) {
-		so.setAttribute('xmlns', 'http://www.w3.org/2000/svg');
-	}
-	if (so.attributes['xmlns:xlink'] === undefined) {
-		so.setAttribute('xmlns:xlink', 'http://www.w3.org/1999/xlink');
-	}
-	var svg = '<?xml version="1.0" encoding="UTF-8"?>' + so.outerHTML;
-	var prot = 'data:image/svg+xml;charset=UTF-8';
-	event.target.href = prot + ',' + encodeURIComponent(svg);
 }
