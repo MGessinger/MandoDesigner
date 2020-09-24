@@ -13,7 +13,6 @@
 body {
 	margin: 0;
 	height: 100vh;
-	overflow: hidden;
 	color: white;
 	font-family: "icomoon", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Verdana, sans-serif;
 }
@@ -24,7 +23,7 @@ label {
 }
 
 nav {
-	position: absolute;
+	position: fixed;
 	left: 0;
 	height: 100%;
 	width: 3em;
@@ -84,7 +83,7 @@ nav {
 .image-column {
 	height: 100%;
 	padding: 0 3em;
-	background: Transparent no-repeat center;
+	background: #1c1c1c no-repeat center;
 	background-size: cover;
 	background-image: url("assets/foggy.jpg");
 	text-align: center;
@@ -131,18 +130,16 @@ footer {
 }
 
 .credits {
-	font-size: 0.75em;
-	height: 4em;
-	background: rgba(0,0,0,50%);
+	display: flex;
 	margin: 0 4em;
 	padding: 0 1em;
-	line-height: 4em;
+	flex-wrap: wrap;
+	align-content: center;
+	justify-content: space-between;
+	min-height: 4em;
+	font-size: 0.75em;
+	background: rgba(0,0,0,50%);
 }
-
-.image-credit {
-	float: right;
-}
-
 .credit {
 	color: #ab1f1f;
 	text-decoration: none;
@@ -223,6 +220,10 @@ footer {
 	width: 5em;
 }
 
+#Background {
+	display: none;
+}
+
 .options-expanded {
 	width: 26em;
 	text-align: unset;
@@ -252,6 +253,7 @@ footer {
 	width: 7.5em;
 	height: 3em;
 	padding-bottom: 0.75em;
+	overflow-y: hidden;
 }
 
 .options-expanded .color-picker {

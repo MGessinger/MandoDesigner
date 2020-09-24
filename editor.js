@@ -9,7 +9,8 @@ function DOMNode (type, props, parent) {
 	var n = document.createElement(type);
 	for (var p in props)
 		n.setAttribute(p, props[p]);
-	parent.appendChild(n);
+	if (parent)
+		parent.appendChild(n);
 	return n;
 }
 
@@ -32,9 +33,10 @@ function ColorPicker (affectedObject, parent) {
 	var color = DOMNode("input", {type: "color", id: label, class: "color-picker", value: "#ffffff"}, wrapper);
 	var l = DOMNode("label", {for: label, class: "color-label"}, wrapper);
 
+	var shortName = affectedObject.id.split(/_/)[0];
 	var input = function () {
 		affectedObject.setAttribute("fill", color.value);
-		l.innerHTML = affectedObject.id + "<br />" + color.value;
+		l.innerHTML = shortName + "<br />" + color.value;
 	}
 	color.addEventListener("input", input);
 	affectedObject.addEventListener("click", redirectTo(color));
@@ -106,7 +108,7 @@ function ArmorGroup (g, fullname, radios, list, labelclass) {
 	if (!radio) {
 		radio = DOMNode("input", {type: "radio", name: radios.id, id: id}, radios);
 		var label = DOMNode("label", {class: labelclass, for: id}, radios);
-		label.innerHTML = fullname;
+		label.innerHTML = fullname.split(/_/)[0];
 	}
 	g.addEventListener("click", redirectTo(radio));
 	return radio;
@@ -124,14 +126,12 @@ function MandoMaker (svg) {
 	}
 
 	find("download").addEventListener("click", function() {
-		if (svg.attributes['xmlns'] === undefined) {
-			svg.setAttribute('xmlns', 'http://www.w3.org/2000/svg');
-		}
-		if (svg.attributes['xmlns:xlink'] === undefined) {
-			svg.setAttribute('xmlns:xlink', 'http://www.w3.org/1999/xlink');
-		}
-		var data = '<?xml version="1.0" encoding="UTF-8"?>' + svg.outerHTML;
-		this.href = 'data:image/svg+xml;charset=UTF-8,' + encodeURIComponent(data);
+		var background = find("Background");
+		var copy = svg.cloneNode(true);
+		background.appendChild(copy);
+		var str = (new XMLSerializer).serializeToString(background);
+		var data = '<?xml version="1.0" encoding="UTF-8"?>' + str;
+		this.setAttribute("href",'data:image/svg+xml;charset=UTF-8,' + encodeURIComponent(data));
 	});
 
 	var first = radios.querySelector("input");
