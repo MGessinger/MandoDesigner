@@ -29,19 +29,21 @@ function OptionsList (groupName) {
 function ColorPicker (affectedObject, parent) {
 	var wrapper = DOMNode("div", {class: "color-wrapper"}, parent);
 
-	var label = affectedObject.id + "Color";
-	var color = DOMNode("input", {type: "color", id: label, class: "color-picker", value: "#ffffff"}, wrapper);
-	var l = DOMNode("label", {for: label, class: "color-label"}, wrapper);
+	var buttonID = affectedObject.id + "Color";
+	var b = DOMNode("button", {class: "color-picker", id: buttonID}, wrapper);
+	var l = DOMNode("label", {class: "color-label", for: buttonID}, wrapper);
 
 	var shortName = affectedObject.id.split(/_/)[0];
-	var input = function () {
-		affectedObject.setAttribute("fill", color.value);
-		l.innerHTML = shortName + "<br />" + color.value;
+	var input = function (color) {
+		var hex = color.hex;
+		b.style.background = hex;
+		affectedObject.setAttribute("fill", hex);
+		l.innerHTML = shortName + "<br />" + hex;
 	}
-	color.addEventListener("input", input);
-	affectedObject.addEventListener("click", redirectTo(color));
-	input()
-	return color;
+	attachColorPicker(b, input, affectedObject);
+	affectedObject.addEventListener("click", redirectTo(b));
+	input({hex:"#ffffff"})
+	return b;
 }
 
 function ArmorComponent (SVGNode, parent, kwargs) {

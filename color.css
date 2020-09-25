@@ -1,0 +1,92 @@
+.picker_wrapper {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-evenly;
+	position:absolute;
+	right:100%;
+	width:18em;
+	pointer-events:auto;
+	background:#222;
+	box-shadow:0 0 10px 1px rgba(0,0,0,50%);
+}
+
+.picker_main > * {
+	margin:.5em;
+}
+
+.picker_palette {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-evenly;
+}
+
+.palette_icon {
+	width:1.5em;
+	height:1.5em;
+}
+
+.picker_main {
+	width: 15em;
+	float: right;
+}
+
+.picker_hue {
+	position:relative;
+	padding: 0.5em;
+	background-image:-webkit-gradient(linear, left top, right top, from(red), color-stop(yellow), color-stop(lime), color-stop(cyan), color-stop(blue), color-stop(magenta), to(red));
+	background-image:-webkit-linear-gradient(left, red, yellow, lime, cyan, blue, magenta, red);
+	background-image:linear-gradient(90deg, red, yellow, lime, cyan, blue, magenta, red);
+}
+
+.picker_hue .picker_selector {
+	border-radius:0.3em;
+}
+
+.picker_sl {
+	position:relative;
+	background-image:-webkit-gradient(linear, left top, left bottom, from(white), color-stop(50%, rgba(255,255,255,0))),-webkit-gradient(linear, left bottom, left top, from(black), color-stop(50%, rgba(0,0,0,0))),-webkit-gradient(linear, left top, right top, from(gray), to(rgba(128,128,128,0)));
+	background-image:-webkit-linear-gradient(top, white, rgba(255,255,255,0) 50%),-webkit-linear-gradient(bottom, black, rgba(0,0,0,0) 50%),-webkit-linear-gradient(left, gray, rgba(128,128,128,0));
+	background-image:linear-gradient(180deg, white, rgba(255,255,255,0) 50%),linear-gradient(0deg, black, rgba(0,0,0,0) 50%),linear-gradient(90deg, gray, rgba(128,128,128,0));
+}
+
+.picker_sl::before {
+	content:'';
+	display:block;
+	padding-bottom:100%;
+}
+
+.picker_bottom {
+	display: flex;
+	height: 2em;
+	width: 100%;
+	margin: 0.5em;
+	justify-content: space-evenly;
+}
+
+.picker_done,
+.picker_editor {
+	border: none;
+	outline: none;
+	margin: 0 0.25em;
+	padding: 0 0.5em;
+	width: 60%;
+	height: 100%;
+	background: #C4C4C4;
+}
+
+.picker_done:focus,
+.picker_editor:focus {
+	box-shadow:0 0 2px 1px #ab1f1f;
+}
+
+.picker_selector {
+	position:absolute;
+	padding:0.5em;
+	-webkit-transform:translate(-50%, -50%);
+	transform:translate(-50%, -50%);
+	border:2px solid white;
+	border-radius:100%;
+	box-shadow:0 0 3px 1px #67b9ff;
+	background:currentColor;
+	cursor:pointer;
+}

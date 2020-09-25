@@ -29,6 +29,15 @@ nav {
 	width: 3em;
 }
 
+button {
+	border: 1px solid white;
+	outline: none;
+}
+
+button:focus {
+	border: 1px solid #ab1f1f;
+}
+
 .title {
 	display: block;
 	height: 4em;
@@ -189,15 +198,11 @@ footer {
 	height: 2em;
 	width: 2em;
 	margin: 0.25em 0;
-	padding: 0;
-	border: 1px solid white;
 }
 
 .color-label {
 	display: none;
-	margin-left: 3em;
-	margin-top: 0.5em;
-	line-height: 1em;
+	padding-left: 3em;
 }
 
 .component-list {
@@ -250,10 +255,10 @@ footer {
 
 .options-expanded .color-wrapper {
 	display: inline-block;
-	width: 7.5em;
+	min-width: 7.5em;
 	height: 3em;
 	padding-bottom: 0.75em;
-	overflow-y: hidden;
+	vertical-align: top;
 }
 
 .options-expanded .color-picker {
