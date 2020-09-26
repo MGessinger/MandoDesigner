@@ -34,15 +34,14 @@ function ColorPicker (affectedObject, parent) {
 	var l = DOMNode("label", {class: "color-label", for: buttonID}, wrapper);
 
 	var shortName = affectedObject.id.split(/_/)[0];
-	var input = function (color) {
-		var hex = color.hex;
+	var input = function (hex) {
 		b.style.background = hex;
 		affectedObject.setAttribute("fill", hex);
 		l.innerHTML = shortName + "<br />" + hex;
 	}
 	attachColorPicker(b, input, affectedObject);
 	affectedObject.addEventListener("click", redirectTo(b));
-	input({hex:"#ffffff"})
+	input("#ffffff")
 	return b;
 }
 
