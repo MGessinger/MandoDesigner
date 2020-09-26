@@ -21,8 +21,7 @@ function ColorList (groupName, total) {
 function OptionsList (groupName) {
 	var total = DOMNode("div", {id: groupName + "Options", class: "option-list"}, find("colors"));
 	var h = DOMNode("p", {class: "option-name"}, total);
-	var shortName = groupName.split(/ ?\(/)[0];
-	h.innerText = shortName + " Options:";
+	h.innerText = groupName + " Options:";
 	return total;
 }
 
@@ -39,7 +38,7 @@ function ColorPicker (affectedObject, parent) {
 		affectedObject.setAttribute("fill", hex);
 		l.innerHTML = shortName + "<br />" + hex;
 	}
-	attachColorPicker(b, input, affectedObject);
+	Picker.attach(b, input, affectedObject);
 	affectedObject.addEventListener("click", redirectTo(b));
 	input("#ffffff")
 	return b;
@@ -61,7 +60,8 @@ function ArmorComponent (SVGNode, parent, kwargs) {
 }
 
 function ArmorOptional (SVGNode, parent) {
-	var list = DOMNode("div", {id: SVGNode.id + "Options", class: "component-list"}, parent);
+	var sanitizedName = SVGNode.id.replace(/\W/,"");
+	var list = DOMNode("div", {id: sanitizedName + "Options", class: "component-list"}, parent);
 
 	var d = DOMNode("div", {class: "component-check"}, list);
 	var l = SVGNode.id + "Checked";
@@ -141,7 +141,7 @@ function MandoMaker (svg) {
 }
 
 function redirectTo(target) {
-	return function () {
+	return function (event) {
 		target.focus();
 		target.click();
 	}

@@ -1,6 +1,6 @@
 'use strict';
 
-var attachColorPicker = function() {
+var Picker = new function() {
 	function on(elem, event, func) {
 		elem.addEventListener(event, func);
 	}
@@ -156,11 +156,11 @@ var attachColorPicker = function() {
 		},
 		hslToRgb: function (f) {
 			function merge(c, b, a) {
-		      		return a < 0 && (a = a + 1),
-	      			1 < a && (a = a - 1),
-      				a < 1 / 6 ? c + 6 * (b - c) * a : a < .5 ? b : a < 2 / 3 ? c + (b - c) * (2 / 3 - a) * 6 : c;
+				if (a < 0) a++;
+				else if (a > 1) a--;
+      				return a < 1 / 6 ? c + 6 * (b - c) * a : a < .5 ? b : a < 2 / 3 ? c + (b - c) * (2 / 3 - a) * 6 : c;
 			}
-			var [h,s,l] = f;
+			var h = f[0], s = f[1], l = f[2];
 			var r, g, b;
 			if (0 === s) {
 				r = g = b = l;
@@ -175,71 +175,69 @@ var attachColorPicker = function() {
 		}
 	}
 
-	var PickerDOM =  {
-		wrapper: DOMNode("div", { class: "picker_wrapper" }),
-		init: function () {
-			var palette = DOMNode("div", { class: "picker_palette" }, this.wrapper);
-			var colors = ["#000", "#333", "#730", "#040", "#800", "#007", "#fff"]
-			for (var i = 0; i < colors.length; i++) {
-				var pal = DOMNode("button", {
-						class: "palette_icon",
-						style: "background:" + colors[i],
-						title: "Right-click to save the current color"
-					}, palette);
-				on(pal, "click", function() { _setColor(this.style.background); });
-				on(pal, "contextmenu", function() { event.preventDefault(); this.style.background = color.hex; });
-			}
-
-			var main = DOMNode("div", { class: "picker_main" }, this.wrapper);
-			this.hue = DOMNode("div", { class: "picker_hue" }, main);
-			this.hueSelector = DOMNode("div", { class: "picker_selector" }, this.hue);
-			this.spectrum = DOMNode("div", { class: "picker_sl" }, main);
-			this.colorSelector = DOMNode("div", { class: "picker_selector" }, this.spectrum);
-
-			var bottom = DOMNode("div", { class: "picker_bottom" }, this.wrapper);
-			this.editor = DOMNode("input", { class: "picker_editor", "type": "text", "aria-label": "Type a color code or Hex value" }, bottom);
-			var Okay = DOMNode("button", { class: "picker_done" }, bottom);
-			Okay.innerHTML = "Ok";
-
-			_init(this.hue, function(hue) { var c = color.hsl; c[0] = hue; return _setColor(c); });
-			_init(this.spectrum, function(s, v) { var c = color.hsl; c[1] = s; c[2] = 1-v; return _setColor(c)});
-			on(this.editor, "input", function() { _setColor(this.value, true); });
-
-			function stopper(event) {
-				event.stopPropagation()
-			}
-			on(this.wrapper, "mousedown", stopper);
-			on(this.wrapper, "focusin", stopper);
-			on(this.wrapper, "click", stopper);
-			var self = this
-			function close(event) {
-				self.parent = null;
-			}
-			on(Okay, "click", close);
-			on(window, "mousedown", close);
-			on(window, "focusin", close);
-		},
-		update: function () {
-			function move(key, t, f) {
-				t.style[key] = 100 * f + "%";
-			}
-
-			var hslColor = color.hsl;
-			var colorName = "hsl(" + 360 * hslColor[0] + ", 100%, 50%)";
-			move("left",this.hueSelector, hslColor[0]);
-			move("left",this.colorSelector, hslColor[1]);
-			move("top",this.colorSelector, 1 - hslColor[2]);
-			this.spectrum.style.backgroundColor = this.hue.style.color = colorName;
-			this.spectrum.style.color = color.hslString;
-		},
-		set parent (p) {
-			var w = this.wrapper;
-			if (!p)
-				return w.style.display = "none";
-			w.style.display = "";
-			p.appendChild(w);
+	var PickerDOM = new function () {
+		var wrapper = find("picker");
+		wrapper.focus();
+		on(wrapper, "click", function(event){event.stopPropagation();});
+		var ch = wrapper.children;
+		var colors = ["#000", "#333", "#730", "#040", "#800", "#007", "#fff"]
+		for (var i = 0; i < colors.length; i++) {
+			var pal = DOMNode("button", {
+					class: "palette_icon",
+					style: "background:" + colors[i],
+					title: "Right-click to save the current color"
+				}, ch[0]);
+			on(pal, "click", function() { _setColor(this.style.background); });
+			on(pal, "contextmenu", function(event) { event.preventDefault(); style.background = color.hex; });
 		}
-	};
+
+		var ch1 = ch[1].children;
+		var hue = ch1[0], spectrum = ch1[1];
+		var hueSelector = hue.firstElementChild;
+		var colorSelector = spectrum.firstElementChild;
+
+		var mainChildren = ch[2].children;
+		var editor = mainChildren[0];
+		on(editor, "input", function() { _setColor(this.value, true); });
+		var Okay = mainChildren[1];
+		on(Okay, "click", function() { PickerDOM.parent = null;});
+
+		_init(hue, function(hue) { var c = color.hsl; c[0] = hue; return _setColor(c); });
+		_init(spectrum, function(s, v) { var c = color.hsl; c[1] = s; c[2] = 1-v; return _setColor(c)});
+
+		on(window, "mousedown", function (event) {
+			if (!(wrapper.contains(event.target)))
+				PickerDOM.parent = null;
+		});
+		on(window, "focusin", function (event) {
+			if (!(wrapper.contains(event.target)))
+				PickerDOM.parent = null;
+		});
+
+		function move(key, t, f) {
+			t.style[key] = 100 * f + "%";
+		}
+		return {
+			update: function (fromEditor) {
+				var hslColor = color.hsl;
+				var colorName = "hsl(" + 360 * hslColor[0] + ", 100%, 50%)";
+				move("left",hueSelector, hslColor[0]);
+				move("left",colorSelector, hslColor[1]);
+				move("top",colorSelector, 1 - hslColor[2]);
+				spectrum.style.backgroundColor = hue.style.color = colorName;
+				spectrum.style.color = color.hslString;
+				if (!fromEditor) {
+					editor.value = color.hex;
+				}
+			},
+			set parent (p) {
+				if (!p)
+					return wrapper.style.display = "none";
+				wrapper.style.display = "";
+				p.appendChild(wrapper);
+			}
+		}
+	} ();
 
 	function _setColor(value, fromEditor) {
 		if (typeof value === "string")
@@ -247,23 +245,19 @@ var attachColorPicker = function() {
 		if (!value)
 			return;
 		color.update(value);
-		PickerDOM.update();
-		if (!fromEditor) {
-			PickerDOM.editor.value = color.hex;
-		}
+		PickerDOM.update(fromEditor);
 		if (onChange) {
 			onChange(color.hex);
 		}
 	}
 
 	var onChange = null;
-	PickerDOM.init(this);
-
-	return function (button, handler, aff) {
-		on(button, "click", function() {
+	this.attach = function (button, handler, aff) {
+		on(button, "click", function(event) {
 			onChange = handler;
 			_setColor(aff.getAttribute("fill"));
 			PickerDOM.parent = button;
+			event.preventDefault();
 		});
 	}
 }()
