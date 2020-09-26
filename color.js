@@ -32,9 +32,9 @@ var Picker = new function() {
 			var dimensions = o.getBoundingClientRect();
 			var width = dimensions.width;
 			var height = dimensions.height;
-			var l = clamp(event.clientX - dimensions.left, 0, width);
-			var lightness = clamp(event.clientY - dimensions.top, 0, height);
-			done(l / width, lightness / height);
+			var s = clamp(event.clientX - dimensions.left, 0, width);
+			var l = clamp(event.clientY - dimensions.top, 0, height);
+			done(s / width, l / height);
 		}
 
 		on(o, "mousedown", touch);
@@ -43,73 +43,14 @@ var Picker = new function() {
 		on(o, "touchmove", touch);
 	}
 
-	var color = {
-		get rgb() {
-			if (this._rgb)
-				return this._rgb;
-			return this._rgb = this.hslToRgb(this._hsl);
-		},
-		set rgb(value) {
-			if (value == undefined)
-				return;
-			this._rgb = value;
-			this._hsl = null;
-		},
-		get hsl () {
-			if (this._hsl)
-				return this._hsl;
-			return this._hsl = this.rgbToHsl(this._rgb);
-		},
-		set hsl (value) {
-			if (value == undefined)
-				return;
-			this._hsl = value;
-			this._rgb = null;
-		},
-		get hex () {
-			return "#" + this.rgb.map(function(e, l) {
-				return l < 3 ? e.toString(16) : Math.round(255 * e).toString(16);
-			}).map(function(_) {
-				return _.padStart(2, "0");
-			}).join("");
-		},
-		set hex (value) {
-			if (value == undefined)
-				return;
-			this.rgb = this.hexToRgb(value);
-		},
-		get hslString () {
-			var ydata = [360, 100, 100];
-			var units = ["", "%", "%", ""];
-			var str = this.hsl;
-			var t = this.hsl.slice(0, 3).map(function(a, i) {
-				var res = a * ydata[i];
-				return res.toFixed(3 === i ? 3 : 1).replace(/\.?0+$/, "") + units[i];
-			});
-			return "hsl(" + t + ")";
-		},
-		update: function(value) {
-			if (Array.isArray(value))
-				return this.hsl = value;
-			var string = value.toLowerCase();
-			if (string.startsWith("hsl")) {
-				var b = string.match(/([\-\d\.e]+)/g);
-				if (!b)
-					return undefined;
-				b = b.map(Number);
-				this.hsl = [b[0]/360, b[1]/100, b[2]/100];
-			} else if (string.startsWith("rgb")) {
-				var p = string.match(/\d{1,3}/g);
-				if (!p)
-					return undefined;
-				this.rgb = p.slice(0,3).map(Number);
-			} else if (string.startsWith("#")) {
-				this.rgb = this.hexToRgb(string);
-			} else {
-				this.rgb = this.nameToRgb(string);
-			}
-		},
-		rgbToHsl: function(y) {
+	function Color () {
+		function hexToHsl(hex) {
+			var shorthandRegex = /^#?([a-f\d])([a-f\d])([a-f\d])$/i;
+			hex = hex.replace(shorthandRegex, "$1$1$2$2$3$3");
+			var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+			if (!result)
+				return undefined;
+			var y = result.slice(1).map(function(r) {return parseInt(r,16);});
 			var r = y[0]/255;
 			var g = y[1]/255;
 			var b = y[2]/255;
@@ -135,30 +76,23 @@ var Picker = new function() {
 				h = h / 6;
 			}
 			return [h, s, c];
-		},
-		hexToRgb: function (hex) {
-			var shorthandRegex = /^#?([a-f\d])([a-f\d])([a-f\d])$/i;
-			hex = hex.replace(shorthandRegex, function(m, r, g, b) {
-				return r + r + g + g + b + b;
-			});
-			var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
-			if (result)
-				result = result.slice(1).map(function(r) {return parseInt(r,16);});
-			return result;
-		},
-		names: {cb:"0f8ff",tqw:"aebd7",q:"-ffff",qmrn:"7fffd4",zr:"0ffff",bg:"5f5dc",bsq:"e4c4",bck:"---",nch:"ebcd",b:"--ff",bvt:"8a2be2",brwn:"a52a2a",brw:"deb887",ctb:"5f9ea0",hrt:"7fff-",chcT:"d2691e",cr:"7f50",rnw:"6495ed",crns:"8dc",crms:"dc143c",cn:"-ffff",Db:"--8b",Dcn:"-8b8b",Dgnr:"b8860b",Dgr:"a9a9a9",Dgrn:"-64-",Dkhk:"bdb76b",Dmgn:"8b-8b",Dvgr:"556b2f",Drng:"8c-",Drch:"9932cc",Dr:"8b--",Dsmn:"e9967a",Dsgr:"8fbc8f",DsTb:"483d8b",DsTg:"2f4f4f",Dtrq:"-ced1",Dvt:"94-d3",ppnk:"1493",pskb:"-bfff",mgr:"696969",grb:"1e90ff",rbrc:"b22222",rwht:"af0",stg:"228b22",chs:"-ff",gnsb:"dcdcdc",st:"8f8ff",g:"d7-",gnr:"daa520",gr:"808080",grn:"-8-0",grnw:"adff2f",hnw:"0fff0",htpn:"69b4",nnr:"cd5c5c",ng:"4b-82",vr:"0",khk:"0e68c",vnr:"e6e6fa",nrb:"0f5",wngr:"7cfc-",mnch:"acd",Lb:"add8e6",Lcr:"08080",Lcn:"e0ffff",Lgnr:"afad2",Lgr:"d3d3d3",Lgrn:"90ee90",Lpnk:"b6c1",Lsmn:"a07a",Lsgr:"20b2aa",Lskb:"87cefa",LsTg:"778899",Lstb:"b0c4de",Lw:"e0",m:"-ff-",mgrn:"32cd32",nn:"af0e6",mgnt:"-ff",mrn:"8--0",mqm:"66cdaa",mmb:"--cd",mmrc:"ba55d3",mmpr:"9370db",msg:"3cb371",mmsT:"7b68ee","":"-fa9a",mtr:"48d1cc",mmvt:"c71585",mnLb:"191970",ntc:"5fffa",mstr:"e4e1",mccs:"e4b5",vjw:"dead",nv:"--80",c:"df5e6",v:"808-0",vrb:"6b8e23",rng:"a5-",rngr:"45-",rch:"da70d6",pgnr:"eee8aa",pgrn:"98fb98",ptrq:"afeeee",pvtr:"db7093",ppwh:"efd5",pchp:"dab9",pr:"cd853f",pnk:"c0cb",pm:"dda0dd",pwrb:"b0e0e6",prp:"8-080",cc:"663399",r:"--",sbr:"bc8f8f",rb:"4169e1",sbrw:"8b4513",smn:"a8072",nbr:"4a460",sgrn:"2e8b57",ssh:"5ee",snn:"a0522d",svr:"c0c0c0",skb:"87ceeb",sTb:"6a5acd",sTgr:"708090",snw:"afa",n:"-ff7f",stb:"4682b4",tn:"d2b48c",t:"-8080",thst:"d8bfd8",tmT:"6347",trqs:"40e0d0",vt:"ee82ee",whT:"5deb3",wht:"",hts:"5f5f5",w:"-",wgrn:"9acd32"},
-		nameToRgb: function (e) {
+		}
+
+		var names = {cb:"0f8ff",tqw:"aebd7",q:"-ffff",qmrn:"7fffd4",zr:"0ffff",bg:"5f5dc",bsq:"e4c4",bck:"---",nch:"ebcd",b:"--ff",bvt:"8a2be2",brwn:"a52a2a",brw:"deb887",ctb:"5f9ea0",hrt:"7fff-",chcT:"d2691e",cr:"7f50",rnw:"6495ed",crns:"8dc",crms:"dc143c",cn:"-ffff",Db:"--8b",Dcn:"-8b8b",Dgnr:"b8860b",Dgr:"a9a9a9",Dgrn:"-64-",Dkhk:"bdb76b",Dmgn:"8b-8b",Dvgr:"556b2f",Drng:"8c-",Drch:"9932cc",Dr:"8b--",Dsmn:"e9967a",Dsgr:"8fbc8f",DsTb:"483d8b",DsTg:"2f4f4f",Dtrq:"-ced1",Dvt:"94-d3",ppnk:"1493",pskb:"-bfff",mgr:"696969",grb:"1e90ff",rbrc:"b22222",rwht:"af0",stg:"228b22",chs:"-ff",gnsb:"dcdcdc",st:"8f8ff",g:"d7-",gnr:"daa520",gr:"808080",grn:"-8-0",grnw:"adff2f",hnw:"0fff0",htpn:"69b4",nnr:"cd5c5c",ng:"4b-82",vr:"0",khk:"0e68c",vnr:"e6e6fa",nrb:"0f5",wngr:"7cfc-",mnch:"acd",Lb:"add8e6",Lcr:"08080",Lcn:"e0ffff",Lgnr:"afad2",Lgr:"d3d3d3",Lgrn:"90ee90",Lpnk:"b6c1",Lsmn:"a07a",Lsgr:"20b2aa",Lskb:"87cefa",LsTg:"778899",Lstb:"b0c4de",Lw:"e0",m:"-ff-",mgrn:"32cd32",nn:"af0e6",mgnt:"-ff",mrn:"8--0",mqm:"66cdaa",mmb:"--cd",mmrc:"ba55d3",mmpr:"9370db",msg:"3cb371",mmsT:"7b68ee","":"-fa9a",mtr:"48d1cc",mmvt:"c71585",mnLb:"191970",ntc:"5fffa",mstr:"e4e1",mccs:"e4b5",vjw:"dead",nv:"--80",c:"df5e6",v:"808-0",vrb:"6b8e23",rng:"a5-",rngr:"45-",rch:"da70d6",pgnr:"eee8aa",pgrn:"98fb98",ptrq:"afeeee",pvtr:"db7093",ppwh:"efd5",pchp:"dab9",pr:"cd853f",pnk:"c0cb",pm:"dda0dd",pwrb:"b0e0e6",prp:"8-080",cc:"663399",r:"--",sbr:"bc8f8f",rb:"4169e1",sbrw:"8b4513",smn:"a8072",nbr:"4a460",sgrn:"2e8b57",ssh:"5ee",snn:"a0522d",svr:"c0c0c0",skb:"87ceeb",sTb:"6a5acd",sTgr:"708090",snw:"afa",n:"-ff7f",stb:"4682b4",tn:"d2b48c",t:"-8080",thst:"d8bfd8",tmT:"6347",trqs:"40e0d0",vt:"ee82ee",whT:"5deb3",wht:"",hts:"5f5f5",w:"-",wgrn:"9acd32"}
+
+		function nameToHex (e) {
 			var p = e.toLowerCase().replace("at", "T").replace(/[aeiouyldf]/g, "").replace("ght", "L").replace("rk", "D").slice(-5, 4);
-			var hex = this.names[p]
+			var hex = names[p]
 			if (!hex)
 				return undefined;
-			return this.hexToRgb(hex.replace(/\-/g, "00").padStart(6, "f"));
-		},
-		hslToRgb: function (f) {
+			return hex.replace(/\-/g, "00").padStart(6, "f");
+		}
+
+		function hslToHex(f) {
 			function merge(c, b, a) {
 				if (a < 0) a++;
 				else if (a > 1) a--;
-      				return a < 1 / 6 ? c + 6 * (b - c) * a : a < .5 ? b : a < 2 / 3 ? c + (b - c) * (2 / 3 - a) * 6 : c;
+				return a < 1 / 6 ? c + 6 * (b - c) * a : a < .5 ? b : a < 2 / 3 ? c + (b - c) * (2 / 3 - a) * 6 : c;
 			}
 			var h = f[0], s = f[1], l = f[2];
 			var r, g, b;
@@ -171,11 +105,78 @@ var Picker = new function() {
 				g = merge(f, e, h);
 				b = merge(f, e, h - 1 / 3);
 			}
-			return [255 * r, 255 * g, 255 * b].map(Math.round);
+			var rgb = [255 * r, 255 * g, 255 * b].map(Math.round);
+			return "#" + rgb.map(function(e, l) {
+				var p = e.toString(16);
+				return p.padStart(2, "0");
+			}).join("");
+		}
+
+		var _hsl, _hex;
+		return {
+			get hsl () {
+				if (_hsl)
+					return _hsl;
+				return _hsl = hexToHsl(_hex);
+			},
+			set hsl (value) {
+				if (value == undefined)
+					return;
+				_hsl = value;
+				_hex = null;
+			},
+			get hex () {
+				if (_hex)
+					return _hex;
+				return _hex = hslToHex(this.hsl);
+			},
+			set hex (value) {
+				if (value == undefined)
+					return;
+				if (value[0] === "#")
+					_hex = value;
+				else
+					_hex = "#" + value;
+				_hsl = null;
+			},
+			get hslString () {
+				var ydata = [360, 100, 100];
+				var units = ["", "%", "%"];
+				var t = this.hsl.map(function(a, i) {
+					var res = a * ydata[i];
+					return res.toFixed(1) + units[i];
+				});
+				return "hsl(" + t + ")";
+			},
+			update: function(value) {
+				if (Array.isArray(value))
+					return this.hsl = value;
+				var string = value.toLowerCase();
+				if (string.startsWith("hsl")) {
+					var b = string.match(/([\-\d\.e]+)/g);
+					if (!b)
+						return;
+					b = b.map(Number);
+					this.hsl = [b[0]/360, b[1]/100, b[2]/100];
+				} else if (string.startsWith("rgb")) {
+					var p = string.match(/\d{1,3}/g);
+					if (!p)
+						return;
+					var hex = "#" + p.slice(0,3).map(function(e, l) {
+						var p = parseInt(e).toString(16);
+						return p.padStart(2, "0");
+					}).join("");
+					this.hsl = hexToHsl(hex);
+				} else if (string.startsWith("#")) {
+					this.hsl = hexToHsl(string);
+				} else {
+					this.hex = nameToHex(string);
+				}
+			}
 		}
 	}
 
-	var PickerDOM = new function () {
+	function PickerDOM() {
 		var wrapper = find("picker");
 		wrapper.focus();
 		on(wrapper, "click", function(event){event.stopPropagation();});
@@ -188,7 +189,7 @@ var Picker = new function() {
 					title: "Right-click to save the current color"
 				}, ch[0]);
 			on(pal, "click", function() { _setColor(this.style.background); });
-			on(pal, "contextmenu", function(event) { event.preventDefault(); style.background = color.hex; });
+			on(pal, "contextmenu", function(event) { event.preventDefault(); this.style.background = color.hex; });
 		}
 
 		var ch1 = ch[1].children;
@@ -200,18 +201,18 @@ var Picker = new function() {
 		var editor = mainChildren[0];
 		on(editor, "input", function() { _setColor(this.value, true); });
 		var Okay = mainChildren[1];
-		on(Okay, "click", function() { PickerDOM.parent = null;});
+		on(Okay, "click", function() { DOM.parent = null;});
 
 		_init(hue, function(hue) { var c = color.hsl; c[0] = hue; return _setColor(c); });
 		_init(spectrum, function(s, v) { var c = color.hsl; c[1] = s; c[2] = 1-v; return _setColor(c)});
 
 		on(window, "mousedown", function (event) {
 			if (!(wrapper.contains(event.target)))
-				PickerDOM.parent = null;
+				DOM.parent = null;
 		});
 		on(window, "focusin", function (event) {
 			if (!(wrapper.contains(event.target)))
-				PickerDOM.parent = null;
+				DOM.parent = null;
 		});
 
 		function move(key, t, f) {
@@ -237,7 +238,7 @@ var Picker = new function() {
 				p.appendChild(wrapper);
 			}
 		}
-	} ();
+	}
 
 	function _setColor(value, fromEditor) {
 		if (typeof value === "string")
@@ -245,18 +246,20 @@ var Picker = new function() {
 		if (!value)
 			return;
 		color.update(value);
-		PickerDOM.update(fromEditor);
+		DOM.update(fromEditor);
 		if (onChange) {
 			onChange(color.hex);
 		}
 	}
 
+	var color = new Color();
+	var DOM = new PickerDOM();
 	var onChange = null;
 	this.attach = function (button, handler, aff) {
 		on(button, "click", function(event) {
 			onChange = handler;
 			_setColor(aff.getAttribute("fill"));
-			PickerDOM.parent = button;
+			DOM.parent = button;
 			event.preventDefault();
 		});
 	}
