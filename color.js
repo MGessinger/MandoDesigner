@@ -73,7 +73,10 @@ var Picker = new function() {
 		var ctx = find("canvas").getContext("2d");
 		function nameToHex (e) {
 			ctx.fillStyle = e;
-			return ctx.fillStyle;
+			var f = ctx.fillStyle;
+			if (f === "#000000" && e != "black")
+				f = undefined;
+			return f;
 		}
 
 		function hsvToHex(f) {
@@ -137,7 +140,7 @@ var Picker = new function() {
 					this.hex = string;
 				} else if (string.startsWith("rgb")) {
 					var p = string.match(/\d{1,3}/g);
-					if (!p || p.length != 3)
+					if (!p || p.length < 3)
 						return;
 					this.hex = "#" + p.slice(0,3).map(function(e, l) {
 						var p = parseInt(e).toString(16);

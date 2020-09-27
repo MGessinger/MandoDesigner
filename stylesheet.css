@@ -10,9 +10,12 @@
 	font-display: block;
 }
 
+html, body {
+	height: 100%;
+}
+
 body {
 	margin: 0;
-	height: 100vh;
 	color: white;
 	font-family: "icomoon", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Verdana, sans-serif;
 }
@@ -97,8 +100,7 @@ button:focus {
 	text-align: center;
 }
 
-svg {
-	max-height: 80%;
+main svg {
 	padding-top: 4em;
 }
 

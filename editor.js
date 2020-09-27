@@ -127,9 +127,11 @@ function MandoMaker (svg) {
 	}
 
 	find("download").addEventListener("click", function() {
-		var background = find("Background");
+		var background = find("Background").cloneNode(true);
 		var copy = svg.cloneNode(true);
 		background.appendChild(copy);
+		var logo = find("title").cloneNode(true);
+		background.appendChild(logo);
 		var str = (new XMLSerializer).serializeToString(background);
 		var data = '<?xml version="1.0" encoding="UTF-8"?>' + str;
 		this.setAttribute("href",'data:image/svg+xml;charset=UTF-8,' + encodeURIComponent(data));
