@@ -166,11 +166,11 @@ footer {
 .options-column {
 	position: fixed;
 	right: 0;
-	width: 3em;
+	width: 26em;
 	height: 100%;
+	font-size: 0.7em;
 	z-index: 1;
 	background: #222;
-	text-align: center;
 }
 
 #options-toggle {
@@ -179,7 +179,8 @@ footer {
 	height: 3em;
 	background: none;
 	font: inherit;
-	color: inherit;
+	font-size: 1.5em;
+	color: #F8E71C;
 }
 
 #options-toggle:focus {
@@ -187,12 +188,10 @@ footer {
 }
 
 .selection {
-	display: none;
 	padding: 1.25em;
 }
 
 .option-name {
-	display: none;
 	margin: 0;
 	padding: 0.5em 1.25em;
 	background: #484848;
@@ -207,17 +206,15 @@ footer {
 	display: block;
 }
 
-.color-wrapper {
-	padding-bottom: 0.25em;
-}
-
 .color-picker {
+	float: left;
+	margin-right: 0.5em;
 	height: 2em;
 	width: 2em;
+	padding: 0;
 }
 
 .options-column label {
-	display: none;
 	font-size: 1.2em;
 }
 
@@ -230,72 +227,76 @@ footer {
 }
 
 .component-list {
+	margin: 0 1.5em;
+	padding: 1.5em 0;
 	border-top: 1px solid #484848;
 	margin-top: 0.5em;
-	padding-top: 0.5em;
-}
-
-.component-check {
-	display: none;
 }
 
 .component-select {
-	display: none;
 	width: 100%;
 	color: inherit;
 	background: none;
 	border: 1px #ab1f1f;
 	border-bottom-style: solid;
-}
-
-.component-wrapper {
-	padding: 0 0.5em;
+	margin-top: 0.5em;
 }
 
 #Background {
 	display: none;
 }
 
-.options-expanded {
-	width: 26em;
-	text-align: unset;
-	font-size: 0.7em;
-}
-
-.options-expanded #options-toggle {
-	font-size: 1.5em;
-	color: #F8E71C;
-}
-
-.options-expanded .component-check,
-.options-expanded .component-select,
-.options-expanded .option-name,
-.options-expanded .selection,
-.options-expanded .color-label {
-	display: block;
-}
-
-.options-expanded .component-check label {
-	display: inline;
-}
-
-.options-expanded .color-list {
+.color-list {
 	padding: 1.25em 0;
 	margin: 0 1.5em;
 }
 
-.options-expanded .color-wrapper {
+.color-wrapper {
 	display: inline-block;
 	min-width: 7.5em;
 	padding: 0.5em 0;
 }
 
-.options-expanded .color-picker {
-	float: left;
-	margin-right: 0.5em;
+.options-collapsed {
+	width: 3em;
+	font-size: unset;
+	text-align: center;
 }
 
-.options-expanded .component-list {
-	margin: 0 1.5em;
-	padding: 1.5em 0;
+.options-collapsed #options-toggle {
+	font-size: inherit;
+	color: inherit;
+}
+
+.component-check input {
+	margin: 0 0.5em 0.5em 0;
+}
+
+.options-collapsed .component-wrapper,
+.options-collapsed .color-list {
+	padding: 0;
+	margin: 0;
+}
+
+.options-collapsed .component-list {
+	margin: 0.5em 0 0 0;
+	padding: 0.5em 0 0 0;
+}
+
+.options-collapsed .color-wrapper {
+	min-width: 3em;
+	padding: 0.25em 0;
+}
+
+.options-collapsed .color-picker {
+	float: none;
+	margin: 0;
+}
+
+.options-collapsed label,
+.options-collapsed .selection,
+.options-collapsed .option-name,
+.options-collapsed .component-check,
+.options-collapsed .component-select {
+	display: none;
 }

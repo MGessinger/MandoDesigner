@@ -182,5 +182,5 @@ function pickArmorPiece (list, name) {
 }
 
 function toggleOptions () {
-	find("colors").classList.toggle("options-expanded");
+	find("colors").classList.toggle("options-collapsed");
 }
