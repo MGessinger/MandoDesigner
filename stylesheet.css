@@ -22,7 +22,6 @@ body {
 
 label {
 	user-select: none;
-	padding-left: 0.25em;
 }
 
 nav {
@@ -39,6 +38,16 @@ button {
 
 button:focus {
 	border: 1px solid #ab1f1f;
+}
+
+option {
+	background: #222;
+	color: inherit;
+}
+
+p {
+	margin: 0;
+	padding: 0;
 }
 
 .title {
@@ -67,13 +76,6 @@ button:focus {
 	transition: left 0.2s ease-out;
 }
 
-.download {
-	position: absolute;
-	bottom: 0;
-	color: inherit;
-	text-decoration: none;
-}
-
 .armor-icon {
 	height: 2em;
 	width: 2em;
@@ -91,17 +93,24 @@ button:focus {
 	background: #C4C4C4;
 }
 
+.download {
+	position: absolute;
+	bottom: 0;
+	color: inherit;
+	text-decoration: none;
+}
+
 .image-column {
 	height: 100%;
 	padding: 0 3em;
 	background: #1c1c1c no-repeat center;
 	background-size: cover;
 	background-image: url("assets/foggy.jpg");
-	text-align: center;
 }
 
 main svg {
 	padding-top: 4em;
+	width: 100%;
 }
 
 footer {
@@ -129,7 +138,6 @@ footer {
 	border: #C4C4C4 solid 1px;
 	border-radius: 0.5em;
 	line-height: 1.5em;
-	font-family: inherit;
 	font-size: 1.25em;
 	color: #222;
 }
@@ -178,7 +186,7 @@ footer {
 	border: unset;
 }
 
-#selection {
+.selection {
 	display: none;
 	padding: 1.25em;
 }
@@ -199,15 +207,26 @@ footer {
 	display: block;
 }
 
+.color-wrapper {
+	padding-bottom: 0.25em;
+}
+
 .color-picker {
 	height: 2em;
 	width: 2em;
-	margin: 0.25em 0;
 }
 
-.color-label {
+.options-column label {
 	display: none;
-	padding-left: 3em;
+	font-size: 1.2em;
+}
+
+.name {
+	color: #A6A6A6;
+}
+
+.color {
+	font-size: 0.7em;
 }
 
 .component-list {
@@ -220,14 +239,17 @@ footer {
 	display: none;
 }
 
-.component-radio {
+.component-select {
 	display: none;
-	margin: 1em 0 0 1em;
+	width: 100%;
+	color: inherit;
+	background: none;
+	border: 1px #ab1f1f;
+	border-bottom-style: solid;
 }
 
-.component-label{
-	display: inline-block;
-	width: 5em;
+.component-wrapper {
+	padding: 0 0.5em;
 }
 
 #Background {
@@ -241,16 +263,20 @@ footer {
 }
 
 .options-expanded #options-toggle {
-	font-size: 1.4em;
+	font-size: 1.5em;
 	color: #F8E71C;
 }
 
 .options-expanded .component-check,
-.options-expanded .component-radio,
+.options-expanded .component-select,
 .options-expanded .option-name,
-.options-expanded #selection,
+.options-expanded .selection,
 .options-expanded .color-label {
 	display: block;
+}
+
+.options-expanded .component-check label {
+	display: inline;
 }
 
 .options-expanded .color-list {
@@ -261,13 +287,12 @@ footer {
 .options-expanded .color-wrapper {
 	display: inline-block;
 	min-width: 7.5em;
-	height: 3em;
-	padding-bottom: 0.75em;
-	vertical-align: top;
+	padding: 0.5em 0;
 }
 
 .options-expanded .color-picker {
 	float: left;
+	margin-right: 0.5em;
 }
 
 .options-expanded .component-list {

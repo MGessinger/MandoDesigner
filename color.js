@@ -111,9 +111,7 @@ var Picker = new function() {
 		var _hsv, _hex;
 		return {
 			get hsv () {
-				if (_hsv)
-					return _hsv;
-				return _hsv = hexToHsv(_hex);
+				return _hsv;
 			},
 			set hsv (value) {
 				if (value == undefined)
@@ -122,12 +120,12 @@ var Picker = new function() {
 				_hex = hsvToHex(value);
 			},
 			get hex () {
-				if (_hex)
-					return _hex;
-				return _hex = hsvToHex(_hsv);
+				return _hex.toUpperCase();
 			},
 			set hex (value) {
 				if (value == undefined)
+					return;
+				if (!/#([\da-f]{3}){1,2}/.test(value))
 					return;
 				_hex = value;
 				_hsv = hexToHsv(_hex);
