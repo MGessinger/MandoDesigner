@@ -5,6 +5,15 @@ function find (st) {
 	return document.getElementById(st);
 }
 
+function sanitize (str) {
+	return str.replace(/\W/g,"");
+}
+
+function prettify (str) {
+	var shortName = str.split("_")[0];
+	return shortName.replace(/-/g, " ");
+}
+
 function DOMNode (type, props, parent) {
 	var n = document.createElement(type);
 	for (var p in props)
@@ -37,17 +46,17 @@ function loadSVGFromServer(name, onload) {
 }
 
 function ColorList (groupName, total) {
-	return DOMNode("div", {id: groupName + "Colors", class: "color-list"}, total);
+	return DOMNode("div", {id: sanitize(groupName) + "Colors", class: "color-list"}, total);
 }
 
 function ColorPicker (affectedObject, parent) {
 	var wrapper = DOMNode("div", {class: "color-wrapper"}, parent);
 
-	var buttonID = affectedObject.id + "Color";
+	var buttonID = sanitize(affectedObject.id) + "Color";
 	var b = DOMNode("button", {class: "color-picker", id: buttonID}, wrapper);
 	var l = DOMNode("label", {class: "color-label", for: buttonID}, wrapper);
 
-	var shortName = affectedObject.id.split("_")[0];
+	var shortName = prettify(affectedObject.id);
 	var input = function (hex) {
 		b.style.background = hex;
 		affectedObject.setAttribute("fill", hex);
@@ -62,14 +71,29 @@ function ColorPicker (affectedObject, parent) {
 function ArmorComponent (SVGNode, parent) {
 	switch (SVGNode.tagName.toLowerCase()) {
 		case "g":
-			var cls = SVGNode.className.baseVal;
+			var cls = SVGNode.getAttribute("class");
 			if (cls === "optional")
 				return ArmorOptional(SVGNode, parent.parentNode);
-			/* Fall-Through */
+			var ch = SVGNode.children;
+			var namedChildren = 0;
+			for (var i = 0; i < ch.length; i++)
+				namedChildren += !!(ch[i].id);
+			if (namedChildren && ch.length >= 2) {
+				parent = DOMNode("div", {class: "separator"}, parent);
+				DOMNode("p", {}, parent).innerHTML = prettify(SVGNode.id) + ":";
+			}
+			if (namedChildren != ch.length)
+				ColorPicker(SVGNode, parent);
+			for (var i = 0; i < ch.length; i++)
+				ArmorComponent(ch[i], parent);
+			break;
 		case "path":
+		case "rect":
+			if (!SVGNode.id)
+				return false;
 			return ColorPicker(SVGNode, parent);
 		default:
-			return;
+			return true;
 	}
 }
 
@@ -81,7 +105,7 @@ function ApplianceSelect (SVGParent, optionsParent) {
 	DOMNode("option", {class: "component-option", label: "None", value: "", selected: true}, select);
 	for (; options.length != 0;) {
 		var fullName = options[0].textContent;
-		var name = fullName.split("_")[0];
+		var name = prettify(fullName);
 		var opt = DOMNode("option", {class: "component-option", label: name, value: fullName}, select);
 
 		var component = find(fullName);
@@ -104,7 +128,7 @@ function ApplianceSelect (SVGParent, optionsParent) {
 		if (on)
 			on.style.display = "";
 		var colors = optionsParent.getElementsByClassName("color-list");
-		var id = this.value + "Colors"
+		var id = sanitize(this.value) + "Colors"
 		for (var i = 0; i < colors.length; i++)
 			colors[i].style.display = (colors[i].id === id) ? "" : "none";
 	});
@@ -112,14 +136,14 @@ function ApplianceSelect (SVGParent, optionsParent) {
 }
 
 function ArmorOptional (SVGNode, parent) {
-	var optName = SVGNode.id.replace(/\W/g,"") + "Options";
+	var optName = sanitize(SVGNode.id) + "Options";
 	var list = DOMNode("div", {id: optName, class: "component-list"}, parent);
 
 	var d = DOMNode("div", {class: "component-check"}, list);
 	var l = SVGNode.id + "Checked";
 	var check = DOMNode("input", {type: "checkbox", id: l, checked: "true"}, d);
 	var label = DOMNode("label", {for: l}, d);
-	label.innerHTML = SVGNode.id.replace(/-/g," ").split(/_/)[0];
+	label.innerHTML = prettify(SVGNode.id);
 
 	var ch = SVGNode.children;
 	var wrapper = DOMNode("div", {class: "component-wrapper"}, list);
@@ -135,24 +159,24 @@ function ArmorOptional (SVGNode, parent) {
 }
 
 function ArmorGroup (g, fullName, radios) {
-	var sanitizedName = fullName.replace(/\W/g,"");
-	var shortName = fullName.split(/\W/)[0];
-	var list = DOMNode("div", {id: shortName + "Options", class: "option-list"}, find("colors"));
+	var sanitized = sanitize(fullName);
+	var list = DOMNode("div", {id: sanitized + "Options", class: "option-list"}, find("colors"));
 	var h = DOMNode("p", {class: "option-name"}, list);
-	h.innerText = shortName + " Options:";
+	h.innerText = fullName + " Options:";
 
 	var children = g.children;
 	if (!children.length)
 		children = [g];
 
-	var col = ColorList(sanitizedName, list);
+	var col = ColorList(fullName, list);
 	for (var j = 0; j < children.length; j++)
 		ArmorComponent(children[j], col);
 
-	var id = sanitizedName + "Style";
-	var radio = find(sanitizedName + "Style");
+	var sanitized = sanitize(fullName);
+	var id = sanitized + "Style";
+	var radio = find(sanitized + "Style");
 	g.addEventListener("click", redirectTo(radio));
-	radio.onchange = switchToArmorPiece(list, shortName);
+	radio.onchange = switchToArmorPiece(list, fullName);
 }
 
 function MandoMaker (svg) {
@@ -160,7 +184,7 @@ function MandoMaker (svg) {
 	var radios = find("parts-list");
 	for (var i = 0; i < groups.length; i++) {
 		var fullName = groups[i].innerHTML;
-		ArmorGroup(groups[i].parentNode, fullName, radios);
+		ArmorGroup(groups[i].nextElementSibling, fullName, radios);
 	}
 
 	loadSVGFromServer("Background", function(bck) {
@@ -204,7 +228,7 @@ function redirectTo(target) {
 	}
 }
 
-function switchToArmorPiece (now, name) {
+function switchToArmorPiece (now) {
 	var sel = find("selection-name");
 	var p = now.parentNode;
 	return function() {

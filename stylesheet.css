@@ -171,7 +171,7 @@ footer {
 .options-column {
 	position: fixed;
 	right: 0;
-	width: 26em;
+	width: 27em;
 	height: 100%;
 	font-size: 0.7em;
 	z-index: 1;
@@ -235,6 +235,12 @@ footer {
 	stroke: black;
 }
 
+.separator {
+	padding-left: 0.5em;
+	margin-bottom: 0.25em;
+	border-left: 1px solid #484848;
+}
+
 .color-picker {
 	height: 2em;
 	width: 2em;
@@ -246,6 +252,7 @@ footer {
 .options-column label {
 	font-size: 1.2em;
 	display: inline-block;
+	margin-right: 0.5em;
 }
 
 .name {
@@ -322,6 +329,13 @@ footer {
 	margin: 0;
 }
 
+.options-collapsed .separator {
+	border: none;
+	padding: 0;
+	margin: 0;
+}
+
+.options-collapsed p,
 .options-collapsed label,
 .options-collapsed .selection,
 .options-collapsed .armor-types,

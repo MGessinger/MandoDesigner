@@ -2,7 +2,6 @@
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
 <svg viewBox="0 0 700 700" version="1.1" xmlns="http://www.w3.org/2000/svg" style="display:none;">
 	<g id="Classic-Helmet" transform="matrix(0.9375,0,0,0.819242,-10.0757,0)">
-		<title>Helmet (Buy'ce)</title>
 		<defs>
 			<path id="Antenna_LeftClassic" transform="matrix(-4.44444,0,0,5.086,1791.16,-40.6465)" d="M266.3,95.575L271.494,17.306C271.494,14.696 273.368,14.884 273.312,17.494L269.13,95.575L266.3,95.575Z" style="stroke-width:0.97px;"/>
 			<path id="Antenna_RightClassic" transform="matrix(4.44444,0,0,5.086,-1023,-40.6465)" d="M266.3,95.575L271.494,17.306C271.494,14.696 273.368,14.884 273.312,17.494L269.13,95.575L266.3,95.575Z" style="stroke-width:0.97px;"/>
@@ -84,7 +83,6 @@
 		</g>
 	</g>
 	<g id="Nite-Owl-Helmet" transform="translate(110.736,15.0685)">
-		<title>Helmet (Buy'ce)</title>
 		<defs>
 			<path id="Antenna_LeftNite" d="M433.832,337.621L417.006,23.482C416.773,12.608 424.581,11.824 424.581,22.701L445.986,345.26L433.832,337.621Z" style="stroke-width:4.04px;"/>
 			<path id="Antenna_RightNite" d="M31.296,346.043L52.752,22.701C52.752,11.824 60.561,12.608 60.328,23.482L43.46,338.398L31.296,346.043Z" style="stroke-width:4.04px;"/>
