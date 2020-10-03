@@ -162,17 +162,17 @@ var Picker = new function() {
 					class: "palette_icon",
 					style: "background:" + colors[i],
 					title: "Right-click to save the current color"
-				}, ch[0]);
+				}, ch[1]);
 			on(pal, "click", function() { _setColor(this.style.background); });
 			on(pal, "contextmenu", function(event) { event.preventDefault(); this.style.background = color.hex; });
 		}
 
-		var ch1 = ch[1].children;
+		var ch1 = ch[2].children;
 		var hue = ch1[0], spectrum = ch1[1];
 		var hueSelector = hue.firstElementChild;
 		var colorSelector = spectrum.firstElementChild;
 
-		var mainChildren = ch[2].children;
+		var mainChildren = ch[3].children;
 		var editor = mainChildren[0];
 		on(editor, "input", function() { _setColor(this.value, true); });
 		var Okay = mainChildren[1];

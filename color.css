@@ -10,13 +10,15 @@
 }
 
 .picker_main > * {
-	margin:.5em;
+	margin: 0.5em 0.5em 0.5em 0;
 }
 
 .picker_palette {
 	display: flex;
 	flex-direction: column;
 	justify-content: space-evenly;
+	align-items: center;
+	flex: 1 1 15%;
 }
 
 .palette_icon {
@@ -25,8 +27,7 @@
 }
 
 .picker_main {
-	width: 15em;
-	float: right;
+	flex: 1 1 85%;
 }
 
 .picker_hue {
