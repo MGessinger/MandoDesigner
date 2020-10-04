@@ -35,14 +35,14 @@
 				<a class="armor-label download" id="download" download="Mando'ad.svg" href="#">Download<span class="armor-icon">&#xE903;</span></a>
 			</div>
 		</nav>
-		<div class="options-column options-collapsed" id="colors">
+		<div id="options" class="options-column options-collapsed">
 			<button id="options-toggle" title="Toggle Options menu" onclick="toggleOptions()">&#xE900;</button>
 			<div class="selection">
 				<p>Selected part:</p>
 				<h2 id="selection-name" style="margin: 0"></h2>
 			</div>
 			<p class="option-name">Helmet Type:</p>
-			<div id="Helmets" class="armor-types" data-armor-type="Helmet (Buy'ce)">
+			<div id="Helmets" class="armor-types" data-armor-type="Helmet">
 				<button class="type-button" data-name="Classic-Helmet">
 					<svg viewbox="0 50 700 750" class="preview-icon"> <use href="#Classic-Helmet"/> </svg>
 					Standard
@@ -53,6 +53,7 @@
 				</button>
 			</div>
 			<p class="option-name">Options:</p>
+			<div id="colors"></div>
 			<label class="color-scheme">
 				<input type="checkbox" id="color-scheme-picker" onchange="toggleColorScheme(this.checked)"/>
 				<span class="slider" />

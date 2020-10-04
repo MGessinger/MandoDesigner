@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
-<svg id="Mando" width="100%" height="100%" viewBox="0 0 1800 3200" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" style="stroke:black;fill:white">
+<svg id="Mando" width="100%" height="100%" viewBox="0 0 1800 3200" xmlns="http://www.w3.org/2000/svg" style="stroke:black;">
+	<style>
+		.overrideFill [style] {
+			fill: inherit !important;
+		}
+	</style>
 	<g id="Artboard1" transform="matrix(1.00223,0,0,1.14613,-437.879,1182.3)">
 		<g id="Accessories-wrapper">
 			<title>Accessories</title>
@@ -54,7 +59,7 @@
 		</g>
 		<g id="Thighs-wrapper">
 			<title>Lower Body</title>
-			<g id="Lower-Armor" transform="matrix(1,0,0,1,-374.167,-17.45)">
+			<g id="Lower-Body" transform="matrix(1,0,0,1,-374.167,-17.45)">
 				<g id="Boots_Armor" data-mandoa="Cetar'bur" transform="matrix(1.32517,0,0,1.49961,1091.94,-947.081)">
 					<path id="Left_Boot" transform="matrix(-1.31718,0,0,1.08136,1689.97,-122.969)" d="M645.696,1674.97L693.196,1590.97L775.696,1607.47L783.196,1631.47L716.529,1683.97L688.196,1692.47L645.696,1674.97Z" style="stroke-width:2.24px;"/>
 					<path id="Right_Boot" transform="matrix(1.31718,0,0,1.08136,-758.572,-122.969)" d="M645.696,1674.97L693.196,1590.97L775.696,1607.47L783.196,1631.47L716.529,1683.97L688.196,1692.47L645.696,1674.97Z" style="stroke-width:2.24px;"/>
@@ -82,7 +87,7 @@
 		</g>
 		<g id="Chest-wrapper">
 			<title>Upper Body</title>
-			<g id="Upper-Armor" transform="matrix(1,0,0,1,-11.8038,-27.92)">
+			<g id="Upper-Body" transform="matrix(1,0,0,1,-11.8038,-27.92)">
 				<g id="Gauntlets" data-mandoa="Kom'rk" transform="matrix(1.32517,0,0,1.49961,729.581,-947.081)">
 					<g id="Left_Gauntlet">
 						<path transform="matrix(1.31718,0,0,1.08136,-756.697,-107.226)" d="M1219.98,849.641L1177.58,856.806L1173.78,873.241L1216.18,990.041L1252.18,971.441L1219.98,849.641Z" style="stroke-width:2.24px;"/>

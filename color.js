@@ -67,6 +67,8 @@ var Picker = new function() {
 			}
 			var s = max === 0 ? 0 : d/max;
 			h /= 6;
+			if (h < 0)
+				h++;
 			return [h, s, max];
 		}
 
@@ -240,7 +242,7 @@ var Picker = new function() {
 				return;
 			}
 			onChange = handler;
-			_setColor(aff.getAttribute("fill"));
+			_setColor(aff.style.fill);
 			DOM.parent = this;
 		});
 	}

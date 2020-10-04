@@ -54,11 +54,16 @@ function ColorPicker (affectedObject, parent) {
 
 	var input = function (hex) {
 		b.style.background = hex;
-		affectedObject.setAttribute("fill", hex);
+		affectedObject.style.fill = hex;
 		c.innerHTML = hex;
 	}
 	Picker.attach(b, input, affectedObject);
-	affectedObject.addEventListener("click", redirectTo(b));
+	var red = redirectTo(b);
+	affectedObject.addEventListener("click", function() {
+		if (this.dataset.unsync === "true")
+			return;
+		red();
+	});
 	input("#FFFFFF")
 	return b;
 }
@@ -160,13 +165,36 @@ function ArmorGroup (g, fullName) {
 	var sanitized = sanitize(fullName);
 	var list = DOMNode("div", {id: sanitized + "Options", class: "option-list"}, find("colors"));
 
+	var check = DOMNode("div", {class: "component-check"}, list);
+	var sync = DOMNode("input", {type: "checkbox", id: sanitized + "Sync"}, check);
+	var label = DOMNode("label", {class: "color-label", for: sanitized + "Sync"}, check);
+	label.innerHTML = "Sync Colors";
+	g.dataset.unsync = "true";
+
+	var syncList = DOMNode("div", {style: "display:none"}, list);
+	ColorPicker(g, syncList);
+
 	var children = g.children;
 	if (!children.length)
 		children = [g];
 
-	var col = ColorList(fullName, list);
+	var desyncList = DOMNode("div", {}, list);
+	var col = ColorList(fullName, desyncList);
 	for (var j = 0; j < children.length; j++)
 		ArmorComponent(children[j], col);
+
+	sync.addEventListener("change", function() {
+		if (this.checked) {
+			g.setAttribute("class", "overrideFill");
+			desyncList.style.display = "none";
+			syncList.style.display = "";
+		} else {
+			g.setAttribute("class", "");
+			desyncList.style.display = "";
+			syncList.style.display = "none";
+		}
+		g.dataset.unsync = !this.checked;
+	});
 
 	var sanitized = sanitize(fullName);
 	var id = sanitized + "Style";
@@ -240,7 +268,7 @@ function switchToArmorPiece (now) {
 }
 
 function toggleOptions () {
-	find("colors").classList.toggle("options-collapsed");
+	find("options").classList.toggle("options-collapsed");
 }
 
 function setDownloader (bck) {
@@ -295,8 +323,7 @@ function toggleColorScheme (useDark) {
 }
 
 function sanitizeSVG (svg) {
-	var san = svg.replace(/"/g,"'")
-			.replace(/\s+/g," "))
+	var san = svg.replace(/"/g,"'").replace(/\s+/g," ")
 	return encodeURIComponent(san);
 }
 

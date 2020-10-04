@@ -231,6 +231,7 @@ footer {
 
 .option-list {
 	display: none;
+	padding: 1.5em;
 }
 
 .selected {
@@ -334,7 +335,7 @@ footer {
 }
 
 .component-list {
-	margin: 1.5em;
+	margin-top: 1.5em;
 	padding-top: 1.5em;
 	border-top: 1px solid var(--softColor);
 }
@@ -349,16 +350,10 @@ footer {
 	background: none;
 	border: 1px #ab1f1f;
 	border-bottom-style: solid;
-	margin-top: 0.5em;
 }
 
-#Background {
+.background {
 	display: none;
-}
-
-.color-list {
-	padding-top: 1.25em;
-	margin: 0 1.5em;
 }
 
 .color-wrapper {
@@ -378,7 +373,7 @@ footer {
 }
 
 .options-collapsed .component-wrapper,
-.options-collapsed .color-list {
+.options-collapsed .option-list {
 	padding: 0;
 	margin: 0;
 }
