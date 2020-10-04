@@ -51,6 +51,9 @@ body {
 }
 
 label {
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
 	user-select: none;
 }
 
@@ -354,15 +357,35 @@ footer {
 }
 
 .component-check input {
-	margin: 0 0.5em 0.5em 0;
+	margin-left: 0;
+}
+
+.select-wrapper {
+	display: block;
+	width: 100%;
+	position: relative;
+	border: 1px var(--accent);
+	border-bottom-style: solid;
+}
+
+.select-wrapper::after {
+	content: "\E90A";
+	position: absolute;
+	right: 0;
+	color: var(--accent);
+	font-size: 1.5em;
+	pointer-events: none;
 }
 
 .component-select {
 	width: 100%;
 	color: inherit;
 	background: none;
-	border: 1px #ab1f1f;
-	border-bottom-style: solid;
+	border: none;
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	-ms-appearance: none;
+	appearance: none;
 }
 
 .color-wrapper {
@@ -418,6 +441,6 @@ footer {
 .options-collapsed .armor-types,
 .options-collapsed .option-name,
 .options-collapsed .component-check,
-.options-collapsed .component-select {
+.options-collapsed .select-wrapper {
 	display: none;
 }

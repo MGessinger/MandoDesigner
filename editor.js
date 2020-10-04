@@ -103,9 +103,10 @@ function ApplianceSelect (SVGParent, optionsParent) {
 	var options = SVGParent.getElementsByTagName("metadata");
 	if (!options)
 		return;
-	var select = DOMNode("select", {class: "component-select"}, optionsParent);
+	var wrapper = DOMNode("div", {class: "select-wrapper"}, optionsParent);
+	var select = DOMNode("select", {class: "component-select"}, wrapper);
 	DOMNode("option", {class: "component-option", label: "None", value: "", selected: true}, select);
-	for (; options.length != 0;) {
+	for (; options.length != 0;) { /* As the components are replaced, the list shrinks. Thus, i must not be changed */
 		var fullName = options[0].textContent;
 		var name = prettify(fullName);
 		var opt = DOMNode("option", {class: "component-option", label: name, value: fullName}, select);
