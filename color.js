@@ -125,7 +125,7 @@ var Picker = new function() {
 			set hex (value) {
 				if (value == undefined)
 					return;
-				if (!/#([\da-f]{3}){1,2}/.test(value))
+				if (!/#([\da-f]{3}){1,2}$/.test(value))
 					return;
 				_hex = value;
 				_hsv = hexToHsv(_hex);

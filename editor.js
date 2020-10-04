@@ -30,19 +30,13 @@ function DOMNode (type, props, parent) {
 	return n;
 }
 
-function loadSVGFromServer(name, onload) {
-	var xhr = new XMLHttpRequest();
-	xhr.open("GET", "images/" + name + ".svg");
-	xhr.onload = function () {
-		if (this.status !== 200)
-			return;
-		var svg = this.responseXML.firstElementChild;
-		var main = find("editor")
-		main.appendChild(svg);
-		if (onload)
-			onload(svg);
-	};
-	xhr.send();
+function ColorLabel (wrapper, buttonID, shortName) {
+	var l = DOMNode("label", {class: "color-label"}, wrapper);
+	if (buttonID)
+		l.setAttribute("for", buttonID);
+	var p = DOMNode("p", {class: "name"}, l);
+	p.innerHTML = shortName;
+	return DOMNode("p", {class: "color"}, l);
 }
 
 function ColorList (groupName, total) {
@@ -50,17 +44,18 @@ function ColorList (groupName, total) {
 }
 
 function ColorPicker (affectedObject, parent) {
+	var shortName = prettify(affectedObject.id);
+	var buttonID = sanitize(affectedObject.id) + "Color";
+
 	var wrapper = DOMNode("div", {class: "color-wrapper"}, parent);
 
-	var buttonID = sanitize(affectedObject.id) + "Color";
 	var b = DOMNode("button", {class: "color-picker", id: buttonID}, wrapper);
-	var l = DOMNode("label", {class: "color-label", for: buttonID}, wrapper);
+	var c = ColorLabel(wrapper, buttonID, shortName);
 
-	var shortName = prettify(affectedObject.id);
 	var input = function (hex) {
 		b.style.background = hex;
 		affectedObject.setAttribute("fill", hex);
-		l.innerHTML = "<p class='name'>" + shortName + "<p class='color'>" + hex;
+		c.innerHTML = hex;
 	}
 	Picker.attach(b, input, affectedObject);
 	affectedObject.addEventListener("click", redirectTo(b));
@@ -74,16 +69,19 @@ function ArmorComponent (SVGNode, parent) {
 			var cls = SVGNode.getAttribute("class");
 			if (cls === "optional")
 				return ArmorOptional(SVGNode, parent.parentNode);
-			var ch = SVGNode.children;
-			var namedChildren = 0;
-			for (var i = 0; i < ch.length; i++)
-				namedChildren += !!(ch[i].id);
-			if (namedChildren && ch.length >= 2) {
+			var mandoa = SVGNode.dataset.mandoa;
+			if (mandoa) {
 				parent = DOMNode("div", {class: "separator"}, parent);
-				DOMNode("p", {}, parent).innerHTML = prettify(SVGNode.id) + ":";
+				var l = DOMNode("div", {class: "color-wrapper"}, parent);
+				var n = DOMNode("p", {class: "name"}, l);
+				n.innerHTML = prettify(SVGNode.id) + ":";
+				var c = DOMNode("p", {class: "color"}, l);
+				c.innerHTML = "(" + mandoa + ")";
 			}
-			if (namedChildren != ch.length)
-				ColorPicker(SVGNode, parent);
+			var namedChildren = SVGNode.firstElementChild.id;
+			if (!namedChildren)
+				return ColorPicker(SVGNode, parent);
+			var ch = SVGNode.children;
 			for (var i = 0; i < ch.length; i++)
 				ArmorComponent(ch[i], parent);
 			break;
@@ -175,6 +173,21 @@ function ArmorGroup (g, fullName) {
 	var radio = find(sanitized + "Style");
 	g.addEventListener("click", redirectTo(radio));
 	radio.onchange = switchToArmorPiece(list, fullName);
+}
+
+function loadSVGFromServer(name, onload) {
+	var xhr = new XMLHttpRequest();
+	xhr.open("GET", "images/" + name + ".svg");
+	xhr.onload = function () {
+		if (this.status !== 200)
+			return;
+		var svg = this.responseXML.firstElementChild;
+		var main = find("editor")
+		main.appendChild(svg);
+		if (onload)
+			onload(svg);
+	};
+	xhr.send();
 }
 
 function MandoMaker (svg) {
