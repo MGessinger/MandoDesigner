@@ -10,6 +10,15 @@
 	font-display: block;
 }
 
+@font-face {
+	font-family: 'Raleway';
+	src:	local("Raleway"),
+		url('fonts/Raleway.ttf') format('truetype');
+	font-weight: normal;
+	font-style: normal;
+	font-display: block;
+}
+
 html, body {
 	height: 100%;
 	overflow: hidden;
@@ -17,9 +26,9 @@ html, body {
 
 .dark-mode {
 	--mainColor: #222;
-	--softColor: #484848;
-	--softHighlight: #A6A6A6;
-	--highlight: #C4C4C4;
+	--softColor: #555;
+	--softHighlight: #AAA;
+	--highlight: #DDD;
 	--mainFont: white;
 	--accent: #AB1F1F;
 	--label: "Dark";
@@ -27,9 +36,9 @@ html, body {
 
 .light-mode {
 	--mainColor: #DDD;
-	--softColor: #A6A6A6;
-	--softHighlight: #484848;
-	--highlight: #333;
+	--softColor: #AAA;
+	--softHighlight: #555;
+	--highlight: #222;
 	--mainFont: black;
 	--accent: #AB1F1F;
 	--label: "Light";
@@ -38,7 +47,7 @@ html, body {
 body {
 	margin: 0;
 	color: var(--mainFont);
-	font-family: "icomoon", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Verdana, sans-serif;
+	font-family: 'icomoon', 'Raleway', Verdana, sans-serif;
 }
 
 label {
@@ -356,14 +365,14 @@ footer {
 	border-bottom-style: solid;
 }
 
-.synchronized .color-wrapper {
-	display: none;
-}
-
 .color-wrapper {
 	display: inline-block;
-	min-width: 7.5em;
+	min-width: 33%;
 	padding: 0.5em 0;
+}
+
+.synchronized .color-wrapper {
+	display: none;
 }
 
 .options-collapsed {
