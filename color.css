@@ -5,7 +5,7 @@
 	position:absolute;
 	right:100%;
 	width:18em;
-	background:#222;
+	background:var(--mainColor);
 	box-shadow:0 0 10px 1px rgba(0,0,0,50%);
 }
 

@@ -1,10 +1,10 @@
 @font-face {
 	font-family: 'icomoon';
-	src: url('fonts/icomoon.eot?kqtdgx');
-	src: url('fonts/icomoon.eot?kqtdgx#iefix') format('embedded-opentype'),
-	     url('fonts/icomoon.ttf?kqtdgx') format('truetype'),
-	     url('fonts/icomoon.woff?kqtdgx') format('woff'),
-	     url('fonts/icomoon.svg?kqtdgx#icomoon') format('svg');
+	src: url('fonts/icomoon.eot');
+	src: url('fonts/icomoon.eot#iefix') format('embedded-opentype'),
+	     url('fonts/icomoon.ttf') format('truetype'),
+	     url('fonts/icomoon.woff') format('woff'),
+	     url('fonts/icomoon.svg#icomoon') format('svg');
 	font-weight: normal;
 	font-style: normal;
 	font-display: block;
@@ -15,9 +15,29 @@ html, body {
 	overflow: hidden;
 }
 
+.dark-mode {
+	--mainColor: #222;
+	--softColor: #484848;
+	--softHighlight: #A6A6A6;
+	--highlight: #C4C4C4;
+	--mainFont: white;
+	--accent: #AB1F1F;
+	--label: "Dark";
+}
+
+.light-mode {
+	--mainColor: #DDD;
+	--softColor: #A6A6A6;
+	--softHighlight: #484848;
+	--highlight: #333;
+	--mainFont: black;
+	--accent: #AB1F1F;
+	--label: "Light";
+}
+
 body {
 	margin: 0;
-	color: white;
+	color: var(--mainFont);
 	font-family: "icomoon", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Verdana, sans-serif;
 }
 
@@ -34,7 +54,7 @@ nav {
 }
 
 button {
-	border: 1px solid white;
+	border: 1px solid var(--softHighlight);
 	padding: 0;
 }
 
@@ -43,7 +63,7 @@ button:focus {
 }
 
 option {
-	background: #222;
+	background: var(--mainColor);
 	color: inherit;
 }
 
@@ -60,7 +80,7 @@ p {
 
 #parts-list {
 	height: 100%;
-	background: #222;
+	background: var(--mainColor);
 }
 
 #parts-list input {
@@ -74,7 +94,7 @@ p {
 	height: 3em;
 	left: -12.5em;
 	padding-left: 0.5em;
-	background: #222;
+	background: var(--mainColor);
 	line-height: 3em;
 	transition: left 0.2s ease-out;
 }
@@ -92,8 +112,8 @@ p {
 }
 
 :checked + .armor-label {
-	color: #222;
-	background: #C4C4C4;
+	color: var(--mainColor);
+	background: var(--highlight);
 }
 
 .download {
@@ -106,9 +126,8 @@ p {
 .image-column {
 	height: 100%;
 	padding: 0 3em;
-	background: #1c1c1c no-repeat center;
+	background: var(--softColor) no-repeat center;
 	background-size: cover;
-	background-image: url("assets/foggy.jpg");
 }
 
 main svg {
@@ -122,49 +141,55 @@ footer {
 	position: fixed;
 	width: 100%;
 	bottom: 0;
+	padding: 0 3em;
+	box-sizing: border-box;
 }
 
 .settings {
 	width: 100%;
 	text-align: center;
+	padding-bottom: 0.5em;
 }
 
 .toggle-sex {
-	display: none;
+	opacity: 0;
+	position: absolute;
 }
 
 .label-sex {
 	display: inline-block;
-	height: 1.5em;
 	width: 1.5em;
 	padding: 0;
-	margin-bottom: 0.5em;
-	background: white;
-	border: #C4C4C4 solid 1px;
-	border-radius: 0.5em;
+	border: var(--softHighlight) solid 1px;
+	border-radius: 0.25em;
 	line-height: 1.5em;
 	font-size: 1.25em;
-	color: #222;
+	background: var(--highlight);
+	color: var(--mainColor);
+}
+
+:focus + .label-sex {
+	border: 1px solid var(--accent);
 }
 
 :checked + .label-sex {
-	background: #C4C4C4;
-	color: white;
+	background: var(--mainColor);
+	color: var(--highlight);
 }
 
 .credits {
 	display: flex;
-	margin: 0 4em;
+	min-height: 4em;
 	padding: 0 1em;
 	flex-wrap: wrap;
 	align-content: center;
 	justify-content: space-between;
-	min-height: 4em;
 	font-size: 0.75em;
 	background: rgba(0,0,0,50%);
 }
+
 .credit {
-	color: #ab1f1f;
+	color: var(--accent);
 	text-decoration: none;
 }
 
@@ -173,19 +198,19 @@ footer {
 	right: 0;
 	width: 27em;
 	height: 100%;
-	font-size: 0.7em;
 	z-index: 1;
-	background: #222;
+	background: var(--mainColor);
+	font-size: 0.75em;
 }
 
 #options-toggle {
 	border: none;
-	width: 3em;
-	height: 3em;
+	width: 2.66em;
+	height: 2.66em;
 	background: none;
 	font: inherit;
 	font-size: 1.5em;
-	color: #F8E71C;
+	color: var(--accent);
 }
 
 #options-toggle:focus {
@@ -199,7 +224,7 @@ footer {
 .option-name {
 	margin: 0;
 	padding: 0.5em 1.25em;
-	background: #484848;
+	background: var(--softColor);
 	line-height: 1.5em;
 }
 
@@ -230,7 +255,7 @@ footer {
 }
 
 .preview-icon {
-	border: 1px white solid;
+	border: 1px var(--highlight) solid;
 	fill: white;
 	stroke: black;
 }
@@ -238,7 +263,7 @@ footer {
 .separator {
 	padding-left: 0.5em;
 	margin-bottom: 0.25em;
-	border-left: 1px solid #484848;
+	border-left: 1px solid var(--softColor);
 }
 
 .color-picker {
@@ -249,24 +274,77 @@ footer {
 	color: inherit;
 }
 
-.options-column label {
+.color-label {
 	font-size: 1.2em;
 	display: inline-block;
 	margin-right: 0.5em;
 }
 
 .name {
-	color: #A6A6A6;
+	color: var(--softHighlight);
 }
 
 .color {
-	font-size: 0.7em;
+	font-size: 0.75em;
+}
+
+.color-scheme:before {
+	content: var(--label);
+}
+
+.color-scheme {
+	display: block;
+	position: absolute;
+	bottom: 0;
+	width: 3em;
+	height: 1.5em;
+	padding: 2em 0.5em;
+	text-align: center;
+}
+
+.color-scheme input {
+	opacity: 0;
+	position: absolute;
+}
+
+.slider {
+	display: inline-block;
+	height: 100%;
+	width: 100%;
+	background: var(--highlight);
+	border-radius: 1em;
+}
+
+.slider:before {
+	content: "";
+	display: block;
+	height: 100%;
+	width: 50%;
+	border: 2px solid var(--highlight);
+	border-radius: 50%;
+	background: var(--softColor);
+	box-sizing: border-box;
+	transition: transform ease-out .1s;
+}
+
+:focus + :before {
+	background: var(--accent);
+}
+
+:checked + :before {
+	-webkit-transform: translateX(100%);
+	-ms-transform: translateX(100%);
+	transform: translateX(100%);
 }
 
 .component-list {
 	margin: 1.5em;
 	padding-top: 1.5em;
-	border-top: 1px solid #484848;
+	border-top: 1px solid var(--softColor);
+}
+
+.component-check input {
+	margin: 0 0.5em 0.5em 0;
 }
 
 .component-select {
@@ -294,18 +372,12 @@ footer {
 }
 
 .options-collapsed {
-	width: 3em;
-	font-size: unset;
+	width: 4em;
 	text-align: center;
 }
 
 .options-collapsed #options-toggle {
-	font-size: inherit;
 	color: inherit;
-}
-
-.component-check input {
-	margin: 0 0.5em 0.5em 0;
 }
 
 .options-collapsed .component-wrapper,
@@ -336,8 +408,8 @@ footer {
 }
 
 .options-collapsed p,
-.options-collapsed label,
 .options-collapsed .selection,
+.options-collapsed .color-label,
 .options-collapsed .armor-types,
 .options-collapsed .option-name,
 .options-collapsed .component-check,

@@ -18,7 +18,7 @@
 	</head>
 	<body onload="setupStorage()">
 		<nav>
-			<svg class="title" viewBox="0 0 420 70"> <use href="#title" /> </svg>
+			<svg class="title" viewBox="0 0 420 70"> <use id="title" href="#title" /> </svg>
 			<div id="parts-list">
 				<input type="radio" name="parts-list" id="HelmetStyle" value="Helmet (Buy'ce)"/>
 				<label for="HelmetStyle" class="armor-label">Helmet (Buy'ce)<span class="armor-icon">&#xE905;</span></label>
@@ -30,6 +30,8 @@
 				<label for="LowerBodyStyle" class="armor-label">Lower Body<span class="armor-icon">&#xE906;</span></label>
 				<input type="radio" name="parts-list" id="AccessoriesStyle" value="Accessories"/>
 				<label for="AccessoriesStyle" class="armor-label">Accessories<span class="armor-icon">&#xE904;</span></label>
+				<input id="background_upload" type="file" accept="image/*" onchange="loadImage(this);"/>
+				<label for="background_upload" class="armor-label">Upload Background<span class="armor-icon">&#xF03E;</span></label>
 				<a class="armor-label download" id="download" download="Mando'ad.svg" href="#">Download<span class="armor-icon">&#xE903;</span></a>
 			</div>
 		</nav>
@@ -50,25 +52,30 @@
 					Nite Owl
 				</button>
 			</div>
-			<div class="picker_wrapper" id="picker" style="display: none;">
-				<div>Right-click a swatch to save your color</div>
-				<div class="picker_palette"></div>
-				<div class="picker_main">
-					<div class="picker_hue">
-						<div class="picker_selector"></div>
-					</div>
-					<div class="picker_sl">
-						<div class="picker_selector"></div>
-					</div>
-				</div>
-				<div class="picker_bottom">
-					<input type="text" class="picker_editor" aria-label: "Type a Color name or Hexadecimal code" />
-					<button class="picker_done">Okay</button>
-				</div>
-				<canvas id="canvas" style="display:none;"></canvas>
-			</div>
+			<p class="option-name">Options:</p>
+			<label class="color-scheme">
+				<input type="checkbox" id="color-scheme-picker" onchange="toggleColorScheme(this.checked)"/>
+				<span class="slider" />
+			</label>
 		</div>
-		<main class="image-column"></main>
+		<div class="picker_wrapper" id="picker" style="display: none;">
+			<div>Right-click a swatch to save your color</div>
+			<div class="picker_palette"></div>
+			<div class="picker_main">
+				<div class="picker_hue">
+					<div class="picker_selector"></div>
+				</div>
+				<div class="picker_sl">
+					<div class="picker_selector"></div>
+				</div>
+			</div>
+			<div class="picker_bottom">
+				<input type="text" class="picker_editor" aria-label: "Type a Color name or Hexadecimal code" />
+				<button class="picker_done">Okay</button>
+			</div>
+			<canvas id="canvas" style="display:none;"></canvas>
+		</div>
+		<main id="editor" class="image-column"></main>
 
 		<footer>
 			<div class="settings">

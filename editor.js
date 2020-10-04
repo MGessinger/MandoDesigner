@@ -37,7 +37,7 @@ function loadSVGFromServer(name, onload) {
 		if (this.status !== 200)
 			return;
 		var svg = this.responseXML.firstElementChild;
-		var main = document.querySelector("main");
+		var main = find("editor")
 		main.appendChild(svg);
 		if (onload)
 			onload(svg);
@@ -142,7 +142,7 @@ function ArmorOptional (SVGNode, parent) {
 	var d = DOMNode("div", {class: "component-check"}, list);
 	var l = SVGNode.id + "Checked";
 	var check = DOMNode("input", {type: "checkbox", id: l, checked: "true"}, d);
-	var label = DOMNode("label", {for: l}, d);
+	var label = DOMNode("label", {for: l, class: "color-label"}, d);
 	label.innerHTML = prettify(SVGNode.id);
 
 	var ch = SVGNode.children;
@@ -158,11 +158,9 @@ function ArmorOptional (SVGNode, parent) {
 	});
 }
 
-function ArmorGroup (g, fullName, radios) {
+function ArmorGroup (g, fullName) {
 	var sanitized = sanitize(fullName);
 	var list = DOMNode("div", {id: sanitized + "Options", class: "option-list"}, find("colors"));
-	var h = DOMNode("p", {class: "option-name"}, list);
-	h.innerText = fullName + " Options:";
 
 	var children = g.children;
 	if (!children.length)
@@ -184,23 +182,8 @@ function MandoMaker (svg) {
 	var radios = find("parts-list");
 	for (var i = 0; i < groups.length; i++) {
 		var fullName = groups[i].innerHTML;
-		ArmorGroup(groups[i].nextElementSibling, fullName, radios);
+		ArmorGroup(groups[i].nextElementSibling, fullName);
 	}
-
-	loadSVGFromServer("Background", function(bck) {
-		var xml = new XMLSerializer();
-		find("download").addEventListener("click", function() {
-			var background = bck.cloneNode(true);
-			var copy = svg.cloneNode(true);
-			background.appendChild(copy);
-			var str = xml.serializeToString(background);
-			var data = '<?xml version="1.0" encoding="UTF-8"?>' + str;
-			this.setAttribute("href",'data:image/svg+xml;charset=UTF-8,' + encodeURIComponent(data));
-		});
-	});
-	var first = radios.firstElementChild;
-	first.checked = false;
-	first.click();
 
 	var typeLists = document.getElementsByClassName("armor-types");
 	for (var i = 0; i < typeLists.length; i++) {
@@ -219,6 +202,9 @@ function MandoMaker (svg) {
 			});
 		}
 	}
+	var first = radios.firstElementChild;
+	first.checked = false;
+	first.click();
 }
 
 function redirectTo(target) {
@@ -244,7 +230,72 @@ function toggleOptions () {
 	find("colors").classList.toggle("options-collapsed");
 }
 
+function setDownloader (bck) {
+	var xml = new XMLSerializer();
+	var svg = find("Mando");
+	return function() {
+		var background = bck.cloneNode(true);
+		var copy = svg.cloneNode(true);
+		background.appendChild(copy);
+		var str = xml.serializeToString(background);
+		var data = '<?xml version="1.0" encoding="UTF-8"?>' + str;
+		this.setAttribute("href",'data:image/svg+xml;charset=UTF-8,' + encodeURIComponent(data));
+		var self = this;
+		setTimeout(function() {self.setAttribute("href", "#");});
+	};
+}
+
 function setupStorage () {
 	loadSVGFromServer('Full-Kit', MandoMaker);
 	loadSVGFromServer('Helmets');
+	var useDarkMode = window.matchMedia("(prefers-color-scheme: dark)").matches;
+	toggleColorScheme(useDarkMode);
+	find("color-scheme-picker").checked = useDarkMode;
+}
+
+function toggleColorScheme (useDark) {
+	var className = "light-mode"
+	var bckName = "BackgroundLight";
+	var titleName = "#titleLight";
+	if (useDark) {
+		className = "dark-mode";
+		bckName = "BackgroundDark";
+		titleName = "#titleDark";
+	}
+	document.body.className = className;
+	var bck = find(bckName);
+	var a = find("download");
+	var main = find("editor");
+	if (!bck)
+		loadSVGFromServer(bckName, function(svg) {
+			a.onclick = setDownloader(svg);
+			var img = svg.getElementById("image");
+			main.style.backgroundImage = "url(" + img.getAttribute("href") + ")";
+		});
+	else {
+		a.onclick = setDownloader(bck);
+		var img = bck.getElementById("image");
+		main.style.backgroundImage = "url(" + img.getAttribute("href") + ")";
+	}
+	var use = find("title");
+	use.setAttribute("href", titleName);
+}
+
+function loadImage (input) {
+	var files = input.files;
+	if (files.length == 0)
+		return;
+	var reader = new FileReader();
+	reader.onloadend = function() {
+		var res = this.result;
+		var main = find("editor");
+		main.style.backgroundImage = "url(" + res + ")";
+		var bck = find("BackgroundLight") || find("BackgroundDark");
+		var customBck = bck.cloneNode(true);
+		customBck.id = "Custom";
+		var img = customBck.getElementsByTagName("image")[0];
+		img.setAttribute("href", res);
+		find("download").onclick = setDownloader(customBck);
+	}
+	reader.readAsDataURL(files[0]);
 }
