@@ -59,13 +59,13 @@
 			</g>
 		</defs>
 		<g id="Left-Earcap_Classic" class="optional">
-			<path id="Ear-Cap_Classic" transform="matrix(4.44444,0,0,5.086,-977.736,-80.3809)" d="M358.056,156.056L362.541,149.431L358.056,103.556L351.791,99.619L358.056,156.056Z" style="stroke-width:0.97px;"/>
+			<path id="Ear-Cap_LeftClassic" transform="matrix(4.44444,0,0,5.086,-977.736,-80.3809)" d="M358.056,156.056L362.541,149.431L358.056,103.556L351.791,99.619L358.056,156.056Z" style="stroke-width:0.97px;"/>
 			<metadata>Antenna_LeftClassic</metadata>
 			<metadata>Range-Finder_LeftClassic</metadata>
 			<metadata>Sensor-Stalk_LeftClassic</metadata>
 		</g>
 		<g id="Right-Earcap_Classic" class="optional">
-			<path id="Ear-Cap_Classic" transform="matrix(-4.44444,0,0,5.086,1745.9,-80.3809)" d="M358.056,156.056L362.541,149.431L358.056,103.556L351.791,99.619L358.056,156.056Z" style="stroke-width:0.97px;"/>
+			<path id="Ear-Cap_RightClassic" transform="matrix(-4.44444,0,0,5.086,1745.9,-80.3809)" d="M358.056,156.056L362.541,149.431L358.056,103.556L351.791,99.619L358.056,156.056Z" style="stroke-width:0.97px;"/>
 			<metadata>Antenna_RightClassic</metadata>
 			<metadata>Range-Finder_RightClassic</metadata>
 			<metadata>Sensor-Stalk_RightClassic</metadata>
@@ -99,17 +99,17 @@
 				<path id="Base_RightNite" transform="matrix(1.56425,0,0,1.27953,10.7474,0)" d="M434.34,401.852L427.671,334.939L417.93,334.159L417.93,292.022L430.792,292.802L434.954,311.53L450.04,310.749L456.516,379.04L434.34,401.852Z" style="stroke-width:4.04px;"/>
 			</g>
 		</defs>
-		<g id="Earcap_LeftNite" class="optional">
+		<g id="Left-Earcap_Nite" class="optional">
 			<metadata>Antenna_LeftNite</metadata>
-			<g transform="matrix(0.631421,0,0,0.771921,-4.31847,4.10746)">
+			<g id="Ear-Cap_LeftNite" transform="matrix(0.631421,0,0,0.771921,-4.31847,4.10746)">
 				<path transform="matrix(6.59097,0,0,5.39132,-1636.73,-111.189)" d="M358.056,156.056L362.541,149.431L358.056,103.556L351.791,99.619L358.056,156.056Z" style="stroke-width:0.97px;"/>
 				<path transform="matrix(-0.382536,0,0,0.31291,873.154,-47.1754)" d="M470.837,1789.41L381.323,1696.77" style="stroke-width:16.73px;"/>
 			</g>
 			<metadata>Range-Finder_LeftNite</metadata>
 		</g>
-		<g id="Earcap_RightNite" class="optional">
+		<g id="Right-Earcap_Nite" class="optional">
 			<metadata>Antenna_RightNite</metadata>
-			<g transform="matrix(-0.631421,0,0,0.771921,482.846,4.10746)">
+			<g id="Ear-Cap_RightNite" transform="matrix(-0.631421,0,0,0.771921,482.846,4.10746)">
 				<path transform="matrix(6.59097,0,0,5.39132,-1636.73,-111.189)" d="M358.056,156.056L362.541,149.431L358.056,103.556L351.791,99.619L358.056,156.056Z" style="stroke-width:0.97px;"/>
 				<path transform="matrix(-0.382536,0,0,0.31291,873.154,-47.1754)" d="M470.837,1789.41L381.323,1696.77" style="stroke-width:16.73px;"/>
 			</g>

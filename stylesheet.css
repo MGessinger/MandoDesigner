@@ -137,6 +137,10 @@ main svg {
 	box-sizing: border-box;
 }
 
+.background {
+	display: none;
+}
+
 footer {
 	position: fixed;
 	width: 100%;
@@ -352,7 +356,7 @@ footer {
 	border-bottom-style: solid;
 }
 
-.background {
+.synchronized .color-wrapper {
 	display: none;
 }
 

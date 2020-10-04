@@ -19,7 +19,7 @@ function DOMNode (type, props, parent) {
 	for (var p in props)
 		n.setAttribute(p, props[p]);
 	if (parent) {
-		var old = parent.querySelector('#' + props["id"]);
+		var old = find(props.id);
 		if (old) {
 			n = old;
 			n.innerHTML = "";
@@ -57,15 +57,14 @@ function ColorPicker (affectedObject, parent) {
 		affectedObject.style.fill = hex;
 		c.innerHTML = hex;
 	}
-	Picker.attach(b, input, affectedObject);
-	var red = redirectTo(b);
+	Picker.attach(b, input);
 	affectedObject.addEventListener("click", function() {
 		if (this.dataset.unsync === "true")
 			return;
-		red();
+		redirectTo(b)();
 	});
 	input("#FFFFFF")
-	return b;
+	return wrapper;
 }
 
 function ArmorComponent (SVGNode, parent) {
@@ -123,14 +122,14 @@ function ApplianceSelect (SVGParent, optionsParent) {
 		for (var j = 0; j < ch.length; j++)
 			ArmorComponent(ch[j], col);
 	}
+	var components = SVGParent.getElementsByClassName("option");
+	var colors = optionsParent.getElementsByClassName("color-list");
 	select.addEventListener("change", function() {
-		var components = SVGParent.getElementsByClassName("option");
 		for (var i = 0; i < components.length; i++)
 			components[i].style.display = "none";
 		var on = find(this.value);
 		if (on)
 			on.style.display = "";
-		var colors = optionsParent.getElementsByClassName("color-list");
 		var id = sanitize(this.value) + "Colors"
 		for (var i = 0; i < colors.length; i++)
 			colors[i].style.display = (colors[i].id === id) ? "" : "none";
@@ -171,29 +170,15 @@ function ArmorGroup (g, fullName) {
 	label.innerHTML = "Sync Colors";
 	g.dataset.unsync = "true";
 
-	var syncList = DOMNode("div", {style: "display:none"}, list);
-	ColorPicker(g, syncList);
-
-	var children = g.children;
-	if (!children.length)
-		children = [g];
-
-	var desyncList = DOMNode("div", {}, list);
-	var col = ColorList(fullName, desyncList);
-	for (var j = 0; j < children.length; j++)
-		ArmorComponent(children[j], col);
+	var picker = ColorPicker(g, list);
+	picker.style.display = "none";
+	var col = ColorList(fullName, list);
 
 	sync.addEventListener("change", function() {
-		if (this.checked) {
-			g.setAttribute("class", "overrideFill");
-			desyncList.style.display = "none";
-			syncList.style.display = "";
-		} else {
-			g.setAttribute("class", "");
-			desyncList.style.display = "";
-			syncList.style.display = "none";
-		}
+		g.classList.toggle("overrideFill");
 		g.dataset.unsync = !this.checked;
+		list.classList.toggle("synchronized");
+		picker.style.display = this.checked ? "unset" : "none";
 	});
 
 	var sanitized = sanitize(fullName);
@@ -201,6 +186,10 @@ function ArmorGroup (g, fullName) {
 	var radio = find(sanitized + "Style");
 	g.addEventListener("click", redirectTo(radio));
 	radio.onchange = switchToArmorPiece(list, fullName);
+
+	var children = g.children;
+	for (var j = 0; j < children.length; j++)
+		ArmorComponent(children[j], col);
 }
 
 function loadSVGFromServer(name, onload) {
@@ -209,7 +198,7 @@ function loadSVGFromServer(name, onload) {
 	xhr.onload = function () {
 		if (this.status !== 200)
 			return;
-		var svg = this.responseXML.firstElementChild;
+		var svg = this.responseXML.documentElement;
 		var main = find("editor")
 		main.appendChild(svg);
 		if (onload)
