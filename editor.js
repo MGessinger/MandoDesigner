@@ -294,21 +294,48 @@ function toggleColorScheme (useDark) {
 	use.setAttribute("href", titleName);
 }
 
+function sanitizeSVG (svg) {
+	var san = svg.replace(/"/g,"'")
+			.replace(/\s+/g," "))
+	return encodeURIComponent(san);
+}
+
 function loadImage (input) {
 	var files = input.files;
 	if (files.length == 0)
 		return;
+	var main = find("editor");
+	var bck;
+	var theme = document.body.className;
+	if (theme.includes("dark"))
+		bck = find("BackgroundDark");
+	else
+		bck = find("BackgroundLight");
+	var customBck = bck.cloneNode(true);
+	customBck.id = "Custom";
+	var img = customBck.getElementsByTagName("image")[0];
+
 	var reader = new FileReader();
-	reader.onloadend = function() {
-		var res = this.result;
-		var main = find("editor");
-		main.style.backgroundImage = "url(" + res + ")";
-		var bck = find("BackgroundLight") || find("BackgroundDark");
-		var customBck = bck.cloneNode(true);
-		customBck.id = "Custom";
-		var img = customBck.getElementsByTagName("image")[0];
-		img.setAttribute("href", res);
-		find("download").onclick = setDownloader(customBck);
+	if (files[0].type.includes("svg")) {
+		reader.onload = function () {
+			var svg = DOMNode("svg");
+			svg.innerHTML = this.result;
+			var newSVG = svg.firstElementChild;
+			customBck.replaceChild(newSVG, img);
+			find("download").onclick = setDownloader(customBck);
+
+			var href = 'url("data:image/svg+xml,' + sanitizeSVG(this.result) + '")';
+			main.style.backgroundImage = href
+		}
+		reader.readAsText(files[0]);
 	}
-	reader.readAsDataURL(files[0]);
+	else {
+		reader.onload = function() {
+			var res = this.result;
+			main.style.backgroundImage = "url(" + res + ")";
+			img.setAttribute("href", res);
+			find("download").onclick = setDownloader(customBck);
+		}
+		reader.readAsDataURL(files[0]);
+	}
 }
