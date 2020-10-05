@@ -65,12 +65,21 @@ nav {
 	z-index: 1;
 }
 
-button {
+button,
+input {
 	border: 1px solid var(--softHighlight);
+	color: inherit;
+	font: inherit;
 }
 
-button:focus {
+
+:focus,
+:focus > label {
 	border: 1px solid var(--accent);
+}
+
+a:focus {
+	border-style: none none solid none;
 }
 
 p {
@@ -147,8 +156,6 @@ legend {
 	cursor: pointer;
 	background: none;
 	border: none;
-	font: inherit;
-	color: inherit;
 }
 
 fieldset {
@@ -204,10 +211,6 @@ main svg {
 	box-sizing: border-box;
 }
 
-.background {
-	display: none;
-}
-
 footer {
 	position: fixed;
 	width: 100%;
@@ -237,10 +240,6 @@ footer {
 	font-size: 1.25em;
 	background: var(--highlight);
 	color: var(--mainColor);
-}
-
-:focus + .label-sex {
-	border: 1px solid var(--accent);
 }
 
 :checked + .label-sex {
@@ -280,7 +279,6 @@ footer {
 	width: 2.66em;
 	height: 2.66em;
 	background: none;
-	font: inherit;
 	font-size: 1.5em;
 	color: var(--accent);
 }
@@ -316,11 +314,10 @@ footer {
 }
 
 .type-button {
-	width: 5em;
-	margin-right: 1em;
+	width: 30%;
+	margin-right: 3%;
 	background: none;
 	border: none;
-	color: inherit;
 }
 
 .type-button:focus {
@@ -338,7 +335,6 @@ footer {
 	width: 2em;
 	margin-right: 0.5em;
 	float: left;
-	color: inherit;
 }
 
 .color-label {
@@ -460,7 +456,6 @@ footer {
 
 .options-collapsed #options-toggle {
 	float: none;
-	color: inherit;
 }
 
 .options-collapsed .component-wrapper,

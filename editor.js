@@ -109,9 +109,10 @@ function ApplianceSelect (SVGParent, optionsParent) {
 	for (; options.length != 0;) { /* As the components are replaced, the list shrinks. Thus, i must not be changed */
 		var fullName = options[0].textContent;
 		var name = prettify(fullName);
-		var opt = DOMNode("option", {class: "component-option", label: name, value: fullName}, select);
+		var opt = DOMNode("option", {class: "component-option", label: name, value: fullName+"_Real"}, select);
 
 		var component = find(fullName);
+		component.id += "_Real";
 		SVGParent.replaceChild(component, options[0]);
 		component.setAttribute("class","option");
 		component.style.display = "none";
@@ -125,10 +126,11 @@ function ApplianceSelect (SVGParent, optionsParent) {
 	}
 	var components = SVGParent.getElementsByClassName("option");
 	var colors = optionsParent.getElementsByClassName("color-list");
+	var root = SVGParent.getRootNode() || document;
 	select.addEventListener("change", function() {
 		for (var i = 0; i < components.length; i++)
 			components[i].style.display = "none";
-		var on = find(this.value);
+		var on = root.getElementById(this.value);
 		if (on)
 			on.style.display = "";
 		var id = sanitize(this.value) + "Colors"
@@ -205,15 +207,15 @@ function ArmorGroup (g, fullName) {
 		ArmorComponent(children[j], col);
 }
 
-function loadSVGFromServer(name, onload) {
+function loadSVGFromServer(name, parentID, onload) {
 	var xhr = new XMLHttpRequest();
 	xhr.open("GET", "images/" + name + ".svg");
 	xhr.onload = function () {
 		if (this.status !== 200)
 			return;
 		var svg = this.responseXML.documentElement;
-		var main = find("editor")
-		main.appendChild(svg);
+		var parent = find(parentID)
+		parent.appendChild(svg);
 		if (onload)
 			onload(svg);
 	};
@@ -275,9 +277,9 @@ function toggleOptions () {
 
 function setDownloader (bck) {
 	var xml = new XMLSerializer();
-	var svg = find("Mando");
 	return function() {
 		var background = bck.cloneNode(true);
+		var svg = find("Mando");
 		var copy = svg.cloneNode(true);
 		background.appendChild(copy);
 		var str = xml.serializeToString(background);
@@ -289,11 +291,11 @@ function setDownloader (bck) {
 }
 
 function setupStorage () {
-	loadSVGFromServer('Full-Kit', MandoMaker);
-	loadSVGFromServer('Helmets');
+	loadSVGFromServer('Full-Kit', "editor", MandoMaker);
 	var useDarkMode = window.matchMedia("(prefers-color-scheme: dark)").matches;
 	toggleColorScheme(useDarkMode);
 	find("color-scheme-picker").checked = useDarkMode;
+	loadSVGFromServer('Helmets', "vault");
 }
 
 function toggleColorScheme (useDark) {
@@ -310,7 +312,7 @@ function toggleColorScheme (useDark) {
 	var a = find("download");
 	var main = find("editor");
 	if (!bck)
-		loadSVGFromServer(bckName, function(svg) {
+		loadSVGFromServer(bckName, "vault", function(svg) {
 			a.onclick = setDownloader(svg);
 			var img = svg.getElementById("image");
 			main.style.backgroundImage = "url(" + img.getAttribute("href") + ")";

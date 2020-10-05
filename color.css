@@ -4,7 +4,7 @@
 	justify-content: space-evenly;
 	position: absolute;
 	right: 100%;
-	width: 18em;
+	width: 20em;
 	background: var(--mainColor);
 	box-shadow: 0 0 10px 1px rgba(0,0,0,50%);
 }
@@ -65,18 +65,12 @@
 
 .picker_done,
 .picker_editor {
-	border: none;
-	outline: none;
 	margin: 0 0.25em;
 	padding: 0 0.5em;
 	width: 60%;
 	height: 100%;
-	background: #C4C4C4;
-}
-
-.picker_done: focus,
-.picker_editor: focus {
-	box-shadow: 0 0 2px 1px #ab1f1f;
+	background: var(--softColor);
+	box-sizing: border-box;
 }
 
 .picker_selector {
@@ -86,8 +80,6 @@
 	-ms-transform: translate(-50%, -50%);
 	transform: translate(-50%, -50%);
 	border: 2px solid white;
-	border-radius: 100%;
-	box-shadow: 0 0 3px 1px #67b9ff;
-	background: currentColor;
+	border-radius: 50%;
 	cursor: pointer;
 }
