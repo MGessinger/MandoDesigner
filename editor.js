@@ -177,9 +177,21 @@ function ArmorGroup (g, fullName) {
 
 	sync.addEventListener("change", function() {
 		g.classList.toggle("overrideFill");
-		g.dataset.unsync = !this.checked;
 		list.classList.toggle("synchronized");
-		picker.style.display = this.checked ? "unset" : "none";
+		if (this.checked) {
+			g.dataset.unsync = false;
+			picker.style.display = "unset";
+		} else {
+			g.dataset.unsync = true;
+			picker.style.display = "none";
+			var synced = picker.firstElementChild;
+			var buttons = list.getElementsByClassName("color-picker");
+			for (var i = 0; i < buttons.length; i++) {
+				buttons[i].style.background = synced.style.background;
+				buttons[i].click();
+				buttons[i].click();
+			}
+		}
 	});
 
 	var sanitized = sanitize(fullName);
