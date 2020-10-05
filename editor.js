@@ -356,3 +356,8 @@ function loadImage (input) {
 		reader.readAsDataURL(files[0]);
 	}
 }
+
+function displayForm (show, form) {
+	form = form || find("contact");
+	form.style.display = show ? "" : "none";
+}

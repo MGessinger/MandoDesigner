@@ -67,11 +67,10 @@ nav {
 
 button {
 	border: 1px solid var(--softHighlight);
-	padding: 0;
 }
 
 button:focus {
-	border: 1px solid #ab1f1f;
+	border: 1px solid var(--accent);
 }
 
 p {
@@ -143,6 +142,15 @@ legend {
 	font-size: 1.5em;
 }
 
+.close {
+	float: right;
+	cursor: pointer;
+	background: none;
+	border: none;
+	font: inherit;
+	color: inherit;
+}
+
 fieldset {
 	display: flex;
 	margin: 5% 10% 0 10%;
@@ -171,6 +179,7 @@ textarea {
 .wide-input,
 textarea {
 	width: 100%;
+	resize: vertical;
 }
 
 .submit {
