@@ -74,11 +74,6 @@ button:focus {
 	border: 1px solid #ab1f1f;
 }
 
-option {
-	background: var(--mainColor);
-	color: inherit;
-}
-
 p {
 	margin: 0;
 	padding: 0;
@@ -133,6 +128,57 @@ p {
 	bottom: 0;
 	color: inherit;
 	text-decoration: none;
+}
+
+form {
+	position: fixed;
+	width: 33%;
+	top: 25%;
+	left: 33%;
+	background: var(--mainColor);
+	padding: 1em;
+}
+
+legend {
+	font-size: 1.5em;
+}
+
+fieldset {
+	display: flex;
+	margin: 5% 10% 0 10%;
+	padding: 0;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	border: none;
+}
+
+fieldset > * {
+	color: inherit;
+	margin: 1em 0;
+}
+
+fieldset input,
+textarea {
+	background: none;
+	border: 1px var(--accent);
+	border-bottom-style: solid;
+}
+
+.narrow-input {
+	width: 48%;
+}
+
+.wide-input,
+textarea {
+	width: 100%;
+}
+
+.submit {
+	margin: 2em auto 0 auto;
+	padding: 1em 3em;
+	border: none;
+	background: var(--accent);
+	border-radius: 0.5em;
 }
 
 .image-column {
@@ -380,7 +426,7 @@ footer {
 .component-select {
 	width: 100%;
 	color: inherit;
-	background: none;
+	background: var(--mainColor);
 	border: none;
 	-webkit-appearance: none;
 	-moz-appearance: none;

@@ -32,8 +32,20 @@
 				<label for="AccessoriesStyle" class="armor-label">Accessories<span class="armor-icon">&#xE904;</span></label>
 				<input id="background_upload" type="file" accept="image/*" onchange="loadImage(this);"/>
 				<label for="background_upload" class="armor-label">Upload Background<span class="armor-icon">&#xF03E;</span></label>
+				<input id="contact-opener" type="button" />
+				<label for="cotact-opener" class="armor-label">Contact Us<span class="armor-icon">&#xF0E0;</span></label>
 				<a class="armor-label download" id="download" download="Mando'ad.svg" href="#">Download<span class="armor-icon">&#xE903;</span></a>
 			</div>
+			<form method="POST" action="mail.php" id="contact" onsubmit="return false;">
+				<legend>Contact Us</legend>
+				<fieldset>
+					<input type="text" class="narrow-input" placeholder="Name" name="name"/>
+					<input type="text" class="narrow-input" placeholder="Email" name="email"/>
+					<input type="text" class="wide-input" placeholder="Subject (example: Gar Mando'ade jate) (required)" name="subject" required/>
+					<textarea placeholder="Message (example: Gar Mando'ade jate, ijaat enteyo cuyir ori.) (required)" name="message" required></textarea>
+					<button class="submit" type="submit">Ke baryci (Deploy)</button>
+				</fieldset>
+			</form>
 		</nav>
 		<div id="options" class="options-column options-collapsed">
 			<button id="options-toggle" title="Toggle Options menu" onclick="toggleOptions()">&#xE900;</button>
