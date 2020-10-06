@@ -16,7 +16,7 @@
 		<meta name="theme-color" content="#ffffff">
 		<title>Mando Creator</title>
 	</head>
-	<body onload="setupStorage()">
+	<body onload="onload()">
 		<nav>
 			<svg class="title" viewBox="0 0 420 70"> <use id="title" href="#title" /> </svg>
 			<div id="parts-list">
@@ -55,12 +55,12 @@
 			</div>
 			<p class="option-name">Helmet Type:</p>
 			<div id="HelmetTypes" class="armor-types" data-armor-type="Helmet">
-				<button class="type-button" data-name="Classic">
-					<svg viewbox="0 50 700 750" class="preview-icon"> <use href="#Classic"/> </svg>
+				<button class="type-button" onclick="switchToArmorVariant('Helmet','Classic')">
+					<svg viewbox="0 50 700 750" class="preview-icon"> <use href="#Helmet_Classic"/> </svg>
 					Standard
 				</button>
-				<button class="type-button" data-name="Nite-Owl">
-					<svg viewbox="0 50 700 750" class="preview-icon"> <use href="#Nite-Owl"/> </svg>
+				<button class="type-button" onclick="switchToArmorVariant('Helmet','Nite-Owl')">
+					<svg viewbox="0 50 700 750" class="preview-icon"> <use href="#Helmet_Nite-Owl"/> </svg>
 					Nite Owl
 				</button>
 			</div>
@@ -92,9 +92,9 @@
 
 		<footer>
 			<div class="settings">
-				<input type="radio" name="sex" class="toggle-sex" id="male" checked onchange="changeSex(false);">
+				<input type="radio" name="sex" class="toggle-sex" id="male" checked onchange="setupMando('Male-Body');">
 				<label for="male" class="label-sex">&#xe901;</label>
-				<input type="radio" name="sex" class="toggle-sex" id="female" onchange="changeSex(true);">
+				<input type="radio" name="sex" class="toggle-sex" id="female" onchange="setupMando('Female-Body');">
 				<label for="female" class="label-sex">&#xe902;</label>
 			</div>
 			<p class="credits"><span>Designed &amp; Developed By <a class="credit" rel="noopener noreferrer">DesignDeviant</a> &amp; <a class="credit" href="https://github.com/MGessinger" target="_blank" rel="noopener noreferrer">Cin Vhetin</a></span>

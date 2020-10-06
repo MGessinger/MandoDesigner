@@ -31,7 +31,6 @@ html, body {
 	--highlight: #DDD;
 	--mainFont: white;
 	--accent: #AB1F1F;
-	--label: "Dark";
 }
 
 .light-mode {
@@ -41,7 +40,6 @@ html, body {
 	--highlight: #222;
 	--mainFont: black;
 	--accent: #AB1F1F;
-	--label: "Light";
 }
 
 body {
@@ -205,8 +203,6 @@ textarea {
 }
 
 main svg {
-	width: 100%;
-	height: 100%;
 	padding: 4em 0;
 	box-sizing: border-box;
 }
@@ -353,7 +349,11 @@ footer {
 
 .color-scheme:before {
 	position: relative;
-	content: var(--label);
+	content: "Light";
+}
+
+.dark-mode .color-scheme:before {
+	content: "Dark";
 }
 
 .color-scheme {
@@ -455,7 +455,7 @@ footer {
 }
 
 .options-collapsed #options-toggle {
-	float: none;
+	color: unset;
 }
 
 .options-collapsed .component-wrapper,

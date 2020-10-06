@@ -1,6 +1,21 @@
 /* MandoMaker: A rewrite */
 "use strict";
 
+var mandoa = {
+	"Helmet": "Buy'ce",
+	"Neck": "Ghet'bur",
+	"Shoulder": "Bes'mabur",
+	"Chest": "Hal'cabur",
+	"Heart": "Kar'ta Beskar",
+	"Abdomen": "Sahr'tas",
+	"Gauntlet": "Kom'rk",
+	"Groin": "Ven'cabur",
+	"Thigh": "Motun'bur",
+	"Knee": "Bes'lovik",
+	"Shin": "Tadun'bur",
+	"Ankle": "Cetar'bur"
+}
+
 function find (st) {
 	return document.getElementById(st);
 }
@@ -15,18 +30,16 @@ function prettify (str) {
 }
 
 function DOMNode (type, props, parent) {
+	var old = find(props.id);
+	if (old) {
+		var par = old.parentNode;
+		par.removeChild(old);
+	}
 	var n = document.createElement(type);
 	for (var p in props)
 		n.setAttribute(p, props[p]);
-	if (parent) {
-		var old = find(props.id);
-		if (old) {
-			n = old;
-			n.innerHTML = "";
-		}
-		else
-			parent.appendChild(n);
-	}
+	if (parent)
+		parent.appendChild(n);
 	return n;
 }
 
@@ -68,14 +81,15 @@ function ArmorComponent (SVGNode, parent) {
 			var cls = SVGNode.getAttribute("class");
 			if (cls === "optional")
 				return ArmorOptional(SVGNode, parent.parentNode);
-			var mandoa = SVGNode.dataset.mandoa;
-			if (mandoa) {
+			var san = prettify(SVGNode.id);
+			var mandoaTerm = mandoa[san]
+			if (mandoaTerm) {
 				parent = DOMNode("div", {class: "separator"}, parent);
 				var l = DOMNode("div", {class: "color-wrapper"}, parent);
 				var n = DOMNode("p", {class: "name"}, l);
 				n.innerHTML = prettify(SVGNode.id) + ":";
 				var c = DOMNode("p", {class: "color"}, l);
-				c.innerHTML = "(" + mandoa + ")";
+				c.innerHTML = "(" + mandoaTerm + ")";
 			}
 			var namedChildren = SVGNode.firstElementChild.id;
 			if (!namedChildren)
@@ -173,21 +187,31 @@ function ArmorGroup (g, fullName) {
 	label.innerHTML = "Sync Colors";
 	g.dataset.unsync = "true";
 
+	var radio = find(sanitized + "Style");
+	g.addEventListener("click", redirectTo(radio));
+	radio.onchange = switchToArmorPiece(list, fullName);
+
 	var picker = ColorPicker(g, list);
 	picker.style.display = "none";
+	var synced = picker.firstElementChild;
 	var col = ColorList(fullName, list);
 
+	var children = g.children;
+	for (var j = 0; j < children.length; j++)
+		ArmorComponent(children[j], col);
+
+	var buttons = list.getElementsByClassName("color-picker");
 	sync.addEventListener("change", function() {
-		g.classList.toggle("overrideFill");
-		list.classList.toggle("synchronized");
 		if (this.checked) {
+			g.setAttribute("class", "overrideFill");
 			g.dataset.unsync = false;
+			list.setAttribute("class", "option-list selected synchronized");
 			picker.style.display = "unset";
 		} else {
+			g.setAttribute("class", "");
 			g.dataset.unsync = true;
+			list.setAttribute("class", "option-list selected");
 			picker.style.display = "none";
-			var synced = picker.firstElementChild;
-			var buttons = list.getElementsByClassName("color-picker");
 			for (var i = 0; i < buttons.length; i++) {
 				buttons[i].style.background = synced.style.background;
 				buttons[i].click();
@@ -195,16 +219,6 @@ function ArmorGroup (g, fullName) {
 			}
 		}
 	});
-
-	var sanitized = sanitize(fullName);
-	var id = sanitized + "Style";
-	var radio = find(sanitized + "Style");
-	g.addEventListener("click", redirectTo(radio));
-	radio.onchange = switchToArmorPiece(list, fullName);
-
-	var children = g.children;
-	for (var j = 0; j < children.length; j++)
-		ArmorComponent(children[j], col);
 }
 
 function loadSVG (name, onload) {
@@ -232,48 +246,20 @@ function loadSVG (name, onload) {
 	xhr.send();
 }
 
-function MandoMaker (svg) {
-	var main = find("editor");
-	var old_svg = main.firstElementChild;
-	if (old_svg)
-		main.replaceChild(svg, old_svg);
-	else
-		main.appendChild(svg);
-
-	var groups = svg.getElementsByTagName("title");
-	var radios = find("parts-list");
-	for (var i = 0; i < groups.length; i++) {
-		var fullName = groups[i].innerHTML;
-		ArmorGroup(groups[i].nextElementSibling, fullName);
-	}
-
-	var typeLists = document.getElementsByClassName("armor-types");
-	for (var i = 0; i < typeLists.length; i++) {
-		var ch = typeLists[i].children;
-		var fullName = typeLists[i].dataset.armorType;
-		var shortName = fullName.split(/\W/, 1)[0];
-		for (var j = 0; j < ch.length; j++) {
-			ch[j].addEventListener("click", function () {
-				var old = find(shortName);
-				var parent = old.parentNode;
-				loadSVG (this.dataset.name, function(n) {
-					parent.replaceChild(n, old);
-					n.id = shortName;
-					ArmorGroup(n, fullName);
-				});
-			});
-		}
-	}
-	var first = radios.firstElementChild;
-	first.checked = false;
-	first.click();
-}
-
 function redirectTo(target) {
 	return function (event) {
 		target.focus();
 		target.click();
 	}
+}
+
+function onload () {
+	var femaleSelector = find("female");
+	var body = femaleSelector.checked ? "Female-Body" : "Male-Body";
+	setupMando(body);
+	var useDarkMode = window.matchMedia("(prefers-color-scheme: dark)").matches;
+	toggleColorScheme(useDarkMode);
+	find("color-scheme-picker").checked = useDarkMode;
 }
 
 function switchToArmorPiece (now) {
@@ -286,6 +272,20 @@ function switchToArmorPiece (now) {
 		now.classList.add("selected");
 		sel.innerHTML = this.value;
 	}
+}
+
+function switchToArmorVariant (groupName, variantName) {
+	var sanitized = sanitize(groupName);
+	var radio = find(sanitized + "Style");
+	var old = find(groupName + "_Current");
+	var parent = old.parentNode;
+	loadSVG (groupName + "_" + variantName, function(n) {
+		parent.replaceChild(n, old);
+		n.id = groupName + "_Current";
+		ArmorGroup(n, groupName);
+		radio.checked = false;
+		radio.click();
+	});
 }
 
 function toggleOptions () {
@@ -307,14 +307,20 @@ function setDownloader (bck) {
 	};
 }
 
-function setupStorage () {
-	var femaleSelector = find("female");
-	var body = femaleSelector.checked ? "Female-Body" : "Male-Body";
-	loadSVG(body, MandoMaker);
-	var useDarkMode = window.matchMedia("(prefers-color-scheme: dark)").matches;
-	toggleColorScheme(useDarkMode);
-	find("color-scheme-picker").checked = useDarkMode;
-	loadSVG('Helmets');
+function setupMando (body) {
+	var def = function (groupName) {
+		loadSVG(groupName, function () { switchToArmorVariant(groupName, "Classic"); });
+	}
+	loadSVG(body, function (svg) {
+		var main = find("editor");
+		var old_svg = main.firstElementChild;
+		if (old_svg)
+			main.replaceChild(svg, old_svg);
+		else
+			main.appendChild(svg);
+		def("Helmet");
+		def("Upper-Body");
+	});
 }
 
 function toggleColorScheme (useDark) {
@@ -386,9 +392,4 @@ function loadImage (input) {
 function displayForm (show, form) {
 	form = form || find("contact");
 	form.style.display = show ? "" : "none";
-}
-
-function changeSex (female) {
-	var id = female ? "Female-Body" : "Male-Body";
-	loadSVG(id, MandoMaker);
 }
