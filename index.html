@@ -41,8 +41,8 @@
 				<fieldset>
 					<input type="text" class="narrow-input" placeholder="Name" name="name"/>
 					<input type="text" class="narrow-input" placeholder="Email" name="email"/>
-					<input type="text" class="wide-input" placeholder="Subject (example: Jate'shya) (required)" name="subject" required/>
-					<textarea placeholder="Message (example: Gar Mando'ade jate, ijaat enteyo cuyir ori.) (required)" name="message" required></textarea>
+					<input type="text" class="wide-input" placeholder="Subject (example: Jate'shya)" name="subject" required/>
+					<textarea placeholder="Message (example: Gar Mando'ade jate, ijaat enteyo cuyir ori.)" name="message" required></textarea>
 					<button class="submit" type="submit">Ke baryci (Deploy)</button>
 				</fieldset>
 			</form>
@@ -54,13 +54,13 @@
 				<h2 id="selection-name" style="margin: 0"></h2>
 			</div>
 			<p class="option-name">Helmet Type:</p>
-			<div id="Helmets" class="armor-types" data-armor-type="Helmet">
-				<button class="type-button" data-name="Classic-Helmet">
-					<svg viewbox="0 50 700 750" class="preview-icon"> <use href="#Classic-Helmet"/> </svg>
+			<div id="HelmetTypes" class="armor-types" data-armor-type="Helmet">
+				<button class="type-button" data-name="Classic">
+					<svg viewbox="0 50 700 750" class="preview-icon"> <use href="#Classic"/> </svg>
 					Standard
 				</button>
-				<button class="type-button" data-name="Nite-Owl-Helmet">
-					<svg viewbox="0 50 700 750" class="preview-icon"> <use href="#Nite-Owl-Helmet"/> </svg>
+				<button class="type-button" data-name="Nite-Owl">
+					<svg viewbox="0 50 700 750" class="preview-icon"> <use href="#Nite-Owl"/> </svg>
 					Nite Owl
 				</button>
 			</div>
@@ -92,9 +92,9 @@
 
 		<footer>
 			<div class="settings">
-				<input type="radio" name="sex" class="toggle-sex" id="male" checked>
+				<input type="radio" name="sex" class="toggle-sex" id="male" checked onchange="changeSex(false);">
 				<label for="male" class="label-sex">&#xe901;</label>
-				<input type="radio" name="sex" class="toggle-sex" id="female">
+				<input type="radio" name="sex" class="toggle-sex" id="female" onchange="changeSex(true);">
 				<label for="female" class="label-sex">&#xe902;</label>
 			</div>
 			<p class="credits"><span>Designed &amp; Developed By <a class="credit" rel="noopener noreferrer">DesignDeviant</a> &amp; <a class="credit" href="https://github.com/MGessinger" target="_blank" rel="noopener noreferrer">Cin Vhetin</a></span>
