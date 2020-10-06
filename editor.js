@@ -10,7 +10,7 @@ function sanitize (str) {
 }
 
 function prettify (str) {
-	var shortName = str.split("_")[0];
+	var shortName = str.split("_", 1)[0];
 	return shortName.replace(/-/g, " ");
 }
 
@@ -30,27 +30,21 @@ function DOMNode (type, props, parent) {
 	return n;
 }
 
-function ColorLabel (wrapper, buttonID, shortName) {
-	var l = DOMNode("label", {class: "color-label"}, wrapper);
-	if (buttonID)
-		l.setAttribute("for", buttonID);
-	var p = DOMNode("p", {class: "name"}, l);
-	p.innerHTML = shortName;
-	return DOMNode("p", {class: "color"}, l);
-}
-
 function ColorList (groupName, total) {
 	return DOMNode("div", {id: sanitize(groupName) + "Colors", class: "color-list"}, total);
 }
 
 function ColorPicker (affectedObject, parent) {
-	var shortName = prettify(affectedObject.id);
 	var buttonID = sanitize(affectedObject.id) + "Color";
 
 	var wrapper = DOMNode("div", {class: "color-wrapper"}, parent);
 
 	var b = DOMNode("button", {class: "color-picker", id: buttonID}, wrapper);
-	var c = ColorLabel(wrapper, buttonID, shortName);
+	var l = DOMNode("label", {class: "color-label"}, wrapper);
+	l.setAttribute("for", buttonID);
+	var p = DOMNode("p", {class: "name"}, l);
+	p.innerHTML = prettify(affectedObject.id);
+	var c = DOMNode("p", {class: "color"}, l);
 
 	var input = function (hex) {
 		b.style.background = hex;
@@ -58,10 +52,11 @@ function ColorPicker (affectedObject, parent) {
 		c.innerHTML = hex;
 	}
 	Picker.attach(b, input);
+	var redirect = redirectTo(b);
 	affectedObject.addEventListener("click", function() {
 		if (this.dataset.unsync === "true")
 			return;
-		redirectTo(b)();
+		redirect();
 	});
 	input("#FFFFFF")
 	return wrapper;
@@ -256,7 +251,7 @@ function MandoMaker (svg) {
 	for (var i = 0; i < typeLists.length; i++) {
 		var ch = typeLists[i].children;
 		var fullName = typeLists[i].dataset.armorType;
-		var shortName = fullName.split(/\W/)[0];
+		var shortName = fullName.split(/\W/, 1)[0];
 		for (var j = 0; j < ch.length; j++) {
 			ch[j].addEventListener("click", function () {
 				var old = find(shortName);
@@ -344,7 +339,7 @@ function toggleColorScheme (useDark) {
 }
 
 function sanitizeSVG (svg) {
-	var san = svg.replace(/"/g,"'").replace(/\s+/g," ")
+	var san = svg.replace(/\s+/g," ").replace(/"/g,"'")
 	return encodeURIComponent(san);
 }
 
