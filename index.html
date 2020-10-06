@@ -53,15 +53,25 @@
 				<p>Selected part:</p>
 				<h2 id="selection-name" style="margin: 0"></h2>
 			</div>
-			<p class="option-name">Helmet Type:</p>
-			<div id="HelmetTypes" class="armor-types" data-armor-type="Helmet">
+			<p class="option-name">Variant:</p>
+			<div id="HelmetTypes" class="armor-types">
 				<button class="type-button" onclick="switchToArmorVariant('Helmet','Classic')">
 					<svg viewbox="0 50 700 750" class="preview-icon"> <use href="#Helmet_Classic"/> </svg>
-					Standard
+					Classic
 				</button>
 				<button class="type-button" onclick="switchToArmorVariant('Helmet','Nite-Owl')">
 					<svg viewbox="0 50 700 750" class="preview-icon"> <use href="#Helmet_Nite-Owl"/> </svg>
 					Nite Owl
+				</button>
+			</div>
+			<div id="UpperBodyTypes" class="armor-types">
+				<button class="type-button" onclick="switchToArmorVariant('Upper-Body','Classic')">
+					<svg viewbox="100 -100 1200 1200" class="preview-icon"> <use href="#Upper-Body_Classic"/> </svg>
+					Classic
+				</button>
+				<button class="type-button" onclick="switchToArmorVariant('Upper-Body','Legacy')">
+					<svg viewbox="100 -100 1200 1200" class="preview-icon"> <use href="#Upper-Body_Legacy"/> </svg>
+					Legacy
 				</button>
 			</div>
 			<p class="option-name">Options:</p>

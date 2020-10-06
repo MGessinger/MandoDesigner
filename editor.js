@@ -205,12 +205,12 @@ function ArmorGroup (g, fullName) {
 		if (this.checked) {
 			g.setAttribute("class", "overrideFill");
 			g.dataset.unsync = false;
-			list.setAttribute("class", "option-list selected synchronized");
+			list.classList.add("synchronized");
 			picker.style.display = "unset";
 		} else {
 			g.setAttribute("class", "");
 			g.dataset.unsync = true;
-			list.setAttribute("class", "option-list selected");
+			list.classList.remove("synchronized");
 			picker.style.display = "none";
 			for (var i = 0; i < buttons.length; i++) {
 				buttons[i].style.background = synced.style.background;
@@ -265,7 +265,13 @@ function onload () {
 function switchToArmorPiece (now) {
 	var sel = find("selection-name");
 	var p = now.parentNode;
+	var types = document.getElementsByClassName("armor-types");
+	var typeName = now.id.replace("Options","Types");
+	var type = find(typeName);
 	return function() {
+		for (var i = 0; i < types.length; i++)
+			types[i].classList.remove("selected");
+		type.classList.add("selected");
 		var components = p.children;
 		for (var i = 0; i < components.length; i++)
 			components[i].classList.remove("selected");
@@ -293,10 +299,11 @@ function toggleOptions () {
 }
 
 function setDownloader (bck) {
+	var main = find("editor");
 	var xml = new XMLSerializer();
 	return function() {
 		var background = bck.cloneNode(true);
-		var svg = find("Mando");
+		var svg = main.getElementsByTagName("svg")[0];
 		var copy = svg.cloneNode(true);
 		background.appendChild(copy);
 		var str = xml.serializeToString(background);

@@ -299,11 +299,8 @@ footer {
 	padding: 1.5em;
 }
 
-.selected {
-	display: block;
-}
-
 .armor-types {
+	display: none;
 	height: 10em;
 	overflow-y: scroll;
 	padding: 1em;
@@ -493,4 +490,8 @@ footer {
 .options-collapsed .component-check,
 .options-collapsed .select-wrapper {
 	display: none;
+}
+
+.selected {
+	display: block;
 }
