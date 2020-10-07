@@ -459,6 +459,7 @@ footer {
 .options-collapsed .option-list {
 	padding: 0;
 	margin: 0;
+	clear: right;
 }
 
 .options-collapsed .component-list {

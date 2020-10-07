@@ -2,18 +2,20 @@
 "use strict";
 
 var mandoa = {
-	"Helmet": "Buy'ce",
-	"Neck": "Ghet'bur",
-	"Shoulder": "Bes'mabur",
-	"Chest": "Hal'cabur",
-	"Heart": "Kar'ta Beskar",
-	"Abdomen": "Sahr'tas",
-	"Gauntlet": "Kom'rk",
-	"Groin": "Ven'cabur",
-	"Thigh": "Motun'bur",
-	"Knee": "Bes'lovik",
-	"Shin": "Tadun'bur",
-	"Ankle": "Cetar'bur"
+	"Helmet"   :	"Buy'ce",
+	"Neck"     :	"Ghet'bur",
+	"Shoulder" :	"Bes'mabur",
+	"Chest"    :	"Hal'cabur",
+	"Heart"    :	"Kar'ta Beskar",
+	"Abdomen"  :	"Sahr'tas",
+	"Gauntlet" :	"Kom'rk",
+	"Groin"    :	"Ven'cabur",
+	"Thigh"    :	"Motun'bur",
+	"Knee"     :	"Bes'lovik",
+	"Shin"     :	"Tadun'bur",
+	"Ankle"    :	"Cetar'bur",
+	"Boots"    :	"Cetare",
+	"Hands"    :	"Gaane"
 }
 
 function find (st) {
@@ -206,7 +208,7 @@ function ArmorGroup (g, fullName) {
 			g.setAttribute("class", "overrideFill");
 			g.dataset.unsync = false;
 			list.classList.add("synchronized");
-			picker.style.display = "unset";
+			picker.style.display = "inline-block";
 		} else {
 			g.setAttribute("class", "");
 			g.dataset.unsync = true;
@@ -269,14 +271,16 @@ function switchToArmorPiece (now) {
 	var typeName = now.id.replace("Options","Types");
 	var type = find(typeName);
 	return function() {
-		for (var i = 0; i < types.length; i++)
-			types[i].classList.remove("selected");
-		type.classList.add("selected");
 		var components = p.children;
 		for (var i = 0; i < components.length; i++)
 			components[i].classList.remove("selected");
 		now.classList.add("selected");
 		sel.innerHTML = this.value;
+		if (!type)
+			return;
+		for (var i = 0; i < types.length; i++)
+			types[i].classList.remove("selected");
+		type.classList.add("selected");
 	}
 }
 
@@ -315,7 +319,7 @@ function setDownloader (bck) {
 }
 
 function setupMando (body) {
-	var def = function (groupName) {
+	function def (groupName) {
 		loadSVG(groupName, function () { switchToArmorVariant(groupName, "Classic"); });
 	}
 	loadSVG(body, function (svg) {
@@ -325,8 +329,15 @@ function setupMando (body) {
 			main.replaceChild(svg, old_svg);
 		else
 			main.appendChild(svg);
+
+		function findLocal(st) {
+			return svg.getElementById(st);
+		}
+		ArmorGroup(findLocal("Gauntlet"), "Upper-Body");
 		def("Helmet");
 		def("Upper-Body");
+		ArmorGroup(findLocal("Back"), "Accessories");
+		ArmorGroup(findLocal("Body"), "Flight Suit");
 	});
 }
 
