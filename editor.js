@@ -112,7 +112,7 @@ function ArmorComponent (SVGNode, parent) {
 
 function ApplianceSelect (SVGParent, optionsParent) {
 	var options = SVGParent.getElementsByTagName("metadata");
-	if (!options)
+	if (!options || options.length == 0)
 		return;
 	var wrapper = DOMNode("div", {class: "select-wrapper"}, optionsParent);
 	var select = DOMNode("select", {class: "component-select"}, wrapper);

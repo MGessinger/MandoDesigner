@@ -234,13 +234,12 @@ footer {
 	border-radius: 0.25em;
 	line-height: 1.5em;
 	font-size: 1.25em;
-	background: var(--highlight);
-	color: var(--mainColor);
+	background: var(--softColor);
+	color: var(--highlight);
 }
 
 :checked + .label-sex {
-	background: var(--mainColor);
-	color: var(--highlight);
+	background: var(--accent);
 }
 
 .credits {
