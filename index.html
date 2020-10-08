@@ -48,10 +48,12 @@
 			</form>
 		</nav>
 		<div id="options" class="options-column options-collapsed">
+			<div>
 			<button id="options-toggle" title="Toggle Options menu" onclick="toggleOptions()">&#xE900;</button>
 			<div class="selection">
 				<p>Selected part:</p>
 				<h2 id="selection-name" style="margin: 0"></h2>
+			</div>
 			</div>
 			<p class="option-name">Variant:</p>
 			<div id="HelmetTypes" class="armor-types">
@@ -76,10 +78,6 @@
 			</div>
 			<p class="option-name">Options:</p>
 			<div id="colors"></div>
-			<label class="color-scheme">
-				<input type="checkbox" id="color-scheme-picker" onchange="toggleColorScheme(this.checked)"/>
-				<span class="slider" />
-			</label>
 		</div>
 		<div class="picker_wrapper" id="picker" style="display: none;">
 			<div>Right-click a swatch to save your color</div>
@@ -108,6 +106,10 @@
 				<label for="female" class="label-sex">&#xe902;</label>
 			</div>
 			<p class="credits"><span>Designed &amp; Developed By <a class="credit" rel="noopener noreferrer">DesignDeviant</a> &amp; <a class="credit" href="https://github.com/MGessinger" target="_blank" rel="noopener noreferrer">Cin Vhetin</a></span>
+			<label id="color-scheme" class="checkbox">
+				<input type="checkbox" id="color-scheme-picker" onchange="toggleColorScheme(this.checked)"/>
+				<span class="slider" />
+			</label>
 			<span>Background photo created by <a class="credit" href="https://www.freepik.com/kjpargeter" rel="noopener noreferrer" target="_blank">kjpargeter</a></span></p>
 		</footer>
 		<div id="vault" style="display: none"></div>

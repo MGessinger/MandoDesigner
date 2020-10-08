@@ -10,10 +10,10 @@ var mandoa = {
 	"Abdomen"  :	"Sahr'tas",
 	"Gauntlet" :	"Kom'rk",
 	"Groin"    :	"Ven'cabur",
-	"Thigh"    :	"Motun'bur",
-	"Knee"     :	"Bes'lovik",
-	"Shin"     :	"Tadun'bur",
-	"Ankle"    :	"Cetar'bur",
+	"Thighs"   :	"Motun'bur",
+	"Knees"    :	"Bes'lovik",
+	"Shins"    :	"Tadun'bur",
+	"Ankles"   :	"Cetar'bur",
 	"Boots"    :	"Cetare",
 	"Hands"    :	"Gaane"
 }
@@ -116,7 +116,8 @@ function ApplianceSelect (SVGParent, optionsParent) {
 		return;
 	var wrapper = DOMNode("div", {class: "select-wrapper"}, optionsParent);
 	var select = DOMNode("select", {class: "component-select"}, wrapper);
-	DOMNode("option", {class: "component-option", label: "None", value: "", selected: true}, select);
+	var opt = DOMNode("option", {class: "component-option", label: "None", selected: true}, select);
+	opt.innerHTML = "None";
 	for (; options.length != 0;) { /* As the components are replaced, the list shrinks. Thus, i must not be changed */
 		var fullName = options[0].textContent;
 		var component = find(fullName);
@@ -131,7 +132,8 @@ function ApplianceSelect (SVGParent, optionsParent) {
 		if (!ch.length)
 			ch = [component];
 
-		DOMNode("option", {class: "component-option", label: name, value: fullName}, select);
+		opt = DOMNode("option", {class: "component-option", label: name, value: fullName}, select);
+		opt.innerHTML = name;
 		var col = ColorList(fullName, optionsParent);
 		col.style.display = "none";
 		for (var j = 0; j < ch.length; j++)
@@ -333,9 +335,9 @@ function setupMando (body) {
 		function findLocal(st) {
 			return svg.getElementById(st);
 		}
-		ArmorGroup(findLocal("Gauntlet"), "Upper-Body");
 		def("Helmet");
 		def("Upper-Body");
+		def("Lower-Body");
 		ArmorGroup(findLocal("Back"), "Accessories");
 		ArmorGroup(findLocal("Body"), "Flight Suit");
 	});
