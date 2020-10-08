@@ -45,10 +45,6 @@ function DOMNode (type, props, parent) {
 	return n;
 }
 
-function ColorList (groupName, total) {
-	return DOMNode("div", {id: sanitize(groupName) + "Colors", class: "color-list"}, total);
-}
-
 function ColorPicker (affectedObject, parent) {
 	var buttonID = sanitize(affectedObject.id) + "Color";
 
@@ -77,33 +73,26 @@ function ColorPicker (affectedObject, parent) {
 	return wrapper;
 }
 
+function Checkbox(textNode, parent, on) {
+	var label = DOMNode("label", {class: "pseudo-checkbox"}, parent);
+	if (textNode.innerHTML)
+		label.appendChild(textNode);
+	else {
+		var labeltext = DOMNode("span", {class: "pseudo-label"}, label);
+		labeltext.innerHTML = textNode;
+	}
+	var check = DOMNode("input", {type: "checkbox"}, label);
+	check.checked = on;
+	DOMNode("span", {class: "slider"}, label);
+	return check;
+}
+
 function ArmorComponent (SVGNode, parent) {
 	switch (SVGNode.tagName.toLowerCase()) {
 		case "g":
-			var cls = SVGNode.getAttribute("class");
-			if (cls === "optional")
-				return ArmorOptional(SVGNode, parent.parentNode);
-			var san = prettify(SVGNode.id);
-			var mandoaTerm = mandoa[san]
-			if (mandoaTerm) {
-				parent = DOMNode("div", {class: "separator"}, parent);
-				var l = DOMNode("div", {class: "color-wrapper"}, parent);
-				var n = DOMNode("p", {class: "name"}, l);
-				n.innerHTML = prettify(SVGNode.id) + ":";
-				var c = DOMNode("p", {class: "color"}, l);
-				c.innerHTML = "(" + mandoaTerm + ")";
-			}
-			var namedChildren = SVGNode.firstElementChild.id;
-			if (!namedChildren)
-				return ColorPicker(SVGNode, parent);
-			var ch = SVGNode.children;
-			for (var i = 0; i < ch.length; i++)
-				ArmorComponent(ch[i], parent);
-			break;
+			return ArmorGroup(SVGNode, parent);
 		case "path":
 		case "rect":
-			if (!SVGNode.id)
-				return false;
 			return ColorPicker(SVGNode, parent);
 		default:
 			return true;
@@ -124,6 +113,7 @@ function ApplianceSelect (SVGParent, optionsParent) {
 		var name = prettify(fullName);
 		fullName += "_Real";
 
+		/* Move the referenced object from the <defs> to the current group */
 		SVGParent.replaceChild(component, options[0]);
 		component.setAttribute("class","option");
 		component.setAttribute("id", fullName);
@@ -132,16 +122,18 @@ function ApplianceSelect (SVGParent, optionsParent) {
 		if (!ch.length)
 			ch = [component];
 
+		/* Create an option in the select, and a hidable color list */
 		opt = DOMNode("option", {class: "component-option", label: name, value: fullName}, select);
 		opt.innerHTML = name;
-		var col = ColorList(fullName, optionsParent);
+		var san = sanitize(fullName);
+		var col = DOMNode("div", {id: san + "Colors", class: "color-list"}, optionsParent);
 		col.style.display = "none";
 		for (var j = 0; j < ch.length; j++)
 			ArmorComponent(ch[j], col);
 	}
 	var components = SVGParent.getElementsByClassName("option");
 	var colors = optionsParent.getElementsByClassName("color-list");
-	var root = SVGParent.getRootNode() || document;
+	var root = SVGParent.getRootNode();
 	select.addEventListener("change", function() {
 		for (var i = 0; i < components.length; i++)
 			components[i].style.display = "none";
@@ -149,60 +141,73 @@ function ApplianceSelect (SVGParent, optionsParent) {
 		if (on)
 			on.style.display = "";
 		var id = sanitize(this.value) + "Colors"
+		console.log(id);
 		for (var i = 0; i < colors.length; i++)
 			colors[i].style.display = "none";
-		on = root.getElementById(id);
+		on = find(id);
 		if (on)
 			on.style.display = "";
 	});
 	return select;
 }
 
-function ArmorOptional (SVGNode, parent) {
-	var optName = sanitize(SVGNode.id) + "Options";
-	var list = DOMNode("div", {id: optName, class: "component-list"}, parent);
-
-	var d = DOMNode("div", {class: "component-check"}, list);
-	var l = SVGNode.id + "Checked";
-	var check = DOMNode("input", {type: "checkbox", id: l, checked: "true"}, d);
-	var label = DOMNode("label", {for: l, class: "color-label"}, d);
-	label.innerHTML = prettify(SVGNode.id);
-
+function ArmorGroup (SVGNode, parent) {
 	var ch = SVGNode.children;
+	var unnamedChildren = true;
+	for (var i = 0; i < ch.length; i++)
+		unnamedChildren &= !ch[i].id;
+	if (unnamedChildren)
+		return ColorPicker(SVGNode, parent);
+	var optName = sanitize(SVGNode.id) + "Options";
+	var list = DOMNode("div", {id: optName, class: "color-list"}, parent);
+
+	var san = prettify(SVGNode.id);
+	var title = DOMNode("span", {});
+	title.innerHTML = san + ":";
+	var mandoaTerm = mandoa[san];
+	if (mandoaTerm) {
+		var c = DOMNode("i", {}, title);
+		c.innerHTML = "(" + mandoaTerm + ")";
+	}
+
+	var cls = SVGNode.getAttribute("class");
+	if (cls === "optional") {
+		var check = Checkbox(title, list, true);
+		check.addEventListener("change", function() {
+			var display = this.checked ? "" : "none";
+			SVGNode.style.display = display;
+			wrapper.style.display = display;
+		});
+		check.parentNode.classList.add("group-title");
+	} else {
+		var heading = DOMNode("h3", {class: "group-title"}, list);
+		heading.appendChild(title);
+	}
+
 	var wrapper = DOMNode("div", {class: "component-wrapper"}, list);
 	for (var i = 0; i < ch.length; i++)
 		ArmorComponent(ch[i], wrapper);
 	ApplianceSelect(SVGNode, wrapper);
-
-	check.addEventListener("change", function() {
-		var display = this.checked ? "" : "none";
-		SVGNode.style.display = display;
-		wrapper.style.display = display;
-	});
 }
 
-function ArmorGroup (g, fullName) {
+function ArmorPiece (g, fullName) {
 	var sanitized = sanitize(fullName);
 	var list = DOMNode("div", {id: sanitized + "Options", class: "option-list"}, find("colors"));
 
-	var check = DOMNode("div", {class: "component-check"}, list);
-	var sync = DOMNode("input", {type: "checkbox", id: sanitized + "Sync"}, check);
-	var label = DOMNode("label", {class: "color-label", for: sanitized + "Sync"}, check);
-	label.innerHTML = "Sync Colors";
-	g.dataset.unsync = "true";
+	var sync = Checkbox("Sync Colors", list);
 
 	var radio = find(sanitized + "Style");
 	g.addEventListener("click", redirectTo(radio));
 	radio.onchange = switchToArmorPiece(list, fullName);
+	g.dataset.unsync = "true";
 
 	var picker = ColorPicker(g, list);
 	picker.style.display = "none";
 	var synced = picker.firstElementChild;
-	var col = ColorList(fullName, list);
 
 	var children = g.children;
 	for (var j = 0; j < children.length; j++)
-		ArmorComponent(children[j], col);
+		ArmorComponent(children[j], list);
 
 	var buttons = list.getElementsByClassName("color-picker");
 	sync.addEventListener("change", function() {
@@ -294,7 +299,7 @@ function switchToArmorVariant (groupName, variantName) {
 	loadSVG (groupName + "_" + variantName, function(n) {
 		parent.replaceChild(n, old);
 		n.id = groupName + "_Current";
-		ArmorGroup(n, groupName);
+		ArmorPiece(n, groupName);
 		radio.checked = false;
 		radio.click();
 	});
@@ -338,8 +343,8 @@ function setupMando (body) {
 		def("Helmet");
 		def("Upper-Body");
 		def("Lower-Body");
-		ArmorGroup(findLocal("Back"), "Accessories");
-		ArmorGroup(findLocal("Body"), "Flight Suit");
+		ArmorPiece(findLocal("Back"), "Accessories");
+		ArmorPiece(findLocal("Body"), "Flight Suit");
 	});
 }
 

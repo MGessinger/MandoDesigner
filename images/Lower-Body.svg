@@ -3,43 +3,35 @@
 <svg width="100%" height="100%" viewBox="0 0 1200 1700" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:1.5;">
 <g id="Lower-Body_Classic">
     <g id="Ankles_Classic" transform="matrix(1.32813,0,0,1.71875,-18.5033,-1266.47)" class="optional">
-        <g id="Ankles_Wrapper_Classic">
         <g id="Left_Ankle_Ankles_Classic" transform="matrix(-1.31718,0,0,1.08136,1689.97,-122.969)">
             <path d="M645.696,1674.97L693.196,1590.97L775.696,1607.47L783.196,1631.47L716.529,1683.97L688.196,1692.47L645.696,1674.97Z" style="stroke-width:2.96px;"/>
         </g>
         <g id="Right_Ankle_Ankles_Classic" transform="matrix(1.31718,0,0,1.08136,-758.572,-122.969)">
             <path d="M645.696,1674.97L693.196,1590.97L775.696,1607.47L783.196,1631.47L716.529,1683.97L688.196,1692.47L645.696,1674.97Z" style="stroke-width:2.96px;"/>
         </g>
-	</g>
     </g>
     <g id="Shins_Classic" transform="matrix(1.32813,0,0,1.71875,-18.5033,-1266.47)" class="optional">
-    	<g id="Shins_Wrapper_Classic">
         <g id="Left_Shin_Shins_Classic" transform="matrix(-1.31718,0,0,1.08136,1689.97,-122.969)">
             <path d="M705.196,1410.47L731.196,1375.97L775.696,1380.47L815.696,1447.47L762.196,1590.97L696.696,1582.47L705.196,1410.47Z" style="stroke-width:2.96px;"/>
         </g>
         <g id="Right_Shin_Shins_Classic" transform="matrix(1.31718,0,0,1.08136,-758.572,-122.969)">
             <path d="M705.196,1410.47L731.196,1375.97L775.696,1380.47L815.696,1447.47L762.196,1590.97L696.696,1582.47L705.196,1410.47Z" style="stroke-width:2.96px;"/>
         </g>
-	</g>
     </g>
     <g id="Knees_Classic" transform="matrix(1.32813,0,0,1.71875,-18.5033,-1266.47)" class="optional">
-    	<g id="Knees_Wrapper_Classic">
         <g id="Left_Knee_Knees_Classic" transform="matrix(1.24028,-0.342686,0.471162,1.01823,-945.298,235.299)">
             <path d="M729.696,1252.97L725.696,1296.97L751.696,1304.3L755.696,1345.97L819.029,1363.3L853.029,1325.63L862.029,1283.3L841.363,1285.97L729.696,1252.97Z" style="stroke-width:2.96px;"/>
         </g>
         <g id="Right_Knee_Knees_Classic" transform="matrix(-1.24028,-0.342686,-0.471162,1.01823,1877.14,235.299)">
             <path d="M729.696,1252.97L725.696,1296.97L751.696,1304.3L755.696,1345.97L819.029,1363.3L853.029,1325.63L862.029,1283.3L841.363,1285.97L729.696,1252.97Z" style="stroke-width:2.96px;"/>
-        </g>
 	</g>
     </g>
     <g id="Thighs_Classic" transform="matrix(1.32813,0,0,1.71875,-18.5033,-1266.47)" class="optional">
-    	<g id="Thighs_Wrapper_Classic">
         <g id="Left_Thigh_Thighs_Classic" transform="matrix(-1.49662,0,0,1.22868,1819.1,-304.958)">
             <path d="M716.529,1061.97L757.029,1024.13L798.529,1029.63L859.029,1101.13L828.196,1236.63L804.529,1249.13L729.029,1240.13L716.529,1061.97Z" style="stroke-width:2.6px;"/>
         </g>
         <g id="Right_Thigh_Thighs_Classic" transform="matrix(1.49662,0,0,1.22868,-887.709,-304.958)">
             <path d="M716.529,1061.97L757.029,1024.13L798.529,1029.63L859.029,1101.13L828.196,1236.63L804.529,1249.13L729.029,1240.13L716.529,1061.97Z" style="stroke-width:2.6px;"/>
-        </g>
 	</g>
     </g>
     <g id="Groin_Classic" transform="matrix(1.74938,0,0,1.85859,-1025.98,-1477.82)">

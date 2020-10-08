@@ -53,6 +53,7 @@ label {
 	-moz-user-select: none;
 	-ms-user-select: none;
 	user-select: none;
+	cursor: pointer;
 }
 
 nav {
@@ -302,7 +303,7 @@ footer {
 
 .armor-types {
 	display: none;
-	height: 10em;
+	flex: 0 0 10em;
 	overflow-y: scroll;
 	padding: 1em;
 }
@@ -350,24 +351,24 @@ footer {
 	font-size: 0.75em;
 }
 
-.checkbox:before {
-	content: "Light Mode";
-	vertical-align: super;
+.pseudo-checkbox {
+	display: block;
+	min-height: 1.5em;
 }
 
-.dark-mode .checkbox:before {
-	content: "Dark Mode";
-}
-
-.checkbox input {
+.pseudo-checkbox input {
 	opacity: 0;
 	position: absolute;
 }
 
+.pseudo-label {
+	margin-right: 0.5em;
+}
+
 .slider {
-	display: inline-block;
 	height: 1.5em;
 	width: 3em;
+	float: right;
 	background: var(--highlight);
 	border-radius: 1em;
 }
@@ -394,14 +395,16 @@ footer {
 	transform: translateX(100%);
 }
 
-.component-list {
-	margin-top: 1.5em;
-	padding-top: 1.5em;
+.group-title {
+	margin-top: 1em;
+	padding-top: 1em;
 	border-top: 1px solid var(--softColor);
+	color: var(--softHighlight);
 }
 
-.component-check input {
-	margin-left: 0;
+i {
+	margin-left: 0.5em;
+	font-size: 0.8em;
 }
 
 .select-wrapper {
@@ -459,7 +462,17 @@ footer {
 	clear: right;
 }
 
-.options-collapsed .component-list {
+.options-collapsed .pseudo-label {
+	margin: 0;
+}
+
+.options-collapsed .slider {
+	display: inline-block;
+	float: none;
+	margin: 0;
+}
+
+.options-collapsed .color-list {
 	margin: 0.5em 0 0 0;
 	padding: 0.5em 0 0 0;
 }
@@ -475,17 +488,15 @@ footer {
 }
 
 .options-collapsed .separator {
-	border: none;
 	padding: 0;
 	margin: 0;
 }
 
-.options-collapsed p,
 .options-collapsed .selection,
 .options-collapsed .color-label,
 .options-collapsed .armor-types,
 .options-collapsed .option-name,
-.options-collapsed .component-check,
+.options-collapsed .group-title,
 .options-collapsed .select-wrapper {
 	display: none;
 }
