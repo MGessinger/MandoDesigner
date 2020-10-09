@@ -396,10 +396,15 @@ footer {
 }
 
 .group-title {
-	margin-top: 1em;
-	padding-top: 1em;
+	margin-top: 0.5em;
+	margin-bottom: 0.25em;
+	padding-top: 0.5em;
 	border-top: 1px solid var(--softColor);
 	color: var(--softHighlight);
+}
+
+.title-text {
+	display: inline;
 }
 
 i {
@@ -484,11 +489,6 @@ i {
 
 .options-collapsed .color-picker {
 	float: none;
-	margin: 0;
-}
-
-.options-collapsed .separator {
-	padding: 0;
 	margin: 0;
 }
 

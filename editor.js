@@ -74,10 +74,13 @@ function ColorPicker (affectedObject, parent) {
 }
 
 function Checkbox(textNode, parent, on) {
-	var label = DOMNode("label", {class: "pseudo-checkbox"}, parent);
-	if (textNode.innerHTML)
+	var id = parent.id + "Sync";
+	var label = DOMNode("label", {id: id, class: "pseudo-checkbox"}, parent);
+	if (textNode.innerHTML) {
 		label.appendChild(textNode);
-	else {
+		label.classList.add("group-title");
+		textNode.className = "title-text";
+	} else {
 		var labeltext = DOMNode("span", {class: "pseudo-label"}, label);
 		labeltext.innerHTML = textNode;
 	}
@@ -88,6 +91,9 @@ function Checkbox(textNode, parent, on) {
 }
 
 function ArmorComponent (SVGNode, parent) {
+	var cl = SVGNode.getAttribute("class");
+	if (cl == "option")
+		return;
 	switch (SVGNode.tagName.toLowerCase()) {
 		case "g":
 			return ArmorGroup(SVGNode, parent);
@@ -100,30 +106,21 @@ function ArmorComponent (SVGNode, parent) {
 }
 
 function ApplianceSelect (SVGParent, optionsParent) {
-	var options = SVGParent.getElementsByTagName("metadata");
+	var options = SVGParent.getElementsByClassName("option");
 	if (!options || options.length == 0)
 		return;
 	var wrapper = DOMNode("div", {class: "select-wrapper"}, optionsParent);
 	var select = DOMNode("select", {class: "component-select"}, wrapper);
-	var opt = DOMNode("option", {class: "component-option", label: "None", selected: true}, select);
-	opt.innerHTML = "None";
-	for (; options.length != 0;) { /* As the components are replaced, the list shrinks. Thus, i must not be changed */
-		var fullName = options[0].textContent;
-		var component = find(fullName);
+	for (var i = 0; i < options.length; i++) {
+		var fullName = options[i].id;
 		var name = prettify(fullName);
-		fullName += "_Real";
 
-		/* Move the referenced object from the <defs> to the current group */
-		SVGParent.replaceChild(component, options[0]);
-		component.setAttribute("class","option");
-		component.setAttribute("id", fullName);
-		component.style.display = "none";
-		var ch = component.children;
+		var ch = options[i].children;
 		if (!ch.length)
-			ch = [component];
+			ch = [options[i]];
 
 		/* Create an option in the select, and a hidable color list */
-		opt = DOMNode("option", {class: "component-option", label: name, value: fullName}, select);
+		var opt = DOMNode("option", {class: "component-option", label: name, value: fullName}, select);
 		opt.innerHTML = name;
 		var san = sanitize(fullName);
 		var col = DOMNode("div", {id: san + "Colors", class: "color-list"}, optionsParent);
@@ -131,17 +128,15 @@ function ApplianceSelect (SVGParent, optionsParent) {
 		for (var j = 0; j < ch.length; j++)
 			ArmorComponent(ch[j], col);
 	}
-	var components = SVGParent.getElementsByClassName("option");
 	var colors = optionsParent.getElementsByClassName("color-list");
 	var root = SVGParent.getRootNode();
 	select.addEventListener("change", function() {
-		for (var i = 0; i < components.length; i++)
-			components[i].style.display = "none";
+		for (var i = 0; i < options.length; i++)
+			options[i].style.visibility = ""
 		var on = root.getElementById(this.value);
 		if (on)
-			on.style.display = "";
+			on.style.visibility = "visible";
 		var id = sanitize(this.value) + "Colors"
-		console.log(id);
 		for (var i = 0; i < colors.length; i++)
 			colors[i].style.display = "none";
 		on = find(id);
@@ -155,15 +150,16 @@ function ArmorGroup (SVGNode, parent) {
 	var ch = SVGNode.children;
 	var unnamedChildren = true;
 	for (var i = 0; i < ch.length; i++)
-		unnamedChildren &= !ch[i].id;
-	if (unnamedChildren)
+		unnamedChildren &= !(ch[i].id || ch[i].tagName == "metadata");
+	if (unnamedChildren) {
 		return ColorPicker(SVGNode, parent);
+	}
 	var optName = sanitize(SVGNode.id) + "Options";
 	var list = DOMNode("div", {id: optName, class: "color-list"}, parent);
 
 	var san = prettify(SVGNode.id);
-	var title = DOMNode("span", {});
-	title.innerHTML = san + ":";
+	var title = DOMNode("h3", {class: "group-title"}, list);
+	title.innerHTML = san;
 	var mandoaTerm = mandoa[san];
 	if (mandoaTerm) {
 		var c = DOMNode("i", {}, title);
@@ -178,32 +174,31 @@ function ArmorGroup (SVGNode, parent) {
 			SVGNode.style.display = display;
 			wrapper.style.display = display;
 		});
-		check.parentNode.classList.add("group-title");
-	} else {
-		var heading = DOMNode("h3", {class: "group-title"}, list);
-		heading.appendChild(title);
 	}
 
 	var wrapper = DOMNode("div", {class: "component-wrapper"}, list);
 	for (var i = 0; i < ch.length; i++)
 		ArmorComponent(ch[i], wrapper);
 	ApplianceSelect(SVGNode, wrapper);
+	return list;
 }
 
-function ArmorPiece (g, fullName) {
+function ArmorPiece (g, fullName, list) {
 	var sanitized = sanitize(fullName);
-	var list = DOMNode("div", {id: sanitized + "Options", class: "option-list"}, find("colors"));
-
-	var sync = Checkbox("Sync Colors", list);
+	var id = sanitized + "Options";
+	var list = find(id);
+	var sync = find(id + "Sync");
+	if (!sync) {
+		sync = Checkbox("Sync Colors", list);
+		var picker = ColorPicker(g, list);
+		picker.style.display = "none";
+		var synced = picker.firstElementChild;
+	}
 
 	var radio = find(sanitized + "Style");
 	g.addEventListener("click", redirectTo(radio));
 	radio.onchange = switchToArmorPiece(list, fullName);
 	g.dataset.unsync = "true";
-
-	var picker = ColorPicker(g, list);
-	picker.style.display = "none";
-	var synced = picker.firstElementChild;
 
 	var children = g.children;
 	for (var j = 0; j < children.length; j++)
@@ -283,10 +278,12 @@ function switchToArmorPiece (now) {
 			components[i].classList.remove("selected");
 		now.classList.add("selected");
 		sel.innerHTML = this.value;
-		if (!type)
-			return;
 		for (var i = 0; i < types.length; i++)
 			types[i].classList.remove("selected");
+		var title = find("variants");
+		if (!type)
+			return title.style.display = "none";
+		title.style.display = "";
 		type.classList.add("selected");
 	}
 }
@@ -340,6 +337,7 @@ function setupMando (body) {
 		function findLocal(st) {
 			return svg.getElementById(st);
 		}
+		ArmorPiece(findLocal("Gauntlet"), "Upper Body");
 		def("Helmet");
 		def("Upper-Body");
 		def("Lower-Body");

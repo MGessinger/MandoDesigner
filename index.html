@@ -55,7 +55,7 @@
 				<h2 id="selection-name" style="margin: 0"></h2>
 			</div>
 			</div>
-			<p class="option-name">Variant:</p>
+			<p id="variants" class="option-name">Variant:</p>
 			<div id="HelmetTypes" class="armor-types">
 				<button class="type-button" onclick="switchToArmorVariant('Helmet','Classic')">
 					<svg viewbox="0 50 700 750" class="preview-icon"> <use href="#Helmet_Classic"/> </svg>
@@ -77,7 +77,13 @@
 				</button>
 			</div>
 			<p class="option-name">Options:</p>
-			<div id="colors"></div>
+			<div id="colors">
+				<div id="HelmetOptions" class="option-list"></div>
+				<div id="FlightSuitOptions" class="option-list"></div>
+				<div id="UpperBodyOptions" class="option-list"></div>
+				<div id="LowerBodyOptions" class="option-list"></div>
+				<div id="AccessoriesOptions" class="option-list"></div>
+			</div>
 		</div>
 		<div class="picker_wrapper" id="picker" style="display: none;">
 			<div>Right-click a swatch to save your color</div>

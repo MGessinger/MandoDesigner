@@ -2,146 +2,148 @@
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
 <svg width="100%" height="100%" viewBox="0 0 1200 1700" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:1.5;">
 <g id="Lower-Body_Classic">
-    <g id="Ankles_Classic" transform="matrix(1.32813,0,0,1.71875,-18.5033,-1266.47)" class="optional">
-        <g id="Left_Ankle_Ankles_Classic" transform="matrix(-1.31718,0,0,1.08136,1689.97,-122.969)">
-            <path d="M645.696,1674.97L693.196,1590.97L775.696,1607.47L783.196,1631.47L716.529,1683.97L688.196,1692.47L645.696,1674.97Z" style="stroke-width:2.96px;"/>
-        </g>
-        <g id="Right_Ankle_Ankles_Classic" transform="matrix(1.31718,0,0,1.08136,-758.572,-122.969)">
-            <path d="M645.696,1674.97L693.196,1590.97L775.696,1607.47L783.196,1631.47L716.529,1683.97L688.196,1692.47L645.696,1674.97Z" style="stroke-width:2.96px;"/>
-        </g>
-    </g>
-    <g id="Shins_Classic" transform="matrix(1.32813,0,0,1.71875,-18.5033,-1266.47)" class="optional">
-        <g id="Left_Shin_Shins_Classic" transform="matrix(-1.31718,0,0,1.08136,1689.97,-122.969)">
-            <path d="M705.196,1410.47L731.196,1375.97L775.696,1380.47L815.696,1447.47L762.196,1590.97L696.696,1582.47L705.196,1410.47Z" style="stroke-width:2.96px;"/>
-        </g>
-        <g id="Right_Shin_Shins_Classic" transform="matrix(1.31718,0,0,1.08136,-758.572,-122.969)">
-            <path d="M705.196,1410.47L731.196,1375.97L775.696,1380.47L815.696,1447.47L762.196,1590.97L696.696,1582.47L705.196,1410.47Z" style="stroke-width:2.96px;"/>
-        </g>
-    </g>
-    <g id="Knees_Classic" transform="matrix(1.32813,0,0,1.71875,-18.5033,-1266.47)" class="optional">
-        <g id="Left_Knee_Knees_Classic" transform="matrix(1.24028,-0.342686,0.471162,1.01823,-945.298,235.299)">
-            <path d="M729.696,1252.97L725.696,1296.97L751.696,1304.3L755.696,1345.97L819.029,1363.3L853.029,1325.63L862.029,1283.3L841.363,1285.97L729.696,1252.97Z" style="stroke-width:2.96px;"/>
-        </g>
-        <g id="Right_Knee_Knees_Classic" transform="matrix(-1.24028,-0.342686,-0.471162,1.01823,1877.14,235.299)">
-            <path d="M729.696,1252.97L725.696,1296.97L751.696,1304.3L755.696,1345.97L819.029,1363.3L853.029,1325.63L862.029,1283.3L841.363,1285.97L729.696,1252.97Z" style="stroke-width:2.96px;"/>
+	<g id="Ankles_Classic" transform="matrix(1.32813,0,0,1.71875,-18.5033,-1266.47)" class="optional">
+		<g id="Left_Ankle_Ankles_Classic" transform="matrix(-1.31718,0,0,1.08136,1689.97,-122.969)">
+			<path d="M645.696,1674.97L693.196,1590.97L775.696,1607.47L783.196,1631.47L716.529,1683.97L688.196,1692.47L645.696,1674.97Z" style="stroke-width:2.96px;"/>
+		</g>
+		<g id="Right_Ankle_Ankles_Classic" transform="matrix(1.31718,0,0,1.08136,-758.572,-122.969)">
+			<path d="M645.696,1674.97L693.196,1590.97L775.696,1607.47L783.196,1631.47L716.529,1683.97L688.196,1692.47L645.696,1674.97Z" style="stroke-width:2.96px;"/>
+		</g>
 	</g>
-    </g>
-    <g id="Thighs_Classic" transform="matrix(1.32813,0,0,1.71875,-18.5033,-1266.47)" class="optional">
-        <g id="Left_Thigh_Thighs_Classic" transform="matrix(-1.49662,0,0,1.22868,1819.1,-304.958)">
-            <path d="M716.529,1061.97L757.029,1024.13L798.529,1029.63L859.029,1101.13L828.196,1236.63L804.529,1249.13L729.029,1240.13L716.529,1061.97Z" style="stroke-width:2.6px;"/>
-        </g>
-        <g id="Right_Thigh_Thighs_Classic" transform="matrix(1.49662,0,0,1.22868,-887.709,-304.958)">
-            <path d="M716.529,1061.97L757.029,1024.13L798.529,1029.63L859.029,1101.13L828.196,1236.63L804.529,1249.13L729.029,1240.13L716.529,1061.97Z" style="stroke-width:2.6px;"/>
+	<g id="Shins_Classic" transform="matrix(1.32813,0,0,1.71875,-18.5033,-1266.47)" class="optional">
+		<g id="Left_Shin_Shins_Classic" transform="matrix(-1.31718,0,0,1.08136,1689.97,-122.969)">
+			<path d="M705.196,1410.47L731.196,1375.97L775.696,1380.47L815.696,1447.47L762.196,1590.97L696.696,1582.47L705.196,1410.47Z" style="stroke-width:2.96px;"/>
+		</g>
+		<g id="Right_Shin_Shins_Classic" transform="matrix(1.31718,0,0,1.08136,-758.572,-122.969)">
+			<path d="M705.196,1410.47L731.196,1375.97L775.696,1380.47L815.696,1447.47L762.196,1590.97L696.696,1582.47L705.196,1410.47Z" style="stroke-width:2.96px;"/>
+		</g>
 	</g>
-    </g>
-    <g id="Groin_Classic" transform="matrix(1.74938,0,0,1.85859,-1025.98,-1477.82)">
-        <path d="M891.529,1073.97L828.196,942.634L1030.73,942.634L967.397,1073.97L929.463,1105.26L891.529,1073.97Z" style="stroke-width:2.96px;"/>
-    </g>
-    <g id="Waist" transform="matrix(1,0,0,1,-675,-1363.28)">
-        <g id="Kama-Clean" transform="matrix(1.32813,0,0,1.71875,659.638,96.8176)">
-            <g id="Trim_Kama-Clean">
-                <g transform="matrix(0.202044,2.5009,3.23646,-0.156125,1004.92,931.336)">
-                    <path d="M-60.867,-123.077L81.023,-123.077L128.231,-60.867L-66.022,-98.161L-60.867,-123.077Z" style="fill-rule:nonzero;stroke-width:1.24px;"/>
-                </g>
-                <g transform="matrix(-0.202044,2.5009,-3.23646,-0.156125,-78.2566,931.336)">
-                    <path d="M-60.867,-123.077L81.023,-123.077L128.231,-60.867L-66.022,-98.161L-60.867,-123.077Z" style="fill-rule:nonzero;stroke-width:1.24px;"/>
-                </g>
-            </g>
-            <g id="Main_Kama-Clean">
-                <g transform="matrix(0.202044,2.5009,3.23646,-0.156125,1004.92,931.336)">
-                    <path d="M-60.867,-118.433L76.379,-118.433L120.274,-62.395L-66.022,-98.161L-60.867,-118.433Z" style="fill-rule:nonzero;stroke-width:1.24px;"/>
-                </g>
-                <g transform="matrix(-0.202044,2.5009,-3.23646,-0.156125,-78.2566,931.336)">
-                    <path d="M-60.867,-118.433L76.379,-118.433L120.274,-62.395L-66.022,-98.161L-60.867,-118.433Z" style="fill-rule:nonzero;stroke-width:1.24px;"/>
-                </g>
-            </g>
-        </g>
-        <g id="Loin-Cloth-Clean">
-            <g id="Trim_Loin-Cloth-Clean" transform="matrix(4.30679,0,0,4.30679,1275,2119.31)">
-                <path d="M31.12,-141.89L-31.121,-141.89L-31.121,-31.121L0,0L31.12,-31.121L31.12,-141.89Z" style="fill-rule:nonzero;stroke-width:1.24px;"/>
-            </g>
-            <g id="Main_Loin-Cloth-Clean" transform="matrix(3.75429,0,0,3.75429,1275,2091.12)">
-                <path d="M31.12,-141.89L-31.121,-141.89L-31.121,-31.121L0,0L31.12,-31.121L31.12,-141.89Z" style="fill-rule:nonzero;stroke-width:1.42px;"/>
-            </g>
-        </g>
-        <g id="Under-Belt" transform="matrix(1.30319,0,0,2.09146,377.341,-462.073)">
-            <g id="Girth-Belt">
-                <g transform="matrix(0.768822,0,0,2.06117,4.43686,-1860.53)">
-                    <path d="M1178.25,1340.66C1178.25,1340.66 986.402,1347.62 890.436,1347.62C793.557,1347.62 596.981,1340.66 596.981,1340.66L564.723,1385.73C564.723,1385.73 792.626,1393.61 889.504,1393.61C985.781,1393.61 1215.54,1385.67 1215.54,1385.67L1178.25,1340.66Z" style="stroke-width:1.7px;"/>
-                </g>
-                <g transform="matrix(0.767347,0,0,0.478135,228.408,872.766)">
-                    <path d="M304.009,80.881C304.009,80.881 499.111,113.417 600,113.306C700.45,113.195 891.26,80.186 891.26,80.186" style="stroke-width:5.33px;"/>
-                </g>
-                <g transform="matrix(0.767347,0,0,0.478135,228.408,881.692)">
-                    <path d="M301.166,85.107C301.166,85.107 499.111,113.417 600,113.306C700.45,113.195 894.611,83.718 894.611,83.718" style="stroke-width:5.33px;"/>
-                </g>
-                <g transform="matrix(0.767347,0,0,0.478135,228.408,939.068)">
-                    <path d="M279.755,83.435C279.755,83.435 499.111,113.417 600,113.306C700.45,113.195 919.163,82.669 919.163,82.669" style="stroke-width:5.33px;"/>
-                </g>
-                <g transform="matrix(0.767347,0,0,0.478135,228.408,947.355)">
-                    <path d="M276.842,83.616C276.842,83.616 499.111,113.417 600,113.306C700.45,113.195 922.113,80.654 922.113,80.654" style="stroke-width:5.33px;"/>
-                </g>
-            </g>
-        </g>
-        <g id="Main-Belt">
-            <g id="Pouch-Belt_Main-Belt_Classic">
-                <g id="Belt_Simple-Belt_Classic" transform="matrix(1.01491,0,0,0.660151,666.063,1422.08)">
-                    <path d="M910.517,221.994C840.361,231.793 680.176,267.612 599.279,267.612C517.605,267.612 357.412,231.558 288.187,222.077L298.538,93.929C355.433,101.829 520.25,138.204 599.338,138.204C676.112,138.204 837.526,102.117 898.207,93.57L910.517,221.994Z" style="stroke-width:6.23px;"/>
-                </g>
-                <g id="Pouches" transform="matrix(1,0,0,1,-0.328772,0)">
-                    <g>
-                        <g id="Buckle_Simple-Belt_Classic" transform="matrix(0.838694,0.0674079,-0.115163,1.43287,721.98,1249.46)">
-                            <rect x="542.403" y="147.503" width="117.696" height="89.145" style="stroke-width:4.53px;"/>
-                        </g>
-                        <g id="Buckle_Simple-Belt_Classic1" serif:id="Buckle_Simple-Belt_Classic" transform="matrix(0.895155,0.0719458,-0.0612809,0.762461,681.806,1328.36)">
-                            <rect x="542.403" y="147.503" width="117.696" height="89.145" style="stroke-width:6.39px;"/>
-                        </g>
-                    </g>
-                    <g>
-                        <g transform="matrix(-1,0,0,1,2550.66,0)">
-                            <g id="Buckle_Simple-Belt_Classic2" serif:id="Buckle_Simple-Belt_Classic" transform="matrix(0.838694,0.0674079,-0.115163,1.43287,721.98,1249.46)">
-                                <rect x="542.403" y="147.503" width="117.696" height="89.145" style="stroke-width:4.53px;"/>
-                            </g>
-                            <g id="Buckle_Simple-Belt_Classic3" serif:id="Buckle_Simple-Belt_Classic" transform="matrix(0.895155,0.0719458,-0.0612809,0.762461,681.806,1328.36)">
-                                <rect x="542.403" y="147.503" width="117.696" height="89.145" style="stroke-width:6.39px;"/>
-                            </g>
-                        </g>
-                        <g transform="matrix(-1,0,0,1,2550.66,0)">
-                            <g id="Buckle_Simple-Belt_Classic4" serif:id="Buckle_Simple-Belt_Classic" transform="matrix(0.838694,0.0674079,-0.115163,1.43287,591.98,1236.79)">
-                                <rect x="542.403" y="147.503" width="117.696" height="89.145" style="stroke-width:4.53px;"/>
-                            </g>
-                            <g id="Buckle_Simple-Belt_Classic5" serif:id="Buckle_Simple-Belt_Classic" transform="matrix(0.895155,0.0719458,-0.0612809,0.762461,551.806,1315.7)">
-                                <rect x="542.403" y="147.503" width="117.696" height="89.145" style="stroke-width:6.39px;"/>
-                            </g>
-                        </g>
-                        <g transform="matrix(-1,0,0,1,2550.66,0)">
-                            <g id="Buckle_Simple-Belt_Classic6" serif:id="Buckle_Simple-Belt_Classic" transform="matrix(0.546984,0.0439625,-0.115163,1.43287,658.498,1230.64)">
-                                <rect x="542.403" y="147.503" width="117.696" height="89.145" style="stroke-width:4.9px;"/>
-                            </g>
-                            <g id="Buckle_Simple-Belt_Classic7" serif:id="Buckle_Simple-Belt_Classic" transform="matrix(0.599667,0.0481967,-0.0612809,0.762461,617.171,1309.35)">
-                                <rect x="542.403" y="147.503" width="117.696" height="89.145" style="stroke-width:7.75px;"/>
-                            </g>
-                        </g>
-                    </g>
-                    <g>
-                        <g id="Buckle_Simple-Belt_Classic8" serif:id="Buckle_Simple-Belt_Classic" transform="matrix(0.838694,0.0674079,-0.115163,1.43287,591.98,1236.79)">
-                            <rect x="542.403" y="147.503" width="117.696" height="89.145" style="stroke-width:4.53px;"/>
-                        </g>
-                        <g id="Buckle_Simple-Belt_Classic9" serif:id="Buckle_Simple-Belt_Classic" transform="matrix(0.895155,0.0719458,-0.0612809,0.762461,551.806,1315.7)">
-                            <rect x="542.403" y="147.503" width="117.696" height="89.145" style="stroke-width:6.39px;"/>
-                        </g>
-                    </g>
-                    <g>
-                        <g id="Buckle_Simple-Belt_Classic10" serif:id="Buckle_Simple-Belt_Classic" transform="matrix(0.546984,0.0439625,-0.115163,1.43287,658.498,1230.64)">
-                            <rect x="542.403" y="147.503" width="117.696" height="89.145" style="stroke-width:4.9px;"/>
-                        </g>
-                        <g id="Buckle_Simple-Belt_Classic11" serif:id="Buckle_Simple-Belt_Classic" transform="matrix(0.599667,0.0481967,-0.0612809,0.762461,617.171,1309.35)">
-                            <rect x="542.403" y="147.503" width="117.696" height="89.145" style="stroke-width:7.75px;"/>
-                        </g>
-                    </g>
-                </g>
-            </g>
-        </g>
-    </g>
+	<g id="Knees_Classic" transform="matrix(1.32813,0,0,1.71875,-18.5033,-1266.47)" class="optional">
+		<g id="Left_Knee_Knees_Classic" transform="matrix(1.24028,-0.342686,0.471162,1.01823,-945.298,235.299)">
+			<path d="M729.696,1252.97L725.696,1296.97L751.696,1304.3L755.696,1345.97L819.029,1363.3L853.029,1325.63L862.029,1283.3L841.363,1285.97L729.696,1252.97Z" style="stroke-width:2.96px;"/>
+		</g>
+		<g id="Right_Knee_Knees_Classic" transform="matrix(-1.24028,-0.342686,-0.471162,1.01823,1877.14,235.299)">
+			<path d="M729.696,1252.97L725.696,1296.97L751.696,1304.3L755.696,1345.97L819.029,1363.3L853.029,1325.63L862.029,1283.3L841.363,1285.97L729.696,1252.97Z" style="stroke-width:2.96px;"/>
+	</g>
+	</g>
+	<g id="Thighs_Classic" transform="matrix(1.32813,0,0,1.71875,-18.5033,-1266.47)" class="optional">
+		<g id="Left_Thigh_Thighs_Classic" transform="matrix(-1.49662,0,0,1.22868,1819.1,-304.958)">
+			<path d="M716.529,1061.97L757.029,1024.13L798.529,1029.63L859.029,1101.13L828.196,1236.63L804.529,1249.13L729.029,1240.13L716.529,1061.97Z" style="stroke-width:2.6px;"/>
+		</g>
+		<g id="Right_Thigh_Thighs_Classic" transform="matrix(1.49662,0,0,1.22868,-887.709,-304.958)">
+			<path d="M716.529,1061.97L757.029,1024.13L798.529,1029.63L859.029,1101.13L828.196,1236.63L804.529,1249.13L729.029,1240.13L716.529,1061.97Z" style="stroke-width:2.6px;"/>
+	</g>
+	</g>
+	<g id="Groin_Classic" transform="matrix(1.74938,0,0,1.85859,-1025.98,-1477.82)">
+		<path d="M891.529,1073.97L828.196,942.634L1030.73,942.634L967.397,1073.97L929.463,1105.26L891.529,1073.97Z" style="stroke-width:2.96px;"/>
+	</g>
+	<g id="Waist" transform="matrix(1,0,0,1,-675,-1363.28)">
+		<g id="Kama-Clean" transform="matrix(1.32813,0,0,1.71875,659.638,96.8176)">
+			<g id="Trim_Kama-Clean">
+				<g transform="matrix(0.202044,2.5009,3.23646,-0.156125,1004.92,931.336)">
+					<path d="M-60.867,-123.077L81.023,-123.077L128.231,-60.867L-66.022,-98.161L-60.867,-123.077Z" style="fill-rule:nonzero;stroke-width:1.24px;"/>
+				</g>
+				<g transform="matrix(-0.202044,2.5009,-3.23646,-0.156125,-78.2566,931.336)">
+					<path d="M-60.867,-123.077L81.023,-123.077L128.231,-60.867L-66.022,-98.161L-60.867,-123.077Z" style="fill-rule:nonzero;stroke-width:1.24px;"/>
+				</g>
+			</g>
+			<g id="Main_Kama-Clean">
+				<g transform="matrix(0.202044,2.5009,3.23646,-0.156125,1004.92,931.336)">
+					<path d="M-60.867,-118.433L76.379,-118.433L120.274,-62.395L-66.022,-98.161L-60.867,-118.433Z" style="fill-rule:nonzero;stroke-width:1.24px;"/>
+				</g>
+				<g transform="matrix(-0.202044,2.5009,-3.23646,-0.156125,-78.2566,931.336)">
+					<path d="M-60.867,-118.433L76.379,-118.433L120.274,-62.395L-66.022,-98.161L-60.867,-118.433Z" style="fill-rule:nonzero;stroke-width:1.24px;"/>
+				</g>
+			</g>
+		</g>
+		<g id="Loin-Cloth-Clean">
+			<g id="Trim_Loin-Cloth-Clean" transform="matrix(4.30679,0,0,4.30679,1275,2119.31)">
+				<path d="M31.12,-141.89L-31.121,-141.89L-31.121,-31.121L0,0L31.12,-31.121L31.12,-141.89Z" style="fill-rule:nonzero;stroke-width:1.24px;"/>
+			</g>
+			<g id="Main_Loin-Cloth-Clean" transform="matrix(3.75429,0,0,3.75429,1275,2091.12)">
+				<path d="M31.12,-141.89L-31.121,-141.89L-31.121,-31.121L0,0L31.12,-31.121L31.12,-141.89Z" style="fill-rule:nonzero;stroke-width:1.42px;"/>
+			</g>
+		</g>
+		<g id="Under-Belt" transform="matrix(1.30319,0,0,2.09146,377.341,-462.073)">
+			<g id="Girth-Belt" class="option">
+				<g id="Belt_Girth">
+					<g transform="matrix(0.768822,0,0,2.06117,4.43686,-1860.53)">
+						<path d="M1178.25,1340.66C1178.25,1340.66 986.402,1347.62 890.436,1347.62C793.557,1347.62 596.981,1340.66 596.981,1340.66L564.723,1385.73C564.723,1385.73 792.626,1393.61 889.504,1393.61C985.781,1393.61 1215.54,1385.67 1215.54,1385.67L1178.25,1340.66Z" style="stroke-width:1.7px;"/>
+					</g>
+					<g transform="matrix(0.767347,0,0,0.478135,228.408,872.766)">
+						<path d="M304.009,80.881C304.009,80.881 499.111,113.417 600,113.306C700.45,113.195 891.26,80.186 891.26,80.186" style="stroke-width:5.33px;"/>
+					</g>
+					<g transform="matrix(0.767347,0,0,0.478135,228.408,881.692)">
+						<path d="M301.166,85.107C301.166,85.107 499.111,113.417 600,113.306C700.45,113.195 894.611,83.718 894.611,83.718" style="stroke-width:5.33px;"/>
+					</g>
+					<g transform="matrix(0.767347,0,0,0.478135,228.408,939.068)">
+						<path d="M279.755,83.435C279.755,83.435 499.111,113.417 600,113.306C700.45,113.195 919.163,82.669 919.163,82.669" style="stroke-width:5.33px;"/>
+					</g>
+					<g transform="matrix(0.767347,0,0,0.478135,228.408,947.355)">
+						<path d="M276.842,83.616C276.842,83.616 499.111,113.417 600,113.306C700.45,113.195 922.113,80.654 922.113,80.654" style="stroke-width:5.33px;"/>
+					</g>
+				</g>
+			</g>
+		</g>
+		<g id="Main-Belt">
+			<g id="Pouch-Belt_Main-Belt_Classic" class="option">
+				<g id="Belt_Simple-Belt_Classic" transform="matrix(1.01491,0,0,0.660151,666.063,1422.08)">
+					<path d="M910.517,221.994C840.361,231.793 680.176,267.612 599.279,267.612C517.605,267.612 357.412,231.558 288.187,222.077L298.538,93.929C355.433,101.829 520.25,138.204 599.338,138.204C676.112,138.204 837.526,102.117 898.207,93.57L910.517,221.994Z" style="stroke-width:6.23px;"/>
+				</g>
+				<g id="Pouches" transform="matrix(1,0,0,1,-0.328772,0)">
+					<g>
+						<g id="Buckle_Simple-Belt_Classic" transform="matrix(0.838694,0.0674079,-0.115163,1.43287,721.98,1249.46)">
+							<rect x="542.403" y="147.503" width="117.696" height="89.145" style="stroke-width:4.53px;"/>
+						</g>
+						<g id="Buckle_Simple-Belt_Classic1" serif:id="Buckle_Simple-Belt_Classic" transform="matrix(0.895155,0.0719458,-0.0612809,0.762461,681.806,1328.36)">
+							<rect x="542.403" y="147.503" width="117.696" height="89.145" style="stroke-width:6.39px;"/>
+						</g>
+					</g>
+					<g>
+						<g transform="matrix(-1,0,0,1,2550.66,0)">
+							<g id="Buckle_Simple-Belt_Classic2" serif:id="Buckle_Simple-Belt_Classic" transform="matrix(0.838694,0.0674079,-0.115163,1.43287,721.98,1249.46)">
+								<rect x="542.403" y="147.503" width="117.696" height="89.145" style="stroke-width:4.53px;"/>
+							</g>
+							<g id="Buckle_Simple-Belt_Classic3" serif:id="Buckle_Simple-Belt_Classic" transform="matrix(0.895155,0.0719458,-0.0612809,0.762461,681.806,1328.36)">
+								<rect x="542.403" y="147.503" width="117.696" height="89.145" style="stroke-width:6.39px;"/>
+							</g>
+						</g>
+						<g transform="matrix(-1,0,0,1,2550.66,0)">
+							<g id="Buckle_Simple-Belt_Classic4" serif:id="Buckle_Simple-Belt_Classic" transform="matrix(0.838694,0.0674079,-0.115163,1.43287,591.98,1236.79)">
+								<rect x="542.403" y="147.503" width="117.696" height="89.145" style="stroke-width:4.53px;"/>
+							</g>
+							<g id="Buckle_Simple-Belt_Classic5" serif:id="Buckle_Simple-Belt_Classic" transform="matrix(0.895155,0.0719458,-0.0612809,0.762461,551.806,1315.7)">
+								<rect x="542.403" y="147.503" width="117.696" height="89.145" style="stroke-width:6.39px;"/>
+							</g>
+						</g>
+						<g transform="matrix(-1,0,0,1,2550.66,0)">
+							<g id="Buckle_Simple-Belt_Classic6" serif:id="Buckle_Simple-Belt_Classic" transform="matrix(0.546984,0.0439625,-0.115163,1.43287,658.498,1230.64)">
+								<rect x="542.403" y="147.503" width="117.696" height="89.145" style="stroke-width:4.9px;"/>
+							</g>
+							<g id="Buckle_Simple-Belt_Classic7" serif:id="Buckle_Simple-Belt_Classic" transform="matrix(0.599667,0.0481967,-0.0612809,0.762461,617.171,1309.35)">
+								<rect x="542.403" y="147.503" width="117.696" height="89.145" style="stroke-width:7.75px;"/>
+							</g>
+						</g>
+					</g>
+					<g>
+						<g id="Buckle_Simple-Belt_Classic8" serif:id="Buckle_Simple-Belt_Classic" transform="matrix(0.838694,0.0674079,-0.115163,1.43287,591.98,1236.79)">
+							<rect x="542.403" y="147.503" width="117.696" height="89.145" style="stroke-width:4.53px;"/>
+						</g>
+						<g id="Buckle_Simple-Belt_Classic9" serif:id="Buckle_Simple-Belt_Classic" transform="matrix(0.895155,0.0719458,-0.0612809,0.762461,551.806,1315.7)">
+							<rect x="542.403" y="147.503" width="117.696" height="89.145" style="stroke-width:6.39px;"/>
+						</g>
+					</g>
+					<g>
+						<g id="Buckle_Simple-Belt_Classic10" serif:id="Buckle_Simple-Belt_Classic" transform="matrix(0.546984,0.0439625,-0.115163,1.43287,658.498,1230.64)">
+							<rect x="542.403" y="147.503" width="117.696" height="89.145" style="stroke-width:4.9px;"/>
+						</g>
+						<g id="Buckle_Simple-Belt_Classic11" serif:id="Buckle_Simple-Belt_Classic" transform="matrix(0.599667,0.0481967,-0.0612809,0.762461,617.171,1309.35)">
+							<rect x="542.403" y="147.503" width="117.696" height="89.145" style="stroke-width:7.75px;"/>
+						</g>
+					</g>
+				</g>
+			</g>
+		</g>
+	</g>
 </g>
 </svg>
