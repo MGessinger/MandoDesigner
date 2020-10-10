@@ -298,7 +298,6 @@ footer {
 
 .option-list {
 	display: none;
-	padding: 1.5em;
 }
 
 .armor-types {
@@ -328,6 +327,11 @@ footer {
 #colors {
 	overflow-y: auto;
 	flex-grow: 1;
+}
+
+.option-list > * {
+	padding: 1em;
+	border-bottom: 1px solid var(--softColor);
 }
 
 .color-picker {
@@ -396,10 +400,7 @@ footer {
 }
 
 .group-title {
-	margin-top: 0.5em;
-	margin-bottom: 0.25em;
-	padding-top: 0.5em;
-	border-top: 1px solid var(--softColor);
+	margin: 0;
 	color: var(--softHighlight);
 }
 
@@ -410,6 +411,10 @@ footer {
 i {
 	margin-left: 0.5em;
 	font-size: 0.8em;
+}
+
+.component-wrapper {
+	margin: 0.75em 0;
 }
 
 .select-wrapper {
@@ -460,35 +465,15 @@ i {
 	color: unset;
 }
 
-.options-collapsed .component-wrapper,
-.options-collapsed .option-list {
-	padding: 0;
-	margin: 0;
-	clear: right;
-}
-
-.options-collapsed .pseudo-label {
-	margin: 0;
-}
-
-.options-collapsed .slider {
-	display: inline-block;
-	float: none;
-	margin: 0;
-}
-
 .options-collapsed .color-list {
-	margin: 0.5em 0 0 0;
-	padding: 0.5em 0 0 0;
+	padding: 0;
 }
 
 .options-collapsed .color-wrapper {
-	min-width: 3em;
-	padding: 0.25em 0;
+	padding: 0.25em;
 }
 
 .options-collapsed .color-picker {
-	float: none;
 	margin: 0;
 }
 
@@ -503,4 +488,15 @@ i {
 
 .selected {
 	display: block;
+}
+
+.options-collapsed .option-list > :first-child {
+	display: inline-block;
+	padding: 0 0 1em 0;
+	font-size: 0.9em;
+}
+
+.options-collapsed .slider {
+	display: inline-block;
+	float: none;
 }

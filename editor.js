@@ -73,15 +73,14 @@ function ColorPicker (affectedObject, parent) {
 	return wrapper;
 }
 
-function Checkbox(textNode, parent, on) {
+function Checkbox (textNode, parent, on) {
 	var id = parent.id + "Sync";
-	var label = DOMNode("label", {id: id, class: "pseudo-checkbox"}, parent);
+	var label = DOMNode("label", {id: id, class: "pseudo-checkbox group-title"}, parent);
 	if (textNode.innerHTML) {
 		label.appendChild(textNode);
-		label.classList.add("group-title");
 		textNode.className = "title-text";
 	} else {
-		var labeltext = DOMNode("span", {class: "pseudo-label"}, label);
+		var labeltext = DOMNode("h3", {class: "title-text"}, label);
 		labeltext.innerHTML = textNode;
 	}
 	var check = DOMNode("input", {type: "checkbox"}, label);
@@ -186,12 +185,13 @@ function ArmorGroup (SVGNode, parent) {
 function ArmorPiece (g, fullName, list) {
 	var sanitized = sanitize(fullName);
 	var id = sanitized + "Options";
-	var list = find(id);
 	var sync = find(id + "Sync");
 	if (!sync) {
 		sync = Checkbox("Sync Colors", list);
-		var picker = ColorPicker(g, list);
-		picker.style.display = "none";
+		var wrap = DOMNode("div", {class: "color-list"}, list);
+		wrap.style.display = "none"
+		var picker = ColorPicker(g, wrap);
+		picker.style.display = "inline-block";
 		var synced = picker.firstElementChild;
 	}
 
@@ -200,9 +200,17 @@ function ArmorPiece (g, fullName, list) {
 	radio.onchange = switchToArmorPiece(list, fullName);
 	g.dataset.unsync = "true";
 
-	var children = g.children;
-	for (var j = 0; j < children.length; j++)
-		ArmorComponent(children[j], list);
+	var ch = g.children;
+	for (var i = 0; i < ch.length; i++) {
+		if (ch[i].getAttribute("class") === "optional")
+			continue;
+		ArmorComponent(ch[i], list);
+	}
+	for (var i = 0; i < ch.length; i++) {
+		if (ch[i].getAttribute("class") !== "optional")
+			continue;
+		ArmorComponent(ch[i], list);
+	}
 
 	var buttons = list.getElementsByClassName("color-picker");
 	sync.addEventListener("change", function() {
@@ -210,12 +218,12 @@ function ArmorPiece (g, fullName, list) {
 			g.setAttribute("class", "overrideFill");
 			g.dataset.unsync = false;
 			list.classList.add("synchronized");
-			picker.style.display = "inline-block";
+			wrap.style.display = "block";
 		} else {
 			g.setAttribute("class", "");
 			g.dataset.unsync = true;
 			list.classList.remove("synchronized");
-			picker.style.display = "none";
+			wrap.style.display = "none";
 			for (var i = 0; i < buttons.length; i++) {
 				buttons[i].style.background = synced.style.background;
 				buttons[i].click();
@@ -293,10 +301,14 @@ function switchToArmorVariant (groupName, variantName) {
 	var radio = find(sanitized + "Style");
 	var old = find(groupName + "_Current");
 	var parent = old.parentNode;
+
+	var id = sanitize(groupName) + "Options";
+	var list = find(id);
+	list.innerHTML = "";
 	loadSVG (groupName + "_" + variantName, function(n) {
 		parent.replaceChild(n, old);
 		n.id = groupName + "_Current";
-		ArmorPiece(n, groupName);
+		ArmorPiece(n, groupName, list);
 		radio.checked = false;
 		radio.click();
 	});
@@ -304,6 +316,11 @@ function switchToArmorVariant (groupName, variantName) {
 
 function toggleOptions () {
 	find("options").classList.toggle("options-collapsed");
+}
+
+function encodeSVG (svg) {
+	var san = svg.replace(/\s+/g," ").replace(/"/g,"'")
+	return encodeURIComponent(san);
 }
 
 function setDownloader (bck) {
@@ -315,8 +332,8 @@ function setDownloader (bck) {
 		var copy = svg.cloneNode(true);
 		background.appendChild(copy);
 		var str = xml.serializeToString(background);
-		var data = '<?xml version="1.0" encoding="UTF-8"?>' + str;
-		this.setAttribute("href",'data:image/svg+xml;charset=UTF-8,' + encodeURIComponent(data));
+		var data = "<?xml version='1.0' encoding='UTF-8'?>" + str;
+		this.setAttribute("href",'data:image/svg+xml;charset=UTF-8,' + encodeSVG(data));
 		var self = this;
 		setTimeout(function() {self.setAttribute("href", "#");});
 	};
@@ -337,12 +354,12 @@ function setupMando (body) {
 		function findLocal(st) {
 			return svg.getElementById(st);
 		}
-		ArmorPiece(findLocal("Gauntlet"), "Upper Body");
+		ArmorPiece(findLocal("Gauntlet"), "Upper Body", find("UpperBodyOptions"));
 		def("Helmet");
 		def("Upper-Body");
 		def("Lower-Body");
-		ArmorPiece(findLocal("Back"), "Accessories");
-		ArmorPiece(findLocal("Body"), "Flight Suit");
+		ArmorPiece(findLocal("Back"), "Accessories", find("AccessoriesOptions"));
+		ArmorPiece(findLocal("Body"), "Flight Suit", find("FlightSuitOptions"));
 	});
 }
 
@@ -365,11 +382,6 @@ function toggleColorScheme (useDark) {
 	});
 	var use = find("title");
 	use.setAttribute("href", titleName);
-}
-
-function sanitizeSVG (svg) {
-	var san = svg.replace(/\s+/g," ").replace(/"/g,"'")
-	return encodeURIComponent(san);
 }
 
 function loadImage (input) {
@@ -396,7 +408,7 @@ function loadImage (input) {
 			customBck.replaceChild(newSVG, img);
 			find("download").onclick = setDownloader(customBck);
 
-			var href = 'url("data:image/svg+xml,' + sanitizeSVG(this.result) + '")';
+			var href = 'url("data:image/svg+xml,' + encodeSVG(this.result) + '")';
 			main.style.backgroundImage = href
 		}
 		reader.readAsText(files[0]);
