@@ -60,7 +60,9 @@ function ColorPicker (affectedObject, parent) {
 	var input = Picker.attach(b, c, affectedObject);
 	var redirect = redirectTo(b);
 	affectedObject.addEventListener("click", function() {
-		if (event.defaultPrevented)
+		if (this.dataset.synced === "true")
+			return
+		else if (event.defaultPrevented)
 			return;
 		redirect();
 		event.preventDefault();
@@ -228,19 +230,20 @@ function ArmorPiece (g, fullName, list) {
 	var buttons = list.getElementsByClassName("color-picker");
 	var styled = g.querySelectorAll("[style]");
 	sync.addEventListener("change", function() {
-		console.log(this);
 		if (this.checked) {
-			console.log("Show");
 			list.classList.add("synchronized");
 			wrap.style.display = "block";
-			for (var i = 0; i < styled.length; i++)
+			for (var i = 0; i < styled.length; i++) {
 				styled[i].style.fill = "";
+				styled[i].dataset.synced = "true";
+			}
 		} else {
-			console.log("Hide");
 			list.classList.remove("synchronized");
 			wrap.style.display = "none";
 			for (var i = 0; i < buttons.length; i++)
 				buttons[i].style.background = synced.style.background;
+			for (var i = 0; i < styled.length; i++)
+				styled[i].dataset.synced = "false";
 		}
 	});
 }
@@ -381,11 +384,13 @@ function setupMando (body) {
 function toggleColorScheme (useDark) {
 	var className = "light-mode"
 	var bckName = "BackgroundLight";
-	var titleName = "#titleLight";
+	var logoName = "#titleLight";
+	var schemeName = "Light Mode";
 	if (useDark) {
 		className = "dark-mode";
 		bckName = "BackgroundDark";
-		titleName = "#titleDark";
+		logoName = "#titleDark";
+		schemeName = "Dark Mode";
 	}
 	document.body.className = className;
 	var a = find("download");
@@ -395,8 +400,10 @@ function toggleColorScheme (useDark) {
 		var img = svg.getElementById("image");
 		main.style.backgroundImage = "url(" + img.getAttribute("href") + ")";
 	});
+	var schemeLabel = find("color-scheme-name");
+	schemeLabel.innerHTML = schemeName;
 	var use = find("title");
-	use.setAttribute("href", titleName);
+	use.setAttribute("href", logoName);
 }
 
 function loadImage (input) {
