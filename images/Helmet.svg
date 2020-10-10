@@ -43,9 +43,6 @@
 					<rect x="396.085" y="1706.88" width="16.282" height="137.192" style="stroke-width:15.46px;"/>
 				</g>
 			</g>
-			<g id="Ear-Cap_Left_Classic" transform="matrix(4.44444,0,0,5.086,-977.736,-80.3809)">
-				<path d="M358.056,156.056L362.541,149.431L358.056,103.556L351.791,99.619L358.056,156.056Z" style="stroke-width:0.96px;"/>
-			</g>
 			<g id="Antenna_Left_Classic" class="option" transform="matrix(-4.44444,0,0,5.086,1791.16,-40.6465)">
 				<path id="Antenna_Left_Antenna_Classic" d="M266.3,95.575L271.494,17.306C271.494,14.696 273.368,14.884 273.312,17.494L269.13,95.575L266.3,95.575Z" style="stroke-width:0.96px;"/>
 			</g>
@@ -56,6 +53,9 @@
 				<g id="Finder_Left_Range-Finder_Classic" transform="matrix(-4.44444,0,0,5.086,1787.79,-40.6465)">
 					<path d="M266.836,23.806L275.103,23.806L277.541,20.056L295.541,19.119L295.916,14.994L264.836,13.744L266.836,23.806Z" style="stroke-width:0.96px;"/>
 				</g>
+			</g>
+			<g id="Ear-Cap_Left_Classic" transform="matrix(4.44444,0,0,5.086,-977.736,-80.3809)">
+				<path d="M358.056,156.056L362.541,149.431L358.056,103.556L351.791,99.619L358.056,156.056Z" style="stroke-width:0.96px;"/>
 			</g>
 		</g>
 		<g id="Right-Earcap_Classic" class="optional">
@@ -73,9 +73,6 @@
 					<rect x="396.085" y="1706.88" width="16.282" height="137.192" style="stroke-width:15.46px;"/>
 				</g>
 			</g>
-			<g id="Ear-Cap_Right_Classic" transform="matrix(-4.44444,0,0,5.086,1745.9,-80.3809)">
-				<path d="M358.056,156.056L362.541,149.431L358.056,103.556L351.791,99.619L358.056,156.056Z" style="stroke-width:0.96px;"/>
-			</g>
 			<g id="Antenna_Right_Classic" class="option" transform="matrix(4.44444,0,0,5.086,-1023,-40.6465)">
 				<path id="Antenna_Right_Antenna_Classic" d="M266.3,95.575L271.494,17.306C271.494,14.696 273.368,14.884 273.312,17.494L269.13,95.575L266.3,95.575Z" style="stroke-width:0.96px;"/>
 			</g>
@@ -86,6 +83,9 @@
 				<g id="Finder_Right_Range-Finder_Classic" transform="matrix(4.44444,0,0,5.086,-1018.56,-40.6465)">
 					<path d="M266.836,23.806L275.103,23.806L277.541,20.056L295.541,19.119L295.916,14.994L264.836,13.744L266.836,23.806Z" style="stroke-width:0.96px;"/>
 				</g>
+			</g>
+			<g id="Ear-Cap_Right_Classic" transform="matrix(-4.44444,0,0,5.086,1745.9,-80.3809)">
+				<path d="M358.056,156.056L362.541,149.431L358.056,103.556L351.791,99.619L358.056,156.056Z" style="stroke-width:0.96px;"/>
 			</g>
 		</g>
 		<g id="Helmet_Parts_Classic">

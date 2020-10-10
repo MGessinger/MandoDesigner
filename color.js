@@ -178,7 +178,7 @@ var Picker = new function() {
 		var editor = mainChildren[0];
 		on(editor, "input", function() { _setColor(this.value, true); });
 		var Okay = mainChildren[1];
-		on(Okay, "click", function() { DOM.parent = null;});
+		on(Okay, "click", function() { DOM.parent = null; });
 
 		_init(hue, function(hue) { var c = color.hsv; c[0] = hue; return _setColor(c); });
 		_init(spectrum, function(s, v) { var c = color.hsv; c[1] = s; c[2] = 1-v; return _setColor(c)});
@@ -208,14 +208,17 @@ var Picker = new function() {
 					editor.value = color.hex;
 				}
 			},
+			set parent (p) {
+				if (!p) {
+					onChange = [];
+					wrapper.style.display = "none";
+				} else {
+					wrapper.style.display = "";
+					p.appendChild(wrapper);
+				}
+			},
 			get parent () {
 				return wrapper.style.display === "" && wrapper.parentNode;
-			},
-			set parent (p) {
-				if (!p)
-					return wrapper.style.display = "none";
-				wrapper.style.display = "";
-				p.appendChild(wrapper);
 			}
 		}
 	}
@@ -227,14 +230,13 @@ var Picker = new function() {
 			return;
 		color.update(value);
 		DOM.update(fromEditor);
-		if (onChange) {
-			onChange(color.hex);
-		}
+		for (var i = 0; i < onChange.length; i++)
+			onChange[i](color.hex);
 	}
 
 	var color = new Color();
 	var DOM = new PickerDOM();
-	var onChange = null;
+	var onChange = [];
 	this.attach = function (button, color, affectedObject) {
 		var input = function (hex) {
 			button.style.background = hex;
@@ -242,11 +244,7 @@ var Picker = new function() {
 			color.innerHTML = hex;
 		}
 		on(button, "click", function(event) {
-			if (DOM.parent === this) {
-				DOM.parent = null;
-				return;
-			}
-			onChange = input;
+			onChange.push(input);
 			_setColor(this.style.backgroundColor);
 			DOM.parent = this;
 		});

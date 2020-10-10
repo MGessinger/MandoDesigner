@@ -101,7 +101,7 @@ function ArmorComponent (SVGNode, parent) {
 }
 
 function ApplianceSelect (SVGParent, optionsParent) {
-	var options = SVGParent.getElementsByClassName("option");
+	var options = SVGParent.querySelectorAll("#" + SVGParent.id + "> .option");
 	if (!options || options.length == 0)
 		return;
 	var wrapper = DOMNode("div", {class: "select-wrapper"}, optionsParent);
@@ -110,16 +110,22 @@ function ApplianceSelect (SVGParent, optionsParent) {
 		var fullName = options[i].id;
 		var name = prettify(fullName);
 
-		var ch = options[i].children;
-		if (!ch.length)
-			ch = [options[i]];
-
 		/* Create an option in the select, and a hidable color list */
 		var opt = DOMNode("option", {class: "component-option", label: name, value: fullName}, select);
 		opt.innerHTML = name;
+
 		var san = sanitize(fullName);
 		var col = DOMNode("div", {id: san + "Colors", class: "color-list"}, optionsParent);
-		col.style.display = "none";
+		if (i === 0) {
+			col.style.display = "";
+			options[i].style.visibility = "visible";
+		} else {
+			col.style.display = "none";
+		}
+
+		var ch = options[i].children;
+		if (!ch.length)
+			ch = [options[i]];
 		for (var j = 0; j < ch.length; j++)
 			ArmorComponent(ch[j], col);
 	}
@@ -145,7 +151,7 @@ function ArmorGroup (SVGNode, parent) {
 	var ch = SVGNode.children;
 	var unnamedChildren = true;
 	for (var i = 0; i < ch.length; i++)
-		unnamedChildren &= !(ch[i].id || ch[i].tagName == "metadata");
+		unnamedChildren &= !(ch[i].id);
 	if (unnamedChildren) {
 		return ColorPicker(SVGNode, parent);
 	}
@@ -162,8 +168,9 @@ function ArmorGroup (SVGNode, parent) {
 	}
 
 	var cls = SVGNode.getAttribute("class");
+	var off = SVGNode.dataset.default === "off";
 	if (cls === "optional") {
-		var check = Checkbox(title, list, true);
+		var check = Checkbox(title, list, !off);
 		check.addEventListener("change", function() {
 			var display = this.checked ? "" : "none";
 			SVGNode.style.display = display;
@@ -175,6 +182,10 @@ function ArmorGroup (SVGNode, parent) {
 	for (var i = 0; i < ch.length; i++)
 		ArmorComponent(ch[i], wrapper);
 	ApplianceSelect(SVGNode, wrapper);
+	if (off) {
+		SVGNode.style.display = "none";
+		wrapper.style.display = "none";
+	}
 	return list;
 }
 
@@ -182,14 +193,21 @@ function ArmorPiece (g, fullName, list) {
 	var sanitized = sanitize(fullName);
 	var id = sanitized + "Options";
 	var sync = find(id + "Sync");
+	var wrap, synced;
 	if (!sync) {
 		sync = Checkbox("Sync Colors", list);
-		var wrap = DOMNode("div", {class: "color-list"}, list);
-		wrap.style.display = "none"
+		wrap = DOMNode("div", {class: "color-list"}, list);
 		var picker = ColorPicker(g, wrap);
 		picker.style.display = "inline-block";
-		var synced = picker.firstElementChild;
+		synced = picker.firstElementChild;
+	} else {
+		wrap = sync.nextElementSibling;
+		synced = wrap.getElementsByTagName("button")[0];
+		var colorLabel = wrap.getElementsByClassName("color")[0];
+		Picker.attach(synced, colorLabel, g);
+		sync = sync.getElementsByTagName("input")[0];
 	}
+	wrap.style.display = "none"
 
 	var radio = find(sanitized + "Style");
 	g.addEventListener("click", redirectTo(radio));
@@ -210,12 +228,15 @@ function ArmorPiece (g, fullName, list) {
 	var buttons = list.getElementsByClassName("color-picker");
 	var styled = g.querySelectorAll("[style]");
 	sync.addEventListener("change", function() {
+		console.log(this);
 		if (this.checked) {
+			console.log("Show");
 			list.classList.add("synchronized");
 			wrap.style.display = "block";
 			for (var i = 0; i < styled.length; i++)
 				styled[i].style.fill = "";
 		} else {
+			console.log("Hide");
 			list.classList.remove("synchronized");
 			wrap.style.display = "none";
 			for (var i = 0; i < buttons.length; i++)
@@ -296,6 +317,7 @@ function switchToArmorVariant (groupName, variantName) {
 	var id = sanitize(groupName) + "Options";
 	var list = find(id);
 	list.innerHTML = "";
+	list.className = "option-list selected";
 	loadSVG (groupName + "_" + variantName, function(n) {
 		parent.replaceChild(n, old);
 		n.id = groupName + "_Current";
@@ -350,7 +372,9 @@ function setupMando (body) {
 		def("Upper-Body");
 		def("Lower-Body");
 		ArmorPiece(findLocal("Back"), "Accessories", find("AccessoriesOptions"));
+		ArmorPiece(findLocal("Waist-Accessories"), "Accessories", find("AccessoriesOptions"));
 		ArmorPiece(findLocal("Body"), "Flight Suit", find("FlightSuitOptions"));
+		ArmorPiece(findLocal("Belts"), "Flight Suit", find("FlightSuitOptions"));
 	});
 }
 
