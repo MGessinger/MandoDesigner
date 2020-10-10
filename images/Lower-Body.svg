@@ -35,7 +35,9 @@
 	</g>
 	</g>
 	<g id="Groin_Classic" transform="matrix(1.74938,0,0,1.85859,-1025.98,-1477.82)">
-		<path d="M891.529,1073.97L828.196,942.634L1030.73,942.634L967.397,1073.97L929.463,1105.26L891.529,1073.97Z" style="stroke-width:2.96px;"/>
+		<g id="Groin_Plate_Classic">
+			<path d="M891.529,1073.97L828.196,942.634L1030.73,942.634L967.397,1073.97L929.463,1105.26L891.529,1073.97Z" style="stroke-width:2.96px;"/>
+		</g>
 	</g>
 	<g id="Waist" transform="matrix(1,0,0,1,-675,-1363.28)">
 		<g id="Kama-Clean" transform="matrix(1.32813,0,0,1.71875,659.638,96.8176)">

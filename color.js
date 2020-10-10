@@ -235,15 +235,21 @@ var Picker = new function() {
 	var color = new Color();
 	var DOM = new PickerDOM();
 	var onChange = null;
-	this.attach = function (button, handler) {
+	this.attach = function (button, color, affectedObject) {
+		var input = function (hex) {
+			button.style.background = hex;
+			affectedObject.style.fill = hex;
+			color.innerHTML = hex;
+		}
 		on(button, "click", function(event) {
 			if (DOM.parent === this) {
 				DOM.parent = null;
 				return;
 			}
-			onChange = handler;
+			onChange = input;
 			_setColor(this.style.backgroundColor);
 			DOM.parent = this;
 		});
+		return input;
 	}
 }()

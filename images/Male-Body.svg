@@ -5,9 +5,6 @@
 		.option {
 			visibility: hidden;
 		}
-		.overrideFill [style] {
-			fill: inherit !important;
-		}
 	</style>
 	<g id="Back">
 		<g id="Cape" class="optional" transform="matrix(1,0,0,1,-345.148,0)">
@@ -22,6 +19,7 @@
 	</g>
 	<g id="Body" transform="matrix(1.00223,0,0,1.14613,-458.879,1182.3)">
 		<g id="Soft-Parts">
+			<title>Flight Suit (Kute)</title>
 			<g id="Boots" transform="matrix(1.32517,0,0,1.49961,729.581,-966.59)">
 				<g>
 					<g transform="matrix(-1.31718,0,0,1.08136,1689.97,-124.051)">
@@ -108,6 +106,7 @@
 	</g>
 	<g id="Upper-body_wrapper" transform="translate(190,557)">
 		<title>Upper Body</title>
+		<g id="Upper-Body_Current"></g>
 		<g id="Gauntlet" transform="matrix(1.32813,0,0,1.71875,81.4967,-491.626)">
 			<g id="Left_Gauntlet_Upper-Body_Classic">
 				<g transform="matrix(1.31718,0,0,1.08136,-756.697,-107.226)">
@@ -132,7 +131,6 @@
 				</g>
 			</g>
 		</g>
-		<g id="Upper-Body_Current"></g>
 	</g>
 	<g id="Helmet-wrapper" transform="translate(540,35)">
 		<title>Helmet (Buy'ce)</title>

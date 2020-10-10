@@ -57,17 +57,13 @@ function ColorPicker (affectedObject, parent) {
 	p.innerHTML = prettify(affectedObject.id);
 	var c = DOMNode("p", {class: "color"}, l);
 
-	var input = function (hex) {
-		b.style.background = hex;
-		affectedObject.style.fill = hex;
-		c.innerHTML = hex;
-	}
-	Picker.attach(b, input);
+	var input = Picker.attach(b, c, affectedObject);
 	var redirect = redirectTo(b);
 	affectedObject.addEventListener("click", function() {
-		if (this.dataset.unsync === "true")
+		if (event.defaultPrevented)
 			return;
 		redirect();
+		event.preventDefault();
 	});
 	input("#FFFFFF")
 	return wrapper;
@@ -198,7 +194,6 @@ function ArmorPiece (g, fullName, list) {
 	var radio = find(sanitized + "Style");
 	g.addEventListener("click", redirectTo(radio));
 	radio.onchange = switchToArmorPiece(list, fullName);
-	g.dataset.unsync = "true";
 
 	var ch = g.children;
 	for (var i = 0; i < ch.length; i++) {
@@ -213,22 +208,18 @@ function ArmorPiece (g, fullName, list) {
 	}
 
 	var buttons = list.getElementsByClassName("color-picker");
+	var styled = g.querySelectorAll("[style]");
 	sync.addEventListener("change", function() {
 		if (this.checked) {
-			g.setAttribute("class", "overrideFill");
-			g.dataset.unsync = false;
 			list.classList.add("synchronized");
 			wrap.style.display = "block";
+			for (var i = 0; i < styled.length; i++)
+				styled[i].style.fill = "";
 		} else {
-			g.setAttribute("class", "");
-			g.dataset.unsync = true;
 			list.classList.remove("synchronized");
 			wrap.style.display = "none";
-			for (var i = 0; i < buttons.length; i++) {
+			for (var i = 0; i < buttons.length; i++)
 				buttons[i].style.background = synced.style.background;
-				buttons[i].click();
-				buttons[i].click();
-			}
 		}
 	});
 }
