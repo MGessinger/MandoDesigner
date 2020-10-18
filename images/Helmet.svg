@@ -28,9 +28,9 @@
 		</g>
 	</g>
 	<g id="Helmet_Classic" transform="matrix(0.9375,0,0,0.819242,-10.0757,0)">
-		<g id="Left-Earcap_Classic" class="optional">
-			<g id="No-Device_Left_Classic" class="option"> </g>
-			<g id="Sensor-Stalk_Left_Classic" class="option" transform="matrix(-0.276044,0,0,0.315891,729.949,-85.5922)">
+		<g id="Left-Earcap_Classic_Toggleable">
+			<g id="No-Device_Left_Classic_Option"> </g>
+			<g id="Sensor-Stalk_Left_Classic_Option" transform="matrix(-0.276044,0,0,0.315891,729.949,-85.5922)">
 				<g id="Sensor_Left_Sensor-Stalk_Classic">
 					<path d="M294.824,1985.62L101.341,1654.63L339.466,1656.53L339.466,1985.62L294.824,1985.62Z" style="stroke-width:15.46px;"/>
 					<path d="M345.97,686.244L101.341,1443.38L339.466,1443.38L345.97,686.244Z" style="stroke-width:15.46px;"/>
@@ -43,10 +43,10 @@
 					<rect x="396.085" y="1706.88" width="16.282" height="137.192" style="stroke-width:15.46px;"/>
 				</g>
 			</g>
-			<g id="Antenna_Left_Classic" class="option" transform="matrix(-4.44444,0,0,5.086,1791.16,-40.6465)">
+			<g id="Antenna_Left_Classic_Option" transform="matrix(-4.44444,0,0,5.086,1791.16,-40.6465)">
 				<path id="Antenna_Left_Antenna_Classic" d="M266.3,95.575L271.494,17.306C271.494,14.696 273.368,14.884 273.312,17.494L269.13,95.575L266.3,95.575Z" style="stroke-width:0.96px;"/>
 			</g>
-			<g id="Range-Finder_Left_Classic" class="option">
+			<g id="Range-Finder_Left_Classic_Option">
 				<g id="Shaft_Left_Range-Finder_Classic" transform="matrix(-4.44444,0,0,5.086,1791.16,-40.6465)">
 					<path d="M266.3,95.575L270.666,23.806L273.444,23.994L269.13,95.575L266.3,95.575Z" style="stroke-width:0.96px;"/>
 				</g>
@@ -58,9 +58,9 @@
 				<path d="M358.056,156.056L362.541,149.431L358.056,103.556L351.791,99.619L358.056,156.056Z" style="stroke-width:0.96px;"/>
 			</g>
 		</g>
-		<g id="Right-Earcap_Classic" class="optional">
-			<g id="No-Device_Right_Classic" class="option"> </g>
-			<g id="Sensor-Stalk_Right_Classic" class="option" transform="matrix(0.276044,0,0,0.315891,38.2122,-85.5922)">
+		<g id="Right-Earcap_Classic_Toggleable">
+			<g id="No-Device_Right_Classic_Option"> </g>
+			<g id="Sensor-Stalk_Right_Classic_Option" transform="matrix(0.276044,0,0,0.315891,38.2122,-85.5922)">
 				<g id="Sensor_Right_Sensor-Stalk_Classic">
 					<path d="M294.824,1985.62L101.341,1654.63L339.466,1656.53L339.466,1985.62L294.824,1985.62Z" style="stroke-width:15.46px;"/>
 					<path d="M345.97,686.244L101.341,1443.38L339.466,1443.38L345.97,686.244Z" style="stroke-width:15.46px;"/>
@@ -73,10 +73,10 @@
 					<rect x="396.085" y="1706.88" width="16.282" height="137.192" style="stroke-width:15.46px;"/>
 				</g>
 			</g>
-			<g id="Antenna_Right_Classic" class="option" transform="matrix(4.44444,0,0,5.086,-1023,-40.6465)">
+			<g id="Antenna_Right_Classic_Option" transform="matrix(4.44444,0,0,5.086,-1023,-40.6465)">
 				<path id="Antenna_Right_Antenna_Classic" d="M266.3,95.575L271.494,17.306C271.494,14.696 273.368,14.884 273.312,17.494L269.13,95.575L266.3,95.575Z" style="stroke-width:0.96px;"/>
 			</g>
-			<g id="Range-Finder_Right_Classic" class="option">
+			<g id="Range-Finder_Right_Classic_Option">
 				<g id="Shaft_Right_Range-Finder_Classic" transform="matrix(4.44444,0,0,5.086,-1023,-40.6465)">
 					<path d="M266.3,95.575L270.666,23.806L273.444,23.994L269.13,95.575L266.3,95.575Z" style="stroke-width:0.96px;"/>
 				</g>
@@ -117,9 +117,9 @@
 		</g>
 	</g>
 	<g id="Helmet_Nite-Owl" transform="matrix(1,0,0,1,110.736,15.0685)">
-		<g id="Left-Earcap_Nite" class="optional">
-			<g id="No-Device_Left_Nite" class="option"></g>
-			<g id="Sensor-Stalk_Left_Nite" class="option" transform="matrix(-0.258791,0,0,0.258791,561.515,-90.1892)">
+		<g id="Left-Earcap_Nitc_Toggleable">
+			<g id="No-Device_Left_Nite_Option"></g>
+			<g id="Sensor-Stalk_Left_Nite_Option" transform="matrix(-0.258791,0,0,0.258791,561.515,-90.1892)">
 				<g id="Sensor_Left_Sensor-Stalk_Nite">
 					<path d="M294.824,1985.62L101.341,1654.63L339.466,1656.53L339.466,1985.62L294.824,1985.62Z" style="stroke-width:15.46px;"/>
 					<path d="M345.97,686.244L101.341,1443.38L339.466,1443.38L345.97,686.244Z" style="stroke-width:15.46px;"/>
@@ -132,7 +132,7 @@
 					<rect x="396.085" y="1706.88" width="16.282" height="137.192" style="stroke-width:15.46px;"/>
 				</g>
 			</g>
-			<path id="Antenna_Left_Nite" class="option" d="M433.832,337.621L417.006,23.482C416.773,12.608 424.581,11.824 424.581,22.701L445.986,345.26L433.832,337.621Z" style="stroke-width:4px;"/>
+			<path id="Antenna_Left_Nite_Option" d="M433.832,337.621L417.006,23.482C416.773,12.608 424.581,11.824 424.581,22.701L445.986,345.26L433.832,337.621Z" style="stroke-width:4px;"/>
 			<g id="Ear-Cap_Left_Nite" transform="matrix(0.631421,0,0,0.771921,-4.31847,4.10746)">
 				<g transform="matrix(6.59097,0,0,5.39132,-1636.73,-111.189)">
 					<path d="M358.056,156.056L362.541,149.431L358.056,103.556L351.791,99.619L358.056,156.056Z" style="stroke-width:0.96px;"/>
@@ -141,7 +141,7 @@
 					<path d="M470.837,1789.41L381.323,1696.77" style="stroke-width:16.56px;"/>
 				</g>
 			</g>
-			<g id="Range-Finder_Left_Nite" class="option" transform="matrix(0.639286,0,0,0.781536,-6.87063,0)">
+			<g id="Range-Finder_Left_Nite_Option" transform="matrix(0.639286,0,0,0.781536,-6.87063,0)">
 				<g id="Shaft_Left_Range-Finder_Nite" transform="matrix(-6.50989,0,0,5.325,2444.58,-60.3018)">
 					<path d="M266.836,86.244L270.666,23.806L273.444,23.994L269.666,86.244L266.836,86.244Z" style="stroke-width:0.96px;"/>
 				</g>
@@ -153,9 +153,9 @@
 				</g>
 			</g>
 		</g>
-		<g id="Right-Earcap_Nite" class="optional">
-			<g id="No-Device_Right_Nite" class="option"></g>
-			<g id="Sensor-Stalk_Right_Nite" class="option" transform="matrix(0.258791,0,0,0.258791,-82.9881,-90.1892)">
+		<g id="Right-Earcap_Nitc_Toggleable">
+			<g id="No-Device_Right_Nite_Option"></g>
+			<g id="Sensor-Stalk_Right_Nite_Option" transform="matrix(0.258791,0,0,0.258791,-82.9881,-90.1892)">
 				<g id="Sensor_Right_Sensor-Stalk_Nite">
 					<path d="M294.824,1985.62L101.341,1654.63L339.466,1656.53L339.466,1985.62L294.824,1985.62Z" style="stroke-width:15.46px;"/>
 					<path d="M345.97,686.244L101.341,1443.38L339.466,1443.38L345.97,686.244Z" style="stroke-width:15.46px;"/>
@@ -168,7 +168,7 @@
 					<rect x="396.085" y="1706.88" width="16.282" height="137.192" style="stroke-width:15.46px;"/>
 				</g>
 			</g>
-			<path id="Antenna_Right_Nite" class="option" d="M31.296,346.043L52.752,22.701C52.752,11.824 60.561,12.608 60.328,23.482L43.46,338.398L31.296,346.043Z" style="stroke-width:4px;"/>
+			<path id="Antenna_Right_Nite_Option" d="M31.296,346.043L52.752,22.701C52.752,11.824 60.561,12.608 60.328,23.482L43.46,338.398L31.296,346.043Z" style="stroke-width:4px;"/>
 			<g id="Ear-Cap_Right_Nite" transform="matrix(-0.631421,0,0,0.771921,482.846,4.10746)">
 				<g transform="matrix(6.59097,0,0,5.39132,-1636.73,-111.189)">
 					<path d="M358.056,156.056L362.541,149.431L358.056,103.556L351.791,99.619L358.056,156.056Z" style="stroke-width:0.96px;"/>
@@ -177,7 +177,7 @@
 					<path d="M470.837,1789.41L381.323,1696.77" style="stroke-width:16.56px;"/>
 				</g>
 			</g>
-			<g id="Range-Finder_Right_Nite" class="option" transform="matrix(-0.639286,0,0,0.781536,484.634,0)">
+			<g id="Range-Finder_Right_Nite_Option" transform="matrix(-0.639286,0,0,0.781536,484.634,0)">
 				<g id="Shaft_Right_Range-Finder_Nite" transform="matrix(-6.50989,0,0,5.325,2444.58,-60.3018)">
 					<path d="M266.836,86.244L270.666,23.806L273.444,23.994L269.666,86.244L266.836,86.244Z" style="stroke-width:0.96px;"/>
 				</g>

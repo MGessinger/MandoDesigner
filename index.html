@@ -16,20 +16,20 @@
 		<meta name="theme-color" content="#ffffff">
 		<title>Mando Creator</title>
 	</head>
-	<body onload="onload()">
+	<body class="light-mode" onload="onload()">
 		<nav>
-			<svg class="title" viewBox="0 0 420 70"> <use id="title" href="#title" /> </svg>
+			<svg class="title" viewBox="0 0 420 70"><use id="title" href="#title" /></svg>
 			<div id="parts-list">
-				<input type="radio" name="parts-list" id="HelmetStyle" value="Helmet (Buy'ce)"/>
-				<label for="HelmetStyle" class="armor-label">Helmet (Buy'ce)<span class="armor-icon">&#xE905;</span></label>
-				<input type="radio" name="parts-list" id="FlightSuitStyle" value="Flight Suit (Kute)"/>
-				<label for="FlightSuitStyle" class="armor-label">Flight Suit (Kute)<span class="armor-icon">&#xE907;</span></label>
-				<input type="radio" name="parts-list" id="UpperBodyStyle" value="Upper Body"/>
-				<label for="UpperBodyStyle" class="armor-label">Upper Body<span class="armor-icon">&#xE908;</span></label>
-				<input type="radio" name="parts-list" id="LowerBodyStyle" value="Lower Body"/>
-				<label for="LowerBodyStyle" class="armor-label">Lower Body<span class="armor-icon">&#xE906;</span></label>
-				<input type="radio" name="parts-list" id="AccessoriesStyle" value="Accessories"/>
-				<label for="AccessoriesStyle" class="armor-label">Accessories<span class="armor-icon">&#xE904;</span></label>
+				<input type="radio" name="parts-list" id="HelmetSettings" value="Helmet (Buy'ce)" onclick="openArmorSlide('Helmet')" checked/>
+				<label for="HelmetSettings" class="armor-label">Helmet (Buy'ce)<span class="armor-icon">&#xE905;</span></label>
+				<input type="radio" name="parts-list" id="FlightSuitSettings" value="Flight Suit (Kute)" onclick="openArmorSlide('FlightSuit')"/>
+				<label for="FlightSuitSettings" class="armor-label">Flight Suit (Kute)<span class="armor-icon">&#xE907;</span></label>
+				<input type="radio" name="parts-list" id="UpperBodySettings" value="Upper Body" onclick="openArmorSlide('UpperBody')"/>
+				<label for="UpperBodySettings" class="armor-label">Upper Body<span class="armor-icon">&#xE908;</span></label>
+				<input type="radio" name="parts-list" id="LowerBodySettings" value="Lower Body" onclick="openArmorSlide('LowerBody')"/>
+				<label for="LowerBodySettings" class="armor-label">Lower Body<span class="armor-icon">&#xE906;</span></label>
+				<input type="radio" name="parts-list" id="AccessoriesSettings" value="Accessories" onclick="openArmorSlide('Accessories')"/>
+				<label for="AccessoriesSettings" class="armor-label">Accessories<span class="armor-icon">&#xE904;</span></label>
 				<input id="background_upload" type="file" accept="image/*" onchange="loadImage(this);"/>
 				<label for="background_upload" class="armor-label">Upload Background<span class="armor-icon">&#xF03E;</span></label>
 				<input id="contact-opener" type="button" onclick="displayForm(true)"/>
@@ -47,42 +47,145 @@
 				</fieldset>
 			</form>
 		</nav>
-		<div id="options" class="options-column options-collapsed">
-			<div>
-			<button id="options-toggle" title="Toggle Options menu" onclick="toggleOptions()">&#xE900;</button>
-			<div class="selection">
-				<p>Selected part:</p>
-				<h2 id="selection-name" style="margin: 0"></h2>
+		<div id="settings" class="settings-column settings-collapsed">
+			<button id="settings-toggle" title="Toggle Options menu" onclick="toggleOptions()">&#xE900;</button>
+			<div id="HelmetOptions" class="folder overview selected">
+				<div class="folder-head">
+					<h2 class="slide-title">Helmet (Buy'ce)</h2>
+					<p class="option-name">Style:</p>
+					<div id="HelmetTypes" class="armor-types">
+						<button class="type-button" onclick="switchToArmorVariant('Helmet','Helmet','Classic')">
+							<svg viewbox="0 50 700 750" class="preview-icon"><use href="#Helmet_Classic"/></svg>
+							Classic
+						</button>
+						<button class="type-button" onclick="switchToArmorVariant('Helmet','Helmet','Nite-Owl')">
+							<svg viewbox="0 50 700 750" class="preview-icon"><use href="#Helmet_Nite-Owl"/></svg>
+							Nite Owl
+						</button>
+					</div>
+				</div>
+				<div id="HelmetColors" class="slide"></div>
+				<div id="LeftEarcapColors" class="slide"></div>
+				<div id="RightEarcapColors" class="slide"></div>
+				<div class="sync">
+					<label class="pseudo-checkbox">
+					Sync Colors
+					<input type="checkbox"/>
+					<span class="slider"></span>
+					</label>
+				</div>
 			</div>
+			<div id="UpperBodyOptions" class="folder overview">
+				<div class="folder-head">
+					<h2 class="slide-title">Upper Body</h2>
+					<p class="option-name">Style:</p>
+					<div id="UpperBodyTypes" class="armor-types">
+						<button class="type-button" onclick="switchToArmorVariant('UpperBody','Chest','Classic_M')">
+							<svg viewbox="100 -100 1200 1200" class="preview-icon"><use href="#Chest_Classic_M"/></svg>
+							Classic
+						</button>
+						<button class="type-button" onclick="switchToArmorVariant('UpperBody','Chest','Legacy_M')">
+							<svg viewbox="100 -100 1200 1200" class="preview-icon"><use href="#Chest_Legacy_M"/></svg>
+							Legacy
+						</button>
+					</div>
+					<p class="option-name">Parts:</p>
+				</div>
+				<div class="slide">
+					<button class="slide_toggle">Neck (Ghet'bur)</button>
+					<div id="NeckColors" class="slide_content"></div>
+				</div>
+				<div class="slide">
+					<button class="slide_toggle">Chest (Hal'cabur)</button>
+					<div id="ChestRightColors" class="slide_content"></div>
+					<div id="ChestLeftColors" class="slide_content"></div>
+				</div>
+				<div class="slide">
+					<button class="slide_toggle">Iron Heart (Kar'ta Beskar)</button>
+					<div id="IronHeartColors" class="slide_content"></div>
+				</div>
+				<div class="slide">
+					<button class="slide_toggle">Abdomen (Shar'tas)</button>
+					<div id="AbdomenColors" class="slide_content"></div>
+				</div>
+				<div class="slide">
+					<button class="slide_toggle">Shoulders (Bes'mabur)</button>
+					<div id="ShouldersRightColors" class="slide_content"></div>
+					<div id="ShouldersLeftColors" class="slide_content"></div>
+				</div>
+				<div class="slide">
+					<button class="slide_toggle">Biceps (Irud'cabur)</button>
+					<div id="BicepsRightColors" class="slide_content"></div>
+					<div id="BicepsLeftColors" class="slide_content"></div>
+				</div>
+				<div class="slide">
+					<button class="slide_toggle">Elbows</button>
+					<div id="ElbowRightColors" class="slide_content"></div>
+					<div id="ElbowLeftColors" class="slide_content"></div>
+				</div>
+				<div class="slide">
+					<button class="slide_toggle">Gauntlets (Kom'rk)</button>
+					<div id="GauntletRightColors" class="slide_content"></div>
+					<div id="GauntletLeftColors" class="slide_content"></div>
+				</div>
 			</div>
-			<p id="variants" class="option-name">Variant:</p>
-			<div id="HelmetTypes" class="armor-types">
-				<button class="type-button" onclick="switchToArmorVariant('Helmet','Classic')">
-					<svg viewbox="0 50 700 750" class="preview-icon"> <use href="#Helmet_Classic"/> </svg>
-					Classic
-				</button>
-				<button class="type-button" onclick="switchToArmorVariant('Helmet','Nite-Owl')">
-					<svg viewbox="0 50 700 750" class="preview-icon"> <use href="#Helmet_Nite-Owl"/> </svg>
-					Nite Owl
-				</button>
+			<div id="FlightSuitOptions" class="folder">
+				<div class="folder-head">
+					<h2 class="slide-title">Flight Suit (Kute)</h2>
+				</div>
+				<div class="slide" id="FlightSuitColors"></div>
 			</div>
-			<div id="UpperBodyTypes" class="armor-types">
-				<button class="type-button" onclick="switchToArmorVariant('Upper-Body','Classic')">
-					<svg viewbox="100 -100 1200 1200" class="preview-icon"> <use href="#Upper-Body_Classic"/> </svg>
-					Classic
-				</button>
-				<button class="type-button" onclick="switchToArmorVariant('Upper-Body','Legacy')">
-					<svg viewbox="100 -100 1200 1200" class="preview-icon"> <use href="#Upper-Body_Legacy"/> </svg>
-					Legacy
-				</button>
+			<div id="LowerBodyOptions" class="folder">
+				<div class="folder-head">
+					<h2 class="slide-title">Lower Body</h2>
+					<p class="option-name">Parts:</p>
+				</div>
+				<div class="slide">
+					<button class="slide_toggle">Waist</button>
+					<div id="WaistColors" class="slide_content"></div>
+				</div>
+				<div class="slide">
+					<button class="slide_toggle">Groin (Ven'cabur)</button>
+					<div id="GroinColors" class="slide_content"></div>
+				</div>
+				<div class="slide">
+					<button class="slide_toggle">Thighs (Motun'bur)</button>
+					<div id="ThighsRightColors" class="slide_content"></div>
+					<div id="ThighsLeftColors" class="slide_content"></div>
+				</div>
+				<div class="slide">
+					<button class="slide_toggle">Knees (Bes'lovik)</button>
+					<div id="KneesRightColors" class="slide_content"></div>
+					<div id="KneesLeftColors" class="slide_content"></div>
+				</div>
+				<div class="slide">
+					<button class="slide_toggle">Shins (Tadun'bur)</button>
+					<div id="ShinsRightColors" class="slide_content"></div>
+					<div id="ShinsLeftColors" class="slide_content"></div>
+				</div>
+				<div class="slide">
+					<button class="slide_toggle">Ankles (Cetar'bur)</button>
+					<div id="AnklesRightColors" class="slide_content"></div>
+					<div id="AnklesLeftColors" class="slide_content"></div>
+				</div>
 			</div>
-			<p class="option-name">Options:</p>
-			<div id="colors">
-				<div id="HelmetOptions" class="option-list"></div>
-				<div id="FlightSuitOptions" class="option-list"></div>
-				<div id="UpperBodyOptions" class="option-list"></div>
-				<div id="LowerBodyOptions" class="option-list"></div>
-				<div id="AccessoriesOptions" class="option-list"></div>
+			<div id="AccessoriesOptions" class="folder">
+				<div class="folder-head">
+					<h2 class="slide-title">Accessories</h2>
+					<p class="option-name">Parts:</p>
+				</div>
+				<div class="slide">
+					<button class="slide_toggle">Back (Norac)</button>
+					<div id="CapeColors" class="slide_content"></div>
+				</div>
+				<div class="slide">
+					<button class="slide_toggle">Kama</button>
+					<div id="KamaColors" class="slide_content"></div>
+				</div>
+				<div class="slide">
+					<button class="slide_toggle">Loin Cloth</button>
+					<div id="LoinClothColors" class="slide_content"></div>
+				</div>
 			</div>
 		</div>
 		<div class="picker_wrapper" id="picker" style="display: none;">
@@ -97,7 +200,7 @@
 				</div>
 			</div>
 			<div class="picker_bottom">
-				<input type="text" class="picker_editor" aria-label: "Type a Color name or Hexadecimal code" />
+				<input type="text" class="picker_editor" aria-label="Type a Color name or Hexadecimal code" />
 				<button class="picker_done">Okay</button>
 			</div>
 			<canvas id="canvas" style="display:none;"></canvas>
@@ -106,16 +209,19 @@
 
 		<footer>
 			<div class="settings">
-				<input type="radio" name="sex" class="toggle-sex" id="male" checked onchange="setupMando('Male-Body');">
+				<input type="radio" name="sex" class="toggle-sex" id="male" checked onchange="loadSVG('Male-Body', setupMando, '_M');">
 				<label for="male" class="label-sex">&#xe901;</label>
-				<input type="radio" name="sex" class="toggle-sex" id="female" onchange="setupMando('Female-Body');">
+				<input type="radio" name="sex" class="toggle-sex" id="female" onchange="loadSVG('Female-Body', setupMando, '_F');">
 				<label for="female" class="label-sex">&#xe902;</label>
 			</div>
 			<p class="credits"><span>Designed &amp; Developed By <a class="credit" rel="noopener noreferrer">DesignDeviant</a> &amp; <a class="credit" href="https://github.com/MGessinger" target="_blank" rel="noopener noreferrer">Cin Vhetin</a></span>
-			<label id="color-scheme" class="pseudo-checkbox">
-				<span id="color-scheme-name" class="pseudo-label">Light Mode</span>
-				<input type="checkbox" id="color-scheme-picker" onchange="toggleColorScheme(this.checked)"/>
-				<span class="slider"></span>
+			<label style="font-size:smaller">
+				<span class="pseudo-label">LIGHT</span>
+				<span style="display: inline-block">
+					<input type="checkbox" id="color-scheme-picker" onchange="setColorScheme(this.checked)"/>
+					<span class="slider"></span>
+				</span>
+				<span class="pseudo-label">DARK</span>
 			</label>
 			<span>Background photo created by <a class="credit" href="https://www.freepik.com/kjpargeter" rel="noopener noreferrer" target="_blank">kjpargeter</a></span></p>
 		</footer>

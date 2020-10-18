@@ -27,19 +27,21 @@ html, body {
 .dark-mode {
 	--mainColor: #222;
 	--softColor: #555;
-	--softHighlight: #AAA;
+	--softLight: #AAA;
 	--highlight: #DDD;
 	--mainFont: white;
 	--accent: #AB1F1F;
+	--transparent: rgb(0,0,0,50%);
 }
 
 .light-mode {
 	--mainColor: #DDD;
 	--softColor: #AAA;
-	--softHighlight: #555;
+	--softLight: #555;
 	--highlight: #222;
 	--mainFont: black;
 	--accent: #AB1F1F;
+	--transparent: rgb(128,128,128,50%);
 }
 
 body {
@@ -66,7 +68,7 @@ nav {
 
 button,
 input {
-	border: 1px solid var(--softHighlight);
+	border: 1px solid var(--softLight);
 	color: inherit;
 	font: inherit;
 }
@@ -231,7 +233,7 @@ footer {
 	display: inline-block;
 	width: 1.5em;
 	padding: 0;
-	border: var(--softHighlight) solid 1px;
+	border: var(--softLight) solid 1px;
 	border-radius: 0.25em;
 	line-height: 1.5em;
 	font-size: 1.25em;
@@ -245,13 +247,12 @@ footer {
 
 .credits {
 	display: flex;
-	min-height: 4em;
-	padding: 0 1em;
+	padding: 1em;
 	flex-wrap: wrap;
-	align-content: center;
+	align-items: center;
 	justify-content: space-between;
-	font-size: 0.75em;
-	background: rgba(0,0,0,50%);
+	background: var(--transparent);
+	font-size: small;
 }
 
 .credit {
@@ -259,34 +260,32 @@ footer {
 	text-decoration: none;
 }
 
-.options-column {
-	display: flex;
-	flex-direction: column;
+.settings-column {
 	position: fixed;
 	height: 100%;
-	width: 27em;
+	width: 20em;
 	right: 0;
 	z-index: 1;
 	background: var(--mainColor);
-	font-size: 0.75em;
 }
 
-#options-toggle {
-	float: right;
+#settings-toggle {
+	position: absolute;
+	right: 0;
 	border: none;
-	width: 2.66em;
-	height: 2.66em;
+	width: 3em;
+	height: 3em;
 	background: none;
-	font-size: 1.5em;
 	color: var(--accent);
 }
 
-#options-toggle:focus {
+#settings-toggle:focus {
 	border: unset;
 }
 
-.selection {
-	padding: 1.25em;
+.slide-title {
+	font-size: large;
+	padding-left: 1em;
 }
 
 .option-name {
@@ -296,15 +295,14 @@ footer {
 	line-height: 1.5em;
 }
 
-.option-list {
+.folder {
 	display: none;
+	font-size: small;
+	height: 100%;
 }
 
-.armor-types {
+.folder-head {
 	display: none;
-	flex: 0 0 10em;
-	overflow-y: scroll;
-	padding: 1em;
 }
 
 .type-button {
@@ -324,49 +322,96 @@ footer {
 	stroke: black;
 }
 
-#colors {
-	overflow-y: auto;
-	flex-grow: 1;
+.slide_toggle {
+	height: 3em;
+	width: 100%;
+	text-align: left;
+	background: none;
+	border-style: none none solid none;
+	border-color: var(--softColor);
+	line-height: 1.5em;
+	font-size: medium;
+	cursor: pointer;
 }
 
-.option-list > * {
-	padding: 1em;
-	border-bottom: 1px solid var(--softColor);
+.slide_toggle:before {
+	content: "\e90b";
+	float: left;
+	color: var(--accent);
+	font-size: x-large;
+}
+
+.overview .slide_toggle:after {
+	content: "\e90c";
+	float: right;
+	color: var(--accent);
+	font-size: x-large;
+}
+
+.overview .slide_toggle:before {
+	display: none;
+}
+
+.slide {
+	display: none;
+}
+
+.overview .folder-head {
+	display: block;
+}
+
+.overview .slide {
+	display: block;
+}
+
+.overview .slide_content {
+	display: none;
+}
+
+.color-wrapper {
+	display: inline-block;
+	padding: 0.5em;
+}
+
+.synchronized .color-wrapper {
+	display: none;
 }
 
 .color-picker {
 	height: 2em;
 	width: 2em;
-	margin-right: 0.5em;
+	margin: 0 0.5em;
 	float: left;
 }
 
 .color-label {
-	font-size: 1.2em;
 	display: inline-block;
 	margin-right: 0.5em;
+	line-height: 1em;
 }
 
 .name {
-	color: var(--softHighlight);
+	color: var(--softLight);
 }
 
 .color {
-	font-size: 0.75em;
+	font-size: smaller;
 }
 
 .pseudo-checkbox {
 	display: block;
-	min-height: 1.5em;
-}
-
-.pseudo-checkbox input {
-	opacity: 0;
-	position: absolute;
+	padding: 1em;
+	border-top: 1px solid var(--softColor);
 }
 
 .pseudo-label {
-	margin-right: 0.5em;
+	vertical-align: super;
+	color: var(--highlight);
+}
+
+[type="checkbox"] {
+	opacity: 0;
+	position: absolute;
 }
 
 .slider {
@@ -380,13 +425,15 @@ footer {
 .slider:before {
 	content: "";
 	display: block;
+	position: relative;
 	height: 100%;
 	width: 50%;
+	left: 0;
 	border: 2px solid var(--highlight);
 	border-radius: 50%;
 	background: var(--softColor);
 	box-sizing: border-box;
-	transition: transform ease-out .1s;
+	transition: left ease-out .1s;
 }
 
 :focus + :before {
@@ -394,51 +441,29 @@ footer {
 }
 
 :checked + :before {
-	-webkit-transform: translateX(100%);
-	-ms-transform: translateX(100%);
-	transform: translateX(100%);
-}
-
-.group-title {
-	margin: 0;
-	color: var(--softHighlight);
-}
-
-.title-text {
-	display: inline;
-}
-
-i {
-	margin-left: 0.5em;
-	font-size: 0.8em;
-}
-
-.component-wrapper {
-	margin: 0.75em 0;
+	left: 50%;
 }
 
 .select-wrapper {
 	display: block;
-	width: 100%;
 	position: relative;
-	border: 1px var(--accent);
-	border-bottom-style: solid;
+	margin: 0.5em 1em;
 }
 
 .select-wrapper::after {
 	content: "\E90A";
 	position: absolute;
 	right: 0;
-	color: var(--accent);
-	font-size: 1.5em;
 	pointer-events: none;
+	font-size: larger;
 }
 
 .component-select {
 	width: 100%;
 	color: inherit;
 	background: var(--mainColor);
-	border: none;
+	border: 1px var(--accent);
+	border-style: none none solid none;
 	cursor: pointer;
 	-webkit-appearance: none;
 	-moz-appearance: none;
@@ -446,43 +471,36 @@ i {
 	appearance: none;
 }
 
-.color-wrapper {
-	display: inline-block;
-	min-width: 33%;
-	padding: 0.5em 0;
+.sync {
+	position: absolute;
+	bottom: 0;
+	width: 100%;
 }
 
-.synchronized .color-wrapper {
-	display: none;
-}
-
-.options-collapsed {
-	width: 4em;
+.settings-collapsed {
+	width: 3em;
 	text-align: center;
 }
 
-.options-collapsed #options-toggle {
+.settings-collapsed #settings-toggle {
+	position: relative;
 	color: unset;
 }
 
-.options-collapsed .color-list {
-	padding: 0;
+.settings-collapsed .subslide {
+	border-top: 1px solid var(--softColor);
 }
 
-.options-collapsed .color-wrapper {
-	padding: 0.25em;
+.settings-collapsed .color-wrapper {
+	padding: 0.25em 0;
 }
 
-.options-collapsed .color-picker {
-	margin: 0;
-}
-
-.options-collapsed .selection,
-.options-collapsed .color-label,
-.options-collapsed .armor-types,
-.options-collapsed .option-name,
-.options-collapsed .group-title,
-.options-collapsed .select-wrapper {
+.settings-collapsed .color-label,
+.settings-collapsed .option-name,
+.settings-collapsed .folder-head,
+.settings-collapsed .slide_toggle,
+.settings-collapsed .pseudo-checkbox,
+.settings-collapsed .select-wrapper {
 	display: none;
 }
 
@@ -490,13 +508,12 @@ i {
 	display: block;
 }
 
-.options-collapsed .option-list > :first-child {
-	display: inline-block;
-	padding: 0 0 1em 0;
-	font-size: 0.9em;
-}
-
-.options-collapsed .slider {
+.settings-collapsed .slider {
 	display: inline-block;
 	float: none;
+}
+
+.settings-collapsed .sync .pseudo-checkbox {
+	display: block;
+	padding: 1em 0;
 }
