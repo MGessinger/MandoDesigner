@@ -9,21 +9,27 @@
 	box-shadow: 0 0 10px 1px rgba(0,0,0,50%);
 }
 
+.picker_wrapper :focus {
+	border: 1px solid var(--accent);
+}
+
 .picker_main > * {
 	margin: 0.5em 0.5em 0.5em 0;
 }
 
 .picker_palette {
 	display: flex;
+	margin: 0.5em;
+	flex: 1 1 1.5em;
 	flex-direction: column;
-	justify-content: space-evenly;
+	justify-content: space-between;
 	align-items: center;
-	flex: 1 1 15%;
 }
 
 .palette_icon {
 	width: 1.5em;
 	height: 1.5em;
+	border: 1px solid var(--softColor);
 }
 
 .picker_main {
@@ -55,22 +61,21 @@
 	padding-bottom: 100%;
 }
 
-.picker_bottom {
-	display: flex;
-	height: 2em;
-	width: 100%;
+.picker_done {
+	width: 30%;
 	margin: 0.5em;
-	justify-content: space-evenly;
-}
-
-.picker_done,
-.picker_editor {
-	margin: 0 0.25em;
-	padding: 0 0.5em;
-	width: 60%;
-	height: 100%;
 	background: var(--softColor);
 	box-sizing: border-box;
+	border: 1px solid var(--softLight);
+}
+
+.picker_editor {
+	width: 60%;
+	margin: 0.5em;
+	padding: 0.25em 0.5em;
+	background: var(--softColor);
+	box-sizing: border-box;
+	border: 1px solid var(--softLight);
 }
 
 .picker_selector {

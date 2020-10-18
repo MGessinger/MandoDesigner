@@ -126,6 +126,8 @@ function buildIOSettings (SVGNode, category, parent) {
 	var redirectToPicker = redirectClickTo(p);
 	var radio = find(category + "Settings");
 	var redirectToRadio = redirectClickTo(radio);
+	if (radio.checked)
+		redirectToRadio();
 
 	var folder = find(category + "Options");
 	var slides = folder.getElementsByClassName("slide");
@@ -192,6 +194,8 @@ function buildAllSettings (SVGNode, category, parent) {
 		hasNamedChild |= !!ch[i].id;
 	if (!hasNamedChild) {
 		if (ch.length == 0 && SVGNode.tagName == "g")
+			return;
+		if (SVGNode.tagName === "title")
 			return;
 		buildIOSettings(SVGNode, category, parent);
 	} else {
@@ -314,7 +318,7 @@ function setupMando (svg, sexSuffix) {
 		}
 	});
 	buildAllSettings(findLocal("Back"), "Accessories");
-	buildAllSettings(findLocal("Body"), "FlightSuit");
+	buildAllSettings(findLocal("Flight-Suit"), "FlightSuit");
 }
 
 function setColorScheme (useDark) {

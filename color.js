@@ -174,10 +174,9 @@ var Picker = new function() {
 		var hueSelector = hue.firstElementChild;
 		var colorSelector = spectrum.firstElementChild;
 
-		var mainChildren = ch[3].children;
-		var editor = mainChildren[0];
+		var editor = ch[3]
 		on(editor, "input", function() { _setColor(this.value, true); });
-		var Okay = mainChildren[1];
+		var Okay = ch[4]
 		on(Okay, "click", function() { DOM.parent = null; });
 
 		_init(hue, function(hue) { var c = color.hsv; c[0] = hue; return _setColor(c); });

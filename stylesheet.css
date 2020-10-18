@@ -31,7 +31,7 @@ html, body {
 	--highlight: #DDD;
 	--mainFont: white;
 	--accent: #AB1F1F;
-	--transparent: rgb(0,0,0,50%);
+	--translucent: rgb(0,0,0,50%);
 }
 
 .light-mode {
@@ -41,7 +41,7 @@ html, body {
 	--highlight: #222;
 	--mainFont: black;
 	--accent: #AB1F1F;
-	--transparent: rgb(128,128,128,50%);
+	--translucent: rgb(128,128,128,50%);
 }
 
 body {
@@ -55,7 +55,6 @@ label {
 	-moz-user-select: none;
 	-ms-user-select: none;
 	user-select: none;
-	cursor: pointer;
 }
 
 nav {
@@ -68,19 +67,8 @@ nav {
 
 button,
 input {
-	border: 1px solid var(--softLight);
 	color: inherit;
 	font: inherit;
-}
-
-
-:focus,
-:focus > label {
-	border: 1px solid var(--accent);
-}
-
-a:focus {
-	border-style: none none solid none;
 }
 
 p {
@@ -154,7 +142,6 @@ legend {
 
 .close {
 	float: right;
-	cursor: pointer;
 	background: none;
 	border: none;
 }
@@ -232,11 +219,10 @@ footer {
 .label-sex {
 	display: inline-block;
 	width: 1.5em;
-	padding: 0;
 	border: var(--softLight) solid 1px;
 	border-radius: 0.25em;
 	line-height: 1.5em;
-	font-size: 1.25em;
+	font-size: larger;
 	background: var(--softColor);
 	color: var(--highlight);
 }
@@ -251,7 +237,7 @@ footer {
 	flex-wrap: wrap;
 	align-items: center;
 	justify-content: space-between;
-	background: var(--transparent);
+	background: var(--translucent);
 	font-size: small;
 }
 
@@ -279,8 +265,10 @@ footer {
 	color: var(--accent);
 }
 
-#settings-toggle:focus {
-	border: unset;
+.armor-types {
+	max-height: 10em;
+	margin: 1em;
+	overflow-y: auto;
 }
 
 .slide-title {
@@ -312,10 +300,6 @@ footer {
 	border: none;
 }
 
-.type-button:focus {
-	border:none;
-}
-
 .preview-icon {
 	border: 1px var(--highlight) solid;
 	fill: white;
@@ -327,11 +311,10 @@ footer {
 	width: 100%;
 	text-align: left;
 	background: none;
-	border-style: none none solid none;
-	border-color: var(--softColor);
 	line-height: 1.5em;
-	font-size: medium;
-	cursor: pointer;
+	font-size: larger;
+	border: 1px var(--softColor);
+	border-style: none none solid none;
 }
 
 .slide_toggle:before {
@@ -382,6 +365,11 @@ footer {
 	width: 2em;
 	margin: 0 0.5em;
 	float: left;
+	border: 1px solid var(--softColor);
+}
+
+.color-picker:focus {
+	border-color: var(--accent);
 }
 
 .color-label {
@@ -401,7 +389,6 @@ footer {
 .pseudo-checkbox {
 	display: block;
 	padding: 1em;
-	border-top: 1px solid var(--softColor);
 }
 
 .pseudo-label {
@@ -419,7 +406,7 @@ footer {
 	width: 3em;
 	float: right;
 	background: var(--highlight);
-	border-radius: 1em;
+	border-radius: 0.75em;
 }
 
 .slider:before {
@@ -464,7 +451,6 @@ footer {
 	background: var(--mainColor);
 	border: 1px var(--accent);
 	border-style: none none solid none;
-	cursor: pointer;
 	-webkit-appearance: none;
 	-moz-appearance: none;
 	-ms-appearance: none;
@@ -485,10 +471,6 @@ footer {
 .settings-collapsed #settings-toggle {
 	position: relative;
 	color: unset;
-}
-
-.settings-collapsed .subslide {
-	border-top: 1px solid var(--softColor);
 }
 
 .settings-collapsed .color-wrapper {
