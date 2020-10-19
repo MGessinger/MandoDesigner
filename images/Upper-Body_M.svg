@@ -1,76 +1,100 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
-<svg width="100%" height="100%" viewBox="0 0 1400 1400" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:1.5;">
-    <g id="Biceps_M">
-        <g id="Bicep_Left_Basic_M">
-            <path d="M1184.14,402.159C1182.82,398.399 1180.06,395.317 1176.47,393.594C1172.88,391.872 1168.75,391.649 1164.99,392.977C1122.93,407.833 1001.82,450.62 1001.82,450.62L999.744,540.219C999.744,540.219 1020.38,599.105 1030.11,626.861C1032.85,634.679 1041.4,638.796 1049.22,636.056C1087.09,622.788 1190.37,586.595 1228.23,573.327C1231.98,572.011 1235.06,569.258 1236.79,565.673C1238.51,562.088 1238.74,557.965 1237.42,554.21C1225.62,520.521 1195.96,435.884 1184.14,402.159Z" style="fill:white;stroke:black;stroke-width:5.33px;"/>
-            <path d="M1025.32,613.199L1232.28,539.545" style="fill:none;stroke:black;stroke-width:5.33px;"/>
-            <circle cx="1188.66" cy="514.492" r="20.345" style="fill:none;stroke:black;stroke-width:5.33px;"/>
-        </g>
-        <g id="Bicep_Right_Basic_M">
-            <path d="M215.86,402.159C217.178,398.399 219.938,395.317 223.531,393.594C227.124,391.872 231.255,391.649 235.013,392.977C277.066,407.833 398.185,450.62 398.185,450.62L400.256,540.219C400.256,540.219 379.62,599.105 369.893,626.861C367.154,634.679 358.595,638.796 350.777,636.056C312.915,622.788 209.633,586.595 171.772,573.327C168.017,572.011 164.939,569.258 163.215,565.673C161.491,562.088 161.261,557.965 162.577,554.21C174.382,520.521 204.042,435.884 215.86,402.159Z" style="fill:white;stroke:black;stroke-width:5.33px;"/>
-            <path d="M374.681,613.199L167.716,539.545" style="fill:none;stroke:black;stroke-width:5.33px;"/>
-            <circle cx="211.336" cy="514.492" r="20.345" style="fill:none;stroke:black;stroke-width:5.33px;"/>
-        </g>
-    </g>
-    <g id="Chest_M">
-        <g id="Chest_Classic_M">
-            <path id="Abdomen_Classic_M" d="M556.322,846.106L478.767,813.891L471.769,742.025L532.414,722.2L583.729,619.358L699.771,582.186L815.813,619.358L867.129,722.2L927.774,742.025L920.776,813.891L843.22,846.106L699.771,842.389L556.322,846.106Z" style="fill:white;stroke:black;stroke-width:5.33px;"/>
-            <g id="Iron-Heart_Classic_M">
-                <path id="Heart_Classic_M" d="M671.427,453.416L671.427,356.026L700,333.599L728.573,356.026L728.573,453.416L700,482.287L671.427,453.416Z" style="fill:white;stroke:black;stroke-width:5.33px;"/>
-		<g id="Design_Heart_Classic_Toggle_M">
-                	<rect id="Center_Heart_Classic_Option_M" x="690.087" y="371.001" width="19.826" height="66.667" style="fill:white;"/>
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 24.3.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Upper-Armor" xmlns:serif="http://www.serif.com/"
+	 xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 1400 1400"
+	 style="enable-background:new 0 0 1400 1400;" xml:space="preserve">
+<g id="Biceps_M">
+	<g id="Bicep_Left_Basic_M">
+		<path class="st0" d="M1184.1,402.2c-1.3-3.8-4.1-6.8-7.7-8.6c-3.6-1.7-7.7-1.9-11.5-0.6c-42.1,14.9-163.2,57.6-163.2,57.6
+			l-2.1,89.6c0,0,20.6,58.9,30.4,86.6c2.7,7.8,11.3,11.9,19.1,9.2c37.9-13.3,141.2-49.5,179-62.7c3.8-1.3,6.8-4.1,8.6-7.7
+			c1.7-3.6,1.9-7.7,0.6-11.5C1225.6,520.5,1196,435.9,1184.1,402.2z"/>
+		<path class="st1" d="M1025.3,613.2l207-73.7"/>
+		<circle class="st1" cx="1188.7" cy="514.5" r="20.3"/>
+	</g>
+	<g id="Bicep_Right_Basic_M">
+		<path class="st0" d="M215.9,402.2c1.3-3.8,4.1-6.8,7.7-8.6c3.6-1.7,7.7-1.9,11.5-0.6c42.1,14.9,163.2,57.6,163.2,57.6l2.1,89.6
+			c0,0-20.6,58.9-30.4,86.6c-2.7,7.8-11.3,11.9-19.1,9.2c-37.9-13.3-141.1-49.5-179-62.7c-3.8-1.3-6.8-4.1-8.6-7.7
+			c-1.7-3.6-2-7.7-0.6-11.5C174.4,520.5,204,435.9,215.9,402.2z"/>
+		<path class="st1" d="M374.7,613.2l-207-73.7"/>
+		<circle class="st1" cx="211.3" cy="514.5" r="20.3"/>
+	</g>
+</g>
+<g id="Chest_M">
+	<g id="Chest_Classic_M">
+		<path id="Abdomen_Classic_M" class="st0" d="M556.3,846.1l-77.6-32.2l-7-71.9l60.6-19.8l51.3-102.8l116-37.2l116,37.2l51.3,102.8
+			l60.6,19.8l-7,71.9l-77.6,32.2l-143.4-3.7L556.3,846.1z"/>
+		<g id="Iron-Heart_Classic_M">
+			<path id="Heart_Classic_M" class="st0" d="M671.4,453.4V356l28.6-22.4l28.6,22.4v97.4L700,482.3L671.4,453.4z"/>
+			<rect id="Center_Heart_Design_Classic_M" x="690.1" y="371" class="st0" width="19.8" height="66.7"/>
 		</g>
-            </g>
-            <g id="Chest-Plate_Classic_M">
-                <path id="Chest_Left_Classic_M" d="M960.074,270.407L722.159,298.905L719.826,321.208L750.149,349.707L747.816,469.896L720.993,495.916L720.993,535.566L823.623,564.065L864.442,656.994L909.925,694.166L960.074,438.919L986.898,425.29L960.074,270.407Z" style="fill:white;stroke:black;stroke-width:5.33px;"/>
-                <path id="Chest_Right_Classic_M" d="M439.926,270.407L677.841,298.905L680.174,321.208L649.851,349.707L652.184,469.896L679.007,495.916L679.007,535.566L576.377,564.065L535.558,656.994L490.075,694.166L439.926,438.919L413.102,425.29L439.926,270.407Z" style="fill:white;stroke:black;stroke-width:5.33px;"/>
-            </g>
-            <path id="Neck_Classic_M" d="M588.04,255.538L439.926,239.43L413.102,157.193L535.558,120.48C535.558,120.48 551.739,147.938 563.549,157.652C575.6,167.565 591.71,179.227 606.824,185.839C623.346,193.067 643.474,197.894 662.68,201.019C684.256,204.53 715.744,204.53 737.32,201.019C756.526,197.894 778.737,193.067 795.259,185.839C810.374,179.227 824.4,167.565 836.451,157.652C848.261,147.938 864.442,120.48 864.442,120.48L986.898,157.193L960.074,239.43L811.96,255.538L700,270.407L588.04,255.538Z" style="fill:white;stroke:black;stroke-width:5.33px;"/>
-        </g>
-        <g id="Chest_Legacy_M">
-            <g id="Abdomen_Legacy_M">
-                <path id="Plate4_Upper-Armor_Legacy" d="M812.68,778.314L797.427,764.055L699.919,749.745L602.415,764.055L587.162,778.314L403.361,749.684L409.693,829.622L700.508,875.087L990.154,829.622L996.486,749.684L812.68,778.314Z" style="fill:white;fill-rule:nonzero;stroke:black;stroke-width:5.33px;"/>
-                <path id="Plate3_Upper-Armor_Legacy" d="M816.404,707.052L800.653,692.802L699.923,678.487L599.194,692.802L583.438,707.052L393.564,678.426L400.102,758.36L700.532,803.829L999.74,758.36L1006.28,678.426L816.404,707.052Z" style="fill:white;fill-rule:nonzero;stroke:black;stroke-width:5.33px;"/>
-                <path id="Plate2_Upper-Armor_Legacy" d="M820.253,633.386L803.98,619.136L699.923,604.821L595.867,619.136L579.589,633.386L383.445,604.761L390.204,684.694L700.551,730.163L1009.64,684.694L1016.4,604.761L820.253,633.386Z" style="fill:white;fill-rule:nonzero;stroke:black;stroke-width:5.33px;"/>
-                <path id="Plate1_Upper-Armor_Legacy" d="M825.41,551.759L808.438,536.608L699.923,521.397L591.405,536.608L574.432,551.759L369.88,551.759L376.926,606.285L700.575,654.613L1022.92,606.285L1029.97,551.759L825.41,551.759Z" style="fill:white;fill-rule:nonzero;stroke:black;stroke-width:5.33px;"/>
-            </g>
-            <path id="Chest-Plate_Legacy_M" d="M998.371,260.094L700.03,295.22L401.038,260.094L347.746,404.965L354.606,545.649L369.997,555.199L575.636,555.199L592.691,542.262L699.704,529.515L806.718,542.262L823.777,555.199L1029.42,555.199L1044.8,545.649L1051.66,404.965L998.371,260.094Z" style="fill:white;fill-rule:nonzero;stroke:black;stroke-width:5.33px;"/>
-            <g id="Iron-Heart_Legacy_M">
-                <path id="Heart_Legacy_M" d="M671.427,453.416L671.427,356.026L700,333.599L728.573,356.026L728.573,453.416L700,482.287L671.427,453.416Z" style="fill:white;stroke:black;stroke-width:5.33px;"/>
-                <rect id="Center_Heart_Design_Legacy_M" x="690.087" y="371.001" width="19.826" height="66.667" style="fill:white;"/>
-            </g>
-            <path id="Neck_Legacy_M" d="M586.54,281.494L400.75,260.093L415.517,157.193L537.973,120.48C537.973,120.48 554.153,147.938 565.963,157.652C578.014,167.565 594.124,179.227 609.239,185.839C625.761,193.067 645.889,197.894 665.094,201.019C686.67,204.53 718.159,204.53 739.735,201.019C758.94,197.894 781.152,193.067 797.673,185.839C812.788,179.227 826.815,167.565 838.866,157.652C850.676,147.938 866.856,120.48 866.856,120.48L989.313,157.193L999.25,260.093L818.712,281.006L700.628,295.208L586.54,281.494Z" style="fill:white;stroke:black;stroke-width:5.33px;"/>
-        </g>
-    </g>
-    <g id="Shoulders_M">
-    <g id="Shoulders_Left_M">
-        <g id="Legacy_Shoulder_Left_M">
-            <path id="Plate-3_Shoulder_Left_Legacy_M" d="M1109.57,226.971L1031.69,306.392L1076.98,405.129L1179.35,399.956L1233.41,449.775L1281.65,446.508L1109.57,226.971Z" style="fill:white;stroke:black;stroke-width:5.33px;"/>
-            <path id="Plate-2_Shoulder_Left_Legacy_M" d="M1067.75,177.351L1006.25,270.04L1069.36,358.458L1168.91,334.063L1231.4,372.787L1278.15,360.477L1067.75,177.351Z" style="fill:white;stroke:black;stroke-width:5.33px;"/>
-            <path id="Plate-1_Shoulder_Left_Legacy_M" d="M992.047,129.907L964.353,237.639L1052.97,300.467L1139.01,244.769L1210.75,260.854L1250.88,233.89L992.047,129.907Z" style="fill:white;stroke:black;stroke-width:5.33px;"/>
-        </g>
-        <path id="Classic_Shoulder_Left_M" d="M1062.42,162.039L1035.7,282.874L1057.08,352.43L1200.04,424.825L1224.09,387.918L1062.42,162.039Z" style="fill:white;stroke:black;stroke-width:5.33px;"/>
-    </g>
-    <g id="Shoulders_Right_M">
-        <g id="Legacy_Shoulder_Right_M">
-            <path id="Plate-3_Shoulder_Right_Legacy_M" d="M290.429,226.971L368.31,306.392L323.018,405.129L220.651,399.956L166.591,449.775L118.353,446.508L290.429,226.971Z" style="fill:white;stroke:black;stroke-width:5.33px;"/>
-            <path id="Plate-2_Shoulder_Right_Legacy_M" d="M332.253,177.351L393.75,270.04L330.642,358.458L231.09,334.063L168.6,372.787L121.845,360.477L332.253,177.351Z" style="fill:white;stroke:black;stroke-width:5.33px;"/>
-            <path id="Plate-1_Shoulder_Right_Legacy_M" d="M407.953,129.907L435.647,237.639L347.029,300.467L260.986,244.769L189.252,260.854L149.121,233.89L407.953,129.907Z" style="fill:white;stroke:black;stroke-width:5.33px;"/>
-        </g>
-        <path id="Classic_Shoulder_Right_M" d="M337.437,162.039L364.159,282.874L342.782,352.43L199.819,424.825L175.77,387.918L337.437,162.039Z" style="fill:white;stroke:black;stroke-width:5.33px;"/>
-    </g>
-    </g>
-    <g id="Gauntlets_M">
-        <g id="Gauntlet_Left_Basic_M">
-            <path d="M1210.71,903.216L1136.54,916.532L1129.89,947.079L1204.07,1164.16L1267.04,1129.59L1210.71,903.216Z" style="fill:white;stroke:black;stroke-width:5.33px;"/>
-            <path d="M1301.8,883.02L1207.33,892.932L1265.64,1128.35L1291.3,1203.94L1342.62,1279.52L1357.78,1263.41L1350.78,1229.96L1339.12,1171.72L1284.3,970.993L1314.63,943.734L1301.8,883.02Z" style="fill:white;stroke:black;stroke-width:5.33px;"/>
-            <path d="M1284.38,971.321L1338.55,1194.24L1367.71,1206.97L1320.18,939.644L1284.38,971.321Z" style="fill:white;stroke:black;stroke-width:5.33px;"/>
-        </g>
-        <g id="Gauntlet_Right_Basic_M">
-            <path d="M189.286,903.216L263.46,916.532L270.108,947.079L195.934,1164.16L132.956,1129.59L189.286,903.216Z" style="fill:white;stroke:black;stroke-width:5.33px;"/>
-            <path d="M98.202,883.02L192.668,892.932L134.356,1128.35L108.698,1203.94L57.383,1279.52L42.222,1263.41L49.219,1229.96L60.882,1171.72L115.696,970.993L85.373,943.734L98.202,883.02Z" style="fill:white;stroke:black;stroke-width:5.33px;"/>
-            <path d="M115.623,971.321L61.448,1194.24L32.292,1206.97L79.816,939.644L115.623,971.321Z" style="fill:white;stroke:black;stroke-width:5.33px;"/>
-        </g>
-    </g>
+		<g id="Chest-Plate_Classic_M">
+			<path id="Chest_Left_Classic_M" class="st0" d="M960.1,270.4l-237.9,28.5l-2.3,22.3l30.3,28.5l-2.3,120.2l-26.8,26v39.6
+				l102.6,28.5l40.8,92.9l45.5,37.2l50.1-255.2l26.8-13.6L960.1,270.4z"/>
+			<path id="Chest_Right_Classic_M" class="st0" d="M439.9,270.4l237.9,28.5l2.3,22.3l-30.3,28.5l2.3,120.2l26.8,26v39.6
+				l-102.6,28.5L535.6,657l-45.5,37.2l-50.1-255.2l-26.8-13.6L439.9,270.4z"/>
+		</g>
+		<path id="Neck_Classic_M" class="st0" d="M588,255.5l-148.1-16.1l-26.8-82.2l122.5-36.7c0,0,16.2,27.5,28,37.2
+			c12.1,9.9,28.2,21.6,43.3,28.2c16.5,7.2,36.7,12.1,55.9,15.2c21.6,3.5,53.1,3.5,74.6,0c19.2-3.1,41.4-8,57.9-15.2
+			c15.1-6.6,29.1-18.3,41.2-28.2c11.8-9.7,28-37.2,28-37.2l122.5,36.7l-26.8,82.2L812,255.5l-112,14.9L588,255.5z"/>
+	</g>
+	<g id="Chest_Legacy_M">
+		<g id="Abdomen_Legacy_M">
+			<path id="Plate4_Upper-Armor_Legacy" class="st1" d="M812.7,778.3l-15.3-14.3l-97.5-14.3l-97.5,14.3l-15.3,14.3l-183.8-28.6
+				l6.3,79.9l290.8,45.5l289.6-45.5l6.3-79.9L812.7,778.3z"/>
+			<path id="Plate3_Upper-Armor_Legacy" class="st1" d="M816.4,707.1l-15.8-14.3l-100.7-14.3l-100.7,14.3l-15.8,14.3l-189.9-28.6
+				l6.5,79.9l300.4,45.5l299.2-45.5l6.5-79.9L816.4,707.1z"/>
+			<path id="Plate2_Upper-Armor_Legacy" class="st1" d="M820.3,633.4L804,619.1l-104.1-14.3l-104.1,14.3l-16.3,14.3l-196.1-28.6
+				l6.8,79.9l310.3,45.5l309.1-45.5l6.8-79.9L820.3,633.4z"/>
+			<path id="Plate1_Upper-Armor_Legacy" class="st1" d="M825.4,551.8l-17-15.2l-108.5-15.2l-108.5,15.2l-17,15.2H369.9l7,54.5
+				l323.6,48.3l322.3-48.3l7-54.5H825.4z"/>
+		</g>
+		<path id="Chest-Plate_Legacy_M" class="st1" d="M998.4,260.1L700,295.2l-299-35.1L347.7,405l6.9,140.7l15.4,9.5h205.6l17.1-12.9
+			l107-12.7l107,12.7l17.1,12.9h205.6l15.4-9.5l6.9-140.7L998.4,260.1z"/>
+		<g id="Iron-Heart_Legacy_M">
+			<path id="Heart_Legacy_M" class="st0" d="M671.4,453.4V356l28.6-22.4l28.6,22.4v97.4L700,482.3L671.4,453.4z"/>
+			<rect id="Center_Heart_Design_Legacy_M" x="690.1" y="371" class="st0" width="19.8" height="66.7"/>
+		</g>
+		<path id="Neck_Legacy_M" class="st0" d="M586.5,281.5l-185.8-21.4l14.8-102.9L538,120.5c0,0,16.2,27.5,28,37.2
+			c12.1,9.9,28.2,21.6,43.3,28.2c16.5,7.2,36.6,12.1,55.9,15.2c21.6,3.5,53.1,3.5,74.6,0c19.2-3.1,41.4-8,57.9-15.2
+			c15.1-6.6,29.1-18.3,41.2-28.2c11.8-9.7,28-37.2,28-37.2l122.5,36.7l9.9,102.9L818.7,281l-118.1,14.2L586.5,281.5z"/>
+	</g>
+</g>
+<g id="Shoulders_M">
+	<g id="Left-Shoulder_M">
+		<g id="Shoulder_Left_Legacy_M">
+			<path id="Plate-3_Shoulder_Left_Legacy_M" class="st0" d="M1109.6,227l-77.9,79.4l45.3,98.7l102.4-5.2l54.1,49.8l48.2-3.3
+				L1109.6,227z"/>
+			<path id="Plate-2_Shoulder_Left_Legacy_M" class="st0" d="M1067.8,177.4l-61.5,92.7l63.1,88.4l99.6-24.4l62.5,38.7l46.8-12.3
+				L1067.8,177.4z"/>
+			<path id="Plate-1_Shoulder_Left_Legacy_M" class="st0" d="M992,129.9l-27.7,107.7l88.6,62.8l86-55.7l71.7,16.1l40.1-27L992,129.9z
+				"/>
+		</g>
+		<path id="Shoulder_Left_Classic_M" class="st0" d="M1062.4,162l-26.7,120.8l21.4,69.6l143,72.4l24-36.9L1062.4,162z"/>
+	</g>
+	<g id="Right-Shoulder_M">
+		<g id="Shoulder_Right_Legacy_M">
+			<path id="Plate-3_Shoulder_Right_Legacy_M" class="st0" d="M290.4,227l77.9,79.4L323,405.1L220.7,400l-54.1,49.8l-48.2-3.3
+				L290.4,227z"/>
+			<path id="Plate-2_Shoulder_Right_Legacy_M" class="st0" d="M332.3,177.4l61.5,92.7l-63.1,88.4l-99.6-24.4l-62.5,38.7l-46.8-12.3
+				L332.3,177.4z"/>
+			<path id="Plate-1_Shoulder_Right_Legacy_M" class="st0" d="M408,129.9l27.7,107.7L347,300.5l-86-55.7l-71.7,16.1l-40.1-27
+				L408,129.9z"/>
+		</g>
+		<path id="Shoulder_Right_Classic_M" class="st0" d="M337.4,162l26.7,120.8l-21.4,69.6l-143,72.4l-24-36.9L337.4,162z"/>
+	</g>
+</g>
+<g id="Gauntlets_M">
+	<g id="Gauntlet_Left_Basic_M">
+		<path class="st0" d="M1210.7,903.2l-74.2,13.3l-6.7,30.5l74.2,217.1l63-34.6L1210.7,903.2z"/>
+		<path class="st0" d="M1301.8,883l-94.5,9.9l58.3,235.4l25.7,75.6l51.3,75.6l15.2-16.1l-7-33.5l-11.7-58.2L1284.3,971l30.3-27.3
+			L1301.8,883z"/>
+		<path class="st0" d="M1284.4,971.3l54.2,222.9l29.2,12.7l-47.5-267.3L1284.4,971.3z"/>
+	</g>
+	<g id="Gauntlet_Right_Basic_M">
+		<path class="st0" d="M189.3,903.2l74.2,13.3l6.6,30.5l-74.2,217.1l-63-34.6L189.3,903.2z"/>
+		<path class="st0" d="M98.2,883l94.5,9.9l-58.3,235.4l-25.7,75.6l-51.3,75.6l-15.2-16.1l7-33.5l11.7-58.2L115.7,971l-30.3-27.3
+			L98.2,883z"/>
+		<path class="st0" d="M115.6,971.3l-54.2,222.9L32.3,1207l47.5-267.3L115.6,971.3z"/>
+	</g>
+</g>
 </svg>

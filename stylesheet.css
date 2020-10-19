@@ -44,6 +44,14 @@ html, body {
 	--translucent: rgb(128,128,128,50%);
 }
 
+.male .female {
+	display: none;
+}
+
+.female .male {
+	display: none;
+}
+
 body {
 	margin: 0;
 	color: var(--mainFont);
@@ -197,6 +205,10 @@ main svg {
 	box-sizing: border-box;
 }
 
+use, path {
+	stroke-width: 4px;
+}
+
 footer {
 	position: fixed;
 	width: 100%;
@@ -295,7 +307,6 @@ footer {
 
 .type-button {
 	width: 30%;
-	margin-right: 3%;
 	background: none;
 	border: none;
 }

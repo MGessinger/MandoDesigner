@@ -36,13 +36,9 @@ function loadSVG (name, onload, args) {
 }
 
 function makeIdentifier (str) {
-	var components = str.replace(/\W/g,"").split("_");
-	var short = components[0];
-	if (components.includes("Left"))
-		return short+"Left";
-	else if (components.includes("Right"))
-		return short+"Right";
-	return short;
+	var clean = str.replace(/\W/g,"");
+	var components = clean.split("_");
+	return components[0];
 }
 
 function prettify (str) {
@@ -188,34 +184,38 @@ function buildAddonSelect (options, category, parent) {
 
 function buildAllSettings (SVGNode, category, parent) {
 	parent = prepareParent(SVGNode, parent);
-	var hasNamedChild = false;
 	var ch = SVGNode.children;
+	var hasUnnamedChild = !ch.length;
 	for (var i = 0; i < ch.length; i++)
-		hasNamedChild |= !!ch[i].id;
-	if (!hasNamedChild) {
+		hasUnnamedChild |= !ch[i].id;
+	if (hasUnnamedChild) {
 		if (ch.length == 0 && SVGNode.tagName == "g")
-			return;
-		if (SVGNode.tagName === "title")
 			return;
 		buildIOSettings(SVGNode, category, parent);
 	} else {
 		var options = [];
+		var toggle = [];
 		for (var i = 0; i < ch.length; i++) {
 			var className = ch[i].getAttribute("class");
 			if (className == "option")
-				options.push(ch[i]);
+				options.unshift(ch[i]);
+			else if (className == "toggle")
+				toggle.push(ch[i]);
 			else
 				buildAllSettings(ch[i], category, parent);
 		}
-		console.log(SVGNode, options);
 		if (options.length > 0)
 			buildAddonSelect(options, category, parent);
+		/* defer toggles to the very last */
+		for (var i = 0; i < toggle.length; i++) 
+			buildAllSettings(toggle[i], category, parent);
 	}
 }
 
 function buildVariableSettings (category, pieceName, variantName) {
 	var fullyQualifiedName = pieceName + "_" + variantName;
-	var wrapper = find(pieceName + "_Current");
+	var identifier = makeIdentifier(pieceName);
+	var wrapper = find(identifier + "_Current");
 	var ref = find(fullyQualifiedName);
 	if (!ref)
 		return console.log("Could not build Select for " + fullyQualifiedName);
@@ -228,15 +228,7 @@ function buildVariableSettings (category, pieceName, variantName) {
 
 function onload () {
 	var femaleSelector = find("female");
-	var body, sexSuffix;
-	if (femaleSelector.checked) {
-		body = "Female-Body";
-		sexSuffix = "_F";
-	} else {
-		body = "Male-Body";
-		sexSuffix = "_M";
-	}
-	loadSVG(body, setupMando, sexSuffix);
+	setSex(femaleSelector.checked);
 	var useDarkMode = window.matchMedia("(prefers-color-scheme: dark)").matches;
 	setColorScheme(useDarkMode);
 	find("color-scheme-picker").checked = useDarkMode;
@@ -308,22 +300,22 @@ function setupMando (svg, sexSuffix) {
 	function findLocal(st) {
 		return svg.getElementById(st);
 	}
-	loadSVG("Helmet", function() { switchToArmorVariant("Helmet", "Helmet", "Classic"); });
-	loadSVG("Upper-Body" + sexSuffix, function(svg) {
-		switchToArmorVariant("UpperBody", "Chest", "Classic" + sexSuffix)
-		var subgroups = ["Shoulders","Biceps","Gauntlets"];
+	loadSVG("Helmets", function() { switchToArmorVariant("Helmet", "Helmet", "Classic"); });
+	loadSVG("Upper-Body_" + sexSuffix, function(svg) {
+		switchToArmorVariant("UpperBody", "Chest", "Classic_" + sexSuffix)
+		var subgroups = ["Shoulder","Biceps","Gauntlets"];
 		for (var i = 0;  i < subgroups.length; i++) {
-			buildVariableSettings("UpperBody", subgroups[i], "Left" + sexSuffix);
-			buildVariableSettings("UpperBody", subgroups[i], "Right" + sexSuffix);
+			buildVariableSettings("UpperBody", "Left-" + subgroups[i], sexSuffix);
+			buildVariableSettings("UpperBody", "Right-" + subgroups[i], sexSuffix);
 		}
 	});
 	buildAllSettings(findLocal("Back"), "Accessories");
-	buildAllSettings(findLocal("Flight-Suit"), "FlightSuit");
+	buildAllSettings(findLocal("Soft-Parts"), "FlightSuit");
 }
 
 function setColorScheme (useDark) {
-	var className = "light-mode"
-		var bckName = "BackgroundLight";
+	var className = "light-mode";
+	var bckName = "BackgroundLight";
 	var logoName = "#titleLight";
 	if (useDark) {
 		className = "dark-mode";
@@ -340,6 +332,21 @@ function setColorScheme (useDark) {
 	});
 	var use = find("title");
 	use.setAttribute("href", logoName);
+}
+
+function setSex (female) {
+	var body, sexSuffix;
+	var settings = find("settings");
+	if (female) {
+		body = "Female-Body";
+		sexSuffix = "F";
+		settings.className = "settings-column settings-collapsed female";
+	} else {
+		body = "Male-Body";
+		sexSuffix = "M";
+		settings.className = "settings-column settings-collapsed male";
+	}
+	loadSVG(body, setupMando, sexSuffix);
 }
 
 function loadImage (input) {
