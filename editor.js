@@ -217,8 +217,6 @@ function buildVariableSettings (category, pieceName, variantName) {
 	var identifier = makeIdentifier(pieceName);
 	var wrapper = find(identifier + "_Current");
 	var ref = find(fullyQualifiedName);
-	if (!ref)
-		return console.log("Could not build Select for " + fullyQualifiedName);
 	var n = ref.cloneNode(true);
 	wrapper.appendChild(n);
 
@@ -254,8 +252,6 @@ function openArmorSlide (category) {
 
 function switchToArmorVariant (category, pieceName, variantName) {
 	var old = find(pieceName + "_Current");
-	if (!old)
-		return;
 	var parent = old.parentNode;
 	var n = find(pieceName + "_" + variantName);
 	n = n.cloneNode(true);
@@ -301,12 +297,12 @@ function setupMando (svg, sexSuffix) {
 		return svg.getElementById(st);
 	}
 	loadSVG("Helmets", function() { switchToArmorVariant("Helmet", "Helmet", "Classic"); });
-	loadSVG("Upper-Body_" + sexSuffix, function(svg) {
-		switchToArmorVariant("UpperBody", "Chest", "Classic_" + sexSuffix)
+	loadSVG("Upper-Armor_" + sexSuffix, function(svg) {
+		switchToArmorVariant("UpperArmor", "Chest", "Classic_" + sexSuffix)
 		var subgroups = ["Shoulder","Biceps","Gauntlets"];
 		for (var i = 0;  i < subgroups.length; i++) {
-			buildVariableSettings("UpperBody", "Left-" + subgroups[i], sexSuffix);
-			buildVariableSettings("UpperBody", "Right-" + subgroups[i], sexSuffix);
+			buildVariableSettings("UpperArmor", "Left-" + subgroups[i], sexSuffix);
+			buildVariableSettings("UpperArmor", "Right-" + subgroups[i], sexSuffix);
 		}
 	});
 	buildAllSettings(findLocal("Back"), "Accessories");

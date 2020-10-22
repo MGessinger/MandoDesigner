@@ -24,8 +24,8 @@
 				<label for="HelmetSettings" class="armor-label">Helmet (Buy'ce)<span class="armor-icon">&#xE905;</span></label>
 				<input type="radio" name="parts-list" id="FlightSuitSettings" value="Flight Suit (Kute)" onclick="openArmorSlide('FlightSuit')"/>
 				<label for="FlightSuitSettings" class="armor-label">Flight Suit (Kute)<span class="armor-icon">&#xE907;</span></label>
-				<input type="radio" name="parts-list" id="UpperBodySettings" value="Upper Body" onclick="openArmorSlide('UpperBody')"/>
-				<label for="UpperBodySettings" class="armor-label">Upper Body<span class="armor-icon">&#xE908;</span></label>
+				<input type="radio" name="parts-list" id="UpperArmorSettings" value="Upper Body" onclick="openArmorSlide('UpperArmor')"/>
+				<label for="UpperArmorSettings" class="armor-label">Upper Body<span class="armor-icon">&#xE908;</span></label>
 				<input type="radio" name="parts-list" id="LowerBodySettings" value="Lower Body" onclick="openArmorSlide('LowerBody')"/>
 				<label for="LowerBodySettings" class="armor-label">Lower Body<span class="armor-icon">&#xE906;</span></label>
 				<input type="radio" name="parts-list" id="AccessoriesSettings" value="Accessories" onclick="openArmorSlide('Accessories')"/>
@@ -83,16 +83,16 @@
 					</label>
 				</div>
 			</div>
-			<div id="UpperBodyOptions" class="folder overview">
+			<div id="UpperArmorOptions" class="folder overview">
 				<div class="folder-head">
 					<h2 class="slide-title">Upper Body</h2>
 					<p class="option-name">Style:</p>
-					<div id="UpperBodyTypes" class="armor-types male">
-						<button class="type-button" onclick="switchToArmorVariant('UpperBody','Chest','Classic_M')">
+					<div id="UpperArmorTypes" class="armor-types male">
+						<button class="type-button" onclick="switchToArmorVariant('UpperArmor','Chest','Classic_M')">
 							<svg viewbox="100 -100 1200 1200" class="preview-icon"><use href="#Chest_Classic_M"/></svg>
 							Classic
 						</button>
-						<button class="type-button" onclick="switchToArmorVariant('UpperBody','Chest','Legacy_M')">
+						<button class="type-button" onclick="switchToArmorVariant('UpperArmor','Chest','Legacy_M')">
 							<svg viewbox="100 -100 1200 1200" class="preview-icon"><use href="#Chest_Legacy_M"/></svg>
 							Legacy
 						</button>
@@ -105,8 +105,8 @@
 				</div>
 				<div class="slide">
 					<button class="slide_toggle">Chest (Hal'cabur)</button>
-					<div id="ChestRightColors" class="slide_content"></div>
-					<div id="ChestLeftColors" class="slide_content"></div>
+					<div id="RightChestColors" class="slide_content"></div>
+					<div id="LeftChestColors" class="slide_content"></div>
 				</div>
 				<div class="slide">
 					<button class="slide_toggle">Iron Heart (Kar'ta Beskar)</button>
@@ -123,18 +123,18 @@
 				</div>
 				<div class="slide">
 					<button class="slide_toggle">Biceps (Irud'cabur)</button>
-					<div id="BicepsRightColors" class="slide_content"></div>
-					<div id="BicepsLeftColors" class="slide_content"></div>
+					<div id="RightBicepsColors" class="slide_content"></div>
+					<div id="LeftBicepsColors" class="slide_content"></div>
 				</div>
 				<div class="slide">
 					<button class="slide_toggle">Elbows</button>
-					<div id="ElbowRightColors" class="slide_content"></div>
-					<div id="ElbowLeftColors" class="slide_content"></div>
+					<div id="RightElbowColors" class="slide_content"></div>
+					<div id="LeftElbowColors" class="slide_content"></div>
 				</div>
 				<div class="slide">
 					<button class="slide_toggle">Gauntlets (Kom'rk)</button>
-					<div id="GauntletRightColors" class="slide_content"></div>
-					<div id="GauntletLeftColors" class="slide_content"></div>
+					<div id="RightGauntletColors" class="slide_content"></div>
+					<div id="LeftGauntletColors" class="slide_content"></div>
 				</div>
 			</div>
 			<div id="FlightSuitOptions" class="folder">
@@ -159,23 +159,23 @@
 				</div>
 				<div class="slide">
 					<button class="slide_toggle">Thighs (Motun'bur)</button>
-					<div id="ThighsRightColors" class="slide_content"></div>
-					<div id="ThighsLeftColors" class="slide_content"></div>
+					<div id="RightThighsColors" class="slide_content"></div>
+					<div id="LeftThighsColors" class="slide_content"></div>
 				</div>
 				<div class="slide">
 					<button class="slide_toggle">Knees (Bes'lovik)</button>
-					<div id="KneesRightColors" class="slide_content"></div>
-					<div id="KneesLeftColors" class="slide_content"></div>
+					<div id="RightKneesColors" class="slide_content"></div>
+					<div id="LeftKneesColors" class="slide_content"></div>
 				</div>
 				<div class="slide">
 					<button class="slide_toggle">Shins (Tadun'bur)</button>
-					<div id="ShinsRightColors" class="slide_content"></div>
-					<div id="ShinsLeftColors" class="slide_content"></div>
+					<div id="RightShinsColors" class="slide_content"></div>
+					<div id="LeftShinsColors" class="slide_content"></div>
 				</div>
 				<div class="slide">
 					<button class="slide_toggle">Ankles (Cetar'bur)</button>
-					<div id="AnklesRightColors" class="slide_content"></div>
-					<div id="AnklesLeftColors" class="slide_content"></div>
+					<div id="RightAnklesColors" class="slide_content"></div>
+					<div id="LeftAnklesColors" class="slide_content"></div>
 				</div>
 			</div>
 			<div id="AccessoriesOptions" class="folder">

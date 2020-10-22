@@ -102,8 +102,8 @@
 			<g id="LeftElbow_Current"></g>
 		</g>
 		<g id="Gauntlets_Current">
-			<g id="LeftGauntlet_Current"></g>
-			<g id="RightGauntlet_Current"></g>
+			<g id="LeftGauntlets_Current"></g>
+			<g id="RightGauntlets_Current"></g>
 		</g>
 	</g>
 	<g id="Helmet-wrapper" transform="translate(540,35)">
