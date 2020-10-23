@@ -216,11 +216,7 @@ function buildVariableSettings (category, pieceName, variantName) {
 	var fullyQualifiedName = pieceName + "_" + variantName;
 	var identifier = makeIdentifier(pieceName);
 	var wrapper = find(identifier + "_Current");
-	if (!wrapper)
-		console.log("Wrapper: "+ identifier);
 	var ref = find(fullyQualifiedName);
-	if (!ref)
-		return console.log("Ref: " + fullyQualifiedName);
 	var n = ref.cloneNode(true);
 	wrapper.appendChild(n);
 
@@ -313,6 +309,7 @@ function setupMando (svg, sexSuffix) {
 		}
 	});
 	loadSVG("Lower-Armor_" + sexSuffix, function(svg) {
+		switchToArmorVariant("LowerArmor", "Waist", "M");
 		buildVariableSettings("LowerArmor", "Groin", sexSuffix);
 		var subgroups = ["Thigh", "Knee", "Shin", "Ankle"];
 		for (var i = 0; i < subgroups.length; i++) {
@@ -320,7 +317,7 @@ function setupMando (svg, sexSuffix) {
 			buildVariableSettings("LowerArmor", "Right-" + subgroups[i], sexSuffix);
 		}
 	});
-	buildAllSettings(findLocal("Back"), "Accessories");
+	buildAllSettings(findLocal("Back"), "Back");
 	buildAllSettings(findLocal("Soft-Parts"), "FlightSuit");
 }
 

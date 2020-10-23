@@ -28,8 +28,8 @@
 				<label for="UpperArmorSettings" class="armor-label">Upper Body<span class="armor-icon">&#xE908;</span></label>
 				<input type="radio" name="parts-list" id="LowerArmorSettings" value="Lower Body" onclick="openArmorFolder('LowerArmor')"/>
 				<label for="LowerArmorSettings" class="armor-label">Lower Body<span class="armor-icon">&#xE906;</span></label>
-				<input type="radio" name="parts-list" id="AccessoriesSettings" value="Accessories" onclick="openArmorFolder('Accessories')"/>
-				<label for="AccessoriesSettings" class="armor-label">Accessories<span class="armor-icon">&#xE904;</span></label>
+				<input type="radio" name="parts-list" id="BackSettings" value="Back" onclick="openArmorFolder('Back')"/>
+				<label for="BackSettings" class="armor-label">Back (Norac)<span class="armor-icon">&#xE904;</span></label>
 				<input id="background_upload" type="file" accept="image/*" onchange="loadImage(this);"/>
 				<label for="background_upload" class="armor-label">Upload Background<span class="armor-icon">&#xF03E;</span></label>
 				<input id="contact-opener" type="button" onclick="displayForm(true)"/>
@@ -172,7 +172,9 @@
 				<div class="folder-content">
 					<div class="slide">
 						<button class="slide_toggle">Waist</button>
-						<div id="WaistColors" class="slide_content"></div>
+						<div id="BeltColors" class="slide_content"></div>
+						<div id="UnderBeltColors" class="slide_content"></div>
+						<div id="AccessoriesColors" class="slide_content"></div>
 					</div>
 					<div class="slide">
 						<button class="slide_toggle">Groin (Ven'cabur)</button>
@@ -207,24 +209,12 @@
 					</label>
 				</div>
 			</div>
-			<div id="AccessoriesOptions" class="folder">
+			<div id="BackOptions" class="folder">
 				<div class="folder-head">
-					<h2 class="slide-title">Accessories</h2>
-					<p class="option-name">Parts:</p>
+					<h2 class="slide-title">Back (Norac)</h2>
 				</div>
 				<div class="folder-content">
-					<div class="slide">
-						<button class="slide_toggle">Back (Norac)</button>
-						<div id="CapeColors" class="slide_content"></div>
-					</div>
-					<div class="slide">
-						<button class="slide_toggle">Kama</button>
-						<div id="KamaColors" class="slide_content"></div>
-					</div>
-					<div class="slide">
-						<button class="slide_toggle">Loin Cloth</button>
-						<div id="LoinClothColors" class="slide_content"></div>
-					</div>
+					<div class="slide" id="CapeColors"></div>
 				</div>
 				<div class="sync">
 					<label class="pseudo-checkbox">
