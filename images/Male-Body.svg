@@ -80,21 +80,29 @@
 	</g>
 	<g id="Lower-body_wrapper" transform="translate(291,1343)">
 		<title>Lower Body</title>
-		<g id="Ankles_Current"></g>
-		<g id="Shins_Current"></g>
-		<g id="Knees_Current"></g>
-		<g id="Thighs_Current"></g>
+		<g id="Ankles_Current">
+			<g id="LeftAnkleCurrent"></g>
+			<g id="RightAnkleCurrent"></g>
+		</g>
+		<g id="Shins_Current">
+		<g id="Left_Current"
+		<g id="Left_Current"
+		</g>
+		<g id="Knees_Current">
+		</g>
+		<g id="Thighs_Current">
+		</g>
 		<g id="Groin_Current"></g>
 	</g>
 	<g id="Upper-body_wrapper" transform="translate(190,557)">
 		<title>Upper Body</title>
-		<g id="Shoulders_Current">
-			<g id="LeftShoulder_Current"></g>
-			<g id="RightShoulder_Current"></g>
-		</g>
 		<g id="Biceps_Current">
 			<g id="LeftBiceps_Current"></g>
 			<g id="RightBiceps_Current"></g>
+		</g>
+		<g id="Shoulders_Current">
+			<g id="LeftShoulder_Current"></g>
+			<g id="RightShoulder_Current"></g>
 		</g>
 		<g id="Chest_Current"></g>
 		<g id="Elbows_Current">

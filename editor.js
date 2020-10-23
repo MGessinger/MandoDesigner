@@ -18,15 +18,16 @@ function loadSVG (name, onload, args) {
 			return;
 		var svg = this.responseXML.documentElement;
 		svg.setAttribute("id", name);
+
 		/* Assign classes based on ID components */
-		var withID = svg.querySelectorAll("[id]");
-		for (var i = 0; i < withID.length; i++) {
-			var id = withID[i].id;
-			if (id.includes("Option"))
-				withID[i].setAttribute("class", "option");
-			else if (id.includes("Toggle"))
-				withID[i].setAttribute("class", "toggle");
-		}
+		var options = svg.querySelectorAll("[id*=Option]");
+		for (var i = 0; i < options.length; i++)
+			options[i].setAttribute("class", "option");
+		var options = svg.querySelectorAll("[id*=Toggle]");
+		for (var i = 0; i < options.length; i++)
+			options[i].setAttribute("class", "toggle");
+
+		/* Store it in the Vault for later use */
 		var vault = find("vault");
 		vault.appendChild(svg);
 		var copy = svg.cloneNode(true);
@@ -130,7 +131,6 @@ function buildIOSettings (SVGNode, category, parent) {
 	SVGNode.addEventListener("click", function() {
 		redirectToRadio();
 		for (var i = 0; i < slides.length; i++) {
-			slides[i].classList.remove("selected");
 			if (slides[i].contains(p)) {
 				var but = slides[i].firstElementChild;
 				redirectClickTo(but)();
@@ -216,7 +216,11 @@ function buildVariableSettings (category, pieceName, variantName) {
 	var fullyQualifiedName = pieceName + "_" + variantName;
 	var identifier = makeIdentifier(pieceName);
 	var wrapper = find(identifier + "_Current");
+	if (!wrapper)
+		console.log("Wrapper: "+ identifier);
 	var ref = find(fullyQualifiedName);
+	if (!ref)
+		return console.log("Ref: " + fullyQualifiedName);
 	var n = ref.cloneNode(true);
 	wrapper.appendChild(n);
 
@@ -236,17 +240,20 @@ function onload () {
 		slide_toggles[i].addEventListener("click", function () {
 			var slide = this.parentNode;
 			slide.classList.toggle("selected");
-			var folder = slide.parentNode;
+			var folder = slide.parentNode.parentNode;
 			folder.classList.toggle("overview");
 		});
 	}
 }
 
-function openArmorSlide (category) {
+function openArmorFolder (category) {
 	var now = find(category + "Options");
 	var components = document.getElementsByClassName("folder");
 	for (var i = 0; i < components.length; i++)
 		components[i].className = "folder overview";
+	var slides = now.parentElement.getElementsByClassName("slide");
+	for (var i = 0; i < slides.length; i++)
+		slides[i].classList.remove("selected");
 	now.classList.add("selected");
 }
 
@@ -300,9 +307,17 @@ function setupMando (svg, sexSuffix) {
 	loadSVG("Upper-Armor_" + sexSuffix, function(svg) {
 		switchToArmorVariant("UpperArmor", "Chest", "Classic_" + sexSuffix)
 		var subgroups = ["Shoulder","Biceps","Gauntlets"];
-		for (var i = 0;  i < subgroups.length; i++) {
+		for (var i = 0; i < subgroups.length; i++) {
 			buildVariableSettings("UpperArmor", "Left-" + subgroups[i], sexSuffix);
 			buildVariableSettings("UpperArmor", "Right-" + subgroups[i], sexSuffix);
+		}
+	});
+	loadSVG("Lower-Armor_" + sexSuffix, function(svg) {
+		buildVariableSettings("LowerArmor", "Groin", sexSuffix);
+		var subgroups = ["Thigh", "Knee", "Shin", "Ankle"];
+		for (var i = 0; i < subgroups.length; i++) {
+			buildVariableSettings("LowerArmor", "Left-" + subgroups[i], sexSuffix);
+			buildVariableSettings("LowerArmor", "Right-" + subgroups[i], sexSuffix);
 		}
 	});
 	buildAllSettings(findLocal("Back"), "Accessories");

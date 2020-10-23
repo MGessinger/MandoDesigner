@@ -259,9 +259,12 @@ footer {
 }
 
 .settings-column {
+	display: flex;
+	flex-direction: column;
 	position: fixed;
 	height: 100%;
 	width: 20em;
+	max-width: 100%;
 	right: 0;
 	z-index: 1;
 	background: var(--mainColor);
@@ -278,9 +281,10 @@ footer {
 }
 
 .armor-types {
-	max-height: 10em;
-	margin: 1em;
+	max-height: 12em;
+	padding: 0 0.5em;
 	overflow-y: auto;
+	border-bottom: 1px solid var(--softColor);
 }
 
 .slide-title {
@@ -297,8 +301,9 @@ footer {
 
 .folder {
 	display: none;
-	font-size: small;
+	flex-direction: column;
 	height: 100%;
+	font-size: small;
 }
 
 .folder-head {
@@ -307,6 +312,7 @@ footer {
 
 .type-button {
 	width: 30%;
+	padding: 3%;
 	background: none;
 	border: none;
 }
@@ -344,6 +350,11 @@ footer {
 
 .overview .slide_toggle:before {
 	display: none;
+}
+
+.folder-content {
+	overflow-y: auto;
+	flex-grow: 1;
 }
 
 .slide {
@@ -468,12 +479,6 @@ footer {
 	appearance: none;
 }
 
-.sync {
-	position: absolute;
-	bottom: 0;
-	width: 100%;
-}
-
 .settings-collapsed {
 	width: 3em;
 	text-align: center;
@@ -486,6 +491,16 @@ footer {
 
 .settings-collapsed .color-wrapper {
 	padding: 0.25em 0;
+}
+
+.settings-collapsed .slider {
+	display: inline-block;
+	float: none;
+}
+
+.settings-collapsed .sync .pseudo-checkbox {
+	display: block;
+	padding: 1em 0;
 }
 
 .settings-collapsed .color-label,
@@ -501,12 +516,6 @@ footer {
 	display: block;
 }
 
-.settings-collapsed .slider {
-	display: inline-block;
-	float: none;
-}
-
-.settings-collapsed .sync .pseudo-checkbox {
-	display: block;
-	padding: 1em 0;
+.folder.selected {
+	display: flex;
 }
