@@ -24,7 +24,7 @@ html, body {
 	overflow: hidden;
 }
 
-.dark-mode {
+.dark_mode {
 	--mainColor: #222;
 	--softColor: #555;
 	--softLight: #AAA;
@@ -34,7 +34,7 @@ html, body {
 	--translucent: rgb(0,0,0,50%);
 }
 
-.light-mode {
+.light_mode {
 	--mainColor: #DDD;
 	--softColor: #AAA;
 	--softLight: #555;
@@ -90,16 +90,16 @@ p {
 	max-width: 75vw;
 }
 
-#parts-list {
+#parts_list {
 	height: 100%;
 	background: var(--mainColor);
 }
 
-#parts-list input {
+#parts_list input {
 	display: none;
 }
 
-.armor-label {
+.armor_label {
 	display: block;
 	position: relative;
 	width: 15em;
@@ -111,7 +111,7 @@ p {
 	transition: left 0.2s ease-out;
 }
 
-.armor-icon {
+.armor_icon {
 	height: 2em;
 	width: 2em;
 	float: right;
@@ -119,11 +119,11 @@ p {
 	text-align: center;
 }
 
-.armor-label:hover {
+.armor_label:hover {
 	left: 0;
 }
 
-:checked + .armor-label {
+:checked + .armor_label {
 	color: var(--mainColor);
 	background: var(--highlight);
 }
@@ -137,11 +137,14 @@ p {
 
 form {
 	position: fixed;
-	width: 33%;
-	top: 25%;
-	left: 33%;
-	background: var(--mainColor);
 	padding: 1em;
+	width: 33%;
+	min-width: 20em;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%,-50%);
+	background: var(--mainColor);
+	box-shadow: grey 0 0 5px;
 }
 
 legend {
@@ -175,11 +178,11 @@ textarea {
 	border-bottom-style: solid;
 }
 
-.narrow-input {
+.narrow_input {
 	width: 48%;
 }
 
-.wide-input,
+.wide_input,
 textarea {
 	width: 100%;
 	resize: vertical;
@@ -193,7 +196,7 @@ textarea {
 	border-radius: 0.5em;
 }
 
-.image-column {
+.image_column {
 	height: 100%;
 	padding: 0 3em;
 	background: var(--softColor) no-repeat center;
@@ -223,12 +226,12 @@ footer {
 	padding-bottom: 0.5em;
 }
 
-.toggle-sex {
+.toggle_sex {
 	opacity: 0;
 	position: absolute;
 }
 
-.label-sex {
+.label_sex {
 	display: inline-block;
 	width: 1.5em;
 	border: var(--softLight) solid 1px;
@@ -239,7 +242,7 @@ footer {
 	color: var(--highlight);
 }
 
-:checked + .label-sex {
+:checked + .label_sex {
 	background: var(--accent);
 }
 
@@ -258,7 +261,7 @@ footer {
 	text-decoration: none;
 }
 
-.settings-column {
+.settings_column {
 	display: flex;
 	flex-direction: column;
 	position: fixed;
@@ -270,7 +273,7 @@ footer {
 	background: var(--mainColor);
 }
 
-#settings-toggle {
+#settings_toggle {
 	position: absolute;
 	right: 0;
 	border: none;
@@ -280,19 +283,19 @@ footer {
 	color: var(--accent);
 }
 
-.armor-types {
+.armor_types {
 	max-height: 12em;
 	padding: 0 0.5em;
 	overflow-y: auto;
 	border-bottom: 1px solid var(--softColor);
 }
 
-.slide-title {
+.slide_title {
 	font-size: large;
 	padding-left: 1em;
 }
 
-.option-name {
+.option_name {
 	margin: 0;
 	padding: 0.5em 1.25em;
 	background: var(--softColor);
@@ -306,18 +309,18 @@ footer {
 	font-size: small;
 }
 
-.folder-head {
+.folder_head {
 	display: none;
 }
 
-.type-button {
+.type_button {
 	width: 30%;
 	padding: 3%;
 	background: none;
 	border: none;
 }
 
-.preview-icon {
+.preview_icon {
 	border: 1px var(--highlight) solid;
 	fill: white;
 	stroke: black;
@@ -352,7 +355,7 @@ footer {
 	display: none;
 }
 
-.folder-content {
+.folder_content {
 	overflow-y: auto;
 	flex-grow: 1;
 }
@@ -361,7 +364,7 @@ footer {
 	display: none;
 }
 
-.overview .folder-head {
+.overview .folder_head {
 	display: block;
 }
 
@@ -373,16 +376,16 @@ footer {
 	display: none;
 }
 
-.color-wrapper {
+.color_wrapper {
 	display: inline-block;
 	padding: 0.5em;
 }
 
-.synchronized .color-wrapper {
+.synchronized .color_wrapper {
 	display: none;
 }
 
-.color-picker {
+.color_picker {
 	height: 2em;
 	width: 2em;
 	margin: 0 0.5em;
@@ -390,11 +393,11 @@ footer {
 	border: 1px solid var(--softColor);
 }
 
-.color-picker:focus {
+.color_picker:focus {
 	border-color: var(--accent);
 }
 
-.color-label {
+.color_label {
 	display: inline-block;
 	margin-right: 0.5em;
 	line-height: 1em;
@@ -408,12 +411,12 @@ footer {
 	font-size: smaller;
 }
 
-.pseudo-checkbox {
+.pseudo_checkbox {
 	display: block;
 	padding: 1em;
 }
 
-.pseudo-label {
+.pseudo_label {
 	vertical-align: super;
 	color: var(--highlight);
 }
@@ -453,13 +456,13 @@ footer {
 	left: 50%;
 }
 
-.select-wrapper {
+.select_wrapper {
 	display: block;
 	position: relative;
 	margin: 0.5em 1em;
 }
 
-.select-wrapper::after {
+.select_wrapper::after {
 	content: "\E90A";
 	position: absolute;
 	right: 0;
@@ -467,7 +470,7 @@ footer {
 	font-size: larger;
 }
 
-.component-select {
+.component_select {
 	width: 100%;
 	color: inherit;
 	background: var(--mainColor);
@@ -479,36 +482,35 @@ footer {
 	appearance: none;
 }
 
-.settings-collapsed {
+.sync {
+	display: block;
+	padding: 1em;
+}
+
+.settings_collapsed {
 	width: 3em;
 	text-align: center;
 }
 
-.settings-collapsed #settings-toggle {
+.settings_collapsed #settings_toggle {
 	position: relative;
 	color: unset;
 }
 
-.settings-collapsed .color-wrapper {
+.settings_collapsed .color_wrapper {
 	padding: 0.25em 0;
 }
 
-.settings-collapsed .slider {
+.settings_collapsed .slider {
 	display: inline-block;
 	float: none;
 }
 
-.settings-collapsed .sync .pseudo-checkbox {
-	display: block;
+.settings_collapsed .sync {
 	padding: 1em 0;
 }
 
-.settings-collapsed .color-label,
-.settings-collapsed .option-name,
-.settings-collapsed .folder-head,
-.settings-collapsed .slide_toggle,
-.settings-collapsed .pseudo-checkbox,
-.settings-collapsed .select-wrapper {
+.settings_collapsed .hidden {
 	display: none;
 }
 

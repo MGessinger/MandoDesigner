@@ -48,6 +48,14 @@ function prettify (str) {
 	return shortName.replace(/-/g, " ");
 }
 
+function syncGroup (id) {
+	if (id.includes("Detail"))
+		return "Details";
+	else if (id.includes("Accent"))
+		return "Accents";
+	return "Primary";
+}
+
 function DOMNode (type, props, parent) {
 	var n = document.createElement(type);
 	for (var p in props)
@@ -64,20 +72,26 @@ function redirectClickTo(target) {
 }
 
 function ColorPicker (affectedObject, parent) {
+	var wrapper = DOMNode("div", {class: "color_wrapper"}, parent);
+
 	var buttonID = makeIdentifier(affectedObject.id) + "Color";
+	var cl = "color_picker " + syncGroup(affectedObject.id);
+	var b = DOMNode("button", {class: cl, id: buttonID}, wrapper);
 
-	var wrapper = DOMNode("div", {class: "color-wrapper"}, parent);
-
-	var b = DOMNode("button", {class: "color-picker", id: buttonID}, wrapper);
-	var l = DOMNode("label", {class: "color-label"}, wrapper);
-	l.setAttribute("for", buttonID);
+	var l = DOMNode("label", {class: "color_label hidden", for: buttonID}, wrapper);
 	var p = DOMNode("p", {class: "name"}, l);
 	p.innerText = prettify(affectedObject.id);
 	var c = DOMNode("p", {class: "color"}, l);
 
-	var setColor = Picker.attach(b, c, affectedObject);
-	setColor("#FFFFFF");
+	Picker.attach(b, c, affectedObject);
 	return b;
+}
+
+function toggleSlide () {
+	var slide = event.target.parentNode;
+	slide.classList.toggle("selected");
+	var folder = slide.parentNode.parentNode;
+	folder.classList.toggle("overview");
 }
 
 function toggleSubslide (subslide, SVGNode) {
@@ -92,6 +106,28 @@ function toggleSubslide (subslide, SVGNode) {
 	}
 }
 
+function synchronize (category, div) {
+	var folder_content = div.previousElementSibling;
+	var colorPickers = folder_content.getElementsByTagName("button");
+	var syncedPickers = div.getElementsByTagName("button");
+	if (event.target.checked) {
+		div.removeAttribute("class");
+		folder_content.classList.add("synchronized");
+	} else {
+		div.setAttribute("class", "synchronized");
+		folder_content.classList.remove("synchronized");
+		for (var i = 0; i < colorPickers.length; i++) {
+			var p = colorPickers[i];
+			if (p.classList.contains("Details"))
+				p.style.background = syncedPickers[1].style.background;
+			else if (p.classList.contains("Accents"))
+				p.style.background = syncedPickers[2].style.background;
+			else
+				p.style.background = syncedPickers[0].style.background;
+		}
+	}
+}
+
 function prepareParent (SVGNode, parent) {
 	var name = makeIdentifier(SVGNode.id);
 	var globalList = find(name + "Colors");
@@ -99,12 +135,12 @@ function prepareParent (SVGNode, parent) {
 	if (globalList) {
 		parent = globalList;
 		globalList.innerHTML = "";
-		var p = DOMNode("p", {class: "option-name"}, globalList);
+		var p = DOMNode("p", {class: "option_name hidden"}, globalList);
 		p.innerText = prettify(SVGNode.id) + " Options:";
 	}
 	if (SVGNode.getAttribute("class") === "toggle") {
-		var p = DOMNode("label", {class: "pseudo-checkbox"}, parent);
-		var labelText = DOMNode("span", {class: "pseudo-label"}, p);
+		var p = DOMNode("label", {class: "pseudo_checkbox hidden"}, parent);
+		var labelText = DOMNode("span", {class: "pseudo_label"}, p);
 		labelText.innerText = prettify(SVGNode.id);
 		var check = DOMNode("input", {type: "checkbox"}, p);
 		DOMNode("span", {class: "slider"}, p);
@@ -121,42 +157,51 @@ function prepareParent (SVGNode, parent) {
 function buildIOSettings (SVGNode, category, parent) {
 	var p = ColorPicker(SVGNode, parent);
 	var redirectToPicker = redirectClickTo(p);
+
+	var synced = find(category + syncGroup(SVGNode.id) + "Color");
+	Picker.attach(synced, null, SVGNode);
+
 	var radio = find(category + "Settings");
 	var redirectToRadio = redirectClickTo(radio);
 	if (radio.checked)
 		redirectToRadio();
 
 	var folder = find(category + "Options");
+	var folder_content = folder.getElementsByClassName("folder_content")[0];
 	var slides = folder.getElementsByClassName("slide");
 	SVGNode.addEventListener("click", function() {
 		redirectToRadio();
-		for (var i = 0; i < slides.length; i++) {
-			if (slides[i].contains(p)) {
-				var but = slides[i].firstElementChild;
-				redirectClickTo(but)();
+			for (var i = 0; i < slides.length; i++) {
+				if (slides[i].contains(p)) {
+					var but = slides[i].firstElementChild;
+					redirectClickTo(but)();
+				}
 			}
-		}
-		redirectToPicker();
+		if (folder_content.classList.contains("synchronized"))
+			redirectClickTo(synced)();
+		else
+			redirectToPicker();
 	});
 }
 
 function buildAddonSelect (options, category, parent) {
-	var wrapper = DOMNode("div", {class: "select-wrapper"}, parent);
-	var select = DOMNode("select", {class: "component-select"}, wrapper);
+	var wrapper = DOMNode("div", {class: "select_wrapper hidden"}, parent);
+	var select = DOMNode("select", {class: "component_select"}, wrapper);
 	var colors = [];
-	for (var i = 0; i < options.length; i++) {
+	var last = options.length-1;
+	for (var i = last; i >= 0; i--) {
 		var fullName = options[i].id;
 		var name = prettify(fullName);
 		options[i].setAttribute("class", "option");
 
 		/* Create an option in the select, and a hidable color list */
-		var opt = DOMNode("option", {class: "component-option", label: name, value: fullName}, select);
+		var opt = DOMNode("option", {class: "component_option", label: name, value: fullName}, select);
 		opt.innerText = name;
 
 		var san = makeIdentifier(fullName);
 		var col = DOMNode("div", {id: san + "SubColors"}, parent);
 		colors.push(col);
-		if (i === 0) {
+		if (i === last) {
 			options[i].style.visibility = "visible";
 		} else {
 			col.style.display = "none";
@@ -198,7 +243,7 @@ function buildAllSettings (SVGNode, category, parent) {
 		for (var i = 0; i < ch.length; i++) {
 			var className = ch[i].getAttribute("class");
 			if (className == "option")
-				options.unshift(ch[i]);
+				options.push(ch[i]);
 			else if (className == "toggle")
 				toggle.push(ch[i]);
 			else
@@ -229,17 +274,7 @@ function onload () {
 	setSex(femaleSelector.checked);
 	var useDarkMode = window.matchMedia("(prefers-color-scheme: dark)").matches;
 	setColorScheme(useDarkMode);
-	find("color-scheme-picker").checked = useDarkMode;
-
-	var slide_toggles = document.getElementsByClassName("slide_toggle");
-	for (var i = 0; i < slide_toggles.length; i++) {
-		slide_toggles[i].addEventListener("click", function () {
-			var slide = this.parentNode;
-			slide.classList.toggle("selected");
-			var folder = slide.parentNode.parentNode;
-			folder.classList.toggle("overview");
-		});
-	}
+	find("color_scheme_picker").checked = useDarkMode;
 }
 
 function openArmorFolder (category) {
@@ -264,7 +299,7 @@ function switchToArmorVariant (category, pieceName, variantName) {
 }
 
 function toggleOptions () {
-	find("settings").classList.toggle("settings-collapsed");
+	find("settings").classList.toggle("settings_collapsed");
 }
 
 function encodeSVG (svg) {
@@ -322,11 +357,11 @@ function setupMando (svg, sexSuffix) {
 }
 
 function setColorScheme (useDark) {
-	var className = "light-mode";
+	var className = "light_mode";
 	var bckName = "BackgroundLight";
 	var logoName = "#titleLight";
 	if (useDark) {
-		className = "dark-mode";
+		className = "dark_mode";
 		bckName = "BackgroundDark";
 		logoName = "#titleDark";
 	}
@@ -348,11 +383,11 @@ function setSex (female) {
 	if (female) {
 		body = "Female-Body";
 		sexSuffix = "F";
-		settings.className = "settings-column settings-collapsed female";
+		settings.className = "settings_column settings_collapsed female";
 	} else {
 		body = "Male-Body";
 		sexSuffix = "M";
-		settings.className = "settings-column settings-collapsed male";
+		settings.className = "settings_column settings_collapsed male";
 	}
 	loadSVG(body, setupMando, sexSuffix);
 }

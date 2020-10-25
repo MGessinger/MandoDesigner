@@ -16,217 +16,322 @@
 		<meta name="theme-color" content="#ffffff">
 		<title>Mando Creator</title>
 	</head>
-	<body class="light-mode" onload="onload()">
+	<body class="light_mode" onload="onload()">
 		<nav>
 			<svg class="title" viewBox="0 0 420 70"><use id="title" href="#title" /></svg>
-			<div id="parts-list">
-				<input type="radio" name="parts-list" id="HelmetSettings" value="Helmet (Buy'ce)" onclick="openArmorFolder('Helmet')" checked/>
-				<label for="HelmetSettings" class="armor-label">Helmet (Buy'ce)<span class="armor-icon">&#xE905;</span></label>
-				<input type="radio" name="parts-list" id="FlightSuitSettings" value="Flight Suit (Kute)" onclick="openArmorFolder('FlightSuit')"/>
-				<label for="FlightSuitSettings" class="armor-label">Flight Suit (Kute)<span class="armor-icon">&#xE907;</span></label>
-				<input type="radio" name="parts-list" id="UpperArmorSettings" value="Upper Body" onclick="openArmorFolder('UpperArmor')"/>
-				<label for="UpperArmorSettings" class="armor-label">Upper Body<span class="armor-icon">&#xE908;</span></label>
-				<input type="radio" name="parts-list" id="LowerArmorSettings" value="Lower Body" onclick="openArmorFolder('LowerArmor')"/>
-				<label for="LowerArmorSettings" class="armor-label">Lower Body<span class="armor-icon">&#xE906;</span></label>
-				<input type="radio" name="parts-list" id="BackSettings" value="Back" onclick="openArmorFolder('Back')"/>
-				<label for="BackSettings" class="armor-label">Back (Norac)<span class="armor-icon">&#xE904;</span></label>
+			<div id="parts_list">
+				<input type="radio" name="parts_list" id="HelmetSettings" value="Helmet (Buy'ce)" onclick="openArmorFolder('Helmet')" checked/>
+				<label for="HelmetSettings" class="armor_label">Helmet (Buy'ce)<span class="armor_icon">&#xE905;</span></label>
+				<input type="radio" name="parts_list" id="FlightSuitSettings" value="Flight Suit (Kute)" onclick="openArmorFolder('FlightSuit')"/>
+				<label for="FlightSuitSettings" class="armor_label">Flight Suit (Kute)<span class="armor_icon">&#xE907;</span></label>
+				<input type="radio" name="parts_list" id="UpperArmorSettings" value="Upper Body" onclick="openArmorFolder('UpperArmor')"/>
+				<label for="UpperArmorSettings" class="armor_label">Upper Body<span class="armor_icon">&#xE908;</span></label>
+				<input type="radio" name="parts_list" id="LowerArmorSettings" value="Lower Body" onclick="openArmorFolder('LowerArmor')"/>
+				<label for="LowerArmorSettings" class="armor_label">Lower Body<span class="armor_icon">&#xE906;</span></label>
+				<input type="radio" name="parts_list" id="BackSettings" value="Back" onclick="openArmorFolder('Back')"/>
+				<label for="BackSettings" class="armor_label">Back (Norac)<span class="armor_icon">&#xE904;</span></label>
 				<input id="background_upload" type="file" accept="image/*" onchange="loadImage(this);"/>
-				<label for="background_upload" class="armor-label">Upload Background<span class="armor-icon">&#xF03E;</span></label>
-				<input id="contact-opener" type="button" onclick="displayForm(true)"/>
-				<label for="contact-opener" class="armor-label">Contact Us<span class="armor-icon">&#xF0E0;</span></label>
-				<a class="armor-label download" id="download" download="Mando'ad.svg" href="#">Download<span class="armor-icon">&#xE903;</span></a>
+				<label for="background_upload" class="armor_label">Upload Background<span class="armor_icon">&#xF03E;</span></label>
+				<input id="contact_opener" type="button" onclick="displayForm(true)"/>
+				<label for="contact_opener" class="armor_label">Contact Us<span class="armor_icon">&#xF0E0;</span></label>
+				<a class="armor_label download" id="download" download="Mando'ad.svg" href="#">Download<span class="armor_icon">&#xE903;</span></a>
 			</div>
 			<form style="display:none" id="contact" action="mail.php" method="POST" target="_blank" onsubmit="displayForm(false, this)">
 				<legend>Contact Us<button type="button" class="close" onclick="displayForm(false)">X</button></legend>
 				<fieldset>
-					<input type="text" class="narrow-input" placeholder="Name" name="name"/>
-					<input type="text" class="narrow-input" placeholder="Email" name="email"/>
-					<input type="text" class="wide-input" placeholder="Subject (example: Jatne vurel)" name="subject" required/>
+					<input type="text" class="narrow_input" placeholder="Name" name="name"/>
+					<input type="text" class="narrow_input" placeholder="Email" name="email"/>
+					<input type="text" class="wide_input" placeholder="Subject (example: Jatne vurel)" name="subject" required/>
 					<textarea placeholder="Message (example: Gar Mando'ade jate, ijaat enteyo cuyir ori.)" name="message" required></textarea>
 					<button class="submit" type="submit">Ke baryci (Deploy)</button>
 				</fieldset>
 			</form>
 		</nav>
-		<div id="settings" class="settings-column settings-collapsed">
-			<button id="settings-toggle" title="Toggle Options menu" onclick="toggleOptions()">&#xE900;</button>
+		<div id="settings" class="settings_column settings_collapsed">
+			<button id="settings_toggle" title="Toggle Options menu" onclick="toggleOptions()">&#xE900;</button>
 			<div id="HelmetOptions" class="folder overview selected">
-				<div class="folder-head">
-					<h2 class="slide-title">Helmet (Buy'ce)</h2>
-					<p class="option-name">Style:</p>
-					<div id="HelmetTypes" class="armor-types">
-						<button class="type-button" onclick="switchToArmorVariant('Helmet','Helmet','Classic')">
-							<svg viewbox="0 50 700 750" class="preview-icon"><use href="#Helmet_Classic"/></svg>
+				<div class="folder_head hidden">
+					<h2 class="slide_title">Helmet (Buy'ce)</h2>
+					<p class="option_name">Style:</p>
+					<div id="HelmetTypes" class="armor_types">
+						<button class="type_button" onclick="switchToArmorVariant('Helmet','Helmet','Classic')">
+							<svg viewbox="0 50 700 750" class="preview_icon"><use href="#Helmet_Classic"/></svg>
 							Classic
 						</button>
-						<button class="type-button" onclick="switchToArmorVariant('Helmet','Helmet','Nite')">
-							<svg viewbox="0 50 700 750" class="preview-icon"><use href="#Helmet_Nite"/></svg>
+						<button class="type_button" onclick="switchToArmorVariant('Helmet','Helmet','Nite')">
+							<svg viewbox="0 50 700 750" class="preview_icon"><use href="#Helmet_Nite"/></svg>
 							Nite Owl
 						</button>
-						<button class="type-button" onclick="switchToArmorVariant('Helmet','Helmet','Stalker-Medium')">
-							<svg viewbox="0 50 700 750" class="preview-icon"><use href="#Helmet_Stalker-Medium"/></svg>
+						<button class="type_button" onclick="switchToArmorVariant('Helmet','Helmet','Stalker-Medium')">
+							<svg viewbox="0 50 700 750" class="preview_icon"><use href="#Helmet_Stalker-Medium"/></svg>
 							Stalker (M)
 						</button>
-						<button class="type-button" onclick="switchToArmorVariant('Helmet','Helmet','Stalker-Large')">
-							<svg viewbox="0 50 700 750" class="preview-icon"><use href="#Helmet_Stalker-Large"/></svg>
+						<button class="type_button" onclick="switchToArmorVariant('Helmet','Helmet','Stalker-Large')">
+							<svg viewbox="0 50 700 750" class="preview_icon"><use href="#Helmet_Stalker-Large"/></svg>
 							Stalker (L)
 						</button>
 					</div>
 				</div>
-				<div class="folder-content">
+				<div class="folder_content">
 					<div id="HelmetColors" class="slide"></div>
 					<div id="LeftEarcapColors" class="slide"></div>
 					<div id="RightEarcapColors" class="slide"></div>
 				</div>
-				<div class="sync">
-					<label class="pseudo-checkbox">
+				<div class="synchronized" onchange="synchronize('Helmet',this)">
+					<label class="sync">
 						Sync Colors
-						<input type="checkbox"/>
+						<input type="checkbox" autocomplete="off"/>
 						<span class="slider"></span>
 					</label>
+					<div class="color_wrapper">
+						<button id="HelmetPrimaryColor" class="color_picker"></button>
+						<label for="HelmetPrimaryColor" class="color_label hidden">
+							<p class="name">Primary</p>
+							<p class="color">&nbsp;</p>
+						</label>
+					</div
+					><div class="color_wrapper">
+						<button id="HelmetDetailsColor" class="color_picker"></button>
+						<label for="HelmetDetailColor" class="color_label hidden">
+							<p class="name">Details</p>
+							<p class="color">&nbsp;</p>
+						</label>
+					</div
+					><div class="color_wrapper">
+						<button id="HelmetAccentsColor" class="color_picker"></button>
+						<label for="HelmetAccentsColor" class="color_label hidden">
+							<p class="name">Accents</p>
+							<p class="color">&nbsp;</p>
+						</label>
+					</div>
 				</div>
 			</div>
 			<div id="UpperArmorOptions" class="folder overview">
-				<div class="folder-head">
-					<h2 class="slide-title">Upper Body</h2>
-					<p class="option-name">Style:</p>
-					<div id="UpperArmorTypes" class="armor-types male">
-						<button class="type-button" onclick="switchToArmorVariant('UpperArmor','Chest','Classic_M')">
-							<svg viewbox="100 -100 1200 1200" class="preview-icon"><use href="#Chest_Classic_M"/></svg>
+				<div class="folder_head hidden">
+					<h2 class="slide_title">Upper Body</h2>
+					<p class="option_name">Style:</p>
+					<div id="UpperArmorTypes" class="armor_types male">
+						<button class="type_button" onclick="switchToArmorVariant('UpperArmor','Chest','Classic_M')">
+							<svg viewbox="100 -100 1200 1200" class="preview_icon"><use href="#Chest_Classic_M"/></svg>
 							Classic
 						</button>
-						<button class="type-button" onclick="switchToArmorVariant('UpperArmor','Chest','Legacy_M')">
-							<svg viewbox="100 -100 1200 1200" class="preview-icon"><use href="#Chest_Legacy_M"/></svg>
+						<button class="type_button" onclick="switchToArmorVariant('UpperArmor','Chest','Legacy_M')">
+							<svg viewbox="100 -100 1200 1200" class="preview_icon"><use href="#Chest_Legacy_M"/></svg>
 							Legacy
 						</button>
 					</div>
-					<p class="option-name">Parts:</p>
+					<p class="option_name">Parts:</p>
 				</div>
-				<div class="folder-content">
+				<div class="folder_content">
 					<div class="slide">
-						<button class="slide_toggle">Neck (Ghet'bur)</button>
+						<button class="slide_toggle hidden" onclick="toggleSlide(this.parentNode)">Neck (Ghet'bur)</button>
 						<div id="NeckArmorColors" class="slide_content"></div>
 					</div>
 					<div class="slide">
-						<button class="slide_toggle">Chest (Hal'cabur)</button>
+						<button class="slide_toggle hidden" onclick="toggleSlide(this.parentNode)">Chest (Hal'cabur)</button>
 						<div id="RightChestColors" class="slide_content"></div>
 						<div id="LeftChestColors" class="slide_content"></div>
 					</div>
 					<div class="slide">
-						<button class="slide_toggle">Iron Heart (Kar'ta Beskar)</button>
+						<button class="slide_toggle hidden" onclick="toggleSlide(this.parentNode)">Iron Heart (Kar'ta Beskar)</button>
 						<div id="IronHeartColors" class="slide_content"></div>
 					</div>
 					<div class="slide">
-						<button class="slide_toggle">Abdomen (Shar'tas)</button>
+						<button class="slide_toggle hidden" onclick="toggleSlide(this.parentNode)">Abdomen (Shar'tas)</button>
 						<div id="AbdomenColors" class="slide_content"></div>
 					</div>
 					<div class="slide">
-						<button class="slide_toggle">Shoulders (Bes'mabur)</button>
+						<button class="slide_toggle hidden" onclick="toggleSlide(this.parentNode)">Shoulders (Bes'mabur)</button>
 						<div id="LeftShoulderColors" class="slide_content"></div>
 						<div id="RightShoulderColors" class="slide_content"></div>
 					</div>
 					<div class="slide">
-						<button class="slide_toggle">Biceps (Irud'cabur)</button>
+						<button class="slide_toggle hidden" onclick="toggleSlide(this.parentNode)">Biceps (Irud'cabur)</button>
 						<div id="RightBicepsColors" class="slide_content"></div>
 						<div id="LeftBicepsColors" class="slide_content"></div>
 					</div>
 					<div class="slide">
-						<button class="slide_toggle">Elbows</button>
+						<button class="slide_toggle hidden" onclick="toggleSlide(this.parentNode)">Elbows</button>
 						<div id="RightElbowColors" class="slide_content"></div>
 						<div id="LeftElbowColors" class="slide_content"></div>
 					</div>
 					<div class="slide">
-						<button class="slide_toggle">Gauntlets (Kom'rk)</button>
+						<button class="slide_toggle hidden" onclick="toggleSlide(this.parentNode)">Gauntlets (Kom'rk)</button>
 						<div id="RightGauntletsColors" class="slide_content"></div>
 						<div id="LeftGauntletsColors" class="slide_content"></div>
 					</div>
 				</div>
-				<div class="sync">
-					<label class="pseudo-checkbox">
+				<div class="synchronized" onchange="synchronize('UpperArmor',this)">
+					<label class="sync">
 						Sync Colors
-						<input type="checkbox"/>
+						<input type="checkbox" autocomplete="off"/>
 						<span class="slider"></span>
 					</label>
+					<div class="color_wrapper">
+						<button id="UpperArmorPrimaryColor" class="color_picker"></button>
+						<label for="UpperArmorPrimaryColor" class="color_label hidden">
+							<p class="name">Primary</p>
+							<p class="color">&nbsp;</p>
+						</label>
+					</div
+					><div class="color_wrapper">
+						<button id="UpperArmorDetailsColor" class="color_picker"></button>
+						<label for="UpperArmorDetailsColor" class="color_label hidden">
+							<p class="name">Details</p>
+							<p class="color">&nbsp;</p>
+						</label>
+					</div
+					><div class="color_wrapper">
+						<button id="UpperArmorAccentsColor" class="color_picker"></button>
+						<label for="UpperArmorAccentsColor" class="color_label hidden">
+							<p class="name">Accents</p>
+							<p class="color">&nbsp;</p>
+						</label>
+					</div>
 				</div>
 			</div>
 			<div id="FlightSuitOptions" class="folder">
-				<div class="folder-head">
-					<h2 class="slide-title">Flight Suit (Kute)</h2>
+				<div class="folder_head hidden">
+					<h2 class="slide_title">Flight Suit (Kute)</h2>
 				</div>
-				<div class="folder-content">
+				<div class="folder_content">
 					<div class="slide" id="GlovesColors"></div>
 					<div class="slide" id="SoftPartsColors"></div>
 				</div>
-				<div class="sync">
-					<label class="pseudo-checkbox">
+				<div class="synchronized" onchange="synchronize('FlightSuit',this)">
+					<label class="sync">
 						Sync Colors
-						<input type="checkbox"/>
+						<input type="checkbox" autocomplete="off"/>
 						<span class="slider"></span>
 					</label>
+					<div class="color_wrapper">
+						<button id="FlightSuitPrimaryColor" class="color_picker"></button>
+						<label for="FlightSuitPrimaryColor" class="color_label hidden">
+							<p class="name">Primary</p>
+							<p class="color">&nbsp;</p>
+						</label>
+					</div
+					><div class="color_wrapper">
+						<button id="FlightSuitDetailsColor" class="color_picker"></button>
+						<label for="FlightSuitDetailsColor" class="color_label hidden">
+							<p class="name">Details</p>
+							<p class="color">&nbsp;</p>
+						</label>
+					</div
+					><div class="color_wrapper">
+						<button id="FlightSuitAccentsColor" class="color_picker"></button>
+						<label for="FlightSuitAccentsColor" class="color_label hidden">
+							<p class="name">Accents</p>
+							<p class="color">&nbsp;</p>
+						</label>
+					</div>
 				</div>
 			</div>
 			<div id="LowerArmorOptions" class="folder">
-				<div class="folder-head">
-					<h2 class="slide-title">Lower Body</h2>
-					<p class="option-name">Parts:</p>
+				<div class="folder_head hidden">
+					<h2 class="slide_title">Lower Body</h2>
+					<p class="option_name">Parts:</p>
 				</div>
-				<div class="folder-content">
+				<div class="folder_content">
 					<div class="slide">
-						<button class="slide_toggle">Waist</button>
+						<button class="slide_toggle hidden" onclick="toggleSlide(this.parentNode)">Waist</button>
 						<div id="BeltColors" class="slide_content"></div>
 						<div id="UnderBeltColors" class="slide_content"></div>
 						<div id="AccessoriesColors" class="slide_content"></div>
 					</div>
 					<div class="slide">
-						<button class="slide_toggle">Groin (Ven'cabur)</button>
+						<button class="slide_toggle hidden" onclick="toggleSlide(this.parentNode)">Groin (Ven'cabur)</button>
 						<div id="GroinColors" class="slide_content"></div>
 					</div>
 					<div class="slide">
-						<button class="slide_toggle">Thighs (Motun'bur)</button>
+						<button class="slide_toggle hidden" onclick="toggleSlide(this.parentNode)">Thighs (Motun'bur)</button>
 						<div id="RightThighColors" class="slide_content"></div>
 						<div id="LeftThighColors" class="slide_content"></div>
 					</div>
 					<div class="slide">
-						<button class="slide_toggle">Knees (Bes'lovik)</button>
+						<button class="slide_toggle hidden" onclick="toggleSlide(this.parentNode)">Knees (Bes'lovik)</button>
 						<div id="RightKneeColors" class="slide_content"></div>
 						<div id="LeftKneeColors" class="slide_content"></div>
 					</div>
 					<div class="slide">
-						<button class="slide_toggle">Shins (Tadun'bur)</button>
+						<button class="slide_toggle hidden" onclick="toggleSlide(this.parentNode)">Shins (Tadun'bur)</button>
 						<div id="RightShinColors" class="slide_content"></div>
 						<div id="LeftShinColors" class="slide_content"></div>
 					</div>
 					<div class="slide">
-						<button class="slide_toggle">Ankles (Cetar'bur)</button>
+						<button class="slide_toggle hidden" onclick="toggleSlide(this.parentNode)">Ankles (Cetar'bur)</button>
 						<div id="RightAnkleColors" class="slide_content"></div>
 						<div id="LeftAnkleColors" class="slide_content"></div>
 					</div>
 				</div>
-				<div class="sync">
-					<label class="pseudo-checkbox">
+				<div class="synchronized" onchange="synchronize('LowerArmor',this)">
+					<label class="sync">
 						Sync Colors
-						<input type="checkbox"/>
+						<input type="checkbox" autocomplete="off"/>
 						<span class="slider"></span>
 					</label>
+					<div class="color_wrapper">
+						<button id="LowerArmorPrimaryColor" class="color_picker"></button>
+						<label for="LowerArmorPrimaryColor" class="color_label hidden">
+							<p class="name">Primary</p>
+							<p class="color">&nbsp;</p>
+						</label>
+					</div
+					><div class="color_wrapper">
+						<button id="LowerArmorDetailsColor" class="color_picker"></button>
+						<label for="LowerArmorDetailsColor" class="color_label hidden">
+							<p class="name">Details</p>
+							<p class="color">&nbsp;</p>
+						</label>
+					</div
+					><div class="color_wrapper">
+						<button id="LowerArmorAccentsColor" class="color_picker"></button>
+						<label for="LowerArmorAccentsColor" class="color_label hidden">
+							<p class="name">Accents</p>
+							<p class="color">&nbsp;</p>
+						</label>
+					</div>
 				</div>
 			</div>
 			<div id="BackOptions" class="folder">
-				<div class="folder-head">
-					<h2 class="slide-title">Back (Norac)</h2>
+				<div class="folder_head hidden">
+					<h2 class="slide_title">Back (Norac)</h2>
 				</div>
-				<div class="folder-content">
+				<div class="folder_content">
 					<div class="slide" id="CapeColors"></div>
 				</div>
-				<div class="sync">
-					<label class="pseudo-checkbox">
+				<div class="synchronized" onchange="synchronize('Back',this)">
+					<label class="sync">
 						Sync Colors
-						<input type="checkbox"/>
+						<input type="checkbox" autocomplete="off"/>
 						<span class="slider"></span>
 					</label>
+					<div class="color_wrapper">
+						<button id="BackPrimaryColor" class="color_picker"></button>
+						<label for="BackPrimaryColor" class="color_label hidden">
+							<p class="name">Primary</p>
+							<p class="color">&nbsp;</p>
+						</label>
+					</div
+					><div class="color_wrapper">
+						<button id="BackDetailsColor" class="color_picker"></button>
+						<label for="BackDetailsColor" class="color_label hidden">
+							<p class="name">Details</p>
+							<p class="color">&nbsp;</p>
+						</label>
+					</div
+					><div class="color_wrapper">
+						<button id="BackAccentsColor" class="color_picker"></button>
+						<label for="BackAccentsColor" class="color_label hidden">
+							<p class="name">Accents</p>
+							<p class="color">&nbsp;</p>
+						</label>
+					</div>
 				</div>
 			</div>
 		</div>
 		<div class="picker_wrapper" id="picker" style="display: none;">
-			<div>Right-click a swatch to save your color</div>
+			<div>Right_click a swatch to save your color</div>
 			<div class="picker_palette"></div>
 			<div class="picker_main">
 				<div class="picker_hue">
@@ -236,27 +341,27 @@
 					<div class="picker_selector"></div>
 				</div>
 			</div>
-			<input type="text" class="picker_editor" aria-label="Type a Color name or Hexadecimal code" />
+			<input type="text" class="picker_editor" aria_label="Type a Color name or Hexadecimal code" />
 			<button class="picker_done">Okay</button>
 			<canvas id="canvas" style="display:none;"></canvas>
 		</div>
-		<main id="editor" class="image-column"></main>
+		<main id="editor" class="image_column"></main>
 
 		<footer>
 			<div class="settings">
-				<input type="radio" name="sex" class="toggle-sex" id="male" checked onchange="setSex(false)">
-				<label for="male" class="label-sex">&#xe901;</label>
-				<input type="radio" name="sex" class="toggle-sex" id="female" onchange="setSex(true)">
-				<label for="female" class="label-sex">&#xe902;</label>
+				<input type="radio" name="sex" class="toggle_sex" id="male" checked onchange="setSex(false)">
+				<label for="male" class="label_sex">&#xe901;</label>
+				<input type="radio" name="sex" class="toggle_sex" id="female" onchange="setSex(true)">
+				<label for="female" class="label_sex">&#xe902;</label>
 			</div>
 			<p class="credits"><span>Designed &amp; Developed By <a class="credit" target="_blank" rel="noopener noreferrer">DesignDeviant</a> &amp; <a class="credit" href="https://github.com/MGessinger" target="_blank" rel="noopener noreferrer">Cin Vhetin</a></span>
-			<label style="font-size:smaller">
-				<span class="pseudo-label">LIGHT</span>
+			<label style="font_size:smaller">
+				<span class="pseudo_label">LIGHT</span>
 				<span style="display: inline-block">
-					<input type="checkbox" id="color-scheme-picker" onchange="setColorScheme(this.checked)"/>
+					<input type="checkbox" id="color_scheme_picker" onchange="setColorScheme(this.checked)"/>
 					<span class="slider"></span>
 				</span>
-				<span class="pseudo-label">DARK</span>
+				<span class="pseudo_label">DARK</span>
 			</label>
 			<span>Background photo created by <a class="credit" href="https://www.freepik.com/kjpargeter" rel="noopener noreferrer" target="_blank">kjpargeter</a></span></p>
 		</footer>

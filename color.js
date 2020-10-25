@@ -187,7 +187,8 @@ var Picker = new function() {
 				DOM.parent = null;
 		});
 		on(window, "focusin", function (event) {
-			if (!(wrapper.parentNode.contains(event.target)))
+			var p = DOM.parent;
+			if (p && !(p.contains(event.target)))
 				DOM.parent = null;
 		});
 
@@ -237,16 +238,20 @@ var Picker = new function() {
 	var DOM = new PickerDOM();
 	var onChange = [];
 	this.attach = function (button, color, affectedObject) {
-		var input = function (hex) {
+		if (!color) {
+			var wrapper = button.parentNode;
+			color = wrapper.getElementsByClassName("color")[0];
+		}
+		function input (hex) {
 			button.style.background = hex;
 			affectedObject.style.fill = hex;
-			color.innerHTML = hex;
+			color.innerText = hex;
 		}
 		on(button, "click", function(event) {
 			onChange.push(input);
 			_setColor(this.style.backgroundColor);
 			DOM.parent = this;
 		});
-		return input;
+		input("#FFFFFF");
 	}
 }()
