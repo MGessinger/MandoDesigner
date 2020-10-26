@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Generator: Adobe Illustrator 24.3.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
-<svg version="1.1" id="Upper-Armor" xmlns:serif="http://www.serif.com/"
+<!-- Generator: Adobe Illustrator 25.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns:serif="http://www.serif.com/"
 	 xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 1400 1400"
 	 style="enable-background:new 0 0 1400 1400;" xml:space="preserve">
-<g id="Biceps_M_Toggle">
+<g id="Biceps_M_ToggleOff">
 	<g id="Left-Biceps_M">
 		<g id="Basic_Bicep_Left_M_Option">
 			<path class="st0" d="M1184.1,402.2c-1.3-3.8-4.1-6.8-7.7-8.6c-3.6-1.7-7.7-1.9-11.5-0.6c-42.1,14.9-163.2,57.6-163.2,57.6
@@ -32,7 +32,7 @@
 		<g id="Abdomen_Classic_M">
 			<path id="Abdomen-Plate_Classic_M" class="st0" d="M556.3,846.1l-77.6-32.2l-7-71.9l60.6-19.8l51.3-102.8l116-37.2l116,37.2
 				l51.3,102.8l60.6,19.8l-7,71.9l-77.6,32.2l-143.4-3.7L556.3,846.1z"/>
-			<path id="Trauma-Plate_Abdomen_Classic_M_Toggle" class="st0" d="M803.5,633.7l-103.8-33.2L596,633.7L548,730
+			<path id="Trauma-Plate_Abdomen_Classic_M_ToggleOff" class="st0" d="M803.5,633.7l-103.8-33.2L596,633.7L548,730
 				c-2.1,4.2-5.7,7.3-10.2,8.8l-47.4,15.5l4.6,47.6l64.5,26.8l139.7-3.6c0.3,0,0.6,0,0.9,0l139.7,3.6l64.5-26.8l4.6-47.6l-47.4-15.5
 				c-4.4-1.4-8.1-4.6-10.2-8.8L803.5,633.7z"/>
 		</g>
@@ -46,13 +46,13 @@
 			<g id="Left-Chest_Classic_M">
 				<path id="Chest_Left_Classic_M" class="st0" d="M960.1,270.4l-237.9,28.5l-2.3,22.3l30.3,28.5l-2.3,120.2l-26.8,26v39.6
 					l102.6,28.5l40.8,92.9l45.5,37.2l50.1-255.2l26.8-13.6L960.1,270.4z"/>
-				<path id="Trauma-Plating_Left-Chest_Toggle" class="st0" d="M737.9,314.7l0.1-0.7l208.8-25l22,127l-23.1,11.7l-46.3,235.8
+				<path id="Trauma-Plating_Left-Chest_ToggleOff" class="st0" d="M737.9,314.7l0.1-0.7l208.8-25l22,127l-23.1,11.7l-46.3,235.8
 					l-20.7-16.9L836.3,550l-98-27.2V503l26.7-25.9l2.6-134.5L737.9,314.7z"/>
 			</g>
 			<g id="Right-Chest_Classic_M">
 				<path id="Chest_Right_Classic_M" class="st0" d="M439.9,270.4l237.9,28.5l2.3,22.3l-30.3,28.5l2.3,120.2l26.8,26v39.6
 					l-102.6,28.5L535.6,657l-45.5,37.2l-50.1-255.2l-26.8-13.6L439.9,270.4z"/>
-				<path id="Trauma-Plating_Right-Chest_Toggle" class="st0" d="M662.6,314.7l-0.1-0.7l-208.8-25l-22,127l23.1,11.7l46.3,235.8
+				<path id="Trauma-Plating_Right-Chest_ToggleOff" class="st0" d="M662.6,314.7l-0.1-0.7l-208.8-25l-22,127l23.1,11.7l46.3,235.8
 					l20.7-16.9l42.4-96.5l98-27.2V503l-26.7-25.9l-2.6-134.5L662.6,314.7z"/>
 			</g>
 		</g>
@@ -60,7 +60,7 @@
 			<path id="Neck-Plate_Classic_M" class="st0" d="M588,255.5l-148.1-16.1l-26.8-82.2l122.5-36.7c0,0,16.2,27.5,28,37.2
 				c12.1,9.9,28.2,21.6,43.3,28.2c16.5,7.2,36.7,12.1,55.9,15.2c21.6,3.5,53.1,3.5,74.6,0c19.2-3.1,41.4-8,57.9-15.2
 				c15.1-6.6,29.1-18.3,41.2-28.2c11.8-9.7,28-37.2,28-37.2l122.5,36.7l-26.8,82.2L812,255.5l-112,14.9L588,255.5z"/>
-			<path id="Trauma-Plates_Neck_Classic_M_Toggle" class="st0" d="M678.7,254.6l-90.6-12l-136.3-25.9l-16-49.2l87.2-26.1
+			<path id="Trauma-Plates_Neck_Classic_M_ToggleOff" class="st0" d="M678.7,254.6l-90.6-12l-136.3-25.9l-16-49.2l87.2-26.1
 				c0,0,25.6,27,37.4,36.7c12.1,9.9,31.5,18.2,46.6,24.9c16.5,7.2,36.7,12.1,55.9,15.2c4.9,0.8,10.3,1.4,16,1.8V254.6z M721.3,219.9
 				c5.7-0.4,11.1-1.1,16-1.8c19.2-3.1,41.4-8,57.9-15.2c15.1-6.6,34.5-16.9,46.5-26.9c11.8-9.7,30.5-36.1,30.5-36.1l92,27.6
 				l-16.1,49.5L812,242.5l-90.6,12V219.9z"/>
@@ -76,7 +76,7 @@
 				l6.8,79.9l310.3,45.5l309.1-45.5l6.8-79.9L820.3,633.4z"/>
 			<path id="Plate-1_Upper-Armor_Legacy_M" class="st1" d="M825.4,551.8l-17-15.2l-108.5-15.2l-108.5,15.2l-17,15.2H369.9l7,54.5
 				l323.6,48.3l322.3-48.3l7-54.5H825.4z"/>
-			<g id="Trauma-Plates_Abdomen_Legacy_M_Toggle">
+			<g id="Trauma-Plates_Abdomen_Legacy_M_ToggleOff">
 				<path id="Trauma-Plate-4_Abdomen_Legacy_M_Toggle" class="st1" d="M700.5,803.8L982.2,761l-4.3,53.8l-277.5,43.6l-278.6-43.6
 					l-4.3-53.8L700.5,803.8z"/>
 				<path id="Trauma-Plate-3_Abdomen_Legacy_M_Toggle" class="st1" d="M700.6,730.2L992,687.3l-4.9,59.3l-286.6,43.6l-287.8-43.6
@@ -91,13 +91,13 @@
 			<g id="Left-Chest_Legacy_M">
 				<path id="Chest_Left_Legacy_M" class="st0" d="M700,295.2v234.3l107,12.7l17.1,12.9h205.6l15.4-9.5L1052,405l-53.3-144.9
 					L700,295.2z"/>
-				<path id="Trauma-Plating_Left-Chest_Toggle1" serif:id="Trauma-Plating_Left-Chest_Toggle" class="st0" d="M986.2,288.8
+				<path id="Trauma-Plating_Left-Chest_ToggleOff1" serif:id="Trauma-Plating_Left-Chest_ToggleOff" class="st0" d="M986.2,288.8
 					l41,118.9l-6.7,123.8l-188.3,1.3l-25.3-35h-89.5l30.1-27.9l2.3-120.2l-30.3-28.5L986.2,288.8z"/>
 			</g>
 			<g id="Right-Chest_Legacy_M">
 				<path id="Chest_Right_Legacy_M" class="st0" d="M699.7,295.2v234.3l-107,12.7l-17.1,12.9H370l-15.4-9.5L347.7,405L401,260.1
 					L699.7,295.2z"/>
-				<path id="Trauma-Plating_Right-Chest_Toggle1" serif:id="Trauma-Plating_Right-Chest_Toggle" class="st0" d="M413.5,288.8
+				<path id="Trauma-Plating_Right-Chest_ToggleOff1" serif:id="Trauma-Plating_Right-Chest_ToggleOff" class="st0" d="M413.5,288.8
 					l-41,118.9l6.7,123.8l188.3,1.3l25.3-35h89.5l-30.1-27.9l-2.3-120.2l30.3-28.5L413.5,288.8z"/>
 			</g>
 		</g>
@@ -111,7 +111,7 @@
 			<path id="Neck-Plate_Legacy_M" class="st0" d="M586.5,281.5l-185.8-21.4l14.8-102.9L538,120.5c0,0,16.2,27.5,28,37.2
 				c12.1,9.9,28.2,21.6,43.3,28.2c16.5,7.2,36.6,12.1,55.9,15.2c21.6,3.5,53.1,3.5,74.6,0c19.2-3.1,41.4-8,57.9-15.2
 				c15.1-6.6,29.1-18.3,41.2-28.2c11.8-9.7,28-37.2,28-37.2l122.5,36.7l9.9,102.9L818.7,281l-118.1,14.2L586.5,281.5z"/>
-			<path id="Trauma-Plates_Neck_Legacy_M_Toggle" class="st0" d="M682.3,269.1l-95.7-11.5L408.5,233l7.1-49.1L522,147.1
+			<path id="Trauma-Plates_Neck_Legacy_M_ToggleOff" class="st0" d="M682.3,269.1l-95.7-11.5L408.5,233l7.1-49.1L522,147.1
 				c0,0,32.2,27.5,44,37.2c12.1,9.9,28.2,21.6,43.3,28.2c16.5,7.2,36.6,12.1,55.9,15.2c5.2,0.9,11.1,1.5,17.2,1.9V269.1z
 				 M720.5,229.8c6.9-0.4,13.4-1.1,19.2-2.1c19.2-3.1,41.4-8,57.9-15.2c15.1-6.6,29.1-18.3,41.2-28.2c11.8-9.7,42.7-37.2,42.7-37.2
 				l107.8,36.7l5.1,52.3l-175.7,20.9l-98.2,11.8V229.8z"/>

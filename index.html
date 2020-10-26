@@ -49,8 +49,8 @@
 		</nav>
 		<div id="settings" class="settings_column settings_collapsed">
 			<button id="settings_toggle" title="Toggle Options menu" onclick="toggleOptions()">&#xE900;</button>
-			<div id="HelmetOptions" class="folder overview selected">
-				<div class="folder_head hidden">
+			<div id="HelmetOptions" class="folder selected">
+				<div class="hidden">
 					<h2 class="slide_title">Helmet (Buy'ce)</h2>
 					<p class="option_name">Style:</p>
 					<div id="HelmetTypes" class="armor_types">
@@ -73,11 +73,12 @@
 					</div>
 				</div>
 				<div class="folder_content">
-					<div id="HelmetColors" class="slide"></div>
-					<div id="LeftEarcapColors" class="slide"></div>
-					<div id="RightEarcapColors" class="slide"></div>
+					<div id="HelmetColors" class="slide_content"></div>
+					<div id="LeftEarcapColors" class="slide_content"></div>
+					<div id="RightEarcapColors" class="slide_content"></div>
 				</div>
 				<div class="synchronized" onchange="synchronize('Helmet',this)">
+					<div class="separator"></div>
 					<label class="sync">
 						Sync Colors
 						<input type="checkbox" autocomplete="off"/>
@@ -124,44 +125,85 @@
 				</div>
 				<div class="folder_content">
 					<div class="slide">
-						<button class="slide_toggle hidden" onclick="toggleSlide(this.parentNode)">Neck (Ghet'bur)</button>
+						<button class="slide_toggle hidden" onclick="toggleSlide(this.parentNode)">
+							<div class="toggle_text">
+								<p class="parent_title">Upper Body</p>
+								<p>Neck (Ghet'bur)</p>
+							</div>
+						</button>
 						<div id="NeckArmorColors" class="slide_content"></div>
 					</div>
 					<div class="slide">
-						<button class="slide_toggle hidden" onclick="toggleSlide(this.parentNode)">Chest (Hal'cabur)</button>
+						<button class="slide_toggle hidden" onclick="toggleSlide(this.parentNode)">
+							<div class="toggle_text">
+								<p class="parent_title">Upper Body</p>
+								<p>Chest (Hal'cabur)</p>
+							</div>
+						</button>
 						<div id="RightChestColors" class="slide_content"></div>
 						<div id="LeftChestColors" class="slide_content"></div>
 					</div>
 					<div class="slide">
-						<button class="slide_toggle hidden" onclick="toggleSlide(this.parentNode)">Iron Heart (Kar'ta Beskar)</button>
+						<button class="slide_toggle hidden" onclick="toggleSlide(this.parentNode)">
+							<div class="toggle_text">
+								<p class="parent_title">Upper Body</p>
+								<p>Iron Heart (Kar'ta Beskar)</p>
+							</div>
+						</button>
 						<div id="IronHeartColors" class="slide_content"></div>
 					</div>
 					<div class="slide">
-						<button class="slide_toggle hidden" onclick="toggleSlide(this.parentNode)">Abdomen (Shar'tas)</button>
+						<button class="slide_toggle hidden" onclick="toggleSlide(this.parentNode)">
+							<div class="toggle_text">
+								<p class="parent_title">Upper Body</p>
+								<p>Abdomen (Shar'tas)</p>
+							</div>
+						</button>
 						<div id="AbdomenColors" class="slide_content"></div>
 					</div>
 					<div class="slide">
-						<button class="slide_toggle hidden" onclick="toggleSlide(this.parentNode)">Shoulders (Bes'mabur)</button>
+						<button class="slide_toggle hidden" onclick="toggleSlide(this.parentNode)">
+							<div class="toggle_text">
+								<p class="parent_title">Upper Body</p>
+								<p>Shoulders (Bes'mabur)</p>
+							</div>
+						</button>
 						<div id="LeftShoulderColors" class="slide_content"></div>
 						<div id="RightShoulderColors" class="slide_content"></div>
 					</div>
 					<div class="slide">
-						<button class="slide_toggle hidden" onclick="toggleSlide(this.parentNode)">Biceps (Irud'cabur)</button>
+						<button class="slide_toggle hidden" onclick="toggleSlide(this.parentNode)">
+							<div class="toggle_text">
+								<p class="parent_title">Upper Body</p>
+								<p>Biceps (Irud'cabur)</p>
+							</div>
+						</button>
 						<div id="RightBicepsColors" class="slide_content"></div>
 						<div id="LeftBicepsColors" class="slide_content"></div>
 					</div>
 					<div class="slide">
-						<button class="slide_toggle hidden" onclick="toggleSlide(this.parentNode)">Elbows</button>
+						<button class="slide_toggle hidden" onclick="toggleSlide(this.parentNode)">
+							<div class="toggle_text">
+								<p class="parent_title">Upper Body</p>
+								<p>Elbow</p>
+							</div>
+						</button>
 						<div id="RightElbowColors" class="slide_content"></div>
 						<div id="LeftElbowColors" class="slide_content"></div>
 					</div>
 					<div class="slide">
-						<button class="slide_toggle hidden" onclick="toggleSlide(this.parentNode)">Gauntlets (Kom'rk)</button>
+						<button class="slide_toggle hidden" onclick="toggleSlide(this.parentNode)">
+							<div class="toggle_text">
+								<p class="parent_title">Upper Body</p>
+								<p>Gauntlets (Kom'rk)</p>
+							</div>
+						</button>
 						<div id="RightGauntletsColors" class="slide_content"></div>
 						<div id="LeftGauntletsColors" class="slide_content"></div>
 					</div>
 				</div>
 				<div class="synchronized" onchange="synchronize('UpperArmor',this)">
+					<div class="separator"></div>
 					<label class="sync">
 						Sync Colors
 						<input type="checkbox" autocomplete="off"/>
@@ -191,14 +233,15 @@
 				</div>
 			</div>
 			<div id="FlightSuitOptions" class="folder">
-				<div class="folder_head hidden">
+				<div class="hidden">
 					<h2 class="slide_title">Flight Suit (Kute)</h2>
 				</div>
 				<div class="folder_content">
-					<div class="slide" id="GlovesColors"></div>
-					<div class="slide" id="SoftPartsColors"></div>
+					<div class="slide_content" id="GlovesColors"></div>
+					<div class="slide_content" id="SoftPartsColors"></div>
 				</div>
 				<div class="synchronized" onchange="synchronize('FlightSuit',this)">
+					<div class="separator"></div>
 					<label class="sync">
 						Sync Colors
 						<input type="checkbox" autocomplete="off"/>
@@ -227,44 +270,75 @@
 					</div>
 				</div>
 			</div>
-			<div id="LowerArmorOptions" class="folder">
+			<div id="LowerArmorOptions" class="folder overview">
 				<div class="folder_head hidden">
 					<h2 class="slide_title">Lower Body</h2>
 					<p class="option_name">Parts:</p>
 				</div>
 				<div class="folder_content">
 					<div class="slide">
-						<button class="slide_toggle hidden" onclick="toggleSlide(this.parentNode)">Waist</button>
+						<button class="slide_toggle hidden" onclick="toggleSlide(this.parentNode)">
+							<div class="toggle_text">
+								<p class="parent_title">Upper Body</p>
+								<p>Waist</p>
+							</div>
+						</button>
 						<div id="BeltColors" class="slide_content"></div>
 						<div id="UnderBeltColors" class="slide_content"></div>
 						<div id="AccessoriesColors" class="slide_content"></div>
 					</div>
 					<div class="slide">
-						<button class="slide_toggle hidden" onclick="toggleSlide(this.parentNode)">Groin (Ven'cabur)</button>
+						<button class="slide_toggle hidden" onclick="toggleSlide(this.parentNode)">
+							<div class="toggle_text">
+								<p class="parent_title">Upper Body</p>
+								<p>Groin (Ven'cabur)</p>
+							</div>
+						</button>
 						<div id="GroinColors" class="slide_content"></div>
 					</div>
 					<div class="slide">
-						<button class="slide_toggle hidden" onclick="toggleSlide(this.parentNode)">Thighs (Motun'bur)</button>
+						<button class="slide_toggle hidden" onclick="toggleSlide(this.parentNode)">
+							<div class="toggle_text">
+								<p class="parent_title">Upper Body</p>
+								<p>Thighs (Motun'bur)</p>
+							</div>
+						</button>
 						<div id="RightThighColors" class="slide_content"></div>
 						<div id="LeftThighColors" class="slide_content"></div>
 					</div>
 					<div class="slide">
-						<button class="slide_toggle hidden" onclick="toggleSlide(this.parentNode)">Knees (Bes'lovik)</button>
+						<button class="slide_toggle hidden" onclick="toggleSlide(this.parentNode)">
+							<div class="toggle_text">
+								<p class="parent_title">Upper Body</p>
+								<p>Knees (Bes'lovik)</p>
+							</div>
+						</button>
 						<div id="RightKneeColors" class="slide_content"></div>
 						<div id="LeftKneeColors" class="slide_content"></div>
 					</div>
 					<div class="slide">
-						<button class="slide_toggle hidden" onclick="toggleSlide(this.parentNode)">Shins (Tadun'bur)</button>
+						<button class="slide_toggle hidden" onclick="toggleSlide(this.parentNode)">
+							<div class="toggle_text">
+								<p class="parent_title">Upper Body</p>
+								<p>Shins (Tadun'bur)</p>
+							</div>
+						</button>
 						<div id="RightShinColors" class="slide_content"></div>
 						<div id="LeftShinColors" class="slide_content"></div>
 					</div>
 					<div class="slide">
-						<button class="slide_toggle hidden" onclick="toggleSlide(this.parentNode)">Ankles (Cetar'bur)</button>
+						<button class="slide_toggle hidden" onclick="toggleSlide(this.parentNode)">
+							<div class="toggle_text">
+								<p class="parent_title">Upper Body</p>
+								<p>Ankles (Cetar'bur)</p>
+							</div>
+						</button>
 						<div id="RightAnkleColors" class="slide_content"></div>
 						<div id="LeftAnkleColors" class="slide_content"></div>
 					</div>
 				</div>
 				<div class="synchronized" onchange="synchronize('LowerArmor',this)">
+					<div class="separator"></div>
 					<label class="sync">
 						Sync Colors
 						<input type="checkbox" autocomplete="off"/>
@@ -294,13 +368,14 @@
 				</div>
 			</div>
 			<div id="BackOptions" class="folder">
-				<div class="folder_head hidden">
+				<div class="hidden">
 					<h2 class="slide_title">Back (Norac)</h2>
 				</div>
 				<div class="folder_content">
-					<div class="slide" id="CapeColors"></div>
+					<div class="slide_content" id="CapeColors"></div>
 				</div>
 				<div class="synchronized" onchange="synchronize('Back',this)">
+					<div class="separator"></div>
 					<label class="sync">
 						Sync Colors
 						<input type="checkbox" autocomplete="off"/>

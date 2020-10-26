@@ -87,8 +87,7 @@ function ColorPicker (affectedObject, parent) {
 	return b;
 }
 
-function toggleSlide () {
-	var slide = event.target.parentNode;
+function toggleSlide (slide) {
 	slide.classList.toggle("selected");
 	var folder = slide.parentNode.parentNode;
 	folder.classList.toggle("overview");
@@ -111,7 +110,7 @@ function synchronize (category, div) {
 	var colorPickers = folder_content.getElementsByClassName("color_picker");
 	var syncedPickers = div.getElementsByTagName("button");
 	if (event.target.checked) {
-		div.removeAttribute("class");
+		div.setAttribute("class", "slide_content");
 		folder_content.classList.add("synchronized");
 	} else {
 		div.setAttribute("class", "synchronized");
@@ -139,6 +138,8 @@ function prepareParent (SVGNode, parent) {
 		p.innerText = prettify(SVGNode.id) + " Options:";
 	}
 	if (SVGNode.getAttribute("class") === "toggle") {
+		if (parent.children.length > 1) // 1 for option-name built before
+			DOMNode("p", {class: "separator"}, parent);
 		var p = DOMNode("label", {class: "pseudo_checkbox hidden"}, parent);
 		var labelText = DOMNode("span", {class: "pseudo_label"}, p);
 		labelText.innerText = prettify(SVGNode.id);
@@ -281,10 +282,7 @@ function openArmorFolder (category) {
 	var now = find(category + "Options");
 	var components = document.getElementsByClassName("folder");
 	for (var i = 0; i < components.length; i++)
-		components[i].className = "folder overview";
-	var slides = now.parentElement.getElementsByClassName("slide");
-	for (var i = 0; i < slides.length; i++)
-		slides[i].classList.remove("selected");
+		components[i].classList.remove("selected");
 	now.classList.add("selected");
 }
 
