@@ -256,6 +256,10 @@ footer {
 	font-size: small;
 }
 
+.credits span {
+	flex: 1;
+}
+
 .credit {
 	color: var(--accent);
 	text-decoration: none;

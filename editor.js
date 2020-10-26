@@ -108,7 +108,7 @@ function toggleSubslide (subslide, SVGNode) {
 
 function synchronize (category, div) {
 	var folder_content = div.previousElementSibling;
-	var colorPickers = folder_content.getElementsByTagName("button");
+	var colorPickers = folder_content.getElementsByClassName("color_picker");
 	var syncedPickers = div.getElementsByTagName("button");
 	if (event.target.checked) {
 		div.removeAttribute("class");
