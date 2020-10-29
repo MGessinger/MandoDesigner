@@ -36,16 +36,6 @@
 				<label for="contact_opener" class="armor_label">Contact Us<span class="armor_icon">&#xF0E0;</span></label>
 				<a class="armor_label download" id="download" download="Mando'ad.svg" href="#">Download<span class="armor_icon">&#xE903;</span></a>
 			</div>
-			<form style="display:none" id="contact" action="mail.php" method="POST" target="_blank" onsubmit="displayForm(false, this)">
-				<legend>Contact Us<button type="button" class="close" onclick="displayForm(false)">X</button></legend>
-				<fieldset>
-					<input type="text" class="narrow_input" placeholder="Name" name="name"/>
-					<input type="text" class="narrow_input" placeholder="Email" name="email"/>
-					<input type="text" class="wide_input" placeholder="Subject (example: Jatne vurel)" name="subject" required/>
-					<textarea placeholder="Message (example: Gar Mando'ade jate, ijaat enteyo cuyir ori.)" name="message" required></textarea>
-					<button class="submit" type="submit">Ke baryci (Deploy)</button>
-				</fieldset>
-			</form>
 		</nav>
 		<div id="settings" class="settings_column settings_collapsed">
 			<button id="settings_toggle" title="Toggle Options menu" onclick="toggleOptions()">&#xE900;</button>
@@ -222,13 +212,6 @@
 							<p class="name">Secondary</p>
 							<p class="color">&nbsp;</p>
 						</label>
-					</div
-					><div class="color_wrapper">
-						<button id="UpperArmorAccentsColor" class="color_picker"></button>
-						<label for="UpperArmorAccentsColor" class="color_label hidden">
-							<p class="name">Accents</p>
-							<p class="color">&nbsp;</p>
-						</label>
 					</div>
 				</div>
 			</div>
@@ -258,13 +241,6 @@
 						<button id="FlightSuitSecondaryColor" class="color_picker"></button>
 						<label for="FlightSuitSecondaryColor" class="color_label hidden">
 							<p class="name">Secondary</p>
-							<p class="color">&nbsp;</p>
-						</label>
-					</div
-					><div class="color_wrapper">
-						<button id="FlightSuitAccentsColor" class="color_picker"></button>
-						<label for="FlightSuitAccentsColor" class="color_label hidden">
-							<p class="name">Accents</p>
 							<p class="color">&nbsp;</p>
 						</label>
 					</div>
@@ -357,13 +333,6 @@
 							<p class="name">Secondary</p>
 							<p class="color">&nbsp;</p>
 						</label>
-					</div
-					><div class="color_wrapper">
-						<button id="LowerArmorAccentsColor" class="color_picker"></button>
-						<label for="LowerArmorAccentsColor" class="color_label hidden">
-							<p class="name">Accents</p>
-							<p class="color">&nbsp;</p>
-						</label>
 					</div>
 				</div>
 			</div>
@@ -373,35 +342,6 @@
 				</div>
 				<div class="folder_content">
 					<div class="slide_content" id="CapeColors"></div>
-				</div>
-				<div class="synchronized" onchange="synchronize('Back',this)">
-					<div class="separator"></div>
-					<label class="sync">
-						Sync Colors
-						<input type="checkbox" autocomplete="off"/>
-						<span class="slider"></span>
-					</label>
-					<div class="color_wrapper">
-						<button id="BackPrimaryColor" class="color_picker"></button>
-						<label for="BackPrimaryColor" class="color_label hidden">
-							<p class="name">Primary</p>
-							<p class="color">&nbsp;</p>
-						</label>
-					</div
-					><div class="color_wrapper">
-						<button id="BackSecondaryColor" class="color_picker"></button>
-						<label for="BackSecondaryColor" class="color_label hidden">
-							<p class="name">Secondary</p>
-							<p class="color">&nbsp;</p>
-						</label>
-					</div
-					><div class="color_wrapper">
-						<button id="BackAccentsColor" class="color_picker"></button>
-						<label for="BackAccentsColor" class="color_label hidden">
-							<p class="name">Accents</p>
-							<p class="color">&nbsp;</p>
-						</label>
-					</div>
 				</div>
 			</div>
 		</div>
@@ -423,6 +363,16 @@
 			<canvas id="canvas" style="display:none;"></canvas>
 		</div>
 		<main id="editor" class="image_column"></main>
+		<form style="display:none" id="contact" action="mail.php" method="POST" target="_blank" onsubmit="displayForm(false, this)">
+			<legend>Contact Us<button type="button" class="close" onclick="displayForm(false)">X</button></legend>
+			<fieldset>
+				<input type="text" class="narrow_input" placeholder="Name" name="name"/>
+				<input type="text" class="narrow_input" placeholder="Email" name="email"/>
+				<input type="text" class="wide_input" placeholder="Subject (example: Jatne vurel)" name="subject" required/>
+				<textarea placeholder="Message (example: Gar Mando'ade jate, ijaat enteyo cuyir ori.)" name="message" required></textarea>
+				<button class="submit" type="submit">Ke baryci (Deploy)</button>
+			</fieldset>
+		</form>
 
 		<footer>
 			<div class="settings">

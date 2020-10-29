@@ -24,8 +24,11 @@ function loadSVG (name, onload, args) {
 		for (var i = 0; i < options.length; i++)
 			options[i].setAttribute("class", "option");
 		var options = svg.querySelectorAll("[id*=Toggle]");
-		for (var i = 0; i < options.length; i++)
+		for (var i = 0; i < options.length; i++) {
 			options[i].setAttribute("class", "toggle");
+			if (options[i].id.includes("Off"))
+				options[i].style.display = "none";
+		}
 
 		/* Store it in the Vault for later use */
 		var vault = find("vault");
@@ -131,7 +134,6 @@ function synchronize (category, div) {
 function prepareParent (SVGNode, parent) {
 	var name = makeIdentifier(SVGNode.id);
 	var globalList = find(name + "Colors");
-	var defaultOn = !SVGNode.id.includes("Off");
 	if (globalList) {
 		parent = globalList;
 		globalList.innerHTML = "";
@@ -148,6 +150,7 @@ function prepareParent (SVGNode, parent) {
 		DOMNode("span", {class: "slider"}, p);
 		parent = DOMNode("div", {style: "display:none", class: "subslide"}, parent);
 
+		var defaultOn = !SVGNode.id.includes("Off");
 		var toggle = toggleSubslide(parent, SVGNode);
 		check.checked = defaultOn;
 		toggle.bind({checked: defaultOn})();

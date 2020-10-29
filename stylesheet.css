@@ -77,6 +77,7 @@ button,
 input {
 	color: inherit;
 	font: inherit;
+	padding: 0;
 }
 
 p {
@@ -138,10 +139,11 @@ p {
 form {
 	position: fixed;
 	padding: 1em;
-	width: 33%;
+	width: 50%;
 	min-width: 20em;
 	top: 50%;
 	left: 50%;
+	z-index: 1;
 	transform: translate(-50%,-50%);
 	background: var(--mainColor);
 	box-shadow: grey 0 0 5px;
@@ -333,6 +335,7 @@ footer {
 .slide_toggle {
 	height: 3em;
 	width: 100%;
+	padding-left: 0.5em;
 	text-align: left;
 	background: none;
 	font-size: larger;
