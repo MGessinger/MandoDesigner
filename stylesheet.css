@@ -403,6 +403,7 @@ footer {
 .color_wrapper {
 	display: inline-block;
 	padding: 1em 0 0 1em;
+	min-width: 6.5em;
 }
 
 .synchronized .color_wrapper {
@@ -537,6 +538,7 @@ footer {
 
 .settings_collapsed .color_wrapper {
 	padding: 0.25em 0;
+	min-width: 0;
 }
 
 .settings_collapsed .slider {
@@ -545,7 +547,7 @@ footer {
 }
 
 .settings_collapsed .sync {
-	padding: 1em 0;
+	padding: 0.5em 0 1em 0;
 }
 
 .settings_collapsed .hidden {

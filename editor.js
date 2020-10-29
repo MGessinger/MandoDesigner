@@ -49,8 +49,8 @@ function prettify (str) {
 }
 
 function syncGroup (id) {
-	if (id.includes("Detail"))
-		return "Details";
+	if (id.includes("Secondary"))
+		return "Secondary";
 	else if (id.includes("Accent"))
 		return "Accents";
 	return "Primary";
@@ -111,18 +111,19 @@ function synchronize (category, div) {
 	var syncedPickers = div.getElementsByTagName("button");
 	if (event.target.checked) {
 		div.setAttribute("class", "slide_content");
+		div.style.display = "unset";
 		folder_content.classList.add("synchronized");
 	} else {
 		div.setAttribute("class", "synchronized");
 		folder_content.classList.remove("synchronized");
 		for (var i = 0; i < colorPickers.length; i++) {
 			var p = colorPickers[i];
-			if (p.classList.contains("Details"))
-				p.style.background = syncedPickers[1].style.background;
+			var idx = 0;
+			if (p.classList.contains("Secondary"))
+				idx = 1;
 			else if (p.classList.contains("Accents"))
-				p.style.background = syncedPickers[2].style.background;
-			else
-				p.style.background = syncedPickers[0].style.background;
+				idx = 2;
+			p.style.background = syncedPickers[idx].style.background;
 		}
 	}
 }
@@ -172,12 +173,12 @@ function buildIOSettings (SVGNode, category, parent) {
 	var slides = folder.getElementsByClassName("slide");
 	SVGNode.addEventListener("click", function() {
 		redirectToRadio();
-			for (var i = 0; i < slides.length; i++) {
-				if (slides[i].contains(p)) {
-					var but = slides[i].firstElementChild;
-					redirectClickTo(but)();
-				}
+		for (var i = 0; i < slides.length; i++) {
+			if (slides[i].contains(p)) {
+				var but = slides[i].firstElementChild;
+				redirectClickTo(but)();
 			}
+		}
 		if (folder_content.classList.contains("synchronized"))
 			redirectClickTo(synced)();
 		else
@@ -284,6 +285,11 @@ function openArmorFolder (category) {
 	for (var i = 0; i < components.length; i++)
 		components[i].classList.remove("selected");
 	now.classList.add("selected");
+	var slides = now.getElementsByClassName("slide");
+	for (var i = 0; i < slides.length; i++)
+		slides[i].classList.remove("selected");
+	if (slides.length)
+		now.classList.add("overview");
 }
 
 function switchToArmorVariant (category, pieceName, variantName) {

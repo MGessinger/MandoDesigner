@@ -92,9 +92,9 @@
 						</label>
 					</div
 					><div class="color_wrapper">
-						<button id="HelmetDetailsColor" class="color_picker"></button>
-						<label for="HelmetDetailColor" class="color_label hidden">
-							<p class="name">Details</p>
+						<button id="HelmetSecondaryColor" class="color_picker"></button>
+						<label for="HelmetSecondaryColor" class="color_label hidden">
+							<p class="name">Secondary</p>
 							<p class="color">&nbsp;</p>
 						</label>
 					</div
@@ -217,9 +217,9 @@
 						</label>
 					</div
 					><div class="color_wrapper">
-						<button id="UpperArmorDetailsColor" class="color_picker"></button>
-						<label for="UpperArmorDetailsColor" class="color_label hidden">
-							<p class="name">Details</p>
+						<button id="UpperArmorSecondaryColor" class="color_picker"></button>
+						<label for="UpperArmorSecondaryColor" class="color_label hidden">
+							<p class="name">Secondary</p>
 							<p class="color">&nbsp;</p>
 						</label>
 					</div
@@ -255,9 +255,9 @@
 						</label>
 					</div
 					><div class="color_wrapper">
-						<button id="FlightSuitDetailsColor" class="color_picker"></button>
-						<label for="FlightSuitDetailsColor" class="color_label hidden">
-							<p class="name">Details</p>
+						<button id="FlightSuitSecondaryColor" class="color_picker"></button>
+						<label for="FlightSuitSecondaryColor" class="color_label hidden">
+							<p class="name">Secondary</p>
 							<p class="color">&nbsp;</p>
 						</label>
 					</div
@@ -352,9 +352,9 @@
 						</label>
 					</div
 					><div class="color_wrapper">
-						<button id="LowerArmorDetailsColor" class="color_picker"></button>
-						<label for="LowerArmorDetailsColor" class="color_label hidden">
-							<p class="name">Details</p>
+						<button id="LowerArmorSecondaryColor" class="color_picker"></button>
+						<label for="LowerArmorSecondaryColor" class="color_label hidden">
+							<p class="name">Secondary</p>
 							<p class="color">&nbsp;</p>
 						</label>
 					</div
@@ -389,9 +389,9 @@
 						</label>
 					</div
 					><div class="color_wrapper">
-						<button id="BackDetailsColor" class="color_picker"></button>
-						<label for="BackDetailsColor" class="color_label hidden">
-							<p class="name">Details</p>
+						<button id="BackSecondaryColor" class="color_picker"></button>
+						<label for="BackSecondaryColor" class="color_label hidden">
+							<p class="name">Secondary</p>
 							<p class="color">&nbsp;</p>
 						</label>
 					</div
@@ -405,7 +405,7 @@
 				</div>
 			</div>
 		</div>
-		<div class="picker_wrapper" id="picker" style="display: none;">
+		<div class="picker_wrapper" id="picker" tabindex="0" style="display: none;">
 			<div>Right_click a swatch to save your color</div>
 			<div class="picker_palette"></div>
 			<div class="picker_main">
@@ -416,8 +416,10 @@
 					<div class="picker_selector"></div>
 				</div>
 			</div>
-			<input type="text" class="picker_editor" aria_label="Type a Color name or Hexadecimal code" />
-			<button class="picker_done">Okay</button>
+			<div class="picker_bottom">
+				<input type="text" class="picker_editor" aria_label="Type a Color name or Hexadecimal code"
+				/><button class="picker_done">Okay</button>
+			</div>
 			<canvas id="canvas" style="display:none;"></canvas>
 		</div>
 		<main id="editor" class="image_column"></main>
@@ -430,7 +432,7 @@
 				<label for="female" class="label_sex">&#xe902;</label>
 			</div>
 			<p class="credits"><span>Designed &amp; Developed By <a class="credit" target="_blank" rel="noopener noreferrer">DesignDeviant</a> &amp; <a class="credit" href="https://github.com/MGessinger" target="_blank" rel="noopener noreferrer">Cin Vhetin</a></span>
-			<label style="font_size:smaller">
+			<label style="font-size:smaller">
 				<span class="pseudo_label">LIGHT</span>
 				<span style="display: inline-block">
 					<input type="checkbox" id="color_scheme_picker" onchange="setColorScheme(this.checked)"/>

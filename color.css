@@ -5,8 +5,10 @@
 	position: absolute;
 	right: 100%;
 	width: 20em;
+	max-width: 100vw;
+	z-index: 1;
 	background: var(--mainColor);
-	box-shadow: 0 0 10px 1px rgba(0,0,0,50%);
+	box-shadow: 0 0 10px 1px var(--translucent);
 }
 
 .picker_wrapper :focus {
@@ -20,20 +22,20 @@
 .picker_palette {
 	display: flex;
 	margin: 0.5em;
-	flex: 1 1 1.5em;
+	flex: 1;
 	flex-direction: column;
 	justify-content: space-between;
 	align-items: center;
 }
 
 .palette_icon {
-	width: 1.5em;
-	height: 1.5em;
+	width: 75%;
+	padding-bottom: 75%;
 	border: 1px solid var(--softColor);
 }
 
 .picker_main {
-	flex: 1 1 85%;
+	flex: 8;
 }
 
 .picker_hue {
@@ -61,21 +63,27 @@
 	padding-bottom: 100%;
 }
 
+.picker_bottom {
+	padding: 0 0.5em 0.5em 0.5em;
+}
+
 .picker_done {
-	width: 30%;
-	margin: 0.5em;
+	width: 35%;
+	line-height: 1.5em;
 	background: var(--softColor);
-	box-sizing: border-box;
 	border: 1px solid var(--softLight);
+	box-sizing: border-box;
+	float: right;
 }
 
 .picker_editor {
 	width: 60%;
-	margin: 0.5em;
-	padding: 0.25em 0.5em;
+	padding: 0 0.5em;
+	line-height: 1.5em;
 	background: var(--softColor);
-	box-sizing: border-box;
 	border: 1px solid var(--softLight);
+	box-sizing: border-box;
+	float: left;
 }
 
 .picker_selector {

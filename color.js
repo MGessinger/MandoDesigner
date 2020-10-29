@@ -155,10 +155,9 @@ var Picker = new function() {
 
 	function PickerDOM() {
 		var wrapper = find("picker");
-		wrapper.focus();
 		on(wrapper, "click", function(event){event.stopPropagation();});
 		var ch = wrapper.children;
-		var colors = ["#000", "#333", "#730", "#040", "#800", "#007", "#fff"]
+		var colors = ["#F00", "#0085FF", "#FFD600", "#08CB33", "#8B572A", "#A3A3A3", "#000", "#fff"]
 		for (var i = 0; i < colors.length; i++) {
 			var pal = DOMNode("button", {
 					class: "palette_icon",
@@ -174,9 +173,10 @@ var Picker = new function() {
 		var hueSelector = hue.firstElementChild;
 		var colorSelector = spectrum.firstElementChild;
 
-		var editor = ch[3]
+		var bottom = ch[3].children;
+		var editor = bottom[0];
 		on(editor, "input", function() { _setColor(this.value, true); });
-		var Okay = ch[4]
+		var Okay = bottom[1];
 		on(Okay, "click", function() { DOM.parent = null; });
 
 		_init(hue, function(hue) { var c = color.hsv; c[0] = hue; return _setColor(c); });
@@ -187,9 +187,10 @@ var Picker = new function() {
 				DOM.parent = null;
 		});
 		on(window, "focusin", function (event) {
-			var p = DOM.parent;
-			if (p && !(p.contains(event.target)))
-				DOM.parent = null;
+			var f = event.target;
+			if (f == wrapper || wrapper.contains(f))
+				return;
+			DOM.parent = null;
 		});
 
 		function move(key, t, f) {
@@ -211,15 +212,19 @@ var Picker = new function() {
 			set parent (p) {
 				if (!p) {
 					onChange = [];
-					wrapper.style.display = "none";
+					wrapper.style = "visibility:hidden";
 				} else {
-					wrapper.style.display = "";
+					if (wrapper.style.visibility != "hidden")
+						return;
+					wrapper.style.visibility = "";
 					p.appendChild(wrapper);
+					var rect = wrapper.getBoundingClientRect();
+					if (rect.bottom > window.innerHeight)
+						wrapper.style.bottom = "0px";
+					if (rect.left < 0)
+						wrapper.style.left = -rect.right + "px";
 				}
 			},
-			get parent () {
-				return wrapper.style.display === "" && wrapper.parentNode;
-			}
 		}
 	}
 
