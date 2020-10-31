@@ -242,21 +242,22 @@ var Picker = new function() {
 	var color = new Color();
 	var DOM = new PickerDOM();
 	var onChange = [];
-	this.attach = function (button, color, affectedObject) {
-		if (!color) {
+	this.attach = function (button, colorText, SVGNode) {
+		if (!colorText) {
 			var wrapper = button.parentNode;
-			color = wrapper.getElementsByClassName("color")[0];
+			colorText = wrapper.getElementsByClassName("color")[0];
 		}
 		function input (hex) {
 			button.style.background = hex;
-			affectedObject.style.fill = hex;
-			color.innerText = hex;
+			SVGNode.style.fill = hex;
+			colorText.innerText = hex;
 		}
 		on(button, "click", function(event) {
 			onChange.push(input);
 			_setColor(this.style.backgroundColor);
 			DOM.parent = this;
 		});
-		input("#FFFFFF");
+		var def = SVGNode.getAttribute("fill") || "#FFFFFF";
+		input(def);
 	}
 }()

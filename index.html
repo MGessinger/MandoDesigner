@@ -20,19 +20,19 @@
 		<nav>
 			<svg class="title" viewBox="0 0 420 70"><use id="title" href="#title" /></svg>
 			<div id="parts_list">
-				<input type="radio" name="parts_list" id="HelmetSettings" value="Helmet (Buy'ce)" onclick="openArmorFolder('Helmet')" checked/>
+				<input type="radio" name="parts_list" id="HelmetSettings" value="Helmet (Buy'ce)" onclick="openArmorFolder('Helmet')" checked hidden/>
 				<label for="HelmetSettings" class="armor_label">Helmet (Buy'ce)<span class="armor_icon">&#xE905;</span></label>
-				<input type="radio" name="parts_list" id="FlightSuitSettings" value="Flight Suit (Kute)" onclick="openArmorFolder('FlightSuit')"/>
+				<input type="radio" name="parts_list" id="FlightSuitSettings" value="Flight Suit (Kute)" onclick="openArmorFolder('FlightSuit')" hidden/>
 				<label for="FlightSuitSettings" class="armor_label">Flight Suit (Kute)<span class="armor_icon">&#xE907;</span></label>
-				<input type="radio" name="parts_list" id="UpperArmorSettings" value="Upper Body" onclick="openArmorFolder('UpperArmor')"/>
+				<input type="radio" name="parts_list" id="UpperArmorSettings" value="Upper Body" onclick="openArmorFolder('UpperArmor')" hidden/>
 				<label for="UpperArmorSettings" class="armor_label">Upper Body<span class="armor_icon">&#xE908;</span></label>
-				<input type="radio" name="parts_list" id="LowerArmorSettings" value="Lower Body" onclick="openArmorFolder('LowerArmor')"/>
+				<input type="radio" name="parts_list" id="LowerArmorSettings" value="Lower Body" onclick="openArmorFolder('LowerArmor')" hidden/>
 				<label for="LowerArmorSettings" class="armor_label">Lower Body<span class="armor_icon">&#xE906;</span></label>
-				<input type="radio" name="parts_list" id="BackSettings" value="Back" onclick="openArmorFolder('Back')"/>
+				<input type="radio" name="parts_list" id="BackSettings" value="Back" onclick="openArmorFolder('Back')" hidden/>
 				<label for="BackSettings" class="armor_label">Back (Norac)<span class="armor_icon">&#xE904;</span></label>
-				<input id="background_upload" type="file" accept="image/*" onchange="loadImage(this);"/>
+				<input id="background_upload" type="file" accept="image/*" onchange="loadImage(this);" hidden/>
 				<label for="background_upload" class="armor_label">Upload Background<span class="armor_icon">&#xF03E;</span></label>
-				<input id="contact_opener" type="button" onclick="displayForm(true)"/>
+				<input id="contact_opener" type="button" onclick="displayForm(true)" hidden/>
 				<label for="contact_opener" class="armor_label">Contact Us<span class="armor_icon">&#xF0E0;</span></label>
 				<a class="armor_label download" id="download" download="Mando'ad.svg" href="#">Download<span class="armor_icon">&#xE903;</span></a>
 			</div>
@@ -45,20 +45,26 @@
 					<p class="option_name">Style:</p>
 					<div id="HelmetTypes" class="armor_types">
 						<button class="type_button" onclick="switchToArmorVariant('Helmet','Helmet','Classic')">
-							<svg viewbox="0 50 700 750" class="preview_icon"><use href="#Helmet_Classic"/></svg>
+							<svg viewbox="0 75 700 700" class="preview_icon"><use href="#Helmet_Classic"/></svg>
 							Classic
-						</button>
-						<button class="type_button" onclick="switchToArmorVariant('Helmet','Helmet','Nite')">
-							<svg viewbox="0 50 700 750" class="preview_icon"><use href="#Helmet_Nite"/></svg>
+						</button><button class="type_button" onclick="switchToArmorVariant('Helmet','Helmet','Nite')">
+							<svg viewbox="0 75 700 700" class="preview_icon"><use href="#Helmet_Nite"/></svg>
 							Nite Owl
-						</button>
-						<button class="type_button" onclick="switchToArmorVariant('Helmet','Helmet','Stalker-Medium')">
-							<svg viewbox="0 50 700 750" class="preview_icon"><use href="#Helmet_Stalker-Medium"/></svg>
+						</button><button class="type_button" onclick="switchToArmorVariant('Helmet','Helmet','Gunslinger')">
+							<svg viewbox="0 75 700 700" class="preview_icon"><use href="#Helmet_Gunslinger"/></svg>
+							Gunslinger
+						</button><button class="type_button" onclick="switchToArmorVariant('Helmet','Helmet','Heavy')">
+							<svg viewbox="0 75 700 700" class="preview_icon"><use href="#Helmet_Heavy"/></svg>
+							Heavy
+						</button><button class="type_button" onclick="switchToArmorVariant('Helmet','Helmet','Stalker-Medium')">
+							<svg viewbox="0 75 700 700" class="preview_icon"><use href="#Helmet_Stalker-Medium"/></svg>
 							Stalker (M)
-						</button>
-						<button class="type_button" onclick="switchToArmorVariant('Helmet','Helmet','Stalker-Large')">
-							<svg viewbox="0 50 700 750" class="preview_icon"><use href="#Helmet_Stalker-Large"/></svg>
+						</button><button class="type_button" onclick="switchToArmorVariant('Helmet','Helmet','Stalker-Large')">
+							<svg viewbox="0 75 700 700" class="preview_icon"><use href="#Helmet_Stalker-Large"/></svg>
 							Stalker (L)
+						</button><button class="type_button" onclick="switchToArmorVariant('Helmet','Helmet','Budget-Bucket')">
+							<svg viewbox="0 0 700 700" class="preview_icon"><use href="#Helmet_Budget-Bucket"/></svg>
+							Budget
 						</button>
 					</div>
 				</div>
@@ -380,6 +386,9 @@
 				<label for="male" class="label_sex">&#xe901;</label>
 				<input type="radio" name="sex" class="toggle_sex" id="female" onchange="setSex(true)">
 				<label for="female" class="label_sex">&#xe902;</label>
+			</div>
+			<div class="settings">
+				<input id="zoom" type="range" min="100" max="250" value="100" oninput="zoom(this.value/100);" />
 			</div>
 			<p class="credits"><span>Designed &amp; Developed By <a class="credit" target="_blank" rel="noopener noreferrer">DesignDeviant</a> &amp; <a class="credit" href="https://github.com/MGessinger" target="_blank" rel="noopener noreferrer">Cin Vhetin</a></span>
 			<label style="font-size:smaller">

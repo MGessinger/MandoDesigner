@@ -96,10 +96,6 @@ p {
 	background: var(--mainColor);
 }
 
-#parts_list input {
-	display: none;
-}
-
 .armor_label {
 	display: block;
 	position: relative;
@@ -127,6 +123,12 @@ p {
 :checked + .armor_label {
 	color: var(--mainColor);
 	background: var(--highlight);
+}
+
+#range {
+	display: block;
+	width: 60%;
+	box-shadow: var(--softLight) 0 0 1px;
 }
 
 .download {
@@ -200,18 +202,11 @@ textarea {
 
 .image_column {
 	height: 100%;
-	padding: 0 3em;
+	padding: 3em;
+	overflow: hidden auto;
+	box-sizing: border-box;
 	background: var(--softColor) no-repeat center;
 	background-size: cover;
-}
-
-main svg {
-	padding: 4em 0;
-	box-sizing: border-box;
-}
-
-use, path {
-	stroke-width: 4px;
 }
 
 footer {
@@ -226,6 +221,70 @@ footer {
 	width: 100%;
 	text-align: center;
 	padding-bottom: 0.5em;
+}
+
+#zoom {
+	-webkit-appearance: none;
+	width: 15em;
+	background: none;
+	outline: none;
+}
+#zoom::-webkit-slider-runnable-track {
+	height: 0.5em;
+	width: 100%;
+	background: var(--mainColor);
+	border: 1px solid var(--highlight);
+	cursor: pointer;
+}
+#zoom::-webkit-slider-thumb {
+	margin-top: -0.25em;
+	width: 1em;
+	height: 1em;
+	background: var(--softColor);
+	border: 1px solid var(--highlight);
+	border-radius: 0.25em;
+	cursor: pointer;
+	-webkit-appearance: none;
+}
+#zoom:focus::-webkit-slider-thumb {
+	border-color: var(--accent);
+}
+#zoom::-moz-range-track {
+	height: 0.5em;
+	width: 100%;
+	border: 1px solid var(--highlight);
+	background: var(--mainColor);
+	cursor: pointer;
+}
+#zoom::-moz-range-thumb {
+	height: 1em;
+	width: 1em;
+	background: var(--softColor);
+	border: 1px solid var(--highlight);
+	border-radius: 0.25em;
+	cursor: pointer;
+}
+#zoom:focus::-moz-range-thumb {
+	border-color: var(--accent);
+}
+#zoom::-ms-track {
+	height: 0.5em;
+	width: 100%;
+	border: 1px solid var(--highlight);
+	background: var(--mainColor);
+	cursor: pointer;
+}
+#zoom::-ms-thumb {
+	height: 1em;
+	width: 1em;
+	background: var(--softColor);
+	border: 1px solid var(--highlight);
+	border-radius: 0.25em;
+	cursor: pointer;
+	margin-top: 0px;
+}
+#zoom:focus::-ms-thumb {
+	border-color: var(--accent);
 }
 
 .toggle_sex {
@@ -291,7 +350,7 @@ footer {
 
 .armor_types {
 	max-height: 12em;
-	padding: 0 0.5em;
+	padding-top: 0.5em;
 	overflow-y: auto;
 	border-bottom: 1px solid var(--softColor);
 }
@@ -320,8 +379,8 @@ footer {
 }
 
 .type_button {
-	width: 30%;
-	padding: 3%;
+	width: 33%;
+	padding-left: 0.5em;
 	background: none;
 	border: none;
 }
@@ -330,6 +389,7 @@ footer {
 	border: 1px var(--highlight) solid;
 	fill: white;
 	stroke: black;
+	stroke-width: 4px;
 }
 
 .slide_toggle {

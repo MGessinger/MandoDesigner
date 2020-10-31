@@ -160,11 +160,14 @@ function prepareParent (SVGNode, parent) {
 }
 
 function buildIOSettings (SVGNode, category, parent) {
+	if (!SVGNode.id)
+		return;
 	var p = ColorPicker(SVGNode, parent);
 	var redirectToPicker = redirectClickTo(p);
 
 	var synced = find(category + syncGroup(SVGNode.id) + "Color");
-	Picker.attach(synced, null, SVGNode);
+	if (synced)
+		Picker.attach(synced, null, SVGNode);
 
 	var radio = find(category + "Settings");
 	var redirectToRadio = redirectClickTo(radio);
@@ -337,6 +340,8 @@ function setupMando (svg, sexSuffix) {
 		main.replaceChild(svg, old_svg);
 	else
 		main.appendChild(svg);
+	var scale = find("zoom");
+	zoom(scale.value/100);
 
 	function findLocal(st) {
 		return svg.getElementById(st);
@@ -442,4 +447,13 @@ function loadImage (input) {
 function displayForm (show, form) {
 	form = form || find("contact");
 	form.style.display = show ? "" : "none";
+}
+
+function zoom (scale) {
+	var main = find("editor");
+	var svg = main.children[0];
+	svg.removeAttribute("transform");
+	var rect = svg.getBoundingClientRect()
+	var t = (rect.height*scale - window.innerHeight)/2;
+	svg.setAttribute("transform", "translate(0 " + t + ") scale(" + scale + ")");
 }
