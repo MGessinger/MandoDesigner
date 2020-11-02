@@ -44,25 +44,25 @@
 					<h2 class="slide_title">Helmet (Buy'ce)</h2>
 					<p class="option_name">Style:</p>
 					<div id="HelmetTypes" class="armor_types">
-						<button class="type_button" onclick="switchToArmorVariant('Helmet','Helmet','Classic')">
+						<button class="type_button current_variant" onclick="switchToArmorVariant('Helmet','Helmet','Classic', this)">
 							<svg viewbox="0 75 700 700" class="preview_icon"><use href="#Helmet_Classic"/></svg>
 							Classic
-						</button><button class="type_button" onclick="switchToArmorVariant('Helmet','Helmet','Nite')">
+						</button><button class="type_button" onclick="switchToArmorVariant('Helmet','Helmet','Nite', this)">
 							<svg viewbox="0 75 700 700" class="preview_icon"><use href="#Helmet_Nite"/></svg>
 							Nite Owl
-						</button><button class="type_button" onclick="switchToArmorVariant('Helmet','Helmet','Gunslinger')">
+						</button><button class="type_button" onclick="switchToArmorVariant('Helmet','Helmet','Gunslinger', this)">
 							<svg viewbox="0 75 700 700" class="preview_icon"><use href="#Helmet_Gunslinger"/></svg>
 							Gunslinger
-						</button><button class="type_button" onclick="switchToArmorVariant('Helmet','Helmet','Heavy')">
+						</button><button class="type_button" onclick="switchToArmorVariant('Helmet','Helmet','Heavy', this)">
 							<svg viewbox="0 75 700 700" class="preview_icon"><use href="#Helmet_Heavy"/></svg>
 							Heavy
-						</button><button class="type_button" onclick="switchToArmorVariant('Helmet','Helmet','Stalker-Medium')">
+						</button><button class="type_button" onclick="switchToArmorVariant('Helmet','Helmet','Stalker-Medium', this)">
 							<svg viewbox="0 75 700 700" class="preview_icon"><use href="#Helmet_Stalker-Medium"/></svg>
 							Stalker (M)
-						</button><button class="type_button" onclick="switchToArmorVariant('Helmet','Helmet','Stalker-Large')">
+						</button><button class="type_button" onclick="switchToArmorVariant('Helmet','Helmet','Stalker-Large', this)">
 							<svg viewbox="0 75 700 700" class="preview_icon"><use href="#Helmet_Stalker-Large"/></svg>
 							Stalker (L)
-						</button><button class="type_button" onclick="switchToArmorVariant('Helmet','Helmet','Budget-Bucket')">
+						</button><button class="type_button" onclick="switchToArmorVariant('Helmet','Helmet','Budget-Bucket', this)">
 							<svg viewbox="0 0 700 700" class="preview_icon"><use href="#Helmet_Budget-Bucket"/></svg>
 							Budget
 						</button>
@@ -108,11 +108,10 @@
 					<h2 class="slide_title">Upper Body</h2>
 					<p class="option_name">Style:</p>
 					<div id="UpperArmorTypes" class="armor_types male">
-						<button class="type_button" onclick="switchToArmorVariant('UpperArmor','Chest','Classic_M')">
+						<button class="type_button current_variant" onclick="switchToArmorVariant('UpperArmor','Chest','Classic_M', this)">
 							<svg viewbox="100 -100 1200 1200" class="preview_icon"><use href="#Chest_Classic_M"/></svg>
 							Classic
-						</button>
-						<button class="type_button" onclick="switchToArmorVariant('UpperArmor','Chest','Legacy_M')">
+						</button><button class="type_button" onclick="switchToArmorVariant('UpperArmor','Chest','Legacy_M', this)">
 							<svg viewbox="100 -100 1200 1200" class="preview_icon"><use href="#Chest_Legacy_M"/></svg>
 							Legacy
 						</button>
@@ -390,16 +389,19 @@
 			<div class="settings">
 				<input id="zoom" type="range" min="100" max="250" value="100" oninput="zoom(this.value/100);" />
 			</div>
-			<p class="credits"><span>Designed &amp; Developed By <a class="credit" target="_blank" rel="noopener noreferrer">DesignDeviant</a> &amp; <a class="credit" href="https://github.com/MGessinger" target="_blank" rel="noopener noreferrer">Cin Vhetin</a></span>
-			<label style="font-size:smaller">
-				<span class="pseudo_label">LIGHT</span>
-				<span style="display: inline-block">
-					<input type="checkbox" id="color_scheme_picker" onchange="setColorScheme(this.checked)"/>
-					<span class="slider"></span>
-				</span>
-				<span class="pseudo_label">DARK</span>
-			</label>
-			<span style="text-align:right">Background photo created by <a class="credit" href="https://www.freepik.com/kjpargeter" rel="noopener noreferrer" target="_blank">kjpargeter</a></span></p>
+			<p class="credits">
+				<span>Designed &amp; Developed By <a class="credit" target="_blank" rel="noopener noreferrer">DesignDeviant</a> &amp; <a class="credit" href="https://github.com/MGessinger" target="_blank" rel="noopener noreferrer">Cin Vhetin</a></span>
+				<label style="font-size:smaller">
+					<span class="pseudo_label">LIGHT</span>
+					<span style="display: inline-block">
+						<input type="checkbox" id="color_scheme_picker" onchange="setColorScheme(this.checked)"/>
+						<span class="slider"></span>
+					</span>
+					<span class="pseudo_label">DARK</span>
+				</label>
+				<span id="image_credit" style="text-align:right">Background photo created by <a class="credit" href="https://www.freepik.com/kjpargeter" rel="noopener noreferrer" target="_blank">kjpargeter</a></span>
+				<span id="no_credit" style="text-align:right"><button class="no_credit" onclick="setColorScheme(find('color_scheme_picker').checked)">Reset Background</button></span>
+			</p>
 		</footer>
 		<div id="vault" style="display: none"></div>
 		<script src="editor.js"></script>

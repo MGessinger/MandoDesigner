@@ -298,7 +298,15 @@ function openArmorFolder (category) {
 		now.classList.add("overview");
 }
 
-function switchToArmorVariant (category, pieceName, variantName) {
+function switchToArmorVariant (category, pieceName, variantName, button) {
+	var parent = find(category + "Options");
+	if (button) {
+		var old_button = parent.getElementsByClassName("current_variant")[0];
+		if (old_button)
+			old_button.classList.remove("current_variant");
+		button.classList.add("current_variant");
+	}
+
 	var old = find(pieceName + "_Current");
 	var parent = old.parentNode;
 	var n = find(pieceName + "_" + variantName);
@@ -387,6 +395,11 @@ function setColorScheme (useDark) {
 	});
 	var use = find("title");
 	use.setAttribute("href", logoName);
+
+	var reset = find("no_credit");
+	reset.style.display = "none";
+	var credit = find("image_credit");
+	credit.style.display = "";
 }
 
 function setSex (female) {
@@ -409,13 +422,13 @@ function loadImage (input) {
 	if (files.length == 0)
 		return;
 	var main = find("editor");
-	var bck;
 	var theme = document.body.className;
+
+	var customBck;
 	if (theme.includes("dark"))
-		bck = find("BackgroundDark");
+		customBck = find("BackgroundDark").cloneNode(true);
 	else
-		bck = find("BackgroundLight");
-	var customBck = bck.cloneNode(true);
+		customBck = find("BackgroundLight").cloneNode(true);
 	customBck.id = "Custom";
 	var img = customBck.getElementsByTagName("image")[0];
 
@@ -442,6 +455,11 @@ function loadImage (input) {
 		}
 		reader.readAsDataURL(files[0]);
 	}
+
+	var reset = find("no_credit");
+	reset.style.display = "";
+	var credit = find("image_credit");
+	credit.style.display = "none";
 }
 
 function displayForm (show, form) {
