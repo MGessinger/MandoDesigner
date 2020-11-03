@@ -339,8 +339,6 @@ footer {
 }
 
 .settings_column {
-	display: flex;
-	flex-direction: column;
 	position: fixed;
 	height: 100%;
 	width: 20em;
