@@ -44,7 +44,7 @@
 					<h2 class="slide_title">Helmet (Buy'ce)</h2>
 					<p class="option_name">Style:</p>
 					<div id="HelmetTypes" class="armor_types">
-						<button class="type_button current_variant" onclick="switchToArmorVariant('Helmet','Helmet','Classic', this)">
+						<button id="Helmet_Def_Classic" class="type_button current_variant" onclick="switchToArmorVariant('Helmet','Helmet','Classic', this)">
 							<svg viewbox="0 75 700 700" class="preview_icon"><use href="#Helmet_Classic"/></svg>
 							Classic
 						</button><button class="type_button" onclick="switchToArmorVariant('Helmet','Helmet','Nite', this)">
@@ -79,11 +79,20 @@
 					<h2 class="slide_title">Upper Body</h2>
 					<p class="option_name">Style:</p>
 					<div id="UpperArmorTypes" class="armor_types male">
-						<button class="type_button current_variant" onclick="switchToArmorVariant('UpperArmor','Chest','Classic_M', this)">
+						<button id="Chest_Def_Classic_M" class="type_button current_variant" onclick="switchToArmorVariant('UpperArmor','Chest','Classic_M', this)">
 							<svg viewbox="100 -100 1200 1200" class="preview_icon"><use href="#Chest_Classic_M"/></svg>
 							Classic
 						</button><button class="type_button" onclick="switchToArmorVariant('UpperArmor','Chest','Legacy_M', this)">
 							<svg viewbox="100 -100 1200 1200" class="preview_icon"><use href="#Chest_Legacy_M"/></svg>
+							Legacy
+						</button>
+					</div>
+					<div id="UpperArmorTypes" class="armor_types female">
+						<button id="Chest_Def_Classic_F" class="type_button" onclick="switchToArmorVariant('UpperArmor','Chest','Classic_F', this)">
+							<svg viewbox="100 -100 1200 1200" class="preview_icon"><use href="#Chest_Classic_F"/></svg>
+							Classic
+						</button><button class="type_button" onclick="switchToArmorVariant('UpperArmor','Chest','Legacy_F', this)">
+							<svg viewbox="100 -100 1200 1200" class="preview_icon"><use href="#Chest_Legacy_F"/></svg>
 							Legacy
 						</button>
 					</div>
@@ -256,7 +265,7 @@
 			</div>
 		</div>
 		<div class="picker_wrapper" id="picker" tabindex="0" style="display: none;">
-			<div>Right_click a swatch to save your color</div>
+			<div>Right-click a swatch to save your color</div>
 			<div class="picker_palette"></div>
 			<div class="picker_main">
 				<div class="picker_hue">

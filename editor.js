@@ -156,6 +156,8 @@ function prepareParent (SVGNode, parent) {
 		toggle.bind({checked: defaultOn})();
 		check.addEventListener("change", toggle);
 	}
+	if (!SVGNode.children.length)
+		parent.style.display = "none";
 	return parent;
 }
 
@@ -244,25 +246,24 @@ function buildAllSettings (SVGNode, category, parent) {
 	if (hasUnnamedChild) {
 		if (ch.length == 0 && SVGNode.tagName == "g")
 			return;
-		buildIOSettings(SVGNode, category, parent);
-	} else {
-		var options = [];
-		var toggle = [];
-		for (var i = 0; i < ch.length; i++) {
-			var className = ch[i].getAttribute("class");
-			if (className == "option")
-				options.push(ch[i]);
-			else if (className == "toggle")
-				toggle.push(ch[i]);
-			else
-				buildAllSettings(ch[i], category, parent);
-		}
-		if (options.length > 0)
-			buildAddonSelect(options, category, parent);
-		/* defer toggles to the very last */
-		for (var i = 0; i < toggle.length; i++) 
-			buildAllSettings(toggle[i], category, parent);
+		return buildIOSettings(SVGNode, category, parent);
 	}
+	var options = [];
+	var toggle = [];
+	for (var i = 0; i < ch.length; i++) {
+		var className = ch[i].getAttribute("class");
+		if (className == "option")
+			options.push(ch[i]);
+		else if (className == "toggle")
+			toggle.push(ch[i]);
+		else
+			buildAllSettings(ch[i], category, parent);
+	}
+	if (options.length > 0)
+		buildAddonSelect(options, category, parent);
+	/* defer toggles to the very last */
+	for (var i = 0; i < toggle.length; i++) 
+		buildAllSettings(toggle[i], category, parent);
 }
 
 function buildVariableSettings (category, pieceName, variantName) {
@@ -300,12 +301,14 @@ function openArmorFolder (category) {
 
 function switchToArmorVariant (category, pieceName, variantName, button) {
 	var parent = find(category + "Options");
-	if (button) {
-		var old_button = parent.getElementsByClassName("current_variant")[0];
-		if (old_button)
-			old_button.classList.remove("current_variant");
+	var old_button = parent.getElementsByClassName("current_variant")[0];
+	if (old_button)
+		old_button.classList.remove("current_variant");
+
+	if (!button)
+		button = find(category + "_Def_" + variantName);
+	if (button)
 		button.classList.add("current_variant");
-	}
 
 	var old = find(pieceName + "_Current");
 	var parent = old.parentNode;
@@ -364,7 +367,7 @@ function setupMando (svg, sexSuffix) {
 		}
 	});
 	loadSVG("Lower-Armor_" + sexSuffix, function(svg) {
-		switchToArmorVariant("LowerArmor", "Waist", "M");
+		switchToArmorVariant("LowerArmor", "Waist", sexSuffix);
 		buildVariableSettings("LowerArmor", "Groin", sexSuffix);
 		var subgroups = ["Thigh", "Knee", "Shin", "Ankle"];
 		for (var i = 0; i < subgroups.length; i++) {
@@ -373,7 +376,7 @@ function setupMando (svg, sexSuffix) {
 		}
 	});
 	buildAllSettings(findLocal("Back"), "Back");
-	buildAllSettings(findLocal("Soft-Parts"), "FlightSuit");
+	buildAllSettings(findLocal("Soft-Parts_" + sexSuffix), "FlightSuit");
 }
 
 function setColorScheme (useDark) {
@@ -472,6 +475,6 @@ function zoom (scale) {
 	var svg = main.children[0];
 	svg.removeAttribute("transform");
 	var rect = svg.getBoundingClientRect()
-	var t = (rect.height*scale - window.innerHeight)/2;
+	var t = (rect.height*scale - window.innerHeight)/2 + rect.top;
 	svg.setAttribute("transform", "translate(0 " + t + ") scale(" + scale + ")");
 }
