@@ -89,6 +89,7 @@ p {
 	display: block;
 	width: 25em;
 	max-width: 75vw;
+	cursor: pointer;
 }
 
 #left_nav {
@@ -110,6 +111,7 @@ p {
 	background: var(--mainColor);
 	line-height: 3em;
 	transition: left 0.2s ease-out;
+	cursor: pointer;
 }
 
 .armor_icon {
@@ -118,10 +120,6 @@ p {
 	float: right;
 	font-size: 1.5em;
 	text-align: center;
-}
-
-.armor_label:hover {
-	left: 0;
 }
 
 :checked + .armor_label {
@@ -163,6 +161,7 @@ form {
 }
 
 legend {
+	width: 100%;
 	padding: 0 0 0.5em 0;
 	font-size: x-large;
 	color: var(--highlight);
@@ -396,7 +395,7 @@ footer {
 .type_button {
 	width: 30%;
 	margin-left: 3%;
-	margin-bottom: 0.5em;
+	margin-bottom: 1em;
 	background: none;
 	border: none;
 }
@@ -516,6 +515,7 @@ footer {
 
 .color {
 	font-size: smaller;
+	font-family: Arial, sans-serif;
 }
 
 .separator {
@@ -643,4 +643,10 @@ footer {
 
 .folder.selected {
 	display: flex;
+}
+
+@media (hover: hover) {
+	.armor_label:hover {
+		left: 0;
+	}
 }

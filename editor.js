@@ -141,7 +141,6 @@ function prepareParent (SVGNode, parent) {
 	if (globalList) {
 		parent = globalList;
 		parent.innerHTML = "";
-		parent.style.display = isEmptyLayer(SVGNode) ? "none" : "";
 		var p = DOMNode("p", {class: "option_name hidden"}, globalList);
 		p.innerText = prettify(SVGNode.id) + " Options:";
 	}
@@ -412,11 +411,11 @@ function setSex (female) {
 	if (female) {
 		body = "Female-Body";
 		sexSuffix = "F";
-		settings.className = "settings_column settings_collapsed female";
+		settings.className = "settings_column female";
 	} else {
 		body = "Male-Body";
 		sexSuffix = "M";
-		settings.className = "settings_column settings_collapsed male";
+		settings.className = "settings_column male";
 	}
 	loadSVG(body, setupMando, sexSuffix);
 }

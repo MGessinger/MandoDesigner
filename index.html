@@ -2,23 +2,25 @@
 <html lang="en">
 	<head>
 		<meta http-equiv="x-ua-compatible" content="ie=edge" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0,user-scalable=0" />
 		<meta charset="utf-8" />
-		<meta name="author" content="Matthias Gessinger" />
+		<meta name="description" content="Design your custom set of mandalorian Armor, also known as Beskar'gam. Choose from dozens of options, and bring your vision to life!" />
+		<meta name="keywords" content="MandoCreator,Beskar'gam,Armor,Mandalorian,Mando,Design,Beskar" />
+		<meta name="author" content="DesignDeviant, Cin Vhetin" />
 		<link rel="stylesheet" href="stylesheet.css" />
 		<link rel="stylesheet" href="color.css" />
-		<link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png">
-		<link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32x32.png">
-		<link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16x16.png">
-		<link rel="manifest" href="site.webmanifest">
-		<link rel="mask-icon" href="assets/safari-pinned-tab.svg" color="#ab1f1f">
-		<meta name="msapplication-TileColor" content="#b91d47">
-		<meta name="theme-color" content="#ffffff">
+		<link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png" />
+		<link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32x32.png" />
+		<link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16x16.png" />
+		<link rel="manifest" href="site.webmanifest" />
+		<link rel="mask-icon" href="assets/safari-pinned-tab.svg" color="#ab1f1f" />
+		<meta name="msapplication-TileColor" content="#b91d47" />
+		<meta name="theme-color" content="#ffffff" />
 		<title>Mando Creator</title>
 	</head>
 	<body class="light_mode" onload="onload()">
 		<nav>
-			<svg class="title" viewBox="0 0 420 70"><use id="title" href="#title" /></svg>
+			<svg class="title" viewBox="0 0 420 70"><use id="title" href="#title" onclick="location.reload()"/></svg>
 			<div id="left_nav">
 				<div id="parts_list">
 					<input type="radio" name="parts_list" id="HelmetSettings" value="Helmet (Buy'ce)" onclick="openArmorFolder('Helmet')" checked hidden/>
@@ -45,7 +47,7 @@
 				<input type="checkbox" id="color_scheme_picker" onchange="setColorScheme(this.checked)"/>
 			</div>
 		</nav>
-		<div id="settings" class="settings_column settings_collapsed">
+		<div id="settings" class="settings_column">
 			<button id="settings_toggle" title="Toggle Options menu" onclick="toggleOptions()">&#xE900;</button>
 			<div id="HelmetOptions" class="folder selected">
 				<div class="hidden">
@@ -78,8 +80,6 @@
 				</div>
 				<div class="folder_content">
 					<div id="HelmetColors" class="slide_content"></div>
-					<div id="LeftEarcapColors" class="slide_content"></div>
-					<div id="RightEarcapColors" class="slide_content"></div>
 				</div>
 			</div>
 			<div id="UpperArmorOptions" class="folder overview">
@@ -292,7 +292,7 @@
 		<main id="editor" class="image_column"></main>
 		<form style="display:none" id="contact" action="mail.php" method="POST" target="_blank" onsubmit="displayForm(false, this)">
 			<legend>Mando Creator Info<button type="button" class="close" onclick="displayForm(false)">X</button></legend>
-			<p class="credit">Designed By <a class="credit_link" target="_blank" rel="noopener noreferrer">DesignDeviant</a></p>
+			<p class="credit">Designed By <a class="credit_link" href="https://twitter.com/DesignDeviant" target="_blank" rel="noopener noreferrer">DesignDeviant</a></p>
 			<p class="credit">Developed By <a class="credit_link" href="https://github.com/MGessinger" target="_blank" rel="noopener noreferrer">Cin Vhetin</a></p>
 			<p class="credit">Background Image By <a class="credit_link" href="https://www.freepik.com/kjpargeter" rel="noopener noreferrer" target="_blank">kjpargeter</a></p>
 			<div class="changelog">

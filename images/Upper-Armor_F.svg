@@ -125,6 +125,13 @@
 </g>
 <g id="Shoulders_F">
 	<g id="Left-Shoulder_F">
+		<g id="Bell_Shoulder_Left_F_Option">
+			<path id="Ridge_Bell_Shoulder_Left_F" class="st0" d="M970.5,168.1C970.5,168.1,970.5,168.1,970.5,168.1
+				c88.3-28.1,182.6,20.7,210.6,109l45.1,141.7l15.5-4.9c0,0-21.5-67.6-44.6-140.1c-30.8-96.8-134.2-150.3-231-119.5l0,0
+				L970.5,168.1"/>
+			<path id="Main_Bell_Shoulder_Left_F" class="st0" d="M965.9,165.7C965.9,165.7,965.9,165.7,965.9,165.7
+				c91.7-29.2,189.6,21.5,218.8,113.2c21.9,68.7,46.8,147.2,46.8,147.2l-166,52.8L965.9,165.7"/>
+		</g>
 		<g id="Legacy_Shoulder_Left_F_Option">
 			<path id="Plate-3_Shoulder_Left_Legacy_M_Primary" class="st0" d="M1109.6,227l-77.9,79.4l45.3,98.7l102.4-5.2l54.1,49.8
 				l48.2-3.3L1109.6,227z"/>
@@ -137,6 +144,12 @@
 			c-0.7,24.4,3.6,54.2,21.4,69.6c27.4,23.7,143,72.4,143,72.4l24-36.9L1002.4,133.5z"/>
 	</g>
 	<g id="Right-Shoulder_F">
+		<g id="Bell_Shoulder_Right_F_Option">
+			<path id="Ridge_Bell_Shoulder_Right_F" class="st0" d="M430.1,168.1L430.1,168.1c-88.3-28.1-182.6,20.7-210.6,109l-45.1,141.7
+				l-15.5-4.9c0,0,21.5-67.6,44.6-140.1c30.8-96.8,134.2-150.3,231-119.5h0L430.1,168.1"/>
+			<path id="Main_Bell_Shoulder_Right_F" class="st0" d="M434.6,165.7C434.6,165.7,434.6,165.7,434.6,165.7
+				c-91.7-29.2-189.6,21.5-218.8,113.2C193.9,347.6,169,426,169,426l166,52.8L434.6,165.7"/>
+		</g>
 		<g id="Legacy_Shoulder_Right_F_Option">
 			<path id="Plate-3_Shoulder_Right_Legacy_M_Primary" class="st0" d="M290.4,227l77.9,79.4L323,405.1L220.7,400l-54.1,49.8
 				l-48.2-3.3L290.4,227z"/>
@@ -152,18 +165,18 @@
 <g id="Gauntlets_F">
 	<g id="Left-Gauntlets_F">
 		<g id="Basic_Gauntlet_Left_F_Primary_Option">
-			<path class="st0" d="M1164.1,835.9l-68.9,11.1l-7.5,32l52.5,221.2l65.3-22.8L1164.1,835.9z"/>
-			<path class="st0" d="M1248.9,818.2l-87.4,6.7l42.8,251.1l20.1,80.9l43.7,81.9l14.7-16.4l-4.9-35.6l-8-62l-41.2-214.3l29.2-27.6
-				L1248.9,818.2z"/>
-			<path class="st0" d="M1228.8,910.8l39.6,237.8l26.3,14.6l-31.4-284.4L1228.8,910.8z"/>
+			<path id="Base_Basic_Gauntlet_Left_F" class="st0" d="M1164.1,835.9l-68.9,11.1l-7.5,32l52.5,221.2l65.3-22.8L1164.1,835.9z"/>
+			<path id="Middle_Basic_Gauntlet_Left_F" class="st0" d="M1248.9,818.2l-87.4,6.7l42.8,251.1l20.1,80.9l43.7,81.9l14.7-16.4
+				l-4.9-35.6l-8-62l-41.2-214.3l29.2-27.6L1248.9,818.2z"/>
+			<path id="Top_Basic_Gauntlet_Left_F" class="st0" d="M1228.8,910.8l39.6,237.8l26.3,14.6l-31.4-284.4L1228.8,910.8z"/>
 		</g>
 	</g>
 	<g id="Right-Gauntlets_F">
 		<g id="Basic_Gauntlet_Right_F_Primary_Option">
-			<path class="st0" d="M235.9,835.9l68.9,11.1l7.5,32l-52.5,221.2l-65.3-22.8L235.9,835.9z"/>
-			<path class="st0" d="M151.1,818.2l87.4,6.7L195.7,1076l-20.1,80.9l-43.7,81.9l-14.7-16.4l4.9-35.6l8.1-62l41.2-214.3l-29.2-27.6
-				L151.1,818.2z"/>
-			<path class="st0" d="M171.2,910.8l-39.6,237.8l-26.2,14.6l31.4-284.4L171.2,910.8z"/>
+			<path id="Base_Basic_Gauntlet_Right_F" class="st0" d="M235.9,835.9l68.9,11.1l7.5,32l-52.5,221.2l-65.3-22.8L235.9,835.9z"/>
+			<path id="Middle_Basic_Gauntlet_Right_F" class="st0" d="M151.1,818.2l87.4,6.7L195.7,1076l-20.1,80.9l-43.7,81.9l-14.7-16.4
+				l4.9-35.6l8.1-62l41.2-214.3l-29.2-27.6L151.1,818.2z"/>
+			<path id="Top_Basic_Gauntlet_Right_F" class="st0" d="M171.2,910.8l-39.6,237.8l-26.2,14.6l31.4-284.4L171.2,910.8z"/>
 		</g>
 	</g>
 </g>
