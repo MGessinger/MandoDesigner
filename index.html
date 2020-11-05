@@ -19,22 +19,30 @@
 	<body class="light_mode" onload="onload()">
 		<nav>
 			<svg class="title" viewBox="0 0 420 70"><use id="title" href="#title" /></svg>
-			<div id="parts_list">
-				<input type="radio" name="parts_list" id="HelmetSettings" value="Helmet (Buy'ce)" onclick="openArmorFolder('Helmet')" checked hidden/>
-				<label for="HelmetSettings" class="armor_label">Helmet (Buy'ce)<span class="armor_icon">&#xE905;</span></label>
-				<input type="radio" name="parts_list" id="FlightSuitSettings" value="Flight Suit (Kute)" onclick="openArmorFolder('FlightSuit')" hidden/>
-				<label for="FlightSuitSettings" class="armor_label">Flight Suit (Kute)<span class="armor_icon">&#xE907;</span></label>
-				<input type="radio" name="parts_list" id="UpperArmorSettings" value="Upper Body" onclick="openArmorFolder('UpperArmor')" hidden/>
-				<label for="UpperArmorSettings" class="armor_label">Upper Body<span class="armor_icon">&#xE908;</span></label>
-				<input type="radio" name="parts_list" id="LowerArmorSettings" value="Lower Body" onclick="openArmorFolder('LowerArmor')" hidden/>
-				<label for="LowerArmorSettings" class="armor_label">Lower Body<span class="armor_icon">&#xE906;</span></label>
-				<input type="radio" name="parts_list" id="BackSettings" value="Back" onclick="openArmorFolder('Back')" hidden/>
-				<label for="BackSettings" class="armor_label">Back (Norac)<span class="armor_icon">&#xE904;</span></label>
+			<div id="left_nav">
+				<div id="parts_list">
+					<input type="radio" name="parts_list" id="HelmetSettings" value="Helmet (Buy'ce)" onclick="openArmorFolder('Helmet')" checked hidden/>
+					<label for="HelmetSettings" class="armor_label">Helmet (Buy'ce)<span class="armor_icon">&#xE905;</span></label>
+					<input type="radio" name="parts_list" id="FlightSuitSettings" value="Flight Suit (Kute)" onclick="openArmorFolder('FlightSuit')" hidden/>
+					<label for="FlightSuitSettings" class="armor_label">Flight Suit (Kute)<span class="armor_icon">&#xE907;</span></label>
+					<input type="radio" name="parts_list" id="UpperArmorSettings" value="Upper Body" onclick="openArmorFolder('UpperArmor')" hidden/>
+					<label for="UpperArmorSettings" class="armor_label">Upper Body<span class="armor_icon">&#xE908;</span></label>
+					<input type="radio" name="parts_list" id="LowerArmorSettings" value="Lower Body" onclick="openArmorFolder('LowerArmor')" hidden/>
+					<label for="LowerArmorSettings" class="armor_label">Lower Body<span class="armor_icon">&#xE906;</span></label>
+					<input type="radio" name="parts_list" id="BackSettings" value="Back" onclick="openArmorFolder('Back')" hidden/>
+					<label for="BackSettings" class="armor_label">Back (Norac)<span class="armor_icon">&#xE904;</span></label>
+				</div>
 				<input id="background_upload" type="file" accept="image/*" onchange="loadImage(this);" hidden/>
-				<label for="background_upload" class="armor_label">Upload Background<span class="armor_icon">&#xF03E;</span></label>
+				<label for="background_upload" class="armor_label">Upload Background <span class="armor_icon">&#xF03E;</span> </label>
+				<label id="reset_wrapper" class="armor_label">
+					Reset Background
+					<button id="reset" class="armor_icon" onclick="setColorScheme(find('color_scheme_picker').checked)">&#xF021;</button>
+				</label>
 				<input id="contact_opener" type="button" onclick="displayForm(true)" hidden/>
-				<label for="contact_opener" class="armor_label">Contact Us<span class="armor_icon">&#xF0E0;</span></label>
-				<a class="armor_label download" id="download" download="Mando'ad.svg" href="#">Download<span class="armor_icon">&#xE903;</span></a>
+				<label for="contact_opener" class="armor_label">About/Contact Us<span class="armor_icon">&#xE90E;</span></label>
+				<a class="armor_label" id="download" download="Mando'ad.svg" href="#">Download<span class="armor_icon">&#xE903;</span></a>
+				<label id="color_scheme_label" for="color_scheme_picker" class="armor_label">Toggle Dark/Light<span class="armor_icon">&#xE90F;</span></label>
+				<input type="checkbox" id="color_scheme_picker" onchange="setColorScheme(this.checked)"/>
 			</div>
 		</nav>
 		<div id="settings" class="settings_column settings_collapsed">
@@ -264,7 +272,7 @@
 				</div>
 			</div>
 		</div>
-		<div class="picker_wrapper" id="picker" tabindex="0" style="display: none;">
+		<div class="picker_wrapper" id="picker" tabindex="0" style="visibility: hidden;">
 			<div>Right-click a swatch to save your color</div>
 			<div class="picker_palette"></div>
 			<div class="picker_main">
@@ -283,7 +291,15 @@
 		</div>
 		<main id="editor" class="image_column"></main>
 		<form style="display:none" id="contact" action="mail.php" method="POST" target="_blank" onsubmit="displayForm(false, this)">
-			<legend>Contact Us<button type="button" class="close" onclick="displayForm(false)">X</button></legend>
+			<legend>Mando Creator Info<button type="button" class="close" onclick="displayForm(false)">X</button></legend>
+			<p class="credit">Designed By <a class="credit_link" target="_blank" rel="noopener noreferrer">DesignDeviant</a></p>
+			<p class="credit">Developed By <a class="credit_link" href="https://github.com/MGessinger" target="_blank" rel="noopener noreferrer">Cin Vhetin</a></p>
+			<p class="credit">Background Image By <a class="credit_link" href="https://www.freepik.com/kjpargeter" rel="noopener noreferrer" target="_blank">kjpargeter</a></p>
+			<div class="changelog">
+				<p class="version">Version 1.0</p>
+				<p>This is the first Release.</p>
+			</div>
+			<legend>Contact Us<p style="font-size:small">Like the site or have some feedback on what to add next? Let us know!</p></legend>
 			<fieldset>
 				<input type="text" class="narrow_input" placeholder="Name" name="name"/>
 				<input type="text" class="narrow_input" placeholder="Email" name="email"/>
@@ -294,28 +310,13 @@
 		</form>
 
 		<footer>
-			<div class="settings">
-				<input type="radio" name="sex" class="toggle_sex" id="male" checked onchange="setSex(false)">
-				<label for="male" class="label_sex">&#xe901;</label>
-				<input type="radio" name="sex" class="toggle_sex" id="female" onchange="setSex(true)">
-				<label for="female" class="label_sex">&#xe902;</label>
-			</div>
-			<div class="settings">
+			<input type="radio" name="sex" class="toggle_sex" id="male" checked onchange="setSex(false)">
+			<label for="male" class="label_sex">&#xe901;</label>
+			<input type="radio" name="sex" class="toggle_sex" id="female" onchange="setSex(true)">
+			<label for="female" class="label_sex">&#xe902;</label>
+			<div class="zoom_wrapper">
 				<input id="zoom" type="range" min="100" max="250" value="100" oninput="zoom(this.value/100);" />
 			</div>
-			<p class="credits">
-				<span>Designed &amp; Developed By <a class="credit" target="_blank" rel="noopener noreferrer">DesignDeviant</a> &amp; <a class="credit" href="https://github.com/MGessinger" target="_blank" rel="noopener noreferrer">Cin Vhetin</a></span>
-				<label style="font-size:smaller">
-					<span class="pseudo_label">LIGHT</span>
-					<span style="display: inline-block">
-						<input type="checkbox" id="color_scheme_picker" onchange="setColorScheme(this.checked)"/>
-						<span class="slider"></span>
-					</span>
-					<span class="pseudo_label">DARK</span>
-				</label>
-				<span id="image_credit" style="text-align:right">Background photo created by <a class="credit" href="https://www.freepik.com/kjpargeter" rel="noopener noreferrer" target="_blank">kjpargeter</a></span>
-				<span id="no_credit" style="text-align:right"><button class="no_credit" onclick="setColorScheme(find('color_scheme_picker').checked)">Reset Background</button></span>
-			</p>
 		</footer>
 		<div id="vault" style="display: none"></div>
 		<script src="editor.js"></script>

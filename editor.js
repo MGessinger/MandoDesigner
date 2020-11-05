@@ -59,6 +59,10 @@ function syncGroup (id) {
 	return "Primary";
 }
 
+function isEmptyLayer (SVGNode) {
+	return SVGNode.tagName === "g" && SVGNode.children.length === 0;
+}
+
 function DOMNode (type, props, parent) {
 	var n = document.createElement(type);
 	for (var p in props)
@@ -136,13 +140,15 @@ function prepareParent (SVGNode, parent) {
 	var globalList = find(name + "Colors");
 	if (globalList) {
 		parent = globalList;
-		globalList.innerHTML = "";
+		parent.innerHTML = "";
+		parent.style.display = isEmptyLayer(SVGNode) ? "none" : "";
 		var p = DOMNode("p", {class: "option_name hidden"}, globalList);
 		p.innerText = prettify(SVGNode.id) + " Options:";
 	}
 	if (SVGNode.getAttribute("class") === "toggle") {
 		if (parent.children.length > 1) // 1 for option-name built before
 			DOMNode("p", {class: "separator"}, parent);
+
 		var p = DOMNode("label", {class: "pseudo_checkbox hidden"}, parent);
 		var labelText = DOMNode("span", {class: "pseudo_label"}, p);
 		labelText.innerText = prettify(SVGNode.id);
@@ -156,8 +162,6 @@ function prepareParent (SVGNode, parent) {
 		toggle.bind({checked: defaultOn})();
 		check.addEventListener("change", toggle);
 	}
-	if (!SVGNode.children.length)
-		parent.style.display = "none";
 	return parent;
 }
 
@@ -211,12 +215,12 @@ function buildAddonSelect (options, category, parent) {
 		var san = makeIdentifier(fullName);
 		var col = DOMNode("div", {id: san + "SubColors"}, parent);
 		colors.push(col);
+		buildAllSettings(options[i], category, col);
 		if (i === last) {
 			options[i].style.visibility = "visible";
 		} else {
 			col.style.display = "none";
 		}
-		buildAllSettings(options[i], category, col);
 	}
 	select.addEventListener("change", function() {
 		for (var i = 0; i < options.length; i++) {
@@ -244,7 +248,7 @@ function buildAllSettings (SVGNode, category, parent) {
 	for (var i = 0; i < ch.length; i++)
 		hasUnnamedChild |= !ch[i].id;
 	if (hasUnnamedChild) {
-		if (ch.length == 0 && SVGNode.tagName == "g")
+		if (isEmptyLayer(SVGNode))
 			return;
 		return buildIOSettings(SVGNode, category, parent);
 	}
@@ -398,11 +402,8 @@ function setColorScheme (useDark) {
 	});
 	var use = find("title");
 	use.setAttribute("href", logoName);
-
-	var reset = find("no_credit");
+	var reset = find("reset_wrapper");
 	reset.style.display = "none";
-	var credit = find("image_credit");
-	credit.style.display = "";
 }
 
 function setSex (female) {
@@ -459,10 +460,8 @@ function loadImage (input) {
 		reader.readAsDataURL(files[0]);
 	}
 
-	var reset = find("no_credit");
+	var reset = find("reset_wrapper");
 	reset.style.display = "";
-	var credit = find("image_credit");
-	credit.style.display = "none";
 }
 
 function displayForm (show, form) {
