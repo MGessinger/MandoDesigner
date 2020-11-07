@@ -287,6 +287,11 @@ function onload () {
 	var useDarkMode = window.matchMedia("(prefers-color-scheme: dark)").matches;
 	setColorScheme(useDarkMode);
 	find("color_scheme_picker").checked = useDarkMode;
+
+	if (window.innerWidth < 786) {
+		var settings = find("settings");
+		settings.classList.add("settings_collapsed");
+	}
 }
 
 function openArmorFolder (category) {
@@ -338,6 +343,7 @@ function setDownloader (bck) {
 		var background = bck.cloneNode(true);
 		var svg = main.getElementsByTagName("svg")[0];
 		var copy = svg.cloneNode(true);
+		copy.style.transform = "";
 		background.appendChild(copy);
 		var str = xml.serializeToString(background);
 		var data = "<?xml version='1.0' encoding='UTF-8'?>" + str;
@@ -396,8 +402,9 @@ function setColorScheme (useDark) {
 	var main = find("editor");
 	loadSVG(bckName, function(svg) {
 		a.onclick = setDownloader(svg);
-		var img = svg.getElementById("image");
-		main.style.backgroundImage = "url(" + img.getAttribute("href") + ")";
+		var img = svg.getElementsByTagName("image")[0];
+		var href = img.getAttribute("href");
+		main.style.backgroundImage = "url(" + href + ")";
 	});
 	var use = find("title");
 	use.setAttribute("href", logoName);
@@ -411,11 +418,13 @@ function setSex (female) {
 	if (female) {
 		body = "Female-Body";
 		sexSuffix = "F";
-		settings.className = "settings_column female";
+		settings.classList.remove("male");
+		settings.classList.add("female");
 	} else {
 		body = "Male-Body";
 		sexSuffix = "M";
-		settings.className = "settings_column male";
+		settings.classList.remove("female");
+		settings.classList.add("male");
 	}
 	loadSVG(body, setupMando, sexSuffix);
 }
@@ -471,8 +480,8 @@ function displayForm (show, form) {
 function zoom (scale) {
 	var main = find("editor");
 	var svg = main.children[0];
-	svg.removeAttribute("transform");
+	svg.style.transform = "";
 	var rect = svg.getBoundingClientRect()
 	var t = (rect.height*scale - window.innerHeight)/2 + rect.top;
-	svg.setAttribute("transform", "translate(0 " + t + ") scale(" + scale + ")");
+	svg.style.transform = "translateY(" + t + "px) scale(" + scale + ")";
 }
