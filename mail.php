@@ -1,10 +1,12 @@
 <?php 
-	$name = $_POST['name'];
-	$email = $_POST['email'];
-	$subject = $_POST['subject'];
-	$message = $_POST['message'];
-	$formcontent="From: $name\nMail: $email\nMessage: $message";
-	mail('feedback@mandocreator.com',$subject,$formcontent) or die("Error");
+	if (!empty($_POST)) {
+		$name = $_POST['name'];
+		$email = $_POST['email'];
+		$subject = $_POST['subject'];
+		$message = $_POST['message'];
+		$formcontent = htmlspecialchars("From: $name\nMail: $email\nMessage: $message");
+		mail('feedback@mandocreator.com',$subject,$formcontent) or die("Error");
+	}
 ?>
 	
 <!DOCTYPE html>
@@ -24,7 +26,7 @@
 			body {
 				height: 100%;
 				margin: 0;
-				background: url(data/foggy_small.jpg) no-repeat center;
+				background: url(assets/foggy_small.jpg) no-repeat center;
 				background-color: #222;
 				background-size: cover;
 			}
@@ -39,7 +41,7 @@
 	</head>
 	<body>
 		<div class="content">
-			<img src="images/Mando-Creator-Success.png" alt="Success. We will see your message soon. Thank you." height="50%" />
+			<img src="assets/Mando-Creator-Success.png" alt="Success. We will see your message soon. Thank you." height="50%" />
 		</div>
 	</body>
 </html>
