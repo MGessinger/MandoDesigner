@@ -15,6 +15,22 @@
 	border: 1px solid var(--accent);
 }
 
+.info {
+	width: 100%;
+	line-height: 2em;
+}
+
+.save:before {
+	content: "Right-click";
+	display: inline-block;
+}
+
+@media only screen and (pointer: coarse) {
+	.save:before {
+		content: "Hold";
+	}
+}
+
 .picker_main > * {
 	margin: 0.5em 0.5em 0.5em 0;
 }

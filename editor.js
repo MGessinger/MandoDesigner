@@ -253,12 +253,12 @@ function buildAllSettings (SVGNode, category, parent) {
 	}
 	var options = [];
 	var toggle = [];
-	for (var i = 0; i < ch.length; i++) {
+	for (var i = ch.length-1; i >= 0; i--) {
 		var className = ch[i].getAttribute("class");
 		if (className == "option")
-			options.push(ch[i]);
+			options.unshift(ch[i]);
 		else if (className == "toggle")
-			toggle.push(ch[i]);
+			toggle.unshift(ch[i]);
 		else
 			buildAllSettings(ch[i], category, parent);
 	}

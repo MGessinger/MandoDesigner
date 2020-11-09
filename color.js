@@ -127,7 +127,7 @@ var Picker = new function() {
 			set hex (value) {
 				if (value == undefined)
 					return;
-				if (!/#([\da-f]{3}){1,2}$/.test(value))
+				if (!/^#([\da-f]{3}){1,2}$/.test(value))
 					return;
 				_hex = value;
 				_hsv = hexToHsv(_hex);
@@ -158,6 +158,7 @@ var Picker = new function() {
 		on(wrapper, "click", function(event){event.stopPropagation();});
 		var ch = wrapper.children;
 		var colors = ["#F00", "#0085FF", "#FFD600", "#08CB33", "#8B572A", "#A3A3A3", "#000", "#fff"]
+		var timer;
 		for (var i = 0; i < colors.length; i++) {
 			var pal = DOMNode("button", {
 					class: "palette_icon",
@@ -166,6 +167,20 @@ var Picker = new function() {
 				}, ch[1]);
 			on(pal, "click", function() { _setColor(this.style.background); });
 			on(pal, "contextmenu", function(event) { event.preventDefault(); this.style.background = color.hex; });
+			on(pal, "touchstart", function() {
+				var that = this;
+				timer = setTimeout(function() {
+					that.style.background = color.hex;
+					timer = 0;
+				}, 500);
+			});
+			on(pal, "touchend", function() {
+				if (timer) {
+					clearTimeout(timer);
+					_setColor(this.style.background);
+					timer = 0;
+				}
+			});
 		}
 
 		var ch1 = ch[2].children;
