@@ -45,9 +45,9 @@ var Picker = new function() {
 
 	function Color () {
 		function hexToHsv(hex) {
-			var shorthandRegex = /^#?([a-f\d])([a-f\d])([a-f\d])$/i;
-			hex = hex.replace(shorthandRegex, "$1$1$2$2$3$3");
-			var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+			var shorthandRegex = /^#([a-f\d])([a-f\d])([a-f\d])$/i;
+			_hex = hex = hex.replace(shorthandRegex, "#$1$1$2$2$3$3");
+			var result = /^#([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
 			if (!result)
 				return undefined;
 			var y = result.slice(1).map(function(r) {return parseInt(r,16)/255;});
@@ -136,8 +136,12 @@ var Picker = new function() {
 				if (Array.isArray(value))
 					return this.hsv = value;
 				var string = value.toLowerCase();
+				var regex = /^[a-f\d]{3}|[a-f\d]{6}$/i;
 				if (string[0] == '#') {
 					this.hex = string;
+				} else if (regex.test(string)) {
+					console.log(string);
+					this.hex = '#' + string;
 				} else if (string.startsWith("rgb")) {
 					var p = string.match(/\d{1,3}/g);
 					if (!p || p.length < 3)
