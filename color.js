@@ -272,7 +272,8 @@ var Picker = new function() {
 			_setColor(this.style.backgroundColor);
 			DOM.parent = this;
 		});
-		var def = SVGNode.getAttribute("fill") || "#FFFFFF";
-		input(def);
+		var def = SVGNode.getAttribute("fill") || SVGNode.style.fill || "#FFFFFF";
+		_setColor(def);
+		input(color.hex);
 	}
 }()

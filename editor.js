@@ -388,6 +388,39 @@ function setupMando (svg, sexSuffix) {
 	buildAllSettings(findLocal("Soft-Parts_" + sexSuffix), "FlightSuit");
 }
 
+function recreateMando (svg) {
+	var main = find("editor");
+	var old_svg = main.firstElementChild;
+	main.replaceChild(svg, old_svg);
+	var scale = find("zoom");
+	zoom(scale.value/100);
+
+	function findLocal(st) {
+		return svg.getElementById(st);
+	}
+	buildAllSettings(findLocal("Helmet_Current"), "Helmet");
+
+	/* Upper Body */
+	buildAllSettings(findLocal("Chest_Current"), "UpperArmor");
+	var subgroups = ["Shoulders","Biceps","Gauntlets"];
+	for (var i = 0; i < subgroups.length; i++) {
+		var cur = findLocal(subgroups[i] + "_Current");
+		buildAllSettings(cur,"UpperArmor");
+	}
+
+	/* Lower Body */
+	buildAllSettings(findLocal("Groin_Current"), "LowerArmor");
+	buildAllSettings(findLocal("Waist_Current"), "LowerArmor");
+	subgroups = ["Thighs", "Knees", "Shins", "Ankles"];
+	for (var i = 0; i < subgroups.length; i++) {
+		var cur = findLocal(subgroups[i] + "_Current");
+		buildAllSettings(cur,"LowerArmor");
+	}
+	buildAllSettings(findLocal("Back"), "Back");
+	var soft = findLocal("Soft-Parts_M") || findLocal("Soft-Parts_F");
+	buildAllSettings(soft, "FlightSuit");
+}
+
 function setColorScheme (useDark) {
 	var className = "light_mode";
 	var bckName = "BackgroundLight";
@@ -445,6 +478,7 @@ function loadImage (input) {
 	var img = customBck.getElementsByTagName("image")[0];
 
 	var reader = new FileReader();
+	console.log(files[0]);
 	if (files[0].type.includes("svg")) {
 		reader.onload = function () {
 			var svg = DOMNode("svg");
@@ -470,6 +504,28 @@ function loadImage (input) {
 
 	var reset = find("reset_wrapper");
 	reset.style.display = "";
+}
+
+function reupload (input) {
+	var files = input.files;
+	if (!files || !files.length)
+		return;
+	var reader = new FileReader();
+	var main = find("editor");
+	var download = find("download");
+	reader.onload = function () {
+		var svg = DOMNode("svg");
+		svg.innerHTML = this.result;
+		svg = svg.firstElementChild;
+		var mando = svg.getElementsByTagName("svg")[0];
+		var img = svg.getElementsByTagName("image")[0];
+		if (!mando || !img)
+			return;
+		main.style.backgroundImage = "url(" + img.getAttribute("href") + ")";
+		recreateMando(mando, img);
+		download.onclick = setDownloader(svg);
+	};
+	reader.readAsText(files[0]);
 }
 
 function displayForm (show, form) {

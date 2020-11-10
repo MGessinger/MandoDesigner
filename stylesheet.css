@@ -363,10 +363,9 @@ footer {
 }
 
 .armor_types {
-	max-height: 12em;
 	padding-top: 0.5em;
 	overflow-y: auto;
-	border-bottom: 1px solid var(--softColor);
+	resize: vertical;
 }
 
 .slide_title {
