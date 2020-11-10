@@ -5,8 +5,8 @@
 		<script>
 			window.dataLayer = window.dataLayer || [];
 			function gtag(){dataLayer.push(arguments);}
-			gtag('js', new Date());
-			gtag('config', 'G-45K14ZGLQC');
+			//gtag('js', new Date());
+			//gtag('config', 'G-45K14ZGLQC');
 		</script>
 		<meta http-equiv="x-ua-compatible" content="ie=edge" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0,user-scalable=0" />
@@ -291,9 +291,12 @@
 		<main id="editor" class="image_column"></main>
 		<form style="display:none" id="contact" action="mail.php" method="POST" target="_blank" onsubmit="displayForm(false, this)">
 			<legend>Mando Creator Info<button type="button" class="close" onclick="displayForm(false)">X</button></legend>
-			<p class="credit">Designed By <a class="credit_link" href="https://twitter.com/DesignDeviant" target="_blank" rel="noopener noreferrer">DesignDeviant</a></p>
-			<p class="credit">Developed By <a class="credit_link" href="https://github.com/MGessinger" target="_blank" rel="noopener noreferrer">Cin Vhetin</a></p>
-			<p class="credit">Background Image By <a class="credit_link" href="https://www.freepik.com/kjpargeter" rel="noopener noreferrer" target="_blank">kjpargeter</a></p>
+			<div class=credits>
+				<p class="credit">Designed By <a class="credit_link" href="https://twitter.com/DesignDeviant" target="_blank" rel="noopener noreferrer">DesignDeviant</a></p>
+				<p class="credit">Developed By <a class="credit_link" href="https://github.com/MGessinger" target="_blank" rel="noopener noreferrer">Cin Vhetin</a></p>
+				<p class="credit">Background Image By <a class="credit_link" href="https://www.freepik.com/kjpargeter" rel="noopener noreferrer" target="_blank">kjpargeter</a></p>
+				<a class="tip_jar" target="_blank" href="https://www.paypal.com/donate?hosted_button_id=TJGV33MFJL26W"><button type="button" class="submit" style="margin:0">Ke dinuir <p class="color">(Donate)</p></button></a>
+			</div>
 			<div class="changelog">
 				<p class="version">Version 1.1</p>
 				<p>Add Trauma-Plating to the Lower Armor. They won't be kicking your shins now!</p>
@@ -304,7 +307,7 @@
 				<input type="text" class="narrow_input" placeholder="Email" name="email"/>
 				<input type="text" class="wide_input" placeholder="Subject (example: Ibic jatne!)" name="subject" required/>
 				<textarea placeholder="Message (example: Gar Mando'ade jate, ijaat enteyo cuyir ori.)" name="message" required></textarea>
-				<button class="submit" type="submit">Ke barycir (Deploy)</button>
+				<button class="submit" type="submit">Ke barycir <span class="color">(Deploy)</span></button>
 			</fieldset>
 		</form>
 
