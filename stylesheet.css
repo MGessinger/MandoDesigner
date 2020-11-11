@@ -148,6 +148,7 @@ form {
 	padding: 1em;
 	width: 50%;
 	min-width: 20em;
+	max-height: 100%;
 	top: 50%;
 	left: 50%;
 	z-index: 1;
@@ -155,6 +156,7 @@ form {
 	background: var(--mainColor);
 	box-shadow: grey 0 0 5px;
 	color: var(--softLight);
+	overflow-y: auto;
 }
 
 legend {
@@ -166,19 +168,39 @@ legend {
 
 .close {
 	float: right;
+	padding: 0 0 1em 1em;
 	background: none;
 	border: none;
 	cursor: pointer;
+	font-size: medium;
+}
+
+.credits {
+	font-size: smaller;
+	position: relative;
 }
 
 .credit {
 	margin: 0.5em 0;
-	font-size: smaller;
 }
 
 .credit_link {
 	color: var(--accent);
 	text-decoration: none;
+}
+
+.socials {
+	position: absolute;
+	right: 0;
+	top: 0;
+	font-size: x-large;
+	text-align: center;
+}
+
+.social {
+	display: block;
+	text-decoration: none;
+	color: var(--accent);
 }
 
 .changelog {
