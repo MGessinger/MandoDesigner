@@ -74,7 +74,7 @@ function ColorPicker (affectedObject, parent) {
 	var wrapper = DOMNode("div", {class: "color_wrapper"}, parent);
 
 	var buttonID = makeIdentifier(affectedObject.id) + "Color";
-	var b = DOMNode("button", {class: "color-picker", id: buttonID}, wrapper);
+	var b = DOMNode("button", {class: "color_picker", id: buttonID}, wrapper);
 
 	var label = DOMNode("label", {class: "color_label hidden", for: buttonID}, wrapper);
 	var p = DOMNode("p", {class: "name"}, label);

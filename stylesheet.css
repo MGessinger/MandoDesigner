@@ -101,7 +101,7 @@ p {
 	border-bottom: 1px solid var(--softColor);
 }
 
-.armor_label {
+.nav_label {
 	display: block;
 	position: relative;
 	width: 15em;
@@ -109,12 +109,14 @@ p {
 	left: -12.5em;
 	padding-left: 0.5em;
 	background: var(--mainColor);
+	color: inherit;
 	line-height: 3em;
+	text-decoration: none;
 	transition: left 0.2s ease-out;
 	cursor: pointer;
 }
 
-.armor_icon {
+.nav_icon {
 	height: 2em;
 	width: 2em;
 	float: right;
@@ -122,7 +124,7 @@ p {
 	text-align: center;
 }
 
-:checked + .armor_label {
+:checked + .nav_label {
 	color: var(--mainColor);
 	background: var(--highlight);
 }
@@ -134,11 +136,6 @@ p {
 
 #reset:focus {
 	color: var(--accent);
-}
-
-#download {
-	color: inherit;
-	text-decoration: none;
 }
 
 #color_scheme_label {
@@ -174,29 +171,9 @@ legend {
 	cursor: pointer;
 }
 
-.credits {
-	position: relative;
-	font-size: smaller;
-}
-
 .credit {
 	margin: 0.5em 0;
-}
-
-.tip_jar {
-	position: absolute;
-	right: 0;
-	top: 0;
-}
-
-@media screen and (max-width: 786px) {
-	.tip_jar {
-		position: relative;
-	}
-
-	.tip_jar p {
-		display: inline-block;
-	}
+	font-size: smaller;
 }
 
 .credit_link {
@@ -666,7 +643,7 @@ footer {
 }
 
 @media (hover: hover) {
-	.armor_label:hover {
+	.nav_label:hover {
 		left: 0;
 	}
 }

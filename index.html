@@ -31,28 +31,29 @@
 			<div id="left_nav">
 				<div id="parts_list">
 					<input type="radio" name="parts_list" id="HelmetSettings" value="Helmet (Buy'ce)" onclick="openArmorFolder('Helmet')" checked hidden/>
-					<label for="HelmetSettings" class="armor_label">Helmet (Buy'ce)<span class="armor_icon">&#xE905;</span></label>
+					<label for="HelmetSettings" class="nav_label">Helmet (Buy'ce)<span class="nav_icon">&#xE905;</span></label>
 					<input type="radio" name="parts_list" id="FlightSuitSettings" value="Flight Suit (Kute)" onclick="openArmorFolder('FlightSuit')" hidden/>
-					<label for="FlightSuitSettings" class="armor_label">Flight Suit (Kute)<span class="armor_icon">&#xE907;</span></label>
+					<label for="FlightSuitSettings" class="nav_label">Flight Suit (Kute)<span class="nav_icon">&#xE907;</span></label>
 					<input type="radio" name="parts_list" id="UpperArmorSettings" value="Upper Body" onclick="openArmorFolder('UpperArmor')" hidden/>
-					<label for="UpperArmorSettings" class="armor_label">Upper Body<span class="armor_icon">&#xE908;</span></label>
+					<label for="UpperArmorSettings" class="nav_label">Upper Body<span class="nav_icon">&#xE908;</span></label>
 					<input type="radio" name="parts_list" id="LowerArmorSettings" value="Lower Body" onclick="openArmorFolder('LowerArmor')" hidden/>
-					<label for="LowerArmorSettings" class="armor_label">Lower Body<span class="armor_icon">&#xE906;</span></label>
+					<label for="LowerArmorSettings" class="nav_label">Lower Body<span class="nav_icon">&#xE906;</span></label>
 					<input type="radio" name="parts_list" id="BackSettings" value="Back" onclick="openArmorFolder('Back')" hidden/>
-					<label for="BackSettings" class="armor_label">Back (Norac)<span class="armor_icon">&#xE904;</span></label>
+					<label for="BackSettings" class="nav_label">Back (Norac)<span class="nav_icon">&#xE904;</span></label>
 				</div>
 				<input id="background_upload" type="file" accept="image/*" onchange="loadImage(this);" hidden/>
-				<label for="background_upload" class="armor_label">Upload Background <span class="armor_icon">&#xF03E;</span> </label>
-				<label id="reset_wrapper" class="armor_label">
+				<label for="background_upload" class="nav_label">Upload Background <span class="nav_icon">&#xF03E;</span> </label>
+				<label id="reset_wrapper" class="nav_label">
 					Reset Background
-					<button id="reset" class="armor_icon" onclick="setColorScheme(find('color_scheme_picker').checked)">&#xF021;</button>
+					<button id="reset" class="nav_icon" onclick="setColorScheme(find('color_scheme_picker').checked)">&#xF021;</button>
 				</label>
 				<input id="reupload" type="file" accept="image/svg+xml" onchange="reupload(this);" hidden/>
-				<label for="reupload" class="armor_label">Continue Editing<span class="armor_icon">&#xE910;</span></label>
-				<a id="download" class="armor_label" download="Mando'ad.svg" href="#">Download<span class="armor_icon">&#xE903;</span></a>
+				<label for="reupload" class="nav_label">Continue Editing<span class="nav_icon">&#xE910;</span></label>
+				<a id="download" class="nav_label" download="Mando'ad.svg" href="#">Download<span class="nav_icon">&#xE903;</span></a>
 				<input id="contact_opener" type="button" onclick="displayForm(true)" hidden/>
-				<label for="contact_opener" class="armor_label">About/Contact Us<span class="armor_icon">&#xE90E;</span></label>
-				<label id="color_scheme_label" for="color_scheme_picker" class="armor_label">Toggle Dark/Light<span class="armor_icon">&#xE90F;</span></label>
+				<label for="contact_opener" class="nav_label">About/Contact Us<span class="nav_icon">&#xE90E;</span></label>
+				<a class="nav_label" target="_blank" href="https://www.paypal.com/donate?hosted_button_id=TJGV33MFJL26W">Donate<span class="nav_icon">&#xE914;</span></a>
+				<label id="color_scheme_label" for="color_scheme_picker" class="nav_label">Toggle Dark/Light<span class="nav_icon">&#xE90F;</span></label>
 				<input type="checkbox" id="color_scheme_picker" onchange="setColorScheme(this.checked)"/>
 			</div>
 		</nav>
@@ -291,12 +292,9 @@
 		<main id="editor" class="image_column"></main>
 		<form style="display:none" id="contact" action="mail.php" method="POST" target="_blank" onsubmit="displayForm(false, this)">
 			<legend>Mando Creator Info<button type="button" class="close" onclick="displayForm(false)">X</button></legend>
-			<div class=credits>
-				<p class="credit">Designed By <a class="credit_link" href="https://twitter.com/DesignDeviant" target="_blank" rel="noopener noreferrer">DesignDeviant</a></p>
-				<p class="credit">Developed By <a class="credit_link" href="https://github.com/MGessinger" target="_blank" rel="noopener noreferrer">Cin Vhetin</a></p>
-				<p class="credit">Background Image By <a class="credit_link" href="https://www.freepik.com/kjpargeter" rel="noopener noreferrer" target="_blank">kjpargeter</a></p>
-				<a class="tip_jar" target="_blank" href="https://www.paypal.com/donate?hosted_button_id=TJGV33MFJL26W"><button type="button" class="submit" style="margin:0">Ke dinuir <p class="color">(Donate)</p></button></a>
-			</div>
+			<p class="credit">Designed By <a class="credit_link" href="https://twitter.com/DesignDeviant" target="_blank" rel="noopener noreferrer">DesignDeviant</a></p>
+			<p class="credit">Developed By <a class="credit_link" href="https://github.com/MGessinger" target="_blank" rel="noopener noreferrer">Cin Vhetin</a></p>
+			<p class="credit">Background Image By <a class="credit_link" href="https://www.freepik.com/kjpargeter" rel="noopener noreferrer" target="_blank">kjpargeter</a></p>
 			<div class="changelog">
 				<p class="version">Version 1.1</p>
 				<p>Add Trauma-Plating to the Lower Armor. They won't be kicking your shins now!</p>
