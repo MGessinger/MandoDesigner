@@ -123,7 +123,7 @@ function prepareParent (SVGNode, parent) {
 		DOMNode("span", {class: "slider"}, p);
 		parent = DOMNode("div", {style: "display:none", class: "subslide"}, parent);
 
-		var defaultOn = !SVGNode.id.includes("Off");
+		var defaultOn = (SVGNode.style.display !== "none");
 		var toggle = toggleSubslide(parent, SVGNode);
 		check.checked = defaultOn;
 		toggle.bind({checked: defaultOn})();
