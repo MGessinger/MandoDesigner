@@ -51,14 +51,6 @@ function prettify (str) {
 	return shortName.replace(/-/g, " ");
 }
 
-function syncGroup (id) {
-	if (id.includes("Secondary"))
-		return "Secondary";
-	else if (id.includes("Accent"))
-		return "Accents";
-	return "Primary";
-}
-
 function isEmptyLayer (SVGNode) {
 	return SVGNode.tagName === "g" && SVGNode.children.length === 0;
 }
@@ -82,13 +74,12 @@ function ColorPicker (affectedObject, parent) {
 	var wrapper = DOMNode("div", {class: "color_wrapper"}, parent);
 
 	var buttonID = makeIdentifier(affectedObject.id) + "Color";
-	var cl = "color_picker " + syncGroup(affectedObject.id);
-	var b = DOMNode("button", {class: cl, id: buttonID}, wrapper);
+	var b = DOMNode("button", {class: "color-picker", id: buttonID}, wrapper);
 
-	var l = DOMNode("label", {class: "color_label hidden", for: buttonID}, wrapper);
-	var p = DOMNode("p", {class: "name"}, l);
+	var label = DOMNode("label", {class: "color_label hidden", for: buttonID}, wrapper);
+	var p = DOMNode("p", {class: "name"}, label);
 	p.innerText = prettify(affectedObject.id);
-	var c = DOMNode("p", {class: "color"}, l);
+	var c = DOMNode("p", {class: "color"}, label);
 
 	Picker.attach(b, c, affectedObject);
 	return b;
@@ -108,29 +99,6 @@ function toggleSubslide (subslide, SVGNode) {
 		} else {
 			subslide.style.display = "none";
 			SVGNode.style.display = "none";
-		}
-	}
-}
-
-function synchronize (category, div) {
-	var folder_content = div.previousElementSibling;
-	var colorPickers = folder_content.getElementsByClassName("color_picker");
-	var syncedPickers = div.getElementsByTagName("button");
-	if (event.target.checked) {
-		div.setAttribute("class", "slide_content");
-		div.style.display = "unset";
-		folder_content.classList.add("synchronized");
-	} else {
-		div.setAttribute("class", "synchronized");
-		folder_content.classList.remove("synchronized");
-		for (var i = 0; i < colorPickers.length; i++) {
-			var p = colorPickers[i];
-			var idx = 0;
-			if (p.classList.contains("Secondary"))
-				idx = 1;
-			else if (p.classList.contains("Accents"))
-				idx = 2;
-			p.style.background = syncedPickers[idx].style.background;
 		}
 	}
 }
@@ -170,10 +138,6 @@ function buildIOSettings (SVGNode, category, parent) {
 	var p = ColorPicker(SVGNode, parent);
 	var redirectToPicker = redirectClickTo(p);
 
-	var synced = find(category + syncGroup(SVGNode.id) + "Color");
-	if (synced)
-		Picker.attach(synced, null, SVGNode);
-
 	var radio = find(category + "Settings");
 	var redirectToRadio = redirectClickTo(radio);
 	if (radio.checked)
@@ -190,10 +154,7 @@ function buildIOSettings (SVGNode, category, parent) {
 				redirectClickTo(but)();
 			}
 		}
-		if (folder_content.classList.contains("synchronized"))
-			redirectClickTo(synced)();
-		else
-			redirectToPicker();
+		redirectToPicker();
 	});
 }
 
@@ -202,6 +163,7 @@ function buildAddonSelect (options, category, parent) {
 	var select = DOMNode("select", {class: "component_select"}, wrapper);
 	var colors = [];
 	var last = options.length-1;
+	var useDefault = true;
 	for (var i = last; i >= 0; i--) {
 		var fullName = options[i].id;
 		var name = prettify(fullName);
@@ -215,12 +177,19 @@ function buildAddonSelect (options, category, parent) {
 		var col = DOMNode("div", {id: san + "SubColors"}, parent);
 		colors.push(col);
 		buildAllSettings(options[i], category, col);
-		if (i === last) {
-			options[i].style.visibility = "visible";
+		if (options[i].style.visibility == "visible") {
+			useDefault = false;
+			select.value = fullName;
 		} else {
+			options[i].style.visibility = "";
 			col.style.display = "none";
 		}
 	}
+	if (useDefault) {
+		options[last].style.visibility = "visible";
+		colors[0].style.display = "";
+	}
+
 	select.addEventListener("change", function() {
 		for (var i = 0; i < options.length; i++) {
 			if (options[i].id === this.value)
@@ -331,6 +300,17 @@ function toggleOptions () {
 	find("settings").classList.toggle("settings_collapsed");
 }
 
+function prepareForExport (svg) {
+	svg.style.transform = "";
+	var options = svg.getElementsByClassName("option");
+	for (var i = 0; i < options.length; i++) {
+		console.log(options[i]);
+		if (options[i].style.visibility !== "visible")
+			options[i].style.visibility = "hidden";
+	}
+	return svg;
+}
+
 function encodeSVG (svg) {
 	var san = svg.replace(/\s+/g," ").replace(/"/g,"'");
 	return encodeURIComponent(san);
@@ -343,7 +323,7 @@ function setDownloader (bck) {
 		var background = bck.cloneNode(true);
 		var svg = main.getElementsByTagName("svg")[0];
 		var copy = svg.cloneNode(true);
-		copy.style.transform = "";
+		prepareForExport(copy);
 		background.appendChild(copy);
 		var str = xml.serializeToString(background);
 		var data = "<?xml version='1.0' encoding='UTF-8'?>" + str;

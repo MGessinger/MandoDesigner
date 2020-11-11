@@ -43,15 +43,15 @@
 				</div>
 				<input id="background_upload" type="file" accept="image/*" onchange="loadImage(this);" hidden/>
 				<label for="background_upload" class="armor_label">Upload Background <span class="armor_icon">&#xF03E;</span> </label>
-				<input id="reupload" type="file" accept="image/svg+xml" onchange="reupload(this);" hidden/>
-				<label for="reupload" class="armor_label">Continue Editing<span class="armor_icon">&#xE910;</span></label>
 				<label id="reset_wrapper" class="armor_label">
 					Reset Background
 					<button id="reset" class="armor_icon" onclick="setColorScheme(find('color_scheme_picker').checked)">&#xF021;</button>
 				</label>
+				<input id="reupload" type="file" accept="image/svg+xml" onchange="reupload(this);" hidden/>
+				<label for="reupload" class="armor_label">Continue Editing<span class="armor_icon">&#xE910;</span></label>
+				<a id="download" class="armor_label" download="Mando'ad.svg" href="#">Download<span class="armor_icon">&#xE903;</span></a>
 				<input id="contact_opener" type="button" onclick="displayForm(true)" hidden/>
 				<label for="contact_opener" class="armor_label">About/Contact Us<span class="armor_icon">&#xE90E;</span></label>
-				<a class="armor_label" id="download" download="Mando'ad.svg" href="#">Download<span class="armor_icon">&#xE903;</span></a>
 				<label id="color_scheme_label" for="color_scheme_picker" class="armor_label">Toggle Dark/Light<span class="armor_icon">&#xE90F;</span></label>
 				<input type="checkbox" id="color_scheme_picker" onchange="setColorScheme(this.checked)"/>
 			</div>
@@ -303,8 +303,8 @@
 			</div>
 			<legend>Contact Us<p style="font-size:small">Like the site or have some feedback on what to add next? Let us know!</p></legend>
 			<fieldset>
-				<input type="text" class="narrow_input" placeholder="Name" name="name"/>
-				<input type="text" class="narrow_input" placeholder="Email" name="email"/>
+				<input type="text" class="narrow_input" placeholder="Name (optional)" name="name"/>
+				<input type="text" class="narrow_input" placeholder="Email (optional)" name="email"/>
 				<input type="text" class="wide_input" placeholder="Subject (example: Ibic jatne!)" name="subject" required/>
 				<textarea placeholder="Message (example: Gar Mando'ade jate, ijaat enteyo cuyir ori.)" name="message" required></textarea>
 				<button class="submit" type="submit">Ke barycir <span class="color">(Deploy)</span></button>
