@@ -521,6 +521,20 @@ function reupload (input) {
 		var img = svg.getElementsByTagName("image")[0];
 		if (!mando || !img)
 			return;
+
+		if (mando.id === "Male-Body") {
+			var sex_radio = find("male");
+			sex_radio.checked = true;
+		} else {
+			var sex_radio = find("female");
+			sex_radio.checked = true;
+		}
+
+		var theme = find("color_scheme_picker");
+		var light_mode = !svg.getElementById("titleLight");
+		theme.checked = light_mode;
+		setColorScheme(light_mode);
+
 		main.style.backgroundImage = "url(" + img.getAttribute("href") + ")";
 		recreateMando(mando, img);
 		download.onclick = setDownloader(svg);
