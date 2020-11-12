@@ -251,9 +251,15 @@ function buildVariableSettings (category, pieceName, variantName) {
 }
 
 function onload () {
-	var femaleSelector = find("female");
-	setSex(femaleSelector.checked);
-	var useDarkMode = window.matchMedia("(prefers-color-scheme: dark)").matches;
+	female = localStorage.getItem("female_sex") == "true";
+	setSex(female);
+	find("female").checked = female;
+	var useDarkMode = localStorage.getItem("dark_mode");
+	if(useDarkMode != null)
+		useDarkMode = useDarkMode == "true" 
+	else
+		useDarkMode = window.matchMedia("(prefers-color-scheme: dark)").matches;
+		
 	setColorScheme(useDarkMode);
 	find("color_scheme_picker").checked = useDarkMode;
 
@@ -423,6 +429,7 @@ function setColorScheme (useDark) {
 	use.setAttribute("href", logoName);
 	var reset = find("reset_wrapper");
 	reset.style.display = "none";
+	localStorage.setItem("dark_mode", useDark.toString());
 }
 
 function setSex (female) {
@@ -440,6 +447,7 @@ function setSex (female) {
 		settings.classList.add("male");
 	}
 	loadSVG(body, setupMando, sexSuffix);
+	localStorage.setItem("female_sex", female.toString());
 }
 
 function loadImage (input) {
