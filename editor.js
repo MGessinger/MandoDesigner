@@ -251,12 +251,12 @@ function buildVariableSettings (category, pieceName, variantName) {
 }
 
 function onload () {
-	female = localStorage.getItem("female_sex") == "true";
+	female = (localStorage.getItem("female_sex") == "true");
 	setSex(female);
 	find("female").checked = female;
 	var useDarkMode = localStorage.getItem("dark_mode");
-	if(useDarkMode != null)
-		useDarkMode = useDarkMode == "true" 
+	if (useDarkMode !== null)
+		useDarkMode = (useDarkMode == "true");
 	else
 		useDarkMode = window.matchMedia("(prefers-color-scheme: dark)").matches;
 		
