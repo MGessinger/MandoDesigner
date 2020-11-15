@@ -5,8 +5,8 @@
 		<script>
 			window.dataLayer = window.dataLayer || [];
 			function gtag(){dataLayer.push(arguments);}
-			//gtag('js', new Date());
-			//gtag('config', 'G-45K14ZGLQC');
+			gtag('js', new Date());
+			gtag('config', 'G-45K14ZGLQC');
 		</script>
 		<meta http-equiv="x-ua-compatible" content="ie=edge" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0,user-scalable=0" />
@@ -290,7 +290,7 @@
 			<canvas id="canvas" style="display:none;"></canvas>
 		</div>
 		<main id="editor" class="image_column"></main>
-		<form style="display:none" id="contact" action="mail.php" method="POST" target="_blank" onsubmit="displayForm(false, this)">
+		<form style="display:none" id="contact" action="image.php" method="POST" target="_blank" onsubmit="displayForm(false, this)">
 			<legend>Mando Creator Info<button type="button" class="close" onclick="displayForm(false)">X</button></legend>
 			<div class="credits">
 				<p class="credit">Designed By <a class="credit_link" href="https://twitter.com/DesignDeviant" target="_blank" rel="noopener noreferrer">DesignDeviant</a></p>
@@ -307,10 +307,13 @@
 			</div>
 			<legend>Contact Us<p style="font-size:small">Like the site or have some feedback on what to add next? Let us know!</p></legend>
 			<fieldset>
+				<input type="text" style="display:none" name="url" value="" autocomplete="off" />
 				<input type="text" class="narrow_input" placeholder="Name (optional)" name="name"/>
 				<input type="text" class="narrow_input" placeholder="Email (optional)" name="email"/>
 				<input type="text" class="wide_input" placeholder="Subject (example: Ibic jatne!)" name="subject" required/>
 				<textarea placeholder="Message (example: Gar Mando'ade jate, ijaat enteyo cuyir ori.)" name="message" required></textarea>
+				<span class="narrow_input">What color is Darth Vader's lightsaber?</span>
+				<input type="text" class="narrow_input" placeholder="Hint: It's not blue." name="phone" required />
 				<button class="submit" type="submit">Ke barycir <span class="color">(Deploy)</span></button>
 			</fieldset>
 		</form>

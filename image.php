@@ -1,14 +1,3 @@
-<?php 
-	if (!empty($_POST)) {
-		$name = $_POST['name'];
-		$email = $_POST['email'];
-		$subject = $_POST['subject'];
-		$message = $_POST['message'];
-		$formcontent = htmlspecialchars("From: $name\nMail: $email\nMessage: $message");
-		mail('feedback@mandocreator.com',$subject,$formcontent) or die("Error");
-	}
-?>
-	
 <!DOCTYPE html>
 <html>
 	<head>
@@ -36,12 +25,30 @@
 				color: #DDD;
 				text-align: center;
 				transform: translateY(-50%);
+				font-size: x-large;
 			}
 		</style>
 	</head>
 	<body>
 		<div class="content">
-			<img src="assets/Mando-Creator-Success.png" alt="Success. We will see your message soon. Thank you." height="50%" />
+			<?php 
+				if (empty($_POST) || !empty($_POST['url'])) {
+					echo "<img alt='No droids.' src='/assets/no_droids.gif' />";
+					exit;
+				}
+				if (strcasecmp($_POST['phone'],'red') != 0) {
+					echo "<p>Wrong.</p>";
+					echo '<img src="assets/vader.gif" alt="I have a bad feeling about this." />';
+					exit;
+				}
+				$name = $_POST['name'];
+				$email = $_POST['email'];
+				$subject = $_POST['subject'];
+				$message = $_POST['message'];
+				$formcontent = htmlspecialchars("From: $name\nMail: $email\nMessage: $message");
+				mail('feedback@mandocreator.com',$subject,$formcontent) or die("Error");
+				echo '<img src="assets/Mando-Creator-Success.png" alt="Success. We will see your message soon. Thank you." height="50%" />';
+			?>
 		</div>
 	</body>
 </html>
