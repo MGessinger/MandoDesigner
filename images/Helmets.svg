@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- Generator: Adobe Illustrator 25.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
-<svg version="1.1" id="Layer_1" xmlns:serif="http://www.serif.com/"
+<svg version="1.1" id="Layer_1"
 	 xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 700 700"
 	 style="enable-background:new 0 0 700 700;" xml:space="preserve">
 <g id="Helmet_Classic">
@@ -195,11 +195,11 @@
 		<path id="Antenna_Right_Stalker-Large_Option" d="M142,361.1l21.5-323.3c0-10.9,7.8-10.1,7.6,0.8l-16.9,314.9
 			L142,361.1z"/>
 		<g id="Sensor-Stalk_Right_Stalker-Large_Option">
-			<g id="Sensor_Right_Sensor-Stalk_Stalker-Large1" serif:id="Sensor_Right_Sensor-Stalk_Stalker-Large">
+			<g id="Sensor_Right_Sensor-Stalk_Stalker-Large">
 				<path d="M98,429.4L55,340l61.4,5.5l-6.9,84.9L98,429.4z"/>
 				<path d="M138.4,95.3L59.5,285.5l61.4,5L138.4,95.3z"/>
 			</g>
-			<g id="Shaft_Right_Sensor-Stalk_Stalker-Large1" serif:id="Shaft_Right_Sensor-Stalk_Stalker-Large">
+			<g id="Shaft_Right_Sensor-Stalk_Stalker-Large">
 				<path d="M48.4,284.6l92.9-223.1l-2.9,33.8L59.5,285.5l52.4,4.3l-1,12.2l-63.5-5.1L48.4,284.6z"/>
 				<path d="M44,338.9l1-12.2l63.5,5.1l-1,12.2L55,339.8L98,429.4l-11-0.9L44,338.9z"/>
 				<path d="M132.1,264.2l-17-14.1l-9.1,111.8l18,1.5L132.1,264.2z"/>
@@ -334,11 +334,11 @@
 		<path id="Antenna_Left_Stalker-Medium_Option" d="M562,361.1L540.6,37.8c0-10.9-7.8-10.1-7.6,0.8l16.9,314.9
 			L562,361.1z"/>
 		<g id="Sensor-Stalk_Left_Stalker-Medium_Option">
-			<g id="Sensor_Right_Sensor-Stalk_Stalker-Medium">
+			<g id="Sensor_Left_Sensor-Stalk_Stalker-Medium">
 				<path d="M606,429.4l43-89.4l-61.4,5.5l6.9,84.9L606,429.4z"/>
 				<path d="M565.6,95.3l78.9,190.2l-61.4,5L565.6,95.3z"/>
 			</g>
-			<g id="Shaft_Right_Sensor-Stalk_Stalker-Medium">
+			<g id="Shaft_Left_Sensor-Stalk_Stalker-Medium">
 				<path d="M655.6,284.6L562.8,61.5l2.9,33.8l78.9,190.2l-52.4,4.3l1,12.2l63.5-5.1L655.6,284.6z"/>
 				<path d="M660,338.9l-1-12.2l-63.5,5.1l1,12.2l52.5-4.3L606,429.4l11-0.9L660,338.9z"/>
 				<path d="M572,264.2l17-14.1l9.1,111.8l-18,1.5L572,264.2z"/>
@@ -366,11 +366,11 @@
 		<path id="Antenna_Right_Stalker-Medium_Option" d="M142,361.1l21.5-323.3c0-10.9,7.8-10.1,7.6,0.8l-16.9,314.9
 			L142,361.1z"/>
 		<g id="Sensor-Stalk_Right_Stalker-Medium_Option">
-			<g id="Sensor_Right_Sensor-Stalk_Stalker-Medium1" serif:id="Sensor_Right_Sensor-Stalk_Stalker-Medium">
+			<g id="Sensor_Right_Sensor-Stalk_Stalker-Medium">
 				<path d="M98,429.4L55,340l61.4,5.5l-6.9,84.9L98,429.4z"/>
 				<path d="M138.4,95.3L59.5,285.5l61.4,5L138.4,95.3z"/>
 			</g>
-			<g id="Shaft_Right_Sensor-Stalk_Stalker-Medium1" serif:id="Shaft_Right_Sensor-Stalk_Stalker-Medium">
+			<g id="Shaft_Right_Sensor-Stalk_Stalker-Medium">
 				<path d="M48.4,284.6l92.9-223.1l-2.9,33.8L59.5,285.5l52.4,4.3l-1,12.2l-63.5-5.1L48.4,284.6z"/>
 				<path d="M44,338.9l1-12.2l63.5,5.1l-1,12.2L55,339.8L98,429.4l-11-0.9L44,338.9z"/>
 				<path d="M132.1,264.2l-17-14.1l-9.1,111.8l18,1.5L132.1,264.2z"/>

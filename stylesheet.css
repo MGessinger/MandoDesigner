@@ -386,6 +386,7 @@ footer {
 	padding-top: 0.5em;
 	overflow-y: auto;
 	resize: vertical;
+	height: 15em;
 }
 
 .slide_title {

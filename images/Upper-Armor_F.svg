@@ -5,25 +5,25 @@
 	 style="enable-background:new 0 0 1400 1400;" xml:space="preserve">
 <g id="Biceps_F_ToggleOff">
 	<g id="Left-Biceps_F">
-		<g id="Basic_Bicep_Right_F_Primary_Option">
+		<g id="Basic_Bicep_Left_F_Primary_Option">
 			<path class="st0" d="M1089.5,412.7l-94.7,34.7c-2,18.9-4.5,37.9-7.6,53.8c-2.8,14.5-8.3,36.3-15.3,61.8v0l20.9,59.7
 				c2.4,7.2,9.7,10.9,16.4,8.5c33.5-12.2,127.9-46.5,162.1-59c3.3-1.2,6-3.8,7.6-7.2c1.5-3.4,1.7-7.3,0.5-10.9L1140,437.5l-8.3,3.6
 				L1089.5,412.7z"/>
 			<path class="st1" d="M988.4,609.5l186.5-68.9"/>
 			<ellipse class="st0" cx="1135.5" cy="517.2" rx="18.3" ry="19"/>
 		</g>
-		<g id="None_Bicep_Right_F_Option">
+		<g id="None_Bicep_Left_F_Option">
 		</g>
 	</g>
 	<g id="Right-Biceps_F">
-		<g id="Basic_Bicep_Right_F_Primary_Option1" serif:id="Basic_Bicep_Right_F_Primary_Option">
+		<g id="Basic_Bicep_Right_F_Primary_Option">
 			<path class="st0" d="M310.3,412.7l94.7,34.7c2,18.9,4.5,37.9,7.6,53.8c2.8,14.5,8.3,36.3,15.3,61.8v0L407,622.7
 				c-2.4,7.2-9.7,10.9-16.4,8.5c-33.5-12.2-127.9-46.5-162.1-59c-3.3-1.2-6-3.8-7.6-7.2c-1.5-3.4-1.7-7.3-0.5-10.9l39.4-116.7
 				l8.3,3.6L310.3,412.7z"/>
 			<path class="st1" d="M411.5,609.5L225,540.7"/>
 			<ellipse class="st0" cx="264.3" cy="517.2" rx="18.3" ry="19"/>
 		</g>
-		<g id="None_Bicep_Right_F_Option1" serif:id="None_Bicep_Right_F_Option">
+		<g id="None_Bicep_Right_F_Option">
 		</g>
 	</g>
 </g>
@@ -122,11 +122,139 @@
 				c5.9,8.6,14,19.6,20.7,25.1c11.7,9.6,27.4,20.8,42.1,27.2c15.8,6.9,35,11.6,53.3,14.5c5.3,0.9,11.3,1.5,17.5,1.9V236.9z"/>
 		</g>
 	</g>
+	<g id="Chest_Heavy_F">
+		<g id="Abdomen_Heavy_F">
+			<g id="Under-Plates_Abdomen_Heavy_F">
+				<rect x="597.6" y="665.4" class="st0" width="205.2" height="26.2"/>
+				<rect x="597.6" y="691.6" class="st0" width="205.2" height="26.2"/>
+				<rect x="597.6" y="717.8" class="st0" width="205.2" height="26.2"/>
+				<rect x="597.6" y="744" class="st0" width="205.2" height="26.2"/>
+				<rect x="597.6" y="770.2" class="st0" width="205.2" height="26.2"/>
+			</g>
+			<g id="Abdomen-Plate_Heavy_F">
+				<path class="st0" d="M637.1,580.8l-102.3,43.4l-9.6-23.3l111.9-47.5V580.8z"/>
+				<path class="st0" d="M570.7,711.3l-35.9-87.1l102.3-43.4l32,91.6L570.7,711.3z"/>
+				<path class="st0" d="M525.3,600.9l-43,7.5l63.4,150.8l43.3-8.6L525.3,600.9z"/>
+				<path class="st0" d="M763.2,580.8l102.3,43.4l9.6-23.3l-111.9-47.5V580.8z"/>
+				<path class="st0" d="M829.6,711.3l35.9-87.1l-102.3-43.4l-32,91.6L829.6,711.3z"/>
+				<path class="st0" d="M875.1,600.9l43,7.5l-63.4,150.8l-43.3-8.6L875.1,600.9z"/>
+				<rect x="637.5" y="553.4" class="st0" width="125.4" height="27.4"/>
+				<path class="st0" d="M669.2,672.4l-32-91.6h126l-32,91.6H669.2z"/>
+			</g>
+		</g>
+		<g id="Neck-Armor_Heavy_F">
+			<g id="Neck-Plate_Heavy_M">
+				<path class="st0" d="M559.2,124.8l-88.6,19.5c0,0,9.6,37.7,15.5,60.4c2.4,9.4,11.8,15.2,21.3,13.1c15.3-3.4,37.8-8.3,53.4-11.7
+					c4.8-1,8.9-4,11.5-8.1c2.6-4.2,3.3-9.2,2.1-13.9C568.5,161.1,559.2,124.8,559.2,124.8z"/>
+				<path class="st0" d="M841.1,124.8l88.6,19.5c0,0-9.6,37.7-15.5,60.4c-2.4,9.4-11.8,15.2-21.3,13.1c-15.3-3.4-37.8-8.3-53.4-11.7
+					c-4.8-1-8.9-4-11.5-8.1c-2.6-4.2-3.3-9.2-2.1-13.9C831.8,161.1,841.1,124.8,841.1,124.8z"/>
+			</g>
+			<g id="Secondary_Neck-Plate_Heavy_M">
+				<path class="st0" d="M537.2,126.4l-44.6,9.8c0,0,6.4,25.1,9.9,38.6c1.2,4.7,5.9,7.5,10.6,6.5c7.8-1.7,19.2-4.2,27.2-6
+					c2.4-0.5,4.4-2,5.7-4c1.3-2.1,1.6-4.5,1-6.9C543.4,150.8,537.2,126.4,537.2,126.4z"/>
+				<path class="st0" d="M863.2,126.4l44.6,9.8c0,0-6.4,25.1-9.9,38.6c-1.2,4.7-5.9,7.5-10.6,6.5c-7.8-1.7-19.2-4.2-27.2-6
+					c-2.4-0.5-4.4-2-5.7-4c-1.3-2.1-1.6-4.5-1-6.9C856.9,150.8,863.2,126.4,863.2,126.4z"/>
+			</g>
+		</g>
+		<g id="Full-Chest_Heavy_F">
+			<path id="Under-Plate_Chest_Heavy_F" class="st0" d="M750.8,522.5H649.6l-25.4,21.8v14.6l13.3-5.5h125.4l13.3,5.6v-14.7
+				L750.8,522.5z"/>
+			<g id="Chest-Plate_Heavy_F">
+				<path class="st0" d="M523.2,588.2l89.8-52.1l12.2-24.7l23.9,3.2h102.3l23.9-3.2l12.2,24.7l89.8,52.1l41.7,9.1l-1.1,15.3
+					l-44.6-7.8l-97-40.5v-20.1l-25.4-21.8H649.6l-25.4,21.8v20.1l-97,40.5l-44.6,7.8l-1.1-15.3L523.2,588.2z"/>
+				<path class="st0" d="M918.9,597.3l52-133.4l7.6,27.3L962,590.5L918.9,597.3z"/>
+				<path class="st0" d="M421.9,491.2l7.6-27.3l52,133.4l-43.1-6.9L421.9,491.2z"/>
+				<path class="st0" d="M480,411.9v-55.7l-4.3-100l25.9-28.7l78.4-16.3l20.3,23.8H800l20.3-23.8l78.4,16.3l25.9,28.7l-4.2,97.5
+					l-0.1-0.2v58.4l-145.1,99.5l-23.9,3.2H649l-23.9-3.2L480,411.9z"/>
+				<path class="st0" d="M920.3,356.2v55.7l50.5,52L920.3,356.2z"/>
+				<path class="st0" d="M625.1,511.4L480,411.9l-50.5,52l52,133.4l41.7-9.1l89.8-52.1L625.1,511.4z"/>
+				<path class="st0" d="M970.8,463.9l-52,133.4l-41.7-9.1l-89.8-52.1l-12.2-24.7l145.1-99.5L970.8,463.9z"/>
+				<path class="st0" d="M962,590.5l-1.8,10.6l-42.4,11.5l1.1-15.3L962,590.5z"/>
+				<path class="st0" d="M480,356.2v55.7l-50.5,52L480,356.2z"/>
+				<path class="st0" d="M475.8,256.2c-0.5,51.3-6.6,102.5-21,153.8l25.3-53.9L475.8,256.2z"/>
+				<path class="st0" d="M924.6,256.2c0.5,51.3,6.6,102.5,21,153.8l-25.3-53.9L924.6,256.2z"/>
+				<path class="st0" d="M481.5,597.3l1.1,15.3l-42.4-11.5l-1.8-10.6L481.5,597.3z"/>
+			</g>
+			<g id="Accents_Chest-Plate_Heavy_F_ToggleOn">
+				<g id="Accent-3_Accents_Chest-Plate_Heavy_M">
+					<path class="st0" d="M818.8,354.8l-5.3-16.6h24.2l-5.3,16.6H818.8z"/>
+					<path class="st0" d="M818.8,386.9l-5.3-16.6h24.2l-5.3,16.6H818.8z"/>
+					<rect x="803.2" y="256.1" class="st0" width="45.4" height="5"/>
+					<rect x="803.2" y="272" class="st0" width="45.4" height="5"/>
+				</g>
+				<path id="Accent-2_Accents_Chest-Plate_Heavy_M" class="st0" d="M564.9,210.4c-0.3-3.5-3.3-6.2-6.8-5.9
+					c-9.9,0.6-28.9,1.9-38.9,2.5c-1.7,0.1-3.3,0.9-4.4,2.2c-1.1,1.3-1.7,3-1.6,4.7c1.1,14.5,3.7,49.4,4.8,63.8
+					c0.3,3.5,3.3,6.2,6.8,5.9c9.9-0.6,28.9-1.9,38.9-2.5c1.7-0.1,3.3-0.9,4.4-2.2c1.1-1.3,1.7-3,1.6-4.7
+					C568.6,259.7,565.9,224.7,564.9,210.4z"/>
+				<g id="Accent-1_Accents_Chest-Plate_Heavy_M">
+					<path class="st0" d="M558.9,209.6l-39.9,2.6l5,66.2l39.9-2.6L558.9,209.6z"/>
+					<path class="st0" d="M554.5,214.8l-30.4,2l0.7,9.5l30.4-2L554.5,214.8z"/>
+					<path class="st0" d="M528.9,226l-4.2,0.3l3.9,51.8l4.2-0.3L528.9,226z"/>
+					<path class="st0" d="M533.3,225.7l-4.2,0.3l3.9,51.8l4.2-0.3L533.3,225.7z"/>
+					<path class="st0" d="M555.2,224.3l-4.2,0.3l3.9,51.8l4.2-0.3L555.2,224.3z"/>
+					<path class="st0" d="M550.8,224.5l-4.2,0.3l3.9,51.8l4.2-0.3L550.8,224.5z"/>
+					<path class="st0" d="M542.1,225.1l-4.2,0.3l3.9,51.8l4.2-0.3L542.1,225.1z"/>
+					<path class="st0" d="M546.4,224.8l-4.2,0.3l3.9,51.8l4.2-0.3L546.4,224.8z"/>
+					<path class="st0" d="M537.7,225.4l-4.2,0.3l3.9,51.8l4.2-0.3L537.7,225.4z"/>
+				</g>
+			</g>
+		</g>
+		<g id="Iron-Heart_Heavy_F">
+			<path id="Heart_Heavy_F" class="st0" d="M700.2,308.5l29.8,27.6v54.2L700.2,418l-29.8-27.6v-54.2L700.2,308.5z"/>
+			<g id="None_Heart_Heavy_F_Option">
+			</g>
+			<g id="Center_Heart_Heavy_F_Option">
+				<rect x="689.3" y="337" class="st0" width="21.7" height="26.3"/>
+				<rect x="689.3" y="363.3" class="st0" width="3.6" height="26.3"/>
+				<rect x="703.8" y="363.3" class="st0" width="3.6" height="26.3"/>
+				<rect x="707.4" y="363.3" class="st0" width="3.6" height="26.3"/>
+				<rect x="696.5" y="363.3" class="st0" width="3.6" height="26.3"/>
+				<rect x="700.1" y="363.3" class="st0" width="3.6" height="26.3"/>
+				<rect x="692.9" y="363.3" class="st0" width="3.6" height="26.3"/>
+			</g>
+		</g>
+	</g>
+	<g id="Chest_Gunslinger_F">
+		<g id="Abdomen_Gunslinger_F">
+			<g id="Left_Abdomen_Gunslinger_F">
+				<path class="st0" d="M826,696.1l64.8-116.7l-33.7-47.6l-2.7-5.8l-36.8,4.6l-15.1,179.9L826,696.1z"/>
+				<path class="st0" d="M826,696.1l64.8-116.7l17,24l22.4-17.9l-6,80L826,696.1z"/>
+			</g>
+			<g id="Right_Abdomen_Gunslinger_F">
+				<path class="st0" d="M574.4,696.1l-64.8-116.7l-17,24l-22.4-17.9l6,80L574.4,696.1z"/>
+				<path class="st0" d="M574.4,696.1l-64.8-116.7l33.7-47.6l2.7-5.8l36.8,4.6l15.1,179.9L574.4,696.1z"/>
+			</g>
+			<path id="Center_Abdomen_Gunslinger_F" class="st0" d="M700.2,492.2l117.4,38.4l-15.1,179.9l-17.9,10.9l-84.3-4.6l-84.3,4.6
+				l-17.9-10.9l-15.1-179.9L700.2,492.2z"/>
+		</g>
+		<g id="Chest-Plates_Gunslinger_F">
+			<g id="Left-Chest_Gunslinger_F">
+				<path class="st0" d="M706.9,290.3v-27.7l22.7-22.7l218.1-24.8L967.3,337l-32.5,244.8l-27,21.6l-50.7-71.7l-14.2-30.4
+					l-135.3-41.3l35.2-35.2V322.8L706.9,290.3z"/>
+				<path class="st0" d="M842.9,501.3l99.7-58.9l24.8-105.3l-21.9,113.2l-88.3,81.3L842.9,501.3z"/>
+				<path class="st0" d="M854.4,526l-36.8,4.6l-117.4-38.4v-34l142.7,43.1L854.4,526z"/>
+			</g>
+			<g id="Right-Chest_Gunslinger_F">
+				<path class="st0" d="M693.4,290.3v-27.7l-22.7-22.7l-218.1-24.8L433.1,337l32.5,244.8l27.1,21.6l50.7-71.7l14.2-30.4l135.3-41.3
+					l-35.2-35.2V322.8L693.4,290.3z"/>
+				<path class="st0" d="M557.5,501.3l-99.7-58.9l-24.8-105.3L455,450.4l88.3,81.3L557.5,501.3z"/>
+				<path class="st0" d="M546,526l36.8,4.6l117.4-38.4v-34l-142.7,43.1L546,526z"/>
+			</g>
+		</g>
+		<g id="Iron-Heart_Gunslinger_F">
+			<path id="Under-Heart_Gunslinger_F" class="st0" d="M692.7,460.1l-35.2-35.2V322.8l35.8-32.5v-27.7h13.5v27.7l35.8,32.5v102.1
+				l-35.2,35.2l-7.4-1.9L692.7,460.1z"/>
+			<path id="Heart_Gunslinger_F" class="st0" d="M674.2,416.5V332l25.9-25.9l25.9,25.9v84.5l-25.9,25.9L674.2,416.5z"/>
+			<g id="None_Heart_Gunslinger_F_Option">
+			</g>
+			<rect id="Center_Heart_Gunslinger_F_Option" x="692.5" y="337.2" class="st0" width="15.3" height="74.2"/>
+		</g>
+	</g>
 </g>
 <g id="Shoulders_F">
 	<g id="Left-Shoulder_F">
 		<g id="Bell_Shoulder_Left_F_Option">
-			<path id="Ridge_Bell_Shoulder_Left_F" class="st0" d="M970.5,168.1C970.5,168.1,970.5,168.1,970.5,168.1
+			<path id="Ridge_Bell_Shoulder_Left_F_Toggle" class="st0" d="M970.5,168.1C970.5,168.1,970.5,168.1,970.5,168.1
 				c88.3-28.1,182.6,20.7,210.6,109l45.1,141.7l15.5-4.9c0,0-21.5-67.6-44.6-140.1c-30.8-96.8-134.2-150.3-231-119.5l0,0
 				L970.5,168.1"/>
 			<path id="Main_Bell_Shoulder_Left_F" class="st0" d="M965.9,165.7C965.9,165.7,965.9,165.7,965.9,165.7
@@ -145,8 +273,8 @@
 	</g>
 	<g id="Right-Shoulder_F">
 		<g id="Bell_Shoulder_Right_F_Option">
-			<path id="Ridge_Bell_Shoulder_Right_F" class="st0" d="M430.1,168.1L430.1,168.1c-88.3-28.1-182.6,20.7-210.6,109l-45.1,141.7
-				l-15.5-4.9c0,0,21.5-67.6,44.6-140.1c30.8-96.8,134.2-150.3,231-119.5h0L430.1,168.1"/>
+			<path id="Ridge_Bell_Shoulder_Right_F_Toggle" class="st0" d="M430.1,168.1L430.1,168.1c-88.3-28.1-182.6,20.7-210.6,109
+				l-45.1,141.7l-15.5-4.9c0,0,21.5-67.6,44.6-140.1c30.8-96.8,134.2-150.3,231-119.5h0L430.1,168.1"/>
 			<path id="Main_Bell_Shoulder_Right_F" class="st0" d="M434.6,165.7C434.6,165.7,434.6,165.7,434.6,165.7
 				c-91.7-29.2-189.6,21.5-218.8,113.2C193.9,347.6,169,426,169,426l166,52.8L434.6,165.7"/>
 		</g>

@@ -109,6 +109,7 @@ function prepareParent (SVGNode, parent) {
 	if (globalList) {
 		parent = globalList;
 		parent.innerHTML = "";
+		parent.style.display = "";
 		var p = DOMNode("p", {class: "option_name hidden"}, globalList);
 		p.innerText = prettify(SVGNode.id) + " Options:";
 	}
@@ -294,11 +295,18 @@ function switchToArmorVariant (category, pieceName, variantName, button) {
 		button.classList.add("current_variant");
 
 	var old = find(pieceName + "_Current");
-	var parent = old.parentNode;
+	var SVGparent = old.parentNode;
 	var n = find(pieceName + "_" + variantName);
 	n = n.cloneNode(true);
 	n.id = pieceName + "_Current";
-	parent.replaceChild(n, old);
+	SVGparent.replaceChild(n, old);
+
+	var old_lists = parent.getElementsByClassName("replace");
+	for (var i = 0; i < old_lists.length; i++) {
+		old_lists[i].style.display = "none";
+		old_lists[i].innerHTML = "";
+	}
+
 	buildAllSettings(n, category);
 }
 

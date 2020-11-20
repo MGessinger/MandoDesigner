@@ -5,8 +5,8 @@
 		<script>
 			window.dataLayer = window.dataLayer || [];
 			function gtag(){dataLayer.push(arguments);}
-			gtag('js', new Date());
-			gtag('config', 'G-45K14ZGLQC');
+			//gtag('js', new Date());
+			//gtag('config', 'G-45K14ZGLQC');
 		</script>
 		<meta http-equiv="x-ua-compatible" content="ie=edge" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0,user-scalable=0" />
@@ -63,7 +63,7 @@
 				<div class="hidden">
 					<h2 class="slide_title">Helmet (Buy'ce)</h2>
 					<p class="option_name">Style:</p>
-					<div id="HelmetTypes" class="armor_types" style="height:15em">
+					<div id="HelmetTypes" class="armor_types">
 						<button id="Helmet_Def_Classic" class="type_button current_variant" onclick="switchToArmorVariant('Helmet','Helmet','Classic', this)">
 							<svg viewbox="0 75 700 700" class="preview_icon"><use href="#Helmet_Classic"/></svg>
 							Classic
@@ -89,7 +89,7 @@
 					</div>
 				</div>
 				<div class="folder_content">
-					<div id="HelmetColors" class="slide_content"></div>
+					<div id="HelmetColors" class="replace slide_content"></div>
 				</div>
 			</div>
 			<div id="UpperArmorOptions" class="folder overview">
@@ -103,6 +103,12 @@
 						</button><button class="type_button" onclick="switchToArmorVariant('UpperArmor','Chest','Legacy_M', this)">
 							<svg viewbox="100 -100 1200 1200" class="preview_icon"><use href="#Chest_Legacy_M"/></svg>
 							Legacy
+						</button><button class="type_button" onclick="switchToArmorVariant('UpperArmor','Chest','Gunslinger_M', this)">
+							<svg viewbox="100 -100 1200 1200" class="preview_icon"><use href="#Chest_Gunslinger_M"/></svg>
+							Gunslinger
+						</button><button class="type_button" onclick="switchToArmorVariant('UpperArmor','Chest','Heavy_M', this)">
+							<svg viewbox="100 -100 1200 1200" class="preview_icon"><use href="#Chest_Heavy_M"/></svg>
+							Heavy
 						</button>
 					</div>
 					<div id="UpperArmorTypes" class="armor_types female">
@@ -112,6 +118,12 @@
 						</button><button class="type_button" onclick="switchToArmorVariant('UpperArmor','Chest','Legacy_F', this)">
 							<svg viewbox="100 -100 1200 1200" class="preview_icon"><use href="#Chest_Legacy_F"/></svg>
 							Legacy
+						</button><button class="type_button" onclick="switchToArmorVariant('UpperArmor','Chest','Gunslinger_F', this)">
+							<svg viewbox="100 -100 1200 1200" class="preview_icon"><use href="#Chest_Gunslinger_F"/></svg>
+							Gunslinger
+						</button><button class="type_button" onclick="switchToArmorVariant('UpperArmor','Chest','Heavy_F', this)">
+							<svg viewbox="100 -100 1200 1200" class="preview_icon"><use href="#Chest_Heavy_F"/></svg>
+							Heavy
 						</button>
 					</div>
 					<p class="option_name">Parts:</p>
@@ -124,7 +136,7 @@
 								<p>Neck (Ghet'bur)</p>
 							</div>
 						</button>
-						<div id="NeckArmorColors" class="slide_content"></div>
+						<div id="NeckArmorColors" class="replace slide_content"></div>
 					</div>
 					<div class="slide">
 						<button class="slide_toggle hidden" onclick="toggleSlide(this.parentNode)">
@@ -133,8 +145,9 @@
 								<p>Chest (Hal'cabur)</p>
 							</div>
 						</button>
-						<div id="RightChestColors" class="slide_content"></div>
-						<div id="LeftChestColors" class="slide_content"></div>
+						<div id="FullChestColors" class="replace slide_content"></div>
+						<div id="RightChestColors" class="replace slide_content"></div>
+						<div id="LeftChestColors" class="replace slide_content"></div>
 					</div>
 					<div class="slide">
 						<button class="slide_toggle hidden" onclick="toggleSlide(this.parentNode)">
@@ -143,7 +156,7 @@
 								<p>Iron Heart (Kar'ta Beskar)</p>
 							</div>
 						</button>
-						<div id="IronHeartColors" class="slide_content"></div>
+						<div id="IronHeartColors" class="replace slide_content"></div>
 					</div>
 					<div class="slide">
 						<button class="slide_toggle hidden" onclick="toggleSlide(this.parentNode)">
@@ -152,7 +165,7 @@
 								<p>Abdomen (Shar'tas)</p>
 							</div>
 						</button>
-						<div id="AbdomenColors" class="slide_content"></div>
+						<div id="AbdomenColors" class="replace slide_content"></div>
 					</div>
 					<div class="slide">
 						<button class="slide_toggle hidden" onclick="toggleSlide(this.parentNode)">
@@ -193,6 +206,7 @@
 				<div class="folder_content">
 					<div class="slide_content" id="GlovesColors"></div>
 					<div class="slide_content" id="SoftPartsColors"></div>
+					<div class="slide_content" id="BootsColors"></div>
 				</div>
 			</div>
 			<div id="LowerArmorOptions" class="folder overview">
