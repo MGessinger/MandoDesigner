@@ -1,5 +1,6 @@
 /* MandoCreator */
 "use strict";
+var unsavedProgress = false;
 
 function find (st) {
 	return document.getElementById(st);
@@ -273,6 +274,13 @@ function onload () {
 		var settings = find("settings");
 		settings.classList.add("settings_collapsed");
 	}
+
+	window.addEventListener("beforeunload", function (event) {
+		if (!unsavedProgress)
+			return;
+		event.preventDefault();
+		event.returnValue = "There is unsaved progress. Do you really want to leave the page?";
+	});
 }
 
 function openArmorFolder (category) {
@@ -349,6 +357,7 @@ function setDownloader (bck) {
 		this.setAttribute("href",'data:image/svg+xml;charset=UTF-8,' + encodeSVG(data));
 		var self = this;
 		setTimeout(function() {self.setAttribute("href", "#");});
+		unsavedProgress = false;
 	};
 }
 
@@ -446,6 +455,7 @@ function setColorScheme (useDark) {
 }
 
 function setSex (female) {
+	unsavedProgress = false;
 	var body, sexSuffix;
 	var settings = find("settings");
 	if (female) {
@@ -467,6 +477,7 @@ function loadImage (input) {
 	var files = input.files;
 	if (files.length == 0)
 		return;
+	unsavedProgress = true;
 	var main = find("editor");
 	var theme = document.body.className;
 

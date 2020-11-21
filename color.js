@@ -35,6 +35,8 @@ var Picker = new function() {
 			var s = clamp(event.clientX - dimensions.left, 0, width);
 			var l = clamp(event.clientY - dimensions.top, 0, height);
 			done(s / width, l / height);
+			/* unsavedProgress is global in editor.js */
+			unsavedProgress = true;
 		}
 
 		on(o, "mousedown", touch);
@@ -230,7 +232,7 @@ var Picker = new function() {
 			},
 			set parent (p) {
 				if (!p) {
-					onChange = [];
+					onChange = null;
 					wrapper.style = "visibility:hidden";
 				} else {
 					if (wrapper.style.visibility != "hidden")
@@ -254,13 +256,14 @@ var Picker = new function() {
 			return;
 		color.update(value);
 		DOM.update(fromEditor);
-		for (var i = 0; i < onChange.length; i++)
-			onChange[i](color.hex);
+			console.log(onChange);
+		if (onChange)
+			onChange(color.hex);
 	}
 
 	var color = new Color();
 	var DOM = new PickerDOM();
-	var onChange = [];
+	var onChange = null;
 	this.attach = function (button, colorText, SVGNode) {
 		if (!colorText) {
 			var wrapper = button.parentNode;
@@ -272,7 +275,7 @@ var Picker = new function() {
 			colorText.innerText = hex;
 		}
 		on(button, "click", function(event) {
-			onChange.push(input);
+			onChange = input;
 			_setColor(this.style.backgroundColor);
 			DOM.parent = this;
 		});
