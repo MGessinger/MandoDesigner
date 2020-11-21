@@ -307,6 +307,10 @@ function switchToArmorVariant (category, pieceName, variantName, button) {
 	if (button)
 		button.classList.add("current_variant");
 
+	var logos = parent.getElementsByClassName("sponsor_link");
+	for (var i = 0; i < logos.length; i++)
+		logos[i].style.display = "none";
+
 	var old = find(pieceName + "_Current");
 	var SVGparent = old.parentNode;
 	var n = find(pieceName + "_" + variantName);
@@ -321,6 +325,12 @@ function switchToArmorVariant (category, pieceName, variantName, button) {
 	}
 
 	buildAllSettings(n, category);
+}
+
+function setSponsor (sponsor, link) {
+	var logo = find(sponsor);
+	logo.style.display = "";
+	logo.setAttribute("href", link);
 }
 
 function toggleOptions () {

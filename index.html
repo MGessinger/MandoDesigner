@@ -5,14 +5,16 @@
 		<script>
 			window.dataLayer = window.dataLayer || [];
 			function gtag(){dataLayer.push(arguments);}
-			gtag('js', new Date());
-			gtag('config', 'G-45K14ZGLQC');
+			if (window.location.hostname != "localhost") {
+				gtag('js', new Date());
+				gtag('config', 'G-45K14ZGLQC');
+			}
 		</script>
 		<meta http-equiv="x-ua-compatible" content="ie=edge" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0,user-scalable=0" />
 		<meta charset="utf-8" />
 		<meta name="description" content="Design your custom set of mandalorian Armor, also known as Beskar'gam. Choose from dozens of options, and bring your vision to life!" />
-		<meta name="keywords" content="MandoCreator,Beskar'gam,Armor,Mandalorian,Mando,Design,Beskar" />
+		<meta name="keywords" content="Mando Creator,MandoCreator,Creator,Beskar'gam,Armor,Mandalorian,Mando,Design,Beskar" />
 		<meta name="author" content="DesignDeviant, Cin Vhetin" />
 		<link rel="stylesheet" href="stylesheet.css" />
 		<link rel="stylesheet" href="color.css" />
@@ -64,25 +66,56 @@
 					<h2 class="slide_title">Helmet (Buy'ce)</h2>
 					<p class="option_name">Style:</p>
 					<div id="HelmetTypes" class="armor_types">
-						<button id="Helmet_Def_Classic" class="type_button current_variant" onclick="switchToArmorVariant('Helmet','Helmet','Classic', this)">
+						<button id="Helmet_Def_Classic" class="type_button current_variant"
+							onclick="switchToArmorVariant('Helmet','Helmet','Classic', this)">
 							<svg viewbox="0 75 700 700" class="preview_icon"><use href="#Helmet_Classic"/></svg>
 							Classic
-						</button><button class="type_button" onclick="switchToArmorVariant('Helmet','Helmet','Nite', this)">
+						</button><button class="type_button"
+							onclick="switchToArmorVariant('Helmet','Helmet','Nite', this)">
 							<svg viewbox="0 75 700 700" class="preview_icon"><use href="#Helmet_Nite"/></svg>
 							Nite Owl
-						</button><button class="type_button" onclick="switchToArmorVariant('Helmet','Helmet','Gunslinger', this)">
+						</button><button class="type_button"
+							onclick="switchToArmorVariant('Helmet','Helmet','Gunslinger', this)">
 							<svg viewbox="0 75 700 700" class="preview_icon"><use href="#Helmet_Gunslinger"/></svg>
 							Gunslinger
-						</button><button class="type_button" onclick="switchToArmorVariant('Helmet','Helmet','Heavy', this)">
+						</button><button class="type_button"
+							onclick="switchToArmorVariant('Helmet','Helmet','Heavy', this)">
 							<svg viewbox="0 75 700 700" class="preview_icon"><use href="#Helmet_Heavy"/></svg>
 							Heavy
-						</button><button class="type_button" onclick="switchToArmorVariant('Helmet','Helmet','Stalker-Medium', this)">
+						</button><button class="type_button"
+							onclick="switchToArmorVariant('Helmet','Helmet','Stalker-Medium', this)">
 							<svg viewbox="0 75 700 700" class="preview_icon"><use href="#Helmet_Stalker-Medium"/></svg>
 							Stalker (M)
-						</button><button class="type_button" onclick="switchToArmorVariant('Helmet','Helmet','Stalker-Large', this)">
+						</button><button class="type_button"
+							onclick="switchToArmorVariant('Helmet','Helmet','Stalker-Large', this)">
 							<svg viewbox="0 75 700 700" class="preview_icon"><use href="#Helmet_Stalker-Large"/></svg>
 							Stalker (L)
-						</button><button class="type_button" onclick="switchToArmorVariant('Helmet','Helmet','Budget-Bucket', this)">
+						</button>
+						<p class="sponsor_title">Alter Ego Armory (sponsored):</p>
+						<button class="type_button"
+							onclick="switchToArmorVariant('Helmet','Helmet','Warden', this);
+								 setSponsor('AlterEgo','https://etsy-me/35mF6Eb');">
+							<svg viewbox="0 75 700 700" class="preview_icon"><use href="#Helmet_Warden"/></svg>
+							Warden
+						</button><button class="type_button"
+							onclick="switchToArmorVariant('Helmet','Helmet','Matriarch', this);
+								 setSponsor('AlterEgo','https://etsy.me/2GR02cX');">
+							<svg viewbox="0 75 700 700" class="preview_icon"><use href="#Helmet_Matriarch"/></svg>
+							Matriarch
+						</button><button class="type_button"
+							onclick="switchToArmorVariant('Helmet','Helmet','Liege', this);
+								 setSponsor('AlterEgo','https://etsy.me/3eSg03d');">
+							<svg viewbox="0 75 700 700" class="preview_icon"><use href="#Helmet_Liege"/></svg>
+							Liege
+						</button><button class="type_button"
+							onclick="switchToArmorVariant('Helmet','Helmet','Guardian', this);
+								 setSponsor('AlterEgo','https://etsy.me/2GR02cX');">
+							<svg viewbox="0 75 700 700" class="preview_icon"><use href="#Helmet_Guardian"/></svg>
+							Guardian
+						</button>
+						<p class="sponsor_title">Miscellaneous:</p>
+						<button class="type_button"
+							onclick="switchToArmorVariant('Helmet','Helmet','Budget-Bucket', this)">
 							<svg viewbox="0 0 700 700" class="preview_icon"><use href="#Helmet_Budget-Bucket"/></svg>
 							Budget
 						</button>
@@ -90,6 +123,9 @@
 				</div>
 				<div class="folder_content">
 					<div id="HelmetColors" class="replace slide_content"></div>
+				</div>
+				<div id="sponsors">
+					<a id="AlterEgo" class="sponsor_link" target="_blank" style="display:none"><img width="100%" src="assets/AlterEgo.png" /></a>
 				</div>
 			</div>
 			<div id="UpperArmorOptions" class="folder overview">
