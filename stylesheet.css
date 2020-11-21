@@ -161,7 +161,6 @@ form {
 
 legend {
 	width: 100%;
-	padding: 0 0 0.5em 0;
 	font-size: x-large;
 	color: var(--highlight);
 }
@@ -176,8 +175,9 @@ legend {
 }
 
 .credits {
-	font-size: smaller;
 	position: relative;
+	padding-top: 0.5em;
+	font-size: smaller;
 }
 
 .credit {

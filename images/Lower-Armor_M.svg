@@ -1,9 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- Generator: Adobe Illustrator 25.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
-<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<svg version="1.1" id="Layer_1" xmlns:serif="http://www.serif.com/"
+	 xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 1200 1700"
+	 style="enable-background:new 0 0 1200 1700;" xml:space="preserve">
 <g id="Shins_M">
 	<g id="Left-Shin_M">
-		<g id="None_Shin_Left_M_Option"> </g>
+		<g id="None_Shin_Left_M_Option">
+		</g>
 		<g id="Wraps_Shin_Left_M_Option">
 			<path class="st0" d="M1029.7,1558.2c-66.7,22-130.3,26-191.1,13.4l-24.8-109.5l203.5-11.4L1029.7,1558.2z"/>
 			<path class="st0" d="M1023.6,1476.2c-65.2,27.6-131.8,40.9-199.8,39.2L801.4,1407l207.5-43.2L1023.6,1476.2z"/>
@@ -200,9 +203,12 @@
 				<path class="st0" d="M941.5,726.2l0.2-23.1c19.9,8.8,43,9.5,61.2,3l-1.8,23.6C981.5,734.7,959.2,735,941.5,726.2z"/>
 			</g>
 			<g id="Buckle_Holster-Left_M">
-				<path class="st0" d="M746.4,355.7l-28.6-35.3l-27.6,22.3l28.6,35.3L746.4,355.7z M733.8,352.8L718,333.3l-15.2,12.3l15.8,19.5
-					L733.8,352.8z"/>
-				<path class="st0" d="M760.2,781l-37.3,8l5.2,35l37.3-8L760.2,781z M753,790.7l-20.6,4.4l2.9,19.3l20.6-4.4L753,790.7z"/>
+				<path class="st0" d="M763.1,797.6l-10.7,1.6l0.5,3.5l10.7-1.6L763.1,797.6"/>
+				<path class="st0" d="M733.9,366l-7.4-9.8l-2.8,2.1l7.4,9.8L733.9,366"/>
+				<path class="st0" d="M731,368.2l-12.1,9.8l-28.6-35.3l27.6-22.3l28.6,35.3l-12.6,10.2l-6.1-8.1l6.2-5L718,333.3l-15.2,12.3
+					l15.8,19.5l6.2-5.1L731,368.2"/>
+				<path class="st0" d="M762.7,797.7l-8.5,1.3l-1.2-8.3l-20.6,4.4l2.9,19.3l20.6-4.4l-1.1-7.5l8.5-1.3l2.2,14.8l-37.3,8l-5.2-35
+					l37.3-8L762.7,797.7"/>
 			</g>
 		</g>
 		<g id="Right-Holster_M_ToggleOff">
@@ -236,9 +242,12 @@
 				<path class="st0" d="M258.9,726.2l-0.2-23.1c-19.9,8.8-43,9.5-61.2,3l1.8,23.6C218.8,734.7,241.1,735,258.9,726.2z"/>
 			</g>
 			<g id="Buckle_Holster-Right_M">
-				<path class="st0" d="M453.9,355.7l28.6-35.3l27.6,22.3L481.5,378L453.9,355.7z M466.5,352.8l15.8-19.5l15.2,12.3l-15.8,19.5
-					L466.5,352.8z"/>
-				<path class="st0" d="M440.1,781l37.3,8l-5.2,35l-37.3-8L440.1,781z M447.4,790.7l20.6,4.4l-2.9,19.3l-20.6-4.4L447.4,790.7z"/>
+				<path class="st0" d="M437.6,797.6l10.7,1.6l-0.5,3.5l-10.7-1.6L437.6,797.6"/>
+				<path class="st0" d="M466.8,366l7.4-9.8l2.8,2.1l-7.4,9.8L466.8,366"/>
+				<path class="st0" d="M469.6,368.2l12.1,9.8l28.6-35.3l-27.6-22.3l-28.6,35.3l12.6,10.2l6.1-8.1l-6.2-5l15.8-19.5l15.2,12.3
+					L482,365.1l-6.2-5.1L469.6,368.2"/>
+				<path class="st0" d="M438,797.7l8.5,1.3l1.2-8.3l20.6,4.4l-2.9,19.3l-20.6-4.4l1.1-7.5l-8.5-1.3l-2.2,14.8l37.3,8l5.2-35
+					l-37.3-8L438,797.7"/>
 			</g>
 		</g>
 	</g>

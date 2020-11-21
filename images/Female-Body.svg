@@ -320,6 +320,7 @@
 	</g>
 	<g id="Upper-Body_F_Wrapper" transform="translate(190,557)">
 		<title>Upper Body</title>
+		<g id="Chest_Current"></g>
 		<g id="Biceps_Current">
 			<g id="LeftBiceps_Current"></g>
 			<g id="RightBiceps_Current"></g>
@@ -327,11 +328,6 @@
 		<g id="Shoulders_Current">
 			<g id="LeftShoulder_Current"></g>
 			<g id="RightShoulder_Current"></g>
-		</g>
-		<g id="Chest_Current"></g>
-		<g id="Elbows_Current">
-			<g id="LeftElbow_Current"></g>
-			<g id="LeftElbow_Current"></g>
 		</g>
 		<g id="Gauntlets_Current">
 			<g id="LeftGauntlets_Current"></g>

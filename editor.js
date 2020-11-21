@@ -1,4 +1,4 @@
-/* MandoMaker: A rewrite */
+/* MandoCreator */
 "use strict";
 
 function find (st) {
@@ -13,6 +13,7 @@ function loadSVG (name, onload, args) {
 	}
 	var xhr = new XMLHttpRequest();
 	xhr.open("GET", "images/" + name + ".svg");
+	xhr.setRequestHeader("Cache-Control", "max-age=10800, public");
 	xhr.onload = function () {
 		if (this.status !== 200)
 			return;
@@ -114,6 +115,8 @@ function prepareParent (SVGNode, parent) {
 		p.innerText = prettify(SVGNode.id) + " Options:";
 	}
 	if (SVGNode.getAttribute("class") === "toggle") {
+		if (!parent)
+			return;
 		if (parent.children.length > 1) // 1 for option-name built before
 			DOMNode("p", {class: "separator"}, parent);
 
@@ -252,7 +255,9 @@ function buildVariableSettings (category, pieceName, variantName) {
 }
 
 function onload () {
-	female = (localStorage.getItem("female_sex") == "true");
+	var female = false;
+	if (localStorage)
+		female = (localStorage.getItem("female_sex") == "true");
 	setSex(female);
 	find("female").checked = female;
 	var useDarkMode = localStorage.getItem("dark_mode");
