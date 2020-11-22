@@ -11,8 +11,7 @@
 			<path class="st1" d="M1008.5,638.3l215.1-73.7"/>
 			<ellipse class="st1" cx="1178.2" cy="539.6" rx="21.1" ry="20.3"/>
 		</g>
-		<g id="None_Bicep_Left_M_Option">
-		</g>
+		<g id="None_Bicep_Left_M_Option"> </g>
 	</g>
 	<g id="Right-Biceps_M">
 		<g id="Basic_Bicep_Right_M_Primary_Option">
@@ -21,8 +20,7 @@
 			<path class="st1" d="M391.5,638.3l-215.1-73.7"/>
 			<ellipse class="st1" cx="221.8" cy="539.6" rx="21.1" ry="20.3"/>
 		</g>
-		<g id="None_Bicep_Right_M_Option">
-		</g>
+		<g id="None_Bicep_Right_M_Option"> </g>
 	</g>
 </g>
 <g id="Chest_M">
@@ -36,9 +34,8 @@
 		</g>
 		<g id="Iron-Heart_Classic_M">
 			<path id="Heart_Classic_M" class="st0" d="M671.4,454.4V357l28.6-22.4l28.6,22.4v97.4L700,483.3L671.4,454.4z"/>
-			<g id="None_Heart_Classic_M_Option">
-			</g>
 			<rect id="Center_Heart_Classic_M_Option" x="690.1" y="372" class="st0" width="19.8" height="66.7"/>
+			<g id="None_Heart_Classic_M_Option"> </g>
 		</g>
 		<g id="Chest-Plates_Classic_M">
 			<g id="Left-Chest_Classic_M">
@@ -101,9 +98,8 @@
 		</g>
 		<g id="Iron-Heart_Legacy_M">
 			<path id="Heart_Legacy_M_Primary" class="st0" d="M671.6,452.4V355l28.6-22.4l28.6,22.4v97.4l-28.6,28.9L671.6,452.4z"/>
-			<g id="None_Heart_Legacy_M_Option">
-			</g>
 			<rect id="Center_Heart_Legacy_M_Secondary_Option" x="690.2" y="370" class="st0" width="19.8" height="66.7"/>
+			<g id="None_Heart_Legacy_M_Option"> </g>
 		</g>
 		<g id="Neck-Armor_Legacy_M">
 			<path id="Neck-Plate_Legacy_M_Primary" class="st0" d="M586.7,280.5l-185.8-21.4l14.8-102.9l122.5-36.7c0,0,16.2,27.5,28,37.2
@@ -193,8 +189,6 @@
 		</g>
 		<g id="Iron-Heart_Heavy_M">
 			<path id="Heart_Heavy_M" class="st0" d="M700,330.9l34.3,31.8v62.4L700,457l-34.3-31.8v-62.4L700,330.9z"/>
-			<g id="None_Heart_Heavy_M_Option">
-			</g>
 			<g id="Center_Heart_Heavy_M_Option">
 				<rect x="687.5" y="363.7" class="st0" width="25" height="30.3"/>
 				<rect x="687.5" y="394" class="st0" width="4.2" height="30.3"/>
@@ -204,6 +198,7 @@
 				<rect x="700" y="394" class="st0" width="4.2" height="30.3"/>
 				<rect x="691.6" y="394" class="st0" width="4.2" height="30.3"/>
 			</g>
+			<g id="None_Heart_Heavy_M_Option"> </g>
 		</g>
 	</g>
 	<g id="Chest_Gunslinger_M">
@@ -237,9 +232,8 @@
 			<path id="Under-Heart_Gunslinger_M" class="st0" d="M691.2,509.3l-41.7-41.7V346.5l42.5-38.5v-32.9h16v32.9l42.5,38.5v121.1
 				l-41.7,41.7l-8.8-2.2L691.2,509.3z"/>
 			<path id="Heart_Gunslinger_M" class="st0" d="M669.3,457.7V357.5l30.7-30.7l30.7,30.7v100.2L700,488.4L669.3,457.7z"/>
-			<g id="None_Heart_Gunslinger_M_Option">
-			</g>
 			<rect id="Center_Heart_Gunslinger_M_Option" x="690.9" y="363.6" class="st0" width="18.2" height="87.9"/>
+			<g id="None_Heart_Gunslinger_M_Option"> </g>
 		</g>
 	</g>
 </g>

@@ -51,20 +51,19 @@
 </g>
 <g id="Ankles_F">
 	<g id="Left-Ankle_F">
-		<g id="None_Ankle_Left_M_Option">
-		</g>
+		<g id="None_Ankle_Left_M_Option"> </g>
 		<path id="Basic_Ankle_Left_M_Option" class="st0" d="M1095.4,1635.1c-3-6.8-106.2-73.8-111.5-140.2c-1.3-16.5-106.2-13.8-113.3,16
 			c-1.9,8.1-1,39.1,2.2,53.9c7.3,33.9,108.4,106.3,128.1,110.4C1021,1679.5,1106.2,1659.3,1095.4,1635.1z"/>
 	</g>
 	<g id="Right-Ankle_F">
-		<g id="None_Ankle_Right_M_Option">
-		</g>
+		<g id="None_Ankle_Right_M_Option"> </g>
 		<path id="Basic_Ankle_Right_M_Option" class="st0" d="M106.2,1635.1c3-6.8,106.2-73.8,111.5-140.2c1.3-16.5,106.2-13.8,113.3,16
 			c1.9,8.1,1,39.1-2.2,53.9c-7.3,33.9-108.4,106.3-128.1,110.4C180.6,1679.5,95.4,1659.3,106.2,1635.1z"/>
 	</g>
 </g>
 <g id="Knees_F">
 	<g id="Left-Knee_F">
+		<g id="None-(Nih-plates)_Left_F_Option"></g>
 		<g id="Legacy_Knee_Left_F_Option">
 			<path class="st0" d="M942.8,935.7L900.2,906l-95,14.8l-37,42.1l30.5,102.7h75.2l71-22.7L942.8,935.7z"/>
 			<path class="st0" d="M957.1,866.2l-54.5-38.1l-121.9,18.9L733.3,901l39.1,131.7l187.5-29.1L957.1,866.2z"/>
@@ -73,6 +72,7 @@
 			c78.6-5.2,86.1-99,86.1-99l-11.7-79.4L715.7,900.3z"/>
 	</g>
 	<g id="Right-Knee_F">
+		<g id="None-(Nih-plates)_Right_F_Option"></g>
 		<g id="Legacy_Knee_Right_F_Option">
 			<path class="st0" d="M256.9,935.7l42.5-29.7l95,14.8l37,42.1L401,1065.5h-75.2l-71-22.7L256.9,935.7z"/>
 			<path class="st0" d="M242.5,866.2l54.5-38.1l121.9,18.9l47.5,53.9l-39.1,131.7l-187.5-29.1L242.5,866.2z"/>

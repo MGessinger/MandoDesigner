@@ -66,55 +66,55 @@
 					<h2 class="slide_title">Helmet (Buy'ce)</h2>
 					<p class="option_name">Style:</p>
 					<div id="HelmetTypes" class="armor_types">
-						<button id="Helmet_Def_Classic" class="type_button current_variant"
+						<button id="Helmet_Variant_Classic" class="type_button current_variant"
 							onclick="switchToArmorVariant('Helmet','Helmet','Classic', this)">
 							<svg viewbox="0 75 700 700" class="preview_icon"><use href="#Helmet_Classic"/></svg>
 							Classic
-						</button><button class="type_button"
+						</button><button id="Helmet_Variant_Nite" class="type_button"
 							onclick="switchToArmorVariant('Helmet','Helmet','Nite', this)">
 							<svg viewbox="0 75 700 700" class="preview_icon"><use href="#Helmet_Nite"/></svg>
 							Nite Owl
-						</button><button class="type_button"
+						</button><button id="Helmet_Variant_Gunslinger" class="type_button"
 							onclick="switchToArmorVariant('Helmet','Helmet','Gunslinger', this)">
 							<svg viewbox="0 75 700 700" class="preview_icon"><use href="#Helmet_Gunslinger"/></svg>
 							Gunslinger
-						</button><button class="type_button"
+						</button><button id="Helmet_Variant_Heavy" class="type_button"
 							onclick="switchToArmorVariant('Helmet','Helmet','Heavy', this)">
 							<svg viewbox="0 75 700 700" class="preview_icon"><use href="#Helmet_Heavy"/></svg>
 							Heavy
-						</button><button class="type_button"
+						</button><button id="Helmet_Variant_Stalker-Medium" class="type_button"
 							onclick="switchToArmorVariant('Helmet','Helmet','Stalker-Medium', this)">
 							<svg viewbox="0 75 700 700" class="preview_icon"><use href="#Helmet_Stalker-Medium"/></svg>
 							Stalker (M)
-						</button><button class="type_button"
+						</button><button id="Helmet_Variant_Stalker-Large" class="type_button"
 							onclick="switchToArmorVariant('Helmet','Helmet','Stalker-Large', this)">
 							<svg viewbox="0 75 700 700" class="preview_icon"><use href="#Helmet_Stalker-Large"/></svg>
 							Stalker (L)
 						</button>
 						<p class="sponsor_title">Alter Ego Armory (sponsored):</p>
-						<button class="type_button"
+						<button id="Helmet_Variant_Warden" class="type_button"
 							onclick="switchToArmorVariant('Helmet','Helmet','Warden', this);
 								 setSponsor('AlterEgo','https://etsy-me/35mF6Eb');">
 							<svg viewbox="0 75 700 700" class="preview_icon"><use href="#Helmet_Warden"/></svg>
 							Warden
-						</button><button class="type_button"
+						</button><button id="Helmet_Variant_Matriarch" class="type_button"
 							onclick="switchToArmorVariant('Helmet','Helmet','Matriarch', this);
 								 setSponsor('AlterEgo','https://etsy.me/2GR02cX');">
 							<svg viewbox="0 75 700 700" class="preview_icon"><use href="#Helmet_Matriarch"/></svg>
 							Matriarch
-						</button><button class="type_button"
+						</button><button id="Helmet_Variant_Liege" class="type_button"
 							onclick="switchToArmorVariant('Helmet','Helmet','Liege', this);
 								 setSponsor('AlterEgo','https://etsy.me/3eSg03d');">
 							<svg viewbox="0 75 700 700" class="preview_icon"><use href="#Helmet_Liege"/></svg>
 							Liege
-						</button><button class="type_button"
+						</button><button id="Helmet_Variant_Guardian" class="type_button"
 							onclick="switchToArmorVariant('Helmet','Helmet','Guardian', this);
 								 setSponsor('AlterEgo','https://etsy.me/2GR02cX');">
 							<svg viewbox="0 75 700 700" class="preview_icon"><use href="#Helmet_Guardian"/></svg>
 							Guardian
 						</button>
 						<p class="sponsor_title">Miscellaneous:</p>
-						<button class="type_button"
+						<button id="Helmet_Variant_Budget-Bucket" class="type_button"
 							onclick="switchToArmorVariant('Helmet','Helmet','Budget-Bucket', this)">
 							<svg viewbox="0 0 700 700" class="preview_icon"><use href="#Helmet_Budget-Bucket"/></svg>
 							Budget
@@ -133,31 +133,31 @@
 					<h2 class="slide_title">Upper Body</h2>
 					<p class="option_name">Style:</p>
 					<div id="UpperArmorTypes" class="armor_types male">
-						<button id="Chest_Def_Classic_M" class="type_button current_variant" onclick="switchToArmorVariant('UpperArmor','Chest','Classic_M', this)">
+						<button id="Chest_Variant_Classic_M" class="type_button current_variant" onclick="switchToArmorVariant('UpperArmor','Chest','Classic_M', this)">
 							<svg viewbox="100 -100 1200 1200" class="preview_icon"><use href="#Chest_Classic_M"/></svg>
 							Classic
-						</button><button class="type_button" onclick="switchToArmorVariant('UpperArmor','Chest','Legacy_M', this)">
+						</button><button id="Chest_Variant_Legacy_M" class="type_button" onclick="switchToArmorVariant('UpperArmor','Chest','Legacy_M', this)">
 							<svg viewbox="100 -100 1200 1200" class="preview_icon"><use href="#Chest_Legacy_M"/></svg>
 							Legacy
-						</button><button class="type_button" onclick="switchToArmorVariant('UpperArmor','Chest','Gunslinger_M', this)">
+						</button><button id="Chest_Variant_Gunslinger_M" class="type_button" onclick="switchToArmorVariant('UpperArmor','Chest','Gunslinger_M', this)">
 							<svg viewbox="100 -100 1200 1200" class="preview_icon"><use href="#Chest_Gunslinger_M"/></svg>
 							Gunslinger
-						</button><button class="type_button" onclick="switchToArmorVariant('UpperArmor','Chest','Heavy_M', this)">
+						</button><button id="Chest_Variant_Heavy_M" class="type_button" onclick="switchToArmorVariant('UpperArmor','Chest','Heavy_M', this)">
 							<svg viewbox="100 -100 1200 1200" class="preview_icon"><use href="#Chest_Heavy_M"/></svg>
 							Heavy
 						</button>
 					</div>
 					<div id="UpperArmorTypes" class="armor_types female">
-						<button id="Chest_Def_Classic_F" class="type_button" onclick="switchToArmorVariant('UpperArmor','Chest','Classic_F', this)">
+						<button id="Chest_Variant_Classic_F" class="type_button" onclick="switchToArmorVariant('UpperArmor','Chest','Classic_F', this)">
 							<svg viewbox="100 -100 1200 1200" class="preview_icon"><use href="#Chest_Classic_F"/></svg>
 							Classic
-						</button><button class="type_button" onclick="switchToArmorVariant('UpperArmor','Chest','Legacy_F', this)">
+						</button><button id="Chest_Variant_Legacy_F" class="type_button" onclick="switchToArmorVariant('UpperArmor','Chest','Legacy_F', this)">
 							<svg viewbox="100 -100 1200 1200" class="preview_icon"><use href="#Chest_Legacy_F"/></svg>
 							Legacy
-						</button><button class="type_button" onclick="switchToArmorVariant('UpperArmor','Chest','Gunslinger_F', this)">
+						</button><button id="Chest_Variant_Gunslinger_F" class="type_button" onclick="switchToArmorVariant('UpperArmor','Chest','Gunslinger_F', this)">
 							<svg viewbox="100 -100 1200 1200" class="preview_icon"><use href="#Chest_Gunslinger_F"/></svg>
 							Gunslinger
-						</button><button class="type_button" onclick="switchToArmorVariant('UpperArmor','Chest','Heavy_F', this)">
+						</button><button id="Chest_Variant_Heavy_F" class="type_button" onclick="switchToArmorVariant('UpperArmor','Chest','Heavy_F', this)">
 							<svg viewbox="100 -100 1200 1200" class="preview_icon"><use href="#Chest_Heavy_F"/></svg>
 							Heavy
 						</button>
@@ -360,7 +360,7 @@
 			<fieldset>
 				<input type="text" style="display:none" name="url" value="" autocomplete="off" />
 				<input type="text" class="narrow_input" placeholder="Name (optional)" name="name"/>
-				<input type="text" class="narrow_input" placeholder="Email (optional)" name="email"/>
+				<input type="email" class="narrow_input" placeholder="Email (optional)" name="email"/>
 				<input type="text" class="wide_input" placeholder="Subject (example: Ibic jatne!)" name="subject" required/>
 				<textarea placeholder="Message (example: Gar Mando'ade jate, ijaat enteyo cuyir ori.)" name="message" required></textarea>
 				<span class="narrow_input">What color is Darth Vader's lightsaber?</span>
@@ -375,7 +375,9 @@
 			<input type="radio" name="sex" class="toggle_sex" id="female" onchange="setSex(true)">
 			<label for="female" class="label_sex">&#xe902;</label>
 			<div class="zoom_wrapper">
+				<span class="zoom_icon">&#xe916;</span>
 				<input id="zoom" type="range" min="100" max="250" value="100" oninput="zoom(this.value/100);" />
+				<span class="zoom_icon">&#xe917;</span>
 			</div>
 		</footer>
 		<div id="vault" style="display: none"></div>

@@ -278,6 +278,10 @@ footer {
 	line-height: 1em;
 }
 
+.zoom_icon {
+	vertical-align: super;
+}
+
 #zoom {
 	-webkit-appearance: none;
 	width: 15em;
