@@ -35,8 +35,6 @@ var Picker = new function() {
 			var s = clamp(event.clientX - dimensions.left, 0, width);
 			var l = clamp(event.clientY - dimensions.top, 0, height);
 			done(s / width, l / height);
-			/* unsavedProgress is global in editor.js */
-			unsavedProgress = true;
 		}
 
 		on(o, "mousedown", touch);
@@ -142,7 +140,6 @@ var Picker = new function() {
 				if (string[0] == '#') {
 					this.hex = string;
 				} else if (regex.test(string)) {
-					console.log(string);
 					this.hex = '#' + string;
 				} else if (string.startsWith("rgb")) {
 					var p = string.match(/\d{1,3}/g);
@@ -249,6 +246,7 @@ var Picker = new function() {
 		}
 	}
 
+	var settings = {undefined: "#FFFFFF"};
 	function _setColor(value, fromEditor) {
 		if (typeof value === "string")
 			value = value.trim();
@@ -256,30 +254,38 @@ var Picker = new function() {
 			return;
 		color.update(value);
 		DOM.update(fromEditor);
-			console.log(onChange);
 		if (onChange)
 			onChange(color.hex);
+	}
+
+	function getDefaultColor (SVGNode, id) {
+		var fill_attr = SVGNode.getAttribute("fill");
+		var fill_style = SVGNode.style.fill;
+		if (fill_attr)
+			return fill_attr;
+		else if (fill_style)
+			return fill_style;
+		else if (id in settings)
+			return settings[id];
+		return "#FFFFFF";
 	}
 
 	var color = new Color();
 	var DOM = new PickerDOM();
 	var onChange = null;
 	this.attach = function (button, colorText, SVGNode) {
-		if (!colorText) {
-			var wrapper = button.parentNode;
-			colorText = wrapper.getElementsByClassName("color")[0];
-		}
 		function input (hex) {
 			button.style.background = hex;
 			SVGNode.style.fill = hex;
 			colorText.innerText = hex;
+			settings[button.id] = hex;
 		}
 		on(button, "click", function(event) {
 			onChange = input;
 			_setColor(this.style.backgroundColor);
 			DOM.parent = this;
 		});
-		var def = SVGNode.getAttribute("fill") || SVGNode.style.fill || "#FFFFFF";
+		var def = getDefaultColor(SVGNode, button.id);
 		_setColor(def);
 		input(color.hex);
 	}

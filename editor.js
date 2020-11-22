@@ -1,6 +1,6 @@
 /* MandoCreator */
 "use strict";
-var unsavedProgress = false;
+var variants = {undefined: "Classic"};
 
 function find (st) {
 	return document.getElementById(st);
@@ -53,6 +53,10 @@ function prettify (str) {
 	return shortName.replace(/-/g, " ");
 }
 
+function neutralize (str) {
+	return str.replace(/_(M|F)($|_)/,"$2");
+}
+
 function isEmptyLayer (SVGNode) {
 	return SVGNode.tagName === "g" && SVGNode.children.length === 0;
 }
@@ -94,6 +98,7 @@ function toggleSlide (slide) {
 }
 
 function toggleSubslide (subslide, SVGNode) {
+	var varName = neutralize(SVGNode.id);
 	return function () {
 		if (this.checked) {
 			subslide.style.display = "";
@@ -102,6 +107,7 @@ function toggleSubslide (subslide, SVGNode) {
 			subslide.style.display = "none";
 			SVGNode.style.display = "none";
 		}
+		variants[varName] = this.checked;
 	}
 }
 
@@ -129,6 +135,9 @@ function prepareParent (SVGNode, parent) {
 		parent = DOMNode("div", {style: "display:none", class: "subslide"}, parent);
 
 		var defaultOn = (SVGNode.style.display !== "none");
+		var varName = neutralize(SVGNode.id);
+		if (varName in variants)
+			defaultOn = variants[SVGNode.id];
 		var toggle = toggleSubslide(parent, SVGNode);
 		check.checked = defaultOn;
 		toggle.bind({checked: defaultOn})();
@@ -163,7 +172,7 @@ function buildIOSettings (SVGNode, category, parent) {
 	});
 }
 
-function buildAddonSelect (options, category, parent) {
+function buildAddonSelect (options, category, parent, SVGName) {
 	var wrapper = DOMNode("div", {class: "select_wrapper hidden"}, parent);
 	var select = DOMNode("select", {class: "component_select"}, wrapper);
 	var colors = [];
@@ -182,9 +191,14 @@ function buildAddonSelect (options, category, parent) {
 		var col = DOMNode("div", {id: san + "SubColors"}, parent);
 		colors.push(col);
 		buildAllSettings(options[i], category, col);
-		if (options[i].style.visibility == "visible") {
+		if (variants[SVGName] == fullName) {
+			options[i].style.visibility = "visible";
 			useDefault = false;
 			select.value = fullName;
+		} else if (options[i].style.visibility == "visible") {
+			useDefault = false;
+			select.value = fullName;
+			variants[SVGName] = fullName;
 		} else {
 			options[i].style.visibility = "";
 			col.style.display = "none";
@@ -196,6 +210,7 @@ function buildAddonSelect (options, category, parent) {
 	}
 
 	select.addEventListener("change", function() {
+		variants[SVGName] = this.value;
 		for (var i = 0; i < options.length; i++) {
 			if (options[i].id === this.value)
 				options[i].style.visibility = "visible";
@@ -236,11 +251,12 @@ function buildAllSettings (SVGNode, category, parent) {
 		else
 			buildAllSettings(ch[i], category, parent);
 	}
+	var SVGName = neutralize(SVGNode.id);
 	if (options.length > 0)
-		buildAddonSelect(options, category, parent);
+		buildAddonSelect(options, category, parent, SVGName);
 	/* defer toggles to the very last */
 	for (var i = 0; i < toggle.length; i++) 
-		buildAllSettings(toggle[i], category, parent);
+		buildAllSettings(toggle[i], category, parent, SVGName);
 }
 
 function buildVariableSettings (category, pieceName, variantName) {
@@ -276,8 +292,6 @@ function onload () {
 	}
 
 	window.addEventListener("beforeunload", function (event) {
-		if (!unsavedProgress)
-			return;
 		event.preventDefault();
 		event.returnValue = "There is unsaved progress. Do you really want to leave the page?";
 	});
@@ -302,8 +316,11 @@ function switchToArmorVariant (category, pieceName, variantName, button) {
 	if (old_button)
 		old_button.classList.remove("current_variant");
 
+	var shortName = neutralize(variantName);
+	variants[category] = shortName;
+
 	if (!button)
-		button = find(category + "_Def_" + variantName);
+		button = find(category + "_Variant_" + variantName);
 	if (button)
 		button.classList.add("current_variant");
 
@@ -341,7 +358,6 @@ function prepareForExport (svg) {
 	svg.style.transform = "";
 	var options = svg.getElementsByClassName("option");
 	for (var i = 0; i < options.length; i++) {
-		console.log(options[i]);
 		if (options[i].style.visibility !== "visible")
 			options[i].style.visibility = "hidden";
 	}
@@ -367,7 +383,6 @@ function setDownloader (bck) {
 		this.setAttribute("href",'data:image/svg+xml;charset=UTF-8,' + encodeSVG(data));
 		var self = this;
 		setTimeout(function() {self.setAttribute("href", "#");});
-		unsavedProgress = false;
 	};
 }
 
@@ -384,15 +399,19 @@ function setupMando (svg, sexSuffix) {
 	function findLocal(st) {
 		return svg.getElementById(st);
 	}
-	loadSVG("Helmets", function() { switchToArmorVariant("Helmet", "Helmet", "Classic"); });
+	var variant = variants["Helmet"] || "Classic";
+	loadSVG("Helmets", function() { switchToArmorVariant("Helmet", "Helmet", variant); });
+
 	loadSVG("Upper-Armor_" + sexSuffix, function(svg) {
-		switchToArmorVariant("UpperArmor", "Chest", "Classic_" + sexSuffix)
+		var variant = variants["Chest"] || "Classic";
+		switchToArmorVariant("UpperArmor", "Chest", variant + "_" + sexSuffix)
 		var subgroups = ["Shoulder","Biceps","Gauntlets"];
 		for (var i = 0; i < subgroups.length; i++) {
 			buildVariableSettings("UpperArmor", "Left-" + subgroups[i], sexSuffix);
 			buildVariableSettings("UpperArmor", "Right-" + subgroups[i], sexSuffix);
 		}
 	});
+
 	loadSVG("Lower-Armor_" + sexSuffix, function(svg) {
 		switchToArmorVariant("LowerArmor", "Waist", sexSuffix);
 		buildVariableSettings("LowerArmor", "Groin", sexSuffix);
@@ -465,7 +484,6 @@ function setColorScheme (useDark) {
 }
 
 function setSex (female) {
-	unsavedProgress = false;
 	var body, sexSuffix;
 	var settings = find("settings");
 	if (female) {
@@ -487,7 +505,6 @@ function loadImage (input) {
 	var files = input.files;
 	if (files.length == 0)
 		return;
-	unsavedProgress = true;
 	var main = find("editor");
 	var theme = document.body.className;
 
@@ -500,7 +517,6 @@ function loadImage (input) {
 	var img = customBck.getElementsByTagName("image")[0];
 
 	var reader = new FileReader();
-	console.log(files[0]);
 	if (files[0].type.includes("svg")) {
 		reader.onload = function () {
 			var svg = DOMNode("svg");
@@ -547,9 +563,11 @@ function reupload (input) {
 		if (mando.id === "Male-Body") {
 			var sex_radio = find("male");
 			sex_radio.checked = true;
+			localStorage.setItem("female_sex", false);
 		} else {
 			var sex_radio = find("female");
 			sex_radio.checked = true;
+			localStorage.setItem("female_sex", true);
 		}
 
 		var theme = find("color_scheme_picker");
