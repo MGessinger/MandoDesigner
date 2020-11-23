@@ -1,13 +1,14 @@
 /* MandoCreator */
 "use strict";
-var variants = {undefined: "Classic"};
+var variants = {};
 
 function find (st) {
 	return document.getElementById(st);
 }
 
 function loadSVG (name, onload, args) {
-	var local = find(name);
+	var vault = find("vault");
+	var local = vault.querySelector("#" + name);
 	if (local) {
 		var copy = local.cloneNode(true);
 		return onload(copy, args);
@@ -33,7 +34,6 @@ function loadSVG (name, onload, args) {
 		}
 
 		/* Store it in the Vault for later use */
-		var vault = find("vault");
 		vault.appendChild(svg);
 		var copy = svg.cloneNode(true);
 		onload(copy, args);
@@ -41,10 +41,15 @@ function loadSVG (name, onload, args) {
 	xhr.send();
 }
 
-function makeIdentifier (str) {
+function listName (str) {
 	var clean = str.replace(/\W/g,"");
 	var components = clean.split("_");
 	return components[0];
+}
+
+function buttonName (str) {
+	var clean = str.replace(/\W/g,"");
+	return neutralize(clean);
 }
 
 function prettify (str) {
@@ -54,7 +59,7 @@ function prettify (str) {
 }
 
 function neutralize (str) {
-	return str.replace(/_(M|F)($|_)/,"$2");
+	return str.replace(/(_(M|F|Toggle(Off)?|Option))+($|_)/,"$4");
 }
 
 function isEmptyLayer (SVGNode) {
@@ -79,7 +84,7 @@ function redirectClickTo(target) {
 function ColorPicker (affectedObject, parent) {
 	var wrapper = DOMNode("div", {class: "color_wrapper"}, parent);
 
-	var buttonID = makeIdentifier(affectedObject.id) + "Color";
+	var buttonID = buttonName(affectedObject.id) + "Color";
 	var b = DOMNode("button", {class: "color_picker", id: buttonID}, wrapper);
 
 	var label = DOMNode("label", {class: "color_label hidden", for: buttonID}, wrapper);
@@ -107,12 +112,12 @@ function toggleSubslide (subslide, SVGNode) {
 			subslide.style.display = "none";
 			SVGNode.style.display = "none";
 		}
-		variants[varName] = this.checked;
+		variants[varName] = this.checked || false;
 	}
 }
 
 function prepareParent (SVGNode, parent) {
-	var name = makeIdentifier(SVGNode.id);
+	var name = listName(SVGNode.id);
 	var globalList = find(name + "Colors");
 	if (globalList) {
 		parent = globalList;
@@ -137,7 +142,7 @@ function prepareParent (SVGNode, parent) {
 		var defaultOn = (SVGNode.style.display !== "none");
 		var varName = neutralize(SVGNode.id);
 		if (varName in variants)
-			defaultOn = variants[SVGNode.id];
+			defaultOn = variants[varName];
 		var toggle = toggleSubslide(parent, SVGNode);
 		check.checked = defaultOn;
 		toggle.bind({checked: defaultOn})();
@@ -187,22 +192,22 @@ function buildAddonSelect (options, category, parent, SVGName) {
 		var opt = DOMNode("option", {class: "component_option", label: name, value: fullName}, select);
 		opt.innerText = name;
 
-		var san = makeIdentifier(fullName);
+		var san = listName(fullName);
 		var col = DOMNode("div", {id: san + "SubColors"}, parent);
 		colors.push(col);
-		buildAllSettings(options[i], category, col);
-		if (variants[SVGName] == fullName) {
+		if (variants[SVGName] == neutralize(fullName)) {
 			options[i].style.visibility = "visible";
 			useDefault = false;
 			select.value = fullName;
 		} else if (options[i].style.visibility == "visible") {
 			useDefault = false;
 			select.value = fullName;
-			variants[SVGName] = fullName;
+			variants[SVGName] = neutralize(fullName);
 		} else {
 			options[i].style.visibility = "";
 			col.style.display = "none";
 		}
+		buildAllSettings(options[i], category, col);
 	}
 	if (useDefault) {
 		options[last].style.visibility = "visible";
@@ -210,7 +215,7 @@ function buildAddonSelect (options, category, parent, SVGName) {
 	}
 
 	select.addEventListener("change", function() {
-		variants[SVGName] = this.value;
+		variants[SVGName] = neutralize(this.value);
 		for (var i = 0; i < options.length; i++) {
 			if (options[i].id === this.value)
 				options[i].style.visibility = "visible";
@@ -218,7 +223,7 @@ function buildAddonSelect (options, category, parent, SVGName) {
 				options[i].style.visibility = "";
 		}
 
-		var id = makeIdentifier(this.value) + "SubColors"
+		var id = listName(this.value) + "SubColors"
 		for (var i = 0; i < colors.length; i++) {
 			if (colors[i].id === id)
 				colors[i].style.display = "";
@@ -251,7 +256,7 @@ function buildAllSettings (SVGNode, category, parent) {
 		else
 			buildAllSettings(ch[i], category, parent);
 	}
-	var SVGName = neutralize(SVGNode.id);
+	var SVGName = neutralize(SVGNode.id) + "_Option";
 	if (options.length > 0)
 		buildAddonSelect(options, category, parent, SVGName);
 	/* defer toggles to the very last */
@@ -261,7 +266,7 @@ function buildAllSettings (SVGNode, category, parent) {
 
 function buildVariableSettings (category, pieceName, variantName) {
 	var fullyQualifiedName = pieceName + "_" + variantName;
-	var identifier = makeIdentifier(pieceName);
+	var identifier = listName(pieceName);
 	var wrapper = find(identifier + "_Current");
 	var ref = find(fullyQualifiedName);
 	var n = ref.cloneNode(true);
@@ -292,8 +297,10 @@ function onload () {
 	}
 
 	window.addEventListener("beforeunload", function (event) {
+		var message = "You should save your work. Do or do not, there is not try!";
 		event.preventDefault();
-		event.returnValue = "There is unsaved progress. Do you really want to leave the page?";
+		event.returnValue = message;
+		return message;
 	});
 }
 
@@ -316,8 +323,7 @@ function switchToArmorVariant (category, pieceName, variantName, button) {
 	if (old_button)
 		old_button.classList.remove("current_variant");
 
-	var shortName = neutralize(variantName);
-	variants[category] = shortName;
+	variants[category] = neutralize(variantName);
 
 	if (!button)
 		button = find(category + "_Variant_" + variantName);
@@ -333,6 +339,7 @@ function switchToArmorVariant (category, pieceName, variantName, button) {
 	var n = find(pieceName + "_" + variantName);
 	n = n.cloneNode(true);
 	n.id = pieceName + "_Current";
+	n.setAttribute("class", variantName);
 	SVGparent.replaceChild(n, old);
 
 	var old_lists = parent.getElementsByClassName("replace");
@@ -435,10 +442,14 @@ function recreateMando (svg) {
 	function findLocal(st) {
 		return svg.getElementById(st);
 	}
-	buildAllSettings(findLocal("Helmet_Current"), "Helmet");
+	var helmet = findLocal("Helmet_Current");
+	buildAllSettings(helmet, "Helmet");
+	variants["Helmet"] = helmet.getAttribute("class");
 
 	/* Upper Body */
-	buildAllSettings(findLocal("Chest_Current"), "UpperArmor");
+	var chest = findLocal("Chest_Current");
+	buildAllSettings(chest, "UpperArmor");
+	variants["Chest"] = chest.getAttribute("Chest");
 	var subgroups = ["Shoulders","Biceps","Gauntlets"];
 	for (var i = 0; i < subgroups.length; i++) {
 		var cur = findLocal(subgroups[i] + "_Current");
@@ -548,9 +559,12 @@ function reupload (input) {
 	var files = input.files;
 	if (!files || !files.length)
 		return;
-	var reader = new FileReader();
 	var main = find("editor");
 	var download = find("download");
+	variants = {};
+	settings = {};
+
+	var reader = new FileReader();
 	reader.onload = function () {
 		var svg = DOMNode("svg");
 		svg.innerHTML = this.result;
@@ -560,11 +574,13 @@ function reupload (input) {
 		if (!mando || !img)
 			return;
 
+		var female = false;
 		if (mando.id === "Male-Body") {
 			var sex_radio = find("male");
 			sex_radio.checked = true;
 			localStorage.setItem("female_sex", false);
 		} else {
+			female = true;
 			var sex_radio = find("female");
 			sex_radio.checked = true;
 			localStorage.setItem("female_sex", true);
@@ -577,6 +593,7 @@ function reupload (input) {
 
 		main.style.backgroundImage = "url(" + img.getAttribute("href") + ")";
 		recreateMando(mando, img);
+		setSex(female);
 		download.onclick = setDownloader(svg);
 	};
 	reader.readAsText(files[0]);

@@ -1,5 +1,6 @@
 'use strict';
 
+var settings = {undefined: "#FFFFFF"};
 var Picker = new function() {
 	function on(elem, event, func) {
 		elem.addEventListener(event, func);
@@ -246,7 +247,6 @@ var Picker = new function() {
 		}
 	}
 
-	var settings = {undefined: "#FFFFFF"};
 	function _setColor(value, fromEditor) {
 		if (typeof value === "string")
 			value = value.trim();
