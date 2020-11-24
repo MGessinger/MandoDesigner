@@ -561,8 +561,6 @@ function reupload (input) {
 		return;
 	var main = find("editor");
 	var download = find("download");
-	variants = {};
-	settings = {};
 
 	var reader = new FileReader();
 	reader.onload = function () {
@@ -573,6 +571,8 @@ function reupload (input) {
 		var img = svg.getElementsByTagName("image")[0];
 		if (!mando || !img)
 			return;
+		variants = {};
+		settings = {};
 
 		var female = false;
 		if (mando.id === "Male-Body") {

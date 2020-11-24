@@ -97,6 +97,7 @@
 	width: 60%;
 	padding: 0 0.5em;
 	line-height: 1.5em;
+	font-family: Arial, sans-serif;
 	background: var(--softColor);
 	border: 1px solid var(--softLight);
 	box-sizing: border-box;

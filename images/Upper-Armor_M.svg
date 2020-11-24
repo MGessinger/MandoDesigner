@@ -5,22 +5,24 @@
 	 style="enable-background:new 0 0 1400 1400;" xml:space="preserve">
 <g id="Biceps_M_ToggleOff">
 	<g id="Left-Biceps_M">
-		<g id="Basic_Bicep_Left_M_Option">
+		<g id="Basic_Biceps_Left_M_Primary_Option">
 			<path class="st0" d="M1004.3,468.9l-4.7,145.1l14,38.4c2.8,7.7,11.2,11.7,18.9,9.1c38.7-13,147.6-49.7,187.1-63.1
 				c3.8-1.3,7-4.1,8.7-7.7c1.8-3.6,2-7.8,0.6-11.6l-46.7-128.2l-8.9,3.7l-0.2-0.1l-0.3,0.1l-43.6-28.1L1004.3,468.9z"/>
 			<path class="st1" d="M1008.5,638.3l215.1-73.7"/>
 			<ellipse class="st1" cx="1178.2" cy="539.6" rx="21.1" ry="20.3"/>
 		</g>
-		<g id="None_Bicep_Left_M_Option"> </g>
+		<g id="None_Biceps_Left_M_Option">
+		</g>
 	</g>
 	<g id="Right-Biceps_M">
-		<g id="Basic_Bicep_Right_M_Option">
+		<g id="Basic_Biceps_Right_M_Primary_Option">
 			<path class="st0" d="M395.7,468.9l4.7,145.1l-14,38.4c-2.8,7.7-11.2,11.7-18.9,9.1c-38.7-13-147.5-49.7-187.1-63.1
 				c-3.8-1.3-7-4.1-8.7-7.7c-1.8-3.6-2-7.8-0.6-11.6l46.7-128.2l8.9,3.7l0.2-0.1l0.3,0.1l43.6-28.1L395.7,468.9z"/>
 			<path class="st1" d="M391.5,638.3l-215.1-73.7"/>
 			<ellipse class="st1" cx="221.8" cy="539.6" rx="21.1" ry="20.3"/>
 		</g>
-		<g id="None_Bicep_Right_M_Option"> </g>
+		<g id="None_Biceps_Right_M_Option">
+		</g>
 	</g>
 </g>
 <g id="Chest_M">
@@ -34,21 +36,22 @@
 		</g>
 		<g id="Iron-Heart_Classic_M">
 			<path id="Heart_Classic_M" class="st0" d="M671.4,454.4V357l28.6-22.4l28.6,22.4v97.4L700,483.3L671.4,454.4z"/>
+			<g id="None_Heart_Classic_M_Option">
+			</g>
 			<rect id="Center_Heart_Classic_M_Option" x="690.1" y="372" class="st0" width="19.8" height="66.7"/>
-			<g id="None_Heart_Classic_M_Option"> </g>
 		</g>
 		<g id="Chest-Plates_Classic_M">
 			<g id="Left-Chest_Classic_M">
 				<path id="Chest_Left_Classic_M" class="st0" d="M960.1,271.4l-237.9,28.5l-2.3,22.3l30.3,28.5l-2.3,120.2l-26.8,26v39.6
 					l102.6,28.5l40.8,92.9l45.5,37.2l50.1-255.2l26.8-13.6L960.1,271.4z"/>
-				<path id="Trauma-Plating_Left-Chest_ToggleOff" class="st0" d="M737.9,315.7l0.1-0.7l208.8-25l22,127l-23.1,11.7l-46.3,235.8
-					l-20.7-16.9L836.3,551l-98-27.2V504l26.7-25.9l2.6-134.5L737.9,315.7z"/>
+				<path id="Trauma-Plating_Left-Chest_Classic_ToggleOff" class="st0" d="M737.9,315.7l0.1-0.7l208.8-25l22,127l-23.1,11.7
+					l-46.3,235.8l-20.7-16.9L836.3,551l-98-27.2V504l26.7-25.9l2.6-134.5L737.9,315.7z"/>
 			</g>
 			<g id="Right-Chest_Classic_M">
 				<path id="Chest_Right_Classic_M" class="st0" d="M439.9,271.4l237.9,28.5l2.3,22.3l-30.3,28.5l2.3,120.2l26.8,26v39.6
 					l-102.6,28.5L535.6,658l-45.5,37.2l-50.1-255.2l-26.8-13.6L439.9,271.4z"/>
-				<path id="Trauma-Plating_Right-Chest_ToggleOff" class="st0" d="M662.6,315.7l-0.1-0.7l-208.8-25l-22,127l23.1,11.7l46.3,235.8
-					l20.7-16.9l42.4-96.5l98-27.2V504l-26.7-25.9l-2.6-134.5L662.6,315.7z"/>
+				<path id="Trauma-Plating_Right-Chest_Classic_ToggleOff" class="st0" d="M662.6,315.7l-0.1-0.7l-208.8-25l-22,127l23.1,11.7
+					l46.3,235.8l20.7-16.9l42.4-96.5l98-27.2V504l-26.7-25.9l-2.6-134.5L662.6,315.7z"/>
 			</g>
 		</g>
 		<g id="Neck-Armor_Classic_M">
@@ -63,15 +66,15 @@
 	</g>
 	<g id="Chest_Legacy_M">
 		<g id="Abdomen_Legacy_M">
-			<path id="Plate-4_Upper-Armor_Legacy_M" class="st1" d="M812.8,777.3l-15.3-14.3l-97.5-14.3l-97.5,14.3l-15.3,14.3
-				l-183.8-28.6l6.3,79.9l290.8,45.5l289.6-45.5l6.3-79.9L812.8,777.3z"/>
-			<path id="Plate-3_Upper-Armor_Legacy_M" class="st1" d="M816.6,706.1l-15.8-14.3l-100.7-14.3l-100.7,14.3l-15.8,14.3
-				l-189.9-28.6l6.5,79.9l300.4,45.5l299.2-45.5l6.5-79.9L816.6,706.1z"/>
-			<path id="Plate-2_Upper-Armor_Legacy_M" class="st1" d="M820.4,632.4l-16.3-14.3l-104.1-14.3L596,618.1l-16.3,14.3
-				l-196.1-28.6l6.8,79.9l310.3,45.5l309.1-45.5l6.8-79.9L820.4,632.4z"/>
-			<path id="Plate-1_Upper-Armor_Legacy_M" class="st1" d="M825.6,550.8l-17-15.2l-108.5-15.2l-108.5,15.2l-17,15.2H370
-				l7,54.5l323.6,48.3l322.3-48.3l7-54.5H825.6z"/>
-			<g id="Trauma-Plates_Abdomen_Legacy_M_Secondary_ToggleOff">
+			<path id="Plate-4_Upper-Armor_Legacy_M" class="st1" d="M812.8,777.3l-15.3-14.3l-97.5-14.3l-97.5,14.3l-15.3,14.3l-183.8-28.6
+				l6.3,79.9l290.8,45.5l289.6-45.5l6.3-79.9L812.8,777.3z"/>
+			<path id="Plate-3_Upper-Armor_Legacy_M" class="st1" d="M816.6,706.1l-15.8-14.3l-100.7-14.3l-100.7,14.3l-15.8,14.3l-189.9-28.6
+				l6.5,79.9l300.4,45.5l299.2-45.5l6.5-79.9L816.6,706.1z"/>
+			<path id="Plate-2_Upper-Armor_Legacy_M" class="st1" d="M820.4,632.4l-16.3-14.3l-104.1-14.3L596,618.1l-16.3,14.3l-196.1-28.6
+				l6.8,79.9l310.3,45.5l309.1-45.5l6.8-79.9L820.4,632.4z"/>
+			<path id="Plate-1_Upper-Armor_Legacy_M" class="st1" d="M825.6,550.8l-17-15.2l-108.5-15.2l-108.5,15.2l-17,15.2H370l7,54.5
+				l323.6,48.3l322.3-48.3l7-54.5H825.6z"/>
+			<g id="Trauma-Plates_Abdomen_Legacy_M_ToggleOff">
 				<path id="Trauma-Plate-4_Abdomen_Legacy_M_Toggle" class="st1" d="M700.7,802.8L982.4,760l-4.3,53.8l-277.5,43.6L422,813.9
 					l-4.3-53.8L700.7,802.8z"/>
 				<path id="Trauma-Plate-3_Abdomen_Legacy_M_Toggle" class="st1" d="M700.7,729.2l291.5-42.9l-4.9,59.3l-286.6,43.6l-287.8-43.6
@@ -84,29 +87,30 @@
 		</g>
 		<g id="Chest-Plates_Legacy_M">
 			<g id="Left-Chest_Legacy_M">
-				<path id="Chest_Left_Legacy_M" class="st0" d="M700.1,294.2v234.3l107,12.7l17.1,12.9h205.6l15.4-9.5l6.9-140.7
-					l-53.3-144.9L700.1,294.2z"/>
-				<path id="Trauma-Plating_Left-Chest_M_Secondary_ToggleOff" class="st0" d="M986.4,287.8l41,118.9l-6.7,123.8l-188.3,1.3
-					l-25.3-35h-89.5l30.1-27.9l2.3-120.2l-30.3-28.5L986.4,287.8z"/>
+				<path id="Chest_Left_Legacy_M" class="st0" d="M700.1,294.2v234.3l107,12.7l17.1,12.9h205.6l15.4-9.5l6.9-140.7l-53.3-144.9
+					L700.1,294.2z"/>
+				<path id="Trauma-Plating_Left-Chest_Legacy_M_ToggleOff" class="st0" d="M986.4,287.8l41,118.9l-6.7,123.8l-188.3,1.3l-25.3-35
+					h-89.5l30.1-27.9l2.3-120.2l-30.3-28.5L986.4,287.8z"/>
 			</g>
 			<g id="Right-Chest_Legacy_M">
-				<path id="Chest_Right_Legacy_M" class="st0" d="M699.9,294.2v234.3l-107,12.7l-17.1,12.9H370.1l-15.4-9.5L347.9,404
-					l53.3-144.9L699.9,294.2z"/>
-				<path id="Trauma-Plating_Right-Chest_M_Secondary_ToggleOff" class="st0" d="M413.6,287.8l-41,118.9l6.7,123.8l188.3,1.3
-					l25.3-35h89.5l-30.1-27.9L650,348.7l30.3-28.5L413.6,287.8z"/>
+				<path id="Chest_Right_Legacy_M" class="st0" d="M699.9,294.2v234.3l-107,12.7l-17.1,12.9H370.1l-15.4-9.5L347.9,404l53.3-144.9
+					L699.9,294.2z"/>
+				<path id="Trauma-Plating_Right-Chest_Legacy_M_ToggleOff" class="st0" d="M413.6,287.8l-41,118.9l6.7,123.8l188.3,1.3l25.3-35
+					h89.5l-30.1-27.9L650,348.7l30.3-28.5L413.6,287.8z"/>
 			</g>
 		</g>
 		<g id="Iron-Heart_Legacy_M">
 			<path id="Heart_Legacy_M" class="st0" d="M671.6,452.4V355l28.6-22.4l28.6,22.4v97.4l-28.6,28.9L671.6,452.4z"/>
-			<rect id="Center_Heart_Legacy_M_Secondary_Option" x="690.2" y="370" class="st0" width="19.8" height="66.7"/>
-			<g id="None_Heart_Legacy_M_Option"> </g>
+			<g id="None_Heart_Legacy_M_Option">
+			</g>
+			<rect id="Center_Heart_Legacy_M_Option" x="690.2" y="370" class="st0" width="19.8" height="66.7"/>
 		</g>
 		<g id="Neck-Armor_Legacy_M">
 			<path id="Neck-Plate_Legacy_M" class="st0" d="M586.7,280.5l-185.8-21.4l14.8-102.9l122.5-36.7c0,0,16.2,27.5,28,37.2
 				c12.1,9.9,28.2,21.6,43.3,28.2c16.5,7.2,36.6,12.1,55.9,15.2c21.6,3.5,53.1,3.5,74.6,0c19.2-3.1,41.4-8,57.9-15.2
 				c15.1-6.6,29.1-18.3,41.2-28.2c11.8-9.7,28-37.2,28-37.2l122.5,36.7l9.9,102.9L818.9,280l-118.1,14.2L586.7,280.5z"/>
-			<path id="Trauma-Plates_Neck_Legacy_M_Secondary_ToggleOff" class="st0" d="M682.4,268.1l-95.7-11.5L428.6,232l7.1-59.1
-				l86.5-26.7c0,0,32.2,27.5,44,37.2c12.1,9.9,28.2,21.6,43.3,28.2c16.5,7.2,36.6,12.1,55.9,15.2c5.2,0.9,11.1,1.5,17.2,1.9V268.1z
+			<path id="Trauma-Plates_Neck_Legacy_M_ToggleOff" class="st0" d="M682.4,268.1l-95.7-11.5L428.6,232l7.1-59.1l86.5-26.7
+				c0,0,32.2,27.5,44,37.2c12.1,9.9,28.2,21.6,43.3,28.2c16.5,7.2,36.6,12.1,55.9,15.2c5.2,0.9,11.1,1.5,17.2,1.9V268.1z
 				 M720.7,228.8c6.9-0.4,13.4-1.1,19.2-2.1c19.2-3.1,41.4-8,57.9-15.2c15.1-6.6,29.1-18.3,41.2-28.2c11.8-9.7,42.7-37.2,42.7-37.2
 				l87.8,26.7l5.1,62.3l-155.7,20.9l-98.2,11.8V228.8z"/>
 		</g>
@@ -164,7 +168,7 @@
 				<path class="st0" d="M958.4,270.8c0.6,59,7.6,118,24.2,177l-29.1-62L958.4,270.8z"/>
 				<path class="st0" d="M448.3,663.4l1.2,17.6l-48.8-13.3l-2-12.2L448.3,663.4z"/>
 			</g>
-			<g id="Accents_Chest-Plate_Heavy_ToggleOn_M">
+			<g id="Accents_Chest-Plate_Heavy_M_ToggleOn">
 				<g id="Accent-3_Accents_Chest-Plate_Heavy_M">
 					<path class="st0" d="M836.5,384.2l-6.1-19.1h27.9l-6.1,19.1H836.5z"/>
 					<path class="st0" d="M836.5,421.2l-6.1-19.1h27.9l-6.1,19.1H836.5z"/>
@@ -189,6 +193,8 @@
 		</g>
 		<g id="Iron-Heart_Heavy_M">
 			<path id="Heart_Heavy_M" class="st0" d="M700,330.9l34.3,31.8v62.4L700,457l-34.3-31.8v-62.4L700,330.9z"/>
+			<g id="None_Heart_Heavy_M_Option">
+			</g>
 			<g id="Center_Heart_Heavy_M_Option">
 				<rect x="687.5" y="363.7" class="st0" width="25" height="30.3"/>
 				<rect x="687.5" y="394" class="st0" width="4.2" height="30.3"/>
@@ -198,7 +204,6 @@
 				<rect x="700" y="394" class="st0" width="4.2" height="30.3"/>
 				<rect x="691.6" y="394" class="st0" width="4.2" height="30.3"/>
 			</g>
-			<g id="None_Heart_Heavy_M_Option"> </g>
 		</g>
 	</g>
 	<g id="Chest_Gunslinger_M">
@@ -232,8 +237,9 @@
 			<path id="Under-Heart_Gunslinger_M" class="st0" d="M691.2,509.3l-41.7-41.7V346.5l42.5-38.5v-32.9h16v32.9l42.5,38.5v121.1
 				l-41.7,41.7l-8.8-2.2L691.2,509.3z"/>
 			<path id="Heart_Gunslinger_M" class="st0" d="M669.3,457.7V357.5l30.7-30.7l30.7,30.7v100.2L700,488.4L669.3,457.7z"/>
+			<g id="None_Heart_Gunslinger_M_Option">
+			</g>
 			<rect id="Center_Heart_Gunslinger_M_Option" x="690.9" y="363.6" class="st0" width="18.2" height="87.9"/>
-			<g id="None_Heart_Gunslinger_M_Option"> </g>
 		</g>
 	</g>
 </g>
@@ -247,10 +253,10 @@
 				c91.7-29.2,189.6,21.5,218.8,113.2c21.9,68.7,46.8,147.2,46.8,147.2l-166,52.8L962.8,146.7"/>
 		</g>
 		<g id="Legacy_Shoulder_Left_M_Option">
-			<path id="Plate-3_Shoulder_Left_Legacy_M" class="st0" d="M1071,208l-77.9,79.4l45.3,98.7l102.4-5.2l54.1,49.8l48.2-3.3
-				L1071,208z"/>
-			<path id="Plate-2_Shoulder_Left_Legacy_M" class="st0" d="M1029.2,158.4L967.7,251l63.1,88.4l99.5-24.4l62.5,38.7
-				l46.8-12.3L1029.2,158.4z"/>
+			<path id="Plate-3_Shoulder_Left_Legacy_M" class="st0" d="M1071,208l-77.9,79.4l45.3,98.7l102.4-5.2l54.1,49.8l48.2-3.3L1071,208
+				z"/>
+			<path id="Plate-2_Shoulder_Left_Legacy_M" class="st0" d="M1029.2,158.4L967.7,251l63.1,88.4l99.5-24.4l62.5,38.7l46.8-12.3
+				L1029.2,158.4z"/>
 			<path id="Plate-1_Shoulder_Left_Legacy_M" class="st0" d="M953.5,110.9l-27.7,107.7l88.6,62.8l86-55.7l71.7,16.1l40.1-27
 				L953.5,110.9z"/>
 		</g>
@@ -265,19 +271,19 @@
 				c-91.7-29.2-189.6,21.5-218.8,113.2C196.5,328.6,171.6,407,171.6,407l166,52.8L437.2,146.7"/>
 		</g>
 		<g id="Legacy_Shoulder_Right_M_Option">
-			<path id="Plate-3_Shoulder_Right_Legacy_M" class="st0" d="M329,208l77.9,79.4l-45.3,98.7L259.2,381l-54.1,49.8
-				l-48.2-3.3L329,208z"/>
-			<path id="Plate-2_Shoulder_Right_Legacy_M" class="st0" d="M370.8,158.4l61.5,92.7l-63.1,88.4l-99.6-24.4l-62.5,38.7
-				l-46.8-12.3L370.8,158.4z"/>
-			<path id="Plate-1_Shoulder_Right_Legacy_M" class="st0" d="M446.5,110.9l27.7,107.7l-88.6,62.8l-86-55.7l-71.7,16.1
-				l-40.1-27L446.5,110.9z"/>
+			<path id="Plate-3_Shoulder_Right_Legacy_M" class="st0" d="M329,208l77.9,79.4l-45.3,98.7L259.2,381l-54.1,49.8l-48.2-3.3
+				L329,208z"/>
+			<path id="Plate-2_Shoulder_Right_Legacy_M" class="st0" d="M370.8,158.4l61.5,92.7l-63.1,88.4l-99.6-24.4l-62.5,38.7l-46.8-12.3
+				L370.8,158.4z"/>
+			<path id="Plate-1_Shoulder_Right_Legacy_M" class="st0" d="M446.5,110.9l27.7,107.7l-88.6,62.8l-86-55.7l-71.7,16.1l-40.1-27
+				L446.5,110.9z"/>
 		</g>
 		<path id="Classic_Shoulder_Right_M_Option" class="st0" d="M355.6,143l26.7,120.8l-21.4,69.6l-143,72.4l-24-36.9L355.6,143z"/>
 	</g>
 </g>
 <g id="Gauntlets_M">
 	<g id="Left-Gauntlets_M">
-		<g id="Basic_Gauntlet_Left_M_Option">
+		<g id="Basic_Gauntlet_Left_M_Primary_Option">
 			<path id="Base_Basic_Gauntlet_Left_M" class="st0" d="M1210.7,904.2l-74.2,13.3l-6.7,30.5l74.2,217.1l63-34.6L1210.7,904.2z"/>
 			<path id="Middle_Basic_Gauntlet_Left_M" class="st0" d="M1301.8,884l-94.5,9.9l58.3,235.4l25.7,75.6l51.3,75.6l15.2-16.1l-7-33.5
 				l-11.7-58.2L1284.3,972l30.3-27.3L1301.8,884z"/>
@@ -285,7 +291,7 @@
 		</g>
 	</g>
 	<g id="Right-Gauntlets_M">
-		<g id="Basic_Gauntlet_Right_M_Option">
+		<g id="Basic_Gauntlet_Right_M_Primary_Option">
 			<path id="Base_Basic_Gauntlet_Right_M" class="st0" d="M189.3,904.2l74.2,13.3l6.6,30.5l-74.2,217.1l-63-34.6L189.3,904.2z"/>
 			<path id="Middle_Basic_Gauntlet_Right_M" class="st0" d="M98.2,884l94.5,9.9l-58.3,235.4l-25.7,75.6l-51.3,75.6l-15.2-16.1
 				l7-33.5l11.7-58.2L115.7,972l-30.3-27.3L98.2,884z"/>
