@@ -273,7 +273,8 @@ function buildVariableSettings (category, pieceName, variantName) {
 	wrapper.appendChild(n);
 
 	var parent = prepareParent(n);
-	buildAddonSelect(n.children, category, parent);
+	var SVGName = neutralize(fullyQualifiedName) + "_Option";
+	buildAddonSelect(n.children, category, parent, SVGName);
 }
 
 function onload () {
