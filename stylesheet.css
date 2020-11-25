@@ -446,6 +446,10 @@ footer {
 	stroke-width: 3px;
 }
 
+.option {
+	visibility: hidden;
+}
+
 .slide_toggle {
 	height: 3em;
 	width: 100%;

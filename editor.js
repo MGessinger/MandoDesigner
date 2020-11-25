@@ -26,6 +26,7 @@ function loadSVG (name, onload, args) {
 		var options = svg.querySelectorAll("[id*=Option]");
 		for (var i = 0; i < options.length; i++)
 			options[i].setAttribute("class", "option");
+
 		var options = svg.querySelectorAll("[id*=Toggle]");
 		for (var i = 0; i < options.length; i++) {
 			options[i].setAttribute("class", "toggle");
@@ -365,9 +366,24 @@ function toggleOptions () {
 function prepareForExport (svg) {
 	svg.style.transform = "";
 	var options = svg.getElementsByClassName("option");
-	for (var i = 0; i < options.length; i++) {
-		if (options[i].style.visibility !== "visible")
-			options[i].style.visibility = "hidden";
+	var i = 0;
+	while (i < options.length) {
+		if (options[i].style.visibility == "visible") {
+			i++;
+			continue;
+		}
+		var parent = options[i].parentNode;
+		parent.removeChild(options[i]);
+	}
+	var toggles = svg.getElementsByClassName("toggle");
+	i = 0;
+	while (i < toggles.length) {
+		if (toggles[i].style.display !== "none") {
+			i++;
+			continue;
+		}
+		var parent = toggles[i].parentNode;
+		parent.removeChild(toggles[i]);
 	}
 	return svg;
 }

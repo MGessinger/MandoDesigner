@@ -6,16 +6,6 @@ var Picker = new function() {
 		elem.addEventListener(event, func);
 	}
 
-	String.prototype.startsWith = String.prototype.startsWith || function(obj) {
-		return 0 === this.indexOf(obj);
-	}
-
-	String.prototype.padStart = String.prototype.padStart || function(l, f) {
-		if (this.length >= l)
-			return this;
-		return f.repeat(l - this.length) + this;
-	}
-
 	function _init(o, done) {
 		function clamp(n, min, max) {
 			if (n > max)
@@ -107,7 +97,9 @@ var Picker = new function() {
 			return "#" + rgb.map(function(x) {
 				var e = Math.round(x*255);
 				var p = e.toString(16);
-				return p.padStart(2, "0");
+				if (e < 16)
+					return "0" + e;
+				return e;
 			}).join("");
 		}
 
@@ -137,18 +129,21 @@ var Picker = new function() {
 				if (Array.isArray(value))
 					return this.hsv = value;
 				var string = value.toLowerCase();
-				var regex = /^[a-f\d]{3}|[a-f\d]{6}$/i;
+				var validHex = /^[a-f\d]{3}|[a-f\d]{6}$/i;
 				if (string[0] == '#') {
 					this.hex = string;
-				} else if (regex.test(string)) {
+				} else if (validHex.test(string)) {
 					this.hex = '#' + string;
-				} else if (string.startsWith("rgb")) {
+				} else if (string.slice(0,3) == "rgb") {
 					var p = string.match(/\d{1,3}/g);
 					if (!p || p.length < 3)
 						return;
 					this.hex = "#" + p.slice(0,3).map(function(e, l) {
-						var p = parseInt(e).toString(16);
-						return p.padStart(2, "0");
+						var n = parseInt(e);
+						var p = n.toString(16);
+						if (n < 16)
+							return "0" + p;
+						return p;
 					}).join("");
 				} else {
 					this.hex = nameToHex(string);
