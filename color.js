@@ -1,6 +1,7 @@
 'use strict';
 
 var settings = {undefined: "#FFFFFF"};
+var showPicker = true;
 var Picker = new function() {
 	function on(elem, event, func) {
 		elem.addEventListener(event, func);
@@ -98,8 +99,8 @@ var Picker = new function() {
 				var e = Math.round(x*255);
 				var p = e.toString(16);
 				if (e < 16)
-					return "0" + e;
-				return e;
+					return "0" + p;
+				return p;
 			}).join("");
 		}
 
@@ -112,17 +113,17 @@ var Picker = new function() {
 				if (value == undefined)
 					return;
 				_hsv = value;
-				_hex = hsvToHex(value);
+				_hex = hsvToHex(value).toUpperCase();
 			},
 			get hex () {
-				return _hex.toUpperCase();
+				return _hex;
 			},
 			set hex (value) {
 				if (value == undefined)
 					return;
 				if (!/^#([\da-f]{3}){1,2}$/.test(value))
 					return;
-				_hex = value;
+				_hex = value.toUpperCase();
 				_hsv = hexToHsv(_hex);
 			},
 			update: function(value) {
@@ -134,7 +135,7 @@ var Picker = new function() {
 					this.hex = string;
 				} else if (validHex.test(string)) {
 					this.hex = '#' + string;
-				} else if (string.slice(0,3) == "rgb") {
+				} else if (string.startsWith("rgb")) {
 					var p = string.match(/\d{1,3}/g);
 					if (!p || p.length < 3)
 						return;
@@ -278,7 +279,7 @@ var Picker = new function() {
 		on(button, "click", function(event) {
 			onChange = input;
 			_setColor(this.style.backgroundColor);
-			DOM.parent = this;
+			DOM.parent = showPicker && this;
 		});
 		var def = getDefaultColor(SVGNode, button.id);
 		_setColor(def);
