@@ -117,8 +117,53 @@ function toggleSubslide (subslide, SVGNode) {
 	}
 }
 
+function mirrorSettings (parent, paragraph, side) {
+	var mirror = DOMNode("button", {class: "mirror_button", title: "Mirror Settings"}, paragraph);
+	mirror.innerText = "\uE915";
+
+	var otherSide = (side == "Right" ? "Left" : "Right");
+	var editor = find("editor");
+	mirror.addEventListener("click", function () {
+		showPicker = false;
+		/* Mirror all the colors */
+		var buttons = parent.getElementsByClassName("color_picker");
+		for (var i = 0; i < buttons.length; i++) {
+			var mirrorImageName = buttons[i].id.replace(side, otherSide);
+			var mirrorImage = find(mirrorImageName);
+			mirrorImage.style.background = buttons[i].style.background;
+			mirrorImage.click();
+		}
+		showPicker = true;
+		/* Mirror all Checkboxes */
+		var checks = parent.getElementsByClassName("armor_toggle");
+		for (var i = 0; i < checks.length; i++) {
+			var mirrorImageName = checks[i].id.replace(side, otherSide);
+			var mirrorImage = find(mirrorImageName);
+			if (mirrorImage.checked ^ checks[i].checked)
+				mirrorImage.click();
+		}
+		/* Mirror the checkbox in paragraph itself (if present) */
+		var top_check = paragraph.getElementsByClassName("armor_toggle")[0];
+		if (top_check) {
+			var mirrorImageName = top_check.id.replace(side, otherSide);
+			var mirrorImage = find(mirrorImageName);
+			if (mirrorImage.checked ^ top_check.checked)
+				mirrorImage.click();
+		}
+		/* Mirror all selects */
+		var selects = parent.getElementsByClassName("component_select");
+		for (var i = 0; i < selects.length; i++) {
+			var mirrorImageName = selects[i].id.replace(side, otherSide);
+			var mirrorImage = find(mirrorImageName);
+			mirrorImage.value = selects[i].value.replace(side, otherSide);
+			mirrorImage.dispatchEvent(new Event("change"));
+		}
+	});
+}
+
 function prepareParent (SVGNode, parent) {
 	var name = listName(SVGNode.id);
+	var side_name = name.match(/Right|Left/);
 	var globalList = find(name + "Colors");
 	if (globalList) {
 		parent = globalList;
@@ -126,19 +171,23 @@ function prepareParent (SVGNode, parent) {
 		parent.style.display = "";
 		var p = DOMNode("p", {class: "option_name hidden"}, globalList);
 		p.innerText = prettify(SVGNode.id) + " Options:";
+		if (side_name)
+			mirrorSettings(parent, p, side_name[0]);
 	}
 	if (SVGNode.getAttribute("class") === "toggle") {
-		if (!parent)
-			return;
 		if (parent.children.length > 1) // 1 for option-name built before
 			DOMNode("p", {class: "separator"}, parent);
 
 		var p = DOMNode("label", {class: "pseudo_checkbox hidden"}, parent);
 		var labelText = DOMNode("span", {class: "pseudo_label"}, p);
 		labelText.innerText = prettify(SVGNode.id);
-		var check = DOMNode("input", {type: "checkbox"}, p);
+
+		var checkID = buttonName(SVGNode.id) + "Toggle";
+		var check = DOMNode("input", {type: "checkbox", class: "armor_toggle", id: checkID}, p);
 		DOMNode("span", {class: "slider"}, p);
 		parent = DOMNode("div", {style: "display:none", class: "subslide"}, parent);
+		if (side_name)
+			mirrorSettings(parent, p, side_name[0]);
 
 		var defaultOn = (SVGNode.style.display !== "none");
 		var varName = neutralize(SVGNode.id);
@@ -180,16 +229,15 @@ function buildIOSettings (SVGNode, category, parent) {
 
 function buildAddonSelect (options, category, parent, SVGName) {
 	var wrapper = DOMNode("div", {class: "select_wrapper hidden"}, parent);
-	var select = DOMNode("select", {class: "component_select"}, wrapper);
+	var select = DOMNode("select", {class: "component_select", id: SVGName + "Select"}, wrapper);
 	var colors = [];
-	var last = options.length-1;
 	var useDefault = true;
-	for (var i = last; i >= 0; i--) {
+	for (var i = options.length - 1; i >= 0; i--) {
 		var fullName = options[i].id;
 		var name = prettify(fullName);
 		options[i].setAttribute("class", "option");
 
-		/* Create an option in the select, and a hidable color list */
+		/* Create an option in the select, and a hideable color list */
 		var opt = DOMNode("option", {class: "component_option", label: name, value: fullName}, select);
 		opt.innerText = name;
 
@@ -211,7 +259,7 @@ function buildAddonSelect (options, category, parent, SVGName) {
 		buildAllSettings(options[i], category, col);
 	}
 	if (useDefault) {
-		options[last].style.visibility = "visible";
+		options[options.length-1].style.visibility = "visible";
 		colors[0].style.display = "";
 	}
 
@@ -262,7 +310,7 @@ function buildAllSettings (SVGNode, category, parent) {
 		buildAddonSelect(options, category, parent, SVGName);
 	/* defer toggles to the very last */
 	for (var i = 0; i < toggle.length; i++) 
-		buildAllSettings(toggle[i], category, parent, SVGName);
+		buildAllSettings(toggle[i], category, parent);
 }
 
 function buildVariableSettings (category, pieceName, variantName) {
@@ -325,7 +373,7 @@ function switchToArmorVariant (category, pieceName, variantName, button) {
 	if (old_button)
 		old_button.classList.remove("current_variant");
 
-	variants[category] = neutralize(variantName);
+	variants[pieceName] = neutralize(variantName);
 
 	if (!button)
 		button = find(category + "_Variant_" + variantName);
