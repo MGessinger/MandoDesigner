@@ -83,11 +83,36 @@ function recreateMando (svg) {
 }
 
 var translationTable = {
+	"cape_long": {
+		colors: ["FullCape"],
+		settings: { "Cape": "Full-Cape" }
+	},
 	"gloves_default": ["Basic_Right_Glove", "Basic_Left_Glove"],
 	"shoes_default": ["Top_BasicBoot", "Main_BasicBoot", "Bottom_BasicBoot"],
 	"pants_default": ["FlightSuit"],
 	"top_default": ["Sleeves"],
 	"knees_default": ["Basic_Knee_Left", "Basic_Knee_Right"],
+	"thigh_default": {
+		colors: ["Basic_Right_Thigh", null, "Basic_Left_Thigh"],
+		settings: {
+		"Left-Thigh": "Basic_Thigh_Left",
+		"Right-Thigh": "Basic_Thigh_Right"
+		}
+	},
+	"shins_default": {
+		colors: ["Shin_Right_Basic", null, "Shin_Left_Basic"],
+		settings: {
+			"Left-Shin": "Basic_Shin_Left",
+			"Right-Shin": "Basic_Shin_Right"
+		}
+	},
+	"bootplate_default": {
+		colors: ["Basic_Ankle_Left", null, "Basic_Ankle_Right"],
+		settings: {
+			"Left-Ankle": "Basic_Ankle_Left",
+			"Right-Ankle": "Basic_Ankle_Right"
+		}
+	},
 	"vest_default": ["Vest"],
 	"neck_default": ["StandardNeckSeal"],
 	"dome_default": ["Dome_Classic"],
@@ -95,7 +120,10 @@ var translationTable = {
 	"visor_shine": ["Visor_Classic"],
 	"face_default": ["Face_Classic"],
 	"cheeks_default": [null, "Cheeks_Classic"],
-	"viewfinder_default": ["Finder_Right_RangeFinder_Classic", "Shaft_Right_RangeFinder_Classic"],
+	"viewfinder_default": {
+		colors: ["Finder_Right_RangeFinder_Classic", "Shaft_Right_RangeFinder_Classic"],
+		settings: { "Right-Earcap_Classic": "Range-Finder_Right_Classic" }
+	},
 	"ears_default": ["EarCap_Left_Classic"],
 	"eyes_default": [null, "Eyes_Classic"],
 	"chest_default": ["Heart_Classic", "AbdomenPlate_Classic", "Chest_Right_Classic", "Chest_Left_Classic"],
@@ -109,7 +137,6 @@ var translationTable = {
 
 function translateMando (svg) {
 	variants = {
-		"Right-Earcap_Classic_Option": "Range-Finder_Right_Classic",
 		"Left-Ankle_Option": "None_Ankle_Left",
 		"Left-Shin_Option": "None_Shin_Left",
 		"Left-Thigh_Option": "None_Thigh_Left",
@@ -122,32 +149,42 @@ function translateMando (svg) {
 		return svg.getElementById(st);
 	}
 
-	var darks = svg.querySelectorAll("[class*=dark]");
-	for (var i = 0; i < darks.length; i++) {
-		var parent = darks[i].parentNode;
-		parent.removeChild(darks[i]);
-	}
-
-	var lights = svg.querySelectorAll("[class*=light]");
-	for (var i = 0; i < lights.length; i++) {
-		var parent = lights[i].parentNode;
-		parent.removeChild(lights[i]);
-	}
-
-	for (var name in translationTable) {
-		var table = translationTable[name];
-		var obj = find(name);
-		if (!obj) {
-			console.log(name);
-			continue;
+	var classFilter = {
+		acceptNode: function (node) {
+			var cls = node.getAttribute("class");
+			if (!cls)
+				return NodeFilter.FILTER_SKIP;
+			else if (/\d|light|dark/.test(cls))
+				return NodeFilter.FILTER_REJECT;
+			else
+				return NodeFilter.FILTER_ACCEPT;
 		}
-		var ch = obj.children;
+	}
+
+	var ch = svg.children;
+	for (var i in ch) {
+		var name = ch[i].id;
+		var table = translationTable[name];
+		if (!table)
+			continue;
+
+		if (table.settings) {
+			for (var i in table.settings)
+				variants[i + "_Option"] = table.settings[i];
+			table = table.colors;
+		}
+
+		var iterator = document.createNodeIterator(ch[i], NodeFilter.SHOW_ELEMENT, classFilter);
 		for (var i = 0; i < table.length; i++) {
 			if (!table[i])
 				continue;
+
+			var node = iterator.nextNode();
+			if (!node)
+				break;
+
 			var key = table[i] + "Color";
-			settings[key] = ch[i].style.fill;
-			console.log(key, ch[i].style.fill);
+			settings[key] = node.style.fill;
 		}
 	}
 }
