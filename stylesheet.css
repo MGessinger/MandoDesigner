@@ -280,11 +280,13 @@ footer {
 
 .zoom_icon {
 	vertical-align: super;
+	padding: 0.5em;
 }
 
 #zoom {
 	-webkit-appearance: none;
 	width: 15em;
+	max-width: calc(100% - 5em);
 	background: none;
 	outline: none;
 }
@@ -422,6 +424,7 @@ footer {
 	float: right;
 	background: var(--accent);
 	border: none;
+	color: white;
 }
 
 .folder {

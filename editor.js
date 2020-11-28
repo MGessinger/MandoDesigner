@@ -497,43 +497,6 @@ function setupMando (svg, sexSuffix) {
 	buildAllSettings(findLocal("Soft-Parts_" + sexSuffix), "FlightSuit");
 }
 
-function recreateMando (svg) {
-	var main = find("editor");
-	var old_svg = main.firstElementChild;
-	main.replaceChild(svg, old_svg);
-	var scale = find("zoom");
-	zoom(scale.value/100);
-
-	function findLocal(st) {
-		return svg.getElementById(st);
-	}
-	var helmet = findLocal("Helmet_Current");
-	buildAllSettings(helmet, "Helmet");
-	variants["Helmet"] = helmet.getAttribute("class");
-
-	/* Upper Body */
-	var chest = findLocal("Chest_Current");
-	buildAllSettings(chest, "UpperArmor");
-	variants["Chest"] = chest.getAttribute("Chest");
-	var subgroups = ["Shoulders","Biceps","Gauntlets"];
-	for (var i = 0; i < subgroups.length; i++) {
-		var cur = findLocal(subgroups[i] + "_Current");
-		buildAllSettings(cur,"UpperArmor");
-	}
-
-	/* Lower Body */
-	buildAllSettings(findLocal("Groin_Current"), "LowerArmor");
-	buildAllSettings(findLocal("Waist_Current"), "LowerArmor");
-	subgroups = ["Thighs", "Knees", "Shins", "Ankles"];
-	for (var i = 0; i < subgroups.length; i++) {
-		var cur = findLocal(subgroups[i] + "_Current");
-		buildAllSettings(cur,"LowerArmor");
-	}
-	buildAllSettings(findLocal("Back"), "Back");
-	var soft = findLocal("Soft-Parts_M") || findLocal("Soft-Parts_F");
-	buildAllSettings(soft, "FlightSuit");
-}
-
 function setColorScheme (useDark) {
 	var className = "light_mode";
 	var bckName = "BackgroundLight";
@@ -575,93 +538,6 @@ function setSex (female) {
 	}
 	loadSVG(body, setupMando, sexSuffix);
 	localStorage.setItem("female_sex", female.toString());
-}
-
-function loadImage (input) {
-	var files = input.files;
-	if (files.length == 0)
-		return;
-	var main = find("editor");
-	var theme = document.body.className;
-
-	var customBck;
-	if (theme.includes("dark"))
-		customBck = find("BackgroundDark").cloneNode(true);
-	else
-		customBck = find("BackgroundLight").cloneNode(true);
-	customBck.id = "Custom";
-	var img = customBck.getElementsByTagName("image")[0];
-
-	var reader = new FileReader();
-	if (files[0].type.includes("svg")) {
-		reader.onload = function () {
-			var svg = DOMNode("svg");
-			svg.innerHTML = this.result;
-			var newSVG = svg.firstElementChild;
-			customBck.replaceChild(newSVG, img);
-			find("download").onclick = setDownloader(customBck);
-
-			var href = 'url("data:image/svg+xml,' + encodeSVG(this.result) + '")';
-			main.style.backgroundImage = href
-		}
-		reader.readAsText(files[0]);
-	}
-	else {
-		reader.onload = function() {
-			var res = this.result;
-			main.style.backgroundImage = "url(" + res + ")";
-			img.setAttribute("href", res);
-			find("download").onclick = setDownloader(customBck);
-		}
-		reader.readAsDataURL(files[0]);
-	}
-
-	var reset = find("reset_wrapper");
-	reset.style.display = "";
-}
-
-function reupload (input) {
-	var files = input.files;
-	if (!files || !files.length)
-		return;
-	var main = find("editor");
-	var download = find("download");
-
-	var reader = new FileReader();
-	reader.onload = function () {
-		var svg = DOMNode("svg");
-		svg.innerHTML = this.result;
-		svg = svg.firstElementChild;
-		var mando = svg.getElementsByTagName("svg")[0];
-		var img = svg.getElementsByTagName("image")[0];
-		if (!mando || !img)
-			return;
-		variants = {};
-		settings = {};
-
-		var female = false;
-		if (mando.id === "Male-Body") {
-			var sex_radio = find("male");
-			sex_radio.checked = true;
-			localStorage.setItem("female_sex", false);
-		} else {
-			female = true;
-			var sex_radio = find("female");
-			sex_radio.checked = true;
-			localStorage.setItem("female_sex", true);
-		}
-
-		var theme = find("color_scheme_picker");
-		var light_mode = !svg.getElementById("titleLight");
-		theme.checked = light_mode;
-		setColorScheme(light_mode);
-
-		main.style.backgroundImage = "url(" + img.getAttribute("href") + ")";
-		recreateMando(mando, img);
-		setSex(female);
-		download.onclick = setDownloader(svg);
-	};
-	reader.readAsText(files[0]);
 }
 
 function displayForm (show, form) {
