@@ -15,7 +15,19 @@
 	border: 1px solid var(--accent);
 }
 
+.info:before {
+	content: "Right-click";
+	display: inline-block;
+}
+
+@media only screen and (pointer: coarse) {
+	.info:before {
+		content: "Hold";
+	}
+}
+
 .info {
+	position: relative;
 	width: 100%;
 	background: var(--accent);
 	font-weight: bold;
@@ -24,15 +36,12 @@
 	color: white;
 }
 
-.save:before {
-	content: "Right-click";
-	display: inline-block;
-}
-
-@media only screen and (pointer: coarse) {
-	.save:before {
-		content: "Hold";
-	}
+.info:after {
+	content: "\E90A";
+	position: absolute;
+	padding: 0 1em;
+	left: 0;
+	bottom: 0;
 }
 
 .picker_main > * {
@@ -41,7 +50,7 @@
 
 .picker_palette {
 	display: flex;
-	margin: 1em;
+	margin: 0.5em 1em;
 	flex: 1;
 	flex-direction: column;
 	justify-content: space-between;
