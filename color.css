@@ -17,7 +17,11 @@
 
 .info {
 	width: 100%;
-	line-height: 2em;
+	background: var(--accent);
+	font-weight: bold;
+	padding: 0.33em;
+	font-size: medium;
+	color: white;
 }
 
 .save:before {
@@ -37,7 +41,7 @@
 
 .picker_palette {
 	display: flex;
-	margin: 0.5em;
+	margin: 1em;
 	flex: 1;
 	flex-direction: column;
 	justify-content: space-between;

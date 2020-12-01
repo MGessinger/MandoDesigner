@@ -62,7 +62,7 @@ function recreateMando (svg) {
 	/* Upper Body */
 	var chest = findLocal("Chest_Current");
 	buildAllSettings(chest, "UpperArmor");
-	variants["Chest"] = chest.getAttribute("Chest");
+	variants["Chest"] = neutralize(chest.getAttribute("class"));
 	var subgroups = ["Shoulders","Biceps","Gauntlets"];
 	for (var i = 0; i < subgroups.length; i++) {
 		var cur = findLocal(subgroups[i] + "_Current");

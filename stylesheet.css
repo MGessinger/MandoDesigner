@@ -386,6 +386,7 @@ footer {
 	height: 3em;
 	background: none;
 	color: var(--accent);
+	cursor: pointer;
 }
 
 .armor_types {
