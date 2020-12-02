@@ -401,10 +401,14 @@ function switchToArmorVariant (category, pieceName, variantName, button) {
 	buildAllSettings(n, category);
 }
 
-function setSponsor (sponsor, link) {
-	var logo = find(sponsor);
-	logo.style.display = "";
-	logo.setAttribute("href", link);
+function setSponsor (sponsor, href) {
+	var link = find(sponsor);
+	link.style.display = "";
+	link.setAttribute("href", href);
+
+	var img = link.getElementsByTagName("img")[0];
+	if (!img.hasAttribute("src"))
+		img.setAttribute("src", "assets/" + sponsor + ".png");
 }
 
 function toggleOptions () {
