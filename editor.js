@@ -230,15 +230,15 @@ function buildIOSettings (SVGNode, category, parent) {
 function buildAddonSelect (options, category, parent, SVGName) {
 	var wrapper = DOMNode("div", {class: "select_wrapper hidden"}, parent);
 	var select = DOMNode("select", {class: "component_select", id: SVGName + "Select"}, wrapper);
+
 	var colors = [];
 	var useDefault = true;
 	for (var i = options.length - 1; i >= 0; i--) {
 		var fullName = options[i].id;
 		var name = prettify(fullName);
-		options[i].setAttribute("class", "option");
 
 		/* Create an option in the select, and a hideable color list */
-		var opt = DOMNode("option", {class: "component_option", label: name, value: fullName}, select);
+		var opt = DOMNode("option", {label: name, value: fullName}, select);
 		opt.innerText = name;
 
 		var san = listName(fullName);

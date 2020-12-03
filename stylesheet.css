@@ -580,7 +580,7 @@ footer {
 	color: var(--highlight);
 }
 
-[type="checkbox"] {
+.armor_toggle {
 	opacity: 0;
 	position: absolute;
 }
