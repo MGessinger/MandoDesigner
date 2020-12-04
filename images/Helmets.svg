@@ -979,7 +979,7 @@
 	</g>
 </g>
 <g id="Helmet_Liege">
-	<g id="Left-Earcap_Liege">
+	<g id="Left-Earcap_Liege_Toggle">
 		<path class="st0" d="M557.7,329.4l4.2,4.2l-0.3,86.4h-19.2v-14.9h15.3V329.4"/>
 		<path class="st0" d="M542.5,447.2h11.2V622h-11.2V447.2"/>
 		<path class="st0" d="M553.7,447.2h8.1v13.1h-8.1V447.2"/>
@@ -990,7 +990,7 @@
 		<path class="st0" d="M548.3,408.6h9.4v7.6h-9.4V408.6"/>
 		<path class="st0" d="M548.3,408.6h9.4v2.6h-9.4V408.6"/>
 	</g>
-	<g id="Right-Earcap_Liege">
+	<g id="Right-Earcap_Liege_Toggle">
 		<path class="st0" d="M142.3,329.4l-4.2,4.2l0.3,86.4h19.2v-14.9h-15.3V329.4"/>
 		<path class="st0" d="M157.5,447.2h-11.2V622h11.2V447.2"/>
 		<path class="st0" d="M146.3,447.2h-8.1v13.1h8.1V447.2"/>
@@ -1049,7 +1049,7 @@
 	</g>
 </g>
 <g id="Helmet_Guardian">
-	<g id="Left-Earcap_Guardian">
+	<g id="Left-Earcap_Guardian_Toggle">
 		<path class="st0" d="M556.6,318.8l4.3,4.3l-0.3,88h-19.4v-15.2h15.5V318.8"/>
 		<path class="st0" d="M541.1,438.8h11.3V617h-11.3V438.8"/>
 		<path class="st0" d="M552.5,438.8h8.2v13.4h-8.2V438.8"/>
@@ -1060,7 +1060,7 @@
 		<path class="st0" d="M560.8,345.2l4.8,4.8v68.6h-4.8V345.2"/>
 		<path class="st0" d="M541.1,411h19.6v27.9h-19.6V411"/>
 	</g>
-	<g id="Right-Earcap_Guardian">
+	<g id="Right-Earcap_Guardian_Toggle">
 		<path class="st0" d="M143.4,318.8l-4.3,4.3l0.3,88h19.4v-15.2h-15.5V318.8"/>
 		<path class="st0" d="M158.9,438.8h-11.3V617h11.3V438.8"/>
 		<path class="st0" d="M147.5,438.8h-8.2v13.4h8.2V438.8"/>
@@ -1096,7 +1096,7 @@
 	</g>
 </g>
 <g id="Helmet_Matriarch">
-	<g id="Left-Earcap_Matriarch">
+	<g id="Left-Earcap_Matriarch_Toggle">
 		<path class="st0" d="M559.5,316.5l4.3,4.3l-0.3,87.7H544v-15.1h15.5V316.5"/>
 		<path class="st0" d="M544,436.1h11.3v177.5H544V436.1"/>
 		<path class="st0" d="M555.4,436.1h8.2v13.3h-8.2V436.1"/>
@@ -1107,7 +1107,7 @@
 		<path class="st0" d="M563.7,342.8l4.8,4.8v68.3h-4.8V342.8"/>
 		<path class="st0" d="M544,408.3h19.6v27.7H544V408.3"/>
 	</g>
-	<g id="Right-Earcap_Matriarch">
+	<g id="Right-Earcap_Matriarch_Toggle">
 		<path class="st0" d="M140.5,316.5l-4.3,4.3l0.3,87.7H156v-15.1h-15.5V316.5"/>
 		<path class="st0" d="M156,436.1h-11.3v177.5H156V436.1"/>
 		<path class="st0" d="M144.6,436.1h-8.2v13.3h8.2V436.1"/>
@@ -1146,7 +1146,7 @@
 	</g>
 </g>
 <g id="Helmet_Warden">
-	<g id="Left-Earcap_Warden">
+	<g id="Left-Earcap_Warden_Toggle">
 		<path class="st0" d="M556.7,316.6l4.3,4.3l-0.3,88.1h-19.6v-15.2h15.6V316.6"/>
 		<path class="st0" d="M541.2,436.7h11.4v178.4h-11.4V436.7"/>
 		<path class="st0" d="M552.6,436.7h8.2v13.4h-8.2V436.7"/>
@@ -1157,7 +1157,7 @@
 		<path class="st0" d="M561,342.9l4.8,4.8v68.7H561V342.9"/>
 		<path class="st0" d="M541.1,408.8h19.7v27.9h-19.7V408.8"/>
 	</g>
-	<g id="Right-Earcap_Warden">
+	<g id="Right-Earcap_Warden_Toggle">
 		<path class="st0" d="M143.3,316.6l-4.3,4.3l0.3,88.1h19.6v-15.2h-15.6V316.6"/>
 		<path class="st0" d="M158.8,436.7h-11.4v178.4h11.4V436.7"/>
 		<path class="st0" d="M147.4,436.7h-8.2v13.4h8.2V436.7"/>

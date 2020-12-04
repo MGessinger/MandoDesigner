@@ -85,7 +85,7 @@ function recreateMando (svg) {
 var translationTable = {
 	"cape_long": {
 		colors: ["FullCape"],
-		settings: { "Cape": "Full-Cape" }
+		settings: { "Cape_Option": "Full-Cape" }
 	},
 	"gloves_default": ["Basic_Right_Glove", "Basic_Left_Glove"],
 	"shoes_default": ["Top_BasicBoot", "Main_BasicBoot", "Bottom_BasicBoot"],
@@ -95,22 +95,22 @@ var translationTable = {
 	"thigh_default": {
 		colors: ["Basic_Right_Thigh", null, "Basic_Left_Thigh"],
 		settings: {
-		"Left-Thigh": "Basic_Thigh_Left",
-		"Right-Thigh": "Basic_Thigh_Right"
+			"Left-Thigh_Option": "Basic_Thigh_Left",
+			"Right-Thigh_Option": "Basic_Thigh_Right"
 		}
 	},
 	"shins_default": {
 		colors: ["Shin_Right_Basic", null, "Shin_Left_Basic"],
 		settings: {
-			"Left-Shin": "Basic_Shin_Left",
-			"Right-Shin": "Basic_Shin_Right"
+			"Left-Shin_Option": "Basic_Shin_Left",
+			"Right-Shin_Option": "Basic_Shin_Right"
 		}
 	},
 	"bootplate_default": {
 		colors: ["Basic_Ankle_Left", null, "Basic_Ankle_Right"],
 		settings: {
-			"Left-Ankle": "Basic_Ankle_Left",
-			"Right-Ankle": "Basic_Ankle_Right"
+			"Left-Ankle_Option": "Basic_Ankle_Left",
+			"Right-Ankle_Option": "Basic_Ankle_Right"
 		}
 	},
 	"vest_default": ["Vest"],
@@ -121,8 +121,8 @@ var translationTable = {
 	"face_default": ["Face_Classic"],
 	"cheeks_default": [null, "Cheeks_Classic"],
 	"viewfinder_default": {
-		colors: ["Finder_Right_RangeFinder_Classic", "Shaft_Right_RangeFinder_Classic"],
-		settings: { "Right-Earcap_Classic": "Range-Finder_Right_Classic" }
+		colors: ["Cover_Right_RangeFinder_Classic", "Shaft_Right_RangeFinder_Classic", "Finder_Right_RangeFinder_Classic"],
+		settings: {"Range-Finder_Right_Classic": true}
 	},
 	"ears_default": ["EarCap_Left_Classic"],
 	"eyes_default": [null, "Eyes_Classic"],
@@ -162,28 +162,29 @@ function translateMando (svg) {
 	}
 
 	var ch = svg.children;
-	for (var i in ch) {
+	console.log(ch);
+	for (var i = 0; i < ch.length; i++) {
 		var name = ch[i].id;
 		var table = translationTable[name];
 		if (!table)
 			continue;
 
 		if (table.settings) {
-			for (var i in table.settings)
-				variants[i + "_Option"] = table.settings[i];
+			for (var j in table.settings)
+				variants[j] = table.settings[j];
 			table = table.colors;
 		}
 
 		var iterator = document.createNodeIterator(ch[i], NodeFilter.SHOW_ELEMENT, classFilter);
-		for (var i = 0; i < table.length; i++) {
-			if (!table[i])
+		for (var j = 0; j < table.length; j++) {
+			if (!table[j])
 				continue;
 
 			var node = iterator.nextNode();
 			if (!node)
 				break;
 
-			var key = table[i] + "Color";
+			var key = table[j] + "Color";
 			settings[key] = node.style.fill;
 		}
 	}
