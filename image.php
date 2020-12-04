@@ -31,22 +31,28 @@
 	</head>
 	<body>
 		<div class="content">
-			<?php 
-				if (empty($_POST) || !empty($_POST['url'])) {
-					echo "<img alt='No droids.' src='/assets/no_droids.gif' />";
+			<?php
+				if (empty($_POST))
 					exit;
-				}
-				if (strcasecmp($_POST['phone'],'red') != 0) {
-					echo "<p>Wrong.</p>";
-					echo '<img src="assets/vader.gif" alt="I have a bad feeling about this." />';
-					exit;
-				}
 				$name = $_POST['name'];
 				$email = $_POST['email'];
 				$subject = $_POST['subject'];
 				$message = $_POST['message'];
 				$formcontent = htmlspecialchars("From: $name\nMail: $email\nMessage: $message");
-				mail('feedback@mandocreator.com',$subject,$formcontent) or die("Error");
+				if (!empty($_POST['url'])) {
+					echo "<img alt='No droids.' src='/assets/no_droids.gif' />";
+					$url = $_POST['url'];
+					mail('matthias@gessinger.de', 'Spam Filter: Bot', "The spam filter caught a bot:\nAt: $url\n$formcontent");
+					exit;
+				}
+				if (strcasecmp($_POST['phone'],'red') != 0) {
+					echo "<p>Wrong.</p>";
+					echo '<img src="assets/vader.gif" alt="I have a bad feeling about this." />';
+					$ans = $_POST['phone'];
+					mail('matthias@gessinger.de', 'Spam Filter: Wrong Answer', "Someone answered the test-question with $ans:\n$formcontent");
+					exit;
+				}
+				mail('feedback@mandocreator.com',$subject,$formcontent);
 				echo '<img src="assets/Mando-Creator-Success.png" alt="Success. We will see your message soon. Thank you." height="50%" />';
 			?>
 		</div>

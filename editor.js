@@ -117,6 +117,20 @@ function toggleSubslide (subslide, SVGNode) {
 	}
 }
 
+function toggleSublist (sublist, SVGNode) {
+	var varName = neutralize(SVGNode.id);
+	return function () {
+		if (this.checked) {
+			sublist.style.display = "";
+			SVGNode.style.visibility = "visible";
+		} else {
+			sublist.style.display = "none";
+			SVGNode.style.visibility = "hidden";
+		}
+		variants[varName] = this.checked || false;
+	}
+}
+
 function mirrorSettings (parent, paragraph, side) {
 	var mirror = DOMNode("button", {class: "mirror_button", title: "Mirror Settings"}, paragraph);
 	mirror.innerText = "\uE915";
@@ -135,15 +149,17 @@ function mirrorSettings (parent, paragraph, side) {
 		}
 		showPicker = true;
 		/* Mirror all Checkboxes */
-		var checks = parent.getElementsByClassName("armor_toggle");
+		var checks = parent.getElementsByTagName("input");
 		for (var i = 0; i < checks.length; i++) {
 			var mirrorImageName = checks[i].id.replace(side, otherSide);
 			var mirrorImage = find(mirrorImageName);
+			if (!mirrorImage) /* Account for picker_editor (lol) */
+				continue;
 			if (mirrorImage.checked ^ checks[i].checked)
 				mirrorImage.click();
 		}
 		/* Mirror the checkbox in paragraph itself (if present) */
-		var top_check = paragraph.getElementsByClassName("armor_toggle")[0];
+		var top_check = paragraph.getElementsByTagName("input")[0];
 		if (top_check) {
 			var mirrorImageName = top_check.id.replace(side, otherSide);
 			var mirrorImage = find(mirrorImageName);
@@ -227,15 +243,16 @@ function buildIOSettings (SVGNode, category, parent) {
 	});
 }
 
-function buildAddonSelect (options, category, parent, SVGName) {
+function buildAddonSelect (addons, category, parent, SVGName) {
 	var wrapper = DOMNode("div", {class: "select_wrapper hidden"}, parent);
 	var select = DOMNode("select", {class: "component_select", id: SVGName + "Select"}, wrapper);
 
 	var colors = [];
 	var useDefault = true;
-	for (var i = options.length - 1; i >= 0; i--) {
-		var fullName = options[i].id;
+	for (var i = addons.length - 1; i >= 0; i--) {
+		var fullName = addons[i].id;
 		var name = prettify(fullName);
+		var neutral = neutralize(fullName);
 
 		/* Create an option in the select, and a hideable color list */
 		var opt = DOMNode("option", {label: name, value: fullName}, select);
@@ -243,33 +260,33 @@ function buildAddonSelect (options, category, parent, SVGName) {
 
 		var san = listName(fullName);
 		var col = DOMNode("div", {id: san + "SubColors"}, parent);
-		colors.push(col);
-		if (variants[SVGName] == neutralize(fullName)) {
-			options[i].style.visibility = "visible";
+		if (variants[SVGName] == neutral) {
+			addons[i].style.visibility = "visible";
 			useDefault = false;
-			select.value = fullName;
-		} else if (options[i].style.visibility == "visible") {
+			opt.selected = true;
+		} else if (addons[i].style.visibility == "visible") {
 			useDefault = false;
-			select.value = fullName;
+			opt.selected = true;
 			variants[SVGName] = neutralize(fullName);
 		} else {
-			options[i].style.visibility = "";
+			addons[i].style.visibility = "";
 			col.style.display = "none";
 		}
-		buildAllSettings(options[i], category, col);
+		buildAllSettings(addons[i], category, col);
+		colors.push(col);
 	}
 	if (useDefault) {
-		options[options.length-1].style.visibility = "visible";
+		addons[addons.length-1].style.visibility = "visible";
 		colors[0].style.display = "";
 	}
 
 	select.addEventListener("change", function() {
 		variants[SVGName] = neutralize(this.value);
-		for (var i = 0; i < options.length; i++) {
-			if (options[i].id === this.value)
-				options[i].style.visibility = "visible";
+		for (var i = 0; i < addons.length; i++) {
+			if (addons[i].id === this.value)
+				addons[i].style.visibility = "visible";
 			else
-				options[i].style.visibility = "";
+				addons[i].style.visibility = "";
 		}
 
 		var id = listName(this.value) + "SubColors"
@@ -281,6 +298,49 @@ function buildAddonSelect (options, category, parent, SVGName) {
 		}
 	});
 	return select;
+}
+
+function getIcon (name) {
+	var icons = {
+		"Range Finder":	"\uE919",
+		"Main Antenna":	"\uE918",
+		"Sub Antenna":	"\uE91B",
+		"Sensor Stalk":	"\uE91A",
+		"Antenna":	"\uE91C",
+		"Lear Cap":	"\uE91D"
+	}
+	return icons[name] || "";
+}
+
+function buildAddonCheckboxes (addons, category, parent) {
+	var checkboxes = DOMNode("div", {class: "checkbox_list hidden"}, parent);
+	
+	for (var i = addons.length - 1; i >= 0; i--) {
+		var fullName = addons[i].id;
+		var name = prettify(fullName);
+		var neutral = neutralize(fullName);
+		var labelName = fullName + "_Check";
+
+		var wrapper = DOMNode("div", {class: "checkbox_wrapper"}, checkboxes);
+		var checkbox = DOMNode("input", {type: "checkbox", class: "checkbox", id: labelName}, wrapper);
+		var label = DOMNode("label", {for: labelName, title: name, class: "checkbox_label"}, wrapper);
+		label.innerText = getIcon(name);
+
+		var san = listName(fullName);
+		var col = DOMNode("div", {id: san + "SubColors"}, parent);
+		if (variants[neutral]) {
+			addons[i].style.visibility = "visible";
+			checkbox.checked = true;
+		} else if (addons[i].style.visibility == "visible") {
+			variants[neutral] = true;
+			checkbox.checked = true;
+		} else {
+			addons[i].style.visibility = "";
+			col.style.display = "none";
+		}
+		buildAllSettings(addons[i], category, col);
+		checkbox.addEventListener("change", toggleSublist(col, addons[i]));
+	}
 }
 
 function buildAllSettings (SVGNode, category, parent) {
@@ -306,8 +366,12 @@ function buildAllSettings (SVGNode, category, parent) {
 			buildAllSettings(ch[i], category, parent);
 	}
 	var SVGName = neutralize(SVGNode.id) + "_Option";
-	if (options.length > 0)
-		buildAddonSelect(options, category, parent, SVGName);
+	if (options.length > 0) {
+		if (/Earcap/.test(SVGName))
+			buildAddonCheckboxes(options, category, parent);
+		else
+			buildAddonSelect(options, category, parent, SVGName);
+	}
 	/* defer toggles to the very last */
 	for (var i = 0; i < toggle.length; i++) 
 		buildAllSettings(toggle[i], category, parent);
@@ -501,10 +565,10 @@ function setupMando (svg, sexSuffix) {
 	buildAllSettings(findLocal("Soft-Parts_" + sexSuffix), "FlightSuit");
 }
 
-function setColorScheme (useDark) {
-	var className = "light_mode";
-	var bckName = "BackgroundLight";
-	var logoName = "#titleLight";
+function setColorScheme (useDark, className, bckName, logoName) {
+	className = className || "light_mode";
+	bckName = bckName || "BackgroundLight";
+	logoName = logoName || "#titleLight";
 	if (useDark) {
 		className = "dark_mode";
 		bckName = "BackgroundDark";

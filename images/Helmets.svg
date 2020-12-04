@@ -41,7 +41,28 @@
 </g>
 <g id="Helmet_Classic">
 	<g id="Left-Earcap_Classic_Toggle">
-		<path id="Antenna_Left_Classic_Option" class="st0" d="M559.6,364.9L537.9,38.8c0-10.9-7.8-10.1-7.6,0.8l17.4,325.3H559.6z"/>
+		<g id="Sub-Antenna_Left_Classic_Option">
+			<g id="Shaft_Sub-Antenna_Left_Classic">
+				<path class="st0" d="M564.6,353.1l-2-244.2H557l-2,244.2H564.6z"/>
+				<path class="st0" d="M565,130.8l-2.2-15.1l-3,0l-3,0l-2.2,15.1H565z"/>
+			</g>
+			<g id="Base_Sub-Antenna_Left_Classic">
+				<path class="st0" d="M544.3,353.1h30.9c0,0,6.6,80.8-15.2,80.8C538.1,433.9,544.3,353.1,544.3,353.1z"/>
+				<path class="st0" d="M568.2,353.1l-3.5-6.9l-4.9,0l-4.9,0l-3.5,6.9H568.2z"/>
+			</g>
+		</g>
+		<g id="Main-Antenna_Left_Classic_Option">
+			<path id="Shaft_Main-Antenna_Left_Classic" class="st0" d="M579.2,322.8l-2.8-268.7c0,0,0.2-7.1-3.9-7.1s-3.9,7.1-3.9,7.1
+				l-2.8,268.7H579.2z"/>
+			<g id="Base_Main-Antenna_Left_Classic">
+				<path class="st0" d="M553.1,365.1h38.6c0,0,8.2,90.5-19,90.5C545.5,455.6,553.1,365.1,553.1,365.1z"/>
+				<rect x="559" y="360.7" class="st0" width="27" height="4.4"/>
+				<path class="st0" d="M588.1,360.7l-6.5-37.9l-9,0.1l-9-0.1l-6.5,37.9H588.1z"/>
+				<rect x="570.4" y="329.3" class="st0" width="4.3" height="26.5"/>
+				<path class="st0" d="M562.5,328.3l4.3,0.6l-4.2,26.2l-4.3-0.6L562.5,328.3z"/>
+				<path class="st0" d="M582.5,328.3l-4.3,0.6l4.2,26.2l4.3-0.6L582.5,328.3z"/>
+			</g>
+		</g>
 		<g id="Sensor-Stalk_Left_Classic_Option">
 			<g id="Sensor_Left_Sensor-Stalk_Classic">
 				<path class="st0" d="M596,443.7l50.1-85.7l-61.6,0.5v85.2H596z"/>
@@ -56,16 +77,38 @@
 			</g>
 		</g>
 		<g id="Range-Finder_Left_Classic_Option">
-			<path id="Shaft_Left_Range-Finder_Classic" class="st0" d="M559.6,364.9l-18.2-299l-11.6,0.8l18,298.3H559.6z"/>
-			<path id="Finder_Left_Range-Finder_Classic" class="st0" d="M554.2,65.9h-34.4l-10.2-15.6l-75-3.9L433,29.2L562.5,24L554.2,65.9z
-				"/>
+			<path id="Shaft_Left_Range-Finder_Classic" class="st0" d="M538.2,75.1l-11.5,0.7L544,364h11.8L538.2,75.1z"/>
+			<path id="Finder_Left_Range-Finder_Classic" class="st0" d="M448.7,51.9h64l-2.5-7.9l-74.8-7L448.7,51.9"/>
+			<g id="Cover_Left_Range-Finder_Classic">
+				<path class="st0" d="M547.4,63l-30.4,2l-6.8-21l-80.4-7.5l-1.6-8.2L542.9,24l11.2,14.1L547.4,63"/>
+				<path class="st0" d="M539.2,63.5l-15.1,1l0.7,11.5l15.1-1L539.2,63.5"/>
+			</g>
 		</g>
 		<path id="Ear-Cap_Left_Classic" class="st0" d="M565.2,584.4l18.7-27.6l-18.7-191.1l-26.1-16.4L565.2,584.4z"/>
-		<g id="No-Device_Left_Classic_Option">
-		</g>
 	</g>
 	<g id="Right-Earcap_Classic_Toggle">
-		<path id="Antenna_Right_Classic_Option" class="st0" d="M140.4,364.9l21.6-326.1c0-10.9,7.8-10.1,7.6,0.8l-17.4,325.3H140.4z"/>
+		<g id="Sub-Antenna_Right_Classic_Option">
+			<g id="Shaft_Sub-Antenna_Right_Classic">
+				<path class="st0" d="M135.4,353.1l2-244.2h5.6l2,244.2H135.4z"/>
+				<path class="st0" d="M135,130.8l2.2-15.1l3,0l3,0l2.2,15.1H135z"/>
+			</g>
+			<g id="Base_Sub-Antenna_Right_Classic">
+				<path class="st0" d="M155.7,353.1h-30.9c0,0-6.6,80.8,15.2,80.8S155.7,353.1,155.7,353.1z"/>
+				<path class="st0" d="M131.8,353.1l3.5-6.9l4.9,0l4.9,0l3.5,6.9H131.8z"/>
+			</g>
+		</g>
+		<g id="Main-Antenna_Right_Classic_Option">
+			<path id="Shaft_Main-Antenna_Right_Classic" class="st0" d="M120.8,322.8l2.8-268.7c0,0-0.2-7.1,3.9-7.1s3.9,7.1,3.9,7.1
+				l2.8,268.7H120.8z"/>
+			<g id="Base_Main-Antenna_Right_Classic">
+				<path class="st0" d="M146.9,365.1h-38.6c0,0-8.2,90.5,19,90.5C154.5,455.6,146.9,365.1,146.9,365.1z"/>
+				<rect x="114" y="360.7" class="st0" width="27" height="4.4"/>
+				<path class="st0" d="M111.9,360.7l6.5-37.9l9,0.1l9-0.1l6.5,37.9H111.9z"/>
+				<rect x="125.3" y="329.3" class="st0" width="4.3" height="26.5"/>
+				<path class="st0" d="M137.5,328.3l-4.3,0.6l4.2,26.2l4.3-0.6L137.5,328.3z"/>
+				<path class="st0" d="M117.5,328.3l4.3,0.6l-4.2,26.2l-4.3-0.6L117.5,328.3z"/>
+			</g>
+		</g>
 		<g id="Sensor-Stalk_Right_Classic_Option">
 			<g id="Sensor_Right_Sensor-Stalk_Classic">
 				<path class="st0" d="M104,443.7L54,358.1l61.6,0.5v85.2H104z"/>
@@ -80,13 +123,14 @@
 			</g>
 		</g>
 		<g id="Range-Finder_Right_Classic_Option">
-			<path id="Shaft_Right_Range-Finder_Classic" class="st0" d="M140.4,364.9l18.2-299l11.6,0.8l-18,298.3H140.4z"/>
-			<path id="Finder_Right_Range-Finder_Classic" class="st0" d="M146.8,65.9h34.4l10.2-15.6l75-3.9l1.6-17.2L138.5,24L146.8,65.9z"
-				/>
+			<path id="Shaft_Right_Range-Finder_Classic" class="st0" d="M161.8,75.1l11.5,0.7L156,364h-11.8L161.8,75.1z"/>
+			<path id="Finder_Right_Range-Finder_Classic" class="st0" d="M251.3,51.9h-64l2.5-7.9l74.8-7L251.3,51.9"/>
+			<g id="Cover_Right_Range-Finder_Classic">
+				<path class="st0" d="M152.6,63l30.4,2l6.8-21l80.4-7.5l1.6-8.2L157.1,24l-11.2,14.1L152.6,63"/>
+				<path class="st0" d="M160.8,63.5l15.1,1L175.1,76L160,75L160.8,63.5"/>
+			</g>
 		</g>
 		<path id="Ear-Cap_Right_Classic" class="st0" d="M134.8,584.4l-18.7-27.6l18.7-191.1l26.1-16.4L134.8,584.4z"/>
-		<g id="No-Device_Right_Classic_Option">
-		</g>
 	</g>
 	<g id="Helmet_Pieces_Classic">
 		<g id="Face_Classic">
@@ -116,60 +160,101 @@
 </g>
 <g id="Helmet_Nite">
 	<g id="Left-Earcap_Nite_Toggle">
-		<path id="Antenna_Left_Nite_Option" class="st0" d="M544.6,352.7L527.7,38.5c-0.2-10.9,7.6-11.7,7.6-0.8l21.4,322.6L544.6,352.7z"
-			/>
+		<g id="Sub-Antenna_Left_Nite_Option">
+			<g id="Shaft_Sub-Antenna_Left_Nite">
+				<path class="st0" d="M564.6,353.1l-2-244.2H557l-2,244.2H564.6z"/>
+				<path class="st0" d="M565,130.8l-2.2-15.1l-3,0l-3,0l-2.2,15.1H565z"/>
+			</g>
+			<g id="Base_Sub-Antenna_Left_Nite">
+				<path class="st0" d="M544.3,353.1h30.9c0,0,6.6,80.8-15.2,80.8C538.1,433.9,544.3,353.1,544.3,353.1z"/>
+				<path class="st0" d="M568.2,353.1l-3.5-6.9l-4.9,0l-4.9,0l-3.5,6.9H568.2z"/>
+			</g>
+		</g>
+		<g id="Main-Antenna_Left_Nite_Option">
+			<path id="Shaft_Main-Antenna_Left_Nite" class="st0" d="M579.2,322.8l-2.8-268.7c0,0,0.2-7.1-3.9-7.1s-3.9,7.1-3.9,7.1
+				l-2.8,268.7H579.2z"/>
+			<g id="Base_Main-Antenna_Left_Nite">
+				<path class="st0" d="M553.1,365.1h38.6c0,0,8.2,90.5-19,90.5C545.5,455.6,553.1,365.1,553.1,365.1z"/>
+				<rect x="559" y="360.7" class="st0" width="27" height="4.4"/>
+				<path class="st0" d="M588.1,360.7l-6.5-37.9l-9,0.1l-9-0.1l-6.5,37.9H588.1z"/>
+				<rect x="570.4" y="329.3" class="st0" width="4.3" height="26.5"/>
+				<path class="st0" d="M562.5,328.3l4.3,0.6l-4.2,26.2l-4.3-0.6L562.5,328.3z"/>
+				<path class="st0" d="M582.5,328.3l-4.3,0.6l4.2,26.2l4.3-0.6L582.5,328.3z"/>
+			</g>
+		</g>
 		<g id="Sensor-Stalk_Left_Nite_Option">
 			<g id="Sensor_Left_Sensor-Stalk_Nite">
-				<path class="st0" d="M596,438.7l50.1-85.7l-61.6,0.5v85.2H596z"/>
-				<path class="st0" d="M582.7,102.5L646,298.4h-61.6L582.7,102.5z"/>
+				<path class="st0" d="M594,443.7l50.1-85.7l-61.6,0.5v85.2H594z"/>
+				<path class="st0" d="M580.7,107.5L644,303.4h-61.6L580.7,107.5z"/>
 			</g>
 			<g id="Shaft_Left_Sensor-Stalk_Nite">
-				<path class="st0" d="M657.1,298.4L582.6,68.6l0.1,33.9L646,298.4h-52.6v12.3h63.7V298.4z"/>
-				<path class="st0" d="M657.1,352.9v-12.3h-63.7v12.3h52.7L596,438.7h11L657.1,352.9z"/>
-				<path class="st0" d="M575.4,271.4l18-12.7v112.1h-18V271.4z"/>
-				<rect x="569.7" y="370.8" class="st0" width="26.2" height="24.5"/>
-				<rect x="565.5" y="366.6" class="st0" width="4.2" height="35.5"/>
+				<path class="st0" d="M655.1,303.4L580.6,73.6l0.1,33.9L644,303.4h-52.6v12.3h63.7V303.4z"/>
+				<path class="st0" d="M655.1,357.9v-12.3h-63.7v12.3h52.7L594,443.7h11L655.1,357.9z"/>
+				<path class="st0" d="M573.4,276.4l18-12.7v112.1h-18V276.4z"/>
+				<rect x="567.7" y="375.8" class="st0" width="26.2" height="24.5"/>
+				<rect x="563.5" y="371.6" class="st0" width="4.2" height="35.5"/>
+			</g>
+		</g>
+		<g id="Range-Finder_Left_Nite_Option">
+			<path id="Shaft_Left_Range-Finder_Nite" class="st0" d="M538.2,75.1l-11.5,0.7L544,364h11.8L538.2,75.1z"/>
+			<path id="Finder_Left_Range-Finder_Nite" class="st0" d="M448.7,51.9h64l-2.5-7.9l-74.8-7L448.7,51.9"/>
+			<g id="Cover_Left_Range-Finder_Nite">
+				<path class="st0" d="M547.4,63l-30.4,2l-6.8-21l-80.4-7.5l-1.6-8.2L542.9,24l11.2,14.1L547.4,63"/>
+				<path class="st0" d="M539.2,63.5l-15.1,1l0.7,11.5l15.1-1L539.2,63.5"/>
 			</g>
 		</g>
 		<g id="Ear-Cap_Left_Nite">
 			<path class="st0" d="M563.1,582.8l18.7-27.6l-18.7-190.9L537,347.9L563.1,582.8z"/>
 			<path class="st1" d="M544,415l21.6-22.4"/>
 		</g>
-		<g id="Range-Finder_Left_Nite_Option">
-			<path id="Shaft_Left_Range-Finder_Nite" class="st0" d="M556.2,326.9L540.2,67l-11.6,0.8l15.7,259.1H556.2z"/>
-			<path id="Finder_Left_Range-Finder_Nite" class="st0" d="M552,67h-34.4l-10.1-15.6l-74.9-3.9L431,30.3l129.3-5.2L552,67z"/>
-			<path id="Base_Left_Range-Finder_Nite" class="st0" d="M545.1,416.9l-6.7-66.9l-9.7-0.8v-42.1l12.9,0.8l4.2,18.7l15.1-0.8
-				l6.5,68.3L545.1,416.9z"/>
-		</g>
-		<g id="No-Device_Left_Nite_Option">
-		</g>
 	</g>
 	<g id="Right-Earcap_Nite_Toggle">
-		<path id="Antenna_Right_Nite_Option" class="st0" d="M142,361.1l21.5-323.3c0-10.9,7.8-10.1,7.6,0.8l-16.9,314.9L142,361.1z"/>
+		<g id="Sub-Antenna_Right_Nite_Option">
+			<g id="Shaft_Sub-Antenna_Right_Nite">
+				<path class="st0" d="M135.4,353.1l2-244.2h5.6l2,244.2H135.4z"/>
+				<path class="st0" d="M135,130.8l2.2-15.1l3,0l3,0l2.2,15.1H135z"/>
+			</g>
+			<g id="Base_Sub-Antenna_Right_Nite">
+				<path class="st0" d="M155.7,353.1h-30.9c0,0-6.6,80.8,15.2,80.8S155.7,353.1,155.7,353.1z"/>
+				<path class="st0" d="M131.8,353.1l3.5-6.9l4.9,0l4.9,0l3.5,6.9H131.8z"/>
+			</g>
+		</g>
+		<g id="Main-Antenna_Right_Nite_Option">
+			<path id="Shaft_Main-Antenna_Right_Nite" class="st0" d="M120.8,322.8l2.8-268.7c0,0-0.2-7.1,3.9-7.1s3.9,7.1,3.9,7.1l2.8,268.7
+				H120.8z"/>
+			<g id="Base_Main-Antenna_Right_Nite">
+				<path class="st0" d="M146.9,365.1h-38.6c0,0-8.2,90.5,19,90.5C154.5,455.6,146.9,365.1,146.9,365.1z"/>
+				<rect x="114" y="360.7" class="st0" width="27" height="4.4"/>
+				<path class="st0" d="M111.9,360.7l6.5-37.9l9,0.1l9-0.1l6.5,37.9H111.9z"/>
+				<rect x="125.3" y="329.3" class="st0" width="4.3" height="26.5"/>
+				<path class="st0" d="M137.5,328.3l-4.3,0.6l4.2,26.2l4.3-0.6L137.5,328.3z"/>
+				<path class="st0" d="M117.5,328.3l4.3,0.6l-4.2,26.2l-4.3-0.6L117.5,328.3z"/>
+			</g>
+		</g>
 		<g id="Sensor-Stalk_Right_Nite_Option">
 			<g id="Sensor_Right_Sensor-Stalk_Nite">
-				<path class="st0" d="M104,438.7L54,353.1l61.6,0.5v85.2H104z"/>
-				<path class="st0" d="M117.3,102.5L54,298.4h61.6L117.3,102.5z"/>
+				<path class="st0" d="M106,443.7L56,358.1l61.6,0.5v85.2H106z"/>
+				<path class="st0" d="M119.3,107.5L56,303.4h61.6L119.3,107.5z"/>
 			</g>
 			<g id="Shaft_Right_Sensor-Stalk_Nite">
-				<path class="st0" d="M42.9,298.4l74.5-229.8l-0.1,33.9L54,298.4h52.6v12.3H42.9V298.4z"/>
-				<path class="st0" d="M42.9,352.9v-12.3h63.7v12.3H53.9l50.2,85.8h-11L42.9,352.9z"/>
-				<path class="st0" d="M124.6,271.4l-18-12.7v112.1h18V271.4z"/>
-				<rect x="104" y="370.8" class="st0" width="26.2" height="24.5"/>
-				<rect x="130.3" y="366.6" class="st0" width="4.2" height="35.5"/>
+				<path class="st0" d="M44.9,303.4l74.5-229.8l-0.1,33.9L56,303.4h52.6v12.3H44.9V303.4z"/>
+				<path class="st0" d="M44.9,357.9v-12.3h63.7v12.3H55.9l50.2,85.8h-11L44.9,357.9z"/>
+				<path class="st0" d="M126.6,276.4l-18-12.7v112.1h18V276.4z"/>
+				<rect x="106" y="375.8" class="st0" width="26.2" height="24.5"/>
+				<rect x="132.3" y="371.6" class="st0" width="4.2" height="35.5"/>
+			</g>
+		</g>
+		<g id="Range-Finder_Right_Nite_Option">
+			<path id="Shaft_Right_Range-Finder_Nite" class="st0" d="M161.8,75.1l11.5,0.7L156,364h-11.8L161.8,75.1z"/>
+			<path id="Finder_Right_Range-Finder_Nite" class="st0" d="M251.3,51.9h-64l2.5-7.9l74.8-7L251.3,51.9"/>
+			<g id="Cover_Right_Range-Finder_Nite">
+				<path class="st0" d="M152.6,63l30.4,2l6.8-21l80.4-7.5l1.6-8.2L157.1,24l-11.2,14.1L152.6,63"/>
+				<path class="st0" d="M160.8,63.5l15.1,1L175.1,76L160,75L160.8,63.5"/>
 			</g>
 		</g>
 		<g id="Ear-Cap_Right_Nite">
 			<path class="st0" d="M136.9,582.8l-18.7-27.6l18.7-190.9l26.1-16.4L136.9,582.8z"/>
 			<path class="st1" d="M156,415l-21.6-22.4"/>
-		</g>
-		<g id="Range-Finder_Right_Nite_Option">
-			<path id="Shaft_Right_Range-Finder_Nite" class="st0" d="M143.1,326.9L159,67l11.6,0.8l-15.7,259.1H143.1z"/>
-			<path id="Finder_Right_Range-Finder_Nite" class="st0" d="M147.2,67h34.4l10.1-15.6l74.9-3.9l1.6-17.2l-129.3-5.2L147.2,67z"/>
-			<path id="Base_Right_Range-Finder_Nite" class="st0" d="M154.2,416.9l6.7-66.9l9.7-0.8v-42.1l-12.9,0.8l-4.2,18.7l-15.1-0.8
-				l-6.5,68.3L154.2,416.9z"/>
-		</g>
-		<g id="No-Device_Right_Nite_Option">
 		</g>
 	</g>
 	<g id="Helmet_Pieces_Nite">
@@ -200,240 +285,312 @@
 </g>
 <g id="Helmet_Stalker-Large">
 	<g id="Left-Earcap_Stalker-Large_Toggle">
-		<path id="Antenna_Left_Stalker-Large_Option" class="st0" d="M562,361.1L540.6,37.8c0-10.9-7.8-10.1-7.6,0.8l16.9,314.9L562,361.1
-			z"/>
+		<g id="Sub-Antenna_Left_Stalker-Large_Option">
+			<g id="Shaft_Sub-Antenna_Left_Stalker-Large">
+				<path class="st0" d="M546.3,285.5l-2-244.2h-5.6l-2,244.2H546.3z"/>
+				<path class="st0" d="M546.7,63.2l-2.2-15.1l-3,0l-3,0l-2.2,15.1H546.7z"/>
+			</g>
+			<g id="Base_Sub-Antenna_Left_Stalker-Large">
+				<path class="st0" d="M525.9,285.5h30.9c0,0,6.6,80.8-15.2,80.8S525.9,285.5,525.9,285.5z"/>
+				<path class="st0" d="M549.9,285.5l-3.5-6.9l-4.9,0l-4.9,0l-3.5,6.9H549.9z"/>
+			</g>
+		</g>
+		<g id="Main-Antenna_Left_Stalker-Large_Option">
+			<path id="Shaft_Main-Antenna_Left_Stalker-Large" class="st0" d="M566.9,278.8l-2.8-268.7c0,0,0.2-7.1-3.9-7.1s-3.9,7.1-3.9,7.1
+				l-2.8,268.7H566.9z"/>
+			<g id="Base_Main-Antenna_Left_Stalker-Large">
+				<path class="st0" d="M540.8,321.1h38.6c0,0,8.2,90.5-19,90.5C533.2,411.6,540.8,321.1,540.8,321.1z"/>
+				<rect x="546.7" y="316.7" class="st0" width="27" height="4.4"/>
+				<path class="st0" d="M575.8,316.7l-6.5-37.9l-9,0.1l-9-0.1l-6.5,37.9H575.8z"/>
+				<rect x="558.1" y="285.3" class="st0" width="4.3" height="26.5"/>
+				<path class="st0" d="M550.2,284.3l4.3,0.6l-4.2,26.2l-4.3-0.6L550.2,284.3z"/>
+				<path class="st0" d="M570.2,284.3l-4.3,0.6l4.2,26.2l4.3-0.6L570.2,284.3z"/>
+			</g>
+		</g>
 		<g id="Sensor-Stalk_Left_Stalker-Large_Option">
 			<g id="Sensor_Left_Sensor-Stalk_Stalker-Large">
-				<path class="st0" d="M606,429.4l43-89.4l-61.4,5.5l6.9,84.9L606,429.4z"/>
-				<path class="st0" d="M565.6,95.3l78.9,190.2l-61.4,5L565.6,95.3z"/>
+				<path class="st0" d="M604.4,427.4l42.2-89.8l-61.3,6l7.6,84.8L604.4,427.4z"/>
+				<path class="st0" d="M561,93.7l80.6,189.5l-61.4,5.5L561,93.7z"/>
 			</g>
 			<g id="Shaft_Left_Sensor-Stalk_Stalker-Large">
-				<path class="st0" d="M655.6,284.6L562.8,61.5l2.9,33.8l78.9,190.2l-52.4,4.3l1,12.2l63.5-5.1L655.6,284.6z"/>
-				<path class="st0" d="M660,338.9l-1-12.2l-63.5,5.1l1,12.2l52.5-4.3L606,429.4l11-0.9L660,338.9z"/>
-				<path class="st0" d="M572,264.2l17-14.1l9.1,111.8l-18,1.5L572,264.2z"/>
-				<path class="st0" d="M574.4,363.8l26.1-2.1l2,24.4l-26.1,2.1L574.4,363.8z"/>
-				<path class="st0" d="M569.9,359.9l4.2-0.3l2.9,35.4l-4.2,0.3L569.9,359.9z"/>
+				<path class="st0" d="M652.7,282.1L557.8,59.9l3.2,33.8l80.6,189.5l-52.4,4.7l1.1,12.2l63.4-5.7L652.7,282.1z"/>
+				<path class="st0" d="M657.5,336.4l-1.1-12.2l-63.4,5.7l1.1,12.2l52.5-4.7l-42.3,90l10.9-1L657.5,336.4z"/>
+				<path class="st0" d="M568.8,262.5l16.8-14.2L595.7,360l-18,1.6L568.8,262.5z"/>
+				<path class="st0" d="M572.2,362.1l26.1-2.4l2.2,24.4l-26.1,2.4L572.2,362.1z"/>
+				<path class="st0" d="M567.6,358.3l4.2-0.4l3.2,35.4l-4.2,0.4L567.6,358.3z"/>
 			</g>
 		</g>
 		<g id="Range-Finder_Left_Stalker-Large_Option">
-			<path id="Shaft_Left_Range-Finder_Stalker-Large" class="st0" d="M550.5,332.6l10.8-1L538.1,78.8l-10.8,1L550.5,332.6z"/>
-			<g id="Finder_Left_Range-Finder_Stalker-Large">
-				<path id="Bottom_Left_Range-Finder_Stalker-Large" class="st1" d="M557.9,55.2L546.8,78l-26.6,2.4L503.8,71l-55.2,5.1L439.8,66
-					L557.9,55.2z"/>
-				<path id="Top_Left_Range-Finder_Stalker-Large" class="st1" d="M568.3,54.2L430.2,66.9l-0.7-7.2l143.7-13.2L568.3,54.2z"/>
+			<path id="Shaft_Left_Range-Finder_Stalker-Large" class="st0" d="M543.7,75.1l-11.5,0.7L549.5,364h11.8L543.7,75.1z"/>
+			<path id="Finder_Left_Range-Finder_Stalker-Large" class="st0" d="M454.3,51.9h64l-2.5-7.9l-74.8-7L454.3,51.9"/>
+			<g id="Cover_Left_Range-Finder_Stalker-Large">
+				<path class="st0" d="M552.9,63l-30.4,2l-6.8-21l-80.4-7.5l-1.6-8.2L548.5,24l11.2,14.1L552.9,63"/>
+				<path class="st0" d="M544.7,63.5l-15.1,1l0.7,11.5l15.1-1L544.7,63.5"/>
 			</g>
 		</g>
 		<g id="Ear-Cap_Left_Stalker-Large">
-			<path class="st0" d="M540.9,303l25.8,17.8l10.1,111.7l-22.2,22.1L540.9,303z"/>
-			<path class="st0" d="M552.2,375.4c-0.1-1.2,0.8-2.2,2-2.3l10.4-0.9c1.2-0.1,2.2,0.8,2.3,2c0.1,1.2-0.8,2.2-2,2.3l-10.4,0.9
-				C553.3,377.4,552.3,376.6,552.2,375.4z"/>
-		</g>
-		<g id="No-Device_Left_Stalker-Large_Option">
+			<path class="st0" d="M539.8,303l25.8,17.8l10.1,111.7l-22.2,22.1L539.8,303z"/>
+			<path class="st0" d="M551.1,375.4c-0.1-1.2,0.8-2.2,2-2.3l10.4-0.9c1.2-0.1,2.2,0.8,2.3,2s-0.8,2.2-2,2.3l-10.4,0.9
+				C552.2,377.4,551.2,376.6,551.1,375.4z"/>
 		</g>
 	</g>
 	<g id="Right-Earcap_Stalker-Large_Toggle">
-		<path id="Antenna_Right_Stalker-Large_Option" class="st0" d="M142,361.1l21.5-323.3c0-10.9,7.8-10.1,7.6,0.8l-16.9,314.9
-			L142,361.1z"/>
+		<g id="Sub-Antenna_Right_Stalker-Large_Option">
+			<g id="Shaft_Sub-Antenna_Right_Stalker-Large">
+				<path class="st0" d="M156.3,285.5l2-244.2h5.6l2,244.2H156.3z"/>
+				<path class="st0" d="M155.9,63.2l2.2-15.1l3,0l3,0l2.2,15.1H155.9z"/>
+			</g>
+			<g id="Base_Sub-Antenna_Right_Stalker-Large">
+				<path class="st0" d="M176.6,285.5h-30.9c0,0-6.6,80.8,15.2,80.8S176.6,285.5,176.6,285.5z"/>
+				<path class="st0" d="M152.7,285.5l3.5-6.9l4.9,0l4.9,0l3.5,6.9H152.7z"/>
+			</g>
+		</g>
+		<g id="Main-Antenna_Right_Stalker-Large_Option">
+			<path id="Shaft_Main-Antenna_Right_Stalker-Large" class="st0" d="M135.7,278.8l2.8-268.7c0,0-0.2-7.1,3.9-7.1
+				c4,0,3.9,7.1,3.9,7.1l2.8,268.7H135.7z"/>
+			<g id="Base_Main-Antenna_Right_Stalker-Large">
+				<path class="st0" d="M161.7,321.1h-38.6c0,0-8.2,90.5,19,90.5C169.4,411.6,161.7,321.1,161.7,321.1z"/>
+				<rect x="128.9" y="316.7" class="st0" width="27" height="4.4"/>
+				<path class="st0" d="M126.8,316.7l6.5-37.9l9,0.1l9-0.1l6.5,37.9H126.8z"/>
+				<rect x="140.2" y="285.3" class="st0" width="4.3" height="26.5"/>
+				<path class="st0" d="M152.3,284.3l-4.3,0.6l4.2,26.2l4.3-0.6L152.3,284.3z"/>
+				<path class="st0" d="M132.4,284.3l4.3,0.6l-4.2,26.2l-4.3-0.6L132.4,284.3z"/>
+			</g>
+		</g>
 		<g id="Sensor-Stalk_Right_Stalker-Large_Option">
 			<g id="Sensor_Right_Sensor-Stalk_Stalker-Large">
-				<path class="st0" d="M98,429.4L55,340l61.4,5.5l-6.9,84.9L98,429.4z"/>
-				<path class="st0" d="M138.4,95.3L59.5,285.5l61.4,5L138.4,95.3z"/>
+				<path class="st0" d="M98.2,427.4L56,337.6l61.3,6l-7.6,84.8L98.2,427.4z"/>
+				<path class="st0" d="M141.6,93.7L60.9,283.1l61.4,5.5L141.6,93.7z"/>
 			</g>
 			<g id="Shaft_Right_Sensor-Stalk_Stalker-Large">
-				<path class="st0" d="M48.4,284.6l92.9-223.1l-2.9,33.8L59.5,285.5l52.4,4.3l-1,12.2l-63.5-5.1L48.4,284.6z"/>
-				<path class="st0" d="M44,338.9l1-12.2l63.5,5.1l-1,12.2L55,339.8L98,429.4l-11-0.9L44,338.9z"/>
-				<path class="st0" d="M132.1,264.2l-17-14.1l-9.1,111.8l18,1.5L132.1,264.2z"/>
-				<path class="st0" d="M129.6,363.8l-26.1-2.1l-2,24.4l26.1,2.1L129.6,363.8z"/>
-				<path class="st0" d="M134.2,359.9l-4.2-0.3l-2.9,35.4l4.2,0.3L134.2,359.9z"/>
+				<path class="st0" d="M49.9,282.1l94.9-222.2l-3.2,33.8L60.9,283.1l52.4,4.7l-1.1,12.2l-63.4-5.7L49.9,282.1z"/>
+				<path class="st0" d="M45,336.4l1.1-12.2l63.4,5.7l-1.1,12.2L56,337.4l42.3,90l-10.9-1L45,336.4z"/>
+				<path class="st0" d="M133.7,262.5l-16.8-14.2L106.8,360l18,1.6L133.7,262.5z"/>
+				<path class="st0" d="M130.4,362.1l-26.1-2.4l-2.2,24.4l26.1,2.4L130.4,362.1z"/>
+				<path class="st0" d="M135,358.3l-4.2-0.4l-3.2,35.4l4.2,0.4L135,358.3z"/>
 			</g>
 		</g>
 		<g id="Range-Finder_Right_Stalker-Large_Option">
-			<path id="Shaft_Right_Range-Finder_Stalker-Large" class="st0" d="M153.2,332.6l-10.8-1l23.2-252.8l10.8,1L153.2,332.6z"/>
-			<g id="Finder_Right_Range-Finder_Stalker-Large">
-				<path id="Bottom_Right_Range-Finder_Stalker-Large" class="st1" d="M145.9,55.2L156.9,78l26.6,2.4l16.3-9.4l55.2,5.1L264,66
-					L145.9,55.2z"/>
-				<path id="Top_Right_Range-Finder_Stalker-Large" class="st1" d="M135.5,54.2l138.1,12.7l0.7-7.2L130.5,46.5L135.5,54.2z"/>
+			<path id="Shaft_Right_Range-Finder_Stalker-Large" class="st0" d="M158.8,75.1l11.5,0.7L153,364h-11.8L158.8,75.1z"/>
+			<path id="Finder_Right_Range-Finder_Stalker-Large" class="st0" d="M248.3,51.9h-64l2.5-7.9l74.8-7L248.3,51.9"/>
+			<g id="Cover_Right_Range-Finder_Stalker-Large">
+				<path class="st0" d="M149.7,63l30.4,2l6.8-21l80.4-7.5l1.6-8.2L154.1,24l-11.2,14.1L149.7,63"/>
+				<path class="st0" d="M157.8,63.5l15.1,1L172.2,76l-15.1-1L157.8,63.5"/>
 			</g>
 		</g>
 		<g id="Ear-Cap_Right_Stalker-Large">
-			<path class="st0" d="M162.8,303l-25.8,17.8l-10.1,111.7l22.2,22.1L162.8,303z"/>
+			<path class="st0" d="M162.7,303l-25.8,17.8l-10.1,111.7l22.2,22.1L162.7,303z"/>
 			<path class="st0" d="M151.5,375.4c0.1-1.2-0.8-2.2-2-2.3l-10.4-0.9c-1.2-0.1-2.2,0.8-2.3,2c-0.1,1.2,0.8,2.2,2,2.3l10.4,0.9
-				C150.4,377.4,151.4,376.6,151.5,375.4z"/>
-		</g>
-		<g id="No-Device_Right_Stalker-Large_Option">
+				C150.3,377.4,151.4,376.6,151.5,375.4z"/>
 		</g>
 	</g>
 	<g id="Helmet_Pieces_Stalker-Large">
 		<g id="Dome_Stalker-Large">
-			<path class="st1" d="M276.7,188.9l-0.2-0.7c0,0-69.3,16.3-95.4,85.2c-4.6,12.2-8.7,34.7-10.4,45c1.2-2,2.5-4,3.6-5.4
-				c5-6.5,12.9-15.9,20.3-23.1c10.5-10.2,30.2-24.4,42.9-38.3c12.6-13.9,26.6-34.3,33.3-45.4C273.7,201.4,275.6,193.9,276.7,188.9z"
+			<path class="st1" d="M274.8,188.9l-0.2-0.7c0,0-69.3,16.3-95.4,85.2c-4.6,12.2-8.7,34.7-10.4,45c1.3-2,2.5-4,3.6-5.4
+				c5-6.5,12.9-15.9,20.3-23.1c10.5-10.2,30.2-24.4,42.9-38.3c12.6-13.9,26.6-34.3,33.3-45.4C271.8,201.4,273.7,193.9,274.8,188.9z"
 				/>
-			<path class="st1" d="M427.3,188.9l0.2-0.7c0,0,69.3,16.3,95.4,85.2c4.6,12.2,8.7,34.7,10.4,45c-1.3-2-2.5-4-3.6-5.4
+			<path class="st1" d="M425.4,188.9l0.2-0.7c0,0,69.3,16.3,95.4,85.2c4.6,12.2,8.7,34.7,10.4,45c-1.3-2-2.5-4-3.6-5.4
 				c-5-6.5-12.9-15.9-20.3-23.1c-10.5-10.2-30.2-24.4-42.9-38.3c-12.6-13.9-26.6-34.3-33.3-45.4
-				C430.3,201.4,428.4,193.9,427.3,188.9z"/>
+				C428.5,201.4,426.5,193.9,425.4,188.9z"/>
 			<g>
-				<path class="st0" d="M532.4,289.4l9,9.2l14.4,160.2l-7.2,10.7L532.4,289.4z"/>
-				<path class="st0" d="M523.7,277.1l8.6,9.3l16.8,186.1l-6.8,10.7L523.7,277.1z"/>
+				<path class="st0" d="M530.5,289.4l9,9.2L554,458.8l-7.2,10.7L530.5,289.4z"/>
+				<path class="st0" d="M521.8,277.1l8.6,9.3l16.8,186.1l-6.8,10.7L521.8,277.1z"/>
 			</g>
 			<g>
-				<path class="st0" d="M171.4,289.4l-9,9.2l-14.4,160.2l7.2,10.7L171.4,289.4z"/>
-				<path class="st0" d="M180,277.1l-8.6,9.3l-16.8,186.1l6.8,10.7L180,277.1z"/>
+				<path class="st0" d="M169.5,289.4l-9,9.2L146,458.8l7.2,10.7L169.5,289.4z"/>
+				<path class="st0" d="M178.2,277.1l-8.6,9.3l-16.8,186.1l6.8,10.7L178.2,277.1z"/>
 			</g>
 		</g>
-		<path id="Dome-Center_Stalker-Large" class="st1" d="M342,167.7c3.1-0.2,6.5-0.3,10-0.3c4,0,7.8,0.1,11.4,0.4l-1,103.5l13,41.8
-			l0.4,13.2l-23.9,0.4l-23.9-0.4l0.4-13.2l13-41.8L342,167.7z"/>
+		<path id="Dome-Center_Stalker-Large" class="st1" d="M340.1,167.7c3.1-0.2,6.5-0.3,10-0.3c4,0,7.8,0.1,11.4,0.4l-1,103.5l13,41.8
+			l0.4,13.2l-23.9,0.4l-23.9-0.4l0.4-13.2l13-41.8L340.1,167.7z"/>
 		<g id="Dome-Stripes_Stalker-Large">
 			<g>
-				<path class="st1" d="M276.8,187.8c-1.1,5-3,13.2-6.2,18.5c-0.7,1.1-1.4,2.3-2.2,3.5c-4.2,0.8-9.1,2.1-13.1,4
-					c-8.9,4.1-22.1,13.2-22.1,13.2v-19.9c0,0,10.4-5.8,20.8-10.7C261.2,193,271.2,189.6,276.8,187.8z"/>
-				<path class="st1" d="M269.2,208.6c-7.1,11.5-20.1,30.1-31.9,43c-1.3,1.4-2.7,2.8-4.1,4.3l0-28.9c0,0,9.3-8.2,20.6-12.6
-					C259.3,212.2,264.9,210.2,269.2,208.6z"/>
+				<path class="st1" d="M275,187.8c-1.1,5-3,13.2-6.2,18.5c-0.7,1.1-1.4,2.3-2.2,3.5c-4.2,0.8-9.1,2.1-13.1,4
+					c-8.9,4.1-22.1,13.2-22.1,13.2v-19.9c0,0,10.4-5.8,20.8-10.7C259.3,193,269.3,189.6,275,187.8z"/>
+				<path class="st1" d="M267.4,208.6c-7.1,11.5-20.1,30.1-31.9,43c-1.3,1.4-2.7,2.8-4.1,4.3V227c0,0,9.3-8.2,20.6-12.6
+					C257.4,212.2,263,210.2,267.4,208.6z"/>
 			</g>
 			<g>
-				<path class="st1" d="M427.3,187.8c1.1,5,3,13.2,6.2,18.5c0.7,1.1,1.4,2.3,2.2,3.5c4.2,0.8,9.1,2.1,13.1,4
-					c8.9,4.1,22.1,13.2,22.1,13.2v-19.9c0,0-10.4-5.8-20.8-10.7C443,193,432.9,189.6,427.3,187.8z"/>
-				<path class="st1" d="M434.9,208.6c7.1,11.5,20.1,30.1,31.9,43c1.3,1.4,2.7,2.8,4.1,4.3V227c0,0-9.3-8.2-20.6-12.6
-					C444.9,212.2,439.3,210.2,434.9,208.6z"/>
+				<path class="st1" d="M425.4,187.8c1.1,5,3,13.2,6.2,18.5c0.7,1.1,1.4,2.3,2.2,3.5c4.2,0.8,9.1,2.1,13.1,4
+					c8.9,4.1,22.1,13.2,22.1,13.2v-19.9c0,0-10.4-5.8-20.8-10.7C441.1,193,431.1,189.6,425.4,187.8z"/>
+				<path class="st1" d="M433.1,208.6c7.1,11.5,20.1,30.1,31.9,43c1.3,1.4,2.7,2.8,4.1,4.3l0-28.9c0,0-9.3-8.2-20.6-12.6
+					C443,212.2,437.4,210.2,433.1,208.6z"/>
 			</g>
 		</g>
 		<g id="Face-2_Stalker-Large">
-			<path class="st1" d="M176,519.4l-1.4-36.6l-24.8,35c0,0-1.3,30.7,3.1,43.3c4.3,12.6,14.1,22.8,23.1,32.6
-				c10.2,11.1,130.2,91.1,130.2,91.1l-20.7-88.6l-19.8,7.8l-17.3-8.5l-22.1-17.3L203,555.4l-18.2-20.7l-8.8-12.6V519.4z"/>
-			<path class="st1" d="M528,519.4l1.4-36.6l24.8,35c0,0,1.3,30.7-3.1,43.3c-4.3,12.6-14.1,22.8-23.1,32.6
+			<path class="st1" d="M174.1,519.4l-1.4-36.6l-24.8,35c0,0-1.3,30.7,3.1,43.3c4.3,12.6,14.1,22.8,23.1,32.6
+				c10.2,11.1,130.2,91.1,130.2,91.1l-20.7-88.6l-19.8,7.8l-17.3-8.5l-22.1-17.3l-23.2-22.8l-18.2-20.7l-8.8-12.6V519.4z"/>
+			<path class="st1" d="M526.1,519.4l1.4-36.6l24.8,35c0,0,1.3,30.7-3.1,43.3c-4.3,12.6-14.1,22.8-23.1,32.6
 				c-10.2,11.1-130.2,91.1-130.2,91.1l20.7-88.6l19.8,7.8l17.3-8.5l22.1-17.3l23.2-22.8l18.2-20.7l8.8-12.6V519.4z"/>
 		</g>
 		<g id="Face-1_Stalker-Large">
 			<g>
-				<path class="st1" d="M176,519.4v2.7l8.8,12.6l18.2,20.7l23.2,22.8l22.1,17.3l17.3,8.5l19.8-7.8l-2.7-11.7l-38.5-93.7l-49-37.3
-					l-20.7,29.3L176,519.4z"/>
+				<path class="st1" d="M174.1,519.4v2.7l8.8,12.6l18.2,20.7l23.2,22.8l22.1,17.3l17.3,8.5l19.8-7.8l-2.7-11.7l-38.5-93.7l-49-37.3
+					l-20.7,29.3L174.1,519.4z"/>
 				<g>
-					<path class="st1" d="M242.6,566.3c-0.8-1-0.6-2.4,0.4-3.1l14.1-11c1-0.8,2.4-0.6,3.1,0.4c0.8,1,0.6,2.4-0.4,3.1l-14.1,11
-						C244.8,567.5,243.4,567.3,242.6,566.3"/>
-					<path class="st1" d="M251.3,580.7c-0.8-1-0.6-2.4,0.4-3.1l11.9-9.4c1-0.8,2.4-0.6,3.1,0.4s0.6,2.4-0.4,3.1l-11.9,9.4
-						C253.5,581.9,252.1,581.7,251.3,580.7"/>
+					<path class="st1" d="M240.8,566.3c-0.8-1-0.6-2.4,0.4-3.1l14.1-11c1-0.8,2.4-0.6,3.1,0.4c0.8,1,0.6,2.4-0.4,3.1l-14.1,11
+						C242.9,567.5,241.5,567.3,240.8,566.3"/>
+					<path class="st1" d="M249.4,580.7c-0.8-1-0.6-2.4,0.4-3.1l11.9-9.4c1-0.8,2.4-0.6,3.1,0.4c0.8,1,0.6,2.4-0.4,3.1l-11.9,9.4
+						C251.6,581.9,250.2,581.7,249.4,580.7"/>
 				</g>
 			</g>
 			<g>
-				<path class="st1" d="M528,519.4v2.7l-8.8,12.6l-18.2,20.7l-23.2,22.8l-22.1,17.3l-17.3,8.5l-19.8-7.8l2.7-11.7l38.5-93.7
-					l49-37.3l20.7,29.3L528,519.4z"/>
+				<path class="st1" d="M526.1,519.4v2.7l-8.8,12.6L499,555.4l-23.2,22.8l-22.1,17.3l-17.3,8.5l-19.8-7.8l2.7-11.7l38.5-93.7
+					l49-37.3l20.7,29.3L526.1,519.4z"/>
 				<g>
-					<path class="st1" d="M461.3,566.3c0.8-1,0.6-2.4-0.4-3.1l-14.1-11c-1-0.8-2.4-0.6-3.1,0.4c-0.8,1-0.6,2.4,0.4,3.1l14.1,11
-						C459.1,567.5,460.5,567.3,461.3,566.3"/>
-					<path class="st1" d="M452.6,580.7c0.8-1,0.6-2.4-0.4-3.1l-11.9-9.4c-1-0.8-2.4-0.6-3.1,0.4c-0.8,1-0.6,2.4,0.4,3.1l11.9,9.4
-						C450.5,581.9,451.9,581.7,452.6,580.7"/>
+					<path class="st1" d="M459.4,566.3c0.8-1,0.6-2.4-0.4-3.1l-14.1-11c-1-0.8-2.4-0.6-3.1,0.4c-0.8,1-0.6,2.4,0.4,3.1l14.1,11
+						C457.3,567.5,458.7,567.3,459.4,566.3"/>
+					<path class="st1" d="M450.8,580.7c0.8-1,0.6-2.4-0.4-3.1l-11.9-9.4c-1-0.8-2.4-0.6-3.1,0.4s-0.6,2.4,0.4,3.1l11.9,9.4
+						C448.6,581.9,450,581.7,450.8,580.7"/>
 				</g>
 			</g>
 		</g>
 		<g id="Cheeks_Stalker-Large">
 			<g>
-				<path class="st1" d="M421.2,584.5l-9.3-2.5l45.9-131.7l1.8,6.1v34.4L421.2,584.5z"/>
-				<path class="st1" d="M459.7,490.7l-1.8-40.5l18.6-10l31.4-21.3l27.8-24.6l2.9-3.4l-29.7,62.5L459.7,490.7z"/>
-				<path class="st1" d="M554.1,517.8l-45.5-64.3l29.7-62.5l5.3-6.2L554.1,517.8z"/>
-				<path class="st1" d="M397.8,684.8l-1.7,0.5L411.9,582l9.3,2.5L397.8,684.8z"/>
+				<path class="st1" d="M419.3,584.5L410,582l45.9-131.7l1.8,6.1v34.4L419.3,584.5z"/>
+				<path class="st1" d="M457.8,490.7l-1.8-40.5l18.6-10l31.4-21.3l27.8-24.6l2.9-3.4l-29.7,62.5L457.8,490.7z"/>
+				<path class="st1" d="M552.3,517.8l-45.5-64.3l29.7-62.5l5.3-6.2L552.3,517.8z"/>
+				<path class="st1" d="M395.9,684.8l-1.7,0.5L410,582l9.3,2.5L395.9,684.8z"/>
 			</g>
 			<g>
-				<path class="st1" d="M149.8,517.8l45.5-64.3l-29.7-62.5l-5.3-6.2L149.8,517.8z"/>
-				<path class="st1" d="M282.7,584.5l9.3-2.5l-45.9-131.7l-1.8,40.5L282.7,584.5z"/>
-				<path class="st1" d="M244.3,490.7l1.8-40.5l-18.6-10l-31.4-21.3l-27.8-24.6l-2.9-3.4l29.7,62.5L244.3,490.7z"/>
-				<path class="st1" d="M306.1,684.8l1.7,0.5L292,582l-9.3,2.5L306.1,684.8z"/>
+				<path class="st1" d="M147.9,517.8l45.5-64.3l-29.7-62.5l-5.3-6.2L147.9,517.8z"/>
+				<path class="st1" d="M280.9,584.5l9.3-2.5l-45.9-131.7l-1.8,40.5L280.9,584.5z"/>
+				<path class="st1" d="M242.4,490.7l1.8-40.5l-18.6-10l-31.4-21.3l-27.8-24.6l-2.9-3.4l29.7,62.5L242.4,490.7z"/>
+				<path class="st1" d="M304.3,684.8l1.7,0.5L290.1,582l-9.3,2.5L304.3,684.8z"/>
 			</g>
 		</g>
-		<path id="Visor_Stalker-Large" class="st1" d="M370.9,687.5H333l-4.1-273.1c0,0-39.7-8.3-40.8-8.3c-1.1,0-55.5-12.6-55.5-12.6
+		<path id="Visor_Stalker-Large" class="st1" d="M369.1,687.5h-37.9l-4.1-273.1c0,0-39.7-8.3-40.8-8.3s-55.5-12.6-55.5-12.6
 			l-48-16.4l-16-8.1l1.1-14.5l46.3,7.5l57.4,7.3l53.8,3.4l22,1.5h5.5l22-1.5l53.8-3.4l57.4-7.3l46.3-7.5l1.1,14.5l-16,8.1l-48,16.4
-			c0,0-54.4,12.6-55.5,12.6c-1.1,0-40.8,8.3-40.8,8.3L370.9,687.5z"/>
+			c0,0-54.4,12.6-55.5,12.6c-1.1,0-40.8,8.3-40.8,8.3L369.1,687.5z"/>
 		<g id="Eyes_Stalker-Large">
-			<path class="st1" d="M539.4,328.8c0,0-5.8-10.9-9.6-15.8c-5-6.5-12.9-15.9-20.3-23.1c-10.5-10.2-30.2-24.4-42.9-38.3
+			<path class="st1" d="M537.5,328.8c0,0-5.8-10.9-9.6-15.8c-5-6.5-12.9-15.9-20.3-23.1c-10.5-10.2-30.2-24.4-42.9-38.3
 				c-12.6-13.9-26.6-34.3-33.3-45.4c-3.8-6.4-5.9-17.3-6.8-21.4c-0.2-1.1,1.9-2.8,1.9-2.8s-22.5-9.3-30.3-11.1
 				c-9.5-2.2-34.6-5.1-34.6-5.1l-1,105.4l13,41.8l0.4,13.2l-23.9,0.4l-23.9-0.4l0.4-13.2l13-41.8l0.5-105.5c0,0-26.3,3-36.1,5.1
 				c-7.8,1.7-30.3,11.1-30.3,11.1s2.1,1.7,1.9,2.8c-0.8,4-2.9,15-6.8,21.4c-6.7,11.1-20.7,31.5-33.3,45.4
 				c-12.7,13.9-32.4,28.1-42.9,38.3c-7.3,7.1-15.3,16.6-20.3,23.1c-3.8,4.9-9.6,15.8-9.6,15.8l-6.4,51.9l2.1,4.1l8.1,9.6l27.8,24.6
-				l31.4,21.3l18.6,10L292,582l15.8,103.3l6.8,2.1h74.6l6.8-2.1L411.9,582l45.9-131.7l18.6-10l31.4-21.3l27.8-24.6l8.1-9.6l2.1-4.1
-				L539.4,328.8 M370.9,687.5H333l-4.1-273.1c0,0-39.7-8.3-40.8-8.3c-1.1,0-55.5-12.6-55.5-12.6l-48-16.4l-16-8.1l1.1-14.5l46.3,7.5
+				l31.4,21.3l18.6,10L290.1,582l15.8,103.3l6.8,2.1h74.6l6.8-2.1L410,582l45.9-131.7l18.6-10l31.4-21.3l27.8-24.6l8.1-9.6l2.1-4.1
+				L537.5,328.8 M369.1,687.5h-37.9l-4.1-273.1c0,0-39.7-8.3-40.8-8.3s-55.5-12.6-55.5-12.6l-48-16.4l-16-8.1l1.1-14.5l46.3,7.5
 				l57.4,7.3l53.8,3.4l22,1.5h5.5l22-1.5l53.8-3.4l57.4-7.3l46.3-7.5l1.1,14.5l-16,8.1l-48,16.4c0,0-54.4,12.6-55.5,12.6
-				c-1.1,0-40.8,8.3-40.8,8.3L370.9,687.5"/>
-			<path class="st1" d="M387.4,343.7h-70.8l26.9,8.1v-4.1h17v4.1L387.4,343.7z"/>
-			<path class="st1" d="M270.7,189.9l3.4-6.7l1.5-1.1l1.9,2.8l-0.6,2.9L270.7,189.9z"/>
-			<path class="st1" d="M433.2,189.9l-3.4-6.7l-1.5-1.1c0,0-1.7,1.8-1.9,2.8c-0.1,1,1,3.3,1,3.3L433.2,189.9z"/>
+				c-1.1,0-40.8,8.3-40.8,8.3L369.1,687.5"/>
+			<path class="st1" d="M385.5,343.7h-70.8l26.9,8.1v-4.1h17v4.1L385.5,343.7z"/>
+			<path class="st1" d="M268.8,189.9l3.4-6.7l1.5-1.1l1.9,2.8l-0.6,2.9L268.8,189.9z"/>
+			<path class="st1" d="M431.4,189.9l-3.4-6.7l-1.5-1.1c0,0-1.7,1.8-1.9,2.8c-0.1,1,1,3.3,1,3.3L431.4,189.9z"/>
 		</g>
 		<g id="Accents_Stalker-Large_Toggle">
 			<g id="Accent-2_Stalker-Large">
-				<path class="st1" d="M325.5,237.2c-0.2-0.6,0-5.6,0-5.6h16.2l0,9L325.5,237.2z"/>
-				<path class="st1" d="M324,219.5v-3.6l17.8-1.3l0,8.5L324,219.5z"/>
-				<path class="st1" d="M323,203.9v-3.2l18.9-1.6l0,7.5L323,203.9z"/>
-				<path class="st1" d="M378.4,237.2c0.2-0.6,0-5.6,0-5.6h-15.5v8.9L378.4,237.2z"/>
-				<path class="st1" d="M379.9,219.5v-3.6l-17-1.1l-0.1,8.1L379.9,219.5z"/>
-				<path class="st1" d="M380.9,203.9v-3.2l-17.8-1.5l-0.1,7.2L380.9,203.9z"/>
+				<path class="st1" d="M323.7,237.2c-0.2-0.6,0-5.6,0-5.6h16.2l0,9L323.7,237.2z"/>
+				<path class="st1" d="M322.2,219.5v-3.6l17.8-1.3l0,8.5L322.2,219.5z"/>
+				<path class="st1" d="M321.2,203.9v-3.2l18.9-1.6l0,7.5L321.2,203.9z"/>
+				<path class="st1" d="M376.5,237.2c0.2-0.6,0-5.6,0-5.6H361v8.9L376.5,237.2z"/>
+				<path class="st1" d="M378,219.5v-3.6l-17-1.1l-0.1,8.1L378,219.5z"/>
+				<path class="st1" d="M379,203.9v-3.2l-17.8-1.5l-0.1,7.2L379,203.9z"/>
 			</g>
 			<g id="Accent-1_Stalker-Large">
-				<path class="st1" d="M444.9,333.9l-12.3-5.1v40.1l13-1.6L444.9,333.9z"/>
-				<path class="st1" d="M467,343.9l-9.2-3.2v25l9.7-1.2L467,343.9z"/>
+				<path class="st1" d="M443,333.9l-12.3-5.1v40.1l13-1.6L443,333.9z"/>
+				<path class="st1" d="M465.1,343.9l-9.2-3.2v25l9.7-1.2L465.1,343.9z"/>
 			</g>
 		</g>
 	</g>
 </g>
 <g id="Helmet_Stalker-Medium">
 	<g id="Left-Earcap_Stalker-Medium_Toggle">
-		<path id="Antenna_Left_Stalker-Medium_Option" class="st0" d="M562,361.1L540.6,37.8c0-10.9-7.8-10.1-7.6,0.8l16.9,314.9
-			L562,361.1z"/>
+		<g id="Sub-Antenna_Left_Stalker-Medium_Option">
+			<g id="Shaft_Sub-Antenna_Left_Stalker-Medium">
+				<path class="st0" d="M546.3,285.5l-2-244.2h-5.6l-2,244.2H546.3z"/>
+				<path class="st0" d="M546.7,63.2l-2.2-15.1l-3,0l-3,0l-2.2,15.1H546.7z"/>
+			</g>
+			<g id="Base_Sub-Antenna_Left_Stalker-Medium">
+				<path class="st0" d="M525.9,285.5h30.9c0,0,6.6,80.8-15.2,80.8S525.9,285.5,525.9,285.5z"/>
+				<path class="st0" d="M549.9,285.5l-3.5-6.9l-4.9,0l-4.9,0l-3.5,6.9H549.9z"/>
+			</g>
+		</g>
+		<g id="Main-Antenna_Left_Stalker-Medium_Option">
+			<path id="Shaft_Main-Antenna_Left_Stalker-Medium" class="st0" d="M566.9,278.8l-2.8-268.7c0,0,0.2-7.1-3.9-7.1s-3.9,7.1-3.9,7.1
+				l-2.8,268.7H566.9z"/>
+			<g id="Base_Main-Antenna_Left_Stalker-Medium">
+				<path class="st0" d="M540.8,321.1h38.6c0,0,8.2,90.5-19,90.5C533.2,411.6,540.8,321.1,540.8,321.1z"/>
+				<rect x="546.7" y="316.7" class="st0" width="27" height="4.4"/>
+				<path class="st0" d="M575.8,316.7l-6.5-37.9l-9,0.1l-9-0.1l-6.5,37.9H575.8z"/>
+				<rect x="558.1" y="285.3" class="st0" width="4.3" height="26.5"/>
+				<path class="st0" d="M550.2,284.3l4.3,0.6l-4.2,26.2l-4.3-0.6L550.2,284.3z"/>
+				<path class="st0" d="M570.2,284.3l-4.3,0.6l4.2,26.2l4.3-0.6L570.2,284.3z"/>
+			</g>
+		</g>
 		<g id="Sensor-Stalk_Left_Stalker-Medium_Option">
 			<g id="Sensor_Left_Sensor-Stalk_Stalker-Medium">
-				<path class="st0" d="M606,429.4l43-89.4l-61.4,5.5l6.9,84.9L606,429.4z"/>
-				<path class="st0" d="M565.6,95.3l78.9,190.2l-61.4,5L565.6,95.3z"/>
+				<path class="st0" d="M604.4,427.4l42.2-89.8l-61.3,6l7.6,84.8L604.4,427.4z"/>
+				<path class="st0" d="M561,93.7l80.6,189.5l-61.4,5.5L561,93.7z"/>
 			</g>
 			<g id="Shaft_Left_Sensor-Stalk_Stalker-Medium">
-				<path class="st0" d="M655.6,284.6L562.8,61.5l2.9,33.8l78.9,190.2l-52.4,4.3l1,12.2l63.5-5.1L655.6,284.6z"/>
-				<path class="st0" d="M660,338.9l-1-12.2l-63.5,5.1l1,12.2l52.5-4.3L606,429.4l11-0.9L660,338.9z"/>
-				<path class="st0" d="M572,264.2l17-14.1l9.1,111.8l-18,1.5L572,264.2z"/>
-				<path class="st0" d="M574.4,363.8l26.1-2.1l2,24.4l-26.1,2.1L574.4,363.8z"/>
-				<path class="st0" d="M569.9,359.9l4.2-0.3l2.9,35.4l-4.2,0.3L569.9,359.9z"/>
+				<path class="st0" d="M652.7,282.1L557.8,59.9l3.2,33.8l80.6,189.5l-52.4,4.7l1.1,12.2l63.4-5.7L652.7,282.1z"/>
+				<path class="st0" d="M657.5,336.4l-1.1-12.2l-63.4,5.7l1.1,12.2l52.5-4.7l-42.3,90l10.9-1L657.5,336.4z"/>
+				<path class="st0" d="M568.8,262.5l16.8-14.2L595.7,360l-18,1.6L568.8,262.5z"/>
+				<path class="st0" d="M572.2,362.1l26.1-2.4l2.2,24.4l-26.1,2.4L572.2,362.1z"/>
+				<path class="st0" d="M567.6,358.3l4.2-0.4l3.2,35.4l-4.2,0.4L567.6,358.3z"/>
 			</g>
 		</g>
 		<g id="Range-Finder_Left_Stalker-Medium_Option">
-			<path id="Shaft_Left_Range-Finder_Stalker-Medium" class="st0" d="M550.5,332.6l10.8-1L538.1,78.8l-10.8,1L550.5,332.6z"/>
-			<g id="Finder_Left_Range-Finder_Stalker-Medium">
-				<path id="Bottom_Left_Range-Finder_Stalker-Medium" class="st1" d="M557.9,55.2L546.8,78l-26.6,2.4L503.8,71l-55.2,5.1L439.8,66
-					L557.9,55.2z"/>
-				<path id="Top_Left_Range-Finder_Stalker-Medium" class="st1" d="M568.3,54.2L430.2,66.9l-0.7-7.2l143.7-13.2L568.3,54.2z"/>
+			<path id="Shaft_Left_Range-Finder_Stalker-Medium" class="st0" d="M543.7,75.1l-11.5,0.7L549.5,364h11.8L543.7,75.1z"/>
+			<path id="Finder_Left_Range-Finder_Stalker-Medium" class="st0" d="M454.3,51.9h64l-2.5-7.9l-74.8-7L454.3,51.9"/>
+			<g id="Cover_Left_Range-Finder_Stalker-Medium">
+				<path class="st0" d="M552.9,63l-30.4,2l-6.8-21l-80.4-7.5l-1.6-8.2L548.5,24l11.2,14.1L552.9,63"/>
+				<path class="st0" d="M544.7,63.5l-15.1,1l0.7,11.5l15.1-1L544.7,63.5"/>
 			</g>
 		</g>
 		<g id="Ear-Cap_Left_Stalker-Medium">
-			<path class="st0" d="M540.9,303l25.8,17.8l10.1,111.7l-22.2,22.1L540.9,303z"/>
-			<path class="st0" d="M552.2,375.4c-0.1-1.2,0.8-2.2,2-2.3l10.4-0.9c1.2-0.1,2.2,0.8,2.3,2c0.1,1.2-0.8,2.2-2,2.3l-10.4,0.9
-				C553.3,377.4,552.3,376.6,552.2,375.4z"/>
-		</g>
-		<g id="No-Device_Left_Stalker-Medium_Option">
+			<path class="st0" d="M539.8,303l25.8,17.8l10.1,111.7l-22.2,22.1L539.8,303z"/>
+			<path class="st0" d="M551.1,375.4c-0.1-1.2,0.8-2.2,2-2.3l10.4-0.9c1.2-0.1,2.2,0.8,2.3,2s-0.8,2.2-2,2.3l-10.4,0.9
+				C552.2,377.4,551.2,376.6,551.1,375.4z"/>
 		</g>
 	</g>
 	<g id="Right-Earcap_Stalker-Medium_Toggle">
-		<path id="Antenna_Right_Stalker-Medium_Option" class="st0" d="M142,361.1l21.5-323.3c0-10.9,7.8-10.1,7.6,0.8l-16.9,314.9
-			L142,361.1z"/>
+		<g id="Sub-Antenna_Right_Stalker-Medium_Option">
+			<g id="Shaft_Sub-Antenna_Right_Stalker-Medium">
+				<path class="st0" d="M156.3,285.5l2-244.2h5.6l2,244.2H156.3z"/>
+				<path class="st0" d="M155.9,63.2l2.2-15.1l3,0l3,0l2.2,15.1H155.9z"/>
+			</g>
+			<g id="Base_Sub-Antenna_Right_Stalker-Medium">
+				<path class="st0" d="M176.6,285.5h-30.9c0,0-6.6,80.8,15.2,80.8S176.6,285.5,176.6,285.5z"/>
+				<path class="st0" d="M152.7,285.5l3.5-6.9l4.9,0l4.9,0l3.5,6.9H152.7z"/>
+			</g>
+		</g>
+		<g id="Main-Antenna_Right_Stalker-Medium_Option">
+			<path id="Shaft_Main-Antenna_Right_Stalker-Medium" class="st0" d="M135.7,278.8l2.8-268.7c0,0-0.2-7.1,3.9-7.1
+				c4,0,3.9,7.1,3.9,7.1l2.8,268.7H135.7z"/>
+			<g id="Base_Main-Antenna_Right_Stalker-Medium">
+				<path class="st0" d="M161.7,321.1h-38.6c0,0-8.2,90.5,19,90.5C169.4,411.6,161.7,321.1,161.7,321.1z"/>
+				<rect x="128.9" y="316.7" class="st0" width="27" height="4.4"/>
+				<path class="st0" d="M126.8,316.7l6.5-37.9l9,0.1l9-0.1l6.5,37.9H126.8z"/>
+				<rect x="140.2" y="285.3" class="st0" width="4.3" height="26.5"/>
+				<path class="st0" d="M152.3,284.3l-4.3,0.6l4.2,26.2l4.3-0.6L152.3,284.3z"/>
+				<path class="st0" d="M132.4,284.3l4.3,0.6l-4.2,26.2l-4.3-0.6L132.4,284.3z"/>
+			</g>
+		</g>
 		<g id="Sensor-Stalk_Right_Stalker-Medium_Option">
 			<g id="Sensor_Right_Sensor-Stalk_Stalker-Medium">
-				<path class="st0" d="M98,429.4L55,340l61.4,5.5l-6.9,84.9L98,429.4z"/>
-				<path class="st0" d="M138.4,95.3L59.5,285.5l61.4,5L138.4,95.3z"/>
+				<path class="st0" d="M98.2,427.4L56,337.6l61.3,6l-7.6,84.8L98.2,427.4z"/>
+				<path class="st0" d="M141.6,93.7L60.9,283.1l61.4,5.5L141.6,93.7z"/>
 			</g>
 			<g id="Shaft_Right_Sensor-Stalk_Stalker-Medium">
-				<path class="st0" d="M48.4,284.6l92.9-223.1l-2.9,33.8L59.5,285.5l52.4,4.3l-1,12.2l-63.5-5.1L48.4,284.6z"/>
-				<path class="st0" d="M44,338.9l1-12.2l63.5,5.1l-1,12.2L55,339.8L98,429.4l-11-0.9L44,338.9z"/>
-				<path class="st0" d="M132.1,264.2l-17-14.1l-9.1,111.8l18,1.5L132.1,264.2z"/>
-				<path class="st0" d="M129.6,363.8l-26.1-2.1l-2,24.4l26.1,2.1L129.6,363.8z"/>
-				<path class="st0" d="M134.2,359.9l-4.2-0.3l-2.9,35.4l4.2,0.3L134.2,359.9z"/>
+				<path class="st0" d="M49.9,282.1l94.9-222.2l-3.2,33.8L60.9,283.1l52.4,4.7l-1.1,12.2l-63.4-5.7L49.9,282.1z"/>
+				<path class="st0" d="M45,336.4l1.1-12.2l63.4,5.7l-1.1,12.2L56,337.4l42.3,90l-10.9-1L45,336.4z"/>
+				<path class="st0" d="M133.7,262.5l-16.8-14.2L106.8,360l18,1.6L133.7,262.5z"/>
+				<path class="st0" d="M130.4,362.1l-26.1-2.4l-2.2,24.4l26.1,2.4L130.4,362.1z"/>
+				<path class="st0" d="M135,358.3l-4.2-0.4l-3.2,35.4l4.2,0.4L135,358.3z"/>
 			</g>
 		</g>
 		<g id="Range-Finder_Right_Stalker-Medium_Option">
-			<path id="Shaft_Right_Range-Finder_Stalker-Medium" class="st0" d="M153.2,332.6l-10.8-1l23.2-252.8l10.8,1L153.2,332.6z"/>
-			<g id="Finder_Right_Range-Finder_Stalker-Medium">
-				<path id="Bottom_Right_Range-Finder_Stalker-Medium" class="st1" d="M145.9,55.2L156.9,78l26.6,2.4l16.3-9.4l55.2,5.1L264,66
-					L145.9,55.2z"/>
-				<path id="Top_Right_Range-Finder_Stalker-Medium" class="st1" d="M135.5,54.2l138.1,12.7l0.7-7.2L130.5,46.5L135.5,54.2z"/>
+			<path id="Shaft_Right_Range-Finder_Stalker-Medium" class="st0" d="M158.8,75.1l11.5,0.7L153,364h-11.8L158.8,75.1z"/>
+			<path id="Finder_Right_Range-Finder_Stalker-Medium" class="st0" d="M248.3,51.9h-64l2.5-7.9l74.8-7L248.3,51.9"/>
+			<g id="Cover_Right_Range-Finder_Stalker-Medium">
+				<path class="st0" d="M149.7,63l30.4,2l6.8-21l80.4-7.5l1.6-8.2L154.1,24l-11.2,14.1L149.7,63"/>
+				<path class="st0" d="M157.8,63.5l15.1,1L172.2,76l-15.1-1L157.8,63.5"/>
 			</g>
 		</g>
 		<g id="Ear-Cap_Right_Stalker-Medium">
-			<path class="st0" d="M162.8,303l-25.8,17.8l-10.1,111.7l22.2,22.1L162.8,303z"/>
+			<path class="st0" d="M162.7,303l-25.8,17.8l-10.1,111.7l22.2,22.1L162.7,303z"/>
 			<path class="st0" d="M151.5,375.4c0.1-1.2-0.8-2.2-2-2.3l-10.4-0.9c-1.2-0.1-2.2,0.8-2.3,2c-0.1,1.2,0.8,2.2,2,2.3l10.4,0.9
-				C150.4,377.4,151.4,376.6,151.5,375.4z"/>
-		</g>
-		<g id="No-Device_Right_Stalker-Medium_Option">
+				C150.3,377.4,151.4,376.6,151.5,375.4z"/>
 		</g>
 	</g>
 	<g id="Helmet_Pieces_Stalker-Medium">
@@ -541,6 +698,49 @@
 </g>
 <g id="Helmet_Gunslinger">
 	<g id="Left-Earcap_Gunslinger_Toggle">
+		<g id="Sub-Antenna_Left_Gunslinger_Option">
+			<g id="Shaft_Sub-Antenna_Left_Gunslinger">
+				<path class="st0" d="M554.6,334.1l-2-244.2H547l-2,244.2H554.6z"/>
+				<path class="st0" d="M555,111.8l-2.2-15.1l-3,0l-3,0l-2.2,15.1H555z"/>
+			</g>
+			<g id="Base_Sub-Antenna_Left_Gunslinger">
+				<path class="st0" d="M534.3,334.1h30.9c0,0,6.6,80.8-15.2,80.8C528.1,414.9,534.3,334.1,534.3,334.1z"/>
+				<path class="st0" d="M558.2,334.1l-3.5-6.9l-4.9,0l-4.9,0l-3.5,6.9H558.2z"/>
+			</g>
+		</g>
+		<g id="Main-Antenna_Left_Gunslinger_Option">
+			<path id="Shaft_Main-Antenna_Left_Gunslinger" class="st0" d="M579.2,282.8l-2.8-268.7c0,0,0.2-7.1-3.9-7.1s-3.9,7.1-3.9,7.1
+				l-2.8,268.7H579.2z"/>
+			<g id="Base_Main-Antenna_Left_Gunslinger">
+				<path class="st0" d="M553.1,325.1h38.6c0,0,8.2,90.5-19,90.5C545.5,415.6,553.1,325.1,553.1,325.1z"/>
+				<rect x="559" y="320.7" class="st0" width="27" height="4.4"/>
+				<path class="st0" d="M588.1,320.7l-6.5-37.9l-9,0.1l-9-0.1l-6.5,37.9H588.1z"/>
+				<rect x="570.4" y="289.3" class="st0" width="4.3" height="26.5"/>
+				<path class="st0" d="M562.5,288.3l4.3,0.6l-4.2,26.2l-4.3-0.6L562.5,288.3z"/>
+				<path class="st0" d="M582.5,288.3l-4.3,0.6l4.2,26.2l4.3-0.6L582.5,288.3z"/>
+			</g>
+		</g>
+		<g id="Sensor-Stalk_Left_Gunslinger_Option">
+			<g id="Sensor_Left_Sensor-Stalk_Gunslinger">
+				<path class="st0" d="M596,443.7l50.1-85.7l-61.6,0.5v85.2H596z"/>
+				<path class="st0" d="M582.7,107.5L646,303.4h-61.6L582.7,107.5z"/>
+			</g>
+			<g id="Shaft_Left_Sensor-Stalk_Gunslinger">
+				<path class="st0" d="M657.1,303.4L582.6,73.6l0.1,33.9L646,303.4h-52.6v12.3h63.7V303.4z"/>
+				<path class="st0" d="M657.1,357.9v-12.3h-63.7v12.3h52.7L596,443.7h11L657.1,357.9z"/>
+				<path class="st0" d="M575.4,276.4l18-12.7v112.1h-18V276.4z"/>
+				<rect x="569.7" y="375.8" class="st0" width="26.2" height="24.5"/>
+				<rect x="565.5" y="371.6" class="st0" width="4.2" height="35.5"/>
+			</g>
+		</g>
+		<g id="Range-Finder_Left_Gunslinger_Option">
+			<path id="Shaft_Left_Range-Finder_Gunslinger" class="st0" d="M538.2,75.1l-11.5,0.7L544,364h11.8L538.2,75.1z"/>
+			<path id="Finder_Left_Range-Finder_Gunslinger" class="st0" d="M448.7,51.9h64l-2.5-7.9l-74.8-7L448.7,51.9"/>
+			<g id="Cover_Left_Range-Finder_Gunslinger">
+				<path class="st0" d="M547.4,63l-30.4,2l-6.8-21l-80.4-7.5l-1.6-8.2L542.9,24l11.2,14.1L547.4,63"/>
+				<path class="st0" d="M539.2,63.5l-15.1,1l0.7,11.5l15.1-1L539.2,63.5"/>
+			</g>
+		</g>
 		<g id="Ear-Cap_Left_Gunslinger">
 			<path class="st0" d="M564,409.1l-7,3l-1.5,7.3h13.5L564,409.1z"/>
 			<path class="st0" d="M567.9,349.5l-4.4-9.5l-12.9-3.5v31h17.3V349.5z"/>
@@ -554,33 +754,51 @@
 			<path class="st0" d="M567.2,428.1l-3.7-3.3h-9.3l-3.6,0.5l-4.7,4.4L567.2,428.1z"/>
 			<path class="st0" d="M550.6,342.1l-10.1-0.8l0.2,8.2l5,80.2l4.9-4.4V342.1z"/>
 		</g>
-		<path id="Antenna_Left_Gunslinger_Option" class="st0" d="M562.1,339.7l-4.7-323.4c0.5-10.9-7.3-10.4-7.6,0.4l2.5,320.3
-			L562.1,339.7z"/>
-		<g id="Sensor-Stalk_Left_Gunslinger_Option">
-			<g id="Sensor_Left_Sensor-Stalk_Gunslinger">
-				<path class="st0" d="M606.3,441l47.6-87l-61.6,2.2l2.4,85.1L606.3,441z"/>
-				<path class="st0" d="M583.5,105.3l68.9,194.1l-61.6,1.8L583.5,105.3z"/>
-			</g>
-			<g id="Shaft_Left_Sensor-Stalk_Gunslinger">
-				<path class="st0" d="M663.5,299l-81-227.6l1.1,33.9l68.9,194.1l-52.6,1.5l0.3,12.3l63.7-1.8L663.5,299z"/>
-				<path class="st0" d="M665,353.5l-0.3-12.3l-63.7,1.8l0.3,12.3l52.7-1.5L606.3,441l11-0.3L665,353.5z"/>
-				<path class="st0" d="M581,274.3l17.7-13.2l3.2,112.1l-18,0.5L581,274.3z"/>
-				<path class="st0" d="M578.2,373.9l26.2-0.7l0.7,24.5l-26.2,0.7L578.2,373.9z"/>
-				<path class="st0" d="M573.9,369.8l4.2-0.1l1,35.5l-4.2,0.1L573.9,369.8z"/>
-			</g>
-		</g>
-		<g id="Range-Finder_Left_Gunslinger_Option">
-			<path id="Shaft_Left_Range-Finder_Gunslinger" class="st0" d="M552.5,337.1l9,2.5l-1.4-253.3l-10.9,0.1L552.5,337.1z"/>
-			<g id="Finder_Left_Range-Finder_Gunslinger">
-				<path id="Bottom_Left_Range-Finder_Gunslinger" class="st1" d="M581.6,64.2l-12.8,21.9l-26.8,0.3l-15.6-10.7l-55.4,0.7l-8-10.8
-					L581.6,64.2z"/>
-				<path id="Top_Left_Range-Finder_Gunslinger" class="st1" d="M592.1,64.1l-138.6,1.8l-0.1-7.2l144.3-1.9L592.1,64.1z"/>
-			</g>
-		</g>
-		<g id="No-Device_Left_Gunslinger_Option">
-		</g>
 	</g>
 	<g id="Right-Earcap_Gunslinger_Toggle">
+		<g id="Sub-Antenna_Right_Gunslinger_Option">
+			<g id="Shaft_Sub-Antenna_Right_Gunslinger">
+				<path class="st0" d="M145.4,335.1l2-244.2h5.6l2,244.2H145.4z"/>
+				<path class="st0" d="M145,112.8l2.2-15.1l3,0l3,0l2.2,15.1H145z"/>
+			</g>
+			<g id="Base_Sub-Antenna_Right_Gunslinger">
+				<path class="st0" d="M165.7,335.1h-30.9c0,0-6.6,80.8,15.2,80.8S165.7,335.1,165.7,335.1z"/>
+				<path class="st0" d="M141.8,335.1l3.5-6.9l4.9,0l4.9,0l3.5,6.9H141.8z"/>
+			</g>
+		</g>
+		<g id="Main-Antenna_Right_Gunslinger_Option">
+			<path id="Shaft_Main-Antenna_Right_Gunslinger" class="st0" d="M120.8,282.8l2.8-268.7c0,0-0.2-7.1,3.9-7.1s3.9,7.1,3.9,7.1
+				l2.8,268.7H120.8z"/>
+			<g id="Base_Main-Antenna_Right_Gunslinger">
+				<path class="st0" d="M146.9,325.1h-38.6c0,0-8.2,90.5,19,90.5C154.5,415.6,146.9,325.1,146.9,325.1z"/>
+				<rect x="114" y="320.7" class="st0" width="27" height="4.4"/>
+				<path class="st0" d="M111.9,320.7l6.5-37.9l9,0.1l9-0.1l6.5,37.9H111.9z"/>
+				<rect x="125.3" y="289.3" class="st0" width="4.3" height="26.5"/>
+				<path class="st0" d="M137.5,288.3l-4.3,0.6l4.2,26.2l4.3-0.6L137.5,288.3z"/>
+				<path class="st0" d="M117.5,288.3l4.3,0.6l-4.2,26.2l-4.3-0.6L117.5,288.3z"/>
+			</g>
+		</g>
+		<g id="Sensor-Stalk_Right_Gunslinger_Option">
+			<g id="Sensor_Right_Sensor-Stalk_Gunslinger">
+				<path class="st0" d="M104,443.7L54,358.1l61.6,0.5v85.2H104z"/>
+				<path class="st0" d="M117.3,107.5L54,303.4h61.6L117.3,107.5z"/>
+			</g>
+			<g id="Shaft_Right_Sensor-Stalk_Gunslinger">
+				<path class="st0" d="M42.9,303.4l74.5-229.8l-0.1,33.9L54,303.4h52.6v12.3H42.9V303.4z"/>
+				<path class="st0" d="M42.9,357.9v-12.3h63.7v12.3H53.9l50.2,85.8h-11L42.9,357.9z"/>
+				<path class="st0" d="M124.6,276.4l-18-12.7v112.1h18V276.4z"/>
+				<rect x="104" y="375.8" class="st0" width="26.2" height="24.5"/>
+				<rect x="130.3" y="371.6" class="st0" width="4.2" height="35.5"/>
+			</g>
+		</g>
+		<g id="Range-Finder_Right_Gunslinger_Option">
+			<path id="Shaft_Right_Range-Finder_Gunslinger" class="st0" d="M161.8,75.1l11.5,0.7L156,364h-11.8L161.8,75.1z"/>
+			<path id="Finder_Right_Range-Finder_Gunslinger" class="st0" d="M251.3,51.9h-64l2.5-7.9l74.8-7L251.3,51.9"/>
+			<g id="Cover_Right_Range-Finder_Gunslinger">
+				<path class="st0" d="M152.6,63l30.4,2l6.8-21l80.4-7.5l1.6-8.2L157.1,24l-11.2,14.1L152.6,63"/>
+				<path class="st0" d="M160.8,63.5l15.1,1L175.1,76L160,75L160.8,63.5"/>
+			</g>
+		</g>
 		<g id="Ear-Cap_Right_Gunslinger">
 			<path class="st0" d="M136,409.3l7,3l1.5,7.3h-13.5L136,409.3z"/>
 			<path class="st0" d="M132.1,349.8l4.4-9.5l12.9-3.5v31h-17.3V349.8z"/>
@@ -593,31 +811,6 @@
 			<path class="st0" d="M145.8,425.1h-17.4l2.7-5.5h13.5L145.8,425.1z"/>
 			<path class="st0" d="M132.8,428.3l3.7-3.3h9.3l3.6,0.5l4.7,4.4L132.8,428.3z"/>
 			<path class="st0" d="M149.4,342.3l10.1-0.8l-0.2,8.2l-5,80.2l-4.9-4.4V342.3z"/>
-		</g>
-		<path id="Antenna_Right_Gunslinger_Option" class="st0" d="M137.9,339.9l4.7-323.4c-0.5-10.9,7.3-10.4,7.6,0.4l-2.5,320.3
-			L137.9,339.9z"/>
-		<g id="Sensor-Stalk_Right_Gunslinger_Option">
-			<g id="Sensor_Right_Sensor-Stalk_Gunslinger">
-				<path class="st0" d="M93.7,441.3l-47.6-87l61.6,2.2l-2.4,85.1L93.7,441.3z"/>
-				<path class="st0" d="M116.5,105.5L47.6,299.6l61.6,1.8L116.5,105.5z"/>
-			</g>
-			<g id="Shaft_Right_Sensor-Stalk_Gunslinger">
-				<path class="st0" d="M36.5,299.3l81-227.6l-1.1,33.9L47.6,299.6l52.6,1.5l-0.3,12.3l-63.7-1.8L36.5,299.3z"/>
-				<path class="st0" d="M35,353.8l0.3-12.3l63.7,1.8l-0.3,12.3L46,354.1l47.7,87.2l-11-0.3L35,353.8z"/>
-				<path class="st0" d="M119,274.6l-17.7-13.2l-3.2,112.1l18,0.5L119,274.6z"/>
-				<path class="st0" d="M121.8,374.2l-26.2-0.7l-0.7,24.5l26.2,0.7L121.8,374.2z"/>
-				<path class="st0" d="M126.1,370.1l-4.2-0.1l-1,35.5l4.2,0.1L126.1,370.1z"/>
-			</g>
-		</g>
-		<g id="Range-Finder_Right_Gunslinger_Option">
-			<path id="Shaft_Right_Range-Finder_Gunslinger" class="st0" d="M147.5,337.3l-9,2.5l1.4-253.3l10.9,0.1L147.5,337.3z"/>
-			<g id="Finder_Right_Range-Finder_Gunslinger">
-				<path id="Bottom_Right_Range-Finder_Gunslinger" class="st1" d="M118.4,64.5l12.8,21.9l26.8,0.3l15.6-10.7l55.4,0.7l8-10.8
-					L118.4,64.5z"/>
-				<path id="Top_Right_Range-Finder_Gunslinger" class="st1" d="M107.9,64.4l138.6,1.8l0.1-7.2l-144.3-1.9L107.9,64.4z"/>
-			</g>
-		</g>
-		<g id="No-Device_Right_Gunslinger_Option">
 		</g>
 	</g>
 	<g id="Helmet_Pieces_Gunslinger">
@@ -667,12 +860,6 @@
 			<rect x="548.7" y="345.5" class="st0" width="15.4" height="2.3"/>
 		</g>
 		<g id="Lear-Cap_Left_Heavy_Option">
-			<g id="Can_Lear-Cap_Left_Heavy">
-				<path class="st0" d="M578,210.5h101v168H578V210.5"/>
-				<path class="st0" d="M578,378.5h101L669,389h-81L578,378.5"/>
-				<path class="st0" d="M578,210.5h101L669,200h-81L578,210.5"/>
-				<path class="st0" d="M586.7,200h83.6v-2.5h-83.6V200"/>
-			</g>
 			<g id="Tubes_Lear-Cap_Left_Heavy">
 				<path class="st0" d="M571,464.9v14.9c10.1,6.3,21,12.8,28,21.7c4.8,6,7.8,13.2,9.6,20.6c7,29.2-8,43.8-30.3,56.4
 					c-23.7,13.4-45,21.8-68,11c-3.2-1.5-6.4,2.5-6.6,6c-0.2,3.5,2.8,5.3,6,6.6c26.4,10.5,58.2-1.2,86.2-19.9
@@ -683,7 +870,13 @@
 					c15.5,0.3,32.1,7.9,48.5,15.3c14.9,6.8,29.6,13.5,43.4,12.6c29.4-1.8,60.2-13.3,84.6-14.9c13.7-0.9,25.5,1.3,34.5,8.7
 					c8.8,7.3,15.1,19.9,17.1,40.8c0.3,2.9-1.8,5.4-4.7,5.7C631.2,204.4,628.7,202.3,628.4,199.4"/>
 			</g>
-			<g id="Accents_Lear-Cap_Left_Heavy">
+			<g id="Can_Lear-Cap_Left_Heavy">
+				<path class="st0" d="M578,210.5h101v168H578V210.5"/>
+				<path class="st0" d="M578,378.5h101L669,389h-81L578,378.5"/>
+				<path class="st0" d="M578,210.5h101L669,200h-81L578,210.5"/>
+				<path class="st0" d="M586.7,200h83.6v-2.5h-83.6V200"/>
+			</g>
+			<g id="Lear-Cap_Lear-Cap_Left_Heavy">
 				<path class="st0" d="M572.4,263.5H685v29.7H572.4V263.5"/>
 				<path class="st0" d="M516.2,583.2l5.4,3.7L505.8,610l-5.4-3.7L516.2,583.2"/>
 			</g>
@@ -696,8 +889,6 @@
 			<path class="st0" d="M605.7,165.6h-65.5v12.9h65.5v19.9c0,2.2-1.8,4-4,4c-17.8,0-88.9,0-88.9,0v-57.6c0-1.1,0.4-2.1,1.2-2.8
 				c0.8-0.8,1.8-1.2,2.8-1.2h84.9c2.2,0,4,1.8,4,4V165.6z"/>
 			<rect x="540.2" y="165.6" class="st0" width="60.1" height="12.9"/>
-		</g>
-		<g id="No-Device_Left_Heavy_Option">
 		</g>
 	</g>
 	<g id="Right-Earcap_Heavy_Toggle">
@@ -716,12 +907,6 @@
 			<rect x="136.4" y="345.5" class="st0" width="15.4" height="2.3"/>
 		</g>
 		<g id="Lear-Cap_Right_Heavy_Option">
-			<g id="Can_Lear-Cap_Right_Heavy">
-				<path class="st0" d="M122.7,210.5h-101v168h101V210.5"/>
-				<path class="st0" d="M122.7,378.5h-101l10,10.5h81L122.7,378.5"/>
-				<path class="st0" d="M122.7,210.5h-101l10-10.5h81L122.7,210.5"/>
-				<path class="st0" d="M114,200H30.4v-2.5H114V200"/>
-			</g>
 			<g id="Tubes_Lear-Cap_Right_Heavy">
 				<path class="st0" d="M129.7,464.9v14.9c-10.1,6.3-21,12.8-28,21.7c-4.8,6-7.8,13.2-9.6,20.6c-7,29.2,8,43.8,30.3,56.4
 					c23.7,13.4,45,21.8,68,11c3.2-1.5,6.4,2.5,6.6,6c0.2,3.5-2.8,5.3-6,6.6c-26.4,10.5-58.2-1.2-86.2-19.9c-20.1-13.5-32-33.7-25-63
@@ -732,7 +917,13 @@
 					c-15.5,0.3-32.1,7.9-48.5,15.3c-14.9,6.8-29.6,13.5-43.4,12.6c-29.4-1.8-60.2-13.3-84.6-14.9c-13.7-0.9-25.5,1.3-34.5,8.7
 					c-8.8,7.3-15.1,19.9-17.1,40.8c-0.3,2.9,1.8,5.4,4.7,5.7C69.4,204.4,72,202.3,72.3,199.4"/>
 			</g>
-			<g id="Accents_Lear-Cap_Right_Heavy">
+			<g id="Can_Lear-Cap_Right_Heavy">
+				<path class="st0" d="M122.7,210.5h-101v168h101V210.5"/>
+				<path class="st0" d="M122.7,378.5h-101l10,10.5h81L122.7,378.5"/>
+				<path class="st0" d="M122.7,210.5h-101l10-10.5h81L122.7,210.5"/>
+				<path class="st0" d="M114,200H30.4v-2.5H114V200"/>
+			</g>
+			<g id="Lear-Cap_Lear-Cap_Right_Heavy">
 				<path class="st0" d="M128.3,263.5H15.6v29.7h112.7V263.5"/>
 				<path class="st0" d="M184.4,583.2l-5.4,3.7l15.8,23.1l5.4-3.7L184.4,583.2"/>
 			</g>
@@ -745,8 +936,6 @@
 			<path class="st0" d="M94.3,165.6h65.5v12.9H94.3v19.9c0,2.2,1.8,4,4,4c17.8,0,88.9,0,88.9,0v-57.6c0-1.1-0.4-2.1-1.2-2.8
 				c-0.8-0.8-1.8-1.2-2.8-1.2H98.3c-2.2,0-4,1.8-4,4V165.6z"/>
 			<rect x="99.7" y="165.6" class="st0" width="60.1" height="12.9"/>
-		</g>
-		<g id="No-Device_Right_Heavy_Option">
 		</g>
 	</g>
 	<g id="Helmet_Pieces_Heavy">
@@ -1167,20 +1356,20 @@
 </g>
 <g id="Helmet_Pre-Vizsla">
 	<g id="Left-Earcap_Pre-Vizsla_Toggle">
-		<g id="Single-Secondary-Antenna_Left_Pre-Vizsla_Option">
-			<g id="Back-Antenna_Single-Secondary_Left_Pre-Vizsla">
+		<g id="Sub-Antenna_Left_Pre-Vizsla_Option">
+			<g id="Shaft_Sub-Antenna_Left_Pre-Vizsla">
 				<path class="st0" d="M564.6,340.1l-2-244.2H557l-2,244.2H564.6z"/>
 				<path class="st0" d="M565,117.8l-2.2-15.1l-3,0l-3,0l-2.2,15.1H565z"/>
 			</g>
-			<g id="Secondary-Base_Single-Secondary_Left_Pre-Vizsla">
+			<g id="Base_Sub-Antenna_Left_Pre-Vizsla">
 				<path class="st0" d="M544.3,340.1h30.9c0,0,6.6,80.8-15.2,80.8C538.1,420.9,544.3,340.1,544.3,340.1z"/>
 				<path class="st0" d="M568.2,340.1l-3.5-6.9l-4.9,0l-4.9,0l-3.5,6.9H568.2z"/>
 			</g>
 		</g>
-		<g id="Single-Main-Antenna_Left_Pre-Vizsla_Option">
-			<path id="Front-Antenna_Single-Main-Antenna_Left_Pre-Vizsla" class="st0" d="M589.2,285.8l-2.8-268.7c0,0,0.2-7.1-3.9-7.1
-				s-3.9,7.1-3.9,7.1l-2.8,268.7H589.2z"/>
-			<g id="Main-Base_Single-Main-Antenna_Left_Pre-Vizsla">
+		<g id="Main-Antenna_Left_Pre-Vizsla_Option">
+			<path id="Shaft_Main-Antenna_Left_Pre-Vizsla" class="st0" d="M589.2,285.8l-2.8-268.7c0,0,0.2-7.1-3.9-7.1s-3.9,7.1-3.9,7.1
+				l-2.8,268.7H589.2z"/>
+			<g id="Base_Main-Antenna_Left_Pre-Vizsla">
 				<path class="st0" d="M563.1,328.1h38.6c0,0,8.2,90.5-19,90.5C555.5,418.6,563.1,328.1,563.1,328.1z"/>
 				<rect x="569" y="323.7" class="st0" width="27" height="4.4"/>
 				<path class="st0" d="M598.1,323.7l-6.5-37.9l-9,0.1l-9-0.1l-6.5,37.9H598.1z"/>
@@ -1189,48 +1378,24 @@
 				<path class="st0" d="M592.5,291.3l-4.3,0.6l4.2,26.2l4.3-0.6L592.5,291.3z"/>
 			</g>
 		</g>
-		<g id="Dual-Antenna_Left_Pre-Vizsla_Option">
-			<g id="Back-Antenna_Dual-Antenna_Left_Pre-Vizsla">
-				<path class="st0" d="M564.6,340.1l-2-244.2H557l-2,244.2H564.6z"/>
-				<path class="st0" d="M565,117.8l-2.2-15.1l-3,0l-3,0l-2.2,15.1H565z"/>
-			</g>
-			<g id="Secondary-Base_Dual-Antenna_Left_Pre-Vizsla">
-				<path class="st0" d="M544.3,340.1h30.9c0,0,6.6,80.8-15.2,80.8C538.1,420.9,544.3,340.1,544.3,340.1z"/>
-				<path class="st0" d="M568.2,340.1l-3.5-6.9l-4.9,0l-4.9,0l-3.5,6.9H568.2z"/>
-			</g>
-			<path id="Front-Antenna_Dual-Antenna_Left_Pre-Vizsla" class="st0" d="M589.2,285.8l-2.8-268.7c0,0,0.2-7.1-3.9-7.1
-				s-3.9,7.1-3.9,7.1l-2.8,268.7H589.2z"/>
-			<g id="Main-Base_Dual-Antenna_Left_Pre-Vizsla">
-				<path class="st0" d="M563.1,328.1h38.6c0,0,8.2,90.5-19,90.5C555.5,418.6,563.1,328.1,563.1,328.1z"/>
-				<rect x="569" y="323.7" class="st0" width="27" height="4.4"/>
-				<path class="st0" d="M598.1,323.7l-6.5-37.9l-9,0.1l-9-0.1l-6.5,37.9H598.1z"/>
-				<rect x="580.4" y="292.3" class="st0" width="4.3" height="26.5"/>
-				<path class="st0" d="M572.5,291.3l4.3,0.6l-4.2,26.2l-4.3-0.6L572.5,291.3z"/>
-				<path class="st0" d="M592.5,291.3l-4.3,0.6l4.2,26.2l4.3-0.6L592.5,291.3z"/>
-			</g>
-		</g>
-		<path id="Ear-Cap_Left_Pre-Vizsla" class="st0" d="M528.3,499.7c2.6,3,5.2,5.5,7.6,7.5c1.1,0.9,2.1,1.7,3.1,2.4l0,0
-			c3.1,2.3,5.8,3.8,7.4,4.6c-1.6-0.8-4.3-2.3-7.4-4.6c-1-0.7-2-1.5-3.1-2.4C533.5,505.2,530.9,502.7,528.3,499.7z M548.4,512.5
-			c17.5-16.3,40-45,40-85c0-40.6-23.5-70.7-41.2-87.6c0,0.2,0.1,0.4,0.1,0.5c2.3,12.7,5.6,92.6,5.6,92.6s-10.3,8.8-24.6,21.4v0.1
-			l24.6-21.5L548.4,512.5z"/>
-		<g id="No-Device_Left_Pre-Vizsla_Option">
-		</g>
+		<path id="Ear-Cap_Left_Pre-Vizsla" class="st0" d="M548.4,512.5c17.5-16.3,40-45,40-85c0-40.6-23.5-70.7-41.2-87.6
+			c0,0.2,0.1,0.4,0.1,0.5c2.3,12.7,5.6,92.6,5.6,92.6L548.4,512.5z"/>
 	</g>
 	<g id="Right-Earcap_Pre-Vizsla_Toggle">
-		<g id="Single-Secondary-Antenna_Right_Pre-Vizsla_Option">
-			<g id="Back-Antenna_Single-Secondary_Right_Pre-Vizsla">
+		<g id="Sub-Antenna_Right_Pre-Vizsla_Option">
+			<g id="Shaft_Sub-Antenna_Right_Pre-Vizsla">
 				<path class="st0" d="M135.4,340.1l2-244.2h5.6l2,244.2H135.4z"/>
 				<path class="st0" d="M135,117.8l2.2-15.1l3,0l3,0l2.2,15.1H135z"/>
 			</g>
-			<g id="Secondary-Base_Single-Secondary_Right_Pre-Vizsla">
+			<g id="Base_Sub-Antenna_Right_Pre-Vizsla">
 				<path class="st0" d="M155.7,340.1h-30.9c0,0-6.6,80.8,15.2,80.8S155.7,340.1,155.7,340.1z"/>
 				<path class="st0" d="M131.8,340.1l3.5-6.9l4.9,0l4.9,0l3.5,6.9H131.8z"/>
 			</g>
 		</g>
-		<g id="Single-Main-Antenna_Right_Pre-Vizsla_Option">
-			<path id="Front-Antenna_Single-Main-Antenna_Right_Pre-Vizsla" class="st0" d="M110.8,285.8l2.8-268.7c0,0-0.2-7.1,3.9-7.1
-				c4,0,3.9,7.1,3.9,7.1l2.8,268.7H110.8z"/>
-			<g id="Main-Base_Single-Main-Antenna_Right_Pre-Vizsla">
+		<g id="Main-Antenna_Right_Pre-Vizsla_Option">
+			<path id="Shaft_Main-Antenna_Right_Pre-Vizsla" class="st0" d="M110.8,285.8l2.8-268.7c0,0-0.2-7.1,3.9-7.1c4,0,3.9,7.1,3.9,7.1
+				l2.8,268.7H110.8z"/>
+			<g id="Base_Main-Antenna_Right_Pre-Vizsla">
 				<path class="st0" d="M136.9,328.1H98.3c0,0-8.2,90.5,19,90.5C144.5,418.6,136.9,328.1,136.9,328.1z"/>
 				<rect x="104" y="323.7" class="st0" width="27" height="4.4"/>
 				<path class="st0" d="M101.9,323.7l6.5-37.9l9,0.1l9-0.1l6.5,37.9H101.9z"/>
@@ -1239,32 +1404,8 @@
 				<path class="st0" d="M107.5,291.3l4.3,0.6l-4.2,26.2l-4.3-0.6L107.5,291.3z"/>
 			</g>
 		</g>
-		<g id="Dual-Antenna_Right_Pre-Vizsla_Option">
-			<g id="Back-Antenna_Dual-Antenna_Right_Pre-Vizsla">
-				<path class="st0" d="M135.4,340.1l2-244.2h5.6l2,244.2H135.4z"/>
-				<path class="st0" d="M135,117.8l2.2-15.1l3,0l3,0l2.2,15.1H135z"/>
-			</g>
-			<g id="Secondary-Base_Dual-Antenna_Right_Pre-Vizsla">
-				<path class="st0" d="M155.7,340.1h-30.9c0,0-6.6,80.8,15.2,80.8S155.7,340.1,155.7,340.1z"/>
-				<path class="st0" d="M131.8,340.1l3.5-6.9l4.9,0l4.9,0l3.5,6.9H131.8z"/>
-			</g>
-			<path id="Front-Antenna_Dual-Antenna_Right_Pre-Vizsla" class="st0" d="M110.8,285.8l2.8-268.7c0,0-0.2-7.1,3.9-7.1
-				c4,0,3.9,7.1,3.9,7.1l2.8,268.7H110.8z"/>
-			<g id="Main-Base_Dual-Antenna_Right_Pre-Vizsla">
-				<path class="st0" d="M136.9,328.1H98.3c0,0-8.2,90.5,19,90.5C144.5,418.6,136.9,328.1,136.9,328.1z"/>
-				<rect x="104" y="323.7" class="st0" width="27" height="4.4"/>
-				<path class="st0" d="M101.9,323.7l6.5-37.9l9,0.1l9-0.1l6.5,37.9H101.9z"/>
-				<rect x="115.3" y="292.3" class="st0" width="4.3" height="26.5"/>
-				<path class="st0" d="M127.5,291.3l-4.3,0.6l4.2,26.2l4.3-0.6L127.5,291.3z"/>
-				<path class="st0" d="M107.5,291.3l4.3,0.6l-4.2,26.2l-4.3-0.6L107.5,291.3z"/>
-			</g>
-		</g>
-		<path id="Ear-Cap_Right_Pre-Vizsla" class="st0" d="M171.7,499.7c-2.6,3-5.2,5.5-7.6,7.5c-1.1,0.9-2.1,1.7-3.1,2.4l0,0
-			c-3.1,2.3-5.8,3.8-7.4,4.6c1.6-0.8,4.3-2.3,7.4-4.6c1-0.7,2-1.5,3.1-2.4C166.5,505.2,169.1,502.7,171.7,499.7z M151.6,512.5
-			c-17.5-16.3-40-45-40-85c0-40.6,23.5-70.7,41.2-87.6c0,0.2-0.1,0.4-0.1,0.5c-2.3,12.7-5.6,92.6-5.6,92.6s10.3,8.8,24.6,21.4v0.1
-			l-24.6-21.5L151.6,512.5z"/>
-		<g id="No-Device_Right_Pre-Vizsla_Option">
-		</g>
+		<path id="Ear-Cap_Right_Pre-Vizsla" class="st0" d="M151.6,512.5c-17.5-16.3-40-45-40-85c0-40.6,23.5-70.7,41.2-87.6
+			c0,0.2-0.1,0.4-0.1,0.5c-2.3,12.7-5.6,92.6-5.6,92.6L151.6,512.5z"/>
 	</g>
 	<g id="Helmet_Pieces_Pre-Vizsla">
 		<g id="Face-2_Pre-Vizsla">
@@ -1315,8 +1456,6 @@
 				<path class="st0" d="M565.2,387.1h3.7v31.4h-3.7V387.1"/>
 			</g>
 		</g>
-		<g id="No-Device_Left_Tracker_Option">
-		</g>
 	</g>
 	<g id="Right-Earcap_Tracker_Toggle">
 		<g id="Ear-Cap_Right_Tracker">
@@ -1336,8 +1475,6 @@
 				<path class="st0" d="M131.1,390.8h-23.2v21.7h23.2V390.8"/>
 				<path class="st0" d="M134.8,387.1h-3.7v31.4h3.7V387.1"/>
 			</g>
-		</g>
-		<g id="No-Device_Right_Tracker_Option">
 		</g>
 	</g>
 	<g id="Helmet_Pieces_Tracker">
@@ -1402,8 +1539,6 @@
 			</g>
 			<rect id="Shaft_Antenna_Left_Neo-Scout" x="558" y="103.8" class="st0" width="12.6" height="194"/>
 		</g>
-		<g id="No-Device_Left_Neo-Scout_Option">
-		</g>
 	</g>
 	<g id="Right-Earcap_Neo-Scout_Toggle">
 		<g id="Ear-Cap_Right_Neo-Scout">
@@ -1425,8 +1560,6 @@
 				</g>
 			</g>
 			<rect id="Shaft_Antenna_Right_Neo-Scout" x="129.4" y="103.8" class="st0" width="12.6" height="194"/>
-		</g>
-		<g id="No-Device_Right_Neo-Scout_Option">
 		</g>
 	</g>
 	<g id="Helmet_Pieces_Neo-Scout">
@@ -1472,68 +1605,103 @@
 </g>
 <g id="Helmet_Charismatic">
 	<g id="Left-Earcap_Charismatic_Toggle">
-		<g id="Antenna_Left_Charismatic_Option">
-			<path id="Base_Left_Antenna_Charismatic" class="st0" d="M556.5,393h14.8v15.3c0,4.4-3.6,8-8,8c-3.5,0-6.9,0-6.9,0V393z"/>
-			<path id="Shaft_Left_Antenna_Charismatic" class="st0" d="M570,393l-4.9-326.8c0.6-10.9-7.3-10.5-7.6,0.4l0.7,325.8L570,393z"/>
+		<g id="Sub-Antenna_Left_Charismatic_Option">
+			<g id="Shaft_Sub-Antenna_Left_Charismatic">
+				<path class="st0" d="M544.6,363.1l-2-244.2H537l-2,244.2H544.6z"/>
+				<path class="st0" d="M545,140.8l-2.2-15.1l-3,0l-3,0l-2.2,15.1H545z"/>
+			</g>
+			<g id="Base_Sub-Antenna_Left_Charismatic">
+				<path class="st0" d="M524.3,363.1h30.9c0,0,6.6,80.8-15.2,80.8C518.1,443.9,524.3,363.1,524.3,363.1z"/>
+				<path class="st0" d="M548.2,363.1l-3.5-6.9l-4.9,0l-4.9,0l-3.5,6.9H548.2z"/>
+			</g>
+		</g>
+		<g id="Main-Antenna_Left_Charismatic_Option">
+			<path id="Shaft_Main-Antenna_Left_Charismatic" class="st0" d="M559.2,332.8l-2.8-268.7c0,0,0.2-7.1-3.9-7.1s-3.9,7.1-3.9,7.1
+				l-2.8,268.7H559.2z"/>
+			<g id="Base_Main-Antenna_Left_Charismatic">
+				<path class="st0" d="M533.1,375.1h38.6c0,0,8.2,90.5-19,90.5C525.5,465.6,533.1,375.1,533.1,375.1z"/>
+				<rect x="539" y="370.7" class="st0" width="27" height="4.4"/>
+				<path class="st0" d="M568.1,370.7l-6.5-37.9l-9,0.1l-9-0.1l-6.5,37.9H568.1z"/>
+				<rect x="550.4" y="339.3" class="st0" width="4.3" height="26.5"/>
+				<path class="st0" d="M542.5,338.3l4.3,0.6l-4.2,26.2l-4.3-0.6L542.5,338.3z"/>
+				<path class="st0" d="M562.5,338.3l-4.3,0.6l4.2,26.2l4.3-0.6L562.5,338.3z"/>
+			</g>
 		</g>
 		<g id="Sensor-Stalk_Left_Charismatic_Option">
 			<g id="Sensor_Left_Sensor-Stalk_Charismatic">
-				<path class="st0" d="M586.6,465.2l50.1-85.7l-61.6,0.5v85.2H586.6z"/>
-				<path class="st0" d="M573.4,129l63.3,195.9H575L573.4,129z"/>
+				<path class="st0" d="M586,463.7l50.1-85.7l-61.6,0.5v85.2H586z"/>
+				<path class="st0" d="M572.7,127.5L636,323.4h-61.6L572.7,127.5z"/>
 			</g>
 			<g id="Shaft_Left_Sensor-Stalk_Charismatic">
-				<path class="st0" d="M647.7,324.9L573.2,95.1l0.1,33.9l63.3,195.9h-52.6v12.3h63.7V324.9z"/>
-				<path class="st0" d="M647.7,379.4v-12.3h-63.7v12.3h52.7l-50.2,85.8h11L647.7,379.4z"/>
-				<path class="st0" d="M566,297.9l18-12.7v112.1h-18V297.9z"/>
-				<rect x="560.4" y="397.3" class="st0" width="26.2" height="24.5"/>
-				<rect x="556.2" y="393.1" class="st0" width="4.2" height="35.5"/>
+				<path class="st0" d="M647.1,323.4L572.6,93.6l0.1,33.9L636,323.4h-52.6v12.3h63.7V323.4z"/>
+				<path class="st0" d="M647.1,377.9v-12.3h-63.7v12.3h52.7L586,463.7h11L647.1,377.9z"/>
+				<path class="st0" d="M565.4,296.4l18-12.7v112.1h-18V296.4z"/>
+				<rect x="559.7" y="395.8" class="st0" width="26.2" height="24.5"/>
+				<rect x="555.5" y="391.6" class="st0" width="4.2" height="35.5"/>
 			</g>
 		</g>
 		<g id="Range-Finder_Left_Charismatic_Option">
-			<path id="Shaft_Left_Range-Finder_Charismatic" class="st0" d="M570.1,393l-1.4-297.8l-11.6,0.1l1.2,297.7H570.1z"/>
-			<path id="Finder_Left_Range-Finder_Charismatic" class="st0" d="M579.2,96.6l-34.4-0.7l-9.8-15.8L460,74.6l-1.2-17.2l129.6-2.5
-				L579.2,96.6z"/>
-			<path id="Base_Left_Range-Finder_Charismatic" class="st0" d="M556.5,393h14.8v15.3c0,4.4-3.6,8-8,8c-3.5,0-6.9,0-6.9,0V393z"/>
+			<path id="Shaft_Left_Range-Finder_Charismatic" class="st0" d="M551.4,104.1l-11.6,0.1l2.1,288.6l11.8,0.6L551.4,104.1z"/>
+			<path id="Finder_Left_Range-Finder_Charismatic" class="st0" d="M463.3,76.2l63.9,3.4l-2.1-8.1l-74.3-10.9L463.3,76.2"/>
+			<g id="Cover_Left_Range-Finder_Charismatic">
+				<path class="st0" d="M561.2,92.5l-30.5,0.4l-5.6-21.4l-79.9-11.7l-1.1-8.3l114.8,1.8L569.3,68L561.2,92.5"/>
+				<path class="st0" d="M553,92.6l-15.1,0.2l0.1,11.5l15.1-0.2L553,92.6"/>
+			</g>
 		</g>
 		<g id="Ear-Cap_Left_Charismatic">
 			<path class="st0" d="M539,393h9.1v91.8c0,2.4-1,4.7-2.7,6.4s-4,2.7-6.4,2.7c0,0,0,0,0,0V393z"/>
 			<path class="st0" d="M548.1,393h8.4v72c0,4.6-3.8,8.4-8.4,8.4c0,0,0,0,0,0V393z"/>
 			<path class="st0" d="M556.5,393c0,0,1.9-16.8-17.4-19.9V393H556.5z"/>
 		</g>
-		<g id="No-Device_Left_Charismatic_Option">
-		</g>
 	</g>
 	<g id="Right-Earcap_Charismatic_Toggle">
-		<g id="Antenna_Right_Charismatic_Option">
-			<path id="Base_Right_Antenna_Charismatic" class="st0" d="M143,393h-14.8v15.3c0,4.4,3.6,8,8,8c3.5,0,6.9,0,6.9,0V393z"/>
-			<path id="Shaft_Right_Antenna_Charismatic" class="st0" d="M129.6,393l4.9-326.8c-0.6-10.9,7.3-10.5,7.6,0.4l-0.7,325.8
-				L129.6,393z"/>
+		<g id="Sub-Antenna_Right_Charismatic_Option">
+			<g id="Shaft_Sub-Antenna_Right_Charismatic">
+				<path class="st0" d="M155.4,363.1l2-244.2h5.6l2,244.2H155.4z"/>
+				<path class="st0" d="M155,140.8l2.2-15.1l3,0l3,0l2.2,15.1H155z"/>
+			</g>
+			<g id="Base_Sub-Antenna_Right_Charismatic">
+				<path class="st0" d="M175.7,363.1h-30.9c0,0-6.6,80.8,15.2,80.8S175.7,363.1,175.7,363.1z"/>
+				<path class="st0" d="M151.8,363.1l3.5-6.9l4.9,0l4.9,0l3.5,6.9H151.8z"/>
+			</g>
+		</g>
+		<g id="Main-Antenna_Right_Charismatic_Option">
+			<path id="Shaft_Main-Antenna_Right_Charismatic" class="st0" d="M140.8,332.8l2.8-268.7c0,0-0.2-7.1,3.9-7.1c4,0,3.9,7.1,3.9,7.1
+				l2.8,268.7H140.8z"/>
+			<g id="Base_Main-Antenna_Right_Charismatic">
+				<path class="st0" d="M166.9,375.1h-38.6c0,0-8.2,90.5,19,90.5C174.5,465.6,166.9,375.1,166.9,375.1z"/>
+				<rect x="134" y="370.7" class="st0" width="27" height="4.4"/>
+				<path class="st0" d="M131.9,370.7l6.5-37.9l9,0.1l9-0.1l6.5,37.9H131.9z"/>
+				<rect x="145.3" y="339.3" class="st0" width="4.3" height="26.5"/>
+				<path class="st0" d="M157.5,338.3l-4.3,0.6l4.2,26.2l4.3-0.6L157.5,338.3z"/>
+				<path class="st0" d="M137.5,338.3l4.3,0.6l-4.2,26.2l-4.3-0.6L137.5,338.3z"/>
+			</g>
 		</g>
 		<g id="Sensor-Stalk_Right_Charismatic_Option">
 			<g id="Sensor_Right_Sensor-Stalk_Charismatic">
-				<path class="st0" d="M112.9,465.2l-50.1-85.7l61.6,0.5v85.2H112.9z"/>
-				<path class="st0" d="M126.2,129L62.9,324.9h61.6L126.2,129z"/>
+				<path class="st0" d="M114,463.7L64,378.1l61.6,0.5v85.2H114z"/>
+				<path class="st0" d="M127.3,127.5L64,323.4h61.6L127.3,127.5z"/>
 			</g>
 			<g id="Shaft_Right_Sensor-Stalk_Charismatic">
-				<path class="st0" d="M51.8,324.9l74.5-229.8l-0.1,33.9L62.9,324.9h52.6v12.3H51.8V324.9z"/>
-				<path class="st0" d="M51.8,379.4v-12.3h63.7v12.3H62.8l50.2,85.8h-11L51.8,379.4z"/>
-				<path class="st0" d="M133.5,297.9l-18-12.7v112.1h18V297.9z"/>
-				<rect x="112.9" y="397.3" class="st0" width="26.2" height="24.5"/>
-				<rect x="139.1" y="393.1" class="st0" width="4.2" height="35.5"/>
+				<path class="st0" d="M52.9,323.4l74.5-229.8l-0.1,33.9L64,323.4h52.6v12.3H52.9V323.4z"/>
+				<path class="st0" d="M52.9,377.9v-12.3h63.7v12.3H63.9l50.2,85.8h-11L52.9,377.9z"/>
+				<path class="st0" d="M134.6,296.4l-18-12.7v112.1h18V296.4z"/>
+				<rect x="114" y="395.8" class="st0" width="26.2" height="24.5"/>
+				<rect x="140.3" y="391.6" class="st0" width="4.2" height="35.5"/>
 			</g>
 		</g>
 		<g id="Range-Finder_Right_Charismatic_Option">
-			<path id="Shaft_Right_Range-Finder_Charismatic" class="st0" d="M129.5,393l1.4-297.8l11.6,0.1L141.2,393H129.5z"/>
-			<path id="Finder_Right_Range-Finder_Charismatic" class="st0" d="M120.4,96.6l34.4-0.7l9.8-15.8l74.9-5.5l1.2-17.2l-129.6-2.5
-				L120.4,96.6z"/>
-			<path id="Base_Right_Range-Finder_Charismatic" class="st0" d="M143,393h-14.8v15.3c0,4.4,3.6,8,8,8c3.5,0,6.9,0,6.9,0V393z"/>
+			<path id="Shaft_Right_Range-Finder_Charismatic" class="st0" d="M148.8,104.1l11.6,0.1l-2.2,288.6l-11.8,0.6L148.8,104.1z"/>
+			<path id="Finder_Right_Range-Finder_Charismatic" class="st0" d="M236.9,76.2L173,79.6l2.1-8.1l74.3-10.9L236.9,76.2"/>
+			<g id="Cover_Right_Range-Finder_Charismatic">
+				<path class="st0" d="M139,92.5l30.5,0.4l5.6-21.3L255,59.8l1.1-8.3l-114.8,1.8L131,68L139,92.5"/>
+				<path class="st0" d="M147.2,92.6l15.1,0.2l-0.1,11.5l-15.1-0.2L147.2,92.6"/>
+			</g>
 		</g>
 		<g id="Ear-Cap_Right_Charismatic">
 			<path class="st0" d="M160.5,393h-9.1v91.8c0,2.4,1,4.7,2.7,6.4c1.7,1.7,4,2.7,6.4,2.7c0,0,0,0,0,0V393z"/>
 			<path class="st0" d="M151.5,393h-8.4v72c0,4.6,3.8,8.4,8.4,8.4l0,0V393z"/>
 			<path class="st0" d="M143.1,393c0,0-1.9-16.8,17.4-19.9V393H143.1z"/>
-		</g>
-		<g id="No-Device_Right_Charismatic_Option">
 		</g>
 	</g>
 	<g id="Helmet_Pieces_Charismatic">
@@ -1591,75 +1759,105 @@
 </g>
 <g id="Helmet_Assassin">
 	<g id="Left-Earcap_Assassin_Toggle">
+		<g id="Sub-Antenna_Left_Assassin_Option">
+			<g id="Shaft_Sub-Antenna_Left_Assassin">
+				<path class="st0" d="M552.6,353.1l-2-244.2H545l-2,244.2H552.6z"/>
+				<path class="st0" d="M553,130.8l-2.2-15.1l-3,0l-3,0l-2.2,15.1H553z"/>
+			</g>
+			<g id="Base_Sub-Antenna_Left_Assassin">
+				<path class="st0" d="M532.3,353.1h30.9c0,0,6.6,80.8-15.2,80.8C526.1,433.9,532.3,353.1,532.3,353.1z"/>
+				<path class="st0" d="M556.2,353.1l-3.5-6.9l-4.9,0l-4.9,0l-3.5,6.9H556.2z"/>
+			</g>
+		</g>
+		<g id="Main-Antenna_Left_Assassin_Option">
+			<path id="Shaft_Main-Antenna_Left_Assassin" class="st0" d="M569.2,322.8l-2.8-268.7c0,0,0.2-7.1-3.9-7.1s-3.9,7.1-3.9,7.1
+				l-2.8,268.7H569.2z"/>
+			<g id="Base_Main-Antenna_Left_Assassin">
+				<path class="st0" d="M543.1,365.1h38.6c0,0,8.2,90.5-19,90.5C535.5,455.6,543.1,365.1,543.1,365.1z"/>
+				<rect x="549" y="360.7" class="st0" width="27" height="4.4"/>
+				<path class="st0" d="M578.1,360.7l-6.5-37.9l-9,0.1l-9-0.1l-6.5,37.9H578.1z"/>
+				<rect x="560.4" y="329.3" class="st0" width="4.3" height="26.5"/>
+				<path class="st0" d="M552.5,328.3l4.3,0.6l-4.2,26.2l-4.3-0.6L552.5,328.3z"/>
+				<path class="st0" d="M572.5,328.3l-4.3,0.6l4.2,26.2l4.3-0.6L572.5,328.3z"/>
+			</g>
+		</g>
+		<g id="Sensor-Stalk_Left_Assassin_Option">
+			<g id="Sensor_Left_Sensor-Stalk_Assassin">
+				<path class="st0" d="M586,443.7l50.1-85.7l-61.6,0.5v85.2H586z"/>
+				<path class="st0" d="M572.7,107.5L636,303.4h-61.6L572.7,107.5z"/>
+			</g>
+			<g id="Shaft_Left_Sensor-Stalk_Assassin">
+				<path class="st0" d="M647.1,303.4L572.6,73.6l0.1,33.9L636,303.4h-52.6v12.3h63.7V303.4z"/>
+				<path class="st0" d="M647.1,357.9v-12.3h-63.7v12.3h52.7L586,443.7h11L647.1,357.9z"/>
+				<path class="st0" d="M565.4,276.4l18-12.7v112.1h-18V276.4z"/>
+				<rect x="559.7" y="375.8" class="st0" width="26.2" height="24.5"/>
+				<rect x="555.5" y="371.6" class="st0" width="4.2" height="35.5"/>
+			</g>
+		</g>
+		<g id="Range-Finder_Left_Assassin_Option">
+			<path id="Shaft_Left_Range-Finder_Assassin" class="st0" d="M538.2,75.1l-11.5,0.7L544,364h11.8L538.2,75.1z"/>
+			<path id="Finder_Left_Range-Finder_Assassin" class="st0" d="M448.7,51.9h64l-2.5-7.9l-74.8-7L448.7,51.9"/>
+			<g id="Cover_Left_Range-Finder_Assassin">
+				<path class="st0" d="M547.4,63l-30.4,2l-6.8-21l-80.4-7.5l-1.6-8.2L542.9,24l11.2,14.1L547.4,63"/>
+				<path class="st0" d="M539.2,63.5l-15.1,1l0.7,11.5l15.1-1L539.2,63.5"/>
+			</g>
+		</g>
 		<g id="Ear-Cap_Left_Assassin">
 			<path class="st0" d="M539.5,276.7c7.3,5.8,11.8,14.5,12.4,23.9c3.1,52.8,13.7,229.7,13.7,229.7l5.6,0.3l-15.4,39.8l-22.1-298.4
 				C533.6,272.1,536.3,274.2,539.5,276.7z"/>
 			<path class="st1" d="M565.6,530.3l-9.7,4"/>
 			<path class="st0" d="M549.4,418.2l9.5-0.2l0.3,6.2h-9.4L549.4,418.2z"/>
 		</g>
-		<g id="Antenna_Left_Assassin_Option">
-			<path id="Base_Left_Antenna_Assassin" class="st0" d="M554.8,349.2l14.8-0.8c0,0,0.5,8.6,0.8,15.3c0.2,4.4-3.1,8.1-7.5,8.4
-				c-3.5,0.2-6.9,0.4-6.9,0.4L554.8,349.2z"/>
-			<path id="Shaft_Left_Antenna_Assassin" class="st0" d="M568.3,348.5L545.8,22.4c0-10.9-7.8-10.1-7.6,0.8l18.3,325.9L568.3,348.5z
-				"/>
-		</g>
-		<g id="Sensor-Stalk_Left_Assassin_Option">
-			<g id="Sensor_Left_Sensor-Stalk_Assassin">
-				<path class="st0" d="M588.8,406.9l44.6-88.6l-61.5,4.3l5.3,85L588.8,406.9z"/>
-				<path class="st0" d="M554.6,72.1l75.4,191.6l-61.5,3.9L554.6,72.1z"/>
-			</g>
-			<g id="Shaft_Left_Sensor-Stalk_Assassin">
-				<path class="st0" d="M641.1,263L552.4,38.3l2.3,33.8l75.4,191.6l-52.5,3.3l0.8,12.2l63.6-4L641.1,263z"/>
-				<path class="st0" d="M644.5,317.4l-0.8-12.2l-63.6,4l0.8,12.2l52.6-3.3l-44.7,88.8l11-0.7L644.5,317.4z"/>
-				<path class="st0" d="M557.9,241.1l17.2-13.8l7,111.9l-18,1.1L557.9,241.1z"/>
-				<path class="st0" d="M558.4,340.7l26.2-1.6l1.5,24.5l-26.2,1.6L558.4,340.7z"/>
-				<path class="st0" d="M554,336.8l4.2-0.3l2.2,35.4l-4.2,0.3L554,336.8z"/>
-			</g>
-		</g>
-		<g id="Range-Finder_Left_Assassin_Option">
-			<path id="Shaft_Left_Range-Finder_Assassin" class="st0" d="M568.4,348.5l-19-297.2L537.9,52l18.8,297.1L568.4,348.5z"/>
-			<path id="Finder_Left_Range-Finder_Assassin" class="st0" d="M560,52.1l-34.4,1.3l-10.7-15.2l-75.1-1L437.5,20L566.7,9.8
-				L560,52.1z"/>
-			<path id="Base_Left_Range-Finder_Assassin" class="st0" d="M554.9,349.3l14.8-0.9c0,0,0.5,8.6,0.9,15.3c0.3,4.4-3.1,8.2-7.5,8.4
-				c-3.5,0.2-6.9,0.4-6.9,0.4L554.9,349.3z"/>
-		</g>
-		<g id="No-Device_Left_Assassin_Option">
-		</g>
 	</g>
 	<g id="Right-Earcap_Assassin_Toggle">
+		<g id="Sub-Antenna_Right_Assassin_Option">
+			<g id="Shaft_Sub-Antenna_Right_Assassin">
+				<path class="st0" d="M147.4,353.1l2-244.2h5.6l2,244.2H147.4z"/>
+				<path class="st0" d="M147,130.8l2.2-15.1l3,0l3,0l2.2,15.1H147z"/>
+			</g>
+			<g id="Base_Sub-Antenna_Right_Assassin">
+				<path class="st0" d="M167.7,353.1h-30.9c0,0-6.6,80.8,15.2,80.8S167.7,353.1,167.7,353.1z"/>
+				<path class="st0" d="M143.8,353.1l3.5-6.9l4.9,0l4.9,0l3.5,6.9H143.8z"/>
+			</g>
+		</g>
+		<g id="Main-Antenna_Right_Assassin_Option">
+			<path id="Shaft_Main-Antenna_Right_Assassin" class="st0" d="M130.8,322.8l2.8-268.7c0,0-0.2-7.1,3.9-7.1c4,0,3.9,7.1,3.9,7.1
+				l2.8,268.7H130.8z"/>
+			<g id="Base_Main-Antenna_Right_Assassin">
+				<path class="st0" d="M156.9,365.1h-38.6c0,0-8.2,90.5,19,90.5C164.5,455.6,156.9,365.1,156.9,365.1z"/>
+				<rect x="124" y="360.7" class="st0" width="27" height="4.4"/>
+				<path class="st0" d="M121.9,360.7l6.5-37.9l9,0.1l9-0.1l6.5,37.9H121.9z"/>
+				<rect x="135.3" y="329.3" class="st0" width="4.3" height="26.5"/>
+				<path class="st0" d="M147.5,328.3l-4.3,0.6l4.2,26.2l4.3-0.6L147.5,328.3z"/>
+				<path class="st0" d="M127.5,328.3l4.3,0.6l-4.2,26.2l-4.3-0.6L127.5,328.3z"/>
+			</g>
+		</g>
+		<g id="Sensor-Stalk_Right_Assassin_Option">
+			<g id="Sensor_Right_Sensor-Stalk_Assassin">
+				<path class="st0" d="M114,443.7L64,358.1l61.6,0.5v85.2H114z"/>
+				<path class="st0" d="M127.3,107.5L64,303.4h61.6L127.3,107.5z"/>
+			</g>
+			<g id="Shaft_Right_Sensor-Stalk_Assassin">
+				<path class="st0" d="M52.9,303.4l74.5-229.8l-0.1,33.9L64,303.4h52.6v12.3H52.9V303.4z"/>
+				<path class="st0" d="M52.9,357.9v-12.3h63.7v12.3H63.9l50.2,85.8h-11L52.9,357.9z"/>
+				<path class="st0" d="M134.6,276.4l-18-12.7v112.1h18V276.4z"/>
+				<rect x="114" y="375.8" class="st0" width="26.2" height="24.5"/>
+				<rect x="140.3" y="371.6" class="st0" width="4.2" height="35.5"/>
+			</g>
+		</g>
+		<g id="Range-Finder_Right_Assassin_Option">
+			<path id="Shaft_Right_Range-Finder_Assassin" class="st0" d="M161.8,75.1l11.5,0.7L156,364h-11.8L161.8,75.1z"/>
+			<path id="Finder_Right_Range-Finder_Assassin" class="st0" d="M251.3,51.9h-64l2.5-7.9l74.8-7L251.3,51.9"/>
+			<g id="Cover_Right_Range-Finder_Assassin">
+				<path class="st0" d="M152.6,63l30.4,2l6.8-21l80.4-7.5l1.6-8.2L157.1,24l-11.2,14.1L152.6,63"/>
+				<path class="st0" d="M160.8,63.5l15.1,1L175.1,76L160,75L160.8,63.5"/>
+			</g>
+		</g>
 		<g id="Ear-Cap_Right_Assassin">
 			<path class="st0" d="M160.6,276.7c-7.3,5.8-11.8,14.5-12.4,23.9c-3.1,52.8-13.7,229.7-13.7,229.7l-5.6,0.3l15.4,39.8l22.1-298.4
 				C166.5,272.1,163.8,274.2,160.6,276.7z"/>
 			<path class="st1" d="M134.5,530.3l9.7,4"/>
 			<path class="st0" d="M150.7,418.2l-9.5-0.2l-0.3,6.2h9.4L150.7,418.2z"/>
-		</g>
-		<g id="Antenna_Right_Assassin_Option">
-			<path id="Base_Right_Antenna_Assassin" class="st0" d="M145.3,349.2l-14.8-0.8c0,0-0.5,8.6-0.8,15.3c-0.2,4.4,3.1,8.1,7.5,8.4
-				c3.5,0.2,6.9,0.4,6.9,0.4L145.3,349.2z"/>
-			<path id="Shaft_Right_Antenna_Assassin" class="st0" d="M131.8,348.5l22.5-326.1c0-10.9,7.8-10.1,7.6,0.8l-18.3,325.9
-				L131.8,348.5z"/>
-		</g>
-		<g id="Sensor-Stalk_Right_Assassin_Option">
-			<g id="Sensor_Right_Sensor-Stalk_Assassin">
-				<path class="st0" d="M111.2,406.9l-44.6-88.6l61.5,4.3l-5.3,85L111.2,406.9z"/>
-				<path class="st0" d="M145.4,72.1L70,263.7l61.5,3.9L145.4,72.1z"/>
-			</g>
-			<g id="Shaft_Right_Sensor-Stalk_Assassin">
-				<path class="st0" d="M59,263l88.7-224.7l-2.3,33.8L70,263.7l52.5,3.3l-0.8,12.2l-63.6-4L59,263z"/>
-				<path class="st0" d="M55.6,317.4l0.8-12.2l63.6,4l-0.8,12.2l-52.6-3.3l44.7,88.8l-11-0.7L55.6,317.4z"/>
-				<path class="st0" d="M142.2,241.1L125,227.3l-7,111.9l18,1.1L142.2,241.1z"/>
-				<path class="st0" d="M141.6,340.7l-26.2-1.6l-1.5,24.5l26.2,1.6L141.6,340.7z"/>
-				<path class="st0" d="M146.1,336.8l-4.2-0.3l-2.2,35.4l4.2,0.3L146.1,336.8z"/>
-			</g>
-		</g>
-		<g id="Range-Finder_Right_Assassin_Option">
-			<path id="Shaft_Right_Range-Finder_Assassin" class="st0" d="M131.7,348.5l19-297.2l11.6,0.8l-18.8,297.1L131.7,348.5z"/>
-			<path id="Finder_Right_Range-Finder_Assassin" class="st0" d="M140.1,52.1l34.4,1.3l10.7-15.2l75.1-1l2.2-17.1L133.3,9.8
-				L140.1,52.1z"/>
-			<path id="Base_Right_Range-Finder_Assassin" class="st0" d="M145.2,349.3l-14.8-0.9c0,0-0.5,8.6-0.9,15.3
-				c-0.3,4.4,3.1,8.2,7.5,8.4c3.5,0.2,6.9,0.4,6.9,0.4L145.2,349.3z"/>
-		</g>
-		<g id="No-Device_Right_Assassin_Option">
 		</g>
 	</g>
 	<g id="Helmet_Pieces_Assassin">
@@ -1700,24 +1898,48 @@
 </g>
 <g id="Helmet_Shae-Vizla">
 	<g id="Left-Earcap_Shae-Vizla_Toggle">
-		<path id="Antenna_Left_Shae-Vizla_Option" class="st0" d="M547.9,404.2l-6.5-326.8c0.5-10.9-7.3-10.4-7.6,0.4l2.3,325.8
-			L547.9,404.2z"/>
+		<g id="Sub-Antenna_Left_Shae-Vizla_Option">
+			<g id="Shaft_Sub-Antenna_Left_Shae-Vizla">
+				<path class="st0" d="M531.6,283.1l-2-244.2H524l-2,244.2H531.6z"/>
+				<path class="st0" d="M532,60.8l-2.2-15.1l-3,0l-3,0l-2.2,15.1H532z"/>
+			</g>
+			<g id="Base_Sub-Antenna_Left_Shae-Vizla">
+				<path class="st0" d="M511.3,283.1h30.9c0,0,6.6,80.8-15.2,80.8C505.1,363.9,511.3,283.1,511.3,283.1z"/>
+				<path class="st0" d="M535.2,283.1l-3.5-6.9l-4.9,0l-4.9,0l-3.5,6.9H535.2z"/>
+			</g>
+		</g>
+		<g id="Main-Antenna_Left_Shae-Vizla_Option">
+			<path id="Shaft_Main-Antenna_Left_Shae-Vizla" class="st0" d="M549.2,292.8l-2.8-268.7c0,0,0.2-7.1-3.9-7.1s-3.9,7.1-3.9,7.1
+				l-2.8,268.7H549.2z"/>
+			<g id="Base_Main-Antenna_Left_Shae-Vizla">
+				<path class="st0" d="M523.1,335.1h38.6c0,0,8.2,90.5-19,90.5C515.5,425.6,523.1,335.1,523.1,335.1z"/>
+				<rect x="529" y="330.7" class="st0" width="27" height="4.4"/>
+				<path class="st0" d="M558.1,330.7l-6.5-37.9l-9,0.1l-9-0.1l-6.5,37.9H558.1z"/>
+				<rect x="540.4" y="299.3" class="st0" width="4.3" height="26.5"/>
+				<path class="st0" d="M532.5,298.3l4.3,0.6l-4.2,26.2l-4.3-0.6L532.5,298.3z"/>
+				<path class="st0" d="M552.5,298.3l-4.3,0.6l4.2,26.2l4.3-0.6L552.5,298.3z"/>
+			</g>
+		</g>
 		<g id="Sensor-Stalk_Left_Shae-Vizla_Option">
 			<g id="Sensor_Left_Sensor-Stalk_Shae-Vizla">
-				<path class="st0" d="M573.5,472.5l50.1-85.7l-61.6,0.5v85.2H573.5z"/>
-				<path class="st0" d="M560.3,136.3l63.3,195.9H562L560.3,136.3z"/>
+				<path class="st0" d="M576,471.7l50.1-85.7l-61.6,0.5v85.2H576z"/>
+				<path class="st0" d="M562.7,135.5L626,331.4h-61.6L562.7,135.5z"/>
 			</g>
 			<g id="Shaft_Left_Sensor-Stalk_Shae-Vizla">
-				<path class="st0" d="M634.7,332.2l-74.5-229.8l0.1,33.9l63.3,195.9H571v12.3h63.7V332.2z"/>
-				<path class="st0" d="M634.7,386.7v-12.3H571v12.3h52.7l-50.2,85.8h11L634.7,386.7z"/>
-				<path class="st0" d="M553,305.2l18-12.7v112.1h-18V305.2z"/>
-				<rect x="547.3" y="404.6" class="st0" width="26.2" height="24.5"/>
+				<path class="st0" d="M637.1,331.4l-74.5-229.8l0.1,33.9L626,331.4h-52.6v12.3h63.7V331.4z"/>
+				<path class="st0" d="M637.1,385.9v-12.3h-63.7v12.3h52.7L576,471.7h11L637.1,385.9z"/>
+				<path class="st0" d="M555.4,304.4l18-12.7v112.1h-18V304.4z"/>
+				<rect x="549.7" y="403.8" class="st0" width="26.2" height="24.5"/>
+				<rect x="545.5" y="399.6" class="st0" width="4.2" height="35.5"/>
 			</g>
 		</g>
 		<g id="Range-Finder_Left_Shae-Vizla_Option">
-			<path id="Shaft_Left_Range-Finder_Shae-Vizla" class="st0" d="M547.8,397.4l-4.3-299.6l-11.6,0.2l4.1,298.8L547.8,397.4z"/>
-			<path id="Finder_Left_Range-Finder_Shae-Vizla" class="st0" d="M555.3,98.4l-34.4-1.6l-9.4-16.1l-74.7-7.4L436,56.1l129.6,0.8
-				L555.3,98.4z"/>
+			<path id="Shaft_Left_Range-Finder_Shae-Vizla" class="st0" d="M542.4,100.8l-11.6,0.1l2.2,288.6l11.8,0.6L542.4,100.8z"/>
+			<path id="Finder_Left_Range-Finder_Shae-Vizla" class="st0" d="M454.3,72.9l63.9,3.3l-2.1-8.1l-74.3-10.9L454.3,72.9"/>
+			<g id="Cover_Left_Range-Finder_Shae-Vizla">
+				<path class="st0" d="M552.2,89.1l-30.5,0.4L516,68.2l-79.9-11.7l-1.1-8.3L549.8,50l10.4,14.7L552.2,89.1"/>
+				<path class="st0" d="M544,89.3l-15.1,0.2L529,101l15.1-0.2L544,89.3"/>
+			</g>
 		</g>
 		<g id="Ear-Cap_Left_Shae-Vizla">
 			<path class="st0" d="M534.3,371.3l12.8,18.9v53.1l-12.8,20.6V371.3z"/>
@@ -1728,28 +1950,50 @@
 			<path class="st0" d="M547.1,429.5c6.3,0,11.4-5.7,11.4-12.6c0-7-5.1-12.6-11.4-12.6V429.5z"/>
 			<path class="st0" d="M530.4,358l-2.6,117.7l6.5-9.1v-99.1L530.4,358z"/>
 		</g>
-		<g id="No-Device_Left_Shae-Vizla_Option">
-		</g>
 	</g>
 	<g id="Right-Earcap_Shae-Vizla_Toggle">
-		<path id="Antenna_Right_Shae-Vizla_Option" class="st0" d="M151.7,404.2l6.5-326.8c-0.5-10.9,7.3-10.4,7.6,0.4l-2.3,325.8
-			L151.7,404.2z"/>
+		<g id="Sub-Antenna_Right_Shae-Vizla_Option">
+			<g id="Shaft_Sub-Antenna_Right_Shae-Vizla">
+				<path class="st0" d="M168.4,283.1l2-244.2h5.6l2,244.2H168.4z"/>
+				<path class="st0" d="M168,60.8l2.2-15.1l3,0l3,0l2.2,15.1H168z"/>
+			</g>
+			<g id="Base_Sub-Antenna_Right_Shae-Vizla">
+				<path class="st0" d="M188.7,283.1h-30.9c0,0-6.6,80.8,15.2,80.8S188.7,283.1,188.7,283.1z"/>
+				<path class="st0" d="M164.8,283.1l3.5-6.9l4.9,0l4.9,0l3.5,6.9H164.8z"/>
+			</g>
+		</g>
+		<g id="Main-Antenna_Right_Shae-Vizla_Option">
+			<path id="Shaft_Main-Antenna_Right_Shae-Vizla" class="st0" d="M150.8,292.8l2.8-268.7c0,0-0.2-7.1,3.9-7.1c4,0,3.9,7.1,3.9,7.1
+				l2.8,268.7H150.8z"/>
+			<g id="Base_Main-Antenna_Right_Shae-Vizla">
+				<path class="st0" d="M176.9,335.1h-38.6c0,0-8.2,90.5,19,90.5C184.5,425.6,176.9,335.1,176.9,335.1z"/>
+				<rect x="144" y="330.7" class="st0" width="27" height="4.4"/>
+				<path class="st0" d="M141.9,330.7l6.5-37.9l9,0.1l9-0.1l6.5,37.9H141.9z"/>
+				<rect x="155.3" y="299.3" class="st0" width="4.3" height="26.5"/>
+				<path class="st0" d="M167.5,298.3l-4.3,0.6l4.2,26.2l4.3-0.6L167.5,298.3z"/>
+				<path class="st0" d="M147.5,298.3l4.3,0.6l-4.2,26.2l-4.3-0.6L147.5,298.3z"/>
+			</g>
+		</g>
 		<g id="Sensor-Stalk_Right_Shae-Vizla_Option">
 			<g id="Sensor_Right_Sensor-Stalk_Shae-Vizla">
-				<path class="st0" d="M126.1,472.5L76,386.9l61.6,0.5v85.2H126.1z"/>
-				<path class="st0" d="M139.4,136.3L76,332.2h61.6L139.4,136.3z"/>
+				<path class="st0" d="M124,471.7L74,386.1l61.6,0.5v85.2H124z"/>
+				<path class="st0" d="M137.3,135.5L74,331.4h61.6L137.3,135.5z"/>
 			</g>
 			<g id="Shaft_Right_Sensor-Stalk_Shae-Vizla">
-				<path class="st0" d="M65,332.2l74.5-229.8l-0.1,33.9L76,332.2h52.6v12.3H65V332.2z"/>
-				<path class="st0" d="M65,386.7v-12.3h63.7v12.3H76l50.2,85.8h-11L65,386.7z"/>
-				<path class="st0" d="M146.7,305.2l-18-12.7v112.1h18V305.2z"/>
-				<rect x="126.1" y="404.6" class="st0" width="26.2" height="24.5"/>
+				<path class="st0" d="M62.9,331.4l74.5-229.8l-0.1,33.9L74,331.4h52.6v12.3H62.9V331.4z"/>
+				<path class="st0" d="M62.9,385.9v-12.3h63.7v12.3H73.9l50.2,85.8h-11L62.9,385.9z"/>
+				<path class="st0" d="M144.6,304.4l-18-12.7v112.1h18V304.4z"/>
+				<rect x="124" y="403.8" class="st0" width="26.2" height="24.5"/>
+				<rect x="150.3" y="399.6" class="st0" width="4.2" height="35.5"/>
 			</g>
 		</g>
 		<g id="Range-Finder_Right_Shae-Vizla_Option">
-			<path id="Shaft_Right_Range-Finder_Shae-Vizla" class="st0" d="M151.8,397.4l4.3-299.6l11.6,0.2l-4.1,298.8L151.8,397.4z"/>
-			<path id="Finder_Right_Range-Finder_Shae-Vizla" class="st0" d="M144.4,98.4l34.4-1.6l9.4-16.1l74.7-7.4l0.8-17.2l-129.6,0.8
-				L144.4,98.4z"/>
+			<path id="Shaft_Right_Range-Finder_Shae-Vizla" class="st0" d="M157.2,97.9l11.6,0.1l-2.2,288.6l-11.8,0.6L157.2,97.9z"/>
+			<path id="Finder_Right_Range-Finder_Shae-Vizla" class="st0" d="M245.4,70l-63.9,3.3l2.1-8.1l74.3-10.9L245.4,70"/>
+			<g id="Cover_Right_Range-Finder_Shae-Vizla">
+				<path class="st0" d="M147.4,86.2l30.5,0.4l5.6-21.3l79.9-11.7l1.1-8.3l-114.8,1.8l-10.4,14.7L147.4,86.2"/>
+				<path class="st0" d="M155.6,86.3l15.1,0.2L170.6,98l-15.1-0.2L155.6,86.3"/>
+			</g>
 		</g>
 		<g id="Ear-Cap_Right_Shae-Vizla">
 			<path class="st0" d="M165.4,371.3l-12.8,18.9v53.1l12.8,20.6V371.3z"/>
@@ -1759,8 +2003,6 @@
 				c0.3,0.3,0.4,0.8,0.2,1L162.3,438.8z"/>
 			<path class="st0" d="M152.5,429.5c-6.3,0-11.4-5.7-11.4-12.6c0-7,5.1-12.6,11.4-12.6V429.5z"/>
 			<path class="st0" d="M169.3,358l2.6,117.7l-6.5-9.1v-99.1L169.3,358z"/>
-		</g>
-		<g id="No-Device_Right_Shae-Vizla_Option">
 		</g>
 	</g>
 	<g id="Helmet_Pieces_Shae-Vizla">
