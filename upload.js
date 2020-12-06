@@ -57,12 +57,13 @@ function recreateMando (svg) {
 	}
 	var helmet = findLocal("Helmet_Current");
 	buildAllSettings(helmet, "Helmet");
-	variants["Helmet"] = helmet.getAttribute("class");
+	variants["Helmet"] = helmet.getAttribute("class") || "Classic";
 
 	/* Upper Body */
 	var chest = findLocal("Chest_Current");
 	buildAllSettings(chest, "UpperArmor");
-	variants["Chest"] = neutralize(chest.getAttribute("class"));
+	var variant = chest.getAttribute("class") || "Classic";
+	variants["Chest"] = neutralize(variant);
 	var subgroups = ["Shoulders","Biceps","Gauntlets"];
 	for (var i = 0; i < subgroups.length; i++) {
 		var cur = findLocal(subgroups[i] + "_Current");

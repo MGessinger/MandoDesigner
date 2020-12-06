@@ -43,23 +43,31 @@ function loadSVG (name, onload, args) {
 }
 
 function listName (str) {
+	if (!str)
+		return "";
 	var clean = str.replace(/\W/g,"");
 	var components = clean.split("_");
 	return components[0];
 }
 
 function buttonName (str) {
+	if (!str)
+		return "";
 	var clean = str.replace(/\W/g,"");
 	return neutralize(clean);
 }
 
 function prettify (str) {
+	if (!str)
+		return "";
 	var components = str.split("_");
 	var shortName = components[0];
 	return shortName.replace(/-/g, " ");
 }
 
 function neutralize (str) {
+	if (!str)
+		return "";
 	return str.replace(/(_(M|F|Toggle(Off)?|Option))+($|_)/,"$4");
 }
 
@@ -443,10 +451,7 @@ function switchToArmorVariant (category, pieceName, variantName, button) {
 		button = find(category + "_Variant_" + variantName);
 	if (button)
 		button.classList.add("current_variant");
-
-	var logos = parent.getElementsByClassName("sponsor_link");
-	for (var i = 0; i < logos.length; i++)
-		logos[i].style.display = "none";
+	hideSponsors(parent);
 
 	var old = find(pieceName + "_Current");
 	var SVGparent = old.parentNode;
@@ -465,10 +470,27 @@ function switchToArmorVariant (category, pieceName, variantName, button) {
 	buildAllSettings(n, category);
 }
 
+function hideSponsors (parent) {
+	var logos = parent.getElementsByClassName("sponsor_link");
+	for (var i = 0; i < logos.length; i++)
+		logos[i].style.display = "none";
+	var closer = parent.getElementsByClassName("close_sponsors")[0];
+	if (!closer)
+		return;
+	closer.style.display = "none";
+}
+
 function setSponsor (sponsor, href) {
+	if (!href)
+		return;
+
 	var link = find(sponsor);
 	link.style.display = "";
 	link.setAttribute("href", href);
+
+	var parent = link.parentNode;
+	var close = parent.getElementsByTagName("button")[0];
+	close.style.display = "";
 
 	var img = link.getElementsByTagName("img")[0];
 	if (!img.hasAttribute("src"))
@@ -620,4 +642,11 @@ function zoom (scale) {
 	var rect = svg.getBoundingClientRect()
 	var t = (rect.height*scale - window.innerHeight)/2 + rect.top;
 	svg.style.transform = "translateY(" + t + "px) scale(" + scale + ")";
+}
+
+function zoomInOut (step) {
+	var scale = find("zoom");
+	var val = parseInt(scale.value);
+	scale.value = val + step;
+	zoom(scale.value/100);
 }

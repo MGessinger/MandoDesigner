@@ -3,12 +3,19 @@
 	<head>
 		<script async src="https://www.googletagmanager.com/gtag/js?id=G-45K14ZGLQC%22%3E"></script>
 		<script>
+		if (window.location.hostname == "mandocreator.com") {
 			window.dataLayer = window.dataLayer || [];
 			function gtag(){dataLayer.push(arguments);}
-			if (window.location.hostname == "mandocreator.com") {
-				gtag('js', new Date());
-				gtag('config', 'G-45K14ZGLQC');
-			}
+			gtag('js', new Date());
+			gtag('config', 'G-45K14ZGLQC');
+			(function(w,d,s,l,i){
+				w[l].push({'gtm.start': new Date().getTime(),event:'gtm.js'});
+				var f=d.getElementsByTagName(s)[0], j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';
+				j.async=true;
+				j.src= 'https://www.googletagmanager.com/gtm.js?id='+i+dl;
+				f.parentNode.insertBefore(j,f);
+			})(window,document,'script','dataLayer','GTM-WDVDR2H');
+		}
 		</script>
 		<meta http-equiv="x-ua-compatible" content="ie=edge" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0,user-scalable=0" />
@@ -28,6 +35,7 @@
 		<title>Mando Creator</title>
 	</head>
 	<body class="light_mode" onload="onload()">
+		<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WDVDR2H" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 		<nav>
 			<svg class="title" viewBox="0 0 420 70"><use id="title" href="#title" onclick="location.reload()"/></svg>
 			<div id="left_nav">
@@ -136,12 +144,12 @@
 						<p class="sponsor_title">ModernMando (sponsored)</p>
 						<button id="Helmet_Variant_Tracker" class="type_button"
 							onclick="switchToArmorVariant('Helmet','Helmet','Tracker', this);
-								 setSponsor('ModernMando','');">
+								 setSponsor('ModernMando','https://etsy.me/39yaNwG');">
 							<svg viewbox="0 75 700 700" class="preview_icon"><use href="#Helmet_Tracker"/></svg>
 							Tracker
 						</button><button id="Helmet_Variant_Neo-Scout" class="type_button"
 							onclick="switchToArmorVariant('Helmet','Helmet','Neo-Scout', this);
-								 setSponsor('ModernMando','');">
+								 setSponsor('ModernMando','https://etsy.me/39KC9zT');">
 							<svg viewbox="0 75 700 700" class="preview_icon"><use href="#Helmet_Neo-Scout"/></svg>
 							Neo-Scout
 						</button>
@@ -156,7 +164,8 @@
 				<div class="folder_content">
 					<div id="HelmetColors" class="replace slide_content"></div>
 				</div>
-				<div class="sponsors">
+				<div class="sponsors" style="position: relative">
+					<button class="close_sponsors" style="display:none" onclick="hideSponsors(this.parentNode);">X</button>
 					<a id="AlterEgo" class="sponsor_link" target="_blank" style="display:none"><img width="100%" /></a>
 					<a id="ModernMando" class="sponsor_link" target="_blank" style="display:none"><img width="100%" /></a>
 				</div>
@@ -281,7 +290,8 @@
 					<h2 class="slide_title">Flight Suit (Kute)</h2>
 				</div>
 				<div class="folder_content">
-					<div class="slide_content" id="GlovesColors"></div>
+					<div class="slide_content" id="RightGloveColors"></div>
+					<div class="slide_content" id="LeftGloveColors"></div>
 					<div class="slide_content" id="SoftPartsColors"></div>
 					<div class="slide_content" id="BootsColors"></div>
 				</div>
@@ -394,8 +404,8 @@
 				</p>
 			</div>
 			<div class="changelog">
-				<p class="version">Version 1.4</p>
-				<p>You can now change the sex of your Mando without losing your settings.</p>
+				<p class="version">Version 2.0</p>
+				<p>We are proud to announce our partnership with AlterEgoArmory, and ModernMando. Check out their helmets, along with a ton of other new Helmets.</p>
 			</div>
 			<legend>Contact Us<p style="font-size:small">Like the site or have some feedback on what to add next? Let us know!</p></legend>
 			<fieldset>
@@ -416,9 +426,9 @@
 			<input type="radio" name="sex" class="toggle_sex" id="female" onchange="setSex(true)">
 			<label for="female" class="label_sex">&#xe902;</label>
 			<div class="zoom_wrapper">
-					<span class="zoom_icon">&#xe916;</span
+					<span class="zoom_icon" onclick="zoomInOut(-10);">&#xe916;</span
 					><input id="zoom" type="range" min="100" max="250" value="100" oninput="zoom(this.value/100);" /
-					><span class="zoom_icon">&#xe917;</span>
+					><span class="zoom_icon" onclick="zoomInOut(10);">&#xe917;</span>
 			</div>
 		</footer>
 		<div id="vault" style="display: none"></div>

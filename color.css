@@ -9,6 +9,7 @@
 	z-index: 1;
 	background: var(--mainColor);
 	box-shadow: 0 0 10px 1px var(--translucent);
+	user-select: none;
 }
 
 .picker_wrapper :focus {
@@ -44,10 +45,6 @@
 	bottom: 0;
 }
 
-.picker_main > * {
-	margin: 0.5em 0.5em 0.5em 0;
-}
-
 .picker_palette {
 	display: flex;
 	margin: 0.5em 1em;
@@ -65,6 +62,7 @@
 
 .picker_main {
 	flex: 8;
+	margin: 0.5em 0.5em 0 0;
 }
 
 .picker_hue {
@@ -73,6 +71,7 @@
 	background-image: -webkit-gradient(linear, left top, right top, from(red), color-stop(yellow), color-stop(lime), color-stop(cyan), color-stop(blue), color-stop(magenta), to(red));
 	background-image: -webkit-linear-gradient(left, red, yellow, lime, cyan, blue, magenta, red);
 	background-image: linear-gradient(90deg, red, yellow, lime, cyan, blue, magenta, red);
+	margin-bottom: 0.5em;
 }
 
 .picker_hue .picker_selector {
@@ -94,7 +93,7 @@
 
 .picker_bottom {
 	width: 100%;
-	padding: 0 0.5em 0.5em 0.5em;
+	padding: 0.5em;
 }
 
 .picker_done {

@@ -27,6 +27,9 @@
 				transform: translateY(-50%);
 				font-size: x-large;
 			}
+			img {
+				height: 50%;
+			}
 		</style>
 	</head>
 	<body>
@@ -40,20 +43,20 @@
 				$message = $_POST['message'];
 				$formcontent = htmlspecialchars("From: $name\nMail: $email\nMessage: $message");
 				if (!empty($_POST['url'])) {
-					echo "<img alt='No droids.' src='/assets/no_droids.gif' />";
+					echo "<img src='/assets/no_droids.gif' alt='No droids.' />";
 					$url = $_POST['url'];
-					mail('matthias@gessinger.de', 'Spam Filter: Bot', "The spam filter caught a bot:\nAt: $url\n$formcontent");
+					mail('matthias@gessinger.de', 'Spam Filter: Bot', "The spam filter caught a bot!\nAt: $url\n$formcontent");
 					exit;
 				}
 				if (strcasecmp($_POST['phone'],'red') != 0) {
 					echo "<p>Wrong.</p>";
-					echo '<img src="assets/vader.gif" alt="I have a bad feeling about this." />';
+					echo '<img src="assets/vader.gif" alt="The correct answer is \'Red\', Rebel Scum!" />';
 					$ans = $_POST['phone'];
-					mail('matthias@gessinger.de', 'Spam Filter: Wrong Answer', "Someone answered the test-question with $ans:\n$formcontent");
+					mail('matthias@gessinger.de', 'Spam Filter: Wrong Answer', "Someone answered the test-question with \"$ans\".\nSubject: $subject\n$formcontent");
 					exit;
 				}
 				mail('feedback@mandocreator.com',$subject,$formcontent);
-				echo '<img src="assets/Mando-Creator-Success.png" alt="Success. We will see your message soon. Thank you." height="50%" />';
+				echo '<img src="assets/Mando-Creator-Success.png" alt="Success. We will see your message soon. Thank you." />';
 			?>
 		</div>
 	</body>

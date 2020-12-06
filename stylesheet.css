@@ -166,12 +166,14 @@ legend {
 }
 
 .close {
+	height: 2em;
+	width: 2em;
 	float: right;
-	padding: 0 0 1em 1em;
 	background: none;
 	border: none;
 	cursor: pointer;
 	font-size: medium;
+	text-align: center;
 }
 
 .credits {
@@ -262,6 +264,10 @@ textarea {
 	scrollbar-width: none;
 }
 
+.option {
+	visibility: hidden;
+}
+
 footer {
 	position: fixed;
 	width: 100%;
@@ -272,23 +278,28 @@ footer {
 }
 
 .zoom_wrapper {
-	background: var(--translucent);
-	padding: 0.5em 0;
+	height: 3em;
+	padding: 0.75em;
 	margin-top: 0.5em;
-	line-height: 1em;
+	box-sizing: border-box;
+	background: var(--translucent);
+	user-select: none;
 }
 
 .zoom_icon {
-	vertical-align: super;
-	padding: 0.5em;
+	vertical-align: sub;
+	padding: 0 0.5em;
 }
 
 #zoom {
-	-webkit-appearance: none;
 	width: 15em;
 	max-width: calc(100% - 5em);
+	margin: 0;
 	background: none;
 	outline: none;
+	vertical-align: middle;
+	-webkit-appearance: none;
+	appearance: none;
 }
 #zoom::-webkit-slider-runnable-track {
 	height: 0.5em;
@@ -393,7 +404,7 @@ footer {
 	padding-top: 0.5em;
 	overflow-y: auto;
 	resize: vertical;
-	height: 15em;
+	height: 12em;
 }
 
 .sponsor_title {
@@ -451,10 +462,6 @@ footer {
 	fill: white;
 	stroke: black;
 	stroke-width: 3px;
-}
-
-.option {
-	visibility: hidden;
 }
 
 .slide_toggle {
@@ -667,9 +674,18 @@ footer {
 	appearance: none;
 }
 
-.sync {
-	display: block;
-	padding: 1em;
+.close_sponsors {
+	height: 2em;
+	width: 2em;
+	margin: 1em;
+	position: absolute;
+	right: 0;
+	top: -2em;
+	background: var(--mainColor);
+	border: 1px solid var(--accent);
+	border-radius: 25%;
+	cursor: pointer;
+	text-align: center;
 }
 
 .settings_collapsed {
