@@ -4,7 +4,7 @@
 	 xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 700 700"
 	 style="enable-background:new 0 0 700 700;" xml:space="preserve">
 <g id="Helmet_Budget-Bucket">
-	<g id="Bucket_Budget-Bucket">
+	<g id="Bucket_Budget-Bucket" fill="#F74416" style="fill:white">
 		<path class="st0" d="M576.7,133.1c-0.7-11.4-5.2-22.2-12.9-30.6C541,77.7,481.8,32.6,352,32.6c-129.7,0-191,44.9-214.9,69.8
 			c-8.2,8.5-13.1,19.7-13.8,31.5c-5.1,83.9-29.1,481.4-29.1,481.4s115.8,70.9,257.8,70.9c86.8,0,162.4-26.5,208-47.1
 			c29-13.1,45.9-23.8,45.9-23.8S581.7,215.2,576.7,133.1z"/>
@@ -17,7 +17,7 @@
 		<rect x="326.4" y="605.4" class="st0" width="47.3" height="45.1"/>
 		<circle class="st0" cx="350" cy="628" r="7"/>
 	</g>
-	<path id="Visor_Budget-Bucket" class="st1" d="M369,605.4H331L327,386.9c0,0-39.7-8.4-40.8-8.4c-1.1,0-55.5-12.7-55.5-12.7
+	<path id="Visor_Budget-Bucket" fill="black" style="fill:white" class="st1" d="M369,605.4H331L327,386.9c0,0-39.7-8.4-40.8-8.4c-1.1,0-55.5-12.7-55.5-12.7
 		l-48-16.5l-16-8.2l1.1-14.6L214,334l57.4,7.3l53.8,3.4l22,1.5h5.5l22-1.5l53.8-3.4L486,334l46.3-7.5l1.1,14.6l-16,8.2l-48,16.5
 		c0,0-54.4,12.7-55.5,12.7c-1.1,0-40.8,8.4-40.8,8.4L369,605.4z"/>
 	<g id="Handle-Left_Budget-Bucket_Option">
@@ -1525,7 +1525,7 @@
 			<path class="st0" d="M548,323.9l8.7,16.3v69l-6.7,34.4l-7.7,7.5H531V317.7L548,323.9z"/>
 			<path class="st0" d="M549,356.3v53.3l-6.7,41.5H531V317.7l16.9,6.1L549,356.3z"/>
 		</g>
-		<g id="Main-Antenna_Left_Neo-Scout_Option">
+		<g id="Antenna_Left_Neo-Scout_Option">
 			<g id="Base_Antenna_Left_Neo-Scout">
 				<path class="st0" d="M556.7,346h20.1c1.3,0,2.6,0.5,3.6,1.4c1,0.9,1.5,2.1,1.5,3.3c0,5.1,0,13.3,0,18.5c0,1.2-0.5,2.4-1.5,3.3
 					c-1,0.9-2.2,1.4-3.6,1.4c-7.3,0-20.1,0-20.1,0V346z"/>
@@ -1547,7 +1547,7 @@
 			<path class="st0" d="M152,323.7l-8.7,16.3v69l6.7,34.4l7.7,7.5H169V317.6L152,323.7z"/>
 			<path class="st0" d="M151,356.1v53.3l6.7,41.5H169V317.6l-16.9,6.1L151,356.1z"/>
 		</g>
-		<g id="Main-Antenna_Right_Neo-Scout_Option">
+		<g id="Antenna_Right_Neo-Scout_Option">
 			<g id="Base_Antenna_Right_Neo-Scout">
 				<path class="st0" d="M143.3,346h-20.1c-1.4,0-2.6,0.5-3.6,1.4c-1,0.9-1.5,2.1-1.5,3.3c0,5.1,0,13.3,0,18.5
 					c0,1.2,0.5,2.4,1.5,3.3c1,0.9,2.2,1.4,3.6,1.4c7.3,0,20.1,0,20.1,0V346z"/>
@@ -2139,6 +2139,70 @@
 			<rect x="365.7" y="301.5" class="st0" width="29.6" height="3.5"/>
 			<path class="st0" d="M511,342.1l18.9-2v7.1l-18.9,2V342.1z"/>
 			<path class="st0" d="M405.2,360.2c-18.8,0.9-37.7,1.5-55.3,1.5c-16.8,0-35.9-0.6-55.1-1.6l15.7-12.7h78.8L405.2,360.2z"/>
+		</g>
+	</g>
+</g>
+<g id="Helmet_Executioner">
+	<g id="Left-Earcap_Executioner_Toggle">
+		<g id="Ear-Cap_Left_Executioner">
+			<path id="Base_Ear-Cap_Left_Executioner" class="st0" d="M557.5,628.5l22.5-15.1h-17.6V358.5h-4.9V628.5z"/>
+			<rect id="Middle_Ear-Cap_Left_Executioner" x="562.4" y="413.8" class="st0" width="11.9" height="199.5"/>
+			<path id="Top_Ear-Cap_Left_Executioner" class="st0" d="M562.4,358.5l16.1,16.1v39.3h-16.1V358.5z"/>
+		</g>
+	</g>
+	<g id="Right-Earcap_Executioner_Toggle">
+		<g id="Ear-Cap_Right_Executioner">
+			<path id="Base_Ear-Cap_Right_Executioner" class="st0" d="M155.7,628.5l-22.5-15.1h17.6V358.5h4.9V628.5z"/>
+			<rect id="Middle_Ear-Cap_Right_Executioner" x="138.9" y="413.8" class="st0" width="11.9" height="199.5"/>
+			<path id="Top_Ear-Cap_Right_Executioner" class="st0" d="M150.8,358.5l-16.1,16.1v39.3h16.1V358.5z"/>
+		</g>
+		<g id="Range-Finder_Right_Executioner_Option">
+			<path id="Shaft_Right_Range-Finder_Executioner" class="st0" d="M138.1,84.5l11.6,0l0.3,288.7l-11.8,0.7L138.1,84.5z"/>
+			<path id="Finder_Right_Range-Finder_Executioner" class="st0" d="M226,55.9l-63.9,3.9l2.1-8.1l74.2-11.5L226,55.9"/>
+			<g id="Cover_Right_Range-Finder_Executioner">
+				<path class="st0" d="M128.3,72.9l30.5,0.1l5.5-21.4L244,39.3l1.1-8.3l-114.8,2.8L120,48.6L128.3,72.9"/>
+				<path class="st0" d="M136.4,73l15.1,0.1l0,11.5l-15.1,0L136.4,73"/>
+			</g>
+		</g>
+	</g>
+	<g id="Helmet_Pieces_Executioner">
+		<g id="Face_Executioner">
+			<path class="st0" d="M287.5,688.8L164.2,633l0.1-0.3c1.2-6.2,20.5-105.1,50.5-129.4c26.6-21.6,47.4,1.1,50.6,4.9l0.4,0.5v0
+				l7.5,40.9c9.2,60.4,13.9,132,14.3,138.7L287.5,688.8"/>
+			<path class="st0" d="M425.7,688.8L549,633l-0.1-0.3c-1.2-6.2-20.5-105.1-50.5-129.4c-26.6-21.6-47.4,1.1-50.6,4.9l-0.4,0.5v0
+				l-7.5,40.9c-9.2,60.4-13.9,132-14.3,138.7L425.7,688.8"/>
+		</g>
+		<g id="Cheeks_Executioner">
+			<path class="st0" d="M155.7,424.1c0,0,75.9,8,98.5,49.3c4.3,7.8,8.1,20.2,11.5,35.2c0,0-22.1-28.8-51-5.4
+				C183.8,528.3,164.2,633,164.2,633l-8.5-4.5V424.1"/>
+			<path class="st0" d="M557.5,424.1c0,0-75.9,8-98.5,49.3c-4.3,7.8-8.1,20.2-11.5,35.2c0,0,22.1-28.8,51-5.4
+				C529.4,528.3,549,633,549,633l8.5-4.5V424.1"/>
+		</g>
+		<path id="Chin_Executioner" class="st0" d="M309.1,692.3l-21.6-3.5l2.8-10l29.8-24.8h72.9l29.8,24.8l2.8,10l-21.6,3.5H309.1z"/>
+		<g id="Eyes_Executioner">
+			<path class="st0" d="M287.5,688.3c-0.6-10.2-11.3-174.8-33.3-214.8c-22.7-41.3-98.5-49.3-98.5-49.3v-67c0-4,3.1-7.3,7.1-7.5
+				c28.5-1.4,136.1-6.6,193.8-6.6c57.8,0,165.3,5.2,193.8,6.6c4,0.2,7.1,3.5,7.1,7.5c0,18.5,0,67,0,67s-75.9,8-98.5,49.3
+				c-22,40-32.7,204.6-33.3,214.8l0,0.5l-2.8-10L393.1,654h-72.9l-29.8,24.8l-2.8,10L287.5,688.3"/>
+			<path class="st0" d="M364.6,459.4l12,38.1c-3,1.3-6,2.3-8.9,3l-7.3-31.1c0,0-2.5-1.7-3.8-1.7c-1.3,0-3.8,1.7-3.8,1.7l-7.3,31.1
+				c-2.9-0.7-5.9-1.7-8.9-3l12-38.1H364.6z"/>
+		</g>
+		<g id="Visor_Executioner">
+			<g>
+				<path class="st0" d="M348.1,589.8h-6.5V654h6.5V589.8"/>
+				<path class="st0" d="M326.1,589.8h-6.5V654h6.5V589.8"/>
+				<path class="st0" d="M365.1,589.8h6.5V654h-6.5V589.8"/>
+				<path class="st0" d="M387.1,589.8h6.5V654h-6.5V589.8"/>
+			</g>
+			<path class="st0" d="M336.6,497.5c-9.8-4.4-16.3-11.5-20-21.2c0,0,14-45.3,20.6-57.4c3.6-6.5,12.9-15.5,19.4-17.1
+				c6.6,1.6,15.9,10.6,19.4,17.1c6.7,12.1,20.6,57.4,20.6,57.4c-3.7,9.7-10.2,16.9-20,21.2l-12-38.1h-16.1L336.6,497.5"/>
+			<path class="st0" d="M162.3,366.2c0,0,148.9-4.6,194.3-4.6c45.4,0,194.3,4.6,194.3,4.6v10.9l-140.7,30l-44.7-29c0,0-5.9-1-8.8-1
+				c-2.9,0-8.8,1-8.8,1l-44.7,29l-140.7-30V366.2"/>
+		</g>
+		<path id="Dome_Executioner" class="st0" d="M162.4,349.6c0.2-103.3,87.1-187.2,194.2-187.2c107,0,194,83.8,194.2,187.2
+			c-0.1,0-0.2,0-0.3,0c-28.5-1.4-136.1-6.6-193.8-6.6c-57.8,0-165.3,5.2-193.8,6.6C162.7,349.6,162.6,349.6,162.4,349.6"/>
+		<g id="Accent-Dome_Executioner">
+			<path class="st0" d="M323.8,323.3l24.3-5.8v11.7L323.8,323.3"/>
+			<path class="st0" d="M389.4,323.3l-24.3-5.8v11.7L389.4,323.3"/>
 		</g>
 	</g>
 </g>

@@ -1,26 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
 	<head>
-		<script async src="https://www.googletagmanager.com/gtag/js?id=G-45K14ZGLQC%22%3E"></script>
+		<!-- Google Tag Manager -->
+		<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start': new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0], j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src= 'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f); })(window,document,'script','dataLayer','GTM-WDVDR2H');</script>
+		<!-- End Google Tag Manager -->
+		<!-- Global site tag (gtag.js) - Google Analytics -->
+		<script async src="https://www.googletagmanager.com/gtag/js?id=UA-182105390-1"></script>
 		<script>
-		if (window.location.hostname == "mandocreator.com") {
-			window.dataLayer = window.dataLayer || [];
-			function gtag(){dataLayer.push(arguments);}
-			gtag('js', new Date());
-			gtag('config', 'G-45K14ZGLQC');
-			(function(w,d,s,l,i){
-				w[l].push({'gtm.start': new Date().getTime(),event:'gtm.js'});
-				var f=d.getElementsByTagName(s)[0], j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';
-				j.async=true;
-				j.src= 'https://www.googletagmanager.com/gtm.js?id='+i+dl;
-				f.parentNode.insertBefore(j,f);
-			})(window,document,'script','dataLayer','GTM-WDVDR2H');
-		}
+		  window.dataLayer = window.dataLayer || [];
+		  function gtag(){dataLayer.push(arguments);}
+		  gtag('js', new Date());
+		  gtag('config', 'UA-182105390-1');
 		</script>
+		<!-- End Google Analytics -->
 		<meta http-equiv="x-ua-compatible" content="ie=edge" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0,user-scalable=0" />
 		<meta charset="utf-8" />
 		<meta name="description" content="Design your custom set of mandalorian Armor, also known as Beskar'gam. Choose from dozens of options, and bring your vision to life!" />
+
+		<meta property="og:title" content="Mando Creator" />
+		<meta property="og:description" content="Design your custom set of mandalorian Armor, also known as Beskar'gam. Choose from dozens of options, and bring your vision to life!" />
+		<meta property="og:url" content="http://www.mandocreator.com/index.html" />
+		<meta property="og:image" content="http://www.mandocreator.com/assets/header.jpg" />
+		<meta name="twitter:title" content="Mando Creator" />
+		<meta name="twitter:description" content="Design your custom set of mandalorian Armor, also known as Beskar'gam. Choose from dozens of options, and bring your vision to life!" />
+		<meta name="twitter:image" content="http://www.mandocreator.com/assets/header.jpg" />
+		<meta name="twitter:card" content="summary_large_image" />
+
 		<meta name="keywords" content="Mando Creator,MandoCreator,Creator,Beskar'gam,Armor,Mandalorian,Mando,Design,Beskar" />
 		<meta name="author" content="DesignDeviant, Cin Vhetin" />
 		<link rel="stylesheet" href="stylesheet.css" />
@@ -153,6 +159,13 @@
 							<svg viewbox="0 75 700 700" class="preview_icon"><use href="#Helmet_Neo-Scout"/></svg>
 							Neo-Scout
 						</button>
+						<p class="sponsor_title">LoneWolf Customs (sponsored)</p>
+						<button id="Helmet_Variant_Executioner" class="type_button"
+							onclick="switchToArmorVariant('Helmet','Helmet','Executioner', this);
+							setSponsor('Lonewolf', 'https://bit.ly/33YeckM');">
+							<svg viewbox="0 75 700 700" class="preview_icon"><use href="#Helmet_Executioner"/></svg>
+							Executioner
+						</button>
 						<p class="sponsor_title">Miscellaneous:</p>
 						<button id="Helmet_Variant_Budget-Bucket" class="type_button"
 							onclick="switchToArmorVariant('Helmet','Helmet','Budget-Bucket', this)">
@@ -168,6 +181,7 @@
 					<button class="close_sponsors" style="display:none" onclick="hideSponsors(this.parentNode);">X</button>
 					<a id="AlterEgo" class="sponsor_link" target="_blank" style="display:none"><img width="100%" /></a>
 					<a id="ModernMando" class="sponsor_link" target="_blank" style="display:none"><img width="100%" /></a>
+					<a id="Lonewolf" class="sponsor_link" target="_blank" style="display:none"><img width="100%" /></a>
 				</div>
 			</div>
 			<div id="UpperArmorOptions" class="folder overview">

@@ -19,7 +19,10 @@ function loadSVG (name, onload, args) {
 	xhr.onload = function () {
 		if (this.status !== 200)
 			return;
-		var svg = this.responseXML.documentElement;
+		var xml = this.responseXML;
+		if (!xml)
+			return;
+		var svg = xml.documentElement;
 		svg.setAttribute("id", name);
 
 		/* Assign classes based on ID components */
@@ -152,6 +155,8 @@ function mirrorSettings (parent, paragraph, side) {
 		for (var i = 0; i < buttons.length; i++) {
 			var mirrorImageName = buttons[i].id.replace(side, otherSide);
 			var mirrorImage = find(mirrorImageName);
+			if (!mirrorImage) /* Allow for asymmetric helmets */
+				continue;
 			mirrorImage.style.background = buttons[i].style.background;
 			mirrorImage.click();
 		}
@@ -161,7 +166,7 @@ function mirrorSettings (parent, paragraph, side) {
 		for (var i = 0; i < checks.length; i++) {
 			var mirrorImageName = checks[i].id.replace(side, otherSide);
 			var mirrorImage = find(mirrorImageName);
-			if (!mirrorImage) /* Account for picker_editor (lol) */
+			if (!mirrorImage)
 				continue;
 			if (mirrorImage.checked ^ checks[i].checked)
 				mirrorImage.click();
@@ -171,14 +176,18 @@ function mirrorSettings (parent, paragraph, side) {
 		if (top_check) {
 			var mirrorImageName = top_check.id.replace(side, otherSide);
 			var mirrorImage = find(mirrorImageName);
-			if (mirrorImage.checked ^ top_check.checked)
-				mirrorImage.click();
+			if (mirrorImage) {
+				if (mirrorImage.checked ^ top_check.checked)
+					mirrorImage.click();
+			}
 		}
 		/* Mirror all selects */
 		var selects = parent.getElementsByClassName("component_select");
 		for (var i = 0; i < selects.length; i++) {
 			var mirrorImageName = selects[i].id.replace(side, otherSide);
 			var mirrorImage = find(mirrorImageName);
+			if (!mirrorImage)
+				continue;
 			mirrorImage.value = selects[i].value.replace(side, otherSide);
 			mirrorImage.dispatchEvent(new Event("change"));
 		}
