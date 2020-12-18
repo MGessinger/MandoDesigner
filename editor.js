@@ -200,12 +200,15 @@ function prepareParent (SVGNode, parent) {
 	var globalList = find(name + "Colors");
 	if (globalList) {
 		parent = globalList;
-		parent.innerHTML = "";
 		parent.style.display = "";
-		var p = DOMNode("p", {class: "option_name hidden"}, globalList);
-		p.innerText = prettify(SVGNode.id) + " Options:";
-		if (side_name)
-			mirrorSettings(parent, p, side_name[0]);
+		var ps = parent.getElementsByClassName("option_name");
+		if (ps.length !== 1) {
+			p = DOMNode("p", {class: "option_name hidden"});
+			globalList.prepend(p);
+			p.innerText = prettify(SVGNode.id) + " Options:";
+			if (side_name)
+				mirrorSettings(parent, p, side_name[0]);
+		}
 	}
 	if (SVGNode.getAttribute("class") === "toggle") {
 		if (parent.children.length > 1) // 1 for option-name built before
@@ -261,11 +264,14 @@ function buildIOSettings (SVGNode, category, parent) {
 }
 
 function buildAddonSelect (addons, category, parent, SVGName) {
-	var wrapper = DOMNode("div", {class: "select_wrapper hidden"}, parent);
-	var select = DOMNode("select", {class: "component_select", id: SVGName + "Select"}, wrapper);
+	var select = find(SVGName + "Select");
+	var useDefault = !select;
+	if (!select) {
+		var wrapper = DOMNode("div", {class: "select_wrapper hidden"}, parent);
+		select = DOMNode("select", {class: "component_select", id: SVGName + "Select"}, wrapper);
+	}
 
 	var colors = [];
-	var useDefault = true;
 	for (var i = addons.length - 1; i >= 0; i--) {
 		var fullName = addons[i].id;
 		var name = prettify(fullName);
@@ -392,6 +398,7 @@ function buildAllSettings (SVGNode, category, parent) {
 	/* defer toggles to the very last */
 	for (var i = 0; i < toggle.length; i++) 
 		buildAllSettings(toggle[i], category, parent);
+	return parent;
 }
 
 function buildVariableSettings (category, pieceName, variantName) {
@@ -592,8 +599,11 @@ function setupMando (svg, sexSuffix) {
 			buildVariableSettings("LowerArmor", "Right-" + subgroups[i], sexSuffix);
 		}
 	});
-	buildAllSettings(findLocal("Back"), "Back");
-	buildAllSettings(findLocal("Soft-Parts_" + sexSuffix), "FlightSuit");
+	buildAllSettings(findLocal("Back_" + sexSuffix), "Back");
+	buildAllSettings(findLocal("Front_" + sexSuffix), "Back");
+	var parent = find("SoftPartsColors");
+	buildAllSettings(findLocal("Vest_" + sexSuffix), "FlightSuit", parent);
+	buildAllSettings(findLocal("Soft-Parts_" + sexSuffix), "FlightSuit", parent);
 }
 
 function setColorScheme (useDark, className, bckName, logoName) {
@@ -658,4 +668,10 @@ function zoomInOut (step) {
 	var val = parseInt(scale.value);
 	scale.value = val + step;
 	zoom(scale.value/100);
+}
+
+function showRoll () {
+	var rickRoll = find("rickroll");
+	rickRoll.setAttribute("src", "assets/Bucket_Astley.mp4");
+	rickRoll.style.display = "";
 }

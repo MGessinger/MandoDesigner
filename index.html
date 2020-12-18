@@ -8,7 +8,7 @@
 		<script async src="https://www.googletagmanager.com/gtag/js?id=UA-182105390-1"></script>
 		<script>
 		  window.dataLayer = window.dataLayer || [];
-		  function gtag(){dataLayer.push(arguments);}
+		  function gtag(){if(window.location.hostname!=="mandocreator.com")return;dataLayer.push(arguments);}
 		  gtag('js', new Date());
 		  gtag('config', 'UA-182105390-1');
 		</script>
@@ -162,13 +162,14 @@
 						<p class="sponsor_title">LoneWolf Customs (sponsored)</p>
 						<button id="Helmet_Variant_Executioner" class="type_button"
 							onclick="switchToArmorVariant('Helmet','Helmet','Executioner', this);
-							setSponsor('Lonewolf', 'https://bit.ly/33YeckM');">
+								 setSponsor('Lonewolf', 'https://bit.ly/33YeckM');">
 							<svg viewbox="0 75 700 700" class="preview_icon"><use href="#Helmet_Executioner"/></svg>
 							Executioner
 						</button>
 						<p class="sponsor_title">Miscellaneous:</p>
 						<button id="Helmet_Variant_Budget-Bucket" class="type_button"
-							onclick="switchToArmorVariant('Helmet','Helmet','Budget-Bucket', this)">
+							onclick="switchToArmorVariant('Helmet','Helmet','Budget-Bucket', this);
+								 setSponsor('Budget','#rickroll');">
 							<svg viewbox="0 0 700 700" class="preview_icon"><use href="#Helmet_Budget-Bucket"/></svg>
 							Budget
 						</button>
@@ -182,6 +183,7 @@
 					<a id="AlterEgo" class="sponsor_link" target="_blank" style="display:none"><img width="100%" /></a>
 					<a id="ModernMando" class="sponsor_link" target="_blank" style="display:none"><img width="100%" /></a>
 					<a id="Lonewolf" class="sponsor_link" target="_blank" style="display:none"><img width="100%" /></a>
+					<a id="Budget" class="sponsor_link" style="display:none" onclick="showRoll()"><img width="100%" /></a>
 				</div>
 			</div>
 			<div id="UpperArmorOptions" class="folder overview">
@@ -405,6 +407,7 @@
 			<canvas id="canvas" style="display:none;"></canvas>
 		</div>
 		<main id="editor" class="image_column"></main>
+		<video id="rickroll" style="display:none" autoplay onended="this.style.display='none'"></video>
 		<form style="display:none" id="contact" action="image.php" method="POST" target="_blank" onsubmit="displayForm(false, this)">
 			<legend>Mando Creator Info<button type="button" class="close" onclick="displayForm(false)">X</button></legend>
 			<div class="credits">
