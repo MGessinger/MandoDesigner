@@ -193,39 +193,55 @@
 					<div id="UpperArmorTypes" class="armor_types male">
 						<button id="Chest_Variant_Classic_M" class="type_button current_variant"
 							onclick="switchToArmorVariant('UpperArmor','Chest','Classic_M', this)">
-							<svg viewbox="100 -100 1200 1200" class="preview_icon"><use href="#Chest_Classic_M"/></svg>
+							<svg viewbox="200 -50 1000 1000" class="preview_icon"><use href="#Chest_Classic_M"/></svg>
 							Classic
 						</button><button id="Chest_Variant_Legacy_M" class="type_button"
 							onclick="switchToArmorVariant('UpperArmor','Chest','Legacy_M', this)">
-							<svg viewbox="100 -100 1200 1200" class="preview_icon"><use href="#Chest_Legacy_M"/></svg>
+							<svg viewbox="200 -50 1000 1000" class="preview_icon"><use href="#Chest_Legacy_M"/></svg>
 							Legacy
-						</button><button id="Chest_Variant_Gunslinger_M" class="type_button"
-							onclick="switchToArmorVariant('UpperArmor','Chest','Gunslinger_M', this)">
-							<svg viewbox="100 -100 1200 1200" class="preview_icon"><use href="#Chest_Gunslinger_M"/></svg>
-							Gunslinger
 						</button><button id="Chest_Variant_Heavy_M" class="type_button"
 							onclick="switchToArmorVariant('UpperArmor','Chest','Heavy_M', this)">
-							<svg viewbox="100 -100 1200 1200" class="preview_icon"><use href="#Chest_Heavy_M"/></svg>
+							<svg viewbox="200 -50 1000 1000" class="preview_icon"><use href="#Chest_Heavy_M"/></svg>
 							Heavy
+						</button><button class="type_button" id="Chest_Variant_Gunslinger-MK1_M"
+							onclick="switchToArmorVariant('UpperArmor','Chest','Gunslinger-MK1_M', this)">
+							<svg viewBox="200 -50 1000 1000" class="preview_icon"><use href="#Chest_Gunslinger-MK1_M"></use></svg>
+							Gunslinger v1
+						</button><button id="Chest_Variant_Gunslinger_M" class="type_button"
+							onclick="switchToArmorVariant('UpperArmor','Chest','Gunslinger_M', this)">
+							<svg viewbox="200 -50 1000 1000" class="preview_icon"><use href="#Chest_Gunslinger_M"/></svg>
+							Gunslinger v2
+						</button><button id="Chest_Variant_Galaxy_M" class="type_button"
+							onclick="switchToArmorVariant('UpperArmor','Chest','Galaxy_M', this)">
+							<svg viewbox="200 -50 1000 1000" class="preview_icon"><use href="#Chest_Galaxy_M"/></svg>
+							Galaxy
 						</button>
 					</div>
 					<div id="UpperArmorTypes" class="armor_types female">
 						<button id="Chest_Variant_Classic_F" class="type_button"
 							onclick="switchToArmorVariant('UpperArmor','Chest','Classic_F', this)">
-							<svg viewbox="100 -100 1200 1200" class="preview_icon"><use href="#Chest_Classic_F"/></svg>
+							<svg viewbox="200 -50 1000 1000" class="preview_icon"><use href="#Chest_Classic_F"/></svg>
 							Classic
 						</button><button id="Chest_Variant_Legacy_F" class="type_button"
 							onclick="switchToArmorVariant('UpperArmor','Chest','Legacy_F', this)">
-							<svg viewbox="100 -100 1200 1200" class="preview_icon"><use href="#Chest_Legacy_F"/></svg>
+							<svg viewbox="200 -50 1000 1000" class="preview_icon"><use href="#Chest_Legacy_F"/></svg>
 							Legacy
-						</button><button id="Chest_Variant_Gunslinger_F" class="type_button"
-							onclick="switchToArmorVariant('UpperArmor','Chest','Gunslinger_F', this)">
-							<svg viewbox="100 -100 1200 1200" class="preview_icon"><use href="#Chest_Gunslinger_F"/></svg>
-							Gunslinger
 						</button><button id="Chest_Variant_Heavy_F" class="type_button"
 							onclick="switchToArmorVariant('UpperArmor','Chest','Heavy_F', this)">
-							<svg viewbox="100 -100 1200 1200" class="preview_icon"><use href="#Chest_Heavy_F"/></svg>
+							<svg viewbox="200 -50 1000 1000" class="preview_icon"><use href="#Chest_Heavy_F"/></svg>
 							Heavy
+						</button><button id="Chest_Variant_Gunslinger-MK1_F" class="type_button"
+							onclick="switchToArmorVariant('UpperArmor','Chest','Gunslinger-MK1_F', this)">
+							<svg viewbox="200 -50 1000 1000" class="preview_icon"><use href="#Chest_Gunslinger-MK1_F"/></svg>
+							Gunslinger v1
+						</button><button id="Chest_Variant_Gunslinger_F" class="type_button"
+							onclick="switchToArmorVariant('UpperArmor','Chest','Gunslinger_F', this)">
+							<svg viewbox="200 -50 1000 1000" class="preview_icon"><use href="#Chest_Gunslinger_F"/></svg>
+							Gunslinger v2
+						</button><button id="Chest_Variant_Galaxy_F" class="type_button"
+							onclick="switchToArmorVariant('UpperArmor','Chest','Galaxy_F', this)">
+							<svg viewbox="200 -50 1000 1000" class="preview_icon"><use href="#Chest_Galaxy_F"/></svg>
+							Galaxy
 						</button>
 					</div>
 					<p class="option_name">Parts:</p>
@@ -238,7 +254,17 @@
 								<p>Neck (Ghet'bur)</p>
 							</div>
 						</button>
+						<div id="CollarColors" class="slide_content"></div>
 						<div id="NeckArmorColors" class="replace slide_content"></div>
+					</div>
+					<div class="slide">
+						<button class="slide_toggle hidden" onclick="toggleSlide(this.parentNode)">
+							<div class="toggle_text">
+								<p class="parent_title">Upper Body</p>
+								<p>Chest Attachments</p>
+							</div>
+						</button>
+						<div id="ChestAttachmentsColors" class="slide_content"></div>
 					</div>
 					<div class="slide">
 						<button class="slide_toggle hidden" onclick="toggleSlide(this.parentNode)">

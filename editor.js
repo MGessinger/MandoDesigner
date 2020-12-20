@@ -194,6 +194,14 @@ function mirrorSettings (parent, paragraph, side) {
 	});
 }
 
+function wipeSlideContents () {
+	var nav = find("settings");
+	var slides = nav.getElementsByClassName("slide_content");
+	for (var i = 0; i < slides.length; i++) {
+		slides[i].innerHTML = "";
+	}
+}
+
 function prepareParent (SVGNode, parent) {
 	var name = listName(SVGNode.id);
 	var side_name = name.match(/Right|Left/);
@@ -367,6 +375,8 @@ function buildAddonCheckboxes (addons, category, parent) {
 }
 
 function buildAllSettings (SVGNode, category, parent) {
+	if (!SVGNode)
+		return;
 	parent = prepareParent(SVGNode, parent);
 	var ch = SVGNode.children;
 	var hasUnnamedChild = !ch.length;
@@ -398,7 +408,6 @@ function buildAllSettings (SVGNode, category, parent) {
 	/* defer toggles to the very last */
 	for (var i = 0; i < toggle.length; i++) 
 		buildAllSettings(toggle[i], category, parent);
-	return parent;
 }
 
 function buildVariableSettings (category, pieceName, variantName) {
@@ -406,6 +415,8 @@ function buildVariableSettings (category, pieceName, variantName) {
 	var identifier = listName(pieceName);
 	var wrapper = find(identifier + "_Current");
 	var ref = find(fullyQualifiedName);
+	if (!ref)
+		throw fullyQualifiedName;
 	var n = ref.cloneNode(true);
 	wrapper.appendChild(n);
 
@@ -416,10 +427,10 @@ function buildVariableSettings (category, pieceName, variantName) {
 
 function onload () {
 	var female = false;
-	if (localStorage)
+	if (window.localStorage)
 		female = (localStorage.getItem("female_sex") == "true");
-	setSex(female);
 	find("female").checked = female;
+	setSex(female);
 	var useDarkMode = localStorage.getItem("dark_mode");
 	if (useDarkMode !== null)
 		useDarkMode = (useDarkMode == "true");
@@ -588,6 +599,8 @@ function setupMando (svg, sexSuffix) {
 			buildVariableSettings("UpperArmor", "Left-" + subgroups[i], sexSuffix);
 			buildVariableSettings("UpperArmor", "Right-" + subgroups[i], sexSuffix);
 		}
+		buildVariableSettings("UpperArmor", "Collar", sexSuffix + "_ToggleOff");
+		buildVariableSettings("UpperArmor", "Chest-Attachments", sexSuffix);
 	});
 
 	loadSVG("Lower-Armor_" + sexSuffix, function(svg) {
@@ -645,6 +658,7 @@ function setSex (female) {
 		settings.classList.remove("female");
 		settings.classList.add("male");
 	}
+	wipeSlideContents();
 	loadSVG(body, setupMando, sexSuffix);
 	localStorage.setItem("female_sex", female.toString());
 }
