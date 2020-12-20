@@ -203,6 +203,7 @@ legend {
 
 .socials {
 	position: absolute;
+	width: 3em;
 	right: 0;
 	top: 0;
 	font-size: x-large;
@@ -210,7 +211,8 @@ legend {
 }
 
 .social {
-	display: block;
+	display: inline-block;
+	padding: 0.25em 0;
 	text-decoration: none;
 	color: var(--accent);
 }
