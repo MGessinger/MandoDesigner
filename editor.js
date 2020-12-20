@@ -133,10 +133,10 @@ function toggleSublist (sublist, SVGNode) {
 	return function () {
 		if (this.checked) {
 			sublist.style.display = "";
-			SVGNode.style.visibility = "visible";
+			SVGNode.style.display = "inherit";
 		} else {
 			sublist.style.display = "none";
-			SVGNode.style.visibility = "hidden";
+			SVGNode.style.display = "none";
 		}
 		variants[varName] = this.checked || false;
 	}
@@ -292,22 +292,22 @@ function buildAddonSelect (addons, category, parent, SVGName) {
 		var san = listName(fullName);
 		var col = DOMNode("div", {id: san + "SubColors"}, parent);
 		if (variants[SVGName] == neutral) {
-			addons[i].style.visibility = "visible";
+			addons[i].style.display = "inherit";
 			useDefault = false;
 			opt.selected = true;
-		} else if (addons[i].style.visibility == "visible") {
+		} else if (addons[i].style.display == "inherit") {
 			useDefault = false;
 			opt.selected = true;
 			variants[SVGName] = neutralize(fullName);
 		} else {
-			addons[i].style.visibility = "";
+			addons[i].style.display = "";
 			col.style.display = "none";
 		}
 		buildAllSettings(addons[i], category, col);
 		colors.push(col);
 	}
 	if (useDefault) {
-		addons[addons.length-1].style.visibility = "visible";
+		addons[addons.length-1].style.display = "inherit";
 		colors[0].style.display = "";
 	}
 
@@ -315,9 +315,9 @@ function buildAddonSelect (addons, category, parent, SVGName) {
 		variants[SVGName] = neutralize(this.value);
 		for (var i = 0; i < addons.length; i++) {
 			if (addons[i].id === this.value)
-				addons[i].style.visibility = "visible";
+				addons[i].style.display = "inherit";
 			else
-				addons[i].style.visibility = "";
+				addons[i].style.display = "";
 		}
 
 		var id = listName(this.value) + "SubColors"
@@ -360,13 +360,13 @@ function buildAddonCheckboxes (addons, category, parent) {
 		var san = listName(fullName);
 		var col = DOMNode("div", {id: san + "SubColors"}, parent);
 		if (variants[neutral]) {
-			addons[i].style.visibility = "visible";
+			addons[i].style.display = "inherit";
 			checkbox.checked = true;
-		} else if (addons[i].style.visibility == "visible") {
+		} else if (addons[i].style.display == "inherit") {
 			variants[neutral] = true;
 			checkbox.checked = true;
 		} else {
-			addons[i].style.visibility = "";
+			addons[i].style.display = "";
 			col.style.display = "none";
 		}
 		buildAllSettings(addons[i], category, col);
@@ -534,7 +534,7 @@ function prepareForExport (svg) {
 	var options = svg.getElementsByClassName("option");
 	var i = 0;
 	while (i < options.length) {
-		if (options[i].style.visibility == "visible") {
+		if (options[i].style.display == "inherit") {
 			i++;
 			continue;
 		}

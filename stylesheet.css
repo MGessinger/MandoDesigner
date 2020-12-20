@@ -275,7 +275,7 @@ textarea {
 }
 
 .option {
-	visibility: hidden;
+	display: none;
 }
 
 footer {
