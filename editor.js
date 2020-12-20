@@ -430,7 +430,6 @@ function onload () {
 	if (window.localStorage)
 		female = (localStorage.getItem("female_sex") == "true");
 	find("female").checked = female;
-	resetSettings();
 	setSex(female);
 	var useDarkMode = localStorage.getItem("dark_mode");
 	if (useDarkMode !== null)

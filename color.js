@@ -1,6 +1,6 @@
 'use strict';
 
-var settings = {undefined: "#FFFFFF"};
+var settings;
 function resetSettings () {
 	settings = {
 		undefined: "#FFFFFF",
@@ -10,6 +10,8 @@ function resetSettings () {
 		"Rage_Gauntlet_LeftColor":	"#08CB33"
 	};
 }
+resetSettings();
+
 var showPicker = true;
 var Picker = new function() {
 	function on(elem, event, func) {
@@ -263,6 +265,14 @@ var Picker = new function() {
 			onChange(color.hex);
 	}
 
+	function getDefaultColor (SVGNode, id) {
+		if (SVGNode.style.fill)
+			return SVGNode.style.fill;
+		else if (id in settings)
+			return settings[id];
+		return "#FFF";
+	}
+
 	var color = new Color();
 	var DOM = new PickerDOM();
 	var onChange = null;
@@ -278,7 +288,7 @@ var Picker = new function() {
 			_setColor(this.style.backgroundColor);
 			DOM.parent = showPicker && this;
 		});
-		var def = settings[button.id] || "#FFF";
+		var def = getDefaultColor(SVGNode, button.id);
 		_setColor(def);
 		input(color.hex);
 	}

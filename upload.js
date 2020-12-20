@@ -163,7 +163,6 @@ function translateMando (svg) {
 	}
 
 	var ch = svg.children;
-	console.log(ch);
 	for (var i = 0; i < ch.length; i++) {
 		var name = ch[i].id;
 		var table = translationTable[name];
