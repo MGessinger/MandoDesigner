@@ -394,7 +394,7 @@ function buildAllSettings (SVGNode, category, parent) {
 		if (className == "option")
 			options.unshift(ch[i]);
 		else if (className == "toggle")
-			toggle.unshift(ch[i]);
+			toggle.push(ch[i]);
 		else
 			buildAllSettings(ch[i], category, parent);
 	}
