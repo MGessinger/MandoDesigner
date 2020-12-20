@@ -4,7 +4,7 @@
 	 xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 700 700"
 	 style="enable-background:new 0 0 700 700;" xml:space="preserve">
 <g id="Helmet_Budget-Bucket">
-	<g id="Bucket_Budget-Bucket" fill="#F74416" style="fill:white">
+	<g id="Bucket_Budget-Bucket">
 		<path class="st0" d="M576.7,133.1c-0.7-11.4-5.2-22.2-12.9-30.6C541,77.7,481.8,32.6,352,32.6c-129.7,0-191,44.9-214.9,69.8
 			c-8.2,8.5-13.1,19.7-13.8,31.5c-5.1,83.9-29.1,481.4-29.1,481.4s115.8,70.9,257.8,70.9c86.8,0,162.4-26.5,208-47.1
 			c29-13.1,45.9-23.8,45.9-23.8S581.7,215.2,576.7,133.1z"/>
@@ -17,7 +17,7 @@
 		<rect x="326.4" y="605.4" class="st0" width="47.3" height="45.1"/>
 		<circle class="st0" cx="350" cy="628" r="7"/>
 	</g>
-	<path id="Visor_Budget-Bucket" fill="black" style="fill:white" class="st1" d="M369,605.4H331L327,386.9c0,0-39.7-8.4-40.8-8.4c-1.1,0-55.5-12.7-55.5-12.7
+	<path id="Visor_Budget-Bucket" class="st1" d="M369,605.4H331L327,386.9c0,0-39.7-8.4-40.8-8.4c-1.1,0-55.5-12.7-55.5-12.7
 		l-48-16.5l-16-8.2l1.1-14.6L214,334l57.4,7.3l53.8,3.4l22,1.5h5.5l22-1.5l53.8-3.4L486,334l46.3-7.5l1.1,14.6l-16,8.2l-48,16.5
 		c0,0-54.4,12.7-55.5,12.7c-1.1,0-40.8,8.4-40.8,8.4L369,605.4z"/>
 	<g id="Handle-Left_Budget-Bucket_Option">

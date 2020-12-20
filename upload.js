@@ -50,7 +50,7 @@ function recreateMando (svg) {
 	var scale = find("zoom");
 	zoom(scale.value/100);
 	variants = {};
-	settings = {};
+	resetSettings();
 
 	function findLocal(st) {
 		return svg.getElementById(st);
@@ -145,7 +145,7 @@ function translateMando (svg) {
 		"Right-Shin_Option": "None_Shin_Right",
 		"Right-Thigh_Option": "None_Thigh_Right"
 	};
-	settings = {};
+	resetSettings();
 	function find (st) {
 		return svg.getElementById(st);
 	}

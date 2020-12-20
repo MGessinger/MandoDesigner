@@ -1,6 +1,15 @@
 'use strict';
 
 var settings = {undefined: "#FFFFFF"};
+function resetSettings () {
+	settings = {
+		undefined: "#FFFFFF",
+		"Bucket_BudgetBucketColor":	"#F74416",
+		"Visor_BudgetBucketColor":	"#000000",
+		"Rage_Gauntlet_RightColor":	"#08CB33",
+		"Rage_Gauntlet_LeftColor":	"#08CB33"
+	};
+}
 var showPicker = true;
 var Picker = new function() {
 	function on(elem, event, func) {
@@ -254,18 +263,6 @@ var Picker = new function() {
 			onChange(color.hex);
 	}
 
-	function getDefaultColor (SVGNode, id) {
-		var fill_attr = SVGNode.getAttribute("fill");
-		var fill_style = SVGNode.style.fill;
-		if (fill_attr)
-			return fill_attr;
-		else if (fill_style)
-			return fill_style;
-		else if (id in settings)
-			return settings[id];
-		return "#FFFFFF";
-	}
-
 	var color = new Color();
 	var DOM = new PickerDOM();
 	var onChange = null;
@@ -281,7 +278,7 @@ var Picker = new function() {
 			_setColor(this.style.backgroundColor);
 			DOM.parent = showPicker && this;
 		});
-		var def = getDefaultColor(SVGNode, button.id);
+		var def = settings[button.id] || "#FFF";
 		_setColor(def);
 		input(color.hex);
 	}
