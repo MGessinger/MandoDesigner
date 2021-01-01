@@ -15,7 +15,7 @@ function loadSVG (name, onload, args) {
 	}
 	var xhr = new XMLHttpRequest();
 	xhr.open("GET", "images/" + name + ".svg");
-	xhr.setRequestHeader("Cache-Control", "max-age=10800, public");
+	xhr.setRequestHeader("Cache-Control", "no-cache, max-age=10800");
 	xhr.onload = function () {
 		if (this.status !== 200)
 			return;
@@ -379,10 +379,10 @@ function buildAllSettings (SVGNode, category, parent) {
 		return;
 	parent = prepareParent(SVGNode, parent);
 	var ch = SVGNode.children;
-	var hasUnnamedChild = !ch.length;
+	var hasNamedChild = false;
 	for (var i = 0; i < ch.length; i++)
-		hasUnnamedChild |= !ch[i].id;
-	if (hasUnnamedChild) {
+		hasNamedChild |= !!ch[i].id;
+	if (!hasNamedChild) {
 		if (isEmptyLayer(SVGNode))
 			return;
 		return buildIOSettings(SVGNode, category, parent);
@@ -443,6 +443,9 @@ function onload () {
 	if (window.innerWidth < 786) {
 		var settings = find("settings");
 		settings.classList.add("settings_collapsed");
+		var types = settings.getElementsByClassName("armor_types");
+		for (var i = 0; i < types.length; i++)
+			types[i].style.height = "12em";
 	}
 
 	window.addEventListener("beforeunload", function (event) {
@@ -554,7 +557,7 @@ function prepareForExport (svg) {
 }
 
 function encodeSVG (svg) {
-	var san = svg.replace(/\s+/g," ").replace(/"/g,"'");
+	var san = svg.replace(/\s+/g," ").replace(/"/g,"'").replace(/_(M|F)/,"");
 	return encodeURIComponent(san);
 }
 

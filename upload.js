@@ -64,11 +64,14 @@ function recreateMando (svg) {
 	buildAllSettings(chest, "UpperArmor");
 	var variant = chest.getAttribute("class") || "Classic";
 	variants["Chest"] = neutralize(variant);
+
 	var subgroups = ["Shoulders","Biceps","Gauntlets"];
 	for (var i = 0; i < subgroups.length; i++) {
 		var cur = findLocal(subgroups[i] + "_Current");
 		buildAllSettings(cur,"UpperArmor");
 	}
+	buildAllSettings(findLocal("Collar_Current"), "UpperArmor");
+	buildAllSettings(findLocal("ChestAttachments_Current"), "UpperArmor");
 
 	/* Lower Body */
 	buildAllSettings(findLocal("Groin_Current"), "LowerArmor");
@@ -78,9 +81,12 @@ function recreateMando (svg) {
 		var cur = findLocal(subgroups[i] + "_Current");
 		buildAllSettings(cur,"LowerArmor");
 	}
+
+	/* Soft Parts */
 	buildAllSettings(findLocal("Back"), "Back");
-	var soft = findLocal("Soft-Parts_M") || findLocal("Soft-Parts_F");
-	buildAllSettings(soft, "FlightSuit");
+	buildAllSettings(findLocal("Front"), "Back");
+	buildAllSettings(findLocal("Vest_Current"), "FlightSuit");
+	buildAllSettings(findLocal("Flight-Suit"), "FlightSuit");
 }
 
 var translationTable = {
