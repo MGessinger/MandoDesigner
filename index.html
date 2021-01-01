@@ -43,7 +43,7 @@
 	<body class="light_mode" onload="onload()">
 		<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WDVDR2H" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 		<nav>
-			<svg class="title" viewBox="0 0 420 70"><use id="title" href="#title" onclick="location.reload()"/></svg>
+			<svg class="title" viewBox="0 0 420 70"><use id="title" href="#title"/></svg>
 			<div id="left_nav">
 				<div id="parts_list">
 					<input type="radio" name="parts_list" id="HelmetSettings" value="Helmet (Buy'ce)" onclick="openArmorFolder('Helmet')" checked hidden/>
@@ -124,6 +124,10 @@
 							onclick="switchToArmorVariant('Helmet','Helmet','Shae-Vizla', this)">
 							<svg viewbox="0 75 700 700" class="preview_icon"><use href="#Helmet_Shae-Vizla"/></svg>
 							Shae Vizla
+						</button><button id="Helmet_Variant_RC" class="type_button"
+							onclick="switchToArmorVariant('Helmet','Helmet','RC', this)">
+							<svg viewbox="0 75 700 700" class="preview_icon"><use href="#Helmet_RC"/></svg>
+							Commando
 						</button>
 						<p class="sponsor_title">AlterEgoArmory (sponsored):</p>
 						<button id="Helmet_Variant_Warden" class="type_button"
@@ -166,10 +170,17 @@
 							<svg viewbox="0 75 700 700" class="preview_icon"><use href="#Helmet_Executioner"/></svg>
 							Executioner
 						</button>
+						<p class="sponsor_title">Gedyc Armouries (sponsored)</p>
+						<button id="Helmet_Variant_Ironside" class="type_button"
+							onclick="switchToArmorVariant('Helmet','Helmet','Ironside', this);
+								 setSponsor('Gedyc', 'https://etsy.me/2KPe8gT');">
+							<svg viewbox="0 75 700 700" class="preview_icon"><use href="#Helmet_Ironside"/></svg>
+							Ironside
+						</button>
 						<p class="sponsor_title">Miscellaneous:</p>
 						<button id="Helmet_Variant_Budget-Bucket" class="type_button"
 							onclick="switchToArmorVariant('Helmet','Helmet','Budget-Bucket', this);
-								 setSponsor('Budget','#rickroll');">
+								 setSponsor('Budget','#');">
 							<svg viewbox="0 0 700 700" class="preview_icon"><use href="#Helmet_Budget-Bucket"/></svg>
 							Budget
 						</button>
@@ -183,6 +194,7 @@
 					<a id="AlterEgo" class="sponsor_link" target="_blank" style="display:none"><img width="100%" /></a>
 					<a id="ModernMando" class="sponsor_link" target="_blank" style="display:none"><img width="100%" /></a>
 					<a id="Lonewolf" class="sponsor_link" target="_blank" style="display:none"><img width="100%" /></a>
+					<a id="Gedyc" class="sponsor_link" target="_blank" style="display:none"><img width="100%" /></a>
 					<a id="Budget" class="sponsor_link" style="display:none" onclick="showRoll()"><img width="100%" /></a>
 				</div>
 			</div>

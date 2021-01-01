@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
-<svg id="Female-Body" width="100%" height="100%" viewBox="0 0 1800 3300" version="1.1" xmlns="http://www.w3.org/2000/svg" style="stroke:black;fill:white;stroke-width:2px;">
-<g id="Back_F" transform="translate(11,601)">
+<svg id="Female-Body" width="100%" height="100%" viewBox="0 0 1800 3300" version="1.1" xmlns="http://www.w3.org/2000/svg" style="stroke:black;fill:none;stroke-width:2px;">
+<g id="Back_F" transform="translate(0,601)">
 	<g id="Cape_F">
 		<path id="Full-Cape_Back_F_Option" d="M724.6,182.4c-124.5,47-263.2,273.6-280.3,445.9
 			c-10.8,108.7-63.8,219.2-58.9,327.4c5,109.8-50.3,223.6-54.4,333.3c-3.7,98.8-32.8,144-49.7,241.7c-25.3,146.2-53.3,242.6-76,388.9
@@ -319,11 +319,8 @@
 <g id="Upper-Body_F_Wrapper" transform="translate(193,565)">
 	<title>Upper Body</title>
 	<g id="Chest_Current"></g>
-	<g id="Biceps_Current">
-		<g id="LeftBiceps_Current"></g>
-		<g id="RightBiceps_Current"></g>
-	</g>
 	<g id="Collar_Current"></g>
+	<g id="ChestAttachments_Current"></g>
 	<g id="Shoulders_Current">
 		<g id="LeftShoulder_Current"></g>
 		<g id="RightShoulder_Current"></g>
@@ -332,7 +329,6 @@
 		<g id="LeftGauntlets_Current"></g>
 		<g id="RightGauntlets_Current"></g>
 	</g>
-	<g id="ChestAttachments_Current"></g>
 </g>
 <g id="Lower-Body_F_Wrapper" transform="translate(300,1285)">
 	<title>Lower Body</title>
@@ -355,7 +351,7 @@
 	<g id="Groin_Current"></g>
 	<g id="Waist_Current"></g>
 </g>
-<g id="Front_F" transform="translate(11,601)">
+<g id="Front_F" transform="translate(0,530)">
 	<g id="Cape_F">
 		<g id="Shoulder-Cape-Left_Back_F_Option">
 			<path id="Cape-Shoulder" d="M1151.3,615.2c-10.1-60.3-118.1-394.9,4.4-443.9
