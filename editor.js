@@ -692,3 +692,8 @@ function showRoll () {
 	rickRoll.setAttribute("src", "assets/Bucket_Astley.mp4");
 	rickRoll.style.display = "";
 }
+
+function playKote () {
+	var kote = find("kote");
+	kote.setAttribute("src", "assets/Vode_an.mp3");
+}

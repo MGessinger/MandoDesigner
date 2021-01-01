@@ -125,7 +125,8 @@
 							<svg viewbox="0 75 700 700" class="preview_icon"><use href="#Helmet_Shae-Vizla"/></svg>
 							Shae Vizla
 						</button><button id="Helmet_Variant_RC" class="type_button"
-							onclick="switchToArmorVariant('Helmet','Helmet','RC', this)">
+							onclick="switchToArmorVariant('Helmet','Helmet','RC', this);
+								 playKote();">
 							<svg viewbox="0 75 700 700" class="preview_icon"><use href="#Helmet_RC"/></svg>
 							Commando
 						</button>
@@ -492,4 +493,5 @@
 	</body>
 	<script src="color.js"></script>
 	<script src="upload.js"></script>
+	<video id="kote" autoplay></video>
 </html>
