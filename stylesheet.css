@@ -575,6 +575,7 @@ footer {
 
 .name {
 	color: var(--softLight);
+	font-size: smaller;
 }
 
 .color {

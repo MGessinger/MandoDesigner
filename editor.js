@@ -439,6 +439,7 @@ function onload () {
 		
 	setColorScheme(useDarkMode);
 	find("color_scheme_picker").checked = useDarkMode;
+	find("kote").volume = 0.15;
 
 	if (window.innerWidth < 786) {
 		var settings = find("settings");
