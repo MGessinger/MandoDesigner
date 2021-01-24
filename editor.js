@@ -74,10 +74,6 @@ function neutralize (str) {
 	return str.replace(/(_(M|F|Toggle(Off)?|Option))+($|_)/,"$4");
 }
 
-function isEmptyLayer (SVGNode) {
-	return SVGNode.tagName === "g" && SVGNode.children.length === 0;
-}
-
 function DOMNode (type, props, parent) {
 	var n = document.createElement(type);
 	for (var p in props)
@@ -379,11 +375,12 @@ function buildAllSettings (SVGNode, category, parent) {
 		return;
 	parent = prepareParent(SVGNode, parent);
 	var ch = SVGNode.children;
-	var hasNamedChild = false;
-	for (var i = 0; i < ch.length; i++)
-		hasNamedChild |= !!ch[i].id;
-	if (!hasNamedChild) {
-		if (isEmptyLayer(SVGNode))
+	for (var i = 0; i < ch.length; i++) {
+		if (!ch[i].id)
+			return buildIOSettings(SVGNode, category, parent);
+	}
+	if (!ch.length) {
+		if (SVGNode.tagName === "g")
 			return;
 		return buildIOSettings(SVGNode, category, parent);
 	}
@@ -610,7 +607,7 @@ function setupMando (svg, sexSuffix) {
 	loadSVG("Lower-Armor_" + sexSuffix, function(svg) {
 		switchToArmorVariant("LowerArmor", "Waist", sexSuffix);
 		buildVariableSettings("LowerArmor", "Groin", sexSuffix);
-		var subgroups = ["Thigh", "Knee", "Shin", "Ankle"];
+		var subgroups = ["Thigh", "Knee", "Shin", "Ankle", "Toe"];
 		for (var i = 0; i < subgroups.length; i++) {
 			buildVariableSettings("LowerArmor", "Left-" + subgroups[i], sexSuffix);
 			buildVariableSettings("LowerArmor", "Right-" + subgroups[i], sexSuffix);
