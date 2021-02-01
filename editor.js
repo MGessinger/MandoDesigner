@@ -376,7 +376,7 @@ function buildAllSettings (SVGNode, category, parent) {
 	parent = prepareParent(SVGNode, parent);
 	var ch = SVGNode.children;
 	for (var i = 0; i < ch.length; i++) {
-		if (!ch[i].id)
+		if (!ch[i].id && ch[i].tagName !== "title")
 			return buildIOSettings(SVGNode, category, parent);
 	}
 	if (!ch.length) {
@@ -412,8 +412,6 @@ function buildVariableSettings (category, pieceName, variantName) {
 	var identifier = listName(pieceName);
 	var wrapper = find(identifier + "_Current");
 	var ref = find(fullyQualifiedName);
-	if (!ref)
-		throw fullyQualifiedName;
 	var n = ref.cloneNode(true);
 	wrapper.appendChild(n);
 

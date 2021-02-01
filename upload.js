@@ -76,7 +76,7 @@ function recreateMando (svg) {
 	/* Lower Body */
 	buildAllSettings(findLocal("Groin_Current"), "LowerArmor");
 	buildAllSettings(findLocal("Waist_Current"), "LowerArmor");
-	subgroups = ["Thighs", "Knees", "Shins", "Ankles"];
+	subgroups = ["Thighs", "Knees", "Shins", "Ankles", "Toes"];
 	for (var i = 0; i < subgroups.length; i++) {
 		var cur = findLocal(subgroups[i] + "_Current");
 		buildAllSettings(cur,"LowerArmor");
@@ -86,7 +86,8 @@ function recreateMando (svg) {
 	buildAllSettings(findLocal("Back"), "Back");
 	buildAllSettings(findLocal("Front"), "Back");
 	buildAllSettings(findLocal("Vest_Current"), "FlightSuit");
-	buildAllSettings(findLocal("Flight-Suit"), "FlightSuit");
+	var soft = findLocal("Soft-Parts_M") || findLocal("Soft-Parts_F");
+	buildAllSettings(soft, "FlightSuit");
 }
 
 var translationTable = {

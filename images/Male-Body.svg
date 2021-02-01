@@ -380,6 +380,10 @@
 </g>
 <g id="Lower-Body_M_Wrapper" transform="translate(268,1340)">
 	<title>Lower Body</title>
+	<g id="Knees_Current">
+		<g id="LeftKnee_Current"></g>
+		<g id="RightKnee_Current"></g>
+	</g>
 	<g id="Shins_Current">
 		<g id="LeftShin_Current"></g>
 		<g id="RightShin_Current"></g>
@@ -391,10 +395,6 @@
 	<g id="Toes_Current">
 		<g id="LeftToe_Current"></g>
 		<g id="RightToe_Current"></g>
-	</g>
-	<g id="Knees_Current">
-		<g id="LeftKnee_Current"></g>
-		<g id="RightKnee_Current"></g>
 	</g>
 	<g id="Thighs_Current">
 		<g id="LeftThigh_Current"></g>
