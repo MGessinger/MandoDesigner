@@ -239,7 +239,9 @@ function reupload (input) {
 
 		main.style.backgroundImage = "url(" + img.getAttribute("href") + ")";
 		recreateMando(mando, img);
+		afterUpload = true;
 		setSex(female);
+		afterUpload = false;
 		download.onclick = setDownloader(svg);
 	};
 	reader.readAsText(files[0]);

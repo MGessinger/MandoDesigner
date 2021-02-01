@@ -1,6 +1,7 @@
 /* MandoCreator */
 "use strict";
 var variants = {};
+var afterUpload = false;
 
 function find (st) {
 	return document.getElementById(st);
@@ -229,7 +230,7 @@ function prepareParent (SVGNode, parent) {
 		if (side_name)
 			mirrorSettings(parent, p, side_name[0]);
 
-		var defaultOn = (SVGNode.style.display !== "none");
+		var defaultOn = !afterUpload && (SVGNode.style.display !== "none");
 		var varName = neutralize(SVGNode.id);
 		if (varName in variants)
 			defaultOn = variants[varName];
