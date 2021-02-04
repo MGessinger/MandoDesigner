@@ -107,16 +107,26 @@
 				<path class="st1" d="M936.4,1353.1l16.7,148.6"/>
 			</g>
 		</g>
-		<g id="Basic_Shin_Left_F_Option">
-			<path id="Shin_Basic-Shin_Left_F" class="st0" d="M1008.3,1153.6c-1.6-22.1-25.1-87.6-111.3-73.3
+		<g id="Basic-Round_Shin_Left_F_Option">
+			<path id="Shin_Basic-Round-Shin_Left_F" class="st0" d="M1008.3,1153.6c-1.6-22.1-25.1-87.6-111.3-73.3
 				c-103.5,17.1-89.6,103.3-88.2,110.9c10.6,54.5,58.8,301.8,58.8,301.8c46.6,21.3,115.1,13.8,153.1-18.6
 				C1020.6,1474.3,1013,1217.4,1008.3,1153.6"/>
-			<path id="Trauma-Plating_Basic-Shin_Left_F_ToggleOff" class="st0" d="M1000.3,1464.7c-1.5-48.3-7.8-253.6-12-309.6
+			<path id="Trauma-Plating_Basic-Round-Shin_Left_F_ToggleOff" class="st0" d="M1000.3,1464.7c-1.5-48.3-7.8-253.6-12-309.6
 				c-0.7-10-7.6-31.7-26.9-45.2c-13.7-9.6-33.5-14.5-61.2-9.9c-33.7,5.6-52.6,19.2-62.5,35.1c-14.3,22.9-10,48.7-9.3,52.2
 				l56.7,291.1C921.5,1490.9,969.4,1485.8,1000.3,1464.7"/>
-			<g id="Ridge_Basic-Shin_Left_F_ToggleOff">
+			<g id="Ridge_Basic-Round-Shin_Left_F_ToggleOff">
 				<path class="st0" d="M942.8,1078.4l-37.7-5.1l-37.5,14.4l59.4,417.4c25.8,1.9,26.3,2.8,47.7-6.5L942.8,1078.4"/>
 				<path class="st1" d="M905.1,1073.3l47.3,432.8"/>
+			</g>
+		</g>
+		<g id="Basic_Shin_Left_F_Option">
+			<path id="Shin_Basic-Shin_Left_F" class="st0" d="M1024.2,1149.2l-48.3-63l-107.5,4.8l-47.1,89.1l44.8,315.1
+				c45.4,23.6,114.2,19.6,153.9-10.7L1024.2,1149.2"/>
+			<path id="Trauma-Plating_Basic-Shin_Left_F_ToggleOff" class="st0" d="M1002,1475l4.1-319.8l-38.8-50.5l-87.9,3.9l-39.6,74.8
+				l42.6,299.6C919.3,1498.3,969.2,1495.5,1002,1475"/>
+			<g id="Ridge_Basic-Shin_Left_F_ToggleOff">
+				<path class="st0" d="M961.2,1084.9l-37.4-7l-38.2,12.4l38,419.9c25.7,3.2,26.1,4.2,47.9-4L961.2,1084.9"/>
+				<path class="st1" d="M923.8,1077.9l25.1,434.6"/>
 			</g>
 		</g>
 	</g>
@@ -222,16 +232,26 @@
 				<path class="st1" d="M328.6,1353.1l-16.7,148.6"/>
 			</g>
 		</g>
-		<g id="Basic_Shin_Right_F_Option">
-			<path id="Shin_Basic-Shin_Right_F" class="st0" d="M256.7,1153.6c1.6-22.1,25.1-87.6,111.3-73.3
+		<g id="Basic-Round_Shin_Right_F_Option">
+			<path id="Shin_Basic-Round-Shin_Right_F" class="st0" d="M256.7,1153.6c1.6-22.1,25.1-87.6,111.3-73.3
 				c103.5,17.1,89.6,103.3,88.2,110.9c-10.6,54.5-58.8,301.8-58.8,301.8c-46.6,21.3-115.1,13.8-153.1-18.6
 				C244.4,1474.3,252,1217.4,256.7,1153.6"/>
-			<path id="Trauma-Plating_Basic-Shin_Right_F_ToggleOff" class="st0" d="M264.7,1464.7c1.5-48.3,7.8-253.6,12-309.6
+			<path id="Trauma-Plating_Basic-Round-Shin_Right_F_ToggleOff" class="st0" d="M264.7,1464.7c1.5-48.3,7.8-253.6,12-309.6
 				c0.7-10,7.6-31.7,26.9-45.2c13.7-9.6,33.5-14.5,61.2-9.9c33.7,5.6,52.6,19.2,62.5,35.1c14.3,22.9,10,48.7,9.3,52.2l-56.7,291.1
 				C343.5,1490.9,295.6,1485.8,264.7,1464.7"/>
-			<g id="Ridge_Basic-Shin_Right_F_ToggleOff">
+			<g id="Ridge_Basic-Round-Shin_Right_F_ToggleOff">
 				<path class="st0" d="M322.2,1078.4l37.7-5.1l37.5,14.4L337.9,1505c-25.8,1.9-26.3,2.8-47.7-6.5L322.2,1078.4"/>
 				<path class="st1" d="M359.9,1073.3L312.6,1506"/>
+			</g>
+		</g>
+		<g id="Basic_Shin_Right_F_Option">
+			<path id="Shin_Basic-Shin_Right_F" class="st0" d="M241.3,1149.2l48.3-63l107.5,4.8l47.1,89.1l-44.8,315.1
+				c-45.4,23.6-114.2,19.6-153.8-10.7L241.3,1149.2"/>
+			<path id="Trauma-Plating_Basic-Shin_Right_F_ToggleOff" class="st0" d="M263.4,1475l-4.1-319.8l38.8-50.5l87.9,3.9l39.6,74.8
+				L382.9,1483C346.2,1498.3,296.2,1495.5,263.4,1475"/>
+			<g id="Ridge_Basic-Shin_Right_F_ToggleOff">
+				<path class="st0" d="M304.3,1084.9l37.4-7l38.2,12.4l-38,419.9c-25.7,3.2-26.1,4.2-47.9-4L304.3,1084.9"/>
+				<path class="st1" d="M341.7,1077.9l-25.1,434.6"/>
 			</g>
 		</g>
 	</g>
@@ -247,14 +267,14 @@
 				l7.1,14.5l-72.4,18.7l-64.2,29l-65.9-82.6l-3.2-32.2l36.9,1.7L921.2,1526.6"/>
 		</g>
 		<g id="Legacy_Ankle_Left_F_Option">
-			<path id="Plate-2_Legacy-Ankle_Left_F" class="st0" d="M1035.7,1590l38.5,34.8l26.6,33.3l-42.4,13.8l-97.1-20.2l-35.5-47
-				L1035.7,1590"/>
-			<path id="Plate-1_Legacy-Ankle_Left_F" class="st0" d="M860.9,1524.6c0,0,38.8,17.3,96.2,15.3c39.4-1.4,55.4-11.3,55.4-11.3
-				l33.3,61.8l-8.6,34.1l-140.5-11l-34.6-29.3L860.9,1524.6"/>
-			<path id="Trauma-Plate-2_Legacy-Ankle_Left_F_ToggleOff" class="st0" d="M1044,1597.5l30,27.1l15.5,19.4l-32.3,10.5l-85.6-17.8
-				l-14-18.6l79.5,6.2L1044,1597.5"/>
-			<path id="Trauma-Plate-1_Legacy-Ankle_Left_F_ToggleOff" class="st0" d="M875.6,1546.2l0.6,28.3l28,22.7l123.5,9.7l8.7-34.1
-				l-15.7-29.2c-10.4,3-42.1,12.1-62.8,12.9C924.8,1557.7,894,1551,875.6,1546.2"/>
+			<path id="Plate-2_Legacy-Ankle_Left_F" class="st0" d="M1035.7,1580l38.5,34.8l26.6,33.3l-42.4,13.8l-97.1-20.2l-35.5-47
+				L1035.7,1580"/>
+			<path id="Plate-1_Legacy-Ankle_Left_F" class="st0" d="M860.9,1514.6c0,0,38.8,17.3,96.2,15.3c39.4-1.4,55.4-11.3,55.4-11.3
+				l33.3,61.8l-8.6,34.1l-140.5-11l-34.6-29.3L860.9,1514.6"/>
+			<path id="Trauma-Plate-2_Legacy-Ankle_Left_F_ToggleOff" class="st0" d="M1044,1587.5l30,27.1l15.5,19.4l-32.3,10.5l-85.6-17.8
+				l-14-18.6l79.5,6.2L1044,1587.5"/>
+			<path id="Trauma-Plate-1_Legacy-Ankle_Left_F_ToggleOff" class="st0" d="M875.6,1536.2l0.6,28.3l28,22.7l123.5,9.7l8.7-34.1
+				l-15.7-29.2c-10.4,3-42.1,12.1-62.8,12.9C924.8,1547.7,894,1541,875.6,1536.2"/>
 		</g>
 		<g id="Basic_Ankle_Left_F_Option">
 			<path id="Main_Basic-Ankle_Left_F" class="st0" d="M1097.1,1637.4l-69.5-122.5c-40.7-2.1-78.9,4.5-114.3,20.9
@@ -297,14 +317,14 @@
 				l-69-16.4l-7.1,14.5l72.4,18.7l64.2,29l65.9-82.6l3.2-32.2l-36.9,1.7L344.5,1526.6"/>
 		</g>
 		<g id="Legacy_Ankle_Right_F_Option">
-			<path id="Plate-2_Legacy-Ankle_Right_F" class="st0" d="M230,1590l-38.5,34.8l-26.6,33.3l42.4,13.8l97.1-20.2l35.5-47L230,1590"
+			<path id="Plate-2_Legacy-Ankle_Right_F" class="st0" d="M230,1580l-38.5,34.8l-26.6,33.3l42.4,13.8l97.1-20.2l35.5-47L230,1580"
 				/>
-			<path id="Plate-1_Legacy-Ankle_Right_F" class="st0" d="M404.7,1524.6c0,0-38.8,17.3-96.2,15.3c-39.4-1.4-55.4-11.3-55.4-11.3
-				l-33.3,61.8l8.6,34.1l140.5-11l34.6-29.3L404.7,1524.6"/>
-			<path id="Trauma-Plate-2_Legacy-Ankle_Right_F_ToggleOff" class="st0" d="M221.7,1597.5l-30,27.1l-15.5,19.4l32.3,10.5l85.6-17.8
-				l14-18.6l-79.5,6.2L221.7,1597.5"/>
-			<path id="Trauma-Plate-1_Legacy-Ankle_Right_F_ToggleOff" class="st0" d="M390,1546.2l-0.6,28.3l-28,22.7l-123.5,9.7l-8.7-34.1
-				l15.7-29.2c10.4,3,42.1,12.1,62.8,12.9C340.8,1557.7,371.6,1551,390,1546.2"/>
+			<path id="Plate-1_Legacy-Ankle_Right_F" class="st0" d="M404.7,1514.6c0,0-38.8,17.3-96.2,15.3c-39.4-1.4-55.4-11.3-55.4-11.3
+				l-33.3,61.8l8.6,34.1l140.5-11l34.6-29.3L404.7,1514.6"/>
+			<path id="Trauma-Plate-2_Legacy-Ankle_Right_F_ToggleOff" class="st0" d="M221.7,1587.5l-30,27.1l-15.5,19.4l32.3,10.5l85.6-17.8
+				l14-18.6l-79.5,6.2L221.7,1587.5"/>
+			<path id="Trauma-Plate-1_Legacy-Ankle_Right_F_ToggleOff" class="st0" d="M390,1536.2l-0.6,28.3l-28,22.7l-123.5,9.7l-8.7-34.1
+				l15.7-29.2c10.4,3,42.1,12.1,62.8,12.9C340.8,1547.7,371.6,1541,390,1536.2"/>
 		</g>
 		<g id="Basic_Ankle_Right_F_Option">
 			<path id="Main_Basic-Ankle_Right_F" class="st0" d="M168.5,1637.4l69.5-122.5c40.7-2.1,78.9,4.5,114.3,20.9
