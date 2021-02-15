@@ -300,6 +300,7 @@ footer {
 .zoom_icon {
 	vertical-align: sub;
 	padding: 0 0.5em;
+	cursor: pointer;
 }
 
 #zoom {

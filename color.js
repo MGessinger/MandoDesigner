@@ -2,6 +2,7 @@
 
 var settings;
 var changes = [];
+var redos = [];
 function resetSettings () {
 	settings = {
 		undefined: "#FFFFFF",
@@ -13,17 +14,18 @@ function resetSettings () {
 }
 resetSettings();
 
-function undo (n) {
+function undo (n, from, to, key) {
 	showPicker = false;
 	for (var i = 0; i < n; i++) {
-		var c = changes.pop();
+		var c = from.pop();
 		if (!c)
 			break;
 		var button = find(c["button"]);
 		if (!button)
 			return;
-		button.style.background = c.oldColor;
+		button.style.background = c[key];
 		button.click();
+		to.push(c);
 	}
 	showPicker = true;
 }
@@ -258,7 +260,7 @@ var Picker = new function() {
 					wrapper.style = "visibility:hidden";
 					if ( (latestChange.button != undefined) &&
 					     (latestChange.newColor !== latestChange.oldColor) ) {
-						delete latestChange["newColor"];
+						redos = [];
 						changes.push(latestChange);
 					}
 					latestChange = {};
