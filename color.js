@@ -1,6 +1,7 @@
 'use strict';
 
 var settings;
+var changes = [];
 function resetSettings () {
 	settings = {
 		undefined: "#FFFFFF",
@@ -12,8 +13,24 @@ function resetSettings () {
 }
 resetSettings();
 
+function undo (n) {
+	showPicker = false;
+	for (var i = 0; i < n; i++) {
+		var c = changes.pop();
+		if (!c)
+			break;
+		var button = find(c["button"]);
+		if (!button)
+			return;
+		button.style.background = c.oldColor;
+		button.click();
+	}
+	showPicker = true;
+}
+
 var showPicker = true;
 var Picker = new function() {
+	var latestChange = {};
 	function on(elem, event, func) {
 		elem.addEventListener(event, func);
 	}
@@ -239,6 +256,12 @@ var Picker = new function() {
 				if (!p) {
 					onChange = null;
 					wrapper.style = "visibility:hidden";
+					if ( (latestChange.button != undefined) &&
+					     (latestChange.newColor !== latestChange.oldColor) ) {
+						delete latestChange["newColor"];
+						changes.push(latestChange);
+					}
+					latestChange = {};
 				} else {
 					if (wrapper.style.visibility != "hidden")
 						return;
@@ -261,6 +284,7 @@ var Picker = new function() {
 			return;
 		color.update(value);
 		DOM.update(fromEditor);
+		latestChange["newColor"] = color.hex;
 		if (onChange)
 			onChange(color.hex);
 	}
@@ -286,7 +310,14 @@ var Picker = new function() {
 		on(button, "click", function(event) {
 			onChange = input;
 			_setColor(this.style.backgroundColor);
-			DOM.parent = showPicker && this;
+			if (!showPicker)
+				return;
+			DOM.parent = this;
+
+			var oldColor = SVGNode.style.fill;
+			if (!oldColor)
+				return;
+			latestChange = {"button": button.id, "oldColor": oldColor, "newColor": oldColor};
 		});
 		var def = getDefaultColor(SVGNode, button.id);
 		_setColor(def);
