@@ -7,44 +7,59 @@ function find (st) {
 	return document.getElementById(st);
 }
 
-function loadSVG (name, onload, args) {
+var vault = function () {
 	var vault = find("vault");
-	var local = vault.querySelector("#" + name);
-	if (local) {
-		var copy = local.cloneNode(true);
-		return onload(copy, args);
-	}
-	var xhr = new XMLHttpRequest();
-	xhr.open("GET", "images/" + name + ".svg");
-	xhr.setRequestHeader("Cache-Control", "no-cache, max-age=10800");
-	xhr.onload = function () {
-		if (this.status !== 200)
-			return;
-		var xml = this.responseXML;
-		if (!xml)
-			return;
-		var svg = xml.documentElement;
-		svg.setAttribute("id", name);
+	return {
+		query: function (st) {
+			if (!st)
+				return;
+			var ch = vault.children;
+			for (var i = 0; i < ch.length; i++) {
+				var svg = ch[i];
+				var local = svg.getElementById(st);
+				if (local)
+					return local;
+			}
+		},
+		load: function (name, onload, args) {
+			 var local = this.query(name);
+			 if (local) {
+				 var copy = local.cloneNode(true);
+				 return onload(copy, args);
+			 }
+			 var xhr = new XMLHttpRequest();
+			 xhr.open("GET", "images/" + name + ".svg");
+			 xhr.setRequestHeader("Cache-Control", "no-cache, max-age=10800");
+			 xhr.onload = function () {
+				 if (this.status !== 200)
+					 return;
+				 var xml = this.responseXML;
+				 if (!xml)
+					 return;
+				 var svg = xml.documentElement;
+				 svg.setAttribute("id", name);
 
-		/* Assign classes based on ID components */
-		var options = svg.querySelectorAll("[id*=Option]");
-		for (var i = 0; i < options.length; i++)
-			options[i].setAttribute("class", "option");
+				 /* Assign classes based on ID components */
+				 var options = svg.querySelectorAll("[id*=Option]");
+				 for (var i = 0; i < options.length; i++)
+					 options[i].setAttribute("class", "option");
 
-		var options = svg.querySelectorAll("[id*=Toggle]");
-		for (var i = 0; i < options.length; i++) {
-			options[i].setAttribute("class", "toggle");
-			if (options[i].id.includes("Off"))
-				options[i].style.display = "none";
-		}
+				 var options = svg.querySelectorAll("[id*=Toggle]");
+				 for (var i = 0; i < options.length; i++) {
+					 options[i].setAttribute("class", "toggle");
+					 if (options[i].id.includes("Off"))
+						 options[i].style.display = "none";
+				 }
 
-		/* Store it in the Vault for later use */
-		vault.appendChild(svg);
-		var copy = svg.cloneNode(true);
-		onload(copy, args);
+				 /* Store it in the Vault for later use */
+				 vault.appendChild(svg);
+				 var copy = svg.cloneNode(true);
+				 onload(copy, args);
+			 };
+			 xhr.send();
+		 }
 	};
-	xhr.send();
-}
+}();
 
 function listName (str) {
 	if (!str)
@@ -412,7 +427,7 @@ function buildVariableSettings (category, pieceName, variantName) {
 	var fullyQualifiedName = pieceName + "_" + variantName;
 	var identifier = listName(pieceName);
 	var wrapper = find(identifier + "_Current");
-	var ref = find(fullyQualifiedName);
+	var ref = vault.query(fullyQualifiedName);
 	var n = ref.cloneNode(true);
 	wrapper.appendChild(n);
 
@@ -482,7 +497,7 @@ function switchToArmorVariant (category, pieceName, variantName, button) {
 
 	var old = find(pieceName + "_Current");
 	var SVGparent = old.parentNode;
-	var n = find(pieceName + "_" + variantName);
+	var n = vault.query(pieceName + "_" + variantName);
 	n = n.cloneNode(true);
 	n.id = pieceName + "_Current";
 	n.setAttribute("class", variantName);
@@ -589,9 +604,9 @@ function setupMando (svg, sexSuffix) {
 		return svg.getElementById(st);
 	}
 	var variant = variants["Helmet"] || "Classic";
-	loadSVG("Helmets", function() { switchToArmorVariant("Helmet", "Helmet", variant); });
+	vault.load("Helmets", function() { switchToArmorVariant("Helmet", "Helmet", variant); });
 
-	loadSVG("Upper-Armor_" + sexSuffix, function(svg) {
+	vault.load("Upper-Armor_" + sexSuffix, function(svg) {
 		var variant = variants["Chest"] || "Classic";
 		switchToArmorVariant("UpperArmor", "Chest", variant + "_" + sexSuffix)
 		var subgroups = ["Shoulder","Biceps","Gauntlets"];
@@ -603,7 +618,7 @@ function setupMando (svg, sexSuffix) {
 		buildVariableSettings("UpperArmor", "Chest-Attachments", sexSuffix);
 	});
 
-	loadSVG("Lower-Armor_" + sexSuffix, function(svg) {
+	vault.load("Lower-Armor_" + sexSuffix, function(svg) {
 		switchToArmorVariant("LowerArmor", "Waist", sexSuffix);
 		buildVariableSettings("LowerArmor", "Groin", sexSuffix);
 		var subgroups = ["Thigh", "Knee", "Shin", "Ankle", "Toe"];
@@ -631,7 +646,7 @@ function setColorScheme (useDark, className, bckName, logoName) {
 	document.body.className = className;
 	var a = find("download");
 	var main = find("editor");
-	loadSVG(bckName, function(svg) {
+	vault.load(bckName, function(svg) {
 		a.onclick = setDownloader(svg);
 		var img = svg.getElementsByTagName("image")[0];
 		var href = img.getAttribute("href");
@@ -659,7 +674,7 @@ function setSex (female) {
 		settings.classList.add("male");
 	}
 	wipeSlideContents();
-	loadSVG(body, setupMando, sexSuffix);
+	vault.load(body, setupMando, sexSuffix);
 	localStorage.setItem("female_sex", female.toString());
 }
 
