@@ -16,6 +16,8 @@ var vault = function () {
 			var ch = vault.children;
 			for (var i = 0; i < ch.length; i++) {
 				var svg = ch[i];
+				if (svg.id === st)
+					return svg;
 				var local = svg.getElementById(st);
 				if (local)
 					return local;
