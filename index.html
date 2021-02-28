@@ -61,7 +61,7 @@
 				<label for="background_upload" class="nav_label">Upload Background <span class="nav_icon">&#xF03E;</span> </label>
 				<label id="reset_wrapper" class="nav_label">
 					Reset Background
-					<button id="reset" class="nav_icon" onclick="setColorScheme(find('color_scheme_picker').checked)">&#xF021;</button>
+					<button id="reset" class="nav_icon" onclick="S.set.DarkMode(find('color_scheme_picker').checked)">&#xF021;</button>
 				</label>
 				<input id="reupload" type="file" accept="image/svg+xml" onchange="reupload(this);" hidden/>
 				<label for="reupload" class="nav_label">Continue Editing<span class="nav_icon">&#xE910;</span></label>
@@ -70,11 +70,11 @@
 				<label for="contact_opener" class="nav_label">About/Contact Us<span class="nav_icon">&#xE90E;</span></label>
 				<a class="nav_label" target="_blank" href="https://www.paypal.com/donate?hosted_button_id=TJGV33MFJL26W">Donate<span class="nav_icon">&#xE914;</span></a>
 				<label id="color_scheme_label" for="color_scheme_picker" class="nav_label">Toggle Dark/Light<span class="nav_icon">&#xE90F;</span></label>
-				<input type="checkbox" id="color_scheme_picker" style="opacity:0;" onchange="setColorScheme(this.checked)"/>
+				<input type="checkbox" id="color_scheme_picker" style="opacity:0;" onchange="S.set.DarkMode(this.checked)"/>
 			</div>
 		</nav>
 		<div id="settings" class="settings_column">
-			<button id="settings_toggle" title="Toggle Options menu" onclick="toggleOptions()">&#xE900;</button>
+			<button id="settings_toggle" title="Toggle Options menu" onclick="S.toggle.Options()">&#xE900;</button>
 			<div id="HelmetOptions" class="folder selected">
 				<div class="hidden">
 					<h2 class="slide_title">Helmet (Buy'ce)</h2>
@@ -261,7 +261,7 @@
 				</div>
 				<div class="folder_content">
 					<div class="slide">
-						<button class="slide_toggle hidden" onclick="toggleSlide(this.parentNode)">
+						<button class="slide_toggle hidden" onclick="S.toggle.Slide(this.parentNode)">
 							<div class="toggle_text">
 								<p class="parent_title">Upper Body</p>
 								<p>Neck (Ghet'bur)</p>
@@ -271,7 +271,7 @@
 						<div id="NeckArmorColors" class="replace slide_content"></div>
 					</div>
 					<div class="slide">
-						<button class="slide_toggle hidden" onclick="toggleSlide(this.parentNode)">
+						<button class="slide_toggle hidden" onclick="S.toggle.Slide(this.parentNode)">
 							<div class="toggle_text">
 								<p class="parent_title">Upper Body</p>
 								<p>Chest Attachments</p>
@@ -280,7 +280,7 @@
 						<div id="ChestAttachmentsColors" class="slide_content"></div>
 					</div>
 					<div class="slide">
-						<button class="slide_toggle hidden" onclick="toggleSlide(this.parentNode)">
+						<button class="slide_toggle hidden" onclick="S.toggle.Slide(this.parentNode)">
 							<div class="toggle_text">
 								<p class="parent_title">Upper Body</p>
 								<p>Chest (Hal'cabur)</p>
@@ -291,7 +291,7 @@
 						<div id="LeftChestColors" class="replace slide_content"></div>
 					</div>
 					<div class="slide">
-						<button class="slide_toggle hidden" onclick="toggleSlide(this.parentNode)">
+						<button class="slide_toggle hidden" onclick="S.toggle.Slide(this.parentNode)">
 							<div class="toggle_text">
 								<p class="parent_title">Upper Body</p>
 								<p>Iron Heart (Kar'ta Beskar)</p>
@@ -300,7 +300,7 @@
 						<div id="IronHeartColors" class="replace slide_content"></div>
 					</div>
 					<div class="slide">
-						<button class="slide_toggle hidden" onclick="toggleSlide(this.parentNode)">
+						<button class="slide_toggle hidden" onclick="S.toggle.Slide(this.parentNode)">
 							<div class="toggle_text">
 								<p class="parent_title">Upper Body</p>
 								<p>Abdomen (Shar'tas)</p>
@@ -309,7 +309,7 @@
 						<div id="AbdomenColors" class="replace slide_content"></div>
 					</div>
 					<div class="slide">
-						<button class="slide_toggle hidden" onclick="toggleSlide(this.parentNode)">
+						<button class="slide_toggle hidden" onclick="S.toggle.Slide(this.parentNode)">
 							<div class="toggle_text">
 								<p class="parent_title">Upper Body</p>
 								<p>Shoulders (Bes'mabur)</p>
@@ -319,7 +319,7 @@
 						<div id="LeftShoulderColors" class="slide_content"></div>
 					</div>
 					<div class="slide">
-						<button class="slide_toggle hidden" onclick="toggleSlide(this.parentNode)">
+						<button class="slide_toggle hidden" onclick="S.toggle.Slide(this.parentNode)">
 							<div class="toggle_text">
 								<p class="parent_title">Upper Body</p>
 								<p>Biceps (Irud'cabur)</p>
@@ -329,7 +329,7 @@
 						<div id="LeftBicepsColors" class="slide_content"></div>
 					</div>
 					<div class="slide">
-						<button class="slide_toggle hidden" onclick="toggleSlide(this.parentNode)">
+						<button class="slide_toggle hidden" onclick="S.toggle.Slide(this.parentNode)">
 							<div class="toggle_text">
 								<p class="parent_title">Upper Body</p>
 								<p>Gauntlets (Kom'rk)</p>
@@ -358,7 +358,7 @@
 				</div>
 				<div class="folder_content">
 					<div class="slide">
-						<button class="slide_toggle hidden" onclick="toggleSlide(this.parentNode)">
+						<button class="slide_toggle hidden" onclick="S.toggle.Slide(this.parentNode)">
 							<div class="toggle_text">
 								<p class="parent_title">Lower Body</p>
 								<p>Waist</p>
@@ -369,7 +369,7 @@
 						<div id="AccessoriesColors" class="slide_content"></div>
 					</div>
 					<div class="slide">
-						<button class="slide_toggle hidden" onclick="toggleSlide(this.parentNode)">
+						<button class="slide_toggle hidden" onclick="S.toggle.Slide(this.parentNode)">
 							<div class="toggle_text">
 								<p class="parent_title">Lower Body</p>
 								<p>Groin (Ven'cabur)</p>
@@ -378,7 +378,7 @@
 						<div id="GroinColors" class="slide_content"></div>
 					</div>
 					<div class="slide">
-						<button class="slide_toggle hidden" onclick="toggleSlide(this.parentNode)">
+						<button class="slide_toggle hidden" onclick="S.toggle.Slide(this.parentNode)">
 							<div class="toggle_text">
 								<p class="parent_title">Lower Body</p>
 								<p>Thighs (Motun'bur)</p>
@@ -388,7 +388,7 @@
 						<div id="LeftThighColors" class="slide_content"></div>
 					</div>
 					<div class="slide">
-						<button class="slide_toggle hidden" onclick="toggleSlide(this.parentNode)">
+						<button class="slide_toggle hidden" onclick="S.toggle.Slide(this.parentNode)">
 							<div class="toggle_text">
 								<p class="parent_title">Lower Body</p>
 								<p>Knees (Bes'lovik)</p>
@@ -398,7 +398,7 @@
 						<div id="LeftKneeColors" class="slide_content"></div>
 					</div>
 					<div class="slide">
-						<button class="slide_toggle hidden" onclick="toggleSlide(this.parentNode)">
+						<button class="slide_toggle hidden" onclick="S.toggle.Slide(this.parentNode)">
 							<div class="toggle_text">
 								<p class="parent_title">Lower Body</p>
 								<p>Shins (Tadun'bur)</p>
@@ -408,7 +408,7 @@
 						<div id="LeftShinColors" class="slide_content"></div>
 					</div>
 					<div class="slide">
-						<button class="slide_toggle hidden" onclick="toggleSlide(this.parentNode)">
+						<button class="slide_toggle hidden" onclick="S.toggle.Slide(this.parentNode)">
 							<div class="toggle_text">
 								<p class="parent_title">Lower Body</p>
 								<p>Foot (Cetar'bur)</p>
@@ -480,14 +480,14 @@
 		</form>
 
 		<footer>
-			<input type="radio" name="sex" class="toggle_sex" id="male" checked onchange="setSex(false)">
+			<input type="radio" name="sex" class="toggle_sex" id="male" checked onchange="S.set.Sex(false)">
 			<label for="male" class="label_sex">&#xe901;</label>
-			<input type="radio" name="sex" class="toggle_sex" id="female" onchange="setSex(true)">
+			<input type="radio" name="sex" class="toggle_sex" id="female" onchange="S.set.Sex(true)">
 			<label for="female" class="label_sex">&#xe902;</label>
 			<div class="zoom_wrapper">
-					<span class="zoom_icon" onclick="zoomInOut(-10);">&#xe916;</span
-					><input id="zoom" type="range" min="100" max="250" value="100" oninput="zoom(this.value/100);" /
-					><span class="zoom_icon" onclick="zoomInOut(10);">&#xe917;</span>
+					<span class="zoom_icon" onclick="zoomInOut(-10)">&#xe916;</span
+					><input id="zoom" type="range" min="100" max="250" value="100" oninput="zoom(this.value/100)" /
+					><span class="zoom_icon" onclick="zoomInOut(10)">&#xe917;</span>
 			</div>
 		</footer>
 		<div id="vault" style="display: none"></div>

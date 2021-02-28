@@ -18,7 +18,7 @@ function loadImage (input) {
 	var reader = new FileReader();
 	if (files[0].type.includes("svg")) {
 		reader.onload = function () {
-			var svg = DOMNode("svg");
+			var svg = document.createElement("svg");
 			svg.innerHTML = this.result;
 			var newSVG = svg.firstElementChild;
 			customBck.replaceChild(newSVG, img);
@@ -56,38 +56,38 @@ function recreateMando (svg) {
 		return svg.getElementById(st);
 	}
 	var helmet = findLocal("Helmet_Current");
-	buildAllSettings(helmet, "Helmet");
+	S.build.All(helmet, "Helmet");
 	variants["Helmet"] = helmet.getAttribute("class") || "Classic";
 
 	/* Upper Body */
 	var chest = findLocal("Chest_Current");
-	buildAllSettings(chest, "UpperArmor");
+	S.build.All(chest, "UpperArmor");
 	var variant = chest.getAttribute("class") || "Classic";
 	variants["Chest"] = neutralize(variant);
 
 	var subgroups = ["Shoulders","Biceps","Gauntlets"];
 	for (var i = 0; i < subgroups.length; i++) {
 		var cur = findLocal(subgroups[i] + "_Current");
-		buildAllSettings(cur,"UpperArmor");
+		S.build.All(cur,"UpperArmor");
 	}
-	buildAllSettings(findLocal("Collar_Current"), "UpperArmor");
-	buildAllSettings(findLocal("ChestAttachments_Current"), "UpperArmor");
+	S.build.All(findLocal("Collar_Current"), "UpperArmor");
+	S.build.All(findLocal("ChestAttachments_Current"), "UpperArmor");
 
 	/* Lower Body */
-	buildAllSettings(findLocal("Groin_Current"), "LowerArmor");
-	buildAllSettings(findLocal("Waist_Current"), "LowerArmor");
+	S.build.All(findLocal("Groin_Current"), "LowerArmor");
+	S.build.All(findLocal("Waist_Current"), "LowerArmor");
 	subgroups = ["Thighs", "Knees", "Shins", "Ankles", "Toes"];
 	for (var i = 0; i < subgroups.length; i++) {
 		var cur = findLocal(subgroups[i] + "_Current");
-		buildAllSettings(cur,"LowerArmor");
+		S.build.All(cur,"LowerArmor");
 	}
 
 	/* Soft Parts */
-	buildAllSettings(findLocal("Back"), "Back");
-	buildAllSettings(findLocal("Front"), "Back");
-	buildAllSettings(findLocal("Vest_Current"), "FlightSuit");
+	S.build.All(findLocal("Back"), "Back");
+	S.build.All(findLocal("Front"), "Back");
+	S.build.All(findLocal("Vest_Current"), "FlightSuit");
 	var soft = findLocal("Soft-Parts_M") || findLocal("Soft-Parts_F");
-	buildAllSettings(soft, "FlightSuit");
+	S.build.All(soft, "FlightSuit");
 }
 
 var translationTable = {
@@ -206,12 +206,12 @@ function reupload (input) {
 
 	var reader = new FileReader();
 	reader.onload = function () {
-		var svg = DOMNode("svg");
+		var svg = document.createElement("svg");
 		svg.innerHTML = this.result;
 		svg = svg.firstElementChild;
 		if (svg.id == "character") {
 			translateMando(svg);
-			setSex(false);
+			S.set.Sex(false);
 			return;
 		}
 
@@ -220,28 +220,25 @@ function reupload (input) {
 		if (!mando || !img)
 			return;
 
-		var female = false;
-		if (mando.id === "Male-Body") {
-			var sex_radio = find("male");
-			sex_radio.checked = true;
-			localStorage.setItem("female_sex", false);
-		} else {
-			female = true;
+		var female = (mando.id === "Female-Body");
+		if (female) {
 			var sex_radio = find("female");
 			sex_radio.checked = true;
 			localStorage.setItem("female_sex", true);
+		} else {
+			var sex_radio = find("male");
+			sex_radio.checked = true;
+			localStorage.setItem("female_sex", false);
 		}
 
 		var theme = find("color_scheme_picker");
 		var light_mode = !svg.getElementById("titleLight");
 		theme.checked = light_mode;
-		setColorScheme(light_mode);
+		S.set.DarkMode(light_mode);
 
 		main.style.backgroundImage = "url(" + img.getAttribute("href") + ")";
-		recreateMando(mando, img);
-		afterUpload = true;
-		setSex(female);
-		afterUpload = false;
+		recreateMando(mando);
+		S.set.Sex(female, true);
 		download.onclick = setDownloader(svg);
 	};
 	reader.readAsText(files[0]);

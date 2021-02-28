@@ -183,6 +183,15 @@ var Picker = new function() {
 		}
 	}
 
+	function DOMNode (type, props, parent) {
+		var n = document.createElement(type);
+		for (var p in props)
+			n.setAttribute(p, props[p]);
+		if (parent)
+			parent.appendChild(n);
+		return n;
+	}
+
 	function PickerDOM() {
 		var wrapper = find("picker");
 		on(wrapper, "click", function(event){event.stopPropagation();});
