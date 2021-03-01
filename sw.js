@@ -6,12 +6,12 @@ self.addEventListener("install", function (event) {
 	event.waitUntil(
 		caches.open(CACHE_NAME)
 		.then(c => c.addAll( [
-			'/index.html',
-			'/editor.js',
-			"/upload.js",
-			"/color.js",
-			"/stylesheet.css",
-			"/color.css",
+			'index.html',
+			'editor.js',
+			"upload.js",
+			"color.js",
+			"stylesheet.css",
+			"color.css",
 			"images/Helmets.svg"
 		]))
 	);
