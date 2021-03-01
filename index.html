@@ -66,7 +66,7 @@
 				<input id="reupload" type="file" accept="image/svg+xml" onchange="reupload(this);" hidden/>
 				<label for="reupload" class="nav_label">Continue Editing<span class="nav_icon">&#xE910;</span></label>
 				<a id="download" class="nav_label" download="MandoCreator.svg" href="#">Download<span class="nav_icon">&#xE903;</span></a>
-				<input id="contact_opener" type="button" onclick="displayForm(true)" hidden/>
+				<input id="contact_opener" type="button" onclick="displayForm(true, 'contact')" hidden/>
 				<label for="contact_opener" class="nav_label">About/Contact Us<span class="nav_icon">&#xE90E;</span></label>
 				<a class="nav_label" target="_blank" href="https://www.paypal.com/donate?hosted_button_id=TJGV33MFJL26W">Donate<span class="nav_icon">&#xE914;</span></a>
 				<label id="color_scheme_label" for="color_scheme_picker" class="nav_label">Toggle Dark/Light<span class="nav_icon">&#xE90F;</span></label>
@@ -449,8 +449,20 @@
 		</div>
 		<main id="editor" class="image_column"></main>
 		<video id="rickroll" style="display:none" autoplay onended="this.style.display='none'"></video>
-		<form style="display:none" id="contact" action="image.php" method="POST" target="_blank" onsubmit="displayForm(false, this)">
-			<legend>Mando Creator Info<button type="button" class="close" onclick="displayForm(false)">X</button></legend>
+		<form id="reload" style="display:none">
+			<legend>A new version is available</legend>
+			<div class="version_info">
+				<p>Ke'sush! Ulu evaar'la kebise. Ke'tsikado gotal'ur tug'yc!</p>
+				<p class="detail">(Attention! New things detected. Prepare to reload.)</p>
+			</div>
+			<div class="version_info">
+				<p>Please click the button below to reload the page and get all the latest changes.</p>
+				<p>See the <a href="#contact" class="credit_link" onclick="displayForm(true,'contact')">Changelog</a> for info on what's new.</p>
+			</div>
+			<button class="submit" onclick="window.location.reload()">RELOAD</button>
+		</form>
+		<form id="contact" style="display:none" action="image.php" method="POST" target="_blank" onsubmit="displayForm(false, this)">
+			<legend>Mando Creator Info<button type="button" class="close" onclick="displayForm(false, 'contact')">X</button></legend>
 			<div class="credits">
 				<p class="credit">Designed By <a class="credit_link" href="https://twitter.com/Foilrose_Studio" target="_blank" rel="noopener noreferrer">Jev Va'sal</a></p>
 				<p class="credit">Developed By <a class="credit_link" href="https://github.com/MGessinger" target="_blank" rel="noopener noreferrer">Cin Vhetin</a></p>
@@ -463,7 +475,7 @@
 				</p>
 			</div>
 			<div class="changelog">
-				<p class="version">Version 2.4</p>
+				<p>Version 2.4</p>
 				<p>As the third step in our series of armor updates, we bring you lower armor customization.</p>
 			</div>
 			<legend>Contact Us<p style="font-size:small">Like the site or have some feedback on what to add next? Let us know!</p></legend>
@@ -475,7 +487,7 @@
 				<textarea placeholder="Message (example: Gar Mando'ade jate, ijaat enteyo cuyir ori.)" name="message" required></textarea>
 				<span class="narrow_input">What color is Darth Vader's lightsaber?</span>
 				<input type="text" class="narrow_input" placeholder="Hint: It's not blue." name="phone" required />
-				<button class="submit" type="submit">Ke barycir <span class="color">(Deploy)</span></button>
+				<button class="submit" type="submit">Ke barycir <span class="detail">(Deploy)</span></button>
 			</fieldset>
 		</form>
 

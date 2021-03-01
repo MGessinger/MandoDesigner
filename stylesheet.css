@@ -155,7 +155,6 @@ p {
 form {
 	position: fixed;
 	padding: 1em;
-	width: 50%;
 	min-width: 20em;
 	max-height: 100%;
 	top: 50%;
@@ -166,6 +165,10 @@ form {
 	box-shadow: grey 0 0 5px;
 	color: var(--softLight);
 	overflow-y: auto;
+}
+
+#reload {
+	text-align: center;
 }
 
 legend {
@@ -182,7 +185,6 @@ legend {
 	border: none;
 	cursor: pointer;
 	font-size: medium;
-	text-align: center;
 }
 
 .credits {
@@ -221,6 +223,11 @@ legend {
 	margin: 1em 0;
 	border: 1px solid var(--softColor);
 	border-style: solid none;
+}
+
+.version_info {
+	margin-top: 1em;
+	font-size: larger;
 }
 
 fieldset {
@@ -579,7 +586,7 @@ footer {
 	font-size: smaller;
 }
 
-.color {
+.detail {
 	font-size: smaller;
 	font-family: Arial, sans-serif;
 }

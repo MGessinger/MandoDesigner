@@ -39,7 +39,7 @@ function SVGVault (vault) {
 		var local = this.query(name);
 		if (local) {
 			var copy = local.cloneNode(true);
-			return onload(copy, args);
+			return onload(copy);
 		}
 		var xhr = new XMLHttpRequest();
 		xhr.open("GET", "images/" + name + ".svg");
@@ -142,7 +142,7 @@ function Settings (afterUpload) {
 		var label = DOMNode("label", {class: "color_label hidden", for: buttonID}, wrapper);
 		var p = DOMNode("p", {class: "name"}, label);
 		p.innerText = prettify(affectedObject.id);
-		var c = DOMNode("p", {class: "color"}, label);
+		var c = DOMNode("p", {class: "detail"}, label);
 
 		Picker.attach(b, c, affectedObject);
 		return b;
@@ -512,6 +512,13 @@ function onload () {
 		event.returnValue = message;
 		return message;
 	});
+	if (!("serviceWorker" in navigator))
+		return;
+	var nsw = navigator.serviceWorker;
+	nsw.onmessage = function (event) {
+		displayForm(true, 'reload');
+	};
+	nsw.register("sw.js");
 }
 
 function openArmorFolder (category) {
@@ -676,9 +683,10 @@ function setupMando (svg, sexSuffix) {
 	S.build.All(findLocal("Soft-Parts_" + sexSuffix), "FlightSuit", parent);
 }
 
-function displayForm (show, form) {
-	form = form || find("contact");
-	form.style.display = show ? "" : "none";
+function displayForm (visible, form) {
+	if (!form.style)
+		form = find(form);
+	form.style.display = visible ? "" : "none";
 }
 
 function zoom (scale) {
