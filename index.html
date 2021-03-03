@@ -65,7 +65,8 @@
 				</label>
 				<input id="reupload" type="file" accept="image/svg+xml" onchange="reupload(this);" hidden/>
 				<label for="reupload" class="nav_label">Continue Editing<span class="nav_icon">&#xE910;</span></label>
-				<a id="download" class="nav_label" download="MandoCreator.svg" href="#">Download<span class="nav_icon">&#xE903;</span></a>
+				<a id="download_svg" class="nav_label" download="MandoCreator.svg" href="#">Download<span class="nav_icon">&#xE903;</span></a>
+				<a id="download_png" class="nav_label" download="MandoCreator.png" href="#">Download<span class="nav_icon">&#xE903;</span></a>
 				<input id="contact_opener" type="button" onclick="displayForm(true, 'contact')" hidden/>
 				<label for="contact_opener" class="nav_label">About/Contact Us<span class="nav_icon">&#xE90E;</span></label>
 				<a class="nav_label" target="_blank" href="https://www.paypal.com/donate?hosted_button_id=TJGV33MFJL26W">Donate<span class="nav_icon">&#xE914;</span></a>
@@ -445,7 +446,6 @@
 				<input type="text" class="picker_editor" aria_label="Type a Color name or Hexadecimal code"
 				/><button class="picker_done">Okay</button>
 			</div>
-			<canvas id="canvas" style="display:none;"></canvas>
 		</div>
 		<main id="editor" class="image_column"></main>
 		<video id="rickroll" style="display:none" autoplay onended="this.style.display='none'"></video>
@@ -502,7 +502,11 @@
 					><span class="zoom_icon" onclick="zoomInOut(10)">&#xe917;</span>
 			</div>
 		</footer>
-		<div id="vault" style="display: none"></div>
+		<div style="display:none">
+			<div id="vault"></div>
+			<img id="temp_img" height="1050" width="1500"></img>
+			<canvas id="canvas" height="1050" width="1500"></canvas>
+		</div>
 		<script src="editor.js"></script>
 	</body>
 	<script src="color.js"></script>

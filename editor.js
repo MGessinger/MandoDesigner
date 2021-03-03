@@ -401,9 +401,9 @@ function Settings (afterUpload) {
 			document.body.className = className;
 			var a = find("download");
 			var main = find("editor");
-			Vault.load(bckName, function(svg) {
-				a.onclick = setDownloader(svg);
-				var img = svg.getElementsByTagName("image")[0];
+			Vault.load(bckName, function(bck) {
+				D.Background = bck;
+				var img = bck.getElementsByTagName("image")[0];
 				var href = img.getAttribute("href");
 				main.style.backgroundImage = "url(" + href + ")";
 			});
@@ -468,6 +468,110 @@ function Settings (afterUpload) {
 }
 var S = new Settings(false);
 
+function Downloader () {
+	var main = find("editor");
+	var xml = new XMLSerializer();
+
+	function prepareForExport (svg) {
+		svg.style.transform = "";
+		var options = svg.getElementsByClassName("option");
+		var i = 0;
+		while (i < options.length) {
+			if (options[i].style.display == "inherit") {
+				i++;
+				continue;
+			}
+			var parent = options[i].parentNode;
+			parent.removeChild(options[i]);
+		}
+		var toggles = svg.getElementsByClassName("toggle");
+		i = 0;
+		while (i < toggles.length) {
+			if (toggles[i].style.display !== "none") {
+				i++;
+				continue;
+			}
+			var parent = toggles[i].parentNode;
+			parent.removeChild(toggles[i]);
+		}
+		return svg;
+	}
+
+	function encodeSVG (svg) {
+		var san = svg.replace(/\s+/g," ").replace(/"/g,"'").replace(/_(M|F)/,"");
+		return encodeURIComponent(san);
+	}
+
+	function svg2img(svg) {
+		var copy = svg.cloneNode(true);
+		prepareForExport(copy);
+		var str = xml.serializeToString(copy);
+		var svg64 = btoa(unescape(encodeSVG(str)));
+		var b64start = 'data:image/svg+xml;base64,';
+		var image64 = b64start + svg64;
+		return image64;
+	}
+
+	function SVGFromEditor () {
+		var svg = main.firstElementChild;
+		var copy = svg.cloneNode(true);
+		return prepareForExport(copy);
+	}
+
+	var background;
+	var img, canvasCtx;
+
+	return {
+		set Background (bck) {
+			background = bck;
+			if (!img) return;
+			img.onload = function () {
+				canvasCtx.drawImage(this, 0, 0, 1500, 1050);
+			}
+			img.src = svg2img(bck);
+		},
+		get Background () {
+			return background;
+		},
+		attach: function (a, type) {
+			if (type === "svg") {
+				a.onclick = function () {
+					var bck = background.cloneNode(true);
+					bck.appendChild(SVGFromEditor());
+					var str = xml.serializeToString(bck);
+					var data = "<?xml version='1.0' encoding='UTF-8'?>" + str;
+					var encoded = 'data:image/svg+xml;charset=UTF-8,' + encodeSVG(data);
+					this.setAttribute("href", encoded);
+					setTimeout(function() {a.setAttribute("href", "#");}, 1000);
+				};
+			} else {
+				img = find("temp_img");
+				var canvas = find("canvas");
+				canvasCtx = canvas.getContext('2d');
+				var isSetUp = false;
+				a.onclick = function () {
+					if (isSetUp) {
+						setTimeout(function() {
+							a.setAttribute("href", "#");
+							isSetUp = false;
+						}, 5000);
+						return;
+					}
+					img.onload = function () {
+						canvasCtx.drawImage(this, 0, 0, 1500, 1050);
+						var imgData = canvas.toDataURL('image/png');
+						a.setAttribute("href", imgData);
+						isSetUp = true;
+						a.click();
+					}
+					img.src = svg2img(SVGFromEditor());
+				}
+			}
+		}
+	};
+}
+var D = new Downloader();
+
 function prettify (str) {
 	if (!str)
 		return "";
@@ -488,6 +592,7 @@ function onload () {
 		female = (localStorage.getItem("female_sex") == "true");
 	find("female").checked = female;
 	S.set.Sex(female);
+
 	var useDarkMode = localStorage.getItem("dark_mode");
 	if (useDarkMode !== null)
 		useDarkMode = (useDarkMode == "true");
@@ -497,6 +602,8 @@ function onload () {
 	S.set.DarkMode(useDarkMode);
 	find("color_scheme_picker").checked = useDarkMode;
 	find("kote").volume = 0.15;
+	D.attach(find("download_svg"), "svg");
+	D.attach(find("download_png"), "png");
 
 	if (window.innerWidth < 786) {
 		var settings = find("settings");
@@ -590,53 +697,6 @@ function setSponsor (sponsor, href) {
 	var img = link.getElementsByTagName("img")[0];
 	if (!img.hasAttribute("src"))
 		img.setAttribute("src", "assets/" + sponsor + ".png");
-}
-
-function prepareForExport (svg) {
-	svg.style.transform = "";
-	var options = svg.getElementsByClassName("option");
-	var i = 0;
-	while (i < options.length) {
-		if (options[i].style.display == "inherit") {
-			i++;
-			continue;
-		}
-		var parent = options[i].parentNode;
-		parent.removeChild(options[i]);
-	}
-	var toggles = svg.getElementsByClassName("toggle");
-	i = 0;
-	while (i < toggles.length) {
-		if (toggles[i].style.display !== "none") {
-			i++;
-			continue;
-		}
-		var parent = toggles[i].parentNode;
-		parent.removeChild(toggles[i]);
-	}
-	return svg;
-}
-
-function encodeSVG (svg) {
-	var san = svg.replace(/\s+/g," ").replace(/"/g,"'").replace(/_(M|F)/,"");
-	return encodeURIComponent(san);
-}
-
-function setDownloader (bck) {
-	var main = find("editor");
-	var xml = new XMLSerializer();
-	return function() {
-		var background = bck.cloneNode(true);
-		var svg = main.getElementsByTagName("svg")[0];
-		var copy = svg.cloneNode(true);
-		prepareForExport(copy);
-		background.appendChild(copy);
-		var str = xml.serializeToString(background);
-		var data = "<?xml version='1.0' encoding='UTF-8'?>" + str;
-		this.setAttribute("href",'data:image/svg+xml;charset=UTF-8,' + encodeSVG(data));
-		var self = this;
-		setTimeout(function() {self.setAttribute("href", "#");});
-	};
 }
 
 function setupMando (svg, sexSuffix) {

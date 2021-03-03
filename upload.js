@@ -22,7 +22,7 @@ function loadImage (input) {
 			svg.innerHTML = this.result;
 			var newSVG = svg.firstElementChild;
 			customBck.replaceChild(newSVG, img);
-			find("download").onclick = setDownloader(customBck);
+			D.Background = customBck;
 
 			var href = 'url("data:image/svg+xml,' + encodeSVG(this.result) + '")';
 			main.style.backgroundImage = href
@@ -34,7 +34,7 @@ function loadImage (input) {
 			var res = this.result;
 			main.style.backgroundImage = "url(" + res + ")";
 			img.setAttribute("href", res);
-			find("download").onclick = setDownloader(customBck);
+			D.Background = customBck;
 		}
 		reader.readAsDataURL(files[0]);
 	}
@@ -202,7 +202,6 @@ function reupload (input) {
 	if (!files || !files.length)
 		return;
 	var main = find("editor");
-	var download = find("download");
 
 	var reader = new FileReader();
 	reader.onload = function () {
@@ -239,7 +238,7 @@ function reupload (input) {
 		main.style.backgroundImage = "url(" + img.getAttribute("href") + ")";
 		recreateMando(mando);
 		S.set.Sex(female, true);
-		download.onclick = setDownloader(svg);
+		D.Background = svg;
 	};
 	reader.readAsText(files[0]);
 }
