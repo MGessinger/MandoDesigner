@@ -432,7 +432,6 @@ function Settings (afterUpload) {
 				mirrorImage.style.background = buttons[i].style.background;
 				mirrorImage.click();
 			}
-			showPicker = true;
 			/* Mirror all Checkboxes */
 			var checks = parent.getElementsByTagName("input");
 			for (var i = 0; i < checks.length; i++) {
@@ -463,6 +462,7 @@ function Settings (afterUpload) {
 				mirrorImage.value = selects[i].value.replace(side, otherSide);
 				mirrorImage.dispatchEvent(new Event("change"));
 			}
+			showPicker = true;
 		});
 	}
 }
@@ -625,7 +625,7 @@ function onload () {
 	nsw.onmessage = function (event) {
 		displayForm(true, 'reload');
 	};
-	nsw.register("sw.js");
+	//nsw.register("sw.js");
 }
 
 function openArmorFolder (category) {

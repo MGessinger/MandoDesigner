@@ -1,8 +1,6 @@
 'use strict';
 
 var settings;
-var changes = [];
-var redos = [];
 function resetSettings () {
 	settings = {
 		undefined: "#FFFFFF",
@@ -14,25 +12,12 @@ function resetSettings () {
 }
 resetSettings();
 
-function undo (n, from, to, key) {
-	showPicker = false;
-	for (var i = 0; i < n; i++) {
-		var c = from.pop();
-		if (!c)
-			break;
-		var button = find(c["button"]);
-		if (!button)
-			return;
-		button.style.background = c[key];
-		button.click();
-		to.push(c);
-	}
-	showPicker = true;
-}
-
 var showPicker = true;
 var Picker = new function() {
 	var latestChange = {};
+	var changes = [];
+	var redos = [];
+
 	function on(elem, event, func) {
 		elem.addEventListener(event, func);
 	}
@@ -333,5 +318,37 @@ var Picker = new function() {
 		var def = getDefaultColor(SVGNode, button.id);
 		_setColor(def);
 		input(color.hex);
+	}
+
+	this.undo = function (n) {
+		if (!n)
+			return;
+		var from, to, key;
+		if (n > 0) {
+			from = changes;
+			to = redos;
+			key = 'oldColor';
+		} else {
+			from = redos;
+			to = changes;
+			key = 'newColor';
+			n = -n;
+		}
+		showPicker = false;
+		var change, button;
+		for (var i = 0; i < n; i++) {
+			do {
+				change = from.pop();
+				if (!change) {
+					showPicker = true;
+					return;
+				}
+				button = find(change["button"]);
+			} while (!button);
+			button.style.background = change[key];
+			button.click();
+			to.push(change);
+		}
+		showPicker = true;
 	}
 }()

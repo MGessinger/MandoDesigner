@@ -45,33 +45,44 @@
 		<nav>
 			<svg class="title" viewBox="0 0 420 70"><use id="title" href="#title"/></svg>
 			<div id="left_nav">
-				<div id="parts_list">
+				<span class="summary_icon">&#xE905;</span>
+				<div id="parts_list" class="sub_nav">
 					<input type="radio" name="parts_list" id="HelmetSettings" value="Helmet (Buy'ce)" onclick="openArmorFolder('Helmet')" checked hidden/>
-					<label for="HelmetSettings" class="nav_label">Helmet (Buy'ce)<span class="nav_icon">&#xE905;</span></label>
+					<label for="HelmetSettings" class="nav_label"><span class="nav_icon">&#xE905;</span>Helmet (Buy'ce)</label>
 					<input type="radio" name="parts_list" id="FlightSuitSettings" value="Flight Suit (Kute)" onclick="openArmorFolder('FlightSuit')" hidden/>
-					<label for="FlightSuitSettings" class="nav_label">Flight Suit (Kute)<span class="nav_icon">&#xE907;</span></label>
+					<label for="FlightSuitSettings" class="nav_label"><span class="nav_icon">&#xE907;</span>Flight Suit (Kute)</label>
 					<input type="radio" name="parts_list" id="UpperArmorSettings" value="Upper Body" onclick="openArmorFolder('UpperArmor')" hidden/>
-					<label for="UpperArmorSettings" class="nav_label">Upper Body<span class="nav_icon">&#xE908;</span></label>
+					<label for="UpperArmorSettings" class="nav_label"><span class="nav_icon">&#xE908;</span>Upper Body</label>
 					<input type="radio" name="parts_list" id="LowerArmorSettings" value="Lower Body" onclick="openArmorFolder('LowerArmor')" hidden/>
-					<label for="LowerArmorSettings" class="nav_label">Lower Body<span class="nav_icon">&#xE906;</span></label>
+					<label for="LowerArmorSettings" class="nav_label"><span class="nav_icon">&#xE906;</span>Lower Body</label>
 					<input type="radio" name="parts_list" id="BackSettings" value="Back" onclick="openArmorFolder('Back')" hidden/>
-					<label for="BackSettings" class="nav_label">Back (Norac)<span class="nav_icon">&#xE904;</span></label>
+					<label for="BackSettings" class="nav_label"><span class="nav_icon">&#xE904;</span>Back (Norac)</label>
 				</div>
-				<input id="background_upload" type="file" accept="image/*" onchange="loadImage(this);" hidden/>
-				<label for="background_upload" class="nav_label">Upload Background <span class="nav_icon">&#xF03E;</span> </label>
-				<label id="reset_wrapper" class="nav_label">
-					Reset Background
-					<button id="reset" class="nav_icon" onclick="S.set.DarkMode(find('color_scheme_picker').checked)">&#xF021;</button>
-				</label>
-				<input id="reupload" type="file" accept="image/svg+xml" onchange="reupload(this);" hidden/>
-				<label for="reupload" class="nav_label">Continue Editing<span class="nav_icon">&#xE910;</span></label>
-				<a id="download_svg" class="nav_label" download="MandoCreator.svg" href="#">Download<span class="nav_icon">&#xE903;</span></a>
-				<a id="download_png" class="nav_label" download="MandoCreator.png" href="#">Download<span class="nav_icon">&#xE903;</span></a>
-				<input id="contact_opener" type="button" onclick="displayForm(true, 'contact')" hidden/>
-				<label for="contact_opener" class="nav_label">About/Contact Us<span class="nav_icon">&#xE90E;</span></label>
-				<a class="nav_label" target="_blank" href="https://www.paypal.com/donate?hosted_button_id=TJGV33MFJL26W">Donate<span class="nav_icon">&#xE914;</span></a>
-				<label id="color_scheme_label" for="color_scheme_picker" class="nav_label">Toggle Dark/Light<span class="nav_icon">&#xE90F;</span></label>
-				<input type="checkbox" id="color_scheme_picker" style="opacity:0;" onchange="S.set.DarkMode(this.checked)"/>
+				<span class="summary_icon">&#xE921;</span>
+				<div id="settings_list" class="sub_nav">
+					<input type="radio" name="sex" class="toggle_sex" id="male" checked onchange="S.set.Sex(false)"
+					><label for="male" class="label_sex"><span class="nav_icon">&#xe901;</span></label
+					><input type="radio" name="sex" class="toggle_sex" id="female" onchange="S.set.Sex(true)"
+					><label for="female" class="label_sex"><span class="nav_icon">&#xe902;</span></label>
+					<input id="background_upload" type="file" accept="image/*" onchange="loadImage(this);" hidden/>
+					<label for="background_upload" class="nav_label"><span class="nav_icon">&#xF03E;</span>Upload Background</label>
+					<button id="reset_wrapper" class="nav_label" onclick="S.set.DarkMode(find('color_scheme_picker').checked)"><span class="nav_icon">&#xF021;</span>Reset Background</button>
+					<input id="reupload" type="file" accept="image/svg+xml" onchange="reupload(this);" hidden/>
+					<label for="reupload" class="nav_label"><span class="nav_icon">&#xE910;</span>Continue Editing</label>
+					<a id="download_svg" class="nav_label" download="MandoCreator.svg" href="#"><span class="nav_icon">&#xE903;</span>Download as SVG</a>
+					<a id="download_png" class="nav_label" download="MandoCreator.png" href="#"><span class="nav_icon">&#xE903;</span>Download as PNG</a>
+					<label id="color_scheme_label" for="color_scheme_picker" class="nav_label"><span class="nav_icon">&#xE90F;</span>Toggle Dark/Light</label>
+					<input type="checkbox" id="color_scheme_picker" style="opacity:0;" onchange="S.set.DarkMode(this.checked)"/>
+				</div>
+				<label for="contact_opener" class="summary_icon">&#xE90E;</label>
+				<div class="sub_nav">
+					<input id="contact_opener" type="button" onclick="displayForm(true, 'contact')" hidden/>
+					<label for="contact_opener" class="nav_label">About/Contact Us</label>
+				</div>
+				<span for="donate" class="summary_icon">&#xE914;</span>
+				<div class="sub_nav">
+					<a id="donate" class="nav_label" target="_blank" href="https://www.paypal.com/donate?hosted_button_id=TJGV33MFJL26W">Donate</a>
+				</div>
 			</div>
 		</nav>
 		<div id="settings" class="settings_column">
@@ -492,10 +503,8 @@
 		</form>
 
 		<footer>
-			<input type="radio" name="sex" class="toggle_sex" id="male" checked onchange="S.set.Sex(false)">
-			<label for="male" class="label_sex">&#xe901;</label>
-			<input type="radio" name="sex" class="toggle_sex" id="female" onchange="S.set.Sex(true)">
-			<label for="female" class="label_sex">&#xe902;</label>
+			<button class="undo_redo" onclick="Picker.undo(1)">&#xe91f;</button>
+			<button class="undo_redo" style="transform:scale(-1,1);" onclick="Picker.undo(-1)">&#xe91f;</button>
 			<div class="zoom_wrapper">
 					<span class="zoom_icon" onclick="zoomInOut(-10)">&#xe916;</span
 					><input id="zoom" type="range" min="100" max="250" value="100" oninput="zoom(this.value/100)" /
