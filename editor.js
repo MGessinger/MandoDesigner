@@ -36,6 +36,8 @@ function SVGVault (vault) {
 		}
 	}
 	this.load = function (name, onload) {
+		if (!name)
+			return;
 		var local = this.query(name);
 		if (local) {
 			var copy = local.cloneNode(true);
@@ -44,22 +46,38 @@ function SVGVault (vault) {
 		var xhr = new XMLHttpRequest();
 		xhr.open("GET", "images/" + name + ".svg");
 		xhr.setRequestHeader("Cache-Control", "no-cache, max-age=10800");
-		xhr.onload = function () {
-			var xml = this.responseXML;
-			if (this.status !== 200 || !xml)
-				return;
-			var svg = xml.documentElement;
-			svg.setAttribute("id", name);
-			prepareSVGAttributes(svg);
-			var copy = svg.cloneNode(true);
-			onload(copy);
-		};
-		xhr.send();
+		xhr.responseType = 'document';
+		return new Promise(function (resolve) {
+			xhr.onload = function () {
+				var xml = xhr.responseXML;
+				if (xhr.status !== 200 || !xml) {
+					resolve(undefined);
+				} else {
+					var svg = xml.documentElement;
+					svg.setAttribute("id", name);
+					prepareSVGAttributes(svg);
+					onload(svg.cloneNode(true));
+					resolve();
+				}
+			};
+			xhr.send();
+		});
 	}
 }
 var Vault = new SVGVault(find("vault"));
 
-function Settings (afterUpload) {
+function Settings () {
+	var afterUpload = false;
+	var editor = find("editor");
+	var icons = {
+		"Range Finder":	"\uE919",
+		"Main Antenna":	"\uE918",
+		"Sub Antenna":	"\uE91B",
+		"Sensor Stalk":	"\uE91A",
+		"Antenna":	"\uE91C",
+		"Lear Cap":	"\uE91D"
+	}
+
 	function DOMNode (type, props, parent) {
 		var n = document.createElement(type);
 		for (var p in props)
@@ -146,18 +164,6 @@ function Settings (afterUpload) {
 
 		Picker.attach(b, c, affectedObject);
 		return b;
-	}
-
-	function getIcon (name) {
-		var icons = {
-			"Range Finder":	"\uE919",
-			"Main Antenna":	"\uE918",
-			"Sub Antenna":	"\uE91B",
-			"Sensor Stalk":	"\uE91A",
-			"Antenna":	"\uE91C",
-			"Lear Cap":	"\uE91D"
-		}
-		return icons[name] || "";
 	}
 
 	this.build = {
@@ -251,8 +257,6 @@ function Settings (afterUpload) {
 
 			var wrapper = find(identifier + "_Current");
 			var ref = Vault.query(fullyQualifiedName);
-			if (!ref)
-				return console.log(fullyQualifiedName);
 			var node = ref.cloneNode(true);
 			wrapper.appendChild(node);
 
@@ -271,7 +275,7 @@ function Settings (afterUpload) {
 				var wrapper = DOMNode("div", {class: "checkbox_wrapper"}, checkboxes);
 				var checkbox = DOMNode("input", {type: "checkbox", class: "checkbox", id: labelName}, wrapper);
 				var label = DOMNode("label", {for: labelName, title: name, class: "checkbox_label"}, wrapper);
-				label.innerText = getIcon(name);
+				label.innerText = icons[name];
 
 				var san = listName(fullName);
 				var col = DOMNode("div", {id: san + "SubColors"}, parent);
@@ -322,7 +326,7 @@ function Settings (afterUpload) {
 					this.Dropdown(options, category, parent, SVGName);
 			}
 			/* defer toggles to the very last */
-			for (var i = 0; i < toggle.length; i++) 
+			for (var i = 0; i < toggle.length; i++)
 				this.All(toggle[i], category, parent);
 		}
 	};
@@ -382,11 +386,7 @@ function Settings (afterUpload) {
 				slides[i].innerHTML = "";
 			}
 
-			Vault.load(body, function (svg) {
-				afterUpload = upload; /* Set to true, if this function was called after an upload */
-				setupMando(svg, sexSuffix);
-				afterUpload = false;
-			});
+			Vault.load(body, function (svg) { S.setup(svg, sexSuffix, upload); });
 			localStorage.setItem("female_sex", female.toString());
 		},
 		DarkMode: function (darkMode) {
@@ -399,13 +399,12 @@ function Settings (afterUpload) {
 				logoName = "#titleDark";
 			}
 			document.body.className = className;
-			var a = find("download");
 			var main = find("editor");
 			Vault.load(bckName, function(bck) {
 				D.Background = bck;
 				var img = bck.getElementsByTagName("image")[0];
 				var href = img.getAttribute("href");
-				main.style.backgroundImage = "url(" + href + ")";
+				editor.style.backgroundImage = "url(" + href + ")";
 			});
 			var use = find("title");
 			use.setAttribute("href", logoName);
@@ -419,7 +418,6 @@ function Settings (afterUpload) {
 		mirror.innerText = "\uE915";
 
 		var otherSide = (side == "Right" ? "Left" : "Right");
-		var editor = find("editor");
 		mirror.addEventListener("click", function () {
 			/* Mirror all the colors */
 			showPicker = false;
@@ -465,8 +463,77 @@ function Settings (afterUpload) {
 			showPicker = true;
 		});
 	}
+	this.setup = async function (svg, sexSuffix, upload) {
+		afterUpload = upload; /* Set to true, if this function was called after an upload */
+		var old_svg = editor.firstElementChild;
+		if (old_svg)
+			editor.replaceChild(svg, old_svg);
+		else
+			editor.appendChild(svg);
+		var scale = find("zoom");
+		zoom(scale.value/100);
+
+		var variant = variants["Helmet"] || "Classic";
+		var helmet = Vault.load("Helmets", function() { switchToArmorVariant("Helmet", "Helmet", variant); } );
+
+		var self = this; // Needed because 'this' changes scope in Promises
+		var upper = Vault.load("Upper-Armor_" + sexSuffix, function(svg) {
+			var variant = variants["Chest"] || "Classic";
+			switchToArmorVariant("UpperArmor", "Chest", variant + "_" + sexSuffix)
+			var subgroups = ["Shoulder","Biceps","Gauntlets"];
+			for (var i = 0; i < subgroups.length; i++) {
+				self.build.Variant("UpperArmor", "Left-" + subgroups[i], sexSuffix);
+				self.build.Variant("UpperArmor", "Right-" + subgroups[i], sexSuffix);
+			}
+			self.build.Variant("UpperArmor", "Collar", sexSuffix + "_ToggleOff");
+			self.build.Variant("UpperArmor", "Chest-Attachments", sexSuffix);
+		});
+
+		var lower = Vault.load("Lower-Armor_" + sexSuffix, function(svg) {
+			switchToArmorVariant("LowerArmor", "Waist", sexSuffix);
+			self.build.Variant("LowerArmor", "Groin", sexSuffix);
+			var subgroups = ["Thigh", "Knee", "Shin", "Ankle", "Toe"];
+			for (var i = 0; i < subgroups.length; i++) {
+				self.build.Variant("LowerArmor", "Left-" + subgroups[i], sexSuffix);
+				self.build.Variant("LowerArmor", "Right-" + subgroups[i], sexSuffix);
+			}
+		});
+
+		function findLocal(st) {
+			return svg.getElementById(st);
+		}
+		this.build.All(findLocal("Back_" + sexSuffix), "Back");
+		this.build.All(findLocal("Front_" + sexSuffix), "Back");
+		var parent = find("SoftPartsColors");
+		this.build.All(findLocal("Vest_" + sexSuffix), "FlightSuit", parent);
+		this.build.All(findLocal("Soft-Parts_" + sexSuffix), "FlightSuit", parent);
+
+		await helmet;
+		await upper;
+		await lower;
+		afterUpload = false;
+	}
 }
-var S = new Settings(false);
+var S = new Settings();
+
+function loadPreset (preset, female) {
+	var xhr = new XMLHttpRequest();
+	xhr.open("GET", preset);
+	xhr.setRequestHeader("Cache-Control", "no-cache, max-age=10800");
+	xhr.onload = function () {
+		var xml = this.responseXML;
+		if (this.status !== 200 || !xml)
+			return S.set.Sex(female, false);
+		var svg = xml.documentElement;
+		find("female").checked = female;
+		recreateMando(svg);
+		S.set.Sex(female, true);
+	};
+	xhr.onerror = function () {
+		S.set.Sex(female, false);
+	};
+	xhr.send();
+}
 
 function Downloader () {
 	var main = find("editor");
@@ -590,15 +657,36 @@ function onload () {
 	var female = false;
 	if (window.localStorage)
 		female = (localStorage.getItem("female_sex") == "true");
-	find("female").checked = female;
-	S.set.Sex(female);
+	var preset = /\?preset=([^&]+)&f=(\d)/.exec(window.location.search);
+	if (!preset || !preset[1]) {
+		S.set.Sex(female);
+	} else {
+		female = +preset[2];
+		if (!female) {
+			var sex_radio = find("male");
+			sex_radio.checked = true;
+			localStorage.setItem("female_sex", false);
+		} else {
+			var sex_radio = find("female");
+			sex_radio.checked = true;
+			localStorage.setItem("female_sex", true);
+		}
+		loadPreset(preset[1], female);
+	}
+	if (!female) {
+		var sex_radio = find("male");
+		sex_radio.checked = true;
+	} else {
+		var sex_radio = find("female");
+		sex_radio.checked = true;
+	}
+	localStorage.setItem("female_sex", female.toString());
 
 	var useDarkMode = localStorage.getItem("dark_mode");
 	if (useDarkMode !== null)
 		useDarkMode = (useDarkMode == "true");
 	else
 		useDarkMode = window.matchMedia("(prefers-color-scheme: dark)").matches;
-		
 	S.set.DarkMode(useDarkMode);
 	find("color_scheme_picker").checked = useDarkMode;
 	find("kote").volume = 0.15;
@@ -646,9 +734,6 @@ function switchToArmorVariant (category, pieceName, variantName, button) {
 	var old_button = parent.getElementsByClassName("current_variant")[0];
 	if (old_button)
 		old_button.classList.remove("current_variant");
-
-	variants[pieceName] = neutralize(variantName);
-
 	if (!button)
 		button = find(category + "_Variant_" + variantName);
 	if (button)
@@ -670,6 +755,7 @@ function switchToArmorVariant (category, pieceName, variantName, button) {
 	}
 
 	S.build.All(n, category);
+	variants[pieceName] = neutralize(variantName);
 }
 
 function hideSponsors (parent) {
@@ -683,9 +769,6 @@ function hideSponsors (parent) {
 }
 
 function setSponsor (sponsor, href) {
-	if (!href)
-		return;
-
 	var link = find(sponsor);
 	link.style.display = "";
 	link.setAttribute("href", href);
@@ -699,50 +782,6 @@ function setSponsor (sponsor, href) {
 		img.setAttribute("src", "assets/" + sponsor + ".png");
 }
 
-function setupMando (svg, sexSuffix) {
-	var main = find("editor");
-	var old_svg = main.firstElementChild;
-	if (old_svg)
-		main.replaceChild(svg, old_svg);
-	else
-		main.appendChild(svg);
-	var scale = find("zoom");
-	zoom(scale.value/100);
-
-	function findLocal(st) {
-		return svg.getElementById(st);
-	}
-	var variant = variants["Helmet"] || "Classic";
-	Vault.load("Helmets", function() { switchToArmorVariant("Helmet", "Helmet", variant); });
-
-	Vault.load("Upper-Armor_" + sexSuffix, function(svg) {
-		var variant = variants["Chest"] || "Classic";
-		switchToArmorVariant("UpperArmor", "Chest", variant + "_" + sexSuffix)
-		var subgroups = ["Shoulder","Biceps","Gauntlets"];
-		for (var i = 0; i < subgroups.length; i++) {
-			S.build.Variant("UpperArmor", "Left-" + subgroups[i], sexSuffix);
-			S.build.Variant("UpperArmor", "Right-" + subgroups[i], sexSuffix);
-		}
-		S.build.Variant("UpperArmor", "Collar", sexSuffix + "_ToggleOff");
-		S.build.Variant("UpperArmor", "Chest-Attachments", sexSuffix);
-	});
-
-	Vault.load("Lower-Armor_" + sexSuffix, function(svg) {
-		switchToArmorVariant("LowerArmor", "Waist", sexSuffix);
-		S.build.Variant("LowerArmor", "Groin", sexSuffix);
-		var subgroups = ["Thigh", "Knee", "Shin", "Ankle", "Toe"];
-		for (var i = 0; i < subgroups.length; i++) {
-			S.build.Variant("LowerArmor", "Left-" + subgroups[i], sexSuffix);
-			S.build.Variant("LowerArmor", "Right-" + subgroups[i], sexSuffix);
-		}
-	});
-	S.build.All(findLocal("Back_" + sexSuffix), "Back");
-	S.build.All(findLocal("Front_" + sexSuffix), "Back");
-	var parent = find("SoftPartsColors");
-	S.build.All(findLocal("Vest_" + sexSuffix), "FlightSuit", parent);
-	S.build.All(findLocal("Soft-Parts_" + sexSuffix), "FlightSuit", parent);
-}
-
 function displayForm (visible, form) {
 	if (!form.style)
 		form = find(form);
@@ -753,7 +792,7 @@ function zoom (scale) {
 	var main = find("editor");
 	var svg = main.children[0];
 	svg.style.transform = "";
-	var rect = svg.getBoundingClientRect()
+	var rect = svg.getBoundingClientRect();
 	var t = (rect.height*scale - window.innerHeight)/2 + rect.top;
 	svg.style.transform = "translateY(" + t + "px) scale(" + scale + ")";
 }

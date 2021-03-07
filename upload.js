@@ -25,7 +25,7 @@ function loadImage (input) {
 			D.Background = customBck;
 
 			var href = 'url("data:image/svg+xml,' + encodeSVG(this.result) + '")';
-			main.style.backgroundImage = href
+			main.style.backgroundImage = href;
 		}
 		reader.readAsText(files[0]);
 	}
@@ -46,7 +46,10 @@ function loadImage (input) {
 function recreateMando (svg) {
 	var main = find("editor");
 	var old_svg = main.firstElementChild;
-	main.replaceChild(svg, old_svg);
+	if (old_svg)
+		main.replaceChild(svg, old_svg);
+	else
+		main.appendChild(svg);
 	var scale = find("zoom");
 	zoom(scale.value/100);
 	variants = {};

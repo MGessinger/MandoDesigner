@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta http-equiv="x-ua-compatible" content="ie=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0,user-scalable=0" />
+		<meta name="description" content="Find inspiration for your next kit of Mandalorian Armor, also known as Beskar'gam. Pick one of several amazing, user-provided designs, and continue customizing it to your liking on MandoCreator." />
+
+		<meta property="og:title" content="Mando Creator" />
+		<meta property="og:description" content="Find inspiration for your next kit of Mandalorian Armor, also known as Beskar'gam. Pick one of several amazing, user-provided designs, and continue customizing it to your liking on MandoCreator." />
+		<meta property="og:url" content="http://www.mandocreator.com/index.html" />
+		<meta property="og:image" content="http://www.mandocreator.com/assets/header.jpg" />
+		<meta name="twitter:title" content="Mando Creator" />
+		<meta name="twitter:description" content="Find inspiration for your next kit of Mandalorian Armor, also known as Beskar'gam. Pick one of several amazing, user-provided designs, and continue customizing it to your liking on MandoCreator." />
+		<meta name="twitter:image" content="http://www.mandocreator.com/assets/header.jpg" />
+		<meta name="twitter:card" content="summary_large_image" />
+
+		<meta name="keywords" content="Mando Creator,MandoCreator,Creator,Beskar'gam,Armor,Mandalorian,Mando,Design,Beskar" />
+		<meta name="author" content="DesignDeviant, Cin Vhetin" />
+		<link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png" />
+		<link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32x32.png" />
+		<link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16x16.png" />
+		<link rel="manifest" href="mandocreator.manifest" />
+		<link rel="mask-icon" href="assets/safari-pinned-tab.svg" color="#ab1f1f" />
+		<meta name="msapplication-TileColor" content="#b91d47" />
+		<meta name="theme-color" content="#ffffff" />
+		<title>Mando Creator Gallery</title>
+		<style>
+			@font-face {
+				font-family: 'icomoon';
+				src: url('/fonts/icomoon.eot');
+				src: url('/fonts/icomoon.eot#iefix') format('embedded-opentype'),
+				     url('/fonts/icomoon.ttf') format('truetype'),
+				     url('/fonts/icomoon.woff') format('woff'),
+				     url('/fonts/icomoon.svg#icomoon') format('svg');
+				font-weight: normal;
+				font-style: normal;
+				font-display: block;
+			}
+			@font-face {
+				font-family: 'Raleway';
+				src:	local("Raleway"),
+					url('/fonts/Raleway.ttf') format('truetype');
+				font-weight: normal;
+				font-style: normal;
+				font-display: block;
+			}
+			html {
+				height: 100%;
+				width: 100%;
+			}
+			body {
+				height: 100%;
+				margin: 0;
+				background: url(/assets/foggy_small.jpg) no-repeat center;
+				background-color: #222;
+				background-size: cover;
+				font-family: 'icomoon', 'Raleway', Verdana, sans-serif;
+				color: #DDD;
+			}
+			nav {
+				position: absolute;
+			}
+			main {
+				display: flex;
+				height: 100%;
+				width: 100%;
+				padding: 3em 0;
+				overflow: hidden;
+				white-space: nowrap;
+				align-items: baseline;
+				box-sizing: border-box;
+			}
+			#secondary_left,
+			#secondary_right {
+				height: 75%;
+				opacity: 50%;
+				flex: 1 1 0;
+				overflow: hidden;
+			}
+			#primary {
+				height: 100%;
+				flex: 0 1 25%;
+				text-align: center;
+			}
+			img {
+				height: 100%;
+			}
+			footer {
+				position: fixed;
+				bottom: 0;
+				width: 100%;
+				padding-bottom: 1em;
+				text-align: center;
+				font-size: x-large;
+				white-space: nowrap;
+			}
+			.toggle_sex {
+				opacity: 0;
+				position: absolute;
+			}
+			.label_sex {
+				margin: 0.5em 0.25em;
+				padding: 0.25em;
+				display: inline-block;
+				border: #AAA solid 1px;
+				border-radius: 0.25em;
+				background: #555;
+				cursor: pointer;
+			}
+			:checked + .label_sex {
+				background: #AB1F1F;
+			}
+			button {
+				border: none;
+				cursor: pointer;
+				color: inherit;
+				font: inherit;
+			}
+			.next_armor {
+				padding: 0 0.5em;
+				background: none;
+				font-size: 1.5em;
+				vertical-align: bottom;
+			}
+			.next_armor:focus {
+				color: #AB1F1F;
+			}
+			.main_button {
+				margin: 0 0.5em;
+				padding: 0.25em;
+				background: #ab1f1f;
+				border-radius: 0.25em;
+			}
+			.main_button:focus {
+				background: #801717;
+			}
+		</style>
+	</head>
+	<body>
+		<nav style="height:3em"> <img src="/images/Logo.svg" /> </nav>
+		<main id="gallery">
+			<span id="secondary_left" style="direction:rtl"></span>
+			<span id="primary">
+			<?php
+				$files = scandir("presets/male");
+				$count = count($files);
+				if ($count <= 2)
+					die("No images found in the gallery. Please contact the administrator of this site.");
+				$n = str_replace(".svg", "", $files[2]);
+				echo "<img alt='Armor Design titled $n' title='$n' src='/gallery/presets/male/$n.svg' loading='lazy' />";
+				echo "</span><span id='secondary_right'>";
+				for ($i = 3; $i < $count; $i++) {
+					$n = str_replace(".svg", "", $files[$i]);
+					echo "<img alt='Armor Design titled $n' title='$n' src='/gallery/presets/male/$n.svg' loading='lazy' />";
+				}
+			?>
+			</span>
+		</main>
+		<footer>
+			<div>
+				<input type="radio" name="sex" class="toggle_sex" id="male" checked onchange="Gallery.sex = false"
+				><label for="male" class="label_sex">&#xe901;</label
+				><input type="radio" name="sex" class="toggle_sex" id="female" onchange="Gallery.sex = true"
+				><label for="female" class="label_sex">&#xe902;</label>
+			</div>
+			<button class="next_armor" onclick="Gallery.shift--">&#xe90b;</button
+			><button class="main_button" onclick="Gallery.loadCreator()">Customize</button
+			><button class="next_armor" onclick="Gallery.shift++">&#xe90c;</button>
+		</footer>
+	</body>
+	<script>
+		"use strict";
+		function find(st) {
+			return document.getElementById(st);
+		}
+
+		function ArmorGallery (isFemale) {
+			var gallery = find("gallery");
+			var all = gallery.getElementsByTagName("img");
+			var primary = find("primary");
+			var secondary = {
+				"left": find("secondary_left"),
+				"right": find("secondary_right")
+			};
+			var GallerySkeleton = {
+				get sex () {
+					return isFemale ? "1" : "0";
+				},
+				set sex (female) {
+					var needle, replace;
+					if (female) {
+						needle = "male";
+						replace = "female";
+					} else {
+						needle = "female";
+						replace = "male";
+					}
+					for (var i = 0; i < all.length; i++) {
+						var src = all[i].getAttribute("src");
+						src = src.replace(needle, replace);
+						all[i].setAttribute("src", src);
+					}
+					isFemale = female;
+				},
+				get target () {
+					return primary.firstElementChild;
+				},
+				set target (value) {
+					primary.appendChild(value);
+				},
+				get shift () {
+					return 0;
+				},
+				set shift (value) {
+					var firstLeft = secondary.left.firstElementChild;
+					var firstRight = secondary.right.firstElementChild;
+					if (value >= 0) {
+						if (!firstRight)
+							return;
+						secondary.left.insertBefore(this.target, firstLeft);
+						this.target = firstRight;
+					} else {
+						if (!firstLeft)
+							return;
+						secondary.right.insertBefore(this.target, firstRight);
+						this.target = firstLeft;
+					}
+				},
+				loadCreator () {
+					var loc = this.target.getAttribute("src");
+					var o = window.location.origin;
+					var n = o + "/?preset=" + escape(loc) + "&f=" + this.sex;
+					window.location = n;
+				}
+			};
+			GallerySkeleton.sex = isFemale;
+			return GallerySkeleton;
+		}
+		var female = find("female");
+		var Gallery = new ArmorGallery(female.checked);
+	</script>
+</html>
