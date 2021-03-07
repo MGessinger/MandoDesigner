@@ -586,19 +586,18 @@ function Downloader () {
 	}
 
 	var background;
+	var bckImgData;
 	var img, canvasCtx;
 
 	return {
 		set Background (bck) {
 			background = bck;
 			if (!img) return;
+			bckImgData = svg2img(bck);
 			img.onload = function () {
 				canvasCtx.drawImage(this, 0, 0, 1500, 1050);
 			}
-			img.src = svg2img(bck);
-		},
-		get Background () {
-			return background;
+			img.src = bckImgData;
 		},
 		attach: function (a, type) {
 			if (type === "svg") {
@@ -622,6 +621,11 @@ function Downloader () {
 							a.setAttribute("href", "#");
 							isSetUp = false;
 						}, 5000);
+						img.onload = function () {
+							canvasCtx.clearRect(0, 0, 1500, 1050);
+							canvasCtx.drawImage(this, 0, 0, 1500, 1050);
+						}
+						img.src = bckImgData;
 						return;
 					}
 					img.onload = function () {
