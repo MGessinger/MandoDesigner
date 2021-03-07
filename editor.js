@@ -713,7 +713,7 @@ function onload () {
 	nsw.onmessage = function (event) {
 		displayForm(true, 'reload');
 	};
-	//nsw.register("sw.js");
+	nsw.register("sw.js");
 }
 
 function openArmorFolder (category) {

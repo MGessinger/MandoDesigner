@@ -79,7 +79,11 @@
 					<input id="contact_opener" type="button" onclick="displayForm(true, 'contact')" hidden/>
 					<label for="contact_opener" class="nav_label">About/Contact Us</label>
 				</div>
-				<span for="donate" class="summary_icon">&#xE914;</span>
+				<span class="summary_icon">&#xE920;</span>
+				<div class="sub_nav">
+					<a id="gallery" class="nav_label" target="_blank" href="https://www.mandocreator.com/gallery">Armor Gallery</a>
+				</div>
+				<span class="summary_icon">&#xE914;</span>
 				<div class="sub_nav">
 					<a id="donate" class="nav_label" target="_blank" href="https://www.paypal.com/donate?hosted_button_id=TJGV33MFJL26W">Donate</a>
 				</div>
@@ -141,6 +145,10 @@
 								 playKote();">
 							<svg viewbox="0 75 700 700" class="preview_icon"><use href="#Helmet_RC"/></svg>
 							Commando
+						</button><button id="Helmet_Variant_Ramikadyc" class="type_button"
+							onclick="switchToArmorVariant('Helmet','Helmet','Ramikadyc', this)">
+							<svg viewbox="0 75 700 700" class="preview_icon"><use href="#Helmet_Ramikadyc"/></svg>
+							Ramikadyc
 						</button>
 						<p class="sponsor_title">AlterEgoArmory (sponsored):</p>
 						<button id="Helmet_Variant_Warden" class="type_button"
@@ -196,6 +204,10 @@
 								 setSponsor('Budget','#');">
 							<svg viewbox="0 0 700 700" class="preview_icon"><use href="#Helmet_Budget-Bucket"/></svg>
 							Budget
+						</button><button id="Helmet_Variant_Neo" class="type_button"
+							onclick="switchToArmorVariant('Helmet','Helmet','Neo', this)">
+							<svg viewbox="0 75 700 700" class="preview_icon"><use href="#Helmet_Neo"/></svg>
+							Neo-Crusader
 						</button>
 					</div>
 				</div>
