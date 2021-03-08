@@ -16,5 +16,13 @@
     "display": "standalone",
     "start_url": "index.html",
     "theme_color": "#AB1F1F",
-    "background_color": "#AB1F1F"
+    "background_color": "#AB1F1F",
+    "shortcuts": [
+        {
+            "src": "gallery/index.php",
+            "name": "Mando Creator Gallery",
+            "short_name": "Gallery",
+            "description": "See a gallery of user-submitted designs, and customize them further."
+        }
+    ]
 }

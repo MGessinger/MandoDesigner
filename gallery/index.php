@@ -141,16 +141,15 @@
 		<nav style="height:3em"> <img src="/images/Logo.svg" /> </nav>
 		<main id="gallery">
 			<span id="secondary_left" style="direction:rtl"></span>
-			<span id="primary">
+			<span id="primary"></span>
+			<span id='secondary_right'>
 			<?php
 				$files = scandir("presets/male");
 				$count = count($files);
 				if ($count <= 2)
 					die("No images found in the gallery. Please contact the administrator of this site.");
 				$n = str_replace(".svg", "", $files[2]);
-				echo "<img alt='Armor Design titled $n' title='$n' src='/gallery/presets/male/$n.svg' loading='lazy' />";
-				echo "</span><span id='secondary_right'>";
-				for ($i = 3; $i < $count; $i++) {
+				for ($i = 2; $i < $count; $i++) {
 					$n = str_replace(".svg", "", $files[$i]);
 					echo "<img alt='Armor Design titled $n' title='$n' src='/gallery/presets/male/$n.svg' loading='lazy' />";
 				}
@@ -158,15 +157,18 @@
 			</span>
 		</main>
 		<footer>
-			<div>
-				<input type="radio" name="sex" class="toggle_sex" id="male" checked onchange="Gallery.sex = false"
-				><label for="male" class="label_sex">&#xe901;</label
-				><input type="radio" name="sex" class="toggle_sex" id="female" onchange="Gallery.sex = true"
-				><label for="female" class="label_sex">&#xe902;</label>
-			</div>
-			<button class="next_armor" onclick="Gallery.shift--">&#xe90b;</button
-			><button class="main_button" onclick="Gallery.loadCreator()">Customize</button
-			><button class="next_armor" onclick="Gallery.shift++">&#xe90c;</button>
+			<form action="/index.html" method="GET">
+				<input type="text" id="preset" name="preset" style="display:none" />
+				<div>
+					<input type="radio" id="male" class="toggle_sex" name="sex" value="0" checked onchange="Gallery.sex = false"
+					/><label for="male" class="label_sex">&#xe901;</label
+					><input type="radio" id="female" class="toggle_sex" name="sex" value="1" onchange="Gallery.sex = true"
+					/><label for="female" class="label_sex">&#xe902;</label>
+				</div>
+				<button type="button" class="next_armor" onclick="Gallery.shift--">&#xe90b;</button
+				><button type="submit" class="main_button">Customize</button
+				><button type="button" class="next_armor" onclick="Gallery.shift++">&#xe90c;</button>
+			</form>
 		</footer>
 	</body>
 	<script>
@@ -183,10 +185,8 @@
 				"left": find("secondary_left"),
 				"right": find("secondary_right")
 			};
+			var input = find("preset");
 			var GallerySkeleton = {
-				get sex () {
-					return isFemale ? "1" : "0";
-				},
 				set sex (female) {
 					var needle, replace;
 					if (female) {
@@ -201,13 +201,13 @@
 						src = src.replace(needle, replace);
 						all[i].setAttribute("src", src);
 					}
-					isFemale = female;
 				},
 				get target () {
 					return primary.firstElementChild;
 				},
 				set target (value) {
 					primary.appendChild(value);
+					input.value = value.getAttribute("src");
 				},
 				get shift () {
 					return 0;
@@ -215,26 +215,24 @@
 				set shift (value) {
 					var firstLeft = secondary.left.firstElementChild;
 					var firstRight = secondary.right.firstElementChild;
+					var current = this.target;
 					if (value >= 0) {
 						if (!firstRight)
 							return;
-						secondary.left.insertBefore(this.target, firstLeft);
+						if (current)
+							secondary.left.insertBefore(this.target, firstLeft);
 						this.target = firstRight;
 					} else {
 						if (!firstLeft)
 							return;
-						secondary.right.insertBefore(this.target, firstRight);
+						if (current)
+							secondary.right.insertBefore(this.target, firstRight);
 						this.target = firstLeft;
 					}
-				},
-				loadCreator () {
-					var loc = this.target.getAttribute("src");
-					var o = window.location.origin;
-					var n = o + "/?preset=" + escape(loc) + "&f=" + this.sex;
-					window.location = n;
 				}
 			};
 			GallerySkeleton.sex = isFemale;
+			GallerySkeleton.shift = 1;
 			return GallerySkeleton;
 		}
 		var female = find("female");

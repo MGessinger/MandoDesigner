@@ -1,5 +1,5 @@
 "use strict";
-const CACHE_NAME = "MandoCreatorCachev00";
+const CACHE_NAME = "MandoCreatorCachev0";
 
 self.addEventListener("install", function (event) {
 	self.skipWaiting();

@@ -657,25 +657,26 @@ function neutralize (str) {
 	return str.replace(/(_(M|F|Toggle(Off)?|Option))+($|_)/,"$4");
 }
 
+function readQueryString (st) {
+	var settings = {};
+	var regex = /(\w+)=([^&]*)&?/g;
+	var matches;
+	while (matches = regex.exec(st)) {
+		settings[matches[1]] = unescape(matches[2]);
+	}
+	return settings;
+}
+
 function onload () {
 	var female = false;
 	if (window.localStorage)
 		female = (localStorage.getItem("female_sex") == "true");
-	var preset = /\?preset=([^&]+)&f=(\d)/.exec(window.location.search);
-	if (!preset || !preset[1]) {
+	var options = readQueryString(window.location.search);
+	if (!options) {
 		S.set.Sex(female);
 	} else {
-		female = +preset[2];
-		if (!female) {
-			var sex_radio = find("male");
-			sex_radio.checked = true;
-			localStorage.setItem("female_sex", false);
-		} else {
-			var sex_radio = find("female");
-			sex_radio.checked = true;
-			localStorage.setItem("female_sex", true);
-		}
-		loadPreset(preset[1], female);
+		female = +options["sex"];
+		loadPreset(options["preset"], female);
 	}
 	if (!female) {
 		var sex_radio = find("male");
