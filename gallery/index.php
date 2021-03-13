@@ -83,8 +83,13 @@
 				flex: 0 1 25%;
 				text-align: center;
 			}
-			img {
+			svg {
 				height: 100%;
+				stroke: black;
+				stroke-width: 2px;
+				fill: none;
+				fill-rule: evenodd;
+				clip-rule: evenodd;
 			}
 			footer {
 				position: fixed;
@@ -138,7 +143,28 @@
 		</style>
 	</head>
 	<script>
+		"use strict";
+		function find(st) {
+			return document.getElementById(st);
+		}
+		function loadSVG (name) {
+			var xhr = new XMLHttpRequest();
+			xhr.open("GET", "gallery/" + name);
+			xhr.setRequestHeader("Cache-Control", "no-cache, max-age=10800");
+			xhr.responseType = 'document';
+			xhr.onload = function () {
+				var xml = this.responseXML;
+				if (xhr.status !== 200 || !xml)
+					return;
+				var svg = xml.documentElement;
+				var vault = find("vault");
+				vault.appendChild(svg);
+			};
+			xhr.send();
+		}
 		function loadSW() {
+			loadSVG("wrapper_male.svg");
+			loadSVG("wrapper_female.svg");
 			var nsw = navigator["serviceWorker"];
 			if (!nsw)
 				return;
@@ -146,20 +172,21 @@
 		}
 	</script>
 	<body onload="loadSW()">
-		<nav style="height:3em"> <img src="/images/Logo.svg" /> </nav>
+		<nav style="height:3em"> <img height="100%" src="/images/Logo.svg" /> </nav>
 		<main id="gallery">
 			<span id="secondary_left" style="direction:rtl"></span>
 			<span id="primary"></span>
-			<span id='secondary_right'>
+			<span id="secondary_right">
 			<?php
-				$files = scandir("presets/male");
+				$files = scandir("male");
 				$count = count($files);
 				if ($count <= 2)
 					die("No images found in the gallery. Please contact the administrator of this site.");
-				$n = str_replace(".svg", "", $files[2]);
 				for ($i = 2; $i < $count; $i++) {
 					$n = str_replace(".svg", "", $files[$i]);
-					echo "<img alt='Armor Design titled $n' title='$n' src='/gallery/presets/male/$n.svg' loading='lazy' />";
+					echo "<svg viewBox='50 0 1700 3300'>";
+					echo "<use alt='Armor Design titled $n' title='$n' href='#_M_$files[$i]' />";
+					echo "</svg>";
 				}
 			?>
 			</span>
@@ -178,16 +205,12 @@
 				><button type="button" class="next_armor" onclick="Gallery.shift++">&#xe90c;</button>
 			</form>
 		</footer>
+		<div id="vault" style="display: none"></div>
 	</body>
 	<script>
-		"use strict";
-		function find(st) {
-			return document.getElementById(st);
-		}
-
 		function ArmorGallery (isFemale) {
 			var gallery = find("gallery");
-			var all = gallery.getElementsByTagName("img");
+			var all = gallery.getElementsByTagName("use");
 			var primary = find("primary");
 			var secondary = {
 				"left": find("secondary_left"),
@@ -198,16 +221,16 @@
 				set sex (female) {
 					var needle, replace;
 					if (female) {
-						needle = "male";
-						replace = "female";
+						needle = "_M_";
+						replace = "_F_";
 					} else {
-						needle = "female";
-						replace = "male";
+						needle = "_F_";
+						replace = "_M_";
 					}
 					for (var i = 0; i < all.length; i++) {
-						var src = all[i].getAttribute("src");
-						src = src.replace(needle, replace);
-						all[i].setAttribute("src", src);
+						var href = all[i].getAttribute("href");
+						href = href.replace(needle, replace);
+						all[i].setAttribute("href", href);
 					}
 				},
 				get target () {
