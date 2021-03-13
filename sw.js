@@ -1,18 +1,17 @@
 "use strict";
-const CACHE_NAME = "MandoCreatorCachev0";
+const MAIN = "MCCachev0";
+const IMGS = "Galleryv0";
 
 self.addEventListener("install", function (event) {
 	self.skipWaiting();
 	event.waitUntil(
-		caches.open(CACHE_NAME)
+		caches.open(MAIN)
 		.then(c => c.addAll( [
 			'index.html',
 			'editor.js',
-			"upload.js",
 			"color.js",
 			"stylesheet.css",
-			"color.css",
-			"images/Helmets.svg"
+			"color.css"
 		]))
 	);
 });
@@ -24,7 +23,7 @@ this.addEventListener('activate', function(event) {
 		caches.keys()
 		.then(function(keyList) {
 			return Promise.all(keyList.map(function(key) {
-				if (key !== CACHE_NAME)
+				if (key !== MAIN && key != IMGS)
 					return caches.delete(key);
 			}));
 		})
@@ -33,12 +32,17 @@ this.addEventListener('activate', function(event) {
 
 self.addEventListener('fetch', function(event) {
 	var er = event.request;
+	var url = er.url;
 	event.respondWith(
 		caches.match(er).then(r0 => {
 			return r0 || fetch(er).then(r => {
 				if (r.ok) {
 					var clone = r.clone();
-					caches.open(CACHE_NAME).then(c => c.put(er, clone));
+					if (url.includes("/gallery") && url.endsWith("svg"))
+						caches.open(IMGS).then(c => c.put(er, clone));
+					else
+						caches.open(MAIN).then(c => c.put(er, clone));
+					
 				}
 				return r;
 			});

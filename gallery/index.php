@@ -137,7 +137,15 @@
 			}
 		</style>
 	</head>
-	<body>
+	<script>
+		function loadSW() {
+			var nsw = navigator["serviceWorker"];
+			if (!nsw)
+				return;
+			nsw.register("../sw.js");
+		}
+	</script>
+	<body onload="loadSW()">
 		<nav style="height:3em"> <img src="/images/Logo.svg" /> </nav>
 		<main id="gallery">
 			<span id="secondary_left" style="direction:rtl"></span>
@@ -157,7 +165,7 @@
 			</span>
 		</main>
 		<footer>
-			<form action="/index.html" method="GET">
+			<form action="../index.html" method="GET">
 				<input type="text" id="preset" name="preset" style="display:none" />
 				<div>
 					<input type="radio" id="male" class="toggle_sex" name="sex" value="0" checked onchange="Gallery.sex = false"

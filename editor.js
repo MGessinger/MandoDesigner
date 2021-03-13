@@ -712,9 +712,9 @@ function onload () {
 		event.returnValue = message;
 		return message;
 	});
-	if (!("serviceWorker" in navigator))
-		return;
 	var nsw = navigator.serviceWorker;
+	if (!nsw)
+		return;
 	nsw.onmessage = function (event) {
 		displayForm(true, 'reload');
 	};
