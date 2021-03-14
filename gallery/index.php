@@ -183,9 +183,10 @@
 				if ($count <= 2)
 					die("No images found in the gallery. Please contact the administrator of this site.");
 				for ($i = 2; $i < $count; $i++) {
-					$n = str_replace(".svg", "", $files[$i]);
+					$f = $files[$i];
+					$n = str_replace(".svg", "", $f);
 					echo "<svg viewBox='50 0 1700 3300'>";
-					echo "<use alt='Armor Design titled $n' title='$n' href='#_M_$files[$i]' />";
+					echo "<use alt='Armor Design titled $n' title='$n' href='#gallery/male/$f' />";
 					echo "</svg>";
 				}
 			?>
@@ -221,11 +222,11 @@
 				set sex (female) {
 					var needle, replace;
 					if (female) {
-						needle = "_M_";
-						replace = "_F_";
+						needle = "male";
+						replace = "female";
 					} else {
-						needle = "_F_";
-						replace = "_M_";
+						needle = "female";
+						replace = "male";
 					}
 					for (var i = 0; i < all.length; i++) {
 						var href = all[i].getAttribute("href");
@@ -238,7 +239,10 @@
 				},
 				set target (value) {
 					primary.appendChild(value);
-					input.value = value.getAttribute("src");
+					var use = value.firstElementChild;
+					if (!use)
+						throw value;
+					input.value = use.getAttribute("href").slice(1);
 				},
 				get shift () {
 					return 0;

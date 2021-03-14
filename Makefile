@@ -20,17 +20,16 @@ gallery: gallery/wrapper_male.svg gallery/wrapper_female.svg
 wrapper_%.svg: %/
 	@echo $@;
 	@echo "<?xml version='1.0' encoding='UTF-8' standalone='no'?><!DOCTYPE svg PUBLIC '-//W3C//DTD SVG 1.1//EN' 'http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd'><svg version='1.1' xmlns='http://www.w3.org/2000/svg'>" > $@;
-	@for i in $$(ls $?); do \
-		PREFIX=$$(echo $(@F) | sed "s|wrapper_male.svg|_M_|;s|wrapper_female.svg|_F_|;"); \
+	@for i in $?*; do \
 		sed " \
 			/^<svg/ { \
-				s|^<svg[^>]*>|<g id='$$PREFIX$$i'>\n|; \
+				s|^<svg[^>]*>|<g id='$$i'>\n|; \
 				P; D; \
 			}; \
 			s|</svg>|</g>|; \
 			s|[[:space:]]\+id=[\'\"][^\'\"]*[\'\"]||g; \
 			s/<\(title\|style\)>[^<]*<\/\(title\|style\)>//g; \
-		" $?/$$i >> $@; done;
+		" $$i >> $@; done;
 	@echo "</svg>" >> $@;
 
 gallery/female: $(wildcard gallery/female/*.svg)
