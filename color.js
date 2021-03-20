@@ -32,6 +32,7 @@ var Picker = new function() {
 		}
 
 		function touch(event) {
+			event.preventDefault();
 			if (event.touches && 1 === event.touches.length)
 				event = event.touches[0];
 			else if (1 !== event.buttons)
@@ -301,7 +302,10 @@ var Picker = new function() {
 			button.style.background = hex;
 			SVGNode.style.fill = hex;
 			colorText.innerText = hex;
-			settings[button.id] = hex;
+			if (hex === "#FFFFFF")
+				delete settings[button.id];
+			else
+				settings[button.id] = hex;
 		}
 		on(button, "click", function(event) {
 			onChange = input;

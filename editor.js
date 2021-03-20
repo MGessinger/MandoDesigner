@@ -471,7 +471,7 @@ function Settings () {
 		else
 			editor.appendChild(svg);
 		var scale = find("zoom");
-		zoom(scale.value/100);
+		zoom(scale.value);
 
 		var variant = variants["Helmet"] || "Classic";
 		var helmet = Vault.load("Helmets", function() { switchToArmorVariant("Helmet", "Helmet", variant); } );
@@ -571,6 +571,8 @@ function Downloader () {
 
 	function svg2img(svg) {
 		var copy = svg.cloneNode(true);
+		copy.setAttribute("width", "1500");
+		copy.setAttribute("height", "1050");
 		prepareForExport(copy);
 		var str = xml.serializeToString(copy);
 		var svg64 = btoa(unescape(encodeSVG(str)));
@@ -622,7 +624,7 @@ function Downloader () {
 							isSetUp = false;
 						}, 5000);
 						img.onload = function () {
-							canvasCtx.clearRect(0, 0, 1500, 1050);
+							canvasCtx.clearRect(0, 0, canvas.width, canvas.height);
 							canvasCtx.drawImage(this, 0, 0, 1500, 1050);
 						}
 						img.src = bckImgData;
@@ -796,17 +798,14 @@ function displayForm (visible, form) {
 function zoom (scale) {
 	var main = find("editor");
 	var svg = main.children[0];
-	svg.style.transform = "";
-	var rect = svg.getBoundingClientRect();
-	var t = (rect.height*scale - window.innerHeight)/2 + rect.top;
-	svg.style.transform = "translateY(" + t + "px) scale(" + scale + ")";
+	svg.style.height = scale + "%";
 }
 
 function zoomInOut (step) {
 	var scale = find("zoom");
 	var val = parseInt(scale.value);
 	scale.value = val + step;
-	zoom(scale.value/100);
+	zoom(scale.value);
 }
 
 function showRoll () {
@@ -817,5 +816,5 @@ function showRoll () {
 
 function playKote () {
 	var kote = find("kote");
-	kote.setAttribute("src", "assets/Vode_an.mp3");
+	kote.setAttribute("src", "assets/KOTE.mp3");
 }

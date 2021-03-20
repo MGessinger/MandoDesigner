@@ -42,7 +42,6 @@ self.addEventListener('fetch', function(event) {
 						caches.open(IMGS).then(c => c.put(er, clone));
 					else if (!url.includes("gallery"))
 						caches.open(MAIN).then(c => c.put(er, clone));
-					
 				}
 				return r;
 			});
