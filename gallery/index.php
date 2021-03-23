@@ -52,7 +52,7 @@
 			body {
 				height: 100%;
 				margin: 0;
-				background: url(/assets/foggy_small.jpg) no-repeat center;
+				background: url(/assets/fog-small.jpg) no-repeat center;
 				background-color: #222;
 				background-size: cover;
 				font-family: 'icomoon', 'Raleway', Verdana, sans-serif;
@@ -64,12 +64,7 @@
 			main {
 				display: flex;
 				height: 100%;
-				width: 100%;
-				padding: 3em 0;
-				overflow: hidden;
-				white-space: nowrap;
 				align-items: baseline;
-				box-sizing: border-box;
 			}
 			#secondary_left,
 			#secondary_right {

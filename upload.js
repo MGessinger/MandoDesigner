@@ -7,34 +7,15 @@ function loadImage (input) {
 	var main = find("editor");
 	var theme = document.body.className;
 
-	var customBck;
-	if (theme.includes("dark"))
-		customBck = find("BackgroundDark").cloneNode(true);
-	else
-		customBck = find("BackgroundLight").cloneNode(true);
-	customBck.id = "Custom";
-	var img = customBck.getElementsByTagName("image")[0];
-
 	var reader = new FileReader();
 	if (files[0].type.includes("svg")) {
 		reader.onload = function () {
-			var svg = document.createElement("svg");
-			svg.innerHTML = this.result;
-			var newSVG = svg.firstElementChild;
-			customBck.replaceChild(newSVG, img);
-			D.Background = customBck;
-
-			var href = 'url("data:image/svg+xml,' + encodeSVG(this.result) + '")';
-			main.style.backgroundImage = href;
+			D.Background = {href: "data:image/svg+xml," + encodeSVG(this.result)};
 		}
 		reader.readAsText(files[0]);
-	}
-	else {
+	} else {
 		reader.onload = function() {
-			var res = this.result;
-			main.style.backgroundImage = "url(" + res + ")";
-			img.setAttribute("href", res);
-			D.Background = customBck;
+			D.Background = {href: this.result};
 		}
 		reader.readAsDataURL(files[0]);
 	}

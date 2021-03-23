@@ -70,7 +70,7 @@
 					<input id="reupload" type="file" accept="image/svg+xml" onchange="reupload(this);" hidden/>
 					<label for="reupload" class="nav_label"><span class="nav_icon">&#xE910;</span>Continue Editing</label>
 					<a id="download_svg" class="nav_label" download="MandoCreator.svg" href="#"><span class="nav_icon">&#xE903;</span>Download as SVG</a>
-					<a id="download_png" class="nav_label" download="MandoCreator.png" href="#"><span class="nav_icon">&#xE903;</span>Download as PNG</a>
+					<a id="download_jpeg" class="nav_label" download="MandoCreator.jpeg" href="#"><span class="nav_icon">&#xE903;</span>Download as JPEG</a>
 					<label id="color_scheme_label" for="color_scheme_picker" class="nav_label"><span class="nav_icon">&#xE90F;</span>Toggle Dark/Light</label>
 					<input type="checkbox" id="color_scheme_picker" style="opacity:0;" onchange="S.set.DarkMode(this.checked)"/>
 				</div>
@@ -539,7 +539,6 @@
 		</footer>
 		<div style="display:none">
 			<div id="vault"></div>
-			<img id="temp_img"></img>
 			<canvas id="canvas" height="1050" width="1500"></canvas>
 			<video id="kote" autoplay></video>
 		</div>
