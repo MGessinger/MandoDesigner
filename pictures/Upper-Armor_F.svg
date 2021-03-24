@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- Generator: Adobe Illustrator 25.2.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
-<svg version="1.1" id="Layer_1" xmlns:serif="http://www.serif.com/"
-	 xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 1400 1400"
-	 xml:space="preserve">
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1400 1400">
 <g id="Biceps_F_ToggleOff">
 	<g id="Left-Biceps_F">
 		<g id="None_Biceps_Left_F_Option">
@@ -850,7 +848,7 @@
 					l-9.7,5.5l-3.3-35.8l5.8-0.7l-2.9-31.2L1261,863.1z"/>
 			</g>
 			<g id="Missle_Attachment_Heavy_Gauntlet_Left_F_Option">
-				<g id="Head_Fissle_Attachment_Heavy_Gauntlet_Left_F">
+				<g id="Head_Missle_Attachment_Heavy_Gauntlet_Left_F">
 					<path d="M1294.2,979.2l-24.3-45.5l39.8-4.8L1294.2,979.2z"/>
 					<path d="M1283.8,936.3c0.9-0.1,1.8,1.7,2,4s-0.3,4.3-1.2,4.4c-0.9,0.1-1.8-1.7-2-4
 						C1282.4,938.4,1282.9,936.4,1283.8,936.3z"/>
@@ -877,7 +875,7 @@
 					<path d="M1302.2,953.5c-0.6-0.1-1.3-1.5-1.4-3.2c-0.2-1.9,0.3-3.4,1-3.5c0.7-0.1,1.4,1.3,1.6,3.1L1302.2,953.5z
 						 M1280.1,952.7c-0.1-1.8,0.3-3.4,1-3.4c0.7-0.1,1.4,1.4,1.6,3.2c0.2,1.7-0.2,3.2-0.8,3.5L1280.1,952.7z"/>
 				</g>
-				<g id="Main_Fissle_Attachment_Heavy_Gauntlet_Left_F">
+				<g id="Main_Missle_Attachment_Heavy_Gauntlet_Left_F">
 					<path d="M1304.3,922.9l-30.1,3.6l0.6,6.6l30.1-3.6L1304.3,922.9z"/>
 					<path d="M1291.5,783.1l-30.1,3.6l0.6,6.6l30.1-3.6L1291.5,783.1z"/>
 					<path d="M1283.1,759.5l-17.7,2.1l0.6,6.6l17.7-2.1L1283.1,759.5z"/>
@@ -885,7 +883,7 @@
 					<path d="M1294.9,789.4l-35.6,4.2l12.2,133.2l35.6-4.2L1294.9,789.4z"/>
 					<path d="M1267,863.9l-5.8,0.7l2.9,31.2l5.8-0.7L1267,863.9z"/>
 				</g>
-				<g id="Accent_Fissle_Attachment_Heavy_Gauntlet_Left_F">
+				<g id="Accent_Missle_Attachment_Heavy_Gauntlet_Left_F">
 					<path d="M1295,987.7l-4.8-11.5l7.4-0.9L1295,987.7z"/>
 					<path d="M1296.6,972.4l-6,0.7l-0.5,3.1l7.4-0.9L1296.6,972.4z"/>
 					<path d="M1284.3,750l-21.8,2.6l0.8,9.2l21.7-2.6L1284.3,750z"/>
@@ -896,7 +894,7 @@
 					<path d="M1292.4,789.7l-6.1,0.7l12.2,133.2l6.1-0.7L1292.4,789.7z"/>
 					<path d="M1267.8,792.6l-3.7,0.4l12.2,133.2l3.7-0.4L1267.8,792.6z"/>
 				</g>
-				<path id="Base_Fissle_Attachment_Heavy_Gauntlet_Left_F" d="M1263.8,783.1l-10.4-3.1l13.9,151.7l9.7-5.5
+				<path id="Base_Missle_Attachment_Heavy_Gauntlet_Left_F" d="M1263.8,783.1l-10.4-3.1l13.9,151.7l9.7-5.5
 					L1263.8,783.1z M1267,863.9l-5.8,0.7l2.9,31.2l5.8-0.7L1267,863.9z"/>
 			</g>
 			<g id="No-Device_Attachment_Heavy_Gauntlet_Left_F_Option">
@@ -971,7 +969,7 @@
 					L1250,961l-0.1-35.9l5.9-0.2l-0.1-31.3L1249.8,893.7z"/>
 			</g>
 			<g id="Missle_Attachment_Gunslinger_Gauntlet_Left_F_Option">
-				<g id="Head_Fissle_Attachment_Gunslinger_Gauntlet_Left_F">
+				<g id="Head_Missle_Attachment_Gunslinger_Gauntlet_Left_F">
 					<path d="M1272.8,1012.4l-20.2-47.5l40.1-1.2L1272.8,1012.4z"/>
 					<path d="M1266.2,968.8c0.9,0,1.6,1.8,1.6,4.2c0,2.3-0.7,4.3-1.6,4.3c-0.9,0-1.6-1.8-1.6-4.2
 						C1264.6,970.7,1265.3,968.8,1266.2,968.8z"/>
@@ -998,7 +996,7 @@
 					<path d="M1283,987.5c-0.6-0.2-1.1-1.6-1.1-3.3c0-1.9,0.6-3.4,1.3-3.4c0.7,0,1.3,1.4,1.3,3.3L1283,987.5z
 						 M1261.1,984.8c0-1.8,0.6-3.3,1.3-3.3c0.7,0,1.3,1.5,1.3,3.3c0,1.7-0.5,3.2-1.1,3.4L1261.1,984.8z"/>
 				</g>
-				<g id="Main_Fissle_Attachment_Gunslinger_Gauntlet_Left_F">
+				<g id="Main_Missle_Attachment_Gunslinger_Gauntlet_Left_F">
 					<path d="M1287.8,957.2l-30.3,0.9l0,6.6l30.3-0.9L1287.8,957.2z"/>
 					<path d="M1287.4,816.8l-30.3,0.9l0,6.6l30.3-0.9L1287.4,816.8z"/>
 					<path d="M1281.1,792.6l-17.9,0.6l0,6.6l17.9-0.5L1281.1,792.6z"/>
@@ -1006,7 +1004,7 @@
 					<path d="M1290.2,823.4l-35.8,1.1l0.4,133.7l35.8-1.1L1290.2,823.4z"/>
 					<path d="M1255.8,895.2l-5.9,0.2l0.1,31.3l5.9-0.2L1255.8,895.2z"/>
 				</g>
-				<g id="Accent_Fissle_Attachment_Gunslinger_Gauntlet_Left_F">
+				<g id="Accent_Missle_Attachment_Gunslinger_Gauntlet_Left_F">
 					<path d="M1272.9,1020.9l-3.8-11.9l7.5-0.2L1272.9,1020.9z"/>
 					<path d="M1275.8,1005.8l-6,0.2l-0.7,3l7.5-0.2L1275.8,1005.8z"/>
 					<path d="M1283.1,783.2l-21.9,0.7l0,9.3l21.9-0.7L1283.1,783.2z"/>
@@ -1017,7 +1015,7 @@
 					<path d="M1287.7,823.5l-6.1,0.2l0.4,133.7l6.1-0.2L1287.7,823.5z"/>
 					<path d="M1262.9,824.2l-3.8,0.1l0.4,133.7l3.8-0.1L1262.9,824.2z"/>
 				</g>
-				<path id="Base_Fissle_Attachment_Gunslinger_Gauntlet_Left_F" d="M1259.8,814.3l-10.1-4l0.5,152.3l10.1-4.6
+				<path id="Base_Missle_Attachment_Gunslinger_Gauntlet_Left_F" d="M1259.8,814.3l-10.1-4l0.5,152.3l10.1-4.6
 					L1259.8,814.3z M1255.8,895.2l-5.9,0.2l0.1,31.3l5.9-0.2L1255.8,895.2z"/>
 			</g>
 			<g id="No-Device_Attachment_Gunslinger_Gauntlet_Left_F_Option">
@@ -1090,7 +1088,7 @@
 					l-9.5,5.8l-4.5-35.7l5.8-0.9l-3.9-31.1L1266.7,928.2z"/>
 			</g>
 			<g id="Missle_Attachment_Basic_Gauntlet_Left_F_Option">
-				<g id="Head_Fissle_Attachment_Basic_Gauntlet_Left_F">
+				<g id="Head_Missle_Attachment_Basic_Gauntlet_Left_F">
 					<path d="M1304,1043.2l-25.9-44.6l39.7-6.1L1304,1043.2z"/>
 					<path d="M1292.1,1000.7c0.9-0.1,1.8,1.6,2.1,4c0.3,2.3-0.2,4.3-1,4.4c-0.9,0.1-1.8-1.6-2.1-4
 						C1290.8,1002.8,1291.3,1000.8,1292.1,1000.7z"/>
@@ -1117,7 +1115,7 @@
 					<path d="M1311.1,1017.3c-0.7-0.1-1.3-1.5-1.5-3.2c-0.2-1.9,0.1-3.5,0.8-3.6c0.7-0.1,1.4,1.3,1.7,3.1L1311.1,1017.3
 						z M1289,1017.2c-0.2-1.8,0.2-3.4,0.8-3.5c0.7-0.1,1.5,1.3,1.7,3.2c0.2,1.7-0.1,3.2-0.7,3.5L1289,1017.2z"/>
 				</g>
-				<g id="Main_Fissle_Attachment_Basic_Gauntlet_Left_F">
+				<g id="Main_Missle_Attachment_Basic_Gauntlet_Left_F">
 					<path d="M1312.2,986.6l-30,4.6l0.8,6.6l30-4.6L1312.2,986.6z"/>
 					<path d="M1294.6,847.3l-30,4.6l0.8,6.6l30-4.6L1294.6,847.3z"/>
 					<path d="M1285.3,824l-17.7,2.7l0.8,6.6l17.7-2.7L1285.3,824z"/>
@@ -1125,7 +1123,7 @@
 					<path d="M1298.1,853.5l-35.4,5.5l16.8,132.7l35.4-5.5L1298.1,853.5z"/>
 					<path d="M1272.8,928.9l-5.8,0.9l3.9,31.1l5.8-0.9L1272.8,928.9z"/>
 				</g>
-				<g id="Accent_Fissle_Attachment_Basic_Gauntlet_Left_F">
+				<g id="Accent_Missle_Attachment_Basic_Gauntlet_Left_F">
 					<path d="M1305.1,1051.6l-5.2-11.3l7.4-1.1L1305.1,1051.6z"/>
 					<path d="M1306.2,1036.3l-5.9,0.9l-0.4,3.1l7.4-1.1L1306.2,1036.3z"/>
 					<path d="M1286.2,814.5l-21.6,3.3l1.2,9.2l21.7-3.3L1286.2,814.5z"/>
@@ -1136,7 +1134,7 @@
 					<path d="M1295.7,853.8l-6,0.9l16.8,132.7l6-0.9L1295.7,853.8z"/>
 					<path d="M1271.2,857.6l-3.7,0.6l16.8,132.7l3.7-0.6L1271.2,857.6z"/>
 				</g>
-				<path id="Base_Fissle_Attachment_Basic_Gauntlet_Left_F" d="M1266.9,848.2l-10.6-2.7l19.1,151.1l9.5-5.8
+				<path id="Base_Missle_Attachment_Basic_Gauntlet_Left_F" d="M1266.9,848.2l-10.6-2.7l19.1,151.1l9.5-5.8
 					L1266.9,848.2z M1272.8,928.9l-5.8,0.9l3.9,31.1l5.8-0.9L1272.8,928.9z"/>
 			</g>
 			<g id="No-Device_Attachment_Basic_Gauntlet_Left_F_Option">
@@ -1251,7 +1249,7 @@
 					l9.7,5.5l3.3-35.8l-5.8-0.7l2.9-31.2L153.2,863.1z"/>
 			</g>
 			<g id="Missle_Attachment_Heavy_Gauntlet_Right_F_Option">
-				<g id="Head_Fissle_Attachment_Heavy_Gauntlet_Right_F">
+				<g id="Head_Missle_Attachment_Heavy_Gauntlet_Right_F">
 					<path d="M120,979.2l24.3-45.5l-39.9-4.8L120,979.2z"/>
 					<path d="M130.4,936.3c-0.9-0.1-1.8,1.7-2,4c-0.2,2.3,0.3,4.3,1.2,4.4c0.9,0.1,1.8-1.7,2-4
 						C131.9,938.4,131.3,936.4,130.4,936.3z"/>
@@ -1277,7 +1275,7 @@
 					<path d="M112.1,953.5c0.6-0.1,1.2-1.5,1.4-3.2c0.2-1.9-0.3-3.4-1-3.5c-0.7-0.1-1.4,1.3-1.6,3.1L112.1,953.5z
 						 M134.2,952.7c0.1-1.8-0.3-3.4-1-3.4c-0.7-0.1-1.4,1.4-1.6,3.2c-0.2,1.7,0.2,3.2,0.8,3.5L134.2,952.7z"/>
 				</g>
-				<g id="Main_Fissle_Attachment_Heavy_Gauntlet_Right_F">
+				<g id="Main_Missle_Attachment_Heavy_Gauntlet_Right_F">
 					<path d="M109.9,922.9l30.1,3.6l-0.6,6.6l-30.1-3.6L109.9,922.9z"/>
 					<path d="M122.7,783.1l30.1,3.6l-0.6,6.6l-30.1-3.6L122.7,783.1z"/>
 					<path d="M131.1,759.5l17.7,2.1l-0.6,6.6l-17.7-2.1L131.1,759.5z"/>
@@ -1285,7 +1283,7 @@
 					<path d="M119.4,789.4l35.6,4.2l-12.2,133.2l-35.6-4.2L119.4,789.4z"/>
 					<path d="M147.2,863.9l5.8,0.7l-2.9,31.2l-5.8-0.7L147.2,863.9z"/>
 				</g>
-				<g id="Accent_Fissle_Attachment_Heavy_Gauntlet_Right_F">
+				<g id="Accent_Missle_Attachment_Heavy_Gauntlet_Right_F">
 					<path d="M119.2,987.7l4.8-11.5l-7.4-0.9L119.2,987.7z"/>
 					<path d="M117.6,972.4l6,0.7l0.5,3.1l-7.4-0.9L117.6,972.4z"/>
 					<path d="M130,750l21.7,2.6l-0.8,9.2l-21.7-2.6L130,750z"/>
@@ -1296,7 +1294,7 @@
 					<path d="M121.8,789.7l6.1,0.7l-12.2,133.2l-6.1-0.7L121.8,789.7z"/>
 					<path d="M146.4,792.6l3.7,0.4L138,926.2l-3.7-0.4L146.4,792.6z"/>
 				</g>
-				<path id="Base_Fissle_Attachment_Heavy_Gauntlet_Right_F" d="M150.4,783.1l10.4-3.1L147,931.6l-9.7-5.5L150.4,783.1
+				<path id="Base_Missle_Attachment_Heavy_Gauntlet_Right_F" d="M150.4,783.1l10.4-3.1L147,931.6l-9.7-5.5L150.4,783.1
 					z M147.2,863.9l5.8,0.7l-2.9,31.2l-5.8-0.7L147.2,863.9z"/>
 			</g>
 			<g id="No-Device_Attachment_Heavy_Gauntlet_Right_F_Option">
@@ -1371,7 +1369,7 @@
 					l10.1,4.6L163,925l-5.9-0.2l0.1-31.3L163.1,893.7z"/>
 			</g>
 			<g id="Missle_Attachment_Gunslinger_Gauntlet_Right_F_Option">
-				<g id="Head_Fissle_Attachment_Gunslinger_Gauntlet_Right_F">
+				<g id="Head_Missle_Attachment_Gunslinger_Gauntlet_Right_F">
 					<path d="M140.1,1012.4l20.2-47.5l-40.1-1.2L140.1,1012.4z"/>
 					<path d="M146.8,968.8c-0.9,0-1.6,1.8-1.6,4.2c0,2.3,0.7,4.3,1.6,4.3c0.9,0,1.6-1.8,1.6-4.2
 						C148.3,970.7,147.6,968.8,146.8,968.8z"/>
@@ -1396,7 +1394,7 @@
 					<path d="M130,987.5c0.6-0.2,1.1-1.6,1.1-3.3c0-1.9-0.6-3.4-1.3-3.4c-0.7,0-1.3,1.4-1.3,3.3L130,987.5z
 						 M151.9,984.8c0-1.8-0.6-3.3-1.3-3.3c-0.7,0-1.3,1.5-1.3,3.3c0,1.7,0.5,3.2,1.1,3.4L151.9,984.8z"/>
 				</g>
-				<g id="Main_Fissle_Attachment_Gunslinger_Gauntlet_Right_F">
+				<g id="Main_Missle_Attachment_Gunslinger_Gauntlet_Right_F">
 					<path d="M125.1,957.2l30.3,0.9l0,6.6l-30.3-0.9L125.1,957.2z"/>
 					<path d="M125.6,816.8l30.3,0.9l0,6.6l-30.3-0.9L125.6,816.8z"/>
 					<path d="M131.9,792.6l17.9,0.6l0,6.6l-17.9-0.5L131.9,792.6z"/>
@@ -1404,7 +1402,7 @@
 					<path d="M122.8,823.4l35.8,1.1l-0.4,133.7l-35.8-1.1L122.8,823.4z"/>
 					<path d="M157.1,895.2l5.9,0.2l-0.1,31.3l-5.9-0.2L157.1,895.2z"/>
 				</g>
-				<g id="Accent_Fissle_Attachment_Gunslinger_Gauntlet_Right_F">
+				<g id="Accent_Missle_Attachment_Gunslinger_Gauntlet_Right_F">
 					<path d="M140.1,1020.9l3.8-11.9l-7.5-0.2L140.1,1020.9z"/>
 					<path d="M137.2,1005.8l6,0.2l0.7,3l-7.5-0.2L137.2,1005.8z"/>
 					<path d="M129.9,783.2l21.9,0.7l0,9.3l-21.9-0.7L129.9,783.2z"/>
@@ -1415,7 +1413,7 @@
 					<path d="M125.3,823.5l6.1,0.2L131,957.4l-6.1-0.2L125.3,823.5z"/>
 					<path d="M150.1,824.2l3.8,0.1l-0.4,133.7l-3.8-0.1L150.1,824.2z"/>
 				</g>
-				<path id="Base_Fissle_Attachment_Gunslinger_Gauntlet_Right_F" d="M153.1,814.3l10.1-4l-0.5,152.3l-10.1-4.6
+				<path id="Base_Missle_Attachment_Gunslinger_Gauntlet_Right_F" d="M153.1,814.3l10.1-4l-0.5,152.3l-10.1-4.6
 					L153.1,814.3z M157.1,895.2l5.9,0.2l-0.1,31.3l-5.9-0.2L157.1,895.2z"/>
 			</g>
 			<g id="No-Device_Attachment_Gunslinger_Gauntlet_Right_F_Option">
@@ -1487,7 +1485,7 @@
 					l9.5,5.8l4.5-35.7l-5.8-0.9l3.9-31.1L146.6,928.2z"/>
 			</g>
 			<g id="Missle_Attachment_Basic_Gauntlet_Right_F_Option">
-				<g id="Head_Fissle_Attachment_Basic_Gauntlet_Right_F">
+				<g id="Head_Missle_Attachment_Basic_Gauntlet_Right_F">
 					<path d="M109.3,1043.2l25.8-44.7l-39.7-6.1L109.3,1043.2z"/>
 					<path d="M121.2,1000.7c-0.9-0.1-1.8,1.6-2.1,4c-0.3,2.3,0.2,4.3,1,4.4c0.9,0.1,1.8-1.6,2.1-4
 						C122.5,1002.8,122.1,1000.8,121.2,1000.7z"/>
@@ -1514,7 +1512,7 @@
 					<path d="M102.2,1017.3c0.6-0.1,1.3-1.5,1.5-3.2c0.2-1.8-0.1-3.4-0.8-3.5c-0.7-0.1-1.4,1.3-1.7,3.1L102.2,1017.3z
 						 M124.3,1017.2c0.2-1.8-0.2-3.3-0.8-3.5c-0.7-0.1-1.4,1.3-1.7,3.2c-0.2,1.7,0.1,3.2,0.7,3.5L124.3,1017.2z"/>
 				</g>
-				<g id="Main_Fissle_Attachment_Basic_Gauntlet_Right_F">
+				<g id="Main_Missle_Attachment_Basic_Gauntlet_Right_F">
 					<path d="M101.1,986.6l30,4.6l-0.8,6.6l-30-4.6L101.1,986.6z"/>
 					<path d="M118.7,847.3l30,4.6l-0.8,6.6l-30-4.6L118.7,847.3z"/>
 					<path d="M127.9,824l17.7,2.7l-0.8,6.6l-17.7-2.7L127.9,824z"/>
@@ -1522,7 +1520,7 @@
 					<path d="M115.1,853.5l35.4,5.5l-16.7,132.7l-35.4-5.5L115.1,853.5z"/>
 					<path d="M140.4,928.9l5.8,0.9l-3.9,31.1l-5.8-0.9L140.4,928.9z"/>
 				</g>
-				<g id="Accent_Fissle_Attachment_Basic_Gauntlet_Right_F">
+				<g id="Accent_Missle_Attachment_Basic_Gauntlet_Right_F">
 					<path d="M108.2,1051.6l5.2-11.3l-7.4-1.1L108.2,1051.6z"/>
 					<path d="M107.1,1036.3l5.9,0.9l0.4,3.1l-7.4-1.1L107.1,1036.3z"/>
 					<path d="M127.1,814.5l21.6,3.3l-1.2,9.2l-21.6-3.3L127.1,814.5z"/>
@@ -1533,7 +1531,7 @@
 					<path d="M117.6,853.9l6,0.9l-16.7,132.7l-6-0.9L117.6,853.9z"/>
 					<path d="M142.1,857.6l3.7,0.6l-16.7,132.7l-3.7-0.6L142.1,857.6z"/>
 				</g>
-				<path id="Base_Fissle_Attachment_Basic_Gauntlet_Right_F" d="M146.3,848.2l10.5-2.7l-19,151.1l-9.5-5.8L146.3,848.2
+				<path id="Base_Missle_Attachment_Basic_Gauntlet_Right_F" d="M146.3,848.2l10.5-2.7l-19,151.1l-9.5-5.8L146.3,848.2
 					z M140.4,928.9l5.8,0.9l-3.9,31.1l-5.8-0.9L140.4,928.9z"/>
 			</g>
 			<g id="No-Device_Attachment_Basic_Gauntlet_Right_F_Option">

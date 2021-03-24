@@ -1,18 +1,27 @@
 MALE=images/Male-Body.svg images/Lower-Armor_M.svg images/Upper-Armor_M.svg
 FEMALE=images/Female-Body.svg images/Lower-Armor_F.svg images/Upper-Armor_F.svg
+NEUTRAL=images/BackgroundDark.svg images/BackgroundLight.svg images/Logo.svg images/Helmets.svg
+
+release: gallery pictures
 
 serve: release
 	php -S localhost:8000
 
-release: gallery images
+#=========================IMAGES==========================
 
-images: images/Helmets.svg $(MALE) $(FEMALE)
+pictures: $(NEUTRAL) $(MALE) $(FEMALE)
+	@touch pictures
 
-images/%_F.svg: data/pictures/%_F.svg
-	@sed "/\/style/ {x; /css/ {d}; x}; /css/ { h; d;}; x; /css/ {h;d;}; x; s/\(class\|style\)=[\'\"][^\"\']\+[\"\']\s//; s/_M\(_\|\b\)/_F\1/" $< > $@;
+images:
+	@mkdir images
 
-images/%.svg: data/pictures/%.svg
-	@sed "/\/style/ {x; /css/ {d}; x}; /css/ { h; d;}; x; /css/ {h;d;}; x; s/\(class\|style\)=[\'\"][^\"\']\+[\"\']\s//;" $< > $@;
+images/%_F.svg: pictures/%_F.svg | images
+	@sed "s/[[:space:]]\+class=.[^\"\']\+[\"\']//; s/_M\(_\|\b\)/_F\1/" $< > $@;
+
+images/%.svg: pictures/%.svg | images
+	@sed "s/[[:space:]]\+class=.[^\"\']\+[\"\']//;" $< > $@;
+
+#=========================GALLERY=========================
 
 gallery: gallery/wrapper_male.svg gallery/wrapper_female.svg
 	@touch $@;
