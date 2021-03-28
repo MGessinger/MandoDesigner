@@ -114,7 +114,7 @@ function Settings () {
 		var globalList = find(name + "Colors");
 		if (globalList) {
 			parent = globalList;
-			parent.style.display = "";
+			parent.style.removeProperty("display");
 			var ps = parent.getElementsByClassName("option_name");
 			if (ps.length !== 1) {
 				p = DOMNode("p", {class: "option_name hidden"});
@@ -181,7 +181,9 @@ function Settings () {
 			var folder = find(category + "Options");
 			var folder_content = folder.getElementsByClassName("folder_content")[0];
 			var slides = folder.getElementsByClassName("slide");
-			SVGNode.addEventListener("click", function() {
+			SVGNode.addEventListener("click", function(event) {
+				if (event.defaultPrevented)
+					return;
 				redirectToRadio();
 				for (var i = 0; i < slides.length; i++) {
 					if (slides[i].contains(p)) {
@@ -221,7 +223,7 @@ function Settings () {
 					opt.selected = true;
 					variants[SVGName] = neutralize(fullName);
 				} else {
-					addons[i].style.display = "";
+					addons[i].style.removeProperty("display");
 					col.style.display = "none";
 				}
 				this.All(addons[i], category, col);
@@ -229,7 +231,7 @@ function Settings () {
 			}
 			if (useDefault) {
 				addons[addons.length-1].style.display = "inherit";
-				colors[0].style.display = "";
+				colors[0].style.removeProperty("display");
 			}
 
 			select.addEventListener("change", function() {
@@ -238,13 +240,13 @@ function Settings () {
 					if (addons[i].id === this.value)
 						addons[i].style.display = "inherit";
 					else
-						addons[i].style.display = "";
+						addons[i].style.removeProperty("display");
 				}
 
 				var id = listName(this.value) + "SubColors"
 				for (var i = 0; i < colors.length; i++) {
 					if (colors[i].id === id)
-						colors[i].style.display = "";
+						colors[i].style.removeProperty("display");
 					else
 						colors[i].style.display = "none";
 				}
@@ -286,7 +288,7 @@ function Settings () {
 					variants[neutral] = true;
 					checkbox.checked = true;
 				} else {
-					addons[i].style.display = "";
+					addons[i].style.removeProperty("display");
 					col.style.display = "none";
 				}
 				this.All(addons[i], category, col);
@@ -340,8 +342,8 @@ function Settings () {
 			var varName = neutralize(SVGNode.id);
 			return function () {
 				if (this.checked) {
-					subslide.style.display = "";
-					SVGNode.style.display = "";
+					subslide.style.removeProperty("display");
+					SVGNode.style.removeProperty("display");
 				} else {
 					subslide.style.display = "none";
 					SVGNode.style.display = "none";
@@ -353,7 +355,7 @@ function Settings () {
 			var varName = neutralize(SVGNode.id);
 			return function () {
 				if (this.checked) {
-					sublist.style.display = "";
+					sublist.style.removeProperty("display");
 					SVGNode.style.display = "inherit";
 				} else {
 					sublist.style.display = "none";
@@ -514,25 +516,6 @@ function Settings () {
 }
 var S = new Settings();
 
-function loadPreset (preset, female) {
-	var xhr = new XMLHttpRequest();
-	xhr.open("GET", preset);
-	xhr.setRequestHeader("Cache-Control", "no-cache, max-age=10800");
-	xhr.onload = function () {
-		var xml = this.responseXML;
-		if (this.status !== 200 || !xml)
-			return S.set.Sex(female, false);
-		var svg = xml.documentElement;
-		find("female").checked = female;
-		recreateMando(svg);
-		S.set.Sex(female, true);
-	};
-	xhr.onerror = function () {
-		S.set.Sex(female, false);
-	};
-	xhr.send();
-}
-
 function Downloader () {
 	var editor = find("editor");
 	var xml = new XMLSerializer();
@@ -658,6 +641,25 @@ function Downloader () {
 }
 var D = new Downloader();
 
+function loadPreset (preset, female) {
+	var xhr = new XMLHttpRequest();
+	xhr.open("GET", preset);
+	xhr.setRequestHeader("Cache-Control", "no-cache, max-age=10800");
+	xhr.onload = function () {
+		var xml = this.responseXML;
+		if (this.status !== 200 || !xml)
+			return S.set.Sex(female, false);
+		var svg = xml.documentElement;
+		find("female").checked = female;
+		recreateMando(svg);
+		S.set.Sex(female, true);
+	};
+	xhr.onerror = function () {
+		S.set.Sex(female, false);
+	};
+	xhr.send();
+}
+
 function prettify (str) {
 	if (!str)
 		return "";
@@ -680,6 +682,47 @@ function readQueryString (st) {
 		settings[matches[1]] = unescape(matches[2]);
 	}
 	return settings;
+}
+
+function setupWindow () {
+	if (window.innerWidth < 786) {
+		var settings = find("settings");
+		settings.classList.add("settings_collapsed");
+		var types = settings.getElementsByClassName("armor_types");
+		for (var i = 0; i < types.length; i++)
+			types[i].style.height = "12em";
+	}
+
+	window.addEventListener("beforeunload", function (event) {
+		var message = "You should save your work. Do or do not, there is not try!";
+		event.preventDefault();
+		event.returnValue = message;
+		return message;
+	});
+
+	var main = find("editor");
+	var mv = { dragged: false, drag: false};
+	main.addEventListener("mousedown", function () {
+		this.style.cursor = 'grabbing';
+		this.style.userSelect = 'none';
+		mv = { drag: true, dragged: false };
+	});
+	main.addEventListener("mousemove", function (event) {
+		if (!mv.drag)
+			return;
+		mv.dragged = true;
+		this.scrollTop -= event.movementY;
+		this.scrollLeft -= event.movementX;
+	});
+	main.addEventListener("mouseup", function () {
+		this.style.removeProperty("cursor");
+		this.style.removeProperty('user-select');
+	});
+	main.addEventListener("click", function (event) {
+		if (mv.dragged)
+			event.preventDefault();
+		mv = { drag: false, dragged: false }
+	}, true);
 }
 
 function onload () {
@@ -713,20 +756,7 @@ function onload () {
 	D.attach(find("download_svg"), "svg");
 	D.attach(find("download_jpeg"), "jpeg");
 
-	if (window.innerWidth < 786) {
-		var settings = find("settings");
-		settings.classList.add("settings_collapsed");
-		var types = settings.getElementsByClassName("armor_types");
-		for (var i = 0; i < types.length; i++)
-			types[i].style.height = "12em";
-	}
-
-	window.addEventListener("beforeunload", function (event) {
-		var message = "You should save your work. Do or do not, there is not try!";
-		event.preventDefault();
-		event.returnValue = message;
-		return message;
-	});
+	setupWindow();
 	var nsw = navigator.serviceWorker;
 	if (!nsw)
 		return;
@@ -790,12 +820,12 @@ function hideSponsors (parent) {
 
 function setSponsor (sponsor, href) {
 	var link = find(sponsor);
-	link.style.display = "";
+	link.style.removeProperty("display");
 	link.setAttribute("href", href);
 
 	var parent = link.parentNode;
 	var close = parent.getElementsByTagName("button")[0];
-	close.style.display = "";
+	close.style.removeProperty("display");
 
 	var img = link.getElementsByTagName("img")[0];
 	if (!img.hasAttribute("src"))
@@ -824,7 +854,7 @@ function zoomInOut (step) {
 function showRoll (type) {
 	var rickRoll = find("rickroll");
 	rickRoll.setAttribute("src", "assets/" + type + "Roll.mp4");
-	rickRoll.style.display = "";
+	rickRoll.style.removeProperty("display");
 }
 
 function playKote () {
