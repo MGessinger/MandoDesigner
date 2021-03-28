@@ -167,7 +167,7 @@
 		}
 	</script>
 	<body onload="loadSW()">
-		<nav style="height:3em"> <img height="100%" src="/images/Logo.svg" /> </nav>
+		<nav style="height:3em"> <img height="100%" src="/images/LogoDark.svg" /> </nav>
 		<main id="gallery">
 			<span id="secondary_left" style="direction:rtl"></span>
 			<span id="primary"></span>

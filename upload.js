@@ -10,12 +10,12 @@ function loadImage (input) {
 	var reader = new FileReader();
 	if (files[0].type.includes("svg")) {
 		reader.onload = function () {
-			D.Background = {href: "data:image/svg+xml," + encodeSVG(this.result)};
+			D.Background = "data:image/svg+xml," + encodeSVG(this.result);
 		}
 		reader.readAsText(files[0]);
 	} else {
 		reader.onload = function() {
-			D.Background = {href: this.result};
+			D.Background = this.result;
 		}
 		reader.readAsDataURL(files[0]);
 	}

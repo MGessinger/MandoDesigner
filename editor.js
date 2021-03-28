@@ -393,17 +393,18 @@ function Settings () {
 		},
 		DarkMode: function (darkMode) {
 			var className = "light_mode";
-			var bckName = "BackgroundLight";
+			var bckName = "LogoLight";
 			var logoName = "#titleLight";
 			var href = "assets/fog-reversed.jpg";
 			if (darkMode) {
 				className = "dark_mode";
-				bckName = "BackgroundDark";
+				bckName = "LogoDark";
 				logoName = "#titleDark";
 				href = "assets/fog-small.jpg";
 			}
-			Vault.load(bckName, function(bck) {
-				D.Background = {type: "svg", svg: bck, href: href};
+			Vault.load(bckName, function(logo) {
+				D.Logo = logo;
+				D.Background = href;
 			});
 			document.body.className = className;
 			var use = find("title");
@@ -519,10 +520,10 @@ var S = new Settings();
 function Downloader () {
 	var editor = find("editor");
 	var xml = new XMLSerializer();
+	var img = new Image();
 	var canvas = find("canvas");
 	var canvasCtx = canvas.getContext('2d');
-	var bckSvgData, bckImgData;
-	var img = new Image();
+	var logoSVG, bckImgURI;
 
 	function prepareForExport (svg) {
 		svg.style.transform = "";
@@ -560,9 +561,9 @@ function Downloader () {
 		return prepareForExport(copy);
 	}
 
-	function svg2img(svg) {
-		svg.setAttribute("width", canvas.width);
-		svg.setAttribute("height", canvas.height);
+	function svg2img(svg, width, height) {
+		svg.setAttribute("width", width);
+		svg.setAttribute("height", height);
 		var copy = svg.cloneNode(true);
 		prepareForExport(copy);
 		var str = xml.serializeToString(copy);
@@ -573,40 +574,59 @@ function Downloader () {
 	}
 
 	function prepareCanvas (href) {
-		var image = bckSvgData.getElementsByTagName("image")[0];
 		canvasCtx.clearRect(0, 0, canvas.width, canvas.height);
 		img.onload = function () {
 			/* Background Image */
 			canvas.width = this.width;
 			canvas.height = this.height;
 			canvasCtx.drawImage(this, 0, 0);
-			var imgData = canvas.toDataURL('image/jpeg');
+			bckImgURI = canvas.toDataURL('image/jpeg');
 			/* Logo */
 			img.onload = function () {
 				canvasCtx.drawImage(this, 0, 0);
 			};
-			image.setAttribute("href", "#");
-			img.src = svg2img(bckSvgData);
-			image.setAttribute("href", imgData);
-			bckSvgData.setAttribute("viewBox", [0,0,this.width,this.height].join(" "));
+			img.src = svg2img(logoSVG, canvas.width,canvas.height*0.07);
 		};
 		img.src = href;
 	}
 
+	function setAttributes (obj, atts) {
+		for (var a in atts)
+			obj.setAttribute(a, atts[a]);
+	}
+
 	return {
-		set Background (data) {
-			if ("svg" in data)
-				bckSvgData = data.svg;
-			if ("href" in data) {
-				bckImgData = data.href;
-				prepareCanvas(data.href);
-				editor.style.backgroundImage = "url(" + data.href + ")";
-			}
+		set Logo (svg) {
+			logoSVG = svg;
+		},
+		set Background (href) {
+			prepareCanvas(href);
+			editor.style.backgroundImage = "url(" + href + ")";
+		},
+		get Background () {
+			var svgMain = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+			setAttributes(svgMain, {
+				"version": "1.1",
+				"width": canvas.width,
+				"height": canvas.height,
+				"viewBox": [0, 0, canvas.width, canvas.height].join(" ")
+			});
+			var image = document.createElementNS("http://www.w3.org/2000/svg", "image");
+			setAttributes(image, {
+				"width": "100%",
+				"height": "100%",
+				"href": bckImgURI
+			});
+			svgMain.appendChild(image);
+			return svgMain;
 		},
 		attach: function (a, type) {
+			var self = this;
 			if (type === "svg") {
 				a.onclick = function () {
-					var bck = bckSvgData.cloneNode(true);
+					var bck = self.Background;
+					var logo = logoSVG.cloneNode(true);
+					bck.appendChild(logo);
 					bck.appendChild(SVGFromEditor());
 					var str = xml.serializeToString(bck);
 					var document = "<?xml version='1.0' encoding='UTF-8'?>" + str;
@@ -622,7 +642,7 @@ function Downloader () {
 							a.setAttribute("href", "#");
 							isSetUp = false;
 						}, 5000);
-						prepareCanvas(bckImgData);
+						prepareCanvas(bckImgURI);
 						return;
 					}
 					event.preventDefault();
@@ -633,7 +653,7 @@ function Downloader () {
 						isSetUp = true;
 						a.click();
 					}
-					img.src = svg2img(SVGFromEditor());
+					img.src = svg2img(SVGFromEditor(), canvas.width, canvas.height);
 				}
 			}
 		}
@@ -763,7 +783,7 @@ function onload () {
 	nsw.onmessage = function (event) {
 		displayForm(true, 'reload');
 	};
-	nsw.register("sw.js");
+	//nsw.register("sw.js");
 }
 
 function openArmorFolder (category) {

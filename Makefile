@@ -1,6 +1,6 @@
 MALE=images/Male-Body.svg images/Lower-Armor_M.svg images/Upper-Armor_M.svg
 FEMALE=images/Female-Body.svg images/Lower-Armor_F.svg images/Upper-Armor_F.svg
-NEUTRAL=images/BackgroundDark.svg images/BackgroundLight.svg images/Logo.svg images/Helmets.svg
+NEUTRAL=images/LogoDark.svg images/LogoLight.svg images/Helmets.svg
 
 release: gallery pictures
 
