@@ -7,6 +7,11 @@ release: gallery pictures
 serve: release
 	php -S localhost:8000
 
+clean:
+	@rm -rf images;
+	@rm gallery/wrapper_*.svg
+.PHONY: clean
+
 #=========================IMAGES==========================
 
 pictures: $(NEUTRAL) $(MALE) $(FEMALE)

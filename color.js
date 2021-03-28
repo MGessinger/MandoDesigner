@@ -80,7 +80,8 @@ var Picker = new function() {
 			return [h, s, max];
 		}
 
-		var ctx = find("canvas").getContext("2d");
+		var canvas = find("canvas");
+		var ctx = canvas.getContext("2d");
 		function nameToHex (e) {
 			ctx.fillStyle = e;
 			var f = ctx.fillStyle;
@@ -169,13 +170,9 @@ var Picker = new function() {
 		}
 	}
 
-	function DOMNode (type, props, parent) {
-		var n = document.createElement(type);
-		for (var p in props)
-			n.setAttribute(p, props[p]);
-		if (parent)
-			parent.appendChild(n);
-		return n;
+	function setAttributes (obj, atts) {
+		for (var a in atts)
+			obj.setAttribute(a, atts[a]);
 	}
 
 	function PickerDOM() {
@@ -184,12 +181,13 @@ var Picker = new function() {
 		var ch = wrapper.children;
 		var colors = ["#F00", "#0085FF", "#FFD600", "#08CB33", "#8B572A", "#A3A3A3", "#000", "#fff"]
 		var timer;
+		var pals = ch[1].children;
 		for (var i = 0; i < colors.length; i++) {
-			var pal = DOMNode("button", {
-					class: "palette_icon",
+			var pal = pals[i];
+			setAttributes(pal, {
 					style: "background:" + colors[i],
 					title: "Right-click to save the current color"
-				}, ch[1]);
+				});
 			on(pal, "click", function() { _setColor(this.style.background); });
 			on(pal, "contextmenu", function(event) { event.preventDefault(); this.style.background = color.hex; });
 			on(pal, "touchstart", function() {
