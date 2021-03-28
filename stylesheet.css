@@ -11,6 +11,7 @@
 }
 
 @font-face {
+	font-display: swap;
 	font-family: 'Raleway';
 	src:	local("Raleway"),
 		url('fonts/Raleway.ttf') format('truetype');

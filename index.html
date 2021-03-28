@@ -225,6 +225,7 @@
 				</div>
 				<div class="folder_content">
 					<div id="HelmetColors" class="replace slide_content"></div>
+					<div id="MaskOfMandalorColors" class="replace slide_content" onclick="showRoll('Neo')"></div>
 				</div>
 				<div class="sponsors" style="position: relative">
 					<button class="close_sponsors" style="display:none" onclick="hideSponsors(this.parentNode);">X</button>
@@ -232,7 +233,7 @@
 					<a id="ModernMando" class="sponsor_link" target="_blank" href="#" style="display:none"><img width="100%" /></a>
 					<a id="Lonewolf" class="sponsor_link" target="_blank" href="#" style="display:none"><img width="100%" /></a>
 					<a id="Gedyc" class="sponsor_link" target="_blank" href="#" style="display:none"><img width="100%" /></a>
-					<a id="Budget" class="sponsor_link" style="display:none" onclick="showRoll()"><img width="100%" /></a>
+					<a id="Budget" class="sponsor_link" style="display:none" onclick="showRoll('Bucket')"><img width="100%" /></a>
 				</div>
 			</div>
 			<div id="UpperArmorOptions" class="folder overview">
@@ -542,8 +543,8 @@
 			<canvas id="canvas" height="1050" width="1500"></canvas>
 			<video id="kote" autoplay></video>
 		</div>
-		<script src="editor.js"></script>
+		<script async src="editor.js"></script>
 	</body>
-	<script src="color.js"></script>
-	<script src="upload.js"></script>
+	<script defer src="color.js"></script>
+	<script defer src="upload.js"></script>
 </html>

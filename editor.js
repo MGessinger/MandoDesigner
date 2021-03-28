@@ -821,9 +821,9 @@ function zoomInOut (step) {
 	zoom(scale.value);
 }
 
-function showRoll () {
+function showRoll (type) {
 	var rickRoll = find("rickroll");
-	rickRoll.setAttribute("src", "assets/Bucket_Astley.mp4");
+	rickRoll.setAttribute("src", "assets/" + type + "Roll.mp4");
 	rickRoll.style.display = "";
 }
 
