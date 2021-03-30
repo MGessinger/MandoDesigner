@@ -20,9 +20,22 @@
 	"shortcuts": [
 		{
 			"url": "gallery/index.php",
-			"name": "Mando Creator Gallery",
+			"name": "MandoCreator Gallery",
 			"short_name": "Gallery",
 			"description": "See a gallery of user-submitted designs, and customize them further.",
+			"icons": [
+				{
+					"src": "assets/Mando-Creator-Success.png",
+					"sizes": "500x500",
+					"tyoe": "image/png"
+				}
+			]
+		},
+		{
+			"url": "image.php",
+			"name": "MandoCreator Contact",
+			"short_name": "Contact Us",
+			"description": "Contact us to let us know about your experience with MandoCreator.",
 			"icons": [
 				{
 					"src": "assets/Mando-Creator-Success.png",
