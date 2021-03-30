@@ -202,96 +202,14 @@ form {
 	background: var(--mainColor);
 	box-shadow: grey 0 0 5px;
 	color: var(--softLight);
-	overflow-y: auto;
-}
-
-#reload {
 	text-align: center;
+	overflow-y: auto;
 }
 
 legend {
 	width: 100%;
 	font-size: x-large;
 	color: var(--highlight);
-}
-
-.close {
-	height: 2em;
-	width: 2em;
-	float: right;
-	background: none;
-	border: none;
-	font-size: medium;
-}
-
-.credits {
-	position: relative;
-	padding-top: 0.5em;
-	font-size: smaller;
-}
-
-.credit {
-	margin: 0.5em 0;
-}
-
-.credit_link {
-	color: var(--accent);
-	text-decoration: none;
-}
-
-.socials {
-	position: absolute;
-	width: 3em;
-	right: 0;
-	top: 0;
-	font-size: x-large;
-	text-align: center;
-}
-
-.social {
-	display: inline-block;
-	padding: 0.25em 0;
-	text-decoration: none;
-	color: var(--accent);
-}
-
-.changelog {
-	padding: 1em 0;
-	margin: 1em 0;
-	border: 1px solid var(--softColor);
-	border-style: solid none;
-}
-
-.version_info {
-	margin-top: 1em;
-	font-size: larger;
-}
-
-fieldset {
-	display: flex;
-	padding: 0;
-	flex-wrap: wrap;
-	justify-content: space-between;
-	border: none;
-}
-
-fieldset input,
-textarea {
-	margin: 1em 0;
-	background: none;
-	border: 1px var(--accent);
-	border-bottom-style: solid;
-}
-
-.narrow_input {
-	width: 48%;
-}
-
-.wide_input,
-textarea {
-	width: 100%;
-	resize: vertical;
-	color: inherit;
 }
 
 .submit {

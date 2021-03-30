@@ -43,7 +43,7 @@
 	<body class="light_mode" onload="onload()">
 		<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WDVDR2H" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 		<nav>
-			<svg class="title" viewBox="0 0 420 70"><use id="title" href="#title"/></svg>
+			<svg class="title" viewBox="0 0 420 70"><use id="title" href=""/></svg>
 			<div id="left_nav">
 				<span class="summary_icon">&#xE905;</span>
 				<div id="parts_list" class="sub_nav">
@@ -74,14 +74,13 @@
 					<label id="color_scheme_label" for="color_scheme_picker" class="nav_label"><span class="nav_icon">&#xE90F;</span>Toggle Dark/Light</label>
 					<input type="checkbox" id="color_scheme_picker" style="opacity:0;" onchange="S.set.DarkMode(this.checked)"/>
 				</div>
-				<label for="contact_opener" class="summary_icon">&#xE90E;</label>
+				<span class="summary_icon">&#xE90E;</span>
 				<div class="sub_nav">
-					<input id="contact_opener" type="button" onclick="displayForm(true, 'contact')" hidden/>
-					<label for="contact_opener" class="nav_label">About/Contact Us</label>
+					<a id="contact_opener" class="nav_label" href="contact.html">Contact Us</a>
 				</div>
 				<span class="summary_icon">&#xE920;</span>
 				<div class="sub_nav">
-					<a id="gallery" class="nav_label" target="_blank" href="gallery">Armor Gallery</a>
+					<a id="gallery" class="nav_label" href="gallery/index.php">Armor Gallery</a>
 				</div>
 				<span class="summary_icon">&#xE914;</span>
 				<div class="sub_nav">
@@ -503,35 +502,6 @@
 				<p>See the <a href="#contact" class="credit_link" onclick="displayForm(true,'contact')">Changelog</a> for info on what's new.</p>
 			</div>
 			<button class="submit" onclick="window.location.reload()">RELOAD</button>
-		</form>
-		<form id="contact" style="display:none" action="image.php" method="POST" target="_blank" onsubmit="displayForm(false, this)">
-			<legend>Mando Creator Info<button type="button" class="close" onclick="displayForm(false, 'contact')">X</button></legend>
-			<div class="credits">
-				<p class="credit">Designed By <a class="credit_link" href="https://twitter.com/Foilrose_Studio" target="_blank" rel="noopener noreferrer">Jev Va'sal</a></p>
-				<p class="credit">Developed By <a class="credit_link" href="https://github.com/MGessinger" target="_blank" rel="noopener noreferrer">Cin Vhetin</a></p>
-				<p class="credit">Background Image By <a class="credit_link" href="https://www.freepik.com/kjpargeter" rel="noopener noreferrer" target="_blank">kjpargeter</a></p>
-				<p class="socials">
-					<a class="social" title="Like us on Facebook" href="https://www.facebook.com/MandoCreator">&#xE911;</a>
-					<a class="social" title="Follow us on Instagram" href="https://www.instagram.com/mandocreator/">&#xE91E;</a>
-					<a class="social" title="Join the Discord" href="https://discord.gg/9esuc6UKfT">&#xE912;</a>
-					<a class="social" title="Follow us on Twitter" href="https://twitter.com/MandoCreator">&#xE913;</a>
-				</p>
-			</div>
-			<div class="changelog">
-				<p>Version 2.4</p>
-				<p>As the third step in our series of armor updates, we bring you lower armor customization.</p>
-			</div>
-			<legend>Contact Us<p style="font-size:small">Like the site or have some feedback on what to add next? Let us know!</p></legend>
-			<fieldset>
-				<input type="text" style="display:none" name="url" value="" autocomplete="off" />
-				<input type="text" class="narrow_input" placeholder="Name (optional)" name="name"/>
-				<input type="email" class="narrow_input" placeholder="Email (optional)" name="email"/>
-				<input type="text" class="wide_input" placeholder="Subject (example: Ibic jatne!)" name="subject" required/>
-				<textarea placeholder="Message (example: Gar Mando'ade jate, ijaat enteyo cuyir ori.)" name="message" required></textarea>
-				<span class="narrow_input">What color is Darth Vader's lightsaber?</span>
-				<input type="text" class="narrow_input" placeholder="Hint: It's not blue." name="phone" required />
-				<button class="submit" type="submit">Ke barycir <span class="detail">(Deploy)</span></button>
-			</fieldset>
 		</form>
 
 		<footer>
