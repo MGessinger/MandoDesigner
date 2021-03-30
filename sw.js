@@ -39,6 +39,8 @@ self.addEventListener('fetch', function(event) {
 			return r0 || fetch(er).then(r => {
 				if (r.ok) {
 					var clone = r.clone();
+					if (url.includes("html") || url.includes("php") || url.includes("?"))
+						return r;
 					if (url.endsWith("svg"))
 						caches.open(IMGS).then(c => c.put(er, clone));
 					else if (!url.includes("gallery"))

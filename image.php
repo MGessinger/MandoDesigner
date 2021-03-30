@@ -15,7 +15,7 @@
 			body {
 				height: 100%;
 				margin: 0;
-				background: url(assets/foggy_small.jpg) no-repeat center;
+				background: url(assets/fog-small.jpg) no-repeat center;
 				background-color: #222;
 				background-size: cover;
 			}
@@ -44,19 +44,12 @@
 				$formcontent = htmlspecialchars("From: $name\nMail: $email\nMessage: $message");
 				if (!empty($_POST['url'])) {
 					echo "<img src='/assets/no_droids.gif' alt='No droids.' />";
-					$url = $_POST['url'];
-					mail('matthias@gessinger.de', 'Spam Filter: Bot', "The spam filter caught a bot!\nAt: $url\n$formcontent");
-					exit;
+				} else if (strcasecmp($_POST['phone'],'red') != 0) {
+					echo '<p>Wrong.</p><img src="assets/vader.gif" alt="The correct answer is \'Red\', Rebel Scum!" />';
+				} else {
+					mail('feedback@mandocreator.com',$subject,$formcontent);
+					echo '<img src="assets/Mando-Creator-Success.png" alt="Success. We will see your message soon. Thank you." />';
 				}
-				if (strcasecmp($_POST['phone'],'red') != 0) {
-					echo "<p>Wrong.</p>";
-					echo '<img src="assets/vader.gif" alt="The correct answer is \'Red\', Rebel Scum!" />';
-					$ans = $_POST['phone'];
-					mail('matthias@gessinger.de', 'Spam Filter: Wrong Answer', "Someone answered the test-question with \"$ans\".\nSubject: $subject\n$formcontent");
-					exit;
-				}
-				mail('feedback@mandocreator.com',$subject,$formcontent);
-				echo '<img src="assets/Mando-Creator-Success.png" alt="Success. We will see your message soon. Thank you." />';
 			?>
 		</div>
 	</body>
