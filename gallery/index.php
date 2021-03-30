@@ -6,16 +6,16 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0,user-scalable=0" />
 		<meta name="description" content="Find inspiration for your next kit of Mandalorian Armor, also known as Beskar'gam. Pick one of several amazing, user-provided designs, and continue customizing it to your liking on MandoCreator." />
 
-		<meta property="og:title" content="Mando Creator" />
+		<meta property="og:title" content="MandoCreator Gallery" />
 		<meta property="og:description" content="Find inspiration for your next kit of Mandalorian Armor, also known as Beskar'gam. Pick one of several amazing, user-provided designs, and continue customizing it to your liking on MandoCreator." />
 		<meta property="og:url" content="http://www.mandocreator.com/index.html" />
 		<meta property="og:image" content="http://www.mandocreator.com/assets/header.jpg" />
-		<meta name="twitter:title" content="Mando Creator" />
+		<meta name="twitter:title" content="MandoCreator Gallery" />
 		<meta name="twitter:description" content="Find inspiration for your next kit of Mandalorian Armor, also known as Beskar'gam. Pick one of several amazing, user-provided designs, and continue customizing it to your liking on MandoCreator." />
 		<meta name="twitter:image" content="http://www.mandocreator.com/assets/header.jpg" />
 		<meta name="twitter:card" content="summary_large_image" />
 
-		<meta name="keywords" content="Mando Creator,MandoCreator,Creator,Beskar'gam,Armor,Mandalorian,Mando,Design,Beskar" />
+		<meta name="keywords" content="MandoCreator,Mando,Creator,Beskar'gam,Armor,Mandalorian,Design,Beskar,Gallery" />
 		<meta name="author" content="Foilrose Studio, Cin Vhetin" />
 		<link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png" />
 		<link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32x32.png" />
@@ -24,7 +24,7 @@
 		<link rel="mask-icon" href="assets/safari-pinned-tab.svg" color="#ab1f1f" />
 		<meta name="msapplication-TileColor" content="#b91d47" />
 		<meta name="theme-color" content="#ffffff" />
-		<title>Mando Creator Gallery</title>
+		<title>MandoCreator Gallery</title>
 		<style>
 			@font-face {
 				font-family: 'icomoon';
@@ -60,6 +60,16 @@
 			}
 			nav {
 				position: absolute;
+			}
+			.return {
+				display: block;
+				color: inherit;
+				text-decoration: none;
+			}
+			.icon {
+				color: #AB1F1F;
+				font-size: x-large;
+				vertical-align: sub;
 			}
 			main {
 				display: flex;
@@ -160,14 +170,17 @@
 		function loadSW() {
 			loadSVG("wrapper_male.svg");
 			loadSVG("wrapper_female.svg");
-			var nsw = navigator["serviceWorker"];
+			var nsw = navigator.serviceWorker;
 			if (!nsw)
 				return;
-			nsw.register("../sw.js");
+			//nsw.register("../sw.js");
 		}
 	</script>
 	<body onload="loadSW()">
-		<nav style="height:3em"> <img height="100%" src="/images/LogoDark.svg" /> </nav>
+		<nav style="height:4em">
+			<img height="100%" src="/images/LogoDark.svg" alt="MandoCreator Logo"/>
+			<a class="return" href="../index.html"><span class="icon">&#xE90B;</span>Go Back</a>
+		</nav>
 		<main id="gallery">
 			<span id="secondary_left" style="direction:rtl"></span>
 			<span id="primary"></span>
