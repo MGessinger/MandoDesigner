@@ -304,6 +304,7 @@ footer {
 	fill: white;
 	stroke: black;
 	stroke-width: 3px;
+	pointer-events: none;
 }
 
 .slide_toggle {

@@ -799,17 +799,27 @@ function openArmorFolder (category) {
 		now.classList.add("overview");
 }
 
-function switchToArmorVariant (category, pieceName, variantName, button) {
+function switchToArmorButton (category, pieceName, button) {
+	var name = button.dataset.name;
+	if (!name)
+		return;
 	var parent = find(category + "Options");
 	var old_button = parent.getElementsByClassName("current_variant")[0];
 	if (old_button)
 		old_button.classList.remove("current_variant");
-	if (!button)
-		button = find(category + "_Variant_" + variantName);
 	if (button)
 		button.classList.add("current_variant");
 	hideSponsors(parent);
 
+	var old_lists = parent.getElementsByClassName("replace");
+	for (var i = 0; i < old_lists.length; i++) {
+		old_lists[i].style.display = "none";
+		old_lists[i].innerHTML = "";
+	}
+	switchToArmorVariant(category, pieceName, name);
+}
+
+function switchToArmorVariant (category, pieceName, variantName) {
 	var old = find(pieceName + "_Current");
 	var SVGparent = old.parentNode;
 	var n = Vault.query(pieceName + "_" + variantName);
@@ -817,13 +827,6 @@ function switchToArmorVariant (category, pieceName, variantName, button) {
 	n.id = pieceName + "_Current";
 	n.setAttribute("class", variantName);
 	SVGparent.replaceChild(n, old);
-
-	var old_lists = parent.getElementsByClassName("replace");
-	for (var i = 0; i < old_lists.length; i++) {
-		old_lists[i].style.display = "none";
-		old_lists[i].innerHTML = "";
-	}
-
 	S.build.All(n, category);
 	variants[pieceName] = neutralize(variantName);
 }

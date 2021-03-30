@@ -81,7 +81,7 @@
 				</div>
 				<span class="nav_icon">&#xE920;</span>
 				<div class="sub_nav">
-					<a id="gallery" class="nav_label" href="gallery/index.php">Armor Gallery</a>
+					<a id="gallery" class="nav_label" href="gallery" >Armor Gallery</a>
 				</div>
 				<span class="nav_icon">&#xE914;</span>
 				<div class="sub_nav">
@@ -96,126 +96,102 @@
 					<h2 class="slide_title">Helmet (Buy'ce)</h2>
 					<details open>
 					<summary class="option_name">Style:</summary>
-					<div id="HelmetTypes" class="armor_types">
-						<button id="Helmet_Variant_Classic" class="type_button current_variant"
-							onclick="switchToArmorVariant('Helmet','Helmet','Classic', this)">
+					<div id="HelmetTypes" class="armor_types" onclick="switchToArmorButton('Helmet','Helmet', event.target);">
+						<button id="Helmet_Variant_Classic" class="type_button current_variant" data-name="Classic">
 							<svg viewbox="0 75 700 700" class="preview_icon"><use href="#Helmet_Classic"/></svg>
 							Classic
-						</button><button id="Helmet_Variant_Nite" class="type_button"
-							onclick="switchToArmorVariant('Helmet','Helmet','Nite', this)">
+						</button><button id="Helmet_Variant_Nite" class="type_button" data-name="Nite">
 							<svg viewbox="0 75 700 700" class="preview_icon"><use href="#Helmet_Nite"/></svg>
 							Nite Owl
-						</button><button id="Helmet_Variant_Gunslinger" class="type_button"
-							onclick="switchToArmorVariant('Helmet','Helmet','Gunslinger', this)">
+						</button><button id="Helmet_Variant_Gunslinger" class="type_button" data-name="Gunslinger">
 							<svg viewbox="0 75 700 700" class="preview_icon"><use href="#Helmet_Gunslinger"/></svg>
 							Gunslinger
-						</button><button id="Helmet_Variant_Heavy" class="type_button"
-							onclick="switchToArmorVariant('Helmet','Helmet','Heavy', this)">
+						</button><button id="Helmet_Variant_Heavy" class="type_button" data-name="Heavy">
 							<svg viewbox="0 75 700 700" class="preview_icon"><use href="#Helmet_Heavy"/></svg>
 							Heavy
-						</button><button id="Helmet_Variant_McQuarrie" class="type_button"
-							onclick="switchToArmorVariant('Helmet','Helmet','McQuarrie', this)">
+						</button><button id="Helmet_Variant_McQuarrie" class="type_button" data-name="McQuarrie">
 							<svg viewbox="0 75 700 700" class="preview_icon"><use href="#Helmet_McQuarrie"/></svg>
 							McQuarrie
-						</button><button id="Helmet_Variant_Pre-Vizsla" class="type_button"
-							onclick="switchToArmorVariant('Helmet','Helmet','Pre-Vizsla', this)">
+						</button><button id="Helmet_Variant_Pre-Vizsla" class="type_button" data-name="Pre-Vizsla">
 							<svg viewbox="0 75 700 700" class="preview_icon"><use href="#Helmet_Pre-Vizsla"/></svg>
 							Pre Vizsla
-						</button><button id="Helmet_Variant_Stalker-Medium" class="type_button"
-							onclick="switchToArmorVariant('Helmet','Helmet','Stalker-Medium', this)">
+						</button><button id="Helmet_Variant_Stalker-Medium" class="type_button" data-name="Stalker-Medium">
 							<svg viewbox="0 75 700 700" class="preview_icon"><use href="#Helmet_Stalker-Medium"/></svg>
 							Stalker (M)
-						</button><button id="Helmet_Variant_Stalker-Large" class="type_button"
-							onclick="switchToArmorVariant('Helmet','Helmet','Stalker-Large', this)">
+						</button><button id="Helmet_Variant_Stalker-Large" class="type_button" data-name="Stalker-Large">
 							<svg viewbox="0 75 700 700" class="preview_icon"><use href="#Helmet_Stalker-Large"/></svg>
 							Stalker (L)
-						</button><button id="Helmet_Variant_Assassin" class="type_button"
-							onclick="switchToArmorVariant('Helmet','Helmet','Assassin', this)">
+						</button><button id="Helmet_Variant_Assassin" class="type_button" data-name="Assassin">
 							<svg viewbox="0 75 700 700" class="preview_icon"><use href="#Helmet_Assassin"/></svg>
 							Assassin
-						</button><button id="Helmet_Variant_Charismatic" class="type_button"
-							onclick="switchToArmorVariant('Helmet','Helmet','Charismatic', this)">
+						</button><button id="Helmet_Variant_Charismatic" class="type_button" data-name="Charismatic">
 							<svg viewbox="0 75 700 700" class="preview_icon"><use href="#Helmet_Charismatic"/></svg>
 							Charismatic
-						</button><button id="Helmet_Variant_Shae-Vizla" class="type_button"
-							onclick="switchToArmorVariant('Helmet','Helmet','Shae-Vizla', this)">
+						</button><button id="Helmet_Variant_Shae-Vizla" class="type_button" data-name="Shae-Vizla">
 							<svg viewbox="0 75 700 700" class="preview_icon"><use href="#Helmet_Shae-Vizla"/></svg>
 							Shae Vizla
-						</button><button id="Helmet_Variant_RC" class="type_button"
-							onclick="switchToArmorVariant('Helmet','Helmet','RC', this);
-								 playKote();">
+						</button><button id="Helmet_Variant_RC" class="type_button" data-name="RC" onclick="playKote();">
 							<svg viewbox="0 75 700 700" class="preview_icon"><use href="#Helmet_RC"/></svg>
 							Commando
-						</button><button id="Helmet_Variant_Ramikadyc" class="type_button"
-							onclick="switchToArmorVariant('Helmet','Helmet','Ramikadyc', this)">
+						</button><button id="Helmet_Variant_Ramikadyc" class="type_button" data-name="Ramikadyc">
 							<svg viewbox="0 75 700 700" class="preview_icon"><use href="#Helmet_Ramikadyc"/></svg>
 							Ramikadyc
 						</button>
 						<details open>
 							<summary class="sponsor_title">AlterEgoArmory (sponsored):</summary>
-							<button id="Helmet_Variant_Warden" class="type_button"
-								onclick="switchToArmorVariant('Helmet','Helmet','Warden', this);
-									 setSponsor('AlterEgo','https://etsy.me/35mF6Eb');">
+							<button id="Helmet_Variant_Warden" class="type_button" data-name="Warden"
+								onclick="setSponsor('AlterEgo','https://etsy.me/35mF6Eb');">
 								<svg viewbox="0 75 700 700" class="preview_icon"><use href="#Helmet_Warden"/></svg>
 								Warden
-							</button><button id="Helmet_Variant_Matriarch" class="type_button"
-								onclick="switchToArmorVariant('Helmet','Helmet','Matriarch', this);
-									 setSponsor('AlterEgo','https://etsy.me/2GR02cX');">
+							</button><button id="Helmet_Variant_Matriarch" class="type_button" data-name="Matriarch"
+								onclick="setSponsor('AlterEgo','https://etsy.me/2GR02cX');">
 								<svg viewbox="0 75 700 700" class="preview_icon"><use href="#Helmet_Matriarch"/></svg>
 								Matriarch
-							</button><button id="Helmet_Variant_Liege" class="type_button"
-								onclick="switchToArmorVariant('Helmet','Helmet','Liege', this);
-									 setSponsor('AlterEgo','https://etsy.me/3eSg03d');">
+							</button><button id="Helmet_Variant_Liege" class="type_button" data-name="Liege"
+								onclick="setSponsor('AlterEgo','https://etsy.me/3eSg03d');">
 								<svg viewbox="0 75 700 700" class="preview_icon"><use href="#Helmet_Liege"/></svg>
 								Liege
-							</button><button id="Helmet_Variant_Guardian" class="type_button"
-								onclick="switchToArmorVariant('Helmet','Helmet','Guardian', this);
-									 setSponsor('AlterEgo','https://etsy.me/35mnHvm');">
+							</button><button id="Helmet_Variant_Guardian" class="type_button" data-name="Guardian"
+								onclick="setSponsor('AlterEgo','https://etsy.me/35mnHvm');">
 								<svg viewbox="0 75 700 700" class="preview_icon"><use href="#Helmet_Guardian"/></svg>
 								Guardian
 							</button>
 						</details>
 						<details open>
 							<summary class="sponsor_title">ModernMando (sponsored)</summary>
-							<button id="Helmet_Variant_Tracker" class="type_button"
-								onclick="switchToArmorVariant('Helmet','Helmet','Tracker', this);
-									 setSponsor('ModernMando','https://etsy.me/39yaNwG');">
+							<button id="Helmet_Variant_Tracker" class="type_button" data-name="Tracker"
+								onclick="setSponsor('ModernMando','https://etsy.me/39yaNwG');">
 								<svg viewbox="0 75 700 700" class="preview_icon"><use href="#Helmet_Tracker"/></svg>
 								Tracker
-							</button><button id="Helmet_Variant_Neo-Scout" class="type_button"
-								onclick="switchToArmorVariant('Helmet','Helmet','Neo-Scout', this);
-									 setSponsor('ModernMando','https://etsy.me/39KC9zT');">
+							</button><button id="Helmet_Variant_Neo-Scout" class="type_button" data-name="Neo-Scout"
+								onclick="setSponsor('ModernMando','https://etsy.me/39KC9zT');">
 								<svg viewbox="0 75 700 700" class="preview_icon"><use href="#Helmet_Neo-Scout"/></svg>
 								Neo-Scout
 							</button>
 						</details>
 						<details open>
 							<summary class="sponsor_title">LoneWolf Customs (sponsored)</summary>
-							<button id="Helmet_Variant_Executioner" class="type_button"
-								onclick="switchToArmorVariant('Helmet','Helmet','Executioner', this);
-									 setSponsor('Lonewolf', 'https://bit.ly/33YeckM');">
+							<button id="Helmet_Variant_Executioner" class="type_button" data-name="Executioner"
+								onclick="setSponsor('Lonewolf', 'https://bit.ly/33YeckM');">
 								<svg viewbox="0 75 700 700" class="preview_icon"><use href="#Helmet_Executioner"/></svg>
 								Executioner
 							</button>
 						</details>
 						<details open>
 							<summary class="sponsor_title">Gedyc Armouries (sponsored)</summary>
-							<button id="Helmet_Variant_Ironside" class="type_button"
-								onclick="switchToArmorVariant('Helmet','Helmet','Ironside', this);
-									 setSponsor('Gedyc', 'https://etsy.me/2KPe8gT');">
+							<button id="Helmet_Variant_Ironside" class="type_button" data-name="Ironside"
+								onclick="setSponsor('Gedyc', 'https://etsy.me/2KPe8gT');">
 								<svg viewbox="0 75 700 700" class="preview_icon"><use href="#Helmet_Ironside"/></svg>
 								Ironside
 							</button>
 						</details>
 						<details open>
 							<summary class="sponsor_title">Miscellaneous:</summary>
-							<button id="Helmet_Variant_Budget-Bucket" class="type_button"
-								onclick="switchToArmorVariant('Helmet','Helmet','Budget-Bucket', this);
-									 setSponsor('Budget','#');">
+							<button id="Helmet_Variant_Budget-Bucket" class="type_button" data-name="Budget-Bucket"
+								onclick="setSponsor('Budget','#');">
 								<svg viewbox="0 0 700 700" class="preview_icon"><use href="#Helmet_Budget-Bucket"/></svg>
 								Budget
-							</button><button id="Helmet_Variant_Neo" class="type_button"
-								onclick="switchToArmorVariant('Helmet','Helmet','Neo', this)">
+							</button><button id="Helmet_Variant_Neo" class="type_button" data-name="Neo">
 								<svg viewbox="0 125 700 700" class="preview_icon"><use href="#Helmet_Neo"/></svg>
 								Neo-Crusader
 							</button>
@@ -241,56 +217,44 @@
 					<h2 class="slide_title">Upper Body</h2>
 					<details open>
 						<summary class="option_name">Style:</summary>
-						<div class="armor_types male">
-							<button id="Chest_Variant_Classic_M" class="type_button current_variant"
-								onclick="switchToArmorVariant('UpperArmor','Chest','Classic_M', this)">
+						<div class="armor_types male" onclick="switchToArmorButton('UpperArmor','Chest', event.target)">
+							<button id="Chest_Variant_Classic_M" class="type_button current_variant" data-name="Classic_M">
 								<svg viewbox="200 -50 1000 1000" class="preview_icon"><use href="#Chest_Classic_M"/></svg>
 								Classic
-							</button><button id="Chest_Variant_Legacy_M" class="type_button"
-								onclick="switchToArmorVariant('UpperArmor','Chest','Legacy_M', this)">
+							</button><button id="Chest_Variant_Legacy_M" class="type_button" data-name="Legacy_M">
 								<svg viewbox="200 -50 1000 1000" class="preview_icon"><use href="#Chest_Legacy_M"/></svg>
 								Legacy
-							</button><button id="Chest_Variant_Heavy_M" class="type_button"
-								onclick="switchToArmorVariant('UpperArmor','Chest','Heavy_M', this)">
+							</button><button id="Chest_Variant_Heavy_M" class="type_button" data-name="Heavy_M">
 								<svg viewbox="200 -50 1000 1000" class="preview_icon"><use href="#Chest_Heavy_M"/></svg>
 								Heavy
-							</button><button class="type_button" id="Chest_Variant_Gunslinger-MK1_M"
-								onclick="switchToArmorVariant('UpperArmor','Chest','Gunslinger-MK1_M', this)">
+							</button><button class="type_button" id="Chest_Variant_Gunslinger-MK1_M" data-name="Gunslinger-MK1_M">
 								<svg viewBox="200 -50 1000 1000" class="preview_icon"><use href="#Chest_Gunslinger-MK1_M"></use></svg>
 								Gunslinger v1
-							</button><button id="Chest_Variant_Gunslinger_M" class="type_button"
-								onclick="switchToArmorVariant('UpperArmor','Chest','Gunslinger_M', this)">
+							</button><button id="Chest_Variant_Gunslinger_M" class="type_button" data-name="Gunslinger_M">
 								<svg viewbox="200 -50 1000 1000" class="preview_icon"><use href="#Chest_Gunslinger_M"/></svg>
 								Gunslinger v2
-							</button><button id="Chest_Variant_Galaxy_M" class="type_button"
-								onclick="switchToArmorVariant('UpperArmor','Chest','Galaxy_M', this)">
+							</button><button id="Chest_Variant_Galaxy_M" class="type_button" data-name="Galaxy_M">
 								<svg viewbox="200 -50 1000 1000" class="preview_icon"><use href="#Chest_Galaxy_M"/></svg>
 								Galaxy
 							</button>
 						</div>
-						<div class="armor_types female">
-							<button id="Chest_Variant_Classic_F" class="type_button"
-								onclick="switchToArmorVariant('UpperArmor','Chest','Classic_F', this)">
+						<div class="armor_types female" onclick="switchToArmorButton('UpperArmor','Chest', event.target)">
+							<button id="Chest_Variant_Classic_F" class="type_button current_variant" data-name="Classic_F">
 								<svg viewbox="200 -50 1000 1000" class="preview_icon"><use href="#Chest_Classic_F"/></svg>
 								Classic
-							</button><button id="Chest_Variant_Legacy_F" class="type_button"
-								onclick="switchToArmorVariant('UpperArmor','Chest','Legacy_F', this)">
+							</button><button id="Chest_Variant_Legacy_F" class="type_button" data-name="Legacy_F">
 								<svg viewbox="200 -50 1000 1000" class="preview_icon"><use href="#Chest_Legacy_F"/></svg>
 								Legacy
-							</button><button id="Chest_Variant_Heavy_F" class="type_button"
-								onclick="switchToArmorVariant('UpperArmor','Chest','Heavy_F', this)">
+							</button><button id="Chest_Variant_Heavy_F" class="type_button" data-name="Heavy_F">
 								<svg viewbox="200 -50 1000 1000" class="preview_icon"><use href="#Chest_Heavy_F"/></svg>
 								Heavy
-							</button><button id="Chest_Variant_Gunslinger-MK1_F" class="type_button"
-								onclick="switchToArmorVariant('UpperArmor','Chest','Gunslinger-MK1_F', this)">
-								<svg viewbox="200 -50 1000 1000" class="preview_icon"><use href="#Chest_Gunslinger-MK1_F"/></svg>
+							</button><button class="type_button" id="Chest_Variant_Gunslinger-MK1_F" data-name="Gunslinger-MK1_F">
+								<svg viewBox="200 -50 1000 1000" class="preview_icon"><use href="#Chest_Gunslinger-MK1_F"></use></svg>
 								Gunslinger v1
-							</button><button id="Chest_Variant_Gunslinger_F" class="type_button"
-								onclick="switchToArmorVariant('UpperArmor','Chest','Gunslinger_F', this)">
+							</button><button id="Chest_Variant_Gunslinger_F" class="type_button" data-name="Gunslinger_F">
 								<svg viewbox="200 -50 1000 1000" class="preview_icon"><use href="#Chest_Gunslinger_F"/></svg>
 								Gunslinger v2
-							</button><button id="Chest_Variant_Galaxy_F" class="type_button"
-								onclick="switchToArmorVariant('UpperArmor','Chest','Galaxy_F', this)">
+							</button><button id="Chest_Variant_Galaxy_F" class="type_button" data-name="Galaxy_F">
 								<svg viewbox="200 -50 1000 1000" class="preview_icon"><use href="#Chest_Galaxy_F"/></svg>
 								Galaxy
 							</button>

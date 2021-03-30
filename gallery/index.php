@@ -17,11 +17,11 @@
 
 		<meta name="keywords" content="MandoCreator,Mando,Creator,Beskar'gam,Armor,Mandalorian,Design,Beskar,Gallery" />
 		<meta name="author" content="Foilrose Studio, Cin Vhetin" />
-		<link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png" />
-		<link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32x32.png" />
-		<link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16x16.png" />
-		<link rel="manifest" href="mandocreator.manifest" />
-		<link rel="mask-icon" href="assets/safari-pinned-tab.svg" color="#ab1f1f" />
+		<link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png" />
+		<link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png" />
+		<link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png" />
+		<link rel="manifest" href="/mandocreator.manifest" />
+		<link rel="mask-icon" href="/assets/safari-pinned-tab.svg" color="#ab1f1f" />
 		<meta name="msapplication-TileColor" content="#b91d47" />
 		<meta name="theme-color" content="#ffffff" />
 		<title>MandoCreator Gallery</title>
@@ -154,7 +154,7 @@
 		}
 		function loadSVG (name) {
 			var xhr = new XMLHttpRequest();
-			xhr.open("GET", "gallery/" + name);
+			xhr.open("GET", "/gallery/" + name);
 			xhr.setRequestHeader("Cache-Control", "no-cache, max-age=10800");
 			xhr.responseType = 'document';
 			xhr.onload = function () {
