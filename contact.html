@@ -20,10 +20,7 @@
 		<link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png" />
 		<link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32x32.png" />
 		<link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16x16.png" />
-		<link rel="manifest" href="mandocreator.manifest" />
 		<link rel="mask-icon" href="assets/safari-pinned-tab.svg" color="#ab1f1f" />
-		<meta name="msapplication-TileColor" content="#b91d47" />
-		<meta name="theme-color" content="#ffffff" />
 		<title>Contact Mando Creator</title>
 		<style>
 			@font-face {
@@ -72,16 +69,7 @@
 			#left_nav {
 				height: 100%;
 				background: #222;
-			}
-
-			.summary_icon {
-				display: inline-block;
-				height: 2.5em;
-				width: 100%;
-				line-height: 2.5em;
 				text-align: center;
-				font-size: larger;
-				cursor: pointer;
 			}
 
 			:hover + .sub_nav {
@@ -89,14 +77,15 @@
 			}
 
 			.sub_nav {
+				display: inline-block;
 				height: 3em;
 				width: 15em;
 				padding-left: 100%;
 				left: -18em;
 				position: absolute;
 				transition: left 0.2s ease-out;
-				display: inline-block;
 				z-index: -1;
+				text-align: left;
 			}
 
 			.sub_nav:hover {
@@ -112,6 +101,14 @@
 				color: inherit;
 				text-decoration: none;
 				cursor: pointer;
+			}
+
+			.nav_icon {
+				width: 1.5em;
+				display: inline-block;
+				font-size: 1.5em;
+				line-height: 2em;
+				text-align: center;
 			}
 
 			main {
@@ -227,19 +224,19 @@
 		<nav>
 			<div style="height:4em"> <img height="100%" src="/images/LogoDark.svg" /> </div>
 			<div id="left_nav">
-				<span class="summary_icon">&#xE905;</span>
+				<span class="nav_icon">&#xE905;</span>
 				<div class="sub_nav">
 					<a class="nav_label" href="/index.html">Go Back</a>
 				</div>
-				<span class="summary_icon">&#xE90E;</span>
+				<span class="nav_icon">&#xE90E;</span>
 				<div class="sub_nav">
 					<span class="nav_label">About/Contact Us</label>
 				</div>
-				<span class="summary_icon">&#xE920;</span>
+				<span class="nav_icon">&#xE920;</span>
 				<div class="sub_nav">
 					<a class="nav_label" href="gallery">Armor Gallery</a>
 				</div>
-				<span class="summary_icon">&#xE914;</span>
+				<span class="nav_icon">&#xE914;</span>
 				<div class="sub_nav">
 					<a class="nav_label" href="https://www.paypal.com/donate?hosted_button_id=TJGV33MFJL26W">Donate</a>
 				</div>

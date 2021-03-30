@@ -189,7 +189,7 @@ function reupload (input) {
 
 	var reader = new FileReader();
 	reader.onload = function () {
-		var svg = document.createElement("svg");
+		var svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
 		svg.innerHTML = this.result;
 		svg = svg.firstElementChild;
 		if (svg.id == "character") {

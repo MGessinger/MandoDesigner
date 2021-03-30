@@ -19,7 +19,7 @@
     "background_color": "#231f20",
     "shortcuts": [
         {
-            "src": "gallery/index.php",
+            "url": "gallery/index.php",
             "name": "Mando Creator Gallery",
             "short_name": "Gallery",
             "description": "See a gallery of user-submitted designs, and customize them further."

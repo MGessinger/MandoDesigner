@@ -34,7 +34,7 @@
 		<link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png" />
 		<link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32x32.png" />
 		<link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16x16.png" />
-		<link rel="manifest" href="mandocreator.manifest" />
+		<link rel="manifest" href="mandocreator.webmanifest" />
 		<link rel="mask-icon" href="assets/safari-pinned-tab.svg" color="#ab1f1f" />
 		<meta name="msapplication-TileColor" content="#b91d47" />
 		<meta name="theme-color" content="#ffffff" />
@@ -45,7 +45,7 @@
 		<nav>
 			<svg class="title" viewBox="0 0 420 70"><use id="title" href=""/></svg>
 			<div id="left_nav">
-				<span class="summary_icon">&#xE905;</span>
+				<span class="nav_icon">&#xE905;</span>
 				<div id="parts_list" class="sub_nav">
 					<input type="radio" name="parts_list" id="HelmetSettings" value="Helmet (Buy'ce)" onclick="openArmorFolder('Helmet')" checked hidden/>
 					<label for="HelmetSettings" class="nav_label"><span class="nav_icon">&#xE905;</span>Helmet (Buy'ce)</label>
@@ -58,7 +58,7 @@
 					<input type="radio" name="parts_list" id="BackSettings" value="Back" onclick="openArmorFolder('Back')" hidden/>
 					<label for="BackSettings" class="nav_label"><span class="nav_icon">&#xE904;</span>Back (Norac)</label>
 				</div>
-				<span class="summary_icon">&#xE921;</span>
+				<span class="nav_icon">&#xE921;</span>
 				<div id="settings_list" class="sub_nav">
 					<input type="radio" name="sex" class="toggle_sex" id="male" checked onchange="S.set.Sex(false)"
 					><label for="male" class="label_sex"><span class="nav_icon">&#xe901;</span></label
@@ -74,15 +74,15 @@
 					<label id="color_scheme_label" for="color_scheme_picker" class="nav_label"><span class="nav_icon">&#xE90F;</span>Toggle Dark/Light</label>
 					<input type="checkbox" id="color_scheme_picker" style="opacity:0;" onchange="S.set.DarkMode(this.checked)"/>
 				</div>
-				<span class="summary_icon">&#xE90E;</span>
+				<span class="nav_icon">&#xE90E;</span>
 				<div class="sub_nav">
 					<a id="contact_opener" class="nav_label" href="contact.html">Contact Us</a>
 				</div>
-				<span class="summary_icon">&#xE920;</span>
+				<span class="nav_icon">&#xE920;</span>
 				<div class="sub_nav">
 					<a id="gallery" class="nav_label" href="gallery/index.php">Armor Gallery</a>
 				</div>
-				<span class="summary_icon">&#xE914;</span>
+				<span class="nav_icon">&#xE914;</span>
 				<div class="sub_nav">
 					<a id="donate" class="nav_label" target="_blank" href="https://www.paypal.com/donate?hosted_button_id=TJGV33MFJL26W">Donate</a>
 				</div>
@@ -228,11 +228,11 @@
 				</div>
 				<div class="sponsors" style="position: relative">
 					<button class="close_sponsors" style="display:none" onclick="hideSponsors(this.parentNode);">X</button>
-					<a id="AlterEgo" class="sponsor_link" target="_blank" href="#" style="display:none"><img width="100%" /></a>
-					<a id="ModernMando" class="sponsor_link" target="_blank" href="#" style="display:none"><img width="100%" /></a>
-					<a id="Lonewolf" class="sponsor_link" target="_blank" href="#" style="display:none"><img width="100%" /></a>
-					<a id="Gedyc" class="sponsor_link" target="_blank" href="#" style="display:none"><img width="100%" /></a>
-					<a id="Budget" class="sponsor_link" style="display:none" onclick="showRoll('Bucket')"><img width="100%" /></a>
+					<a id="AlterEgo" class="sponsor_link" target="_blank" href="#" style="display:none"><img width="100%" alt="Buy this Helmet from AlterEgoArmory"/></a>
+					<a id="ModernMando" class="sponsor_link" target="_blank" href="#" style="display:none"><img width="100%" alt="Buy this Helmet from Modernmando"/></a>
+					<a id="Lonewolf" class="sponsor_link" target="_blank" href="#" style="display:none"><img width="100%" alt="Buy this Helmet from LonewolfCustoms"/></a>
+					<a id="Gedyc" class="sponsor_link" target="_blank" href="#" style="display:none"><img width="100%" alt="Buy this Helmet from GedycArmouries"/></a>
+					<a id="Budget" class="sponsor_link" style="display:none" onclick="showRoll('Bucket')"><img width="100%" alt="Buy this Helmet from your local hardware store"/></a>
 				</div>
 			</div>
 			<div id="UpperArmorOptions" class="folder overview">
@@ -240,7 +240,7 @@
 					<h2 class="slide_title">Upper Body</h2>
 					<details open>
 						<summary class="option_name">Style:</summary>
-						<div id="UpperArmorTypes" class="armor_types male">
+						<div class="armor_types male">
 							<button id="Chest_Variant_Classic_M" class="type_button current_variant"
 								onclick="switchToArmorVariant('UpperArmor','Chest','Classic_M', this)">
 								<svg viewbox="200 -50 1000 1000" class="preview_icon"><use href="#Chest_Classic_M"/></svg>
@@ -267,7 +267,7 @@
 								Galaxy
 							</button>
 						</div>
-						<div id="UpperArmorTypes" class="armor_types female">
+						<div class="armor_types female">
 							<button id="Chest_Variant_Classic_F" class="type_button"
 								onclick="switchToArmorVariant('UpperArmor','Chest','Classic_F', this)">
 								<svg viewbox="200 -50 1000 1000" class="preview_icon"><use href="#Chest_Classic_F"/></svg>

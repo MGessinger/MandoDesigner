@@ -103,19 +103,9 @@ nav {
 }
 
 #left_nav {
-	position: relative;
 	height: 100%;
 	background: var(--mainColor);
-}
-
-.summary_icon {
-	display: inline-block;
-	height: 2.5em;
-	width: 100%;
-	line-height: 2.5em;
 	text-align: center;
-	font-size: larger;
-	cursor: pointer;
 }
 
 :hover + .sub_nav {
@@ -123,14 +113,15 @@ nav {
 }
 
 .sub_nav {
+	display: inline-block;
 	height: 3em;
 	width: 15em;
 	padding-left: 100%;
 	left: -18em;
 	position: absolute;
 	transition: left 0.2s ease-out;
-	display: inline-block;
 	z-index: -1;
+	text-align: left;
 }
 
 .sub_nav:hover {
@@ -149,9 +140,10 @@ nav {
 }
 
 .nav_icon {
-	font-size: larger;
-	width: 2em;
+	width: 1.5em;
 	display: inline-block;
+	font-size: 1.5em;
+	line-height: 2em;
 	text-align: center;
 }
 
