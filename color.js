@@ -304,6 +304,7 @@ var Picker = new function() {
 				delete settings[button.id];
 			else
 				settings[button.id] = hex;
+			unsavedChanges = true;
 		}
 		on(button, "click", function(event) {
 			onChange = input;

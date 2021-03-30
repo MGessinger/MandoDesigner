@@ -1,6 +1,7 @@
 /* MandoCreator */
 "use strict";
 var variants = {};
+var unsavedChanges = false;
 
 function find (st) {
 	return document.getElementById(st);
@@ -513,6 +514,7 @@ function Settings () {
 		await upper;
 		await lower;
 		afterUpload = false;
+		unsavedChanges = false;
 	}
 }
 var S = new Settings();
@@ -632,7 +634,10 @@ function Downloader () {
 					var document = "<?xml version='1.0' encoding='UTF-8'?>" + str;
 					var URI = 'data:image/svg+xml;charset=UTF-8,' + encodeSVG(document);
 					this.setAttribute("href", URI);
-					setTimeout(function() {a.setAttribute("href", "#");}, 1000);
+					setTimeout(function() {
+						a.setAttribute("href", "#");
+						unsavedChanges = false;
+					}, 1000);
 				};
 			} else {
 				var isSetUp = false;
@@ -641,6 +646,7 @@ function Downloader () {
 						setTimeout(function() {
 							a.setAttribute("href", "#");
 							isSetUp = false;
+							unsavedChanges = false;
 						}, 5000);
 						prepareCanvas(bckImgURI);
 						return;
@@ -714,6 +720,9 @@ function setupWindow () {
 	}
 
 	window.addEventListener("beforeunload", function (event) {
+		console.log(unsavedChanges);
+		if (!unsavedChanges)
+			return;
 		var message = "You should save your work. Do or do not, there is not try!";
 		event.preventDefault();
 		event.returnValue = message;
@@ -783,7 +792,7 @@ function onload () {
 	nsw.onmessage = function (event) {
 		displayForm(true, 'reload');
 	};
-	//nsw.register("sw.js");
+	nsw.register("sw.js");
 }
 
 function openArmorFolder (category) {
@@ -816,6 +825,7 @@ function switchToArmorButton (category, pieceName, button) {
 		old_lists[i].style.display = "none";
 		old_lists[i].innerHTML = "";
 	}
+	unsavedChanges = true;
 	switchToArmorVariant(category, pieceName, name);
 }
 
