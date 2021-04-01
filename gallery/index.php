@@ -52,7 +52,7 @@
 			body {
 				height: 100%;
 				margin: 0;
-				background: url(/assets/fog-small.jpg) no-repeat center;
+				background: url(../assets/fog-small.jpg) no-repeat center;
 				background-color: #222;
 				background-size: cover;
 				font-family: 'icomoon', 'Raleway', Verdana, sans-serif;
@@ -60,6 +60,7 @@
 			}
 			nav {
 				position: absolute;
+				height: 4em;
 			}
 			.return {
 				display: block;
@@ -94,7 +95,6 @@
 				stroke-width: 2px;
 				fill: none;
 				fill-rule: evenodd;
-				clip-rule: evenodd;
 			}
 			footer {
 				position: fixed;
@@ -177,7 +177,7 @@
 		}
 	</script>
 	<body onload="loadSW()">
-		<nav style="height:4em">
+		<nav>
 			<img height="100%" src="../images/LogoDark.svg" alt="MandoCreator Logo"/>
 			<a class="return" href="../index.html"><span class="icon">&#xE90B;</span>Go Back</a>
 		</nav>

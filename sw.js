@@ -10,7 +10,6 @@ self.addEventListener("install", function (event) {
 			'index.html',
 			'editor.js',
 			"color.js",
-			"barebones.css",
 			"stylesheet.css",
 			"color.css"
 		]))

@@ -1,3 +1,128 @@
+@font-face {
+	font-family: 'icomoon';
+	src: url('fonts/icomoon.eot');
+	src: url('fonts/icomoon.eot#iefix') format('embedded-opentype'),
+	     url('fonts/icomoon.ttf') format('truetype'),
+	     url('fonts/icomoon.woff') format('woff'),
+	     url('fonts/icomoon.svg#icomoon') format('svg');
+	font-weight: normal;
+	font-style: normal;
+	font-display: block;
+}
+
+@font-face {
+	font-display: swap;
+	font-family: 'Raleway';
+	src:	local("Raleway"),
+		url('fonts/Raleway.ttf') format('truetype');
+	font-weight: normal;
+	font-style: normal;
+	font-display: block;
+}
+
+.dark_mode {
+	--mainColor: #222;
+	--softColor: #555;
+	--softLight: #AAA;
+	--highlight: #DDD;
+	--mainFont: white;
+	--accent: #AB1F1F;
+	--translucent: rgb(0,0,0,50%);
+}
+
+.light_mode {
+	--mainColor: #DDD;
+	--softColor: #AAA;
+	--softLight: #555;
+	--highlight: #222;
+	--mainFont: black;
+	--accent: #AB1F1F;
+	--translucent: rgb(128,128,128,50%);
+}
+
+label {
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+}
+
+body {
+	margin: 0;
+	color: var(--mainFont);
+	font-family: 'icomoon', 'Raleway', Verdana, sans-serif;
+}
+
+nav {
+	position: fixed;
+	left: 0;
+	height: 100%;
+	width: 3em;
+	z-index: 1;
+}
+
+#left_nav {
+	height: 100%;
+	background: var(--mainColor);
+	text-align: center;
+}
+
+:hover + .sub_nav {
+	left: 0;
+}
+
+.sub_nav {
+	display: inline-block;
+	height: 3em;
+	width: 15em;
+	padding-left: 100%;
+	left: -18em;
+	position: absolute;
+	transition: left 0.2s ease-out;
+	z-index: -1;
+	text-align: left;
+}
+
+.sub_nav:hover {
+	left: 0;
+}
+
+.nav_label {
+	display: block;
+	position: relative;
+	height: 3em;
+	background: var(--mainColor);
+	color: inherit;
+	line-height: 3em;
+	text-decoration: none;
+	cursor: pointer;
+}
+
+.nav_icon {
+	width: 1.5em;
+	display: inline-block;
+	font-size: 1.5em;
+	line-height: 2em;
+	text-align: center;
+}
+
+:checked + .nav_label {
+	color: var(--mainColor);
+	background: var(--highlight);
+}
+
+p {
+	margin: 0;
+	padding: 0;
+}
+
+input,
+button {
+	color: inherit;
+	font: inherit;
+	padding: 0;
+}
+
 html, body {
 	height: 100%;
 	overflow: hidden;

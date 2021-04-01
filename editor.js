@@ -720,7 +720,6 @@ function setupWindow () {
 	}
 
 	window.addEventListener("beforeunload", function (event) {
-		console.log(unsavedChanges);
 		if (!unsavedChanges)
 			return;
 		var message = "You should save your work. Do or do not, there is not try!";
