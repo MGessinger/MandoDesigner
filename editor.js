@@ -731,7 +731,9 @@ function setupWindow () {
 
 	var main = find("editor");
 	var mv = { dragged: false, drag: false};
-	main.addEventListener("mousedown", function () {
+	main.addEventListener("mousedown", function (event) {
+		if (event.buttons !== 1)
+			return;
 		this.style.cursor = 'grabbing';
 		this.style.userSelect = 'none';
 		mv = { drag: true, dragged: false };
