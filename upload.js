@@ -74,113 +74,6 @@ function recreateMando (svg) {
 	S.build.All(soft, "FlightSuit");
 }
 
-var translationTable = {
-	"cape_long": {
-		colors: ["FullCape"],
-		settings: { "Cape_Option": "Full-Cape" }
-	},
-	"gloves_default": ["Basic_Right_Glove", "Basic_Left_Glove"],
-	"shoes_default": ["Top_BasicBoot", "Main_BasicBoot", "Bottom_BasicBoot"],
-	"pants_default": ["FlightSuit"],
-	"top_default": ["Sleeves"],
-	"knees_default": ["Basic_Knee_Left", "Basic_Knee_Right"],
-	"thigh_default": {
-		colors: ["Basic_Right_Thigh", null, "Basic_Left_Thigh"],
-		settings: {
-			"Left-Thigh_Option": "Basic_Thigh_Left",
-			"Right-Thigh_Option": "Basic_Thigh_Right"
-		}
-	},
-	"shins_default": {
-		colors: ["Shin_Right_Basic", null, "Shin_Left_Basic"],
-		settings: {
-			"Left-Shin_Option": "Basic_Shin_Left",
-			"Right-Shin_Option": "Basic_Shin_Right"
-		}
-	},
-	"bootplate_default": {
-		colors: ["Basic_Ankle_Left", null, "Basic_Ankle_Right"],
-		settings: {
-			"Left-Ankle_Option": "Basic_Ankle_Left",
-			"Right-Ankle_Option": "Basic_Ankle_Right"
-		}
-	},
-	"vest_default": ["Vest"],
-	"neck_default": ["StandardNeckSeal"],
-	"dome_default": ["Dome_Classic"],
-	"side_default": ["EarCap_Right_Classic"],
-	"visor_shine": ["Visor_Classic"],
-	"face_default": ["Face_Classic"],
-	"cheeks_default": [null, "Cheeks_Classic"],
-	"viewfinder_default": {
-		colors: ["Cover_Right_RangeFinder_Classic", "Shaft_Right_RangeFinder_Classic", "Finder_Right_RangeFinder_Classic"],
-		settings: {"Range-Finder_Right_Classic": true}
-	},
-	"ears_default": ["EarCap_Left_Classic"],
-	"eyes_default": [null, "Eyes_Classic"],
-	"chest_default": ["Heart_Classic", "AbdomenPlate_Classic", "Chest_Right_Classic", "Chest_Left_Classic"],
-	"diamond_cutout": ["Center_Heart_Classic"],
-	"shoulders_default": ["Classic_Shoulder_Left", "Classic_Shoulder_Right"],
-	"neckplate_default": ["NeckPlate_Classic"],
-	"codpiece_default": ["Groin_Basic"],
-	"belt_default": ["Main_BasicBelt"],
-	"gauntlets_default": ["Base_Basic_Gauntlet_Right", "Top_Basic_Gauntlet_Right", "Base_Basic_Gauntlet_Left", "Top_Basic_Gauntlet_Left"]
-}
-
-function translateMando (svg) {
-	variants = {
-		"Left-Ankle_Option": "None_Ankle_Left",
-		"Left-Shin_Option": "None_Shin_Left",
-		"Left-Thigh_Option": "None_Thigh_Left",
-		"Right-Ankle_Option": "None_Ankle_Right",
-		"Right-Shin_Option": "None_Shin_Right",
-		"Right-Thigh_Option": "None_Thigh_Right"
-	};
-	resetSettings();
-	function find (st) {
-		return svg.getElementById(st);
-	}
-
-	var classFilter = {
-		acceptNode: function (node) {
-			var cls = node.getAttribute("class");
-			if (!cls)
-				return NodeFilter.FILTER_SKIP;
-			else if (/\d|light|dark/.test(cls))
-				return NodeFilter.FILTER_REJECT;
-			else
-				return NodeFilter.FILTER_ACCEPT;
-		}
-	}
-
-	var ch = svg.children;
-	for (var i = 0; i < ch.length; i++) {
-		var name = ch[i].id;
-		var table = translationTable[name];
-		if (!table)
-			continue;
-
-		if (table.settings) {
-			for (var j in table.settings)
-				variants[j] = table.settings[j];
-			table = table.colors;
-		}
-
-		var iterator = document.createNodeIterator(ch[i], NodeFilter.SHOW_ELEMENT, classFilter);
-		for (var j = 0; j < table.length; j++) {
-			if (!table[j])
-				continue;
-
-			var node = iterator.nextNode();
-			if (!node)
-				break;
-
-			var key = table[j] + "Color";
-			settings[key] = node.style.fill;
-		}
-	}
-}
-
 function reupload (input) {
 	var files = input.files;
 	if (!files || !files.length)
@@ -192,13 +85,8 @@ function reupload (input) {
 		var svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
 		svg.innerHTML = this.result;
 		svg = svg.firstElementChild;
-		if (svg.id == "character") {
-			translateMando(svg);
-			S.set.Sex(false);
-			return;
-		}
 
-		var mando = svg.getElementsByTagName("svg")[0];
+		var mando = svg.lastElementChild;
 		var img = svg.getElementsByTagName("image")[0];
 		if (!mando || !img)
 			return;
@@ -219,10 +107,9 @@ function reupload (input) {
 		theme.checked = light_mode;
 		S.set.DarkMode(light_mode);
 
-		main.style.backgroundImage = "url(" + img.getAttribute("href") + ")";
 		recreateMando(mando);
 		S.set.Sex(female, true);
-		D.Background = svg;
+		D.Background = img.getAttribute("href");
 	};
 	reader.readAsText(files[0]);
 }
