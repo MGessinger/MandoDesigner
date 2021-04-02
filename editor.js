@@ -810,12 +810,19 @@ function openArmorFolder (category) {
 
 function setVariantButton (category, button) {
 	if (typeof button === "string")
-		button = find(category + "_Variant_" + button);
+		button = find(button);
 	var parent = find(category + "Options");
 	var old_button = parent.getElementsByClassName("current_variant")[0];
 	if (old_button)
 		old_button.classList.remove("current_variant");
 	button.classList.add("current_variant");
+
+	var old_lists = parent.getElementsByClassName("replace");
+	console.log(old_lists);
+	for (var i = 0; i < old_lists.length; i++) {
+		old_lists[i].style.display = "none";
+		old_lists[i].innerHTML = "";
+	}
 	return parent;
 }
 
@@ -826,11 +833,6 @@ function switchToArmorButton (category, pieceName, button) {
 	var parent = setVariantButton(category, button);
 	hideSponsors(parent);
 
-	var old_lists = parent.getElementsByClassName("replace");
-	for (var i = 0; i < old_lists.length; i++) {
-		old_lists[i].style.display = "none";
-		old_lists[i].innerHTML = "";
-	}
 	unsavedChanges = true;
 	switchToArmorVariant(category, pieceName, name);
 }

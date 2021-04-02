@@ -40,14 +40,14 @@ function recreateMando (svg, suffix) {
 	var helmet = findLocal("Helmet_Current");
 	S.build.All(helmet, "Helmet");
 	variants["Helmet"] = helmet.getAttribute("class") || "Classic";
-	setVariantButton("Helmet", variants["Helmet"]);
+	setVariantButton("Helmet", "Helmet_Variant_" + variants["Helmet"]);
 
 	/* Upper Body */
 	var chest = findLocal("Chest_Current");
 	S.build.All(chest, "UpperArmor");
 	var variant = chest.getAttribute("class") || "Classic";
 	variants["Chest"] = neutralize(variant);
-	setVariantButton("Chest", variants["Chest"]);
+	setVariantButton("UpperArmor", "Chest_Variant_" + variants["Chest"] + suffix);
 
 	var subgroups = ["Shoulders","Biceps","Gauntlets"];
 	for (var i = 0; i < subgroups.length; i++) {
