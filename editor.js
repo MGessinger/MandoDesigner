@@ -222,7 +222,7 @@ function Settings () {
 				} else if (addons[i].style.display == "inherit") {
 					useDefault = false;
 					opt.selected = true;
-					variants[SVGName] = neutralize(fullName);
+					variants[SVGName] = neutral;
 				} else {
 					addons[i].style.removeProperty("display");
 					col.style.display = "none";
@@ -528,7 +528,6 @@ function Downloader () {
 	var logoSVG, bckImgURI;
 
 	function prepareForExport (svg) {
-		svg.style.transform = "";
 		var options = svg.getElementsByClassName("option");
 		var i = 0;
 		while (i < options.length) {
@@ -553,7 +552,7 @@ function Downloader () {
 	}
 
 	function encodeSVG (svg) {
-		var san = svg.replace(/\s+/g," ").replace(/"/g,"'").replace(/_(M|F)/,"");
+		var san = svg.replace(/\s+/g," ").replace(/"/g,"'");
 		return encodeURIComponent(san);
 	}
 
@@ -809,16 +808,22 @@ function openArmorFolder (category) {
 		now.classList.add("overview");
 }
 
-function switchToArmorButton (category, pieceName, button) {
-	var name = button.dataset.name;
-	if (!name)
-		return;
+function setVariantButton (category, button) {
+	if (typeof button === "string")
+		button = find(category + "_Variant_" + button);
 	var parent = find(category + "Options");
 	var old_button = parent.getElementsByClassName("current_variant")[0];
 	if (old_button)
 		old_button.classList.remove("current_variant");
-	if (button)
-		button.classList.add("current_variant");
+	button.classList.add("current_variant");
+	return parent;
+}
+
+function switchToArmorButton (category, pieceName, button) {
+	var name = button.dataset.name;
+	if (!name)
+		return;
+	var parent = setVariantButton(category, button);
 	hideSponsors(parent);
 
 	var old_lists = parent.getElementsByClassName("replace");
@@ -854,16 +859,17 @@ function hideSponsors (parent) {
 
 function setSponsor (sponsor, href) {
 	var link = find(sponsor);
-	link.style.removeProperty("display");
 	link.setAttribute("href", href);
-
-	var parent = link.parentNode;
-	var close = parent.getElementsByTagName("button")[0];
-	close.style.removeProperty("display");
-
 	var img = link.getElementsByTagName("img")[0];
 	if (!img.hasAttribute("src"))
 		img.setAttribute("src", "assets/" + sponsor + ".png");
+
+	var parent = link.parentNode;
+	var close = parent.getElementsByTagName("button")[0];
+	setTimeout(function() {
+		link.style.removeProperty("display");
+		close.style.removeProperty("display");
+	}, 500);
 }
 
 function displayForm (visible, form) {

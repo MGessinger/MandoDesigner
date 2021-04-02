@@ -24,15 +24,13 @@ function loadImage (input) {
 	reset.style.display = "";
 }
 
-function recreateMando (svg) {
+function recreateMando (svg, suffix) {
 	var main = find("editor");
 	var old_svg = main.firstElementChild;
 	if (old_svg)
 		main.replaceChild(svg, old_svg);
 	else
 		main.appendChild(svg);
-	var scale = find("zoom");
-	zoom(scale.value/100);
 	variants = {};
 	resetSettings();
 
@@ -42,12 +40,14 @@ function recreateMando (svg) {
 	var helmet = findLocal("Helmet_Current");
 	S.build.All(helmet, "Helmet");
 	variants["Helmet"] = helmet.getAttribute("class") || "Classic";
+	setVariantButton("Helmet", variants["Helmet"]);
 
 	/* Upper Body */
 	var chest = findLocal("Chest_Current");
 	S.build.All(chest, "UpperArmor");
 	var variant = chest.getAttribute("class") || "Classic";
 	variants["Chest"] = neutralize(variant);
+	setVariantButton("Chest", variants["Chest"]);
 
 	var subgroups = ["Shoulders","Biceps","Gauntlets"];
 	for (var i = 0; i < subgroups.length; i++) {
@@ -67,10 +67,10 @@ function recreateMando (svg) {
 	}
 
 	/* Soft Parts */
-	S.build.All(findLocal("Back"), "Back");
-	S.build.All(findLocal("Front"), "Back");
+	S.build.All(findLocal("Back" + suffix), "Back");
+	S.build.All(findLocal("Front" + suffix), "Back");
 	S.build.All(findLocal("Vest_Current"), "FlightSuit");
-	var soft = findLocal("Soft-Parts_M") || findLocal("Soft-Parts_F");
+	var soft = findLocal("Soft-Parts" + suffix);
 	S.build.All(soft, "FlightSuit");
 }
 
@@ -107,7 +107,7 @@ function reupload (input) {
 		theme.checked = light_mode;
 		S.set.DarkMode(light_mode);
 
-		recreateMando(mando);
+		recreateMando(mando, (female ? "_F" : "_M"));
 		S.set.Sex(female, true);
 		D.Background = img.getAttribute("href");
 	};
