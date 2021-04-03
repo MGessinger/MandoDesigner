@@ -137,7 +137,7 @@ function Settings () {
 			var varName = neutralize(SVGNode.id);
 			if (varName in variants)
 				defaultOn = variants[varName];
-			var toggle = S.toggle.Subslide(parent, SVGNode);
+			var toggle = S.toggle.Subslide(parent, SVGNode, (SVGNode.style.display !== "none"));
 			check.checked = defaultOn;
 			toggle.bind({checked: defaultOn})();
 			check.addEventListener("change", toggle);
@@ -191,6 +191,7 @@ function Settings () {
 		Dropdown: function (addons, category, parent, SVGName) {
 			var select = find(SVGName + "Select");
 			var useDefault = !select;
+			var defaultValue;
 			if (!select) {
 				var wrapper = DOMNode("div", {class: "select_wrapper hidden"}, parent);
 				select = DOMNode("select", {class: "component_select", id: SVGName + "Select"}, wrapper);
@@ -209,13 +210,10 @@ function Settings () {
 				var san = listName(fullName);
 				var col = DOMNode("div", {id: san + "SubColors"}, parent);
 				if (variants[SVGName] == neutral) {
+					defaultValue = fullName;
 					addons[i].style.display = "inherit";
 					useDefault = false;
 					opt.selected = true;
-				} else if (addons[i].style.display == "inherit") {
-					useDefault = false;
-					opt.selected = true;
-					variants[SVGName] = neutral;
 				} else {
 					addons[i].style.removeProperty("display");
 					col.style.display = "none";
@@ -226,10 +224,14 @@ function Settings () {
 			if (useDefault) {
 				addons[addons.length-1].style.display = "inherit";
 				colors[0].style.removeProperty("display");
+				defaultValue = addons[addons.length-1].id;
 			}
 
 			select.addEventListener("change", function() {
-				variants[SVGName] = neutralize(this.value);
+				if (this.value == defaultValue)
+					delete variants[SVGName];
+				else
+					variants[SVGName] = neutralize(this.value);
 				for (var i = 0; i < addons.length; i++) {
 					if (addons[i].id === this.value)
 						addons[i].style.display = "inherit";
@@ -279,9 +281,6 @@ function Settings () {
 				var col = DOMNode("div", {id: san + "SubColors"}, parent);
 				if (variants[parName] == neutral) {
 					addons[i].style.display = "inherit";
-					checkbox.checked = true;
-				} else if (addons[i].style.display == "inherit") {
-					variants[parName] = neutral;
 					checkbox.checked = true;
 				} else {
 					addons[i].style.removeProperty("display");
@@ -334,7 +333,7 @@ function Settings () {
 			var folder = slide.parentNode.parentNode;
 			folder.classList.toggle("overview");
 		},
-		Subslide: function (subslide, SVGNode) {
+		Subslide: function (subslide, SVGNode, def) {
 			var varName = neutralize(SVGNode.id);
 			return function () {
 				if (this.checked) {
@@ -344,7 +343,10 @@ function Settings () {
 					subslide.style.display = "none";
 					SVGNode.style.display = "none";
 				}
-				variants[varName] = this.checked || false;
+				if (this.checked == def)
+					delete variants[varName];
+				else
+					variants[varName] = this.checked;
 			}
 		},
 		Sublist: function (sublist, SVGNode, parName) {
