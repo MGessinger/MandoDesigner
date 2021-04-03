@@ -102,13 +102,6 @@ function Settings () {
 		return components[0];
 	}
 
-	function buttonName (str) {
-		if (!str)
-			return "";
-		var clean = str.replace(/\W/g,"");
-		return neutralize(clean);
-	}
-
 	function prepareParent (SVGNode, parent) {
 		var name = listName(SVGNode.id);
 		var side_name = name.match(/Right|Left/);
@@ -269,6 +262,8 @@ function Settings () {
 		},
 		Checkbox: function (addons, category, parent) {
 			var checkboxes = DOMNode("div", {class: "checkbox_list hidden"}, parent);
+			var par = addons[0].parentNode;
+			var parName = neutralize(par.id) + "_Option";
 			for (var i = addons.length - 1; i >= 0; i--) {
 				var fullName = addons[i].id;
 				var name = prettify(fullName);
@@ -282,18 +277,18 @@ function Settings () {
 
 				var san = listName(fullName);
 				var col = DOMNode("div", {id: san + "SubColors"}, parent);
-				if (variants[neutral]) {
+				if (variants[parName] == neutral) {
 					addons[i].style.display = "inherit";
 					checkbox.checked = true;
 				} else if (addons[i].style.display == "inherit") {
-					variants[neutral] = true;
+					variants[parName] = neutral;
 					checkbox.checked = true;
 				} else {
 					addons[i].style.removeProperty("display");
 					col.style.display = "none";
 				}
 				this.All(addons[i], category, col);
-				checkbox.addEventListener("change", S.toggle.Sublist(col, addons[i]));
+				checkbox.addEventListener("change", S.toggle.Sublist(col, addons[i], parName));
 			}
 		},
 		All: function (SVGNode, category, parent) {
@@ -352,8 +347,8 @@ function Settings () {
 				variants[varName] = this.checked || false;
 			}
 		},
-		Sublist: function (sublist, SVGNode) {
-			var varName = neutralize(SVGNode.id);
+		Sublist: function (sublist, SVGNode, parName) {
+			var neutral = neutralize(SVGNode.id);
 			return function () {
 				if (this.checked) {
 					sublist.style.removeProperty("display");
@@ -362,7 +357,7 @@ function Settings () {
 					sublist.style.display = "none";
 					SVGNode.style.display = "none";
 				}
-				variants[varName] = this.checked || false;
+				variants[parName] = neutral;
 			}
 		},
 		Options: function () {
@@ -693,6 +688,13 @@ function prettify (str) {
 	return shortName.replace(/-/g, " ");
 }
 
+function buttonName (str) {
+	if (!str)
+		return "";
+	var clean = str.replace(/\W/g,"");
+	return neutralize(clean);
+}
+
 function neutralize (str) {
 	if (!str)
 		return "";
@@ -792,7 +794,7 @@ function onload () {
 	nsw.onmessage = function (event) {
 		displayForm(true, 'reload');
 	};
-	nsw.register("sw.js");
+	//nsw.register("sw.js");
 }
 
 function openArmorFolder (category) {
@@ -818,7 +820,6 @@ function setVariantButton (category, button) {
 	button.classList.add("current_variant");
 
 	var old_lists = parent.getElementsByClassName("replace");
-	console.log(old_lists);
 	for (var i = 0; i < old_lists.length; i++) {
 		old_lists[i].style.display = "none";
 		old_lists[i].innerHTML = "";

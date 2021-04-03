@@ -25,53 +25,41 @@ function loadImage (input) {
 }
 
 function recreateMando (svg, suffix) {
-	var main = find("editor");
-	var old_svg = main.firstElementChild;
-	if (old_svg)
-		main.replaceChild(svg, old_svg);
-	else
-		main.appendChild(svg);
 	variants = {};
 	resetSettings();
 
-	function findLocal(st) {
-		return svg.getElementById(st);
+	var walker = document.createNodeIterator (
+		svg,
+		NodeFilter.SHOW_ELEMENT,
+		{ acceptNode: function (node)
+			{
+				if (!node.id)
+					return NodeFilter.FILTER_REJECT;
+				return NodeFilter.FILTER_ACCEPT;
+			}
+		}
+	);
+
+	var node;
+	while (node = walker.nextNode()) {
+		var id = node.id;
+		if (node.style.fill) {
+			var bn = buttonName(id) + "Color";
+			settings[bn] = node.style.fill;
+		}
+		var cls = node.getAttribute("class");
+		var neutral = neutralize(id);
+		if (cls == "toggle") {
+			variants[neutral] = true;
+		} else if (cls == "option") {
+			var parent = node.parentNode;
+			var parName = neutralize(parent.id) + "_Option";
+			variants[parName] = neutral;
+		} else if (!!cls && id.includes("Current")) {	/* Nonzero and not empty */
+			var cat = id.replace("_Current", "");
+			variants[cat] = neutralize(cls);
+		}
 	}
-	var helmet = findLocal("Helmet_Current");
-	S.build.All(helmet, "Helmet");
-	variants["Helmet"] = helmet.getAttribute("class") || "Classic";
-	setVariantButton("Helmet", "Helmet_Variant_" + variants["Helmet"]);
-
-	/* Upper Body */
-	var chest = findLocal("Chest_Current");
-	S.build.All(chest, "UpperArmor");
-	var variant = chest.getAttribute("class") || "Classic";
-	variants["Chest"] = neutralize(variant);
-	setVariantButton("UpperArmor", "Chest_Variant_" + variants["Chest"] + suffix);
-
-	var subgroups = ["Shoulders","Biceps","Gauntlets"];
-	for (var i = 0; i < subgroups.length; i++) {
-		var cur = findLocal(subgroups[i] + "_Current");
-		S.build.All(cur,"UpperArmor");
-	}
-	S.build.All(findLocal("Collar_Current"), "UpperArmor");
-	S.build.All(findLocal("ChestAttachments_Current"), "UpperArmor");
-
-	/* Lower Body */
-	S.build.All(findLocal("Groin_Current"), "LowerArmor");
-	S.build.All(findLocal("Waist_Current"), "LowerArmor");
-	subgroups = ["Thighs", "Knees", "Shins", "Ankles", "Toes"];
-	for (var i = 0; i < subgroups.length; i++) {
-		var cur = findLocal(subgroups[i] + "_Current");
-		S.build.All(cur,"LowerArmor");
-	}
-
-	/* Soft Parts */
-	S.build.All(findLocal("Back" + suffix), "Back");
-	S.build.All(findLocal("Front" + suffix), "Back");
-	S.build.All(findLocal("Vest_Current"), "FlightSuit");
-	var soft = findLocal("Soft-Parts" + suffix);
-	S.build.All(soft, "FlightSuit");
 }
 
 function reupload (input) {
