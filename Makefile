@@ -31,10 +31,10 @@ images/%.svg: pictures/%.svg | images
 gallery: gallery/wrapper_male.svg gallery/wrapper_female.svg
 	@touch $@;
 
-wrapper_%.svg: %/
+wrapper_%.svg: %
 	@echo $@;
 	@echo "<?xml version='1.0' encoding='UTF-8' standalone='no'?><!DOCTYPE svg PUBLIC '-//W3C//DTD SVG 1.1//EN' 'http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd'><svg version='1.1' xmlns='http://www.w3.org/2000/svg'>" > $@;
-	@for i in $?*; do \
+	@for i in $?/*; do \
 		sed " \
 			/^<svg/ { \
 				s|^<svg[^>]*>|<g id='$$i'>\n|; \

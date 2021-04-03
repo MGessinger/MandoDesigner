@@ -64,10 +64,10 @@
 					><label for="male" class="label_sex"><span class="nav_icon">&#xe901;</span></label
 					><input type="radio" name="sex" class="toggle_sex" id="female" onchange="S.set.Sex(true)"
 					><label for="female" class="label_sex"><span class="nav_icon">&#xe902;</span></label>
-					<input id="background_upload" type="file" accept="image/*" onchange="loadImage(this);" hidden/>
+					<input id="background_upload" type="file" accept="image/*" hidden/>
 					<label for="background_upload" class="nav_label"><span class="nav_icon">&#xF03E;</span>Upload Background</label>
 					<button id="reset_wrapper" class="nav_label" onclick="S.set.DarkMode(find('color_scheme_picker').checked)"><span class="nav_icon">&#xF021;</span>Reset Background</button>
-					<input id="reupload" type="file" accept="image/svg+xml" onchange="reupload(this);" hidden/>
+					<input id="reupload" type="file" accept="image/svg+xml" hidden/>
 					<label for="reupload" class="nav_label"><span class="nav_icon">&#xE910;</span>Continue Editing</label>
 					<a id="download_svg" class="nav_label" download="MandoCreator.svg" href="#"><span class="nav_icon">&#xE903;</span>Download as SVG</a>
 					<a id="download_jpeg" class="nav_label" download="MandoCreator.jpeg" href="#"><span class="nav_icon">&#xE903;</span>Download as JPEG</a>
@@ -455,7 +455,7 @@
 		</div>
 		<main id="editor" class="image_column"></main>
 		<video id="rickroll" style="display:none" autoplay onended="this.style.display='none'"></video>
-		<form id="reload" style="display:none">
+		<form id="reload" method="POST" style="display:none">
 			<legend>A new version is available</legend>
 			<div class="version_info">
 				<p>Ke'sush! Ulu evaar'la kebise. Ke'tsikado gotal'ur tug'yc!</p>
@@ -465,7 +465,7 @@
 				<p>Please click the button below to reload the page and get all the latest changes.</p>
 				<p>See the <a href="contact.html#changelog" class="credit_link">Changelog</a> for info on what's new.</p>
 			</div>
-			<button class="submit" onclick="window.location.reload()">RELOAD</button>
+			<button class="submit">RELOAD</button>
 		</form>
 
 		<footer>
@@ -485,5 +485,5 @@
 		<script src="editor.js"></script>
 	</body>
 	<script src="color.js"></script>
-	<script src="upload.js"></script>
+	<script src="FileIO.js"></script>
 </html>
