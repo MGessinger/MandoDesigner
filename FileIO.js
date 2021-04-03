@@ -153,25 +153,27 @@ function Downloader () {
 	var canvasCtx = canvas.getContext('2d');
 	var logoSVG, bckImgURI;
 
+
 	function prepareForExport (svg) {
-		var it = document.createNodeIterator(svg, NodeFilter.SHOW_ELEMENT,
-			{ acceptNode: function (node) {
-				if (node.hasAttribute("class"))
-					return NodeFilter.FILTER_ACCEPT;
-				return NodeFilter.FILTER_SKIP;
-			} });
-		var node;
-		while (node = it.nextNode()) {
-			var cls = node.getAttribute("class");
-			if (cls == "option") {
-				if (node.style.display == "inherit")
-					continue;
-			} else {
-				if (node.style.display !== "none")
-					continue;
+		var options = svg.getElementsByClassName("option");
+		var i = 0;
+		while (i < options.length) {
+			if (options[i].style.display == "inherit") {
+				i++;
+				continue;
 			}
-			var parent = node.parentNode;
-			parent.removeChild(node);
+			var parent = options[i].parentNode;
+			parent.removeChild(options[i]);
+		}
+		var toggles = svg.getElementsByClassName("toggle");
+		i = 0;
+		while (i < toggles.length) {
+			if (toggles[i].style.display !== "none") {
+				i++;
+				continue;
+			}
+			var parent = toggles[i].parentNode;
+			parent.removeChild(toggles[i]);
 		}
 		return svg;
 	}
