@@ -156,7 +156,7 @@ function Downloader () {
 	function prepareForExport (svg) {
 		var it = document.createNodeIterator(svg, NodeFilter.SHOW_ELEMENT,
 			{ acceptNode: function (node) {
-				if (node.hasAttribute("style"))
+				if (node.hasAttribute("class"))
 					return NodeFilter.FILTER_ACCEPT;
 				return NodeFilter.FILTER_SKIP;
 			} });

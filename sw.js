@@ -1,6 +1,6 @@
 "use strict";
-const MAIN = "MCCacheVD";
-const IMGS = "GalleryVC";
+const MAIN = "MCCacheV0xB";
+const IMGS = "GalleryV0xA";
 
 self.addEventListener("install", function (event) {
 	self.skipWaiting();
