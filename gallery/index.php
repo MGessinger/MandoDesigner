@@ -73,28 +73,23 @@
 				vertical-align: sub;
 			}
 			main {
-				display: flex;
+				padding: 0 50%;
 				height: 100%;
-				align-items: baseline;
-			}
-			#secondary_left,
-			#secondary_right {
-				height: 75%;
-				opacity: 50%;
-				flex: 1 1 0;
-				overflow: hidden;
-			}
-			#primary {
-				height: 100%;
-				flex: 0 1 25%;
-				text-align: center;
+				overflow: auto hidden;
+				white-space: nowrap;
+				scroll-snap-type: x mandatory;
 			}
 			svg {
 				height: 100%;
+				opacity: 75%;
+				scroll-snap-align: center;
 				stroke: black;
 				stroke-width: 2px;
 				fill: none;
 				fill-rule: evenodd;
+			}
+			.primary {
+				opacity: 1;
 			}
 			footer {
 				position: fixed;
@@ -103,7 +98,6 @@
 				padding-bottom: 1em;
 				text-align: center;
 				font-size: x-large;
-				white-space: nowrap;
 			}
 			.toggle_sex {
 				opacity: 0;
@@ -182,9 +176,6 @@
 			<a class="return" href="../index.html"><span class="icon">&#xE90B;</span>Go Back</a>
 		</nav>
 		<main id="gallery">
-			<span id="secondary_left" style="direction:rtl"></span>
-			<span id="primary"></span>
-			<span id="secondary_right">
 			<?php
 				$files = scandir("male");
 				$count = count($files);
@@ -198,7 +189,6 @@
 					echo "</svg>";
 				}
 			?>
-			</span>
 		</main>
 		<footer>
 			<form action="../index.html" method="GET">
@@ -219,13 +209,12 @@
 	<script>
 		function ArmorGallery (isFemale) {
 			var gallery = find("gallery");
+			var svgs = gallery.children;
 			var all = gallery.getElementsByTagName("use");
-			var primary = find("primary");
-			var secondary = {
-				"left": find("secondary_left"),
-				"right": find("secondary_right")
-			};
 			var input = find("preset");
+
+			var index = 0;
+			var width = svgs[0].clientWidth;
 			var GallerySkeleton = {
 				set sex (female) {
 					var needle, replace;
@@ -243,39 +232,53 @@
 					}
 				},
 				get target () {
-					return primary.firstElementChild;
+					return gallery.getElementsByClassName("primary")[0];
 				},
 				set target (value) {
-					primary.appendChild(value);
+					var t = this.target;
+					if (t === value)
+						return;
+					else if (t) {
+						t.removeAttribute("class");
+					}
+					value.setAttribute("class", "primary");
 					var use = value.firstElementChild;
-					if (!use)
-						throw value;
-					input.value = use.getAttribute("href").slice(1);
+					input.value = use.getAttribute("href").substring(1);
+					if (!fromScroll) {
+						var pos = (this.shift + 1/2)*width;
+						gallery.scroll({left: pos, behavior: "smooth"});
+					}
 				},
 				get shift () {
-					return 0;
+					return index;
 				},
 				set shift (value) {
-					var firstLeft = secondary.left.firstElementChild;
-					var firstRight = secondary.right.firstElementChild;
-					var current = this.target;
-					if (value >= 0) {
-						if (!firstRight)
-							return;
-						if (current)
-							secondary.left.insertBefore(this.target, firstLeft);
-						this.target = firstRight;
-					} else {
-						if (!firstLeft)
-							return;
-						if (current)
-							secondary.right.insertBefore(this.target, firstRight);
-						this.target = firstLeft;
-					}
+					if (value < 0)
+						value = 0;
+					else if (value >= svgs.length)
+						value = svgs.length - 1;
+					index = value;
+					this.target = svgs[this.shift];
 				}
 			};
+			gallery.scroll(0,0);
 			GallerySkeleton.sex = isFemale;
-			GallerySkeleton.shift = 1;
+			GallerySkeleton.shift = 0;
+			var fromScroll = false;
+			gallery.addEventListener("scroll", function (event) {
+				for (var i = 0; i < svgs.length; i++) {
+					var rect = svgs[i].getBoundingClientRect();
+					if (rect.left >= window.innerWidth/2) {
+						fromScroll = true;
+						GallerySkeleton.shift = i-1;
+						fromScroll = false;
+						break;
+					}
+				}
+			});
+			window.addEventListener("resize", function () {
+				width = svgs[0].clientWidth;
+			});
 			return GallerySkeleton;
 		}
 		var female = find("female");
