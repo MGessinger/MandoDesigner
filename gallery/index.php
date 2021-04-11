@@ -20,7 +20,7 @@
 		<link rel="apple-touch-icon" sizes="180x180" href="../assets/apple-touch-icon.png" />
 		<link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon-32x32.png" />
 		<link rel="icon" type="image/png" sizes="16x16" href="../assets/favicon-16x16.png" />
-		<link rel="manifest" href="../mandocreator.manifest" />
+		<link rel="manifest" href="../mandocreator.webmanifest" />
 		<link rel="mask-icon" href="../assets/safari-pinned-tab.svg" color="#ab1f1f" />
 		<meta name="msapplication-TileColor" content="#b91d47" />
 		<meta name="theme-color" content="#ffffff" />
@@ -72,20 +72,29 @@
 				font-size: x-large;
 				vertical-align: sub;
 			}
+			main::-webkit-scrollbar {
+				display: none;
+			}
 			main {
-				padding: 0 50%;
 				height: 100%;
 				overflow: auto hidden;
 				white-space: nowrap;
+				-ms-overflow-style: none;
+				scrollbar-width: none;
 				scroll-snap-type: x mandatory;
+			}
+			main::before,
+			main::after {
+				content: "";
+				width: 50vw;
+				display: inline-block;
 			}
 			svg {
 				height: 100%;
-				opacity: 75%;
+				opacity: 30%;
 				scroll-snap-align: center;
 				stroke: black;
 				stroke-width: 2px;
-				fill: none;
 				fill-rule: evenodd;
 			}
 			.primary {
@@ -175,8 +184,7 @@
 			<img height="100%" src="../images/LogoDark.svg" alt="MandoCreator Logo"/>
 			<a class="return" href="../index.html"><span class="icon">&#xE90B;</span>Go Back</a>
 		</nav>
-		<main id="gallery">
-			<?php
+		<main id="gallery"><?php
 				$files = scandir("male");
 				$count = count($files);
 				if ($count <= 2)
@@ -188,8 +196,7 @@
 					echo "<use alt='Armor Design titled $n' title='$n' href='#gallery/male/$f' />";
 					echo "</svg>";
 				}
-			?>
-		</main>
+		?></main>
 		<footer>
 			<form action="../index.html" method="GET">
 				<input type="text" id="preset" name="preset" style="display:none" />
@@ -232,7 +239,9 @@
 					}
 				},
 				get target () {
-					return gallery.getElementsByClassName("primary")[0];
+					for (var i = 0; i < svgs.length; i++)
+						if (svgs[i].getAttribute("class") == "primary")
+							return svgs[i];
 				},
 				set target (value) {
 					var t = this.target;
@@ -244,10 +253,6 @@
 					value.setAttribute("class", "primary");
 					var use = value.firstElementChild;
 					input.value = use.getAttribute("href").substring(1);
-					if (!fromScroll) {
-						var pos = (this.shift + 1/2)*width;
-						gallery.scroll({left: pos, behavior: "smooth"});
-					}
 				},
 				get shift () {
 					return index;
@@ -258,26 +263,30 @@
 					else if (value >= svgs.length)
 						value = svgs.length - 1;
 					index = value;
-					this.target = svgs[this.shift];
+					if (fromScroll)
+						this.target = svgs[this.shift];
+					else
+						gallery.scroll( {
+							left: (this.shift + 0.5)*width,
+							behavior: "smooth"
+						});
 				}
 			};
-			gallery.scroll(0,0);
 			GallerySkeleton.sex = isFemale;
 			GallerySkeleton.shift = 0;
+
 			var fromScroll = false;
+			gallery.scroll(0,0);
 			gallery.addEventListener("scroll", function (event) {
-				for (var i = 0; i < svgs.length; i++) {
-					var rect = svgs[i].getBoundingClientRect();
-					if (rect.left >= window.innerWidth/2) {
-						fromScroll = true;
-						GallerySkeleton.shift = i-1;
-						fromScroll = false;
-						break;
-					}
-				}
+				var index = Math.round(this.scrollLeft/width-1/2);
+				fromScroll = true;
+				GallerySkeleton.shift = index;
+				fromScroll = false;
 			});
 			window.addEventListener("resize", function () {
 				width = svgs[0].clientWidth;
+				var pos = (index + 1/2)*width;
+				gallery.scroll({left: pos, behavior: "smooth"});
 			});
 			return GallerySkeleton;
 		}
