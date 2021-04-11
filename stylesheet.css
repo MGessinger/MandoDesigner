@@ -40,17 +40,14 @@
 	--translucent: rgb(128,128,128,50%);
 }
 
-label {
-	-webkit-user-select: none;
-	-moz-user-select: none;
-	-ms-user-select: none;
-	user-select: none;
-}
-
 body {
 	margin: 0;
 	color: var(--mainFont);
 	font-family: 'icomoon', 'Raleway', Verdana, sans-serif;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
 }
 
 nav {
@@ -259,7 +256,6 @@ footer {
 	margin-top: 0.5em;
 	box-sizing: border-box;
 	background: var(--translucent);
-	user-select: none;
 }
 
 .zoom_icon {

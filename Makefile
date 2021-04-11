@@ -21,7 +21,7 @@ images:
 	@mkdir images
 
 images/%_F.svg: pictures/%_F.svg | images
-	@sed "s/[[:space:]]\+class=.[^\"\']\+[\"\']//; s/_M\(_\|\b\)/_F\1/" $< > $@;
+	@sed "s/[[:space:]]\+class=.[^\"\']\+[\"\']//; s/_M\([\"_]\)/_F\1/" $< > $@;
 
 images/%.svg: pictures/%.svg | images
 	@sed "s/[[:space:]]\+class=.[^\"\']\+[\"\']//;" $< > $@;
@@ -51,7 +51,6 @@ gallery/female: $(wildcard gallery/female/*.svg)
 		/.<svg/ { s|.<svg|\n<svg|; D; }; \
 		s|(</svg>[[:space:]]*)+|</svg>|; \
 		s|>[[:space:]]+<|><|g; \
-		s/[[:space:]]*(width|height)='[[:digit:]]*'//g \
 	" $?;
 
 gallery/male: $(wildcard gallery/male/*.svg)
@@ -59,5 +58,4 @@ gallery/male: $(wildcard gallery/male/*.svg)
 		/.<svg/ { s|.<svg|\n<svg|; D; }; \
 		s|(</svg>[[:space:]]*)+|</svg>|; \
 		s|>[[:space:]]+<|><|g; \
-		s/[[:space:]]*(width|height)='[[:digit:]]*'//g \
 	" $?;

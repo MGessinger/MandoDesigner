@@ -9,7 +9,6 @@
 	z-index: 1;
 	background: var(--mainColor);
 	box-shadow: 0 0 10px 1px var(--translucent);
-	user-select: none;
 }
 
 .picker_wrapper :focus {
@@ -52,7 +51,6 @@
 	flex-direction: column;
 	justify-content: space-between;
 	align-items: center;
-	user-select: none;
 }
 
 .palette_icon {
