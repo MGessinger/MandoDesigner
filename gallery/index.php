@@ -192,8 +192,8 @@
 				for ($i = 2; $i < $count; $i++) {
 					$f = $files[$i];
 					$n = str_replace(".svg", "", $f);
-					echo "<svg viewBox='50 0 1700 3300'>";
-					echo "<use alt='Armor Design titled $n' title='$n' href='#gallery/male/$f' />";
+					echo "<svg viewBox='50 0 1700 3300' title='$n'>";
+					echo "<use alt='Armor Design titled $n' href='#gallery/male/$f' />";
 					echo "</svg>";
 				}
 		?></main>
