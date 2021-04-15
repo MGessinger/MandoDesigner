@@ -479,8 +479,10 @@ function Settings () {
 
 		var self = this; // Needed because 'this' changes scope in Promises
 		var upper = Vault.load("Upper-Armor_" + sexSuffix, function(svg) {
-			var variant = variants["Chest"] || "Classic_" + sexSuffix;
-			switchToArmorButton("UpperArmor", "Chest", find("Chest_Variant_" + variant));
+			var variant = variants["Chest"] || "Classic";
+			var button = find("Chest_Variant_" + variant);
+			if (!button) button = find("Chest_Variant_" + variant + "_" + sexSuffix);
+			switchToArmorButton("UpperArmor", "Chest", button);
 			var subgroups = ["Shoulder","Biceps","Gauntlets"];
 			for (var i = 0; i < subgroups.length; i++) {
 				self.build.Variant("UpperArmor", "Left-" + subgroups[i], sexSuffix);
@@ -601,7 +603,7 @@ function onload () {
 	nsw.onmessage = function (event) {
 		displayForm(true, 'reload');
 	};
-	nsw.register("sw.js");
+	//nsw.register("sw.js");
 }
 
 function openArmorFolder (category) {
