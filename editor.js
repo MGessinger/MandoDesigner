@@ -473,12 +473,14 @@ function Settings () {
 		zoom(scale.value);
 
 		var variant = variants["Helmet"] || "Classic";
-		var helmet = Vault.load("Helmets", function() { switchToArmorVariant("Helmet", "Helmet", variant); } );
+		var helmet = Vault.load("Helmets", function() {
+			switchToArmorButton("Helmet", "Helmet", find("Helmet_Variant_" + variant));
+		} );
 
 		var self = this; // Needed because 'this' changes scope in Promises
 		var upper = Vault.load("Upper-Armor_" + sexSuffix, function(svg) {
-			var variant = variants["Chest"] || "Classic";
-			switchToArmorVariant("UpperArmor", "Chest", variant + "_" + sexSuffix)
+			var variant = variants["Chest"] || "Classic_" + sexSuffix;
+			switchToArmorButton("UpperArmor", "Chest", find("Chest_Variant_" + variant));
 			var subgroups = ["Shoulder","Biceps","Gauntlets"];
 			for (var i = 0; i < subgroups.length; i++) {
 				self.build.Variant("UpperArmor", "Left-" + subgroups[i], sexSuffix);
