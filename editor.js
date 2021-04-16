@@ -473,7 +473,8 @@ function Settings () {
 
 		var variant = variants["Helmet"] || "Classic";
 		var helmet = Vault.load("Helmets", function() {
-			switchToArmorButton("Helmet", "Helmet", find("Helmet_Variant_" + variant));
+			var button = find("Helmet_Variant_" + variant);
+			button.click();
 		} );
 
 		var self = this; // Needed because 'this' changes scope in Promises
@@ -481,7 +482,7 @@ function Settings () {
 			var variant = variants["Chest"] || "Classic";
 			var button = find("Chest_Variant_" + variant);
 			if (!button) button = find("Chest_Variant_" + variant + "_" + sexSuffix);
-			switchToArmorButton("UpperArmor", "Chest", button);
+			button.click();
 			var subgroups = ["Shoulder","Biceps","Gauntlets"];
 			for (var i = 0; i < subgroups.length; i++) {
 				self.build.Variant("UpperArmor", "Left-" + subgroups[i], sexSuffix);
@@ -602,7 +603,7 @@ function onload () {
 	nsw.onmessage = function (event) {
 		displayForm(true, 'reload');
 	};
-	//nsw.register("sw.js");
+	nsw.register("sw.js");
 }
 
 function openArmorFolder (category) {
@@ -641,6 +642,9 @@ function switchToArmorButton (category, pieceName, button) {
 		return;
 	var parent = setVariantButton(category, button);
 	hideSponsors(parent);
+	if (callback)
+		callback();
+	callback = null;
 
 	unsavedChanges = true;
 	switchToArmorVariant(category, pieceName, name);
@@ -658,6 +662,7 @@ function switchToArmorVariant (category, pieceName, variantName) {
 	variants[pieceName] = neutralize(variantName);
 }
 
+var callback = null;
 function hideSponsors (parent) {
 	var logos = parent.getElementsByClassName("sponsor_link");
 	for (var i = 0; i < logos.length; i++)
@@ -669,18 +674,19 @@ function hideSponsors (parent) {
 }
 
 function setSponsor (sponsor, href) {
-	var link = find(sponsor);
-	link.setAttribute("href", href);
-	var img = link.getElementsByTagName("img")[0];
-	if (!img.hasAttribute("src"))
-		img.setAttribute("src", "assets/" + sponsor + ".png");
-
-	var parent = link.parentNode;
-	var close = parent.getElementsByTagName("button")[0];
-	setTimeout(function() {
+	callback = function () {
+		var link = find(sponsor);
+		link.setAttribute("href", href);
 		link.style.removeProperty("display");
+
+		var img = link.getElementsByTagName("img")[0];
+		if (!img.hasAttribute("src"))
+			img.setAttribute("src", "assets/" + sponsor + ".png");
+
+		var parent = link.parentNode;
+		var close = parent.getElementsByTagName("button")[0];
 		close.style.removeProperty("display");
-	}, 500);
+	}
 }
 
 function displayForm (visible, form) {
