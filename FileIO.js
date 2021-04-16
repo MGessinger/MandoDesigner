@@ -57,7 +57,10 @@ function Uploader (queryString) {
 			} else if (cls == "option") {
 				var parent = node.parentNode;
 				var parName = neutralize(parent.id) + "_Option";
-				variants[parName] = neutral;
+				if (parName.includes("Earcap"))
+					variants[neutral] = true;
+				else
+					variants[parName] = neutral;
 			} else if (id.includes("Current")) {
 				var cat = id.replace("_Current", "");
 				variants[cat] = neutralize(cls);
@@ -86,13 +89,16 @@ function Uploader (queryString) {
 			S.set.Sex(false, true);
 		}
 
+		var logo = svg.getElementById("titleDark");
+		S.set.DarkMode(logo);
 		Download.Background = img.getAttribute("href");
 	}
 
 	var reader = new FileReader();
 	reader.onload = dissectSVG;
-	find("reupload").addEventListener("input", function() {
+	find("reupload").addEventListener("change", function() {
 		reader.readAsText(this.files[0]);
+		this.value = "";
 	});
 
 	function readQueryString (st) {

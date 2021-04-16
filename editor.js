@@ -264,8 +264,6 @@ function Settings () {
 		},
 		Checkbox: function (addons, category, parent) {
 			var checkboxes = DOMNode("div", {class: "checkbox_list hidden"}, parent);
-			var par = addons[0].parentNode;
-			var parName = neutralize(par.id) + "_Option";
 			for (var i = addons.length - 1; i >= 0; i--) {
 				var fullName = addons[i].id;
 				var name = prettify(fullName);
@@ -279,7 +277,7 @@ function Settings () {
 
 				var san = listName(fullName);
 				var col = DOMNode("div", {id: san + "SubColors"}, parent);
-				if (variants[parName] == neutral) {
+				if (variants[neutral]) {
 					addons[i].style.display = "inherit";
 					checkbox.checked = true;
 				} else {
@@ -287,7 +285,7 @@ function Settings () {
 					col.style.display = "none";
 				}
 				this.All(addons[i], category, col);
-				checkbox.addEventListener("change", S.toggle.Sublist(col, addons[i], parName));
+				checkbox.addEventListener("change", S.toggle.Sublist(col, addons[i], neutral));
 			}
 		},
 		All: function (SVGNode, category, parent) {
@@ -317,7 +315,7 @@ function Settings () {
 			}
 			var SVGName = neutralize(SVGNode.id) + "_Option";
 			if (options.length > 0) {
-				if (/Earcap/.test(SVGName))
+				if (SVGName.includes("Earcap"))
 					this.Checkbox(options, category, parent);
 				else
 					this.Dropdown(options, category, parent, SVGName);
@@ -349,17 +347,17 @@ function Settings () {
 					variants[varName] = this.checked;
 			}
 		},
-		Sublist: function (sublist, SVGNode, parName) {
-			var neutral = neutralize(SVGNode.id);
+		Sublist: function (sublist, SVGNode, neutral) {
 			return function () {
 				if (this.checked) {
 					sublist.style.removeProperty("display");
 					SVGNode.style.display = "inherit";
+					variants[neutral] = true;
 				} else {
 					sublist.style.display = "none";
 					SVGNode.style.display = "none";
+					delete variants[neutral];
 				}
-				variants[parName] = neutral;
 			}
 		},
 		Options: function () {
@@ -471,6 +469,7 @@ function Settings () {
 			editor.appendChild(svg);
 		var scale = find("zoom");
 		zoom(scale.value);
+		svg.scrollIntoView({inline: "center"});
 
 		var variant = variants["Helmet"] || "Classic";
 		var helmet = Vault.load("Helmets", function() {
@@ -560,7 +559,7 @@ function setupWindow () {
 	});
 
 	var main = find("editor");
-	var mv = { dragged: false, drag: false};
+	var mv = { dragged: false, drag: false };
 	main.addEventListener("mousedown", function (event) {
 		if (event.buttons !== 1)
 			return;
