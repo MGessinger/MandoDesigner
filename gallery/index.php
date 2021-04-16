@@ -61,6 +61,7 @@
 			nav {
 				position: absolute;
 				height: 4em;
+				z-index: 1;
 			}
 			.return {
 				display: block;
