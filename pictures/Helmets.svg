@@ -2779,10 +2779,7 @@
 </g>
 <g id="Helmet_Neo">
 	<g id="Mask-Of-Mandalor_Neo">
-		<g>
-			<g id="Mask_Neo_ToggleOff">
-			</g>
-		</g>
+		<g id="Mask_Neo_ToggleOff"> </g>
 	</g>
 	<g id="Helmet_Pieces_Neo">
 		<path id="Main_Neo" class="st0" d="M73.9,733.6l-14.7-40.9c0,0,97.3-27.3,123.6-179c4-23.3,13.3-186.6,13.3-223.2
