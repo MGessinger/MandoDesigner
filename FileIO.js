@@ -1,23 +1,20 @@
 "use strict";
 
 function Uploader (queryString) {
+	var readerBck = new FileReader;
+	var file;
+	readerBck.onload = function() {
+		Download.Background = {type: file.type, data: this.result};
+		file = null;
+	}
 	find("background_upload").addEventListener("change", function() {
-		var files = this.files;
-		if (files.length == 0)
-			return;
+		file = this.files[0];
+		if (!file) return;
 
-		var reader = new FileReader();
-		if (files[0].type.includes("svg")) {
-			reader.onload = function () {
-				Download.Background = "data:image/svg+xml," + encodeSVG(this.result);
-			}
-			reader.readAsText(files[0]);
-		} else {
-			reader.onload = function() {
-				Download.Background = this.result;
-			}
-			reader.readAsDataURL(files[0]);
-		}
+		if (file.type.includes("svg"))
+			readerBck.readAsText(file);
+		else
+			readerBck.readAsDataURL(file);
 
 		var reset = find("reset_wrapper");
 		reset.style.display = "";
@@ -94,10 +91,10 @@ function Uploader (queryString) {
 		Download.Background = img.getAttribute("href");
 	}
 
-	var reader = new FileReader();
-	reader.onload = dissectSVG;
+	var readerMando = new FileReader();
+	readerMando.onload = dissectSVG;
 	find("reupload").addEventListener("change", function() {
-		reader.readAsText(this.files[0]);
+		readerMando.readAsText(this.files[0]);
 		this.value = "";
 	});
 
@@ -149,7 +146,6 @@ function Uploader (queryString) {
 	}
 	return parseMando;
 }
-var Upload = new Uploader(window.location.search);
 
 function Downloader () {
 	var editor = find("editor");
@@ -157,8 +153,7 @@ function Downloader () {
 	var img = new Image();
 	var canvas = find("canvas");
 	var canvasCtx = canvas.getContext('2d');
-	var logoSVG, bckImgURI;
-
+	var logoSVG, bckImgURI, bckSVG;
 
 	function prepareForExport (svg) {
 		var options = svg.getElementsByClassName("option");
@@ -186,7 +181,7 @@ function Downloader () {
 
 	function encodeSVG (svg) {
 		var san = svg.replace(/\s+/g," ").replace(/"/g,"'");
-		return encodeURIComponent(san);
+		return san;
 	}
 
 	function SVGFromEditor () {
@@ -201,7 +196,7 @@ function Downloader () {
 		var copy = svg.cloneNode(true);
 		prepareForExport(copy);
 		var str = xml.serializeToString(copy);
-		var svg64 = btoa(unescape(encodeSVG(str)));
+		var svg64 = btoa(encodeSVG(str));
 		var b64start = 'data:image/svg+xml;base64,';
 		var image64 = b64start + svg64;
 		return image64;
@@ -210,6 +205,7 @@ function Downloader () {
 	function prepareCanvas (href) {
 		canvasCtx.clearRect(0, 0, canvas.width, canvas.height);
 		img.onload = function () {
+			console.log("Background");
 			/* Background Image */
 			canvas.width = this.width;
 			canvas.height = this.height;
@@ -219,84 +215,99 @@ function Downloader () {
 			img.onload = function () {
 				canvasCtx.drawImage(this, 0, 0);
 			};
-			img.src = svg2img(logoSVG, canvas.width,canvas.height*0.07);
+			img.src = svg2img(logoSVG, canvas.width, Math.round(canvas.height*0.07));
 		};
 		img.src = href;
 	}
 
-	function setAttributes (obj, atts) {
+	function SVGNode (type, atts) {
+		var node = document.createElementNS("http://www.w3.org/2000/svg", "svg");
 		for (var a in atts)
-			obj.setAttribute(a, atts[a]);
+			node.setAttribute(a, atts[a]);
+		return node;
 	}
 
 	return {
 		set Logo (svg) {
 			logoSVG = svg;
 		},
-		set Background (href) {
+		set Background (bck) {
+			var href;
+			switch (bck.type) {
+				case "image/svg+xml":
+					var URI = encodeSVG(bck.data);
+					href = "data:image/svg+xml," + encodeURIComponent(URI);
+					bckSVG = bck.data;
+					break;
+				default:
+					href = bck.data;
+					bckSVG = null;
+			}
 			prepareCanvas(href);
-			editor.style.backgroundImage = "url(" + href + ")";
+			editor.style.backgroundImage = "url(\"" + href + "\")";
 		},
 		get Background () {
-			var svgMain = document.createElementNS("http://www.w3.org/2000/svg", "svg");
-			setAttributes(svgMain, {
+			var image;
+			var svgMain = SVGNode("svg", {
 				"version": "1.1",
 				"width": canvas.width,
 				"height": canvas.height,
 				"viewBox": [0, 0, canvas.width, canvas.height].join(" ")
 			});
-			var image = document.createElementNS("http://www.w3.org/2000/svg", "image");
-			setAttributes(image, {
-				"width": "100%",
-				"height": "100%",
-				"href": bckImgURI
-			});
-			svgMain.appendChild(image);
+			if (bckSVG) {
+				svgMain.innerHTML = bckSVG;
+			} else {
+				image = SVGNode("image", {
+					"width": "100%",
+					"height": "100%",
+					"href": bckImgURI
+				});
+				svgMain.appendChild(image);
+			}
 			return svgMain;
 		},
 		attach: function (a, type) {
-			var self = this;
-			if (type === "svg") {
-				a.onclick = function () {
+			var blobURL;
+			var isSetUp = false;
+			a.addEventListener("click", function() {
+				setTimeout(function() {
+					URL.revokeObjectURL(blobURL)
+					a.setAttribute("href", "#");
+					isSetUp = false;
+					unsavedChanges = false;
+				}, 1000);
+			});
+			a.setAttribute("type", type);
+			if (type === "image/svg+xml") {
+				var self = this;
+				a.addEventListener("click", function () {
 					var bck = self.Background;
 					var logo = logoSVG.cloneNode(true);
 					bck.appendChild(logo);
 					bck.appendChild(SVGFromEditor());
 					var str = xml.serializeToString(bck);
 					var document = "<?xml version='1.0' encoding='UTF-8'?>" + str;
-					var URI = 'data:image/svg+xml;charset=UTF-8,' + encodeSVG(document);
-					this.setAttribute("href", URI);
-					setTimeout(function() {
-						a.setAttribute("href", "#");
-						unsavedChanges = false;
-					}, 1000);
-				};
+					blobURL = URL.createObjectURL(new Blob([encodeSVG(document)]));
+					this.setAttribute("href", blobURL);
+				});
 			} else {
-				var isSetUp = false;
-				a.onclick = function (event) {
+				a.addEventListener("click", function (event) {
 					if (isSetUp) {
-						setTimeout(function() {
-							a.setAttribute("href", "#");
-							isSetUp = false;
-							unsavedChanges = false;
-						}, 5000);
 						prepareCanvas(bckImgURI);
-						return;
+						return true;
 					}
 					event.preventDefault();
 					img.onload = function () {
 						canvasCtx.drawImage(this, 0, 0);
-						var imgData = canvas.toDataURL('image/jpeg');
+						var imgData = canvas.toDataURL(type);
+						blobURL = URL.createObjectURL(new Blob([imgData]));
 						a.setAttribute("href", imgData);
 						isSetUp = true;
 						a.click();
 					}
 					img.src = svg2img(SVGFromEditor(), canvas.width, canvas.height);
-				}
+				});
 			}
 		}
-	};
+	}
 }
-var Download = new Downloader();
-Download.attach(find("download_svg"), "svg");
-Download.attach(find("download_jpeg"), "jpeg");

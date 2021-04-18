@@ -1,6 +1,6 @@
 "use strict";
-const MAIN = "MCCacheV0x10";
-const IMGS = "GalleryV0xF";
+const MAIN = "MCCacheV2";
+const IMGS = "GalleryV1";
 
 self.addEventListener("install", function (event) {
 	self.skipWaiting();
@@ -9,6 +9,7 @@ self.addEventListener("install", function (event) {
 		.then(c => c.addAll( [
 			'index.html',
 			'editor.js',
+			"FileIO.js",
 			"color.js",
 			"stylesheet.css",
 			"color.css"

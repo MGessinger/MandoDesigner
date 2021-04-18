@@ -13,7 +13,7 @@ function resetSettings () {
 resetSettings();
 
 var showPicker = true;
-var Picker = new function() {
+function PickerFactory () {
 	var latestChange = {};
 	var changes = [];
 	var redos = [];
@@ -354,4 +354,4 @@ var Picker = new function() {
 		}
 		showPicker = true;
 	}
-}()
+}

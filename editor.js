@@ -2,6 +2,7 @@
 "use strict";
 var variants = {};
 var unsavedChanges = false;
+var Picker, Download, Upload;
 
 function find (st) {
 	return document.getElementById(st);
@@ -400,7 +401,7 @@ function Settings () {
 			}
 			Vault.load(bckName, function(logo) {
 				Download.Logo = logo;
-				Download.Background = href;
+				Download.Background = {type: "image/jpg", data: href};;
 			});
 			document.body.className = className;
 			var use = find("title");
@@ -596,6 +597,11 @@ function onload () {
 	find("color_scheme_picker").checked = useDarkMode;
 	find("kote").volume = 0.15;
 
+	Download = new Downloader;
+	Download.attach(find("download_svg"), "image/svg+xml");
+	Download.attach(find("download_jpeg"), "image/jpeg");
+	Picker = new PickerFactory;
+	Upload = new Uploader(window.location.search);
 	setupWindow();
 	var nsw = navigator.serviceWorker;
 	if (!nsw)
