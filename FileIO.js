@@ -1,10 +1,10 @@
 "use strict";
 
-function Uploader (queryString) {
+function Uploader (queryString, D) {
 	var readerBck = new FileReader;
 	var file;
 	readerBck.onload = function() {
-		Download.Background = {type: file.type, data: this.result};
+		D.Background = {type: file.type, data: this.result};
 		file = null;
 	}
 	find("background_upload").addEventListener("change", function() {
@@ -88,7 +88,7 @@ function Uploader (queryString) {
 
 		var logo = svg.getElementById("titleDark");
 		S.set.DarkMode(logo);
-		Download.Background = img.getAttribute("href");
+		D.Background = img.getAttribute("href");
 	}
 
 	var readerMando = new FileReader();
@@ -118,7 +118,7 @@ function Uploader (queryString) {
 				return S.set.Sex(female, false);
 			var svg = xml.documentElement;
 			find("female").checked = female;
-			Upload(svg);
+			parseMando(svg);
 			S.set.Sex(female, true);
 		};
 		xhr.onerror = function () {
@@ -191,8 +191,8 @@ function Downloader () {
 	}
 
 	function svg2img(svg, width, height) {
-		svg.setAttribute("width", width);
-		svg.setAttribute("height", height);
+		svg.setAttribute("width", width || 1000);
+		svg.setAttribute("height", height || 700);
 		var copy = svg.cloneNode(true);
 		prepareForExport(copy);
 		var str = xml.serializeToString(copy);
@@ -205,12 +205,14 @@ function Downloader () {
 	function prepareCanvas (href) {
 		canvasCtx.clearRect(0, 0, canvas.width, canvas.height);
 		img.onload = function () {
-			console.log("Background");
 			/* Background Image */
 			canvas.width = this.width;
 			canvas.height = this.height;
 			canvasCtx.drawImage(this, 0, 0);
-			bckImgURI = canvas.toDataURL('image/jpeg');
+			if (!href.startsWith("data"))
+				bckImgURI = canvas.toDataURL('image/jpeg');
+			else
+				bckImgURI = href
 			/* Logo */
 			img.onload = function () {
 				canvasCtx.drawImage(this, 0, 0);
@@ -221,7 +223,7 @@ function Downloader () {
 	}
 
 	function SVGNode (type, atts) {
-		var node = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+		var node = document.createElementNS("http://www.w3.org/2000/svg", type);
 		for (var a in atts)
 			node.setAttribute(a, atts[a]);
 		return node;

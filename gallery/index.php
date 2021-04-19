@@ -60,7 +60,8 @@
 			}
 			nav {
 				position: absolute;
-				height: 4em;
+				width: 20em;
+				max-width: 100%;
 				z-index: 1;
 			}
 			.return {
@@ -182,7 +183,7 @@
 	</script>
 	<body onload="loadSW()">
 		<nav>
-			<img height="100%" src="../images/LogoDark.svg" alt="MandoCreator Logo"/>
+			<img width="100%" src="../images/LogoDark.svg" alt="MandoCreator Logo"/>
 			<a class="return" href="../index.html"><span class="icon">&#xE90B;</span>Go Back</a>
 		</nav>
 		<main id="gallery"><?php

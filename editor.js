@@ -601,7 +601,7 @@ function onload () {
 	Download.attach(find("download_svg"), "image/svg+xml");
 	Download.attach(find("download_jpeg"), "image/jpeg");
 	Picker = new PickerFactory;
-	Upload = new Uploader(window.location.search);
+	Upload = new Uploader(window.location.search, Download);
 	setupWindow();
 	var nsw = navigator.serviceWorker;
 	if (!nsw)

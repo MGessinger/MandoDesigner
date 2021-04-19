@@ -1,5 +1,5 @@
 "use strict";
-const MAIN = "MCCacheV2";
+const MAIN = "MCCacheV3";
 const IMGS = "GalleryV1";
 
 self.addEventListener("install", function (event) {
