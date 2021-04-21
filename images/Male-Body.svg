@@ -369,10 +369,6 @@
 	<g id="Chest_Current"></g>
 	<g id="Collar_Current"></g>
 	<g id="ChestAttachments_Current"></g>
-	<g id="Shoulders_Current">
-		<g id="LeftShoulder_Current"></g>
-		<g id="RightShoulder_Current"></g>
-	</g>
 	<g id="Gauntlets_Current">
 		<g id="LeftGauntlets_Current"></g>
 		<g id="RightGauntlets_Current"></g>
@@ -443,5 +439,10 @@
 <g id="Helmet_M_Wrapper" transform="translate(550,35)">
 	<title>Helmet (Buy'ce)</title>
 	<g id="Helmet_Current"></g>
+</g>
+<g id="Shoulders_Current" transform="translate(199,588)">
+	<title>Upper Body</title>
+	<g id="LeftShoulder_Current"></g>
+	<g id="RightShoulder_Current"></g>
 </g>
 </svg>
