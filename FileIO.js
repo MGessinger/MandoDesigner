@@ -11,7 +11,7 @@ function Uploader (queryString, D) {
 		file = this.files[0];
 		if (!file) return;
 
-		if (file.type.includes("svg"))
+		if (file.type == "image/svg+xml")
 			readerBck.readAsText(file);
 		else
 			readerBck.readAsDataURL(file);
@@ -71,11 +71,9 @@ function Uploader (queryString, D) {
 		svg = svg.firstElementChild;
 
 		var mando = svg.lastElementChild;
-		var img = svg.getElementsByTagName("image")[0];
-		if (!mando || !img)
-			return;
-		parseMando(mando);
+		var img = svg.firstElementChild;
 
+		parseMando(mando);
 		if (mando.id === "Female-Body") {
 			var sex_radio = find("female");
 			sex_radio.checked = true;
@@ -88,7 +86,13 @@ function Uploader (queryString, D) {
 
 		var logo = svg.getElementById("titleDark");
 		S.set.DarkMode(logo);
-		D.Background = img.getAttribute("href");
+		if (img.tagName.toLowerCase() === "svg") {
+			D.Background = { type: "image/svg+xml", data: img.outerHTML };
+		} else {
+			var href = img.getAttribute("href");
+			var type = href.match(/^(?<=data:)image\/\w+/)
+			D.Background = { type: type, data: href };
+		}
 	}
 
 	var readerMando = new FileReader();
@@ -196,9 +200,8 @@ function Downloader () {
 		var copy = svg.cloneNode(true);
 		prepareForExport(copy);
 		var str = xml.serializeToString(copy);
-		var svg64 = btoa(encodeSVG(str));
-		var b64start = 'data:image/svg+xml;base64,';
-		var image64 = b64start + svg64;
+		var svgEnc = encodeSVG(str);
+		var image64 = 'data:image/svg+xml,' + svgEnc;
 		return image64;
 	}
 
@@ -237,8 +240,7 @@ function Downloader () {
 			var href;
 			switch (bck.type) {
 				case "image/svg+xml":
-					var URI = encodeSVG(bck.data);
-					href = "data:image/svg+xml," + encodeURIComponent(URI);
+					href = "data:image/svg+xml," + encodeSVG(bck.data);
 					bckSVG = bck.data;
 					break;
 				default:

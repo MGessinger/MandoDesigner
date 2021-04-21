@@ -55,7 +55,7 @@ function PickerFactory () {
 		function hexToHsv(hex) {
 			var shorthandRegex = /^#([a-f\d])([a-f\d])([a-f\d])$/i;
 			_hex = hex = hex.replace(shorthandRegex, "#$1$1$2$2$3$3");
-			var result = /^#([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+			var result = hex.match( /^#([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i )
 			if (!result)
 				return undefined;
 			var y = result.slice(1).map(function(r) {return parseInt(r,16)/255;});
