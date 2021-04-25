@@ -415,6 +415,7 @@ footer {
 
 .type_button {
 	width: 30%;
+	position: relative;
 	margin-left: 3%;
 	margin-bottom: 1em;
 	background: none;
@@ -423,6 +424,16 @@ footer {
 
 .current_variant {
 	color: var(--accent);
+}
+
+.new:before {
+	content: "New";
+	position: absolute;
+	background: var(--accent);
+	color: var(--highlight);
+	right: 0;
+	transform: rotateZ(15deg);
+	padding: 0 0.25em 0.25em 0.25em;
 }
 
 .preview_icon {

@@ -25,8 +25,6 @@ function SVGVault (vault) {
 	}
 
 	this.query = function (st) {
-		if (!st)
-			return;
 		var ch = vault.children;
 		for (var i = 0; i < ch.length; i++) {
 			var svg = ch[i];
@@ -38,8 +36,6 @@ function SVGVault (vault) {
 		}
 	}
 	this.load = function (name, onload) {
-		if (!name)
-			return;
 		var local = this.query(name);
 		if (local) {
 			var copy = local.cloneNode(true);
@@ -96,11 +92,9 @@ function Settings () {
 	}
 
 	function listName (str) {
-		if (!str)
-			return "";
-		var clean = str.replace(/\W/g,"");
-		var components = clean.split("_");
-		return components[0];
+		var component = str.split("_", 1)[0];
+		var clean = component.replace(/\W/g,"");
+		return clean;
 	}
 
 	function prepareParent (SVGNode, parent) {
@@ -163,8 +157,6 @@ function Settings () {
 
 	this.build = {
 		IO: function (SVGNode, category, parent) {
-			if (!SVGNode.id)
-				return;
 			var p = ColorPicker(SVGNode, parent);
 			var redirectToPicker = redirectClickTo(p);
 
@@ -290,12 +282,10 @@ function Settings () {
 			}
 		},
 		All: function (SVGNode, category, parent) {
-			if (!SVGNode)
-				return;
 			parent = prepareParent(SVGNode, parent);
 			var ch = SVGNode.children;
 			for (var i = 0; i < ch.length; i++) {
-				if (!ch[i].id && ch[i].tagName !== "title")
+				if (!ch[i].id)
 					return this.IO(SVGNode, category, parent);
 			}
 			if (!ch.length) {
@@ -305,6 +295,11 @@ function Settings () {
 			}
 			var options = [];
 			var toggle = [];
+			var realParent = null;
+			if (document.contains(parent)) { /* Stay away from the DOM! */
+				realParent = parent;
+				parent = document.createDocumentFragment();
+			}
 			for (var i = ch.length-1; i >= 0; i--) {
 				var className = ch[i].getAttribute("class");
 				if (className == "option")
@@ -324,6 +319,8 @@ function Settings () {
 			/* defer toggles to the very last */
 			for (var i = 0; i < toggle.length; i++)
 				this.All(toggle[i], category, parent);
+			if (realParent)
+				realParent.appendChild(parent);
 		}
 	}
 	this.toggle = {
@@ -522,22 +519,16 @@ function Settings () {
 var S = new Settings();
 
 function prettify (str) {
-	if (!str)
-		return "";
 	var components = str.split("_");
 	var shortName = components[0];
 	return shortName.replace(/-/g, " ");
 }
 
 function neutralize (str) {
-	if (!str)
-		return "";
 	return str.replace(/(_(M|F|Toggle(Off)?|Option))+($|_)/,"$4");
 }
 
 function buttonName (str) {
-	if (!str)
-		return "";
 	var clean = str.replace(/\W/g,"");
 	return neutralize(clean);
 }
@@ -546,9 +537,6 @@ function setupWindow () {
 	if (window.innerWidth < 786) {
 		var settings = find("settings");
 		settings.classList.add("settings_collapsed");
-		var types = settings.getElementsByClassName("armor_types");
-		for (var i = 0; i < types.length; i++)
-			types[i].style.height = "12em";
 	}
 
 	window.addEventListener("beforeunload", function (event) {
@@ -644,8 +632,6 @@ function setVariantButton (category, button) {
 
 function switchToArmorButton (category, pieceName, button) {
 	var name = button.dataset.name;
-	if (!name)
-		return;
 	var parent = setVariantButton(category, button);
 	hideSponsors(parent);
 	if (callback)
