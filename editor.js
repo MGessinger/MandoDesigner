@@ -165,19 +165,14 @@ function Settings () {
 			if (radio.checked)
 				redirectToRadio();
 
-			var folder = find(category + "Options");
-			var folder_content = folder.getElementsByClassName("folder_content")[0];
-			var slides = folder.getElementsByClassName("slide");
 			SVGNode.addEventListener("click", function(event) {
 				if (event.defaultPrevented)
 					return;
 				redirectToRadio();
-				for (var i = 0; i < slides.length; i++) {
-					if (slides[i].contains(p)) {
-						var but = slides[i].firstElementChild;
-						redirectClickTo(but)();
-					}
-				}
+				while (p.getAttribute("class") !== "slide")
+					p = p.parentElement;
+				var but = p.firstElementChild;
+				redirectClickTo(but)();
 				redirectToPicker();
 			});
 		},
@@ -385,7 +380,7 @@ function Settings () {
 			Vault.load(body, function (svg) { S.setup(svg, sexSuffix, upload); });
 			localStorage.setItem("female_sex", female.toString());
 		},
-		DarkMode: function (darkMode) {
+		DarkMode: function (darkMode, keepBck) {
 			var className = "light_mode";
 			var bckName = "LogoLight";
 			var logoName = "#titleLight";
@@ -398,13 +393,15 @@ function Settings () {
 			}
 			Vault.load(bckName, function(logo) {
 				Download.Logo = logo;
-				Download.Background = {type: "image/jpg", data: href};;
+				if (!keepBck) {
+					Download.Background = {type: "image/jpg", data: href};
+					var reset = find("reset_wrapper");
+					reset.style.display = "none";
+				}
 			});
 			document.body.className = className;
 			var use = find("title");
 			use.setAttribute("href", logoName);
-			var reset = find("reset_wrapper");
-			reset.style.display = "none";
 			localStorage.setItem("dark_mode", darkMode.toString());
 		}
 	}
@@ -519,7 +516,7 @@ function Settings () {
 var S = new Settings();
 
 function prettify (str) {
-	var components = str.split("_");
+	var components = str.split("_", 1);
 	var shortName = components[0];
 	return shortName.replace(/-/g, " ");
 }
@@ -534,9 +531,9 @@ function buttonName (str) {
 }
 
 function setupWindow () {
-	if (window.innerWidth < 786) {
+	if (window.innerWidth > 786) {
 		var settings = find("settings");
-		settings.classList.add("settings_collapsed");
+		settings.classList.remove("settings_collapsed");
 	}
 
 	window.addEventListener("beforeunload", function (event) {

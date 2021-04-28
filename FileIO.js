@@ -85,7 +85,7 @@ function Uploader (queryString, D) {
 		}
 
 		var logo = svg.getElementById("titleDark");
-		S.set.DarkMode(logo);
+		S.set.DarkMode(logo, true);
 		if (img.tagName.toLowerCase() === "svg") {
 			D.Background = { type: "image/svg+xml", data: img.outerHTML };
 		} else {
@@ -198,10 +198,9 @@ function Downloader () {
 		svg.setAttribute("width", width || 1000);
 		svg.setAttribute("height", height || 700);
 		var copy = svg.cloneNode(true);
-		prepareForExport(copy);
 		var str = xml.serializeToString(copy);
 		var svgEnc = encodeSVG(str);
-		var image64 = 'data:image/svg+xml,' + svgEnc;
+		var image64 = 'data:image/svg+xml,' + encodeURIComponent(svgEnc);
 		return image64;
 	}
 
@@ -268,26 +267,26 @@ function Downloader () {
 				});
 				svgMain.appendChild(image);
 			}
+			var logo = logoSVG.cloneNode(true);
+			svgMain.appendChild(logo);
 			return svgMain;
 		},
 		attach: function (a, type) {
 			var blobURL;
 			var isSetUp = false;
 			a.addEventListener("click", function() {
+				if (!isSetUp) return;
 				setTimeout(function() {
 					URL.revokeObjectURL(blobURL)
-					a.setAttribute("href", "#");
 					isSetUp = false;
 					unsavedChanges = false;
-				}, 1000);
+				}, 500);
 			});
 			a.setAttribute("type", type);
 			if (type === "image/svg+xml") {
 				var self = this;
 				a.addEventListener("click", function () {
 					var bck = self.Background;
-					var logo = logoSVG.cloneNode(true);
-					bck.appendChild(logo);
 					bck.appendChild(SVGFromEditor());
 					var str = xml.serializeToString(bck);
 					var document = "<?xml version='1.0' encoding='UTF-8'?>" + str;
@@ -303,11 +302,12 @@ function Downloader () {
 					event.preventDefault();
 					img.onload = function () {
 						canvasCtx.drawImage(this, 0, 0);
-						var imgData = canvas.toDataURL(type);
-						blobURL = URL.createObjectURL(new Blob([imgData]));
-						a.setAttribute("href", imgData);
-						isSetUp = true;
-						a.click();
+						canvas.toBlob(function (blob) {
+							blobURL = URL.createObjectURL(blob);
+							a.setAttribute("href", blobURL);
+							isSetUp = true;
+							a.click();
+						}, "image/jpeg");
 					}
 					img.src = svg2img(SVGFromEditor(), canvas.width, canvas.height);
 				});
