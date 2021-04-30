@@ -1,5 +1,19 @@
 "use strict";
 
+var settings;
+function resetSettings (cached) {
+	var cache = localStorage.getItem("settings");
+	if (cached && cache)
+		return JSON.parse(cache);
+	return {
+		undefined: "#FFFFFF",
+		"Bucket_BudgetBucketColor":	"#F74416",
+		"Visor_BudgetBucketColor":	"#000000",
+		"Rage_Gauntlet_RightColor":	"#08CB33",
+		"Rage_Gauntlet_LeftColor":	"#08CB33"
+	};
+}
+
 function Uploader (queryString, D) {
 	var readerBck = new FileReader;
 	var file;
@@ -23,7 +37,7 @@ function Uploader (queryString, D) {
 
 	function parseMando (svg) {
 		variants = {};
-		resetSettings();
+		settings = resetSettings(false);
 
 		var iter = document.createNodeIterator (
 			svg,

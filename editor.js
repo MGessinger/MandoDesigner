@@ -532,18 +532,27 @@ function buttonName (str) {
 
 function setupWindow () {
 	if (window.innerWidth > 786) {
-		var settings = find("settings");
-		settings.classList.remove("settings_collapsed");
+		var settings_menu = find("settings");
+		settings_menu.classList.remove("settings_collapsed");
 	}
 
-	window.addEventListener("beforeunload", function (event) {
-		if (!unsavedChanges)
-			return;
-		var message = "You should save your work. Do or do not, there is not try!";
-		event.preventDefault();
-		event.returnValue = message;
-		return message;
-	});
+	function cache () {
+		localStorage.setItem("settings", JSON.stringify(settings));
+		localStorage.setItem("variants", JSON.stringify(variants));
+	}
+
+	window.addEventListener("pagehide", cache);
+	document.addEventListener("visibilitychange", function() {
+		switch (document.visibilityState) {
+			case "hidden":
+				cache();
+				break;
+			default:
+				variants = JSON.parse(localStorage.getItem("variants")) || {};
+				settings = resetSettings(true);
+				break;
+		} 
+	})
 
 	var main = find("editor");
 	var mv = { dragged: false, drag: false };
@@ -582,6 +591,9 @@ function onload () {
 	find("color_scheme_picker").checked = useDarkMode;
 	find("kote").volume = 0.15;
 
+	variants = JSON.parse(localStorage.getItem("variants")) || {};
+	settings = resetSettings(true);
+
 	Download = new Downloader;
 	Download.attach(find("download_svg"), "image/svg+xml");
 	Download.attach(find("download_jpeg"), "image/jpeg");
@@ -594,7 +606,7 @@ function onload () {
 	nsw.onmessage = function (event) {
 		displayForm(true, 'reload');
 	};
-	nsw.register("sw.js");
+	//nsw.register("sw.js");
 }
 
 function openArmorFolder (category) {

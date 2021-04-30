@@ -1,17 +1,5 @@
 'use strict';
 
-var settings;
-function resetSettings () {
-	settings = {
-		undefined: "#FFFFFF",
-		"Bucket_BudgetBucketColor":	"#F74416",
-		"Visor_BudgetBucketColor":	"#000000",
-		"Rage_Gauntlet_RightColor":	"#08CB33",
-		"Rage_Gauntlet_LeftColor":	"#08CB33"
-	};
-}
-resetSettings();
-
 var showPicker = true;
 function PickerFactory () {
 	var latestChange = {};
