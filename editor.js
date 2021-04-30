@@ -169,10 +169,12 @@ function Settings () {
 				if (event.defaultPrevented)
 					return;
 				redirectToRadio();
-				while (p.getAttribute("class") !== "slide")
+				while (p && p.getAttribute("class") !== "slide")
 					p = p.parentElement;
-				var but = p.firstElementChild;
-				redirectClickTo(but)();
+				if (p) {
+					var but = p.firstElementChild;
+					redirectClickTo(but)();
+				}
 				redirectToPicker();
 			});
 		},
@@ -606,7 +608,7 @@ function onload () {
 	nsw.onmessage = function (event) {
 		displayForm(true, 'reload');
 	};
-	//nsw.register("sw.js");
+	nsw.register("sw.js");
 }
 
 function openArmorFolder (category) {
@@ -718,4 +720,13 @@ function showRoll (type) {
 function playKote () {
 	var kote = find("kote");
 	kote.setAttribute("src", "assets/KOTE.mp3");
+}
+
+function reset () {
+	if (!confirm("Do you want to reset all settings? You will lose all colors and all armor options. This cannot be undone."))
+		return;
+	variants = {};
+	settings = resetSettings(false);
+	var female = find("female").checked;
+	S.set.Sex(female);
 }

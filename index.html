@@ -69,8 +69,8 @@
 					<button id="reset_wrapper" class="nav_label" onclick="S.set.DarkMode(find('color_scheme_picker').checked)"><span class="nav_icon">&#xF021;</span>Reset Background</button>
 					<input id="reupload" type="file" accept="image/svg+xml" hidden/>
 					<label for="reupload" class="nav_label"><span class="nav_icon">&#xE910;</span>Continue Editing</label>
-					<a id="download_svg" class="nav_label" download="MandoCreator.svg" href="#"><span class="nav_icon">&#xE903;</span>Download as SVG</a>
-					<a id="download_jpeg" class="nav_label" download="MandoCreator.jpeg" href="#"><span class="nav_icon">&#xE903;</span>Download as JPEG</a>
+					<a id="download_svg" class="nav_label" download="MandoCreator.svg" href="/"><span class="nav_icon">&#xE903;</span>Download as SVG</a>
+					<a id="download_jpeg" class="nav_label" download="MandoCreator.jpeg" href="/"><span class="nav_icon">&#xE903;</span>Download as JPEG</a>
 					<label id="color_scheme_label" for="color_scheme_picker" class="nav_label"><span class="nav_icon">&#xE90F;</span>Toggle Dark/Light</label>
 					<input type="checkbox" id="color_scheme_picker" style="opacity:0;" onchange="S.set.DarkMode(this.checked)"/>
 				</div>
@@ -480,8 +480,11 @@
 		</form>
 
 		<footer>
-			<button class="undo_redo" onclick="Picker.undo(1)">&#xe91f;</button>
-			<button class="undo_redo" style="transform:scale(-1,1);" onclick="Picker.undo(-1)">&#xe91f;</button>
+			<div>
+				<button class="undo_redo" onclick="Picker.undo(1)">&#xe91f;</button>
+				<button class="reset" onclick="reset()">Reset</button>
+				<button class="undo_redo" style="transform:scale(-1,1);" onclick="Picker.undo(-1)">&#xe91f;</button>
+			</div>
 			<div class="zoom_wrapper">
 					<span class="zoom_icon" onclick="zoomInOut(-10)">&#xe916;</span
 					><input id="zoom" type="range" min="100" max="300" value="100" oninput="zoom(this.value)" /

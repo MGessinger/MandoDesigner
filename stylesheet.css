@@ -333,15 +333,25 @@ footer {
 }
 
 .undo_redo {
-	background: var(--mainColor);
-	border: 1px solid var(--softLight);
+	margin: 0 1em;
 	width: 2em;
 	height: 2em;
+	background: var(--mainColor);
+	border: 1px solid var(--softLight);
 	border-radius: 12%;
 }
 
 .undo_redo:focus {
 	border-color: var(--accent);
+}
+
+.reset {
+	margin: 0;
+	padding: 0.5em 1em;
+	border: none;
+	background: var(--accent);
+	border-radius: 0.5em;
+	color: white;
 }
 
 :checked + .label_sex {
@@ -430,7 +440,7 @@ footer {
 	content: "New";
 	position: absolute;
 	background: var(--accent);
-	color: var(--highlight);
+	color: white;
 	right: 0;
 	transform: rotateZ(15deg);
 	padding: 0 0.25em 0.25em 0.25em;
