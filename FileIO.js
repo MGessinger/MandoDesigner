@@ -238,10 +238,11 @@ function Downloader () {
 		img.src = href;
 	}
 
-	function SVGNode (type, atts) {
+	function SVGNode (type, atts, par) {
 		var node = document.createElementNS("http://www.w3.org/2000/svg", type);
 		for (var a in atts)
 			node.setAttribute(a, atts[a]);
+		if (par) par.appendChild(node);
 		return node;
 	}
 
@@ -264,22 +265,22 @@ function Downloader () {
 			editor.style.backgroundImage = "url(\"" + href + "\")";
 		},
 		get Background () {
-			var image;
 			var svgMain = SVGNode("svg", {
 				"version": "1.1",
 				"width": canvas.width,
 				"height": canvas.height,
 				"viewBox": [0, 0, canvas.width, canvas.height].join(" ")
 			});
+			var meta = SVGNode("metadata", {}, svgMain);
+			meta.innerHTML = " <rdf:RDF xmlns:rdf='http://www.w3.org/1999/02/22-rdf-syntax-ns#' xmlns:rdfs='http://www.w3.org/2000/01/rdf-schema#' xmlns:dc='http://purl.org/dc/elements/1.1/'> <rdf:Description> <dc:creator>MandoCreator</dc:creator> <dc:publisher>https://www.mandocreator.com</dc:publisher> <dc:description>Your Beskar'gam design - created by MandoCreator</dc:description> <dc:format>image/svg+xml</dc:format> <dc:type>Image</dc:type> <dc:title>MandoCreator - Ner Berskar'gam</dc:title> <dc:date>" + (new Date).toISOString() + "</dc:date> </rdf:Description> </rdf:RDF>";
 			if (bckSVG) {
 				svgMain.innerHTML = bckSVG;
 			} else {
-				image = SVGNode("image", {
+				SVGNode("image", {
 					"width": "100%",
 					"height": "100%",
 					"href": bckImgURI
-				});
-				svgMain.appendChild(image);
+				}, svgMain);
 			}
 			var logo = logoSVG.cloneNode(true);
 			svgMain.appendChild(logo);
