@@ -1,8 +1,6 @@
 /* MandoCreator */
 "use strict";
-var variants = {};
-var unsavedChanges = false;
-var Picker, Download, Upload;
+var Download, Upload, Change;
 
 function find (st) {
 	return document.getElementById(st);
@@ -64,9 +62,10 @@ function SVGVault (vault) {
 }
 var Vault = new SVGVault(find("vault"));
 
-function Settings () {
+function Settings (Change) {
 	var afterUpload = false;
 	var editor = find("editor");
+	var Picker = new PickerFactory(Change);
 	var icons = {
 		"Range Finder":	"\uE919",
 		"Main Antenna":	"\uE918",
@@ -130,8 +129,8 @@ function Settings () {
 
 			var defaultOn = !afterUpload && (SVGNode.style.display !== "none");
 			var varName = neutralize(SVGNode.id);
-			if (varName in variants)
-				defaultOn = variants[varName];
+			if (variants.hasItem(varName))
+				defaultOn = variants.getItem(varName);
 			var toggle = S.toggle.Subslide(parent, SVGNode, (SVGNode.style.display !== "none"));
 			check.checked = defaultOn;
 			toggle.bind({checked: defaultOn})();
@@ -194,12 +193,12 @@ function Settings () {
 				var neutral = neutralize(fullName);
 
 				/* Create an option in the select, and a hideable color list */
-				var opt = DOMNode("option", {label: name, value: fullName}, select);
+				var opt = DOMNode("option", {label: name, value: neutral}, select);
 				opt.innerText = name;
 
 				var san = listName(fullName);
 				var col = DOMNode("div", {id: san + "SubColors"}, parent);
-				if (variants[SVGName] == neutral) {
+				if (variants.getItem(SVGName) == neutral) {
 					defaultValue = fullName;
 					addons[i].style.display = "inherit";
 					useDefault = false;
@@ -218,12 +217,9 @@ function Settings () {
 			}
 
 			select.addEventListener("change", function() {
-				if (this.value == defaultValue)
-					delete variants[SVGName];
-				else
-					variants[SVGName] = neutralize(this.value);
+				variants.setItem(SVGName, this.value, "select");
 				for (var i = 0; i < addons.length; i++) {
-					if (addons[i].id === this.value)
+					if (neutralize(addons[i].id) === this.value)
 						addons[i].style.display = "inherit";
 					else
 						addons[i].style.removeProperty("display");
@@ -267,7 +263,7 @@ function Settings () {
 
 				var san = listName(fullName);
 				var col = DOMNode("div", {id: san + "SubColors"}, parent);
-				if (variants[neutral]) {
+				if (variants.getItem(neutral)) {
 					addons[i].style.display = "inherit";
 					checkbox.checked = true;
 				} else {
@@ -337,9 +333,9 @@ function Settings () {
 					SVGNode.style.display = "none";
 				}
 				if (this.checked == def)
-					delete variants[varName];
+					variants.removeItem(varName, "subslide");
 				else
-					variants[varName] = this.checked;
+					variants.setItem(varName, this.checked, "subslide");
 			}
 		},
 		Sublist: function (sublist, SVGNode, neutral) {
@@ -347,11 +343,11 @@ function Settings () {
 				if (this.checked) {
 					sublist.style.removeProperty("display");
 					SVGNode.style.display = "inherit";
-					variants[neutral] = true;
+					variants.setItem(neutral, true, "sublist");
 				} else {
 					sublist.style.display = "none";
 					SVGNode.style.display = "none";
-					delete variants[neutral];
+					variants.removeItem(neutral, "sublist");
 				}
 			}
 		},
@@ -379,7 +375,9 @@ function Settings () {
 				slides[i].innerHTML = "";
 			}
 
-			Vault.load(body, function (svg) { S.setup(svg, sexSuffix, upload); });
+			Vault.load(body, function (svg) {
+				S.setup(svg, sexSuffix, upload);
+			});
 			localStorage.setItem("female_sex", female.toString());
 		},
 		DarkMode: function (darkMode, keepBck) {
@@ -413,17 +411,8 @@ function Settings () {
 
 		var otherSide = (side == "Right" ? "Left" : "Right");
 		mirror.addEventListener("click", function () {
-			/* Mirror all the colors */
-			showPicker = false;
-			var buttons = parent.getElementsByClassName("color_picker");
-			for (var i = 0; i < buttons.length; i++) {
-				var mirrorImageName = buttons[i].id.replace(side, otherSide);
-				var mirrorImage = find(mirrorImageName);
-				if (!mirrorImage) /* Allow for asymmetric helmets */
-					continue;
-				mirrorImage.style.background = buttons[i].style.background;
-				mirrorImage.click();
-			}
+			var changes = []
+			Change.track = false;
 			/* Mirror all Checkboxes */
 			var checks = parent.getElementsByTagName("input");
 			for (var i = 0; i < checks.length; i++) {
@@ -454,11 +443,30 @@ function Settings () {
 				mirrorImage.value = selects[i].value.replace(side, otherSide);
 				mirrorImage.dispatchEvent(new Event("change"));
 			}
+			/* Mirror all the colors */
+			showPicker = false;
+			var buttons = parent.getElementsByClassName("color_picker");
+			for (var i = 0; i < buttons.length; i++) {
+				var mirrorImageName = buttons[i].id.replace(side, otherSide);
+				var mirrorImage = find(mirrorImageName);
+				if (!mirrorImage) /* Allow for asymmetric helmets */
+					continue;
+				var singleChange = {"type": "color", "target": mirrorImageName, "oldValue": mirrorImage.style.backgroundColor, "newValue": buttons[i].style.backgroundColor};
+				if (singleChange.newValue == singleChange.oldValue)
+					continue;
+				changes.push(singleChange);
+				mirrorImage.style.background = singleChange.newValue;
+				mirrorImage.click();
+			}
+			Change.track = true;
+			if (changes.length > 0)
+				Change.push(changes);
 			showPicker = true;
 		});
 	}
 	this.setup = async function (svg, sexSuffix, upload) {
 		afterUpload = upload; /* Set to true, if this function was called after an upload */
+		Change.track = false; /* Do not track Setup history */
 		var old_svg = editor.firstElementChild;
 		if (old_svg)
 			editor.replaceChild(svg, old_svg);
@@ -468,7 +476,7 @@ function Settings () {
 		zoom(scale.value);
 		svg.scrollIntoView({inline: "center"});
 
-		var variant = variants["Helmet"] || "Classic";
+		var variant = variants.getItem("Helmet");
 		var helmet = Vault.load("Helmets", function() {
 			var button = find("Helmet_Variant_" + variant);
 			button.click();
@@ -476,7 +484,7 @@ function Settings () {
 
 		var self = this; // Needed because 'this' changes scope in Promises
 		var upper = Vault.load("Upper-Armor_" + sexSuffix, function(svg) {
-			var variant = variants["Chest"] || "Classic";
+			var variant = variants.getItem("Chest");
 			var button = find("Chest_Variant_" + variant);
 			if (!button) button = find("Chest_Variant_" + variant + "_" + sexSuffix);
 			button.click();
@@ -512,10 +520,65 @@ function Settings () {
 		await upper;
 		await lower;
 		afterUpload = false;
-		unsavedChanges = false;
+		Change.track = true;
 	}
 }
-var S = new Settings();
+var Change = new ChangeHistory;
+var S = new Settings(Change);
+
+function VariantsVault (asString) {
+	var __vars = {
+		"Helmet": "Classic",
+		"Chest": "Classic"
+	};
+	if (asString)
+		__vars = JSON.parse(asString);
+
+	function storeChange (key, value, type) {
+		var change = {
+			"type": type,
+			"oldValue": __vars[key],
+			"newValue": value
+		}
+		switch (type) {
+			case "subslide":
+				change.target = buttonName(key) + "Toggle";
+				break;
+			case "select":
+				change.target = key + "Select";
+				break;
+			case "sublist":
+				change.target = key + "_Option_Check";
+				break;
+			default:
+				return;
+		}
+		Change.push(change);
+	}
+
+	this.hasItem = function (key) {
+		return key in __vars;
+	}
+	this.setItem = function (key, value, type) {
+		if (__vars[key] == value)
+			return;
+		storeChange(key, value, type);
+		__vars[key] = value;
+	}
+	this.getItem = function (key) {
+		return __vars[key];
+	}
+	this.removeItem = function (key, type) {
+		if (!(key in __vars))
+			return;
+		storeChange(key, false, type);
+		delete __vars[key];
+	}
+	this.toString = function () {
+		return JSON.stringify(__vars);
+	}
+}
+var variants = new VariantsVault(localStorage.getItem("variants"));
 
 function prettify (str) {
 	var components = str.split("_", 1);
@@ -540,7 +603,7 @@ function setupWindow () {
 
 	function cache () {
 		localStorage.setItem("settings", JSON.stringify(settings));
-		localStorage.setItem("variants", JSON.stringify(variants));
+		localStorage.setItem("variants", variants.toString());
 	}
 
 	window.addEventListener("pagehide", cache);
@@ -550,7 +613,7 @@ function setupWindow () {
 				cache();
 				break;
 			default:
-				variants = JSON.parse(localStorage.getItem("variants")) || {};
+				variants = new VariantsVault(localStorage.getItem("variants"));
 				settings = resetSettings(true);
 				break;
 		} 
@@ -593,13 +656,12 @@ function onload () {
 	find("color_scheme_picker").checked = useDarkMode;
 	find("kote").volume = 0.15;
 
-	variants = JSON.parse(localStorage.getItem("variants")) || {};
 	settings = resetSettings(true);
 
 	Download = new Downloader;
 	Download.attach(find("download_svg"), "image/svg+xml");
 	Download.attach(find("download_jpeg"), "image/jpeg");
-	Picker = new PickerFactory;
+
 	Upload = new Uploader(window.location.search, Download);
 	setupWindow();
 	var nsw = navigator.serviceWorker;
@@ -608,7 +670,7 @@ function onload () {
 	nsw.onmessage = function (event) {
 		displayForm(true, 'reload');
 	};
-	nsw.register("sw.js");
+	//nsw.register("sw.js");
 }
 
 function openArmorFolder (category) {
@@ -649,7 +711,6 @@ function switchToArmorButton (category, pieceName, button) {
 		callback();
 	callback = null;
 
-	unsavedChanges = true;
 	switchToArmorVariant(category, pieceName, name);
 }
 
@@ -662,7 +723,7 @@ function switchToArmorVariant (category, pieceName, variantName) {
 	n.setAttribute("class", variantName);
 	SVGparent.replaceChild(n, old);
 	S.build.All(n, category);
-	variants[pieceName] = neutralize(variantName);
+	variants.setItem(pieceName, neutralize(variantName), "variant");
 }
 
 var callback = null;
@@ -725,7 +786,7 @@ function playKote () {
 function reset () {
 	if (!confirm("Do you want to reset all settings? You will lose all colors and all armor options. This cannot be undone."))
 		return;
-	variants = {};
+	variants = new VariantsVault;
 	settings = resetSettings(false);
 	var female = find("female").checked;
 	S.set.Sex(female);

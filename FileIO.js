@@ -36,11 +36,10 @@ function Uploader (queryString, D) {
 	});
 
 	function parseMando (svg) {
-		variants = {};
+		variants = new VariantsVault;
 		settings = resetSettings(false);
 
-		var iter = document.createNodeIterator (
-			svg,
+		var iter = document.createNodeIterator ( svg,
 			NodeFilter.SHOW_ELEMENT,
 			{ acceptNode: function (node) {
 					if (!node.id)
@@ -64,17 +63,17 @@ function Uploader (queryString, D) {
 				continue;
 			var neutral = neutralize(id);
 			if (cls == "toggle") {
-				variants[neutral] = true;
+				variants.setItem(neutral, true);
 			} else if (cls == "option") {
 				var parent = node.parentNode;
 				var parName = neutralize(parent.id) + "_Option";
 				if (parName.includes("Earcap"))
-					variants[neutral] = true;
+					variants.setItem(neutral, true);
 				else
-					variants[parName] = neutral;
+					variants.setItem(parName, neutral);
 			} else if (id.includes("Current")) {
 				var cat = id.replace("_Current", "");
-				variants[cat] = neutralize(cls);
+				variants.setItem(cat, neutralize(cls));
 			}
 		}
 	}
@@ -145,9 +144,7 @@ function Uploader (queryString, D) {
 		xhr.send();
 	}
 
-	var female = false;
-	if (window.localStorage)
-		female = (localStorage.getItem("female_sex") == "true");
+	var female = (localStorage.getItem("female_sex") == "true");
 	var options = readQueryString(queryString);
 	if ("preset" in options) {
 		female = +options["sex"];
@@ -294,7 +291,6 @@ function Downloader () {
 				setTimeout(function() {
 					URL.revokeObjectURL(blobURL)
 					isSetUp = false;
-					unsavedChanges = false;
 				}, 500);
 			});
 			a.setAttribute("type", type);

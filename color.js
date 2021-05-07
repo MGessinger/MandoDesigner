@@ -1,10 +1,8 @@
 'use strict';
 
 var showPicker = true;
-function PickerFactory () {
+function PickerFactory (history) {
 	var latestChange = {};
-	var changes = [];
-	var redos = [];
 
 	function on(elem, event, func) {
 		elem.addEventListener(event, func);
@@ -158,16 +156,17 @@ function PickerFactory () {
 		}
 	}
 
-	function setAttributes (obj, atts) {
-		for (var a in atts)
-			obj.setAttribute(a, atts[a]);
-	}
-
 	function PickerDOM() {
 		var wrapper = find("picker");
 		on(wrapper, "click", function(event){event.stopPropagation();});
 		var ch = wrapper.children;
-		var colors = ["#F00", "#0085FF", "#FFD600", "#08CB33", "#8B572A", "#A3A3A3", "#000", "#fff"]
+		var colors = ["#F00", "#0085FF", "#FFD600", "#08CB33", "#8B572A", "#A3A3A3", "#000", "#fff"];
+
+		function setAttributes (obj, atts) {
+			for (var a in atts)
+				obj.setAttribute(a, atts[a]);
+		}
+
 		var timer;
 		var pals = ch[1].children;
 		for (var i = 0; i < colors.length; i++) {
@@ -239,10 +238,10 @@ function PickerFactory () {
 				if (!p) {
 					onChange = null;
 					wrapper.style = "visibility:hidden";
-					if ( (latestChange.button != undefined) &&
-					     (latestChange.newColor !== latestChange.oldColor) ) {
-						redos = [];
-						changes.push(latestChange);
+					document.body.appendChild(wrapper); /* Move it somewhere else! */
+					if ( (latestChange.target != undefined) &&
+					     (latestChange.newValue !== latestChange.oldValue) ) {
+						history.push(latestChange);
 					}
 					latestChange = {};
 				} else {
@@ -267,7 +266,7 @@ function PickerFactory () {
 			return;
 		color.update(value);
 		DOM.update(fromEditor);
-		latestChange["newColor"] = color.hex;
+		latestChange["newValue"] = color.hex;
 		if (onChange)
 			onChange(color.hex);
 	}
@@ -292,7 +291,6 @@ function PickerFactory () {
 				delete settings[button.id];
 			else
 				settings[button.id] = hex;
-			unsavedChanges = true;
 		}
 		on(button, "click", function(event) {
 			onChange = input;
@@ -301,45 +299,87 @@ function PickerFactory () {
 				return;
 			DOM.parent = this;
 
-			var oldColor = SVGNode.style.fill;
-			if (!oldColor)
+			var oldValue = SVGNode.style.fill;
+			if (!oldValue)
 				return;
-			latestChange = {"button": button.id, "oldColor": oldColor, "newColor": oldColor};
+			latestChange = {"type": "color", "target": button.id, "oldValue": oldValue, "newValue": oldValue};
 		});
 		var def = getDefaultColor(SVGNode, button.id);
+		onChange = input;
 		_setColor(def);
-		input(color.hex);
+	}
+}
+
+function ChangeHistory () {
+	var changes = [];
+	var redos = [];
+	var self = this;
+
+	function undoSingleChange (type, targetID, value) {
+		var target = find(targetID);
+		if (!target)
+			return false;
+		self.track = false;
+		switch (type) {
+			case "color":
+				target.style.background = value;
+				/* Fall-Through! */
+			case "subslide":
+			case "sublist":
+				target.click();
+				break;
+			case "select":
+				target.value = value;
+				target.dispatchEvent(new Event("change"));
+				break;
+			default:
+				self.track = true;
+				return false;
+		}
+		self.track = true;
+		return true;
 	}
 
-	this.undo = function (n) {
-		if (!n)
-			return;
+	this.undo = function (redo) {
 		var from, to, key;
-		if (n > 0) {
-			from = changes;
-			to = redos;
-			key = 'oldColor';
-		} else {
+		if (redo) {
 			from = redos;
 			to = changes;
-			key = 'newColor';
-			n = -n;
+			key = "newValue";
+		} else {
+			from = changes;
+			to = redos;
+			key = "oldValue";
 		}
 		showPicker = false;
-		var change, button;
-		for (var i = 0; i < n; i++) {
-			do {
-				change = from.pop();
-				if (!change) {
-					showPicker = true;
-					return;
+		var change, anyUndone = false;
+		do {
+			change = from.pop();
+			if (!change) {
+				showPicker = true;
+				return;
+			} else if ("target" in change) {
+				anyUndone = undoSingleChange(change["type"], change["target"], change[key]);
+			} else {
+				for (var c in change) {
+					var C = change[c];
+					anyUndone |= undoSingleChange(C["type"], C["target"], C[key]);
 				}
-				button = find(change["button"]);
-			} while (!button);
-			button.style.background = change[key];
-			button.click();
-			to.push(change);
-		}
+			}
+		} while (!anyUndone);
+		to.push(change);
+		console.log(to);
 		showPicker = true;
 	}
+	this.push = function (c) {
+		if (!self.track)
+			return;
+		changes.push(c);
+		redos = [];
+	}
+	this.clear = function () {
+		changes = [];
+		redos = [];
+	}
+	this.track = true;
 }
