@@ -144,10 +144,14 @@ function Uploader (queryString, D) {
 		xhr.send();
 	}
 
-	var female = (localStorage.getItem("female_sex") == "true");
+	var female;
 	var options = readQueryString(queryString);
-	if ("preset" in options) {
+	if ("sex" in options)
 		female = +options["sex"];
+	else
+		female = (localStorage.getItem("female_sex") == "true");
+
+	if ("preset" in options) {
 		loadPreset(options["preset"], female);
 	} else {
 		if (!female) {
@@ -159,7 +163,8 @@ function Uploader (queryString, D) {
 		}
 		S.set.Sex(female);
 	}
-	history.replaceState(null, document.title, "/");
+	if (queryString)
+		history.replaceState(null, document.title, "?");
 	return parseMando;
 }
 
