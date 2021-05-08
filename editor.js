@@ -422,7 +422,7 @@ function Settings (Change) {
 					continue;
 				if (mirrorImage.checked ^ checks[i].checked) {
 					changes.push(Change.format(
-						"color", /* this is a hack. Don't worry about it. */
+						"verbatim", /* this is a hack. Don't worry about it. */
 						mirrorImage.checked,
 						checks[i].checked,
 						mirrorImageName

@@ -354,11 +354,8 @@ function ChangeHistory () {
 			case "variant":
 				change.target = target + "_Variant_";
 				break;
-			case "color":
-				change.target = target;
-				break;
 			default:
-				return;
+				change.target = target;
 		}
 		return change;
 	}
@@ -375,22 +372,19 @@ function ChangeHistory () {
 			key = "oldValue";
 		}
 		showPicker = false;
-		var change, anyUndone = false;
 		self.track = false;
-		do {
-			change = from.pop();
-			if (!change) {
-				showPicker = true;
-				return;
-			} else if ("target" in change) {
-				anyUndone = undoSingleChange(change["type"], change["target"], change[key]);
-			} else {
-				for (var c in change) {
-					var C = change[c];
-					anyUndone |= undoSingleChange(C["type"], C["target"], C[key]);
-				}
+		var change = from.pop();
+		if (!change) {
+			showPicker = true;
+			return;
+		} else if ("target" in change) {
+			undoSingleChange(change["type"], change["target"], change[key]);
+		} else {
+			for (var c in change) {
+				var C = change[c];
+				undoSingleChange(C["type"], C["target"], C[key]);
 			}
-		} while (!anyUndone);
+		}
 		to.push(change);
 		showPicker = true;
 		self.track = true;
