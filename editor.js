@@ -422,10 +422,11 @@ function Settings (Change) {
 					continue;
 				if (mirrorImage.checked ^ checks[i].checked) {
 					changes.push(Change.format(
-						"verbatim", /* this is a hack. Don't worry about it. */
+						"sublist",
 						mirrorImage.checked,
 						checks[i].checked,
-						mirrorImageName
+						mirrorImageName,
+						true
 					));
 					mirrorImage.click();
 				}
@@ -441,7 +442,8 @@ function Settings (Change) {
 							"subslide",
 							mirrorImage.checked,
 							top_check.checked,
-							mirrorImageName
+							mirrorImageName,
+							true
 						));
 						mirrorImage.click();
 					}
@@ -458,7 +460,8 @@ function Settings (Change) {
 					"select",
 					mirrorImage.value,
 					selects[i].value.replace(side, otherSide),
-					mirrorImageName
+					mirrorImageName,
+					true
 				);
 				changes.push(singleChange);
 				mirrorImage.value = singleChange.newValue;
@@ -476,7 +479,8 @@ function Settings (Change) {
 					"color",
 					mirrorImage.style.backgroundColor,
 					buttons[i].style.backgroundColor,
-					mirrorImageName
+					mirrorImageName,
+					true
 				);
 				changes.push(singleChange);
 				mirrorImage.style.background = singleChange.newValue;
@@ -712,6 +716,7 @@ function setVariantButton (category, button) {
 
 function switchToArmorButton (category, pieceName, button) {
 	var name = button.dataset.name;
+	if (!name) return;
 	var parent = setVariantButton(category, button);
 	hideSponsors(parent);
 	if (callback)
@@ -745,17 +750,16 @@ function hideSponsors (parent) {
 }
 
 function setSponsor (sponsor, href) {
+	var link = find(sponsor);
+	link.setAttribute("href", href);
+
+	var img = link.getElementsByTagName("img")[0];
+	if (!img.hasAttribute("src"))
+		img.setAttribute("src", "assets/" + sponsor + ".png");
+	var parent = link.parentNode;
+	var close = parent.getElementsByTagName("button")[0];
 	callback = function () {
-		var link = find(sponsor);
-		link.setAttribute("href", href);
 		link.style.removeProperty("display");
-
-		var img = link.getElementsByTagName("img")[0];
-		if (!img.hasAttribute("src"))
-			img.setAttribute("src", "assets/" + sponsor + ".png");
-
-		var parent = link.parentNode;
-		var close = parent.getElementsByTagName("button")[0];
 		close.style.removeProperty("display");
 	}
 }

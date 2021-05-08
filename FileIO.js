@@ -159,6 +159,7 @@ function Uploader (queryString, D) {
 		}
 		S.set.Sex(female);
 	}
+	history.replaceState(null, document.title, "/");
 	return parseMando;
 }
 

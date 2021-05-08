@@ -283,7 +283,7 @@ function PickerFactory (history) {
 	var onChange = null;
 	this.attach = function (button, colorText, SVGNode) {
 		function input (hex) {
-			button.style.background = hex;
+			button.style.backgroundColor = hex;
 			SVGNode.style.fill = hex;
 			colorText.innerText = hex;
 			if (hex === "#FFFFFF")
@@ -335,12 +335,14 @@ function ChangeHistory () {
 		return true;
 	}
 
-	this.format = function (type, oldVal, newVal, target) {
+	this.format = function (type, oldVal, newVal, target, verbatim) {
 		var change = {
 			"type": type,
 			"oldValue": oldVal,
 			"newValue": newVal
 		}
+		if (verbatim) /* Override the type argument, if the exact targetID is known */
+			type = "verbatim";
 		switch (type) {
 			case "subslide":
 				change.target = buttonName(target) + "Toggle";
@@ -390,13 +392,13 @@ function ChangeHistory () {
 		self.track = true;
 	}
 	function isValid (c) {
-		return (!!c) && (!!c.target) && (c.oldVallue != c.newValue);
+		return (!!c) && (!!c.target) && (c.oldValue != c.newValue);
 	}
 	this.push = function (C) {
 		if (!self.track || !C)
 			return;
 		var d = [];
-		if (!C.length)
+		if (!C.length && isValid(C))
 			d = [C];
 		while (C.length) {
 			var c = C.pop();
@@ -412,5 +414,5 @@ function ChangeHistory () {
 			changes.push(d);
 		redos = [];
 	}
-	this.track = true;
+	this.track = false;
 }
