@@ -237,12 +237,11 @@ function PickerFactory (history) {
 			set parent (p) {
 				if (!p) {
 					onChange = null;
-					wrapper.style = "visibility:hidden";
+					if (wrapper.style.visibility == "hidden")
+						return;
 					document.body.appendChild(wrapper); /* Move it somewhere else! */
-					if ( (latestChange.target != undefined) &&
-					     (latestChange.newValue !== latestChange.oldValue) ) {
-						history.push(latestChange);
-					}
+					wrapper.style = "visibility:hidden";
+					history.push(latestChange);
 					latestChange = {};
 				} else {
 					if (wrapper.style.visibility != "hidden")
@@ -302,7 +301,7 @@ function PickerFactory (history) {
 			var oldValue = SVGNode.style.fill;
 			if (!oldValue)
 				return;
-			latestChange = {"type": "color", "target": button.id, "oldValue": oldValue, "newValue": oldValue};
+			latestChange = history.format("color", oldValue, oldValue, button.id);
 		});
 		var def = getDefaultColor(SVGNode, button.id);
 		onChange = input;
@@ -316,28 +315,52 @@ function ChangeHistory () {
 	var self = this;
 
 	function undoSingleChange (type, targetID, value) {
+		if (type == "variant")
+			targetID += value;
 		var target = find(targetID);
 		if (!target)
 			return false;
-		self.track = false;
 		switch (type) {
-			case "color":
-				target.style.background = value;
-				/* Fall-Through! */
-			case "subslide":
-			case "sublist":
-				target.click();
-				break;
 			case "select":
 				target.value = value;
 				target.dispatchEvent(new Event("change"));
 				break;
+			case "color":
+				target.style.background = value;
+				/* Fall-Through! */
 			default:
-				self.track = true;
-				return false;
+				target.click();
+				break;
 		}
-		self.track = true;
 		return true;
+	}
+
+	this.format = function (type, oldVal, newVal, target) {
+		var change = {
+			"type": type,
+			"oldValue": oldVal,
+			"newValue": newVal
+		}
+		switch (type) {
+			case "subslide":
+				change.target = buttonName(target) + "Toggle";
+				break;
+			case "select":
+				change.target = target + "Select";
+				break;
+			case "sublist":
+				change.target = target + "_Option_Check";
+				break;
+			case "variant":
+				change.target = target + "_Variant_";
+				break;
+			case "color":
+				change.target = target;
+				break;
+			default:
+				return;
+		}
+		return change;
 	}
 
 	this.undo = function (redo) {
@@ -353,6 +376,7 @@ function ChangeHistory () {
 		}
 		showPicker = false;
 		var change, anyUndone = false;
+		self.track = false;
 		do {
 			change = from.pop();
 			if (!change) {
@@ -368,17 +392,30 @@ function ChangeHistory () {
 			}
 		} while (!anyUndone);
 		to.push(change);
-		console.log(to);
 		showPicker = true;
+		self.track = true;
 	}
-	this.push = function (c) {
-		if (!self.track)
+	function isValid (c) {
+		return (!!c) && (!!c.target) && (c.oldVallue != c.newValue);
+	}
+	this.push = function (C) {
+		if (!self.track || !C)
 			return;
-		changes.push(c);
-		redos = [];
-	}
-	this.clear = function () {
-		changes = [];
+		var d = [];
+		if (!C.length)
+			d = [C];
+		while (C.length) {
+			var c = C.pop();
+			if (!isValid(c))
+				continue;
+			d.push(c);
+		}
+		if (d.length == 0)
+			return;
+		else if (d.length == 1)
+			changes.push(d[0]);
+		else
+			changes.push(d);
 		redos = [];
 	}
 	this.track = true;

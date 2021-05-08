@@ -420,8 +420,15 @@ function Settings (Change) {
 				var mirrorImage = find(mirrorImageName);
 				if (!mirrorImage)
 					continue;
-				if (mirrorImage.checked ^ checks[i].checked)
+				if (mirrorImage.checked ^ checks[i].checked) {
+					changes.push(Change.format(
+						"color", /* this is a hack. Don't worry about it. */
+						mirrorImage.checked,
+						checks[i].checked,
+						mirrorImageName
+					));
 					mirrorImage.click();
+				}
 			}
 			/* Mirror the checkbox in paragraph itself (if present) */
 			var top_check = paragraph.getElementsByTagName("input")[0];
@@ -429,8 +436,15 @@ function Settings (Change) {
 				var mirrorImageName = top_check.id.replace(side, otherSide);
 				var mirrorImage = find(mirrorImageName);
 				if (mirrorImage) {
-					if (mirrorImage.checked ^ top_check.checked)
+					if (mirrorImage.checked ^ top_check.checked) {
+						changes.push(Change.format(
+							"subslide",
+							mirrorImage.checked,
+							top_check.checked,
+							mirrorImageName
+						));
 						mirrorImage.click();
+					}
 				}
 			}
 			/* Mirror all selects */
@@ -440,7 +454,14 @@ function Settings (Change) {
 				var mirrorImage = find(mirrorImageName);
 				if (!mirrorImage)
 					continue;
-				mirrorImage.value = selects[i].value.replace(side, otherSide);
+				var singleChange = Change.format(
+					"select",
+					mirrorImage.value,
+					selects[i].value.replace(side, otherSide),
+					mirrorImageName
+				);
+				changes.push(singleChange);
+				mirrorImage.value = singleChange.newValue;
 				mirrorImage.dispatchEvent(new Event("change"));
 			}
 			/* Mirror all the colors */
@@ -451,16 +472,18 @@ function Settings (Change) {
 				var mirrorImage = find(mirrorImageName);
 				if (!mirrorImage) /* Allow for asymmetric helmets */
 					continue;
-				var singleChange = {"type": "color", "target": mirrorImageName, "oldValue": mirrorImage.style.backgroundColor, "newValue": buttons[i].style.backgroundColor};
-				if (singleChange.newValue == singleChange.oldValue)
-					continue;
+				var singleChange = Change.format(
+					"color",
+					mirrorImage.style.backgroundColor,
+					buttons[i].style.backgroundColor,
+					mirrorImageName
+				);
 				changes.push(singleChange);
 				mirrorImage.style.background = singleChange.newValue;
 				mirrorImage.click();
 			}
 			Change.track = true;
-			if (changes.length > 0)
-				Change.push(changes);
+			Change.push(changes);
 			showPicker = true;
 		});
 	}
@@ -534,35 +557,16 @@ function VariantsVault (asString) {
 	if (asString)
 		__vars = JSON.parse(asString);
 
-	function storeChange (key, value, type) {
-		var change = {
-			"type": type,
-			"oldValue": __vars[key],
-			"newValue": value
-		}
-		switch (type) {
-			case "subslide":
-				change.target = buttonName(key) + "Toggle";
-				break;
-			case "select":
-				change.target = key + "Select";
-				break;
-			case "sublist":
-				change.target = key + "_Option_Check";
-				break;
-			default:
-				return;
-		}
-		Change.push(change);
-	}
-
 	this.hasItem = function (key) {
 		return key in __vars;
 	}
 	this.setItem = function (key, value, type) {
-		if (__vars[key] == value)
+		if (value == __vars[key])
 			return;
-		storeChange(key, value, type);
+		var c = Change.format(type, __vars[key], value, key);
+		if (!c)
+			return;
+		Change.push(c);
 		__vars[key] = value;
 	}
 	this.getItem = function (key) {
@@ -571,7 +575,10 @@ function VariantsVault (asString) {
 	this.removeItem = function (key, type) {
 		if (!(key in __vars))
 			return;
-		storeChange(key, false, type);
+		var c = Change.format(type, __vars[key], undefined, key);
+		if (!c)
+			return;
+		Change.push(c);
 		delete __vars[key];
 	}
 	this.toString = function () {
@@ -670,7 +677,7 @@ function onload () {
 	nsw.onmessage = function (event) {
 		displayForm(true, 'reload');
 	};
-	//nsw.register("sw.js");
+	nsw.register("sw.js");
 }
 
 function openArmorFolder (category) {
