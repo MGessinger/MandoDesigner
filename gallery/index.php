@@ -154,27 +154,7 @@
 	</head>
 	<script>
 		"use strict";
-		function find(st) {
-			return document.getElementById(st);
-		}
-		function loadSVG (name) {
-			var xhr = new XMLHttpRequest();
-			xhr.open("GET", "/gallery/" + name);
-			xhr.setRequestHeader("Cache-Control", "no-cache, max-age=10800");
-			xhr.responseType = 'document';
-			xhr.onload = function () {
-				var xml = this.responseXML;
-				if (xhr.status !== 200 || !xml)
-					return;
-				var svg = xml.documentElement;
-				var vault = find("vault");
-				vault.appendChild(svg);
-			};
-			xhr.send();
-		}
 		function loadSW() {
-			loadSVG("wrapper_male.svg");
-			loadSVG("wrapper_female.svg");
 			var nsw = navigator.serviceWorker;
 			if (!nsw)
 				return;
@@ -195,7 +175,7 @@
 					$f = $files[$i];
 					$n = str_replace(".svg", "", $f);
 					echo "<svg viewBox='50 0 1700 3300' title='$n'>";
-					echo "<use alt='Armor Design titled $n' href='#gallery/male/$f' />";
+					echo "<use alt='Armor Design titled $n' href='./wrapper_male.svg#$f' />";
 					echo "</svg>";
 				}
 		?></main>
@@ -213,86 +193,89 @@
 				><button type="button" class="next_armor" onclick="Gallery.shift++">&#xe90c;</button>
 			</form>
 		</footer>
-		<div id="vault" style="display: none"></div>
 	</body>
 	<script>
-		function ArmorGallery (isFemale) {
-			var gallery = find("gallery");
-			var svgs = gallery.children;
-			var all = gallery.getElementsByTagName("use");
-			var input = find("preset");
+	function find(st) {
+		return document.getElementById(st);
+	}
+	function ArmorGallery (isFemale) {
+		var gallery = find("gallery");
+		var svgs = gallery.children;
+		var all = gallery.getElementsByTagName("use");
+		var input = find("preset");
 
-			var index = 0;
-			var width = svgs[0].clientWidth;
-			var GallerySkeleton = {
-				set sex (female) {
-					var needle, replace;
-					if (female) {
-						needle = "male";
-						replace = "female";
-					} else {
-						needle = "female";
-						replace = "male";
-					}
-					for (var i = 0; i < all.length; i++) {
-						var href = all[i].getAttribute("href");
-						href = href.replace(needle, replace);
-						all[i].setAttribute("href", href);
-					}
-				},
-				get target () {
-					for (var i = 0; i < svgs.length; i++)
-						if (svgs[i].getAttribute("class") == "primary")
-							return svgs[i];
-				},
-				set target (value) {
-					var t = this.target;
-					if (t === value)
-						return;
-					else if (t) {
-						t.removeAttribute("class");
-					}
-					value.setAttribute("class", "primary");
-					var use = value.firstElementChild;
-					input.value = use.getAttribute("href").substring(1);
-				},
-				get shift () {
-					return index;
-				},
-				set shift (value) {
-					if (value < 0)
-						value = 0;
-					else if (value >= svgs.length)
-						value = svgs.length - 1;
-					index = value;
-					if (fromScroll)
-						this.target = svgs[this.shift];
-					else
-						gallery.scroll( {
-							left: (this.shift + 0.5)*width,
-							behavior: "smooth"
-						});
+		var index = 0;
+		var width = svgs[0].clientWidth;
+		var GallerySkeleton = {
+			set sex (female) {
+				var needle, replace;
+				if (female) {
+					needle = "male";
+					replace = "female";
+				} else {
+					needle = "female";
+					replace = "male";
 				}
-			};
-			GallerySkeleton.sex = isFemale;
-			GallerySkeleton.shift = 0;
+				for (var i = 0; i < all.length; i++) {
+					var href = all[i].getAttribute("href");
+					href = href.replace(needle, replace);
+					all[i].setAttribute("href", href);
+				}
+			},
+			get target () {
+				for (var i = 0; i < svgs.length; i++)
+					if (svgs[i].getAttribute("class") == "primary")
+						return svgs[i];
+			},
+			set target (value) {
+				var t = this.target;
+				if (t === value)
+					return;
+				else if (t) {
+					t.removeAttribute("class");
+				}
+				value.setAttribute("class", "primary");
+				var use = value.firstElementChild;
+				var href = use.getAttribute("href");
+				input.value = href.replace(/.*#/,"gallery/raw/");
+			},
+			get shift () {
+				return index;
+			},
+			set shift (value) {
+				if (value < 0)
+					value = 0;
+				else if (value >= svgs.length)
+					value = svgs.length - 1;
+				index = value;
+				if (fromScroll)
+					this.target = svgs[this.shift];
+				else
+					gallery.scroll( {
+						left: (this.shift + 0.5)*width,
+						behavior: "smooth"
+					});
+			}
+		};
+		GallerySkeleton.sex = isFemale;
+		GallerySkeleton.shift = 0;
 
-			var fromScroll = false;
-			gallery.scroll(0,0);
-			gallery.addEventListener("scroll", function (event) {
-				var index = Math.round(this.scrollLeft/width-1/2);
-				fromScroll = true;
-				GallerySkeleton.shift = index;
-				fromScroll = false;
-			});
-			window.addEventListener("resize", function () {
-				width = svgs[0].clientWidth;
-				var pos = (index + 1/2)*width;
-				gallery.scroll({left: pos, behavior: "smooth"});
-			});
-			return GallerySkeleton;
-		}
-		var female = find("female");
-		var Gallery = new ArmorGallery(female.checked);
+		var fromScroll = false;
+		gallery.scroll(0,0);
+		gallery.addEventListener("scroll", function (event) {
+			var index = Math.round(this.scrollLeft/width-1/2);
+			fromScroll = true;
+			GallerySkeleton.shift = index;
+			fromScroll = false;
+		});
+		window.addEventListener("resize", function () {
+			width = svgs[0].clientWidth;
+			var pos = (index + 1/2)*width;
+			gallery.scroll({left: pos, behavior: "smooth"});
+		});
+		return GallerySkeleton;
+	}
+	var female = find("female");
+	var Gallery = new ArmorGallery(female.checked);
 	</script>
 </html>
