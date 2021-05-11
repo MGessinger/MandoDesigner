@@ -39,8 +39,7 @@ function Uploader (queryString, D) {
 		variants = new VariantsVault;
 		settings = resetSettings(false);
 
-		var iter = document.createNodeIterator ( svg,
-			NodeFilter.SHOW_ELEMENT,
+		var iter = document.createNodeIterator(svg, NodeFilter.SHOW_ELEMENT,
 			{ acceptNode: function (node) {
 					if (!node.id)
 						return NodeFilter.FILTER_REJECT;
@@ -177,25 +176,25 @@ function Downloader () {
 	var logoSVG, bckImgURI, bckSVG;
 
 	function prepareForExport (svg) {
-		var options = svg.getElementsByClassName("option");
-		var i = 0;
-		while (i < options.length) {
-			if (options[i].style.display == "inherit") {
-				i++;
-				continue;
+		var iter = document.createNodeIterator(svg, NodeFilter.SHOW_ELEMENT,
+			{ "acceptNode": function (node) {
+				if (node.hasAttribute("class"))
+					return NodeFilter.FILTER_ACCEPT;
+				return NodeFilter.FILTER_SKIP;
+			} }
+		);
+		var node, parent, rem;
+		while (node = iter.nextNode()) {
+			if (parent)
+				parent.removeChild(rem);
+			parent = null;
+			var cls = node.getAttribute("class");
+			var display = node.style.display;
+			if (	((cls == "option") && (display !== "inherit")) ||
+				((cls == "toggle") && (display == "none")) ) {
+				parent = node.parentNode;
+				rem = node;
 			}
-			var parent = options[i].parentNode;
-			parent.removeChild(options[i]);
-		}
-		var toggles = svg.getElementsByClassName("toggle");
-		i = 0;
-		while (i < toggles.length) {
-			if (toggles[i].style.display !== "none") {
-				i++;
-				continue;
-			}
-			var parent = toggles[i].parentNode;
-			parent.removeChild(toggles[i]);
 		}
 		return svg;
 	}

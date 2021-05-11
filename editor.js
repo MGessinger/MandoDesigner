@@ -8,16 +8,22 @@ function find (st) {
 
 function SVGVault (vault) {
 	function prepareSVGAttributes (svg) {
-		/* Assign classes based on ID components */
-		var options = svg.querySelectorAll("[id*=Option]");
-		for (var i = 0; i < options.length; i++)
-			options[i].setAttribute("class", "option");
-
-		var options = svg.querySelectorAll("[id*=Toggle]");
-		for (var i = 0; i < options.length; i++) {
-			options[i].setAttribute("class", "toggle");
-			if (options[i].id.includes("Off"))
-				options[i].style.display = "none";
+		var iter = document.createNodeIterator(svg, NodeFilter.SHOW_ELEMENT,
+			{ acceptNode: function (n) {
+				return n.id ? NodeFilter.FILTER_ACCEPT : NodeFilter.FILTER_REJECT;
+			} } );
+		var node;
+		while (node = iter.nextNode()) {
+			var id = node.id;
+			var comp = id.match(/Option|Toggle/);
+			if (!comp)
+				continue;
+			node.setAttribute("class", comp[0].toLowerCase());
+			id = node.id = id.replace("_"+comp[0], "");
+			if (id.includes("Off")) {
+				node.id = id.replace("Off", "");
+				node.style.display = "none";
+			}
 		}
 		vault.appendChild(svg);
 	}
@@ -597,7 +603,7 @@ function prettify (str) {
 }
 
 function neutralize (str) {
-	return str.replace(/(_(M|F|Toggle(Off)?|Option))+($|_)/,"$4");
+	return str.replace(/(_M|_F)+($|_)/,"$4");
 }
 
 function buttonName (str) {

@@ -351,7 +351,7 @@ function ChangeHistory () {
 				change.target = target + "Select";
 				break;
 			case "sublist":
-				change.target = target + "_Option_Check";
+				change.target = target + "_Check";
 				break;
 			case "variant":
 				change.target = target + "_Variant_";
