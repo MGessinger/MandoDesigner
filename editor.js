@@ -78,7 +78,8 @@ function Settings (Change) {
 		"Sub Antenna":	"\uE91B",
 		"Sensor Stalk":	"\uE91A",
 		"Antenna":	"\uE91C",
-		"Lear Cap":	"\uE91D"
+		"Lear Cap":	"\uE91D",
+		"Module":	"\ue922"
 	}
 
 	function DOMNode (type, props, parent) {
@@ -563,8 +564,15 @@ function VariantsVault (asString) {
 		"Helmet": "Classic",
 		"Chest": "Classic"
 	};
-	if (asString)
+	if (asString) {
+		var simple = __vars;
 		__vars = JSON.parse(asString);
+		for (var i in simple) {
+			if (i in __vars)
+				continue;
+			__vars[i] = simple[i];
+		}
+	}
 
 	this.hasItem = function (key) {
 		return key in __vars;
@@ -603,7 +611,7 @@ function prettify (str) {
 }
 
 function neutralize (str) {
-	return str.replace(/(_M|_F)+($|_)/,"$4");
+	return str.replace(/(_M|_F)($|_)/,"$2");
 }
 
 function buttonName (str) {
@@ -686,7 +694,7 @@ function onload () {
 	nsw.onmessage = function (event) {
 		displayForm(true, 'reload');
 	};
-	//nsw.register("sw.js");
+	nsw.register("sw.js");
 }
 
 function openArmorFolder (category) {
