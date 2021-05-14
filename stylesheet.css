@@ -424,16 +424,19 @@ footer {
 }
 
 .type_button {
+	display: inline-block;
 	width: 30%;
 	position: relative;
 	margin-left: 3%;
 	margin-bottom: 1em;
 	background: none;
 	border: none;
+	text-align: center;
 }
 
-.current_variant {
-	color: var(--accent);
+.type_button input {
+	opacity: 0;
+	position: absolute;
 }
 
 .new:before {
@@ -452,6 +455,10 @@ footer {
 	stroke: black;
 	stroke-width: 3px;
 	pointer-events: none;
+}
+
+:checked ~ .preview_icon {
+	border-color: var(--accent);
 }
 
 .slide_toggle {

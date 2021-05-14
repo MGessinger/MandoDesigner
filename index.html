@@ -68,32 +68,32 @@
 			<div id="left_nav">
 				<span class="nav_icon">&#xE905;</span>
 				<div id="parts_list" class="sub_nav">
-					<input type="radio" name="parts_list" id="HelmetSettings" value="Helmet (Buy'ce)" onclick="openArmorFolder('Helmet')" checked hidden/>
-					<label for="HelmetSettings" class="nav_label"><span class="nav_icon">&#xE905;</span>Helmet (Buy'ce)</label>
-					<input type="radio" name="parts_list" id="FlightSuitSettings" value="Flight Suit (Kute)" onclick="openArmorFolder('FlightSuit')" hidden/>
-					<label for="FlightSuitSettings" class="nav_label"><span class="nav_icon">&#xE907;</span>Flight Suit (Kute)</label>
-					<input type="radio" name="parts_list" id="UpperArmorSettings" value="Upper Body" onclick="openArmorFolder('UpperArmor')" hidden/>
-					<label for="UpperArmorSettings" class="nav_label"><span class="nav_icon">&#xE908;</span>Upper Body</label>
-					<input type="radio" name="parts_list" id="LowerArmorSettings" value="Lower Body" onclick="openArmorFolder('LowerArmor')" hidden/>
-					<label for="LowerArmorSettings" class="nav_label"><span class="nav_icon">&#xE906;</span>Lower Body</label>
-					<input type="radio" name="parts_list" id="BackSettings" value="Back" onclick="openArmorFolder('Back')" hidden/>
-					<label for="BackSettings" class="nav_label"><span class="nav_icon">&#xE904;</span>Back (Norac)</label>
+					<input type="radio" name="parts_list" id="HelmetRadio" value="Helmet (Buy'ce)" onclick="openArmorFolder('Helmet')" checked hidden/>
+					<label for="HelmetRadio" class="nav_label"><span class="nav_icon">&#xE905;</span>Helmet (Buy'ce)</label>
+					<input type="radio" name="parts_list" id="SoftPartsRadio" value="Flight Suit (Kute)" onclick="openArmorFolder('SoftParts')" hidden/>
+					<label for="SoftPartsRadio" class="nav_label"><span class="nav_icon">&#xE907;</span>Flight Suit (Kute)</label>
+					<input type="radio" name="parts_list" id="UpperArmorRadio" value="Upper Body" onclick="openArmorFolder('UpperArmor')" hidden/>
+					<label for="UpperArmorRadio" class="nav_label"><span class="nav_icon">&#xE908;</span>Upper Body</label>
+					<input type="radio" name="parts_list" id="LowerArmorRadio" value="Lower Body" onclick="openArmorFolder('LowerArmor')" hidden/>
+					<label for="LowerArmorRadio" class="nav_label"><span class="nav_icon">&#xE906;</span>Lower Body</label>
+					<input type="radio" name="parts_list" id="BackRadio" value="Back" onclick="openArmorFolder('Back')" hidden/>
+					<label for="BackRadio" class="nav_label"><span class="nav_icon">&#xE904;</span>Back (Norac)</label>
 				</div>
 				<span class="nav_icon">&#xE921;</span>
 				<div id="settings_list" class="sub_nav">
-					<input type="radio" name="sex" class="toggle_sex" id="male" checked onchange="S.set.Sex(false)"
+					<input type="radio" name="sex" class="toggle_sex" id="male" checked onchange="Settings.Sex(false)"
 					><label for="male" class="label_sex"><span class="nav_icon">&#xe901;</span></label
-					><input type="radio" name="sex" class="toggle_sex" id="female" onchange="S.set.Sex(true)"
+					><input type="radio" name="sex" class="toggle_sex" id="female" onchange="Settings.Sex(true)"
 					><label for="female" class="label_sex"><span class="nav_icon">&#xe902;</span></label>
 					<input id="background_upload" type="file" accept="image/*" hidden/>
 					<label for="background_upload" class="nav_label"><span class="nav_icon">&#xF03E;</span>Upload Background</label>
-					<button id="reset_wrapper" class="nav_label" onclick="S.set.DarkMode(find('color_scheme_picker').checked)"><span class="nav_icon">&#xF021;</span>Reset Background</button>
+					<button id="reset_wrapper" class="nav_label" onclick="Settings.DarkMode(find('color_scheme_picker').checked)"><span class="nav_icon">&#xF021;</span>Reset Background</button>
 					<input id="reupload" type="file" accept="image/svg+xml" hidden/>
 					<label for="reupload" class="nav_label"><span class="nav_icon">&#xE910;</span>Continue Editing</label>
 					<a id="download_svg" class="nav_label" download="MandoCreator.svg" href="/"><span class="nav_icon">&#xE903;</span>Download as SVG</a>
 					<a id="download_jpeg" class="nav_label" download="MandoCreator.jpeg" href="/"><span class="nav_icon">&#xE903;</span>Download as JPEG</a>
 					<label id="color_scheme_label" for="color_scheme_picker" class="nav_label"><span class="nav_icon">&#xE90F;</span>Toggle Dark/Light</label>
-					<input type="checkbox" id="color_scheme_picker" style="opacity:0;" onchange="S.set.DarkMode(this.checked)"/>
+					<input type="checkbox" id="color_scheme_picker" style="opacity:0;" onchange="Settings.DarkMode(this.checked)"/>
 				</div>
 				<span class="nav_icon">&#xE90E;</span>
 				<div class="sub_nav">
@@ -110,122 +110,147 @@
 			</div>
 		</nav>
 		<div id="settings" class="settings_column settings_collapsed">
-			<button id="settings_toggle" title="Toggle Options menu" onclick="S.toggle.Options()">&#xE900;</button>
+			<button id="settings_toggle" title="Toggle Options menu">&#xE900;</button>
 			<div id="HelmetOptions" class="folder selected">
 				<div class="hidden">
 					<h2 class="slide_title">Helmet (Buy'ce)</h2>
 					<details open>
 					<summary class="option_name">Style:</summary>
-					<div id="HelmetTypes" class="armor_types" onclick="switchToArmorButton('Helmet','Helmet', event.target);">
+					<div id="HelmetTypes" class="armor_types" onchange="switchToArmorButton('Helmet','Helmet', event.target);">
 						<details open>
 							<summary class="sponsor_title">Common</summary>
-							<button id="Helmet_Variant_Classic" class="type_button current_variant" data-name="Classic">
-								<svg viewbox="0 75 700 700" class="preview_icon"><use href="#Helmet_Classic"/></svg>
+							<label class="type_button current_variant">
+								<input type="radio" name="helmet" id="Helmet_Variant_Classic" value="Classic" checked>
+								<svg viewBox="0 75 700 700" class="preview_icon"><use href="#Helmet_Classic"/></svg>
 								Classic
-							</button><button id="Helmet_Variant_Nite" class="type_button" data-name="Nite">
-								<svg viewbox="0 75 700 700" class="preview_icon"><use href="#Helmet_Nite"/></svg>
+							</label><label class="type_button">
+								<input type="radio" name="helmet" id="Helmet_Variant_Nite" value="Nite">
+								<svg viewBox="0 75 700 700" class="preview_icon"><use href="#Helmet_Nite"/></svg>
 								Nite Owl
-							</button><button id="Helmet_Variant_Gunslinger" class="type_button" data-name="Gunslinger">
-								<svg viewbox="0 75 700 700" class="preview_icon"><use href="#Helmet_Gunslinger"/></svg>
+							</label><label class="type_button">
+								<input type="radio" name="helmet" id="Helmet_Variant_Gunslinger" value="Gunslinger">
+								<svg viewBox="0 75 700 700" class="preview_icon"><use href="#Helmet_Gunslinger"/></svg>
 								Gunslinger
-							</button><button id="Helmet_Variant_Heavy" class="type_button" data-name="Heavy">
-								<svg viewbox="0 75 700 700" class="preview_icon"><use href="#Helmet_Heavy"/></svg>
+							</label><label class="type_button">
+								<input type="radio" name="helmet" id="Helmet_Variant_Heavy" value="Heavy">
+								<svg viewBox="0 75 700 700" class="preview_icon"><use href="#Helmet_Heavy"/></svg>
 								Heavy
-							</button><button id="Helmet_Variant_Pre-Vizsla" class="type_button" data-name="Pre-Vizsla">
-								<svg viewbox="0 75 700 700" class="preview_icon"><use href="#Helmet_Pre-Vizsla"/></svg>
+							</label><label class="type_button">
+								<input type="radio" name="helmet" id="Helmet_Variant_Pre-Vizsla" value="Pre-Vizsla">
+								<svg viewBox="0 75 700 700" class="preview_icon"><use href="#Helmet_Pre-Vizsla"/></svg>
 								Pre Vizsla
-							</button>
+							</label>
 						</details>
 						<details open>
 							<summary class="sponsor_title">AlterEgoArmory (sponsored):</summary>
-							<button id="Helmet_Variant_Warden" class="type_button" data-name="Warden"
+							<label class="type_button">
+								<input type="radio" name="helmet" id="Helmet_Variant_Warden" value="Warden"
 								onclick="setSponsor('AlterEgo','https://etsy.me/35mF6Eb');">
-								<svg viewbox="0 75 700 700" class="preview_icon"><use href="#Helmet_Warden"/></svg>
+								<svg viewBox="0 75 700 700" class="preview_icon"><use href="#Helmet_Warden"/></svg>
 								Warden
-							</button><button id="Helmet_Variant_Matriarch" class="type_button" data-name="Matriarch"
+							</label><label class="type_button">
+								<input type="radio" name="helmet" id="Helmet_Variant_Matriarch" value="Matriarch"
 								onclick="setSponsor('AlterEgo','https://etsy.me/2GR02cX');">
-								<svg viewbox="0 75 700 700" class="preview_icon"><use href="#Helmet_Matriarch"/></svg>
+								<svg viewBox="0 75 700 700" class="preview_icon"><use href="#Helmet_Matriarch"/></svg>
 								Matriarch
-							</button><button id="Helmet_Variant_Liege" class="type_button" data-name="Liege"
+							</label><label class="type_button">
+								<input type="radio" name="helmet" id="Helmet_Variant_Liege" value="Liege"
 								onclick="setSponsor('AlterEgo','https://etsy.me/3eSg03d');">
-								<svg viewbox="0 75 700 700" class="preview_icon"><use href="#Helmet_Liege"/></svg>
+								<svg viewBox="0 75 700 700" class="preview_icon"><use href="#Helmet_Liege"/></svg>
 								Liege
-							</button><button id="Helmet_Variant_Guardian" class="type_button" data-name="Guardian"
+							</label><label class="type_button">
+								<input type="radio" name="helmet" id="Helmet_Variant_Guardian" value="Guardian"
 								onclick="setSponsor('AlterEgo','https://etsy.me/35mnHvm');">
-								<svg viewbox="0 75 700 700" class="preview_icon"><use href="#Helmet_Guardian"/></svg>
+								<svg viewBox="0 75 700 700" class="preview_icon"><use href="#Helmet_Guardian"/></svg>
 								Guardian
-							</button>
+							</label>
 						</details>
 						<details open>
 							<summary class="sponsor_title">ModernMando (sponsored)</summary>
-							<button id="Helmet_Variant_Tracker" class="type_button" data-name="Tracker"
+							<label class="type_button">
+								<input type="radio" name="helmet" id="Helmet_Variant_Tracker" value="Tracker"
 								onclick="setSponsor('ModernMando','https://etsy.me/39yaNwG');">
-								<svg viewbox="0 75 700 700" class="preview_icon"><use href="#Helmet_Tracker"/></svg>
+								<svg viewBox="0 75 700 700" class="preview_icon"><use href="#Helmet_Tracker"/></svg>
 								Tracker
-							</button><button id="Helmet_Variant_Neo-Scout" class="type_button" data-name="Neo-Scout"
+							</label><label class="type_button">
+								<input type="radio" name="helmet" id="Helmet_Variant_Neo-Scout" value="Neo-Scout"
 								onclick="setSponsor('ModernMando','https://etsy.me/39KC9zT');">
-								<svg viewbox="0 75 700 700" class="preview_icon"><use href="#Helmet_Neo-Scout"/></svg>
+								<svg viewBox="0 75 700 700" class="preview_icon"><use href="#Helmet_Neo-Scout"/></svg>
 								Neo-Scout
-							</button>
+							</label>
 						</details>
 						<details open>
 							<summary class="sponsor_title">LoneWolf Customs (sponsored)</summary>
-							<button id="Helmet_Variant_Executioner" class="type_button" data-name="Executioner"
+							<label class="type_button">
+								<input type="radio" name="helmet" id="Helmet_Variant_Executioner" value="Executioner"
 								onclick="setSponsor('Lonewolf', 'https://bit.ly/33YeckM');">
-								<svg viewbox="0 75 700 700" class="preview_icon"><use href="#Helmet_Executioner"/></svg>
+								<svg viewBox="0 75 700 700" class="preview_icon"><use href="#Helmet_Executioner"/></svg>
 								Executioner
-							<button id="Helmet_Variant_Grunt" class="type_button new" data-name="Grunt"
+							</label><label class="type_button new">
+								<input type="radio" name="helmet" id="Helmet_Variant_Grunt" value="Grunt"
 								onclick="setSponsor('Lonewolf', 'https://bit.ly/3wJpWVi');">
-								<svg viewbox="0 75 700 700" class="preview_icon"><use href="#Helmet_Grunt"/></svg>
+								<svg viewBox="0 75 700 700" class="preview_icon"><use href="#Helmet_Grunt"/></svg>
 								Grunt
-							<button id="Helmet_Variant_Ursa-Wren" class="type_button new" data-name="Ursa-Wren"
+							</label><label class="type_button new">
+								<input type="radio" name="helmet" id="Helmet_Variant_Ursa-Wren" value="Ursa-Wren"
 								onclick="setSponsor('Lonewolf', 'https://bit.ly/39X9R4l');">
-								<svg viewbox="0 75 700 700" class="preview_icon"><use href="#Helmet_Ursa-Wren"/></svg>
+								<svg viewBox="0 75 700 700" class="preview_icon"><use href="#Helmet_Ursa-Wren"/></svg>
 								Ursa Wren
-							</button>
+							</label>
 						</details>
 						<details open>
 							<summary class="sponsor_title">Gedyc Armouries (sponsored)</summary>
-							<button id="Helmet_Variant_Ironside" class="type_button" data-name="Ironside"
+							<label class="type_button">
+								<input type="radio" name="helmet" id="Helmet_Variant_Ironside" value="Ironside"
 								onclick="setSponsor('Gedyc', 'https://etsy.me/2KPe8gT');">
-								<svg viewbox="0 75 700 700" class="preview_icon"><use href="#Helmet_Ironside"/></svg>
+								<svg viewBox="0 75 700 700" class="preview_icon"><use href="#Helmet_Ironside"/></svg>
 								Ironside
-							</button>
+							</label>
 						</details>
 						<details open>
 							<summary class="sponsor_title">Miscellaneous:</summary>
-							<button id="Helmet_Variant_Budget-Bucket" class="type_button" data-name="Budget-Bucket"
+							<label class="type_button">
+								<input type="radio" name="helmet" id="Helmet_Variant_Budget-Bucket" value="Budget-Bucket"
 								onclick="setSponsor('Budget','#');">
-								<svg viewbox="0 0 700 700" class="preview_icon"><use href="#Helmet_Budget-Bucket"/></svg>
+								<svg viewBox="0 0 700 700" class="preview_icon"><use href="#Helmet_Budget-Bucket"/></svg>
 								Budget
-							</button><button id="Helmet_Variant_Ramikadyc" class="type_button new" data-name="Ramikadyc">
-								<svg viewbox="0 75 700 700" class="preview_icon"><use href="#Helmet_Ramikadyc"/></svg>
+							</label><label class="type_button new">
+								<input type="radio" name="helmet" id="Helmet_Variant_Ramikadyc" value="Ramikadyc">
+								<svg viewBox="0 75 700 700" class="preview_icon"><use href="#Helmet_Ramikadyc"/></svg>
 								Ramikadyc
-							</button><button id="Helmet_Variant_McQuarrie" class="type_button" data-name="McQuarrie">
-								<svg viewbox="0 75 700 700" class="preview_icon"><use href="#Helmet_McQuarrie"/></svg>
+							</label><label class="type_button">
+								<input type="radio" name="helmet" id="Helmet_Variant_McQuarrie" value="McQuarrie">
+								<svg viewBox="0 75 700 700" class="preview_icon"><use href="#Helmet_McQuarrie"/></svg>
 								McQuarrie
-							</button><button id="Helmet_Variant_Charismatic" class="type_button" data-name="Charismatic">
-								<svg viewbox="0 75 700 700" class="preview_icon"><use href="#Helmet_Charismatic"/></svg>
+							</label><label class="type_button">
+								<input type="radio" name="helmet" id="Helmet_Variant_Charismatic" value="Charismatic">
+								<svg viewBox="0 75 700 700" class="preview_icon"><use href="#Helmet_Charismatic"/></svg>
 								Charismatic
-							</button><button id="Helmet_Variant_Shae-Vizla" class="type_button" data-name="Shae-Vizla">
-								<svg viewbox="0 75 700 700" class="preview_icon"><use href="#Helmet_Shae-Vizla"/></svg>
+							</label><label class="type_button">
+								<input type="radio" name="helmet" id="Helmet_Variant_Shae-Vizla" value="Shae-Vizla">
+								<svg viewBox="0 75 700 700" class="preview_icon"><use href="#Helmet_Shae-Vizla"/></svg>
 								Shae Vizla
-							</button><button id="Helmet_Variant_RC" class="type_button" data-name="RC" onclick="playKote();">
-								<svg viewbox="0 75 700 700" class="preview_icon"><use href="#Helmet_RC"/></svg>
+							</label><label class="type_button">
+								<input type="radio" name="helmet" id="Helmet_Variant_RC" value="RC" onclick="playKote();">
+								<svg viewBox="0 75 700 700" class="preview_icon"><use href="#Helmet_RC"/></svg>
 								Commando
-							</button><button id="Helmet_Variant_Stalker-Medium" class="type_button" data-name="Stalker-Medium">
-								<svg viewbox="0 75 700 700" class="preview_icon"><use href="#Helmet_Stalker-Medium"/></svg>
+							</label><label class="type_button">
+								<input type="radio" name="helmet" id="Helmet_Variant_Stalker-Medium" value="Stalker-Medium">
+								<svg viewBox="0 75 700 700" class="preview_icon"><use href="#Helmet_Stalker-Medium"/></svg>
 								Stalker (M)
-							</button><button id="Helmet_Variant_Stalker-Large" class="type_button" data-name="Stalker-Large">
-								<svg viewbox="0 75 700 700" class="preview_icon"><use href="#Helmet_Stalker-Large"/></svg>
+							</label><label class="type_button">
+								<input type="radio" name="helmet" id="Helmet_Variant_Stalker-Large" value="Stalker-Large">
+								<svg viewBox="0 75 700 700" class="preview_icon"><use href="#Helmet_Stalker-Large"/></svg>
 								Stalker (L)
-							</button><button id="Helmet_Variant_Assassin" class="type_button" data-name="Assassin">
-								<svg viewbox="0 75 700 700" class="preview_icon"><use href="#Helmet_Assassin"/></svg>
+							</label><label class="type_button">
+								<input type="radio" name="helmet" id="Helmet_Variant_Assassin" value="Assassin">
+								<svg viewBox="0 75 700 700" class="preview_icon"><use href="#Helmet_Assassin"/></svg>
 								Assassin
-							<button id="Helmet_Variant_Neo" class="type_button new" data-name="Neo">
-								<svg viewbox="0 125 700 700" class="preview_icon"><use href="#Helmet_Neo"/></svg>
+							</label><label class="type_button new">
+								<input type="radio" name="helmet" id="Helmet_Variant_Neo" value="Neo">
+								<svg viewBox="0 125 700 700" class="preview_icon"><use href="#Helmet_Neo"/></svg>
 								Neo-Crusader
-							</button>
+							</label>
 						</details>
 					</div>
 					</details>
@@ -248,54 +273,66 @@
 					<h2 class="slide_title">Upper Body</h2>
 					<details open>
 						<summary class="option_name">Style:</summary>
-						<div class="armor_types male" onclick="switchToArmorButton('UpperArmor','Chest', event.target)">
-							<button id="Chest_Variant_Classic_M" class="type_button current_variant" data-name="Classic_M">
-								<svg viewbox="200 -50 1000 1000" class="preview_icon"><use href="#Chest_Classic_M"/></svg>
+						<div class="armor_types male" onchange="switchToArmorButton('UpperArmor','Chest', event.target)">
+							<label class="type_button current_variant">
+								<input type="radio" name="chest" id="Chest_Variant_Classic_M" value="Classic_M" checked>
+								<svg viewBox="450 650 900 900" class="preview_icon"><use href="#Chest_Classic_M"/></svg>
 								Classic
-							</button><button id="Chest_Variant_Legacy_M" class="type_button" data-name="Legacy_M">
-								<svg viewbox="200 -50 1000 1000" class="preview_icon"><use href="#Chest_Legacy_M"/></svg>
+							</label><label class="type_button">
+								<input type="radio" name="chest" id="Chest_Variant_Legacy_M" value="Legacy_M">
+								<svg viewBox="450 650 900 900" class="preview_icon"><use href="#Chest_Legacy_M"/></svg>
 								Legacy
-							</button><button id="Chest_Variant_Heavy_M" class="type_button" data-name="Heavy_M">
-								<svg viewbox="200 -50 1000 1000" class="preview_icon"><use href="#Chest_Heavy_M"/></svg>
+							</label><label class="type_button">
+								<input type="radio" name="chest" id="Chest_Variant_Heavy_M" value="Heavy_M">
+								<svg viewBox="450 650 900 900" class="preview_icon"><use href="#Chest_Heavy_M"/></svg>
 								Heavy
-							</button><button class="type_button" id="Chest_Variant_Gunslinger-MK1_M" data-name="Gunslinger-MK1_M">
-								<svg viewBox="200 -50 1000 1000" class="preview_icon"><use href="#Chest_Gunslinger-MK1_M"></use></svg>
+							</label><label class="type_button">
+								<input type="radio" name="chest" id="Chest_Variant_Gunslinger-MK1_M" value="Gunslinger-MK1_M">
+								<svg viewBox="450 650 900 900" class="preview_icon"><use href="#Chest_Gunslinger-MK1_M"></use></svg>
 								Gunslinger v1
-							</button><button id="Chest_Variant_Gunslinger_M" class="type_button" data-name="Gunslinger_M">
-								<svg viewbox="200 -50 1000 1000" class="preview_icon"><use href="#Chest_Gunslinger_M"/></svg>
+							</label><label class="type_button">
+								<input type="radio" name="chest" id="Chest_Variant_Gunslinger_M" value="Gunslinger_M">
+								<svg viewBox="450 650 900 900" class="preview_icon"><use href="#Chest_Gunslinger_M"/></svg>
 								Gunslinger v2
-							</button><button id="Chest_Variant_Galaxy_M" class="type_button" data-name="Galaxy_M">
-								<svg viewbox="200 -50 1000 1000" class="preview_icon"><use href="#Chest_Galaxy_M"/></svg>
+							</label><label class="type_button">
+								<input type="radio" name="chest" id="Chest_Variant_Galaxy_M" value="Galaxy_M">
+								<svg viewBox="450 650 900 900" class="preview_icon"><use href="#Chest_Galaxy_M"/></svg>
 								Galaxy
-							</button>
+							</label>
 						</div>
 						<div class="armor_types female" onclick="switchToArmorButton('UpperArmor','Chest', event.target)">
-							<button id="Chest_Variant_Classic_F" class="type_button current_variant" data-name="Classic_F">
-								<svg viewbox="200 -50 1000 1000" class="preview_icon"><use href="#Chest_Classic_F"/></svg>
+							<label class="type_button current_variant">
+								<input type="radio" name="chest" id="Chest_Variant_Classic_F" value="Classic_F">
+								<svg viewBox="450 650 900 900" class="preview_icon"><use href="#Chest_Classic_F"/></svg>
 								Classic
-							</button><button id="Chest_Variant_Legacy_F" class="type_button" data-name="Legacy_F">
-								<svg viewbox="200 -50 1000 1000" class="preview_icon"><use href="#Chest_Legacy_F"/></svg>
+							</label><label class="type_button">
+								<input type="radio" name="chest" id="Chest_Variant_Legacy_F" value="Legacy_F">
+								<svg viewBox="450 650 900 900" class="preview_icon"><use href="#Chest_Legacy_F"/></svg>
 								Legacy
-							</button><button id="Chest_Variant_Heavy_F" class="type_button" data-name="Heavy_F">
-								<svg viewbox="200 -50 1000 1000" class="preview_icon"><use href="#Chest_Heavy_F"/></svg>
+							</label><label class="type_button">
+								<input type="radio" name="chest" id="Chest_Variant_Heavy_F" value="Heavy_F">
+								<svg viewBox="450 650 900 900" class="preview_icon"><use href="#Chest_Heavy_F"/></svg>
 								Heavy
-							</button><button class="type_button" id="Chest_Variant_Gunslinger-MK1_F" data-name="Gunslinger-MK1_F">
-								<svg viewBox="200 -50 1000 1000" class="preview_icon"><use href="#Chest_Gunslinger-MK1_F"></use></svg>
+							</label><label value="Gunslinger-MK1_F">
+								<input type="radio" name="chest" id="Chest_Variant_Gunslinger-MK1_F">
+								<svg viewBox="450 650 900 900" class="preview_icon"><use href="#Chest_Gunslinger-MK1_F"></use></svg>
 								Gunslinger v1
-							</button><button id="Chest_Variant_Gunslinger_F" class="type_button" data-name="Gunslinger_F">
-								<svg viewbox="200 -50 1000 1000" class="preview_icon"><use href="#Chest_Gunslinger_F"/></svg>
+							</label><label class="type_button">
+								<input type="radio" name="chest" id="Chest_Variant_Gunslinger_F" value="Gunslinger_F">
+								<svg viewBox="450 650 900 900" class="preview_icon"><use href="#Chest_Gunslinger_F"/></svg>
 								Gunslinger v2
-							</button><button id="Chest_Variant_Galaxy_F" class="type_button" data-name="Galaxy_F">
-								<svg viewbox="200 -50 1000 1000" class="preview_icon"><use href="#Chest_Galaxy_F"/></svg>
+							</label><label class="type_button">
+								<input type="radio" name="chest" id="Chest_Variant_Galaxy_F" value="Galaxy_F">
+								<svg viewBox="450 650 900 900" class="preview_icon"><use href="#Chest_Galaxy_F"/></svg>
 								Galaxy
-							</button>
+							</label>
 						</div>
 					</details>
 					<p class="option_name">Parts:</p>
 				</div>
 				<div class="folder_content">
 					<div class="slide">
-						<button class="slide_toggle hidden" onclick="S.toggle.Slide(this.parentNode)">
+						<button class="slide_toggle hidden">
 							<div class="toggle_text">
 								<p class="parent_title">Upper Body</p>
 								<p>Neck (Ghet'bur)</p>
@@ -305,7 +342,7 @@
 						<div id="NeckArmorColors" class="replace slide_content"></div>
 					</div>
 					<div class="slide">
-						<button class="slide_toggle hidden" onclick="S.toggle.Slide(this.parentNode)">
+						<button class="slide_toggle hidden">
 							<div class="toggle_text">
 								<p class="parent_title">Upper Body</p>
 								<p>Chest Attachments</p>
@@ -314,7 +351,7 @@
 						<div id="ChestAttachmentsColors" class="slide_content"></div>
 					</div>
 					<div class="slide">
-						<button class="slide_toggle hidden" onclick="S.toggle.Slide(this.parentNode)">
+						<button class="slide_toggle hidden">
 							<div class="toggle_text">
 								<p class="parent_title">Upper Body</p>
 								<p>Chest (Hal'cabur)</p>
@@ -325,7 +362,7 @@
 						<div id="LeftChestColors" class="replace slide_content"></div>
 					</div>
 					<div class="slide">
-						<button class="slide_toggle hidden" onclick="S.toggle.Slide(this.parentNode)">
+						<button class="slide_toggle hidden">
 							<div class="toggle_text">
 								<p class="parent_title">Upper Body</p>
 								<p>Iron Heart (Kar'ta Beskar)</p>
@@ -334,7 +371,7 @@
 						<div id="IronHeartColors" class="replace slide_content"></div>
 					</div>
 					<div class="slide">
-						<button class="slide_toggle hidden" onclick="S.toggle.Slide(this.parentNode)">
+						<button class="slide_toggle hidden">
 							<div class="toggle_text">
 								<p class="parent_title">Upper Body</p>
 								<p>Abdomen (Shar'tas)</p>
@@ -343,7 +380,7 @@
 						<div id="AbdomenColors" class="replace slide_content"></div>
 					</div>
 					<div class="slide">
-						<button class="slide_toggle hidden" onclick="S.toggle.Slide(this.parentNode)">
+						<button class="slide_toggle hidden">
 							<div class="toggle_text">
 								<p class="parent_title">Upper Body</p>
 								<p>Shoulders (Bes'mabur)</p>
@@ -353,7 +390,7 @@
 						<div id="LeftShoulderColors" class="slide_content"></div>
 					</div>
 					<div class="slide">
-						<button class="slide_toggle hidden" onclick="S.toggle.Slide(this.parentNode)">
+						<button class="slide_toggle hidden">
 							<div class="toggle_text">
 								<p class="parent_title">Upper Body</p>
 								<p>Biceps (Irud'cabur)</p>
@@ -363,7 +400,7 @@
 						<div id="LeftBicepsColors" class="slide_content"></div>
 					</div>
 					<div class="slide">
-						<button class="slide_toggle hidden" onclick="S.toggle.Slide(this.parentNode)">
+						<button class="slide_toggle hidden">
 							<div class="toggle_text">
 								<p class="parent_title">Upper Body</p>
 								<p>Gauntlets (Kom'rk)</p>
@@ -374,7 +411,7 @@
 					</div>
 				</div>
 			</div>
-			<div id="FlightSuitOptions" class="folder">
+			<div id="SoftPartsOptions" class="folder">
 				<div class="hidden">
 					<h2 class="slide_title">Flight Suit (Kute)</h2>
 				</div>
@@ -392,7 +429,7 @@
 				</div>
 				<div class="folder_content">
 					<div class="slide">
-						<button class="slide_toggle hidden" onclick="S.toggle.Slide(this.parentNode)">
+						<button class="slide_toggle hidden">
 							<div class="toggle_text">
 								<p class="parent_title">Lower Body</p>
 								<p>Waist</p>
@@ -403,7 +440,7 @@
 						<div id="AccessoriesColors" class="slide_content"></div>
 					</div>
 					<div class="slide">
-						<button class="slide_toggle hidden" onclick="S.toggle.Slide(this.parentNode)">
+						<button class="slide_toggle hidden">
 							<div class="toggle_text">
 								<p class="parent_title">Lower Body</p>
 								<p>Groin (Ven'cabur)</p>
@@ -412,7 +449,7 @@
 						<div id="GroinColors" class="slide_content"></div>
 					</div>
 					<div class="slide">
-						<button class="slide_toggle hidden" onclick="S.toggle.Slide(this.parentNode)">
+						<button class="slide_toggle hidden">
 							<div class="toggle_text">
 								<p class="parent_title">Lower Body</p>
 								<p>Thighs (Motun'bur)</p>
@@ -422,7 +459,7 @@
 						<div id="LeftThighColors" class="slide_content"></div>
 					</div>
 					<div class="slide">
-						<button class="slide_toggle hidden" onclick="S.toggle.Slide(this.parentNode)">
+						<button class="slide_toggle hidden">
 							<div class="toggle_text">
 								<p class="parent_title">Lower Body</p>
 								<p>Knees (Bes'lovik)</p>
@@ -432,7 +469,7 @@
 						<div id="LeftKneeColors" class="slide_content"></div>
 					</div>
 					<div class="slide">
-						<button class="slide_toggle hidden" onclick="S.toggle.Slide(this.parentNode)">
+						<button class="slide_toggle hidden">
 							<div class="toggle_text">
 								<p class="parent_title">Lower Body</p>
 								<p>Shins (Tadun'bur)</p>
@@ -442,7 +479,7 @@
 						<div id="LeftShinColors" class="slide_content"></div>
 					</div>
 					<div class="slide">
-						<button class="slide_toggle hidden" onclick="S.toggle.Slide(this.parentNode)">
+						<button class="slide_toggle hidden">
 							<div class="toggle_text">
 								<p class="parent_title">Lower Body</p>
 								<p>Foot (Cetar'bur)</p>
@@ -485,7 +522,7 @@
 				/><button class="picker_done">Okay</button>
 			</div>
 		</div>
-		<main id="editor" class="image_column"></main>
+		<main id="editor" class="image_column"> <svg></svg> </main>
 		<video id="rickroll" style="display:none" autoplay onended="this.style.display='none'"></video>
 		<form id="reload" style="display:none">
 			<legend>A new version is available</legend>
