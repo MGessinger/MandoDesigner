@@ -7,27 +7,6 @@ function find (st) {
 }
 
 function SVGVault (vault) {
-	function prepareSVGAttributes (svg) {
-		var iter = document.createNodeIterator(svg, NodeFilter.SHOW_ELEMENT,
-			{ acceptNode: function (n) {
-				return n.id ? NodeFilter.FILTER_ACCEPT : NodeFilter.FILTER_REJECT;
-			} } );
-		var node;
-		while (node = iter.nextNode()) {
-			var id = node.id;
-			var comp = id.match(/Option|Toggle/);
-			if (!comp)
-				continue;
-			node.setAttribute("class", comp[0].toLowerCase());
-			id = node.id = id.replace("_"+comp[0], "");
-			if (id.includes("Off")) {
-				node.id = id.replace("Off", "");
-				node.style.display = "none";
-			}
-		}
-		vault.appendChild(svg);
-	}
-
 	this.query = function (st) {
 		var ch = vault.children;
 		for (var i = 0; i < ch.length; i++) {
@@ -57,7 +36,7 @@ function SVGVault (vault) {
 				} else {
 					var svg = xml.documentElement;
 					svg.setAttribute("id", name);
-					prepareSVGAttributes(svg);
+					vault.appendChild(svg);
 					onload(svg.cloneNode(true));
 					resolve();
 				}
@@ -246,6 +225,41 @@ function Builder (Change) {
 		handler.bind(select)({defaultPrevented: true});
 	}
 
+	function CheckboxChangeHandler (id, sublist, node) {
+		return function () {
+			if (this.checked) {
+				sublist.style.display = "";
+				node.style.display = "inherit";
+			} else {
+				sublist.style.display = "none";
+				node.style.display = "";
+			}
+			variants.setItem(id, this.checked, "toggle");
+		}
+	}
+	function BuildCheckboxes (options, parent) {
+		var icons_wrapper = DOMNode("div", {class: "checkbox_list hidden"}, parent);
+		while (options.length) {
+			var o = options.pop();
+			var title = prettify(o.id);
+			var id = sanitize(o.id) + "Toggle";
+
+			/* Step 2.1: Build a checkbox hidden behind an icon */
+			var input = DOMNode("input", {type: "checkbox", class: "checkbox", id: id}, icons_wrapper);
+			var label = DOMNode("label", {for: id, class: "checkbox_label", title: title}, icons_wrapper);
+			label.innerText = icons[title];
+
+			/* Step 2.2: Build a sublist for all the colors to go in */
+			var sublist = DOMNode("div", {id: sanitize(o.id)+"SubColors"}, parent);
+			BuildManager(o, sublist);
+
+			/* Step 2.3: Attach and event handler to the checkbox */
+			var handler = CheckboxChangeHandler(id, sublist, o);
+			input.addEventListener("change", handler);
+			handler.bind(input)();
+		}
+	}
+
 	function BuildManager (node, realParent) {
 		var parent = document.createDocumentFragment();
 		var ch = node.children;
@@ -279,8 +293,14 @@ function Builder (Change) {
 		}
 
 		/* Step 3: Build controls for .option and .toggle */
-		if (options.length)
-			BuildDropDown(options, node.id, parent);
+		var isEarcap = node.id.includes("Earcap");
+		if (options.length) {
+			if (isEarcap) {
+				BuildCheckboxes(options, parent);
+			}
+			else
+				BuildDropDown(options, node.id, parent);
+		}
 		while (toggles.length) {
 			var t = toggles.pop();
 			BuildToggle(t, parent);

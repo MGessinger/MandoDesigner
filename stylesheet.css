@@ -237,7 +237,7 @@ legend {
 	scrollbar-width: none;
 }
 
-.image_column .invisible {
+.invisible {
 	visibility: hidden;
 }
 
@@ -460,7 +460,7 @@ footer {
 	pointer-events: none;
 }
 
-:checked ~ .preview_icon {
+:checked + .preview_icon {
 	border-color: var(--accent);
 }
 
@@ -573,7 +573,7 @@ footer {
 }
 
 .checkbox_list {
-	padding: 0.5em 1em;
+	padding: 0.5em 1em 0 1em;
 }
 
 .checkbox_wrapper {
@@ -587,13 +587,15 @@ footer {
 }
 
 .checkbox_label {
+	display: inline-block;
 	padding: 0.25em;
+	margin-right: 0.5em;
 	font-size: 1.33em;
 	border: 1px solid currentColor;
 	color: var(--highlight);
 }
 
-:checked ~ .checkbox_label {
+:checked + .checkbox_label {
 	color: var(--accent);
 }
 

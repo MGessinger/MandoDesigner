@@ -1,5 +1,6 @@
 release: gallery pictures
 
+
 serve: release
 	php -S 0.0.0.0:8000
 
@@ -10,22 +11,26 @@ clean:
 .PHONY: clean
 
 #=========================IMAGES==========================
+LOGOS=images/LogoDark.svg images/LogoLight.svg
 
-MALE=images/Male_Master.svg
-FEMALE=images/Female-Body.svg images/Lower-Armor_F.svg images/Upper-Armor_F.svg
-NEUTRAL=images/LogoDark.svg images/LogoLight.svg images/Helmets.svg
-
-pictures: $(NEUTRAL) $(MALE) $(FEMALE)
+pictures: images/Helmets.svg images/Male_Master.svg $(LOGOS)
 	@touch pictures
 
 images:
-	@mkdir images
-
-images/%_F.svg: pictures/%_F.svg | images
-	@sed "s/[[:space:]]\+class=.[^\"\']\+[\"\']//; s/_M\([\"_]\)/_F\1/" $< > $@;
+	@mkdir -p images
 
 images/%.svg: pictures/%.svg | images
-	@sed "s/[[:space:]]\+class=.[^\"\']\+[\"\']//;" $< > $@;
+	@sed " \
+		s|\s\+class=.[^\"\']\+[\"\']||; \
+		/Toggle/ { \
+			s|_Toggle|\" class=\"toggle|; \
+			s|Off|\" style=\"display:none|; \
+		}; \
+		s|Option|\" class=\"option|; \
+		/Helmets\|\"Chest..\"/ { \
+			s/ / class=\"invisible\" /; \
+		} \
+	" $< > $@;
 
 #=========================GALLERY=========================
 
@@ -46,15 +51,15 @@ wrapper_%.svg: $(RAW)
 				P; D; \
 			}; \
 			s|</svg>|</g>|; \
-			s|[[:space:]]\+id=[\'\"][^\'\"]*[\'\"]||g; \
+			s|\s\+id=[\'\"][^\'\"]*[\'\"]||g; \
 		" $*/$$i >> $@; done;
 	@echo "</svg>" >> $@;
 
 gallery/raw/%: gallery/male/% gallery/female/% | gallery/raw
 	@sed -E -s -i " \
 		/.<svg/ { s|.<svg|\n<svg|; D; }; \
-		s|(</svg>[[:space:]]*)+|</svg>|; \
-		s|>[[:space:]]+<|><|g; \
+		s|(</svg>\s*)+|</svg>|; \
+		s|>\s+<|><|g; \
 		s/<(title|style)>[^<]*<\/(title|style)>//g; \
 	" $?;
 	@sed -E "\
