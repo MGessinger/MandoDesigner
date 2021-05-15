@@ -44,6 +44,8 @@ body {
 	margin: 0;
 	color: var(--mainFont);
 	font-family: 'icomoon', 'Raleway', Verdana, sans-serif;
+	background: var(--softColor) no-repeat center;
+	background-size: cover;
 	-webkit-user-select: none;
 	-moz-user-select: none;
 	-ms-user-select: none;
@@ -96,7 +98,7 @@ nav {
 }
 
 .nav_icon {
-	width: 1.5em;
+	width: 2em;
 	display: inline-block;
 	font-size: 1.5em;
 	line-height: 2em;
@@ -231,10 +233,12 @@ legend {
 	overflow: auto;
 	text-align: center;
 	box-sizing: border-box;
-	background: var(--softColor) no-repeat center;
-	background-size: cover;
 	-ms-overflow-style: none;
 	scrollbar-width: none;
+}
+
+.image_column .invisible {
+	visibility: hidden;
 }
 
 .option {

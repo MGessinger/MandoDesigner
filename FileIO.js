@@ -168,7 +168,7 @@ function Uploader (queryString, D) {
 }
 
 function Downloader () {
-	var editor = find("editor");
+	var SVG = find("svg_wrapper");
 	var xml = new XMLSerializer();
 	var img = new Image();
 	var canvas = find("canvas");
@@ -205,8 +205,7 @@ function Downloader () {
 	}
 
 	function SVGFromEditor () {
-		var svg = editor.firstElementChild;
-		var copy = svg.cloneNode(true);
+		var copy = SVG.cloneNode(true);
 		return prepareForExport(copy);
 	}
 
@@ -264,7 +263,7 @@ function Downloader () {
 					bckSVG = null;
 			}
 			prepareCanvas(href);
-			editor.style.backgroundImage = "url(\"" + href + "\")";
+			document.body.style.backgroundImage = "url(\"" + href + "\")";
 		},
 		get Background () {
 			var svgMain = SVGNode("svg", {

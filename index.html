@@ -110,33 +110,33 @@
 			</div>
 		</nav>
 		<div id="settings" class="settings_column settings_collapsed">
-			<button id="settings_toggle" title="Toggle Options menu">&#xE900;</button>
+			<button id="settings_toggle" title="Toggle Controls Menu">&#xE900;</button>
 			<div id="HelmetOptions" class="folder selected">
 				<div class="hidden">
 					<h2 class="slide_title">Helmet (Buy'ce)</h2>
 					<details open>
 					<summary class="option_name">Style:</summary>
-					<div id="HelmetTypes" class="armor_types" onchange="switchToArmorButton('Helmet','Helmet', event.target);">
+					<div id="HelmetTypes" class="armor_types" onchange="UpdateSponsor('Helmet')">
 						<details open>
 							<summary class="sponsor_title">Common</summary>
 							<label class="type_button current_variant">
-								<input type="radio" name="helmet" id="Helmet_Variant_Classic" value="Classic" checked>
+								<input type="radio" name="helmet" id="Helmet_ClassicRadio" value="Classic" checked>
 								<svg viewBox="0 75 700 700" class="preview_icon"><use href="#Helmet_Classic"/></svg>
 								Classic
 							</label><label class="type_button">
-								<input type="radio" name="helmet" id="Helmet_Variant_Nite" value="Nite">
+								<input type="radio" name="helmet" id="Helmet_NiteRadio" value="Nite">
 								<svg viewBox="0 75 700 700" class="preview_icon"><use href="#Helmet_Nite"/></svg>
 								Nite Owl
 							</label><label class="type_button">
-								<input type="radio" name="helmet" id="Helmet_Variant_Gunslinger" value="Gunslinger">
+								<input type="radio" name="helmet" id="Helmet_GunslingerRadio" value="Gunslinger">
 								<svg viewBox="0 75 700 700" class="preview_icon"><use href="#Helmet_Gunslinger"/></svg>
 								Gunslinger
 							</label><label class="type_button">
-								<input type="radio" name="helmet" id="Helmet_Variant_Heavy" value="Heavy">
+								<input type="radio" name="helmet" id="Helmet_HeavyRadio" value="Heavy">
 								<svg viewBox="0 75 700 700" class="preview_icon"><use href="#Helmet_Heavy"/></svg>
 								Heavy
 							</label><label class="type_button">
-								<input type="radio" name="helmet" id="Helmet_Variant_Pre-Vizsla" value="Pre-Vizsla">
+								<input type="radio" name="helmet" id="Helmet_Pre-VizslaRadio" value="Pre-Vizsla">
 								<svg viewBox="0 75 700 700" class="preview_icon"><use href="#Helmet_Pre-Vizsla"/></svg>
 								Pre Vizsla
 							</label>
@@ -144,22 +144,22 @@
 						<details open>
 							<summary class="sponsor_title">AlterEgoArmory (sponsored):</summary>
 							<label class="type_button">
-								<input type="radio" name="helmet" id="Helmet_Variant_Warden" value="Warden"
+								<input type="radio" name="helmet" id="Helmet_WardenRadio" value="Warden"
 								onclick="setSponsor('AlterEgo','https://etsy.me/35mF6Eb');">
 								<svg viewBox="0 75 700 700" class="preview_icon"><use href="#Helmet_Warden"/></svg>
 								Warden
 							</label><label class="type_button">
-								<input type="radio" name="helmet" id="Helmet_Variant_Matriarch" value="Matriarch"
+								<input type="radio" name="helmet" id="Helmet_MatriarchRadio" value="Matriarch"
 								onclick="setSponsor('AlterEgo','https://etsy.me/2GR02cX');">
 								<svg viewBox="0 75 700 700" class="preview_icon"><use href="#Helmet_Matriarch"/></svg>
 								Matriarch
 							</label><label class="type_button">
-								<input type="radio" name="helmet" id="Helmet_Variant_Liege" value="Liege"
+								<input type="radio" name="helmet" id="Helmet_LiegeRadio" value="Liege"
 								onclick="setSponsor('AlterEgo','https://etsy.me/3eSg03d');">
 								<svg viewBox="0 75 700 700" class="preview_icon"><use href="#Helmet_Liege"/></svg>
 								Liege
 							</label><label class="type_button">
-								<input type="radio" name="helmet" id="Helmet_Variant_Guardian" value="Guardian"
+								<input type="radio" name="helmet" id="Helmet_GuardianRadio" value="Guardian"
 								onclick="setSponsor('AlterEgo','https://etsy.me/35mnHvm');">
 								<svg viewBox="0 75 700 700" class="preview_icon"><use href="#Helmet_Guardian"/></svg>
 								Guardian
@@ -168,12 +168,12 @@
 						<details open>
 							<summary class="sponsor_title">ModernMando (sponsored)</summary>
 							<label class="type_button">
-								<input type="radio" name="helmet" id="Helmet_Variant_Tracker" value="Tracker"
+								<input type="radio" name="helmet" id="Helmet_TrackerRadio" value="Tracker"
 								onclick="setSponsor('ModernMando','https://etsy.me/39yaNwG');">
 								<svg viewBox="0 75 700 700" class="preview_icon"><use href="#Helmet_Tracker"/></svg>
 								Tracker
 							</label><label class="type_button">
-								<input type="radio" name="helmet" id="Helmet_Variant_Neo-Scout" value="Neo-Scout"
+								<input type="radio" name="helmet" id="Helmet_Neo-ScoutRadio" value="Neo-Scout"
 								onclick="setSponsor('ModernMando','https://etsy.me/39KC9zT');">
 								<svg viewBox="0 75 700 700" class="preview_icon"><use href="#Helmet_Neo-Scout"/></svg>
 								Neo-Scout
@@ -182,17 +182,17 @@
 						<details open>
 							<summary class="sponsor_title">LoneWolf Customs (sponsored)</summary>
 							<label class="type_button">
-								<input type="radio" name="helmet" id="Helmet_Variant_Executioner" value="Executioner"
+								<input type="radio" name="helmet" id="Helmet_ExecutionerRadio" value="Executioner"
 								onclick="setSponsor('Lonewolf', 'https://bit.ly/33YeckM');">
 								<svg viewBox="0 75 700 700" class="preview_icon"><use href="#Helmet_Executioner"/></svg>
 								Executioner
 							</label><label class="type_button new">
-								<input type="radio" name="helmet" id="Helmet_Variant_Grunt" value="Grunt"
+								<input type="radio" name="helmet" id="Helmet_GruntRadio" value="Grunt"
 								onclick="setSponsor('Lonewolf', 'https://bit.ly/3wJpWVi');">
 								<svg viewBox="0 75 700 700" class="preview_icon"><use href="#Helmet_Grunt"/></svg>
 								Grunt
 							</label><label class="type_button new">
-								<input type="radio" name="helmet" id="Helmet_Variant_Ursa-Wren" value="Ursa-Wren"
+								<input type="radio" name="helmet" id="Helmet_Ursa-WrenRadio" value="Ursa-Wren"
 								onclick="setSponsor('Lonewolf', 'https://bit.ly/39X9R4l');">
 								<svg viewBox="0 75 700 700" class="preview_icon"><use href="#Helmet_Ursa-Wren"/></svg>
 								Ursa Wren
@@ -201,7 +201,7 @@
 						<details open>
 							<summary class="sponsor_title">Gedyc Armouries (sponsored)</summary>
 							<label class="type_button">
-								<input type="radio" name="helmet" id="Helmet_Variant_Ironside" value="Ironside"
+								<input type="radio" name="helmet" id="Helmet_IronsideRadio" value="Ironside"
 								onclick="setSponsor('Gedyc', 'https://etsy.me/2KPe8gT');">
 								<svg viewBox="0 75 700 700" class="preview_icon"><use href="#Helmet_Ironside"/></svg>
 								Ironside
@@ -210,44 +210,44 @@
 						<details open>
 							<summary class="sponsor_title">Miscellaneous:</summary>
 							<label class="type_button">
-								<input type="radio" name="helmet" id="Helmet_Variant_Budget-Bucket" value="Budget-Bucket"
+								<input type="radio" name="helmet" id="Helmet_Budget-BucketRadio" value="Budget-Bucket"
 								onclick="setSponsor('Budget','#');">
 								<svg viewBox="0 0 700 700" class="preview_icon"><use href="#Helmet_Budget-Bucket"/></svg>
 								Budget
 							</label><label class="type_button new">
-								<input type="radio" name="helmet" id="Helmet_Variant_Ramikadyc" value="Ramikadyc">
+								<input type="radio" name="helmet" id="Helmet_RamikadycRadio" value="Ramikadyc">
 								<svg viewBox="0 75 700 700" class="preview_icon"><use href="#Helmet_Ramikadyc"/></svg>
 								Ramikadyc
 							</label><label class="type_button">
-								<input type="radio" name="helmet" id="Helmet_Variant_McQuarrie" value="McQuarrie">
+								<input type="radio" name="helmet" id="Helmet_McQuarrieRadio" value="McQuarrie">
 								<svg viewBox="0 75 700 700" class="preview_icon"><use href="#Helmet_McQuarrie"/></svg>
 								McQuarrie
 							</label><label class="type_button">
-								<input type="radio" name="helmet" id="Helmet_Variant_Charismatic" value="Charismatic">
+								<input type="radio" name="helmet" id="Helmet_CharismaticRadio" value="Charismatic">
 								<svg viewBox="0 75 700 700" class="preview_icon"><use href="#Helmet_Charismatic"/></svg>
 								Charismatic
 							</label><label class="type_button">
-								<input type="radio" name="helmet" id="Helmet_Variant_Shae-Vizla" value="Shae-Vizla">
+								<input type="radio" name="helmet" id="Helmet_Shae-VizlaRadio" value="Shae-Vizla">
 								<svg viewBox="0 75 700 700" class="preview_icon"><use href="#Helmet_Shae-Vizla"/></svg>
 								Shae Vizla
 							</label><label class="type_button">
-								<input type="radio" name="helmet" id="Helmet_Variant_RC" value="RC" onclick="playKote();">
+								<input type="radio" name="helmet" id="Helmet_RCRadio" value="RC" onclick="playKote();">
 								<svg viewBox="0 75 700 700" class="preview_icon"><use href="#Helmet_RC"/></svg>
 								Commando
 							</label><label class="type_button">
-								<input type="radio" name="helmet" id="Helmet_Variant_Stalker-Medium" value="Stalker-Medium">
+								<input type="radio" name="helmet" id="Helmet_Stalker-MediumRadio" value="Stalker-Medium">
 								<svg viewBox="0 75 700 700" class="preview_icon"><use href="#Helmet_Stalker-Medium"/></svg>
 								Stalker (M)
 							</label><label class="type_button">
-								<input type="radio" name="helmet" id="Helmet_Variant_Stalker-Large" value="Stalker-Large">
+								<input type="radio" name="helmet" id="Helmet_Stalker-LargeRadio" value="Stalker-Large">
 								<svg viewBox="0 75 700 700" class="preview_icon"><use href="#Helmet_Stalker-Large"/></svg>
 								Stalker (L)
 							</label><label class="type_button">
-								<input type="radio" name="helmet" id="Helmet_Variant_Assassin" value="Assassin">
+								<input type="radio" name="helmet" id="Helmet_AssassinRadio" value="Assassin">
 								<svg viewBox="0 75 700 700" class="preview_icon"><use href="#Helmet_Assassin"/></svg>
 								Assassin
 							</label><label class="type_button new">
-								<input type="radio" name="helmet" id="Helmet_Variant_Neo" value="Neo">
+								<input type="radio" name="helmet" id="Helmet_NeoRadio" value="Neo">
 								<svg viewBox="0 125 700 700" class="preview_icon"><use href="#Helmet_Neo"/></svg>
 								Neo-Crusader
 							</label>
@@ -256,8 +256,8 @@
 					</details>
 				</div>
 				<div class="folder_content">
-					<div id="HelmetColors" class="replace slide_content"></div>
-					<div id="MaskOfMandalorColors" class="replace slide_content" onclick="showRoll('Neo')"></div>
+					<div id="HelmetsColors" class="slide_content"></div>
+					<div id="MaskOfMandalorColors" class="slide_content" onclick="showRoll('Neo')"></div>
 				</div>
 				<div class="sponsors" style="position: relative">
 					<button class="close_sponsors" style="display:none" onclick="hideSponsors(this.parentNode);">X</button>
@@ -273,56 +273,56 @@
 					<h2 class="slide_title">Upper Body</h2>
 					<details open>
 						<summary class="option_name">Style:</summary>
-						<div class="armor_types male" onchange="switchToArmorButton('UpperArmor','Chest', event.target)">
+						<div class="armor_types male">
 							<label class="type_button current_variant">
-								<input type="radio" name="chest" id="Chest_Variant_Classic_M" value="Classic_M" checked>
+								<input type="radio" name="chest" id="Chest_Classic_MRadio" value="Classic_M" checked>
 								<svg viewBox="450 650 900 900" class="preview_icon"><use href="#Chest_Classic_M"/></svg>
 								Classic
 							</label><label class="type_button">
-								<input type="radio" name="chest" id="Chest_Variant_Legacy_M" value="Legacy_M">
+								<input type="radio" name="chest" id="Chest_Legacy_MRadio" value="Legacy_M">
 								<svg viewBox="450 650 900 900" class="preview_icon"><use href="#Chest_Legacy_M"/></svg>
 								Legacy
 							</label><label class="type_button">
-								<input type="radio" name="chest" id="Chest_Variant_Heavy_M" value="Heavy_M">
+								<input type="radio" name="chest" id="Chest_Heavy_MRadio" value="Heavy_M">
 								<svg viewBox="450 650 900 900" class="preview_icon"><use href="#Chest_Heavy_M"/></svg>
 								Heavy
 							</label><label class="type_button">
-								<input type="radio" name="chest" id="Chest_Variant_Gunslinger-MK1_M" value="Gunslinger-MK1_M">
+								<input type="radio" name="chest" id="Chest_Gunslinger-MK1_MRadio" value="Gunslinger-MK1_M">
 								<svg viewBox="450 650 900 900" class="preview_icon"><use href="#Chest_Gunslinger-MK1_M"></use></svg>
 								Gunslinger v1
 							</label><label class="type_button">
-								<input type="radio" name="chest" id="Chest_Variant_Gunslinger_M" value="Gunslinger_M">
+								<input type="radio" name="chest" id="Chest_Gunslinger_MRadio" value="Gunslinger_M">
 								<svg viewBox="450 650 900 900" class="preview_icon"><use href="#Chest_Gunslinger_M"/></svg>
 								Gunslinger v2
 							</label><label class="type_button">
-								<input type="radio" name="chest" id="Chest_Variant_Galaxy_M" value="Galaxy_M">
+								<input type="radio" name="chest" id="Chest_Galaxy_MRadio" value="Galaxy_M">
 								<svg viewBox="450 650 900 900" class="preview_icon"><use href="#Chest_Galaxy_M"/></svg>
 								Galaxy
 							</label>
 						</div>
 						<div class="armor_types female" onclick="switchToArmorButton('UpperArmor','Chest', event.target)">
 							<label class="type_button current_variant">
-								<input type="radio" name="chest" id="Chest_Variant_Classic_F" value="Classic_F">
+								<input type="radio" name="chest" id="Chest_Classic_FRadio" value="Classic_F">
 								<svg viewBox="450 650 900 900" class="preview_icon"><use href="#Chest_Classic_F"/></svg>
 								Classic
 							</label><label class="type_button">
-								<input type="radio" name="chest" id="Chest_Variant_Legacy_F" value="Legacy_F">
+								<input type="radio" name="chest" id="Chest_Legacy_FRadio" value="Legacy_F">
 								<svg viewBox="450 650 900 900" class="preview_icon"><use href="#Chest_Legacy_F"/></svg>
 								Legacy
 							</label><label class="type_button">
-								<input type="radio" name="chest" id="Chest_Variant_Heavy_F" value="Heavy_F">
+								<input type="radio" name="chest" id="Chest_Heavy_FRadio" value="Heavy_F">
 								<svg viewBox="450 650 900 900" class="preview_icon"><use href="#Chest_Heavy_F"/></svg>
 								Heavy
 							</label><label value="Gunslinger-MK1_F">
-								<input type="radio" name="chest" id="Chest_Variant_Gunslinger-MK1_F">
+								<input type="radio" name="chest" id="Chest_Gunslinger-MK1_FRadio">
 								<svg viewBox="450 650 900 900" class="preview_icon"><use href="#Chest_Gunslinger-MK1_F"></use></svg>
 								Gunslinger v1
 							</label><label class="type_button">
-								<input type="radio" name="chest" id="Chest_Variant_Gunslinger_F" value="Gunslinger_F">
+								<input type="radio" name="chest" id="Chest_Gunslinger_FRadio" value="Gunslinger_F">
 								<svg viewBox="450 650 900 900" class="preview_icon"><use href="#Chest_Gunslinger_F"/></svg>
 								Gunslinger v2
 							</label><label class="type_button">
-								<input type="radio" name="chest" id="Chest_Variant_Galaxy_F" value="Galaxy_F">
+								<input type="radio" name="chest" id="Chest_Galaxy_FRadio" value="Galaxy_F">
 								<svg viewBox="450 650 900 900" class="preview_icon"><use href="#Chest_Galaxy_F"/></svg>
 								Galaxy
 							</label>
@@ -339,7 +339,7 @@
 							</div>
 						</button>
 						<div id="CollarColors" class="slide_content"></div>
-						<div id="NeckArmorColors" class="replace slide_content"></div>
+						<div id="NeckArmorColors" class="slide_content"></div>
 					</div>
 					<div class="slide">
 						<button class="slide_toggle hidden">
@@ -357,9 +357,9 @@
 								<p>Chest (Hal'cabur)</p>
 							</div>
 						</button>
-						<div id="FullChestColors" class="replace slide_content"></div>
-						<div id="RightChestColors" class="replace slide_content"></div>
-						<div id="LeftChestColors" class="replace slide_content"></div>
+						<div id="FullChestColors" class="slide_content"></div>
+						<div id="RightChestColors" class="slide_content"></div>
+						<div id="LeftChestColors" class="slide_content"></div>
 					</div>
 					<div class="slide">
 						<button class="slide_toggle hidden">
@@ -368,7 +368,7 @@
 								<p>Iron Heart (Kar'ta Beskar)</p>
 							</div>
 						</button>
-						<div id="IronHeartColors" class="replace slide_content"></div>
+						<div id="IronHeartColors" class="slide_content"></div>
 					</div>
 					<div class="slide">
 						<button class="slide_toggle hidden">
@@ -377,7 +377,7 @@
 								<p>Abdomen (Shar'tas)</p>
 							</div>
 						</button>
-						<div id="AbdomenColors" class="replace slide_content"></div>
+						<div id="AbdomenColors" class="slide_content"></div>
 					</div>
 					<div class="slide">
 						<button class="slide_toggle hidden">
@@ -522,7 +522,12 @@
 				/><button class="picker_done">Okay</button>
 			</div>
 		</div>
-		<main id="editor" class="image_column"> <svg></svg> </main>
+		<main id="main" class="image_column">
+			<svg viewBox="0 0 1800 3200" id="svg_wrapper" style="fill:white;fill-rule:evenodd;stroke:black;stroke-width:2px">
+				<g id="Helmets"></g>
+				<g id="Body"></g>
+			</svg>
+		</main>
 		<video id="rickroll" style="display:none" autoplay onended="this.style.display='none'"></video>
 		<form id="reload" style="display:none">
 			<legend>A new version is available</legend>

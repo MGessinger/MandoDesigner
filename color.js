@@ -315,8 +315,6 @@ function ChangeHistory () {
 	var self = this;
 
 	function undoSingleChange (type, targetID, value) {
-		if (type == "variant")
-			targetID += value;
 		var target = find(targetID);
 		if (!target)
 			return false;
@@ -335,26 +333,12 @@ function ChangeHistory () {
 		return true;
 	}
 
-	this.format = function (type, oldVal, newVal, target, verbatim) {
+	this.format = function (type, oldVal, newVal, target) {
 		var change = {
 			"type": type,
 			"oldValue": oldVal,
-			"newValue": newVal
-		}
-		if (verbatim) /* Override the type argument, if the exact targetID is known */
-			type = "verbatim";
-		switch (type) {
-			case "subslide":
-				change.target = buttonName(target) + "Toggle";
-				break;
-			case "sublist":
-				change.target = target + "_Check";
-				break;
-			case "variant":
-				change.target = target + "_Variant_";
-				break;
-			default:
-				change.target = target;
+			"newValue": newVal,
+			"target": target
 		}
 		return change;
 	}

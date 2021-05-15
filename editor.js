@@ -81,10 +81,11 @@ function Builder (Change) {
 	}
 	var categories = {
 		"Helmet":	["Helmet"],
-		"UpperArmor":	["Biceps", "Chest", "ChestAttachments", "Collar", "Shoulders", "Gauntlets"],
+		"UpperArmor":	["Biceps", "Chests", "ChestAttachments", "Collar", "Shoulders", "Gauntlets"],
 		"LowerArmor":	["Shins", "Foot", "Knees", "Thighs", "Groin", "Waist"],
 		"SoftParts":	["Boots", "Suit", "Sleeves", "Gloves", "Vest"],
-		"Back":		["Back", "Front"]
+		"Back":		["Back", "Front"],
+		"Helmet":	["Helmets"]
 	}
 	function findCategory (id) {
 		id = sanitize(id);
@@ -103,10 +104,11 @@ function Builder (Change) {
 		var san = sanitize(node.id);
 		if (san in hax)
 			san = hax[san];
-		var parent = find(san + "Colors");
-		/* Step 2: If the parent is empty, then make a headline */
-		if (!parent)
+		if (san.includes("_"))
 			return;
+		var parent = find(san + "Colors");
+		if (!parent) return;
+		/* Step 2: If the parent is empty, make a headline */
 		if (parent.childElementCount == 0) {
 			var par = DOMNode("h3", {class: "option_name hidden"}, parent);
 			par.innerText = prettify(node.id) + " Options:";
@@ -153,12 +155,46 @@ function Builder (Change) {
 	}
 
 	function BuildToggle (toggle, parent) {
+		/* Step 1: Build all DOM components */
+		DOMNode("p", {class: "separator"}, parent); /* Like a line break */
+		var label = DOMNode("label", {class: "pseudo_checkbox hidden"}, parent);
+
+		var span = DOMNode("span", {class: "pseudo_label"}, label);
+		span.innerText = prettify(toggle.id);
+
+		var id = sanitize(toggle.id) + "Toggle";
+		var input = DOMNode("input", {type: "checkbox", id: id, class: "armor_toggle"}, label);
+		var sp = DOMNode("span", {class: "slider"}, label);
+
+		var subslide = DOMNode("div", {class: "subslide"}, parent);
+
+		/* Step 2: Find the default value and attach an event handler */
+		var defaultOn = (toggle.style.display !== "none");
+		if (variants.hasItem(id))
+			defaultOn = variants.getItem(id);
+		var handler = function () {
+			if (this.checked) {
+				subslide.style.display = "";
+				toggle.style.display = "";
+			} else {
+				subslide.style.display = "none";
+				toggle.style.display = "none";
+			}
+			if (this.checked != defaultOn)
+				variants.setItem(id, this.checked, "toggle");
+			else
+				variants.removeItem(id, "toggle");
+		}
+		input.addEventListener("change", handler);
+		input.checked = !afterUpload && defaultOn;
+		handler.bind(input)();
+		return BuildManager(toggle, subslide);
 	}
 
 	function SelectChangeHandler (pairs, id) {
-		return function () {
-			console.log("Change");
-			variants.setItem(id, this.value, "select");
+		return function (event) {
+			if (!event.defaultPrevented)
+				variants.setItem(id, this.value, "select");
 			for (var i in pairs) {
 				var p = pairs[i];
 				if (sanitize(p[0].id) == this.value) {
@@ -200,19 +236,17 @@ function Builder (Change) {
 			var subParent = DOMNode("div", {id: o_id + "SubColors"}, parent);
 			BuildManager(o, subParent);
 			if (sanitize(o.id) == def)
-				select.value = o_id;
+				opt.selected = true;
 			pairs.push([o,subParent]);
 		}
 
 		/* Step 3: Simulate a change event, to trigger all the right handlers */
-		var handler = SelectChangeHandler(pairs, id);
+		var handler = SelectChangeHandler(pairs, id, def);
 		select.addEventListener("change", handler);
-		handler.bind({value: select.value})();
+		handler.bind(select)({defaultPrevented: true});
 	}
 
-	var main = find("editor");
 	function BuildManager (node, realParent) {
-		if (!node || !node.id) return;
 		var parent = document.createDocumentFragment();
 		var ch = node.children;
 
@@ -253,34 +287,20 @@ function Builder (Change) {
 		}
 
 		/* Finally, put all controls in the DOM */
-		if (parent.childElementCount == 0)
-			return;
 		if (realParent)
 			realParent.appendChild(parent);
 	}
-	async function setup (svg, suffix, upload) {
+	function setup (nodes, upload) {
 		afterUpload = upload; /* Set to true, if an upload just occurred */
-		Change.track = false; /* Do not track any settings during setup  */
-
-		main.replaceChild(svg, main.firstElementChild);
-
-		var helmet = Vault.load("Helmets", function (h) {
-			//svg.appendChild(h);
-		});
-		var ch = svg.children;
-		for (var i = 0; i < ch.length; i++) {
-			var id = ch[i].id;
+		for (var i = nodes.length-1; i >= 0; i--) {
+			var id = nodes[i].id;
 			var category = findCategory(id);
 			if (!category)
 				continue;
 			var radio = find(category + "Radio");
-			ch[i].addEventListener("click", redirectClickTo(radio));
-			BuildManager(ch[i]);
+			nodes[i].addEventListener("click", redirectClickTo(radio));
+			BuildManager(nodes[i]);
 		}
-
-		await helmet;
-		afterUpload = false;
-		Change.track = true;
 	}
 	return {Manager: BuildManager, setup: setup};
 }
@@ -288,17 +308,15 @@ var Change = new ChangeHistory;
 var Build = new Builder(Change);
 
 var Settings = {
-	Sex: function (female, upload) {
-		var body, sexSuffix;
+	Sex: async function (female, upload) {
+		var body;
 		var settings = find("settings");
 		if (female) {
 			body = "Female_Master";
-			sexSuffix = "F";
 			settings.classList.remove("male");
 			settings.classList.add("female");
 		} else {
 			body = "Male_Master";
-			sexSuffix = "M";
 			settings.classList.remove("female");
 			settings.classList.add("male");
 		}
@@ -307,12 +325,22 @@ var Settings = {
 			slides[i].innerHTML = "";
 		}
 
-		Vault.load(body, function (svg) {
-			Build.setup(svg, sexSuffix, upload);
-			zoom(find("zoom").value);
-			svg.scrollIntoView({inline: "center"});
+		Change.track = false; /* Do not track any settings during setup  */
+		var SVG = find("svg_wrapper");
+		var helmet = Vault.load("Helmets", function (helmets) {
+			Build.setup([helmets], upload);
+			SVG.replaceChild(helmets, SVG.firstElementChild);
+		});
+		var body = Vault.load(body, function (body) {
+			Build.setup(body.children, upload);
+			SVG.replaceChild(body, SVG.lastElementChild);
+			SVG.scrollIntoView({inline: "center"});
 		});
 		localStorage.setItem("female_sex", female.toString());
+		zoom();
+		await helmet;
+		await body;
+		Change.track = true;
 	},
 	DarkMode: function (darkMode, keepBck) {
 		var className = "light_mode";
@@ -342,8 +370,8 @@ var Settings = {
 
 function VariantsVault (asString) {
 	var __vars = {
-		"Helmet": "Classic",
-		"Chest": "Classic"
+		"Helmet": "Helmet_Classic",
+		"Chest": "Chest_Classic"
 	};
 	if (asString)
 		__vars = JSON.parse(asString);
@@ -386,31 +414,46 @@ function sanitize (str) {
 	return str.replace(/(_M|_F)+($|_)/,"$2");
 }
 
-function setupWindow () {
+function setupControlMenu () {
+	/* Step 1: Settings and Controls */
+	var controls = find("settings");
 	if (window.innerWidth > 786) {
-		var settings_menu = find("settings");
-		settings_menu.classList.remove("settings_collapsed");
+		controls.classList.remove("settings_collapsed");
 	}
 
+	var button = controls.firstElementChild;
+	button.addEventListener("click", function () {
+		controls.classList.toggle("settings_collapsed");
+	});
+
+	var slides = controls.getElementsByClassName("slide");
+	for (var i = 0; i < slides.length; i++) {
+		slides[i].addEventListener("click", toggleArmorSlide(slides[i]));
+	}
+}
+
+function setupCaching () {
 	function cache () {
 		localStorage.setItem("settings", JSON.stringify(settings));
 		localStorage.setItem("variants", variants.toString());
 	}
+	function uncache () {
+		variants = new VariantsVault(localStorage.getItem("variants"));
+		settings = resetSettings(true);
+	}
 
 	window.addEventListener("pagehide", cache);
+	window.addEventListener("pageshow", uncache);
 	document.addEventListener("visibilitychange", function() {
-		switch (document.visibilityState) {
-			case "hidden":
-				cache();
-				break;
-			default:
-				variants = new VariantsVault(localStorage.getItem("variants"));
-				settings = resetSettings(true);
-				break;
-		}
+		if (document.visibilityState == "hidden")
+			cache();
+		else
+			uncache();
 	})
+}
 
-	var main = find("editor");
+function setupDragAndDrop () {
+	var main = find("main");
 	var mv = { dragged: false, drag: false };
 	main.addEventListener("mousedown", function (event) {
 		if (event.buttons !== 1)
@@ -454,12 +497,15 @@ function onload () {
 	Download.attach(find("download_jpeg"), "image/jpeg");
 
 	Upload = new Uploader(window.location.search, Download);
-	setupWindow();
+	setupControlMenu();
+	setupDragAndDrop();
+	setupCaching();
 	var nsw = navigator.serviceWorker;
 	if (!nsw)
 		return;
 	nsw.onmessage = function (event) {
-		displayForm(true, 'reload');
+		var form = find("reload");
+		form.style.display = "";
 	};
 	//nsw.register("sw.js");
 }
@@ -470,11 +516,23 @@ function openArmorFolder (category) {
 	for (var i = 0; i < components.length; i++)
 		components[i].classList.remove("selected");
 	now.classList.add("selected");
-	var slides = now.getElementsByClassName("slide");
-	for (var i = 0; i < slides.length; i++)
-		slides[i].classList.remove("selected");
-	if (slides.length)
-		now.classList.add("overview");
+}
+
+function toggleArmorSlide (slide) {
+	var button = slide.firstElementChild;
+	var folder = slide.parentNode.parentNode;
+	button.addEventListener("click", function(event) {
+		event.preventDefault();
+	});
+	return function (event) {
+		if (event.defaultPrevented) {
+			slide.classList.toggle("selected");
+			folder.classList.toggle("overview");
+		} else {
+			slide.classList.add("selected");
+			folder.classList.remove("overview");
+		}
+	}
 }
 
 var callback = null;
@@ -503,16 +561,19 @@ function setSponsor (sponsor, href) {
 	}
 }
 
-function displayForm (visible, form) {
-	if (!form.style)
-		form = find(form);
-	form.style.display = visible ? "" : "none";
+function UpdateSponsor (category) {
+	var parent = find(category + "Options");
+	hideSponsors(parent);
+	if (callback)
+		callback();
+	callback = null;
 }
 
 function zoom (scale) {
-	var main = find("editor");
-	var svg = main.children[0];
-	svg.style.height = scale + "%";
+	if (!scale)
+		scale = find("zoom").value;
+	var SVG = find("svg_wrapper");
+	SVG.style.height = scale + "%";
 }
 
 function zoomInOut (step) {
@@ -534,8 +595,8 @@ function playKote () {
 }
 
 function reset () {
-	if (!confirm("Do you want to reset all settings? You will lose all colors and all armor options. This cannot be undone."))
-		return;
+	var conf = confirm("Do you want to reset all settings? You will lose all colors and all armor options. This cannot be undone.")
+		if (!conf) return;
 	variants = new VariantsVault;
 	settings = resetSettings(false);
 	var female = find("female").checked;
