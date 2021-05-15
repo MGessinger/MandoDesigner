@@ -60,19 +60,19 @@ function Uploader (queryString, D) {
 			var cls = node.getAttribute("class");
 			if (!cls)
 				continue;
-			var neutral = neutralize(id);
 			if (cls == "toggle") {
-				variants.setItem(neutral, true);
+				variants.setItem(id, true);
 			} else if (cls == "option") {
 				var parent = node.parentNode;
-				var parName = neutralize(parent.id) + "_Option";
-				if (parName.includes("Earcap"))
-					variants.setItem(neutral, true);
-				else
-					variants.setItem(parName, neutral);
+				if (parent.id.includes("Earcap"))
+					variants.setItem(id, true);
+				else {
+					var parName = parent.id + "_Option";
+					variants.setItem(parName, id);
+				}
 			} else if (id.includes("Current")) {
 				var cat = id.replace("_Current", "");
-				variants.setItem(cat, neutralize(cls));
+				variants.setItem(cat, cls);
 			}
 		}
 	}
@@ -89,15 +89,15 @@ function Uploader (queryString, D) {
 		if (mando.id === "Female-Body") {
 			var sex_radio = find("female");
 			sex_radio.checked = true;
-			S.set.Sex(true, true);
+			Settings.Sex(true, true);
 		} else {
 			var sex_radio = find("male");
 			sex_radio.checked = true;
-			S.set.Sex(false, true);
+			Settings.Sex(false, true);
 		}
 
 		var logo = svg.getElementById("titleDark");
-		S.set.DarkMode(logo, true);
+		Settings.DarkMode(logo, true);
 		if (img.tagName.toLowerCase() === "svg") {
 			D.Background = { type: "image/svg+xml", data: img.outerHTML };
 		} else {
@@ -131,14 +131,14 @@ function Uploader (queryString, D) {
 		xhr.onload = function () {
 			var xml = this.responseXML;
 			if (this.status !== 200 || !xml)
-				return S.set.Sex(female, false);
+				return Settings.Sex(female, false);
 			var svg = xml.documentElement;
 			find("female").checked = female;
 			parseMando(svg);
-			S.set.Sex(female, true);
+			Settings.Sex(female, true);
 		};
 		xhr.onerror = function () {
-			S.set.Sex(female, false);
+			Settings.Sex(female, false);
 		};
 		xhr.send();
 	}
@@ -160,7 +160,7 @@ function Uploader (queryString, D) {
 			var sex_radio = find("female");
 			sex_radio.checked = true;
 		}
-		S.set.Sex(female);
+		Settings.Sex(female);
 	}
 	if (queryString)
 		history.replaceState(null, document.title, "?");

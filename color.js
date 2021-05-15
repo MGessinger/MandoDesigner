@@ -347,9 +347,6 @@ function ChangeHistory () {
 			case "subslide":
 				change.target = buttonName(target) + "Toggle";
 				break;
-			case "select":
-				change.target = target + "Select";
-				break;
 			case "sublist":
 				change.target = target + "_Check";
 				break;

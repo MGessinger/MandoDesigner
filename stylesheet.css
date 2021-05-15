@@ -398,9 +398,8 @@ footer {
 
 .option_name {
 	margin: 0;
-	padding: 0.5em 1.25em;
+	padding: 0.5em 0.75em;
 	background: var(--softColor);
-	line-height: 1.5em;
 }
 
 .mirror_button {
