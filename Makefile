@@ -11,7 +11,7 @@ clean:
 
 #=========================IMAGES==========================
 
-MALE=images/Male-Body.svg images/Lower-Armor_M.svg images/Upper-Armor_M.svg
+MALE=images/Male_Master.svg
 FEMALE=images/Female-Body.svg images/Lower-Armor_F.svg images/Upper-Armor_F.svg
 NEUTRAL=images/LogoDark.svg images/LogoLight.svg images/Helmets.svg
 
