@@ -27,9 +27,9 @@ images/%.svg: pictures/%.svg | images
 			s|Off|\" style=\"display:none|; \
 		}; \
 		s|_Option|\" class=\"option|; \
-		/\"\(Helmet\|Chest\)_.[^_]\+\(_.\)\?\"/ { \
-			s/ / class=\"invisible\" /; \
-		} \
+		/\"\(Helmets\|Chest_.\)\"/ { \
+			s/ / class=\"swappable\" /; \
+		}; \
 	" $< > $@;
 
 #=========================GALLERY=========================

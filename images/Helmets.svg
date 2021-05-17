@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- Generator: Adobe Illustrator 25.2.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
-<svg version="1.1" id="Helmets" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 810">
-<g class="invisible" id="Helmet_Budget-Bucket">
+<svg class="swappable" version="1.1" id="Helmets" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 810">
+<g id="Helmet_Budget-Bucket">
 	<g id="Bucket_Budget-Bucket">
 		<path d="M577.1,133.1c-0.7-11.4-5.2-22.2-12.9-30.6c-22.8-24.8-82-69.9-211.9-69.9c-129.7,0-191,44.9-214.9,69.8
 			c-8.2,8.5-13.1,19.7-13.8,31.5c-5.1,83.9-29.1,481.4-29.1,481.4s115.8,70.9,257.8,70.9c86.8,0,162.4-26.5,208-47.1
@@ -37,7 +37,7 @@
 			C349.6,629.5,348.4,629.9,347.4,629.4z"/>
 	</g>
 </g>
-<g class="invisible" id="Helmet_Classic">
+<g id="Helmet_Classic">
 	<g id="Left-Earcap_Classic" class="toggle">
 		<g id="Sub-Antenna_Left_Classic" class="option">
 			<g id="Shaft_Sub-Antenna_Left_Classic">
@@ -182,7 +182,7 @@
 			C222.9,365.6,167.6,358.7,159.5,357.7z"/>
 	</g>
 </g>
-<g class="invisible" id="Helmet_Nite">
+<g id="Helmet_Nite">
 	<g id="Left-Earcap_Nite" class="toggle">
 		<g id="Sub-Antenna_Left_Nite" class="option">
 			<g id="Shaft_Sub-Antenna_Left_Nite">
@@ -307,7 +307,7 @@
 			C221.2,359.3,160.2,356.2,160.2,356.2z"/>
 	</g>
 </g>
-<g class="invisible" id="Helmet_Stalker-Large">
+<g id="Helmet_Stalker-Large">
 	<g id="Left-Earcap_Stalker-Large" class="toggle">
 		<g id="Sub-Antenna_Left_Stalker-Large" class="option">
 			<g id="Shaft_Sub-Antenna_Left_Stalker-Large">
@@ -516,7 +516,7 @@
 		</g>
 	</g>
 </g>
-<g class="invisible" id="Helmet_Stalker-Medium">
+<g id="Helmet_Stalker-Medium">
 	<g id="Left-Earcap_Stalker-Medium" class="toggle">
 		<g id="Sub-Antenna_Left_Stalker-Medium" class="option">
 			<g id="Shaft_Sub-Antenna_Left_Stalker-Medium">
@@ -720,7 +720,7 @@
 		</g>
 	</g>
 </g>
-<g class="invisible" id="Helmet_Gunslinger">
+<g id="Helmet_Gunslinger">
 	<g id="Left-Earcap_Gunslinger" class="toggle">
 		<g id="Sub-Antenna_Left_Gunslinger" class="option">
 			<g id="Shaft_Sub-Antenna_Left_Gunslinger">
@@ -865,7 +865,7 @@
 			l-3,3.1H333.8z"/>
 	</g>
 </g>
-<g class="invisible" id="Helmet_Heavy">
+<g id="Helmet_Heavy">
 	<g id="Left-Earcap_Heavy" class="toggle">
 		<g id="Ear-Cap_Left_Heavy">
 			<path d="M510.8,239.2c17.9,24,30.2,52.1,35.3,82.6l0,0h38.5l-5.5-82.6H510.8z"/>
@@ -1000,7 +1000,7 @@
 		</g>
 	</g>
 </g>
-<g class="invisible" id="Helmet_Liege">
+<g id="Helmet_Liege">
 	<g id="Left-Earcap_Liege" class="toggle">
 		<path d="M558,329.4l4.2,4.2l-0.3,86.4h-19.2v-14.9H558V329.4"/>
 		<path d="M542.8,447.2H554V622h-11.2V447.2"/>
@@ -1070,7 +1070,7 @@
 		<path id="Ridge-1_Liege" d="M337.3,381.2v-222h26v222l-13,0.7L337.3,381.2"/>
 	</g>
 </g>
-<g class="invisible" id="Helmet_Guardian">
+<g id="Helmet_Guardian">
 	<g id="Left-Earcap_Guardian" class="toggle">
 		<path d="M556.9,318.8l4.3,4.3l-0.3,88h-19.4v-15.2h15.5V318.8"/>
 		<path d="M541.5,438.8h11.3V617h-11.3V438.8"/>
@@ -1117,7 +1117,7 @@
 		</g>
 	</g>
 </g>
-<g class="invisible" id="Helmet_Matriarch">
+<g id="Helmet_Matriarch">
 	<g id="Left-Earcap_Matriarch" class="toggle">
 		<path d="M559.8,316.5l4.3,4.3l-0.3,87.7h-19.4v-15.1h15.5V316.5"/>
 		<path d="M544.4,436.1h11.3v177.5h-11.3V436.1"/>
@@ -1167,7 +1167,7 @@
 			l-30.4,188.8l-8.1,2.5l-21.8-34.5l7.8-234.1c0,0,26.7,13.5,70,3.3c43.3-10.1,68.6-54.5,68.6-54.5H395.9L356,404.5H344.6z"/>
 	</g>
 </g>
-<g class="invisible" id="Helmet_Warden">
+<g id="Helmet_Warden">
 	<g id="Left-Earcap_Warden" class="toggle">
 		<path d="M557,316.6l4.3,4.3L561,409h-19.6v-15.2H557V316.6"/>
 		<path d="M541.5,436.7h11.4v178.4h-11.4V436.7"/>
@@ -1219,7 +1219,7 @@
 			c0.3,0.5,0.2,1.1-0.1,1.6C375.6,272.7,356.8,299.6,351.7,306.8z"/>
 	</g>
 </g>
-<g class="invisible" id="Helmet_McQuarrie">
+<g id="Helmet_McQuarrie">
 	<g id="Left-Earcap_McQuarrie" class="toggle">
 		<path id="Base_Earcap_Left_McQuarrie" d="M566.9,345.6c0-3-2.4-5.4-5.4-5.4c-4.8,0-11.2,0-11.2,0v41.1h16.6V345.6z"/>
 		<rect id="Shaft_Earcap_Left_McQuarrie" x="550.3" y="56.8" width="12" height="283.4"/>
@@ -1376,7 +1376,7 @@
 		<path id="Dome-1_McQuarrie" d="M350.5,360.5l-8.3-36.3h16.7L350.5,360.5z"/>
 	</g>
 </g>
-<g class="invisible" id="Helmet_Pre-Vizsla">
+<g id="Helmet_Pre-Vizsla">
 	<g id="Left-Earcap_Pre-Vizsla" class="toggle">
 		<g id="Sub-Antenna_Left_Pre-Vizsla" class="option">
 			<g id="Shaft_Sub-Antenna_Left_Pre-Vizsla">
@@ -1458,7 +1458,7 @@
 		<path id="Dome_Pre-Vizsla" d="M172.7,325c0-92.2,79.6-167.1,177.6-167.1S528,232.7,528,325v53H172.7V325z"/>
 	</g>
 </g>
-<g class="invisible" id="Helmet_Tracker">
+<g id="Helmet_Tracker">
 	<g id="Left-Earcap_Tracker" class="toggle">
 		<g id="Ear-Cap_Left_Tracker">
 			<path d="M534.8,376.4h18.9V587h-18.9V376.4"/>
@@ -1539,7 +1539,7 @@
 		<path id="Dome-1_Tracker" d="M311.6,263.7l27.6-25.6v-70.5l10.6,0.2l10.6-0.2V238l27.6,25.6H311.6"/>
 	</g>
 </g>
-<g class="invisible" id="Helmet_Neo-Scout">
+<g id="Helmet_Neo-Scout">
 	<g id="Left-Earcap_Neo-Scout" class="toggle">
 		<g id="Ear-Cap_Left_Neo-Scout">
 			<path d="M557,373.8c0,0-5.7,0,1.7,0c1.4,0,2.6-0.5,3.6-1.4c1-0.9,1.5-2.1,1.5-3.3c0-5.1,0-13.3,0-18.5
@@ -1625,7 +1625,7 @@
 			L350.6,149.9z"/>
 	</g>
 </g>
-<g class="invisible" id="Helmet_Charismatic">
+<g id="Helmet_Charismatic">
 	<g id="Left-Earcap_Charismatic" class="toggle">
 		<g id="Sub-Antenna_Left_Charismatic" class="option">
 			<g id="Shaft_Sub-Antenna_Left_Charismatic">
@@ -1781,7 +1781,7 @@
 		</g>
 	</g>
 </g>
-<g class="invisible" id="Helmet_Assassin">
+<g id="Helmet_Assassin">
 	<g id="Left-Earcap_Assassin" class="toggle">
 		<g id="Sub-Antenna_Left_Assassin" class="option">
 			<g id="Shaft_Sub-Antenna_Left_Assassin">
@@ -1920,7 +1920,7 @@
 		</g>
 	</g>
 </g>
-<g class="invisible" id="Helmet_Shae-Vizla">
+<g id="Helmet_Shae-Vizla">
 	<g id="Left-Earcap_Shae-Vizla" class="toggle">
 		<g id="Sub-Antenna_Left_Shae-Vizla" class="option">
 			<g id="Shaft_Sub-Antenna_Left_Shae-Vizla">
@@ -2165,7 +2165,7 @@
 		</g>
 	</g>
 </g>
-<g class="invisible" id="Helmet_Executioner">
+<g id="Helmet_Executioner">
 	<g id="Left-Earcap_Executioner" class="toggle">
 		<g id="Ear-Cap_Left_Executioner">
 			<path id="Base_Ear-Cap_Left_Executioner" d="M557.8,628.5l22.5-15.1h-17.6V358.5h-4.9V628.5z"/>
@@ -2229,7 +2229,7 @@
 		</g>
 	</g>
 </g>
-<g class="invisible" id="Helmet_RC">
+<g id="Helmet_RC">
 	<g id="Left-Earcap_RC" class="toggle">
 		<g id="Sub-Antenna_Left_RC" class="option">
 			<g id="Shaft_Sub-Antenna_Left_RC">
@@ -2466,7 +2466,7 @@
 		</g>
 	</g>
 </g>
-<g class="invisible" id="Helmet_Ironside">
+<g id="Helmet_Ironside">
 	<g id="Left-Earcap_Ironside" class="toggle">
 		<g id="Sub-Antenna_Left_Ironside" class="option">
 			<g id="Shaft_Sub-Antenna_Left_Ironside">
@@ -2604,7 +2604,7 @@
 			h-106l-23.2,25.9H175.4z"/>
 	</g>
 </g>
-<g class="invisible" id="Helmet_Ramikadyc">
+<g id="Helmet_Ramikadyc">
 	<g id="Left-Earcap_Ramikadyc" class="toggle">
 		<g id="Sub-Antenna_Left_Ramikadyc" class="option">
 			<g id="Shaft_Sub-Antenna_Left_Ramikadyc">
@@ -2775,7 +2775,7 @@
 		</g>
 	</g>
 </g>
-<g class="invisible" id="Helmet_Neo">
+<g id="Helmet_Neo">
 	<g id="Mask-Of-Mandalor_Neo">
 		<g id="Mask_Neo" class="toggle" style="display:none"> </g>
 	</g>
@@ -2805,7 +2805,7 @@
 			l-2.7,11.5l-93.1,17.7l-21,188.8H341.5z"/>
 	</g>
 </g>
-<g class="invisible" id="Helmet_Grunt">
+<g id="Helmet_Grunt">
 	<g id="Left-Range-Finder_Grunt" class="toggle" style="display:none">
 		<path id="Shaft_Range-Finder_Left_Grunt" d="M560.9,79.6h-11.8l7.4,306.9l12.2,0.5L560.9,79.6z"/>
 		<g id="Finder_Range-Finder_Left_Grunt">
@@ -2856,7 +2856,7 @@
 		c102.9,2,185.8,80.6,186.5,177.5l0,1.2l0,0.1c-8,1-62.7,7.7-90.8,9.5c-28.5,1.8-86.3,2.2-97.6,2.3c-11.4-0.1-69.1-0.5-97.6-2.3
 		C224.8,340.6,170.1,333.8,162.2,332.8z"/>
 </g>
-<g class="invisible" id="Helmet_Ursa-Wren">
+<g id="Helmet_Ursa-Wren">
 	<g id="Range-Finder_Right_Ursa-Wren" class="toggle">
 		<path id="Shaft_Range-Finder_Right_Ursa-Wren" d="M155.5,71.1h10.8l-5.4,266.2l-11,0.4L155.5,71.1z"/>
 		<g id="Finder_Range-Finder_Right_Ursa-Wren">

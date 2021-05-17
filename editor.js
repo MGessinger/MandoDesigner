@@ -1,6 +1,6 @@
 /* MandoCreator */
 "use strict";
-var Download, Upload, Change;
+var Download, Change;
 
 function find (st) {
 	return document.getElementById(st);
@@ -63,7 +63,6 @@ function Builder (afterUpload) {
 		"Helmet":	["Helmets"]
 	}
 	function findCategory (id) {
-		id = sanitize(id);
 		for (var i in categories)
 			if (categories[i].includes(id))
 				return i;
@@ -71,20 +70,19 @@ function Builder (afterUpload) {
 	}
 
 	var hax = { /* Store the location for all those parts, where it isn't apparent from the name */
-		"Vest": "SoftParts",
-		"Suit": "SoftParts"
+		"Vest": "Suit",
 	}
-	function DOMParent (node) {
+	function DOMParent (id) {
 		/* Step 1: Find the parent in the DOM */
-		var san = sanitize(node.id).split("_",1)[0];
+		var san = sanitize(id).split("_",1)[0];
 		if (san in hax)
-			san = hax[san];
+			id = san = hax[san];
 		var parent = find(san + "Colors");
 		if (!parent) return;
 		/* Step 2: If the parent is empty, make a headline */
 		if (parent.childElementCount == 0) {
 			var par = DOMNode("h3", {class: "option_name hidden"}, parent);
-			par.innerText = prettify(node.id) + " Options:";
+			par.innerText = prettify(id) + " Options:";
 		}
 		return parent;
 	}
@@ -261,7 +259,7 @@ function Builder (afterUpload) {
 		if (!ch.length && node.tagName == "g")
 			return;
 		/* Step 0.2: Look for an appropriate DOM parent */
-		var possibleParent = DOMParent(node);
+		var possibleParent = DOMParent(node.id);
 		if (possibleParent)
 			realParent = possibleParent;
 
@@ -272,7 +270,7 @@ function Builder (afterUpload) {
 		if (!allNamed)
 			return ColorPicker(node, realParent);
 
-		/* Step 2: Node has only named children
+		/* Step 2.1: Node has only named children
 		 * -> map `BuildManager` over `ch`, but filter out .option and .toggle */
 		var parent = document.createDocumentFragment();
 		var options = [], toggles = [];
@@ -282,40 +280,42 @@ function Builder (afterUpload) {
 				options.push(ch[i]);
 			else if (cls == "toggle")
 				toggles.push(ch[i]);
-			else {
+			else
 				BuildManager(ch[i], parent);
-			}
 		}
 
-		/* Step 3: Build controls for .option and .toggle */
-		var isEarcap = node.id.includes("Earcap");
+		/* Step 2.2: Build controls for .option and .toggle */
 		if (options.length) {
-			if (isEarcap)
+			if (node.id.includes("Ear"))
 				BuildCheckboxes(options, parent);
 			else
 				BuildDropDown(options, node.id, parent);
 		}
-		while (toggles.length) {
-			var t = toggles.pop();
-			BuildToggle(t, parent);
-		}
+		while (toggles.length)
+			BuildToggle(toggles.pop(), parent);
 
-		/* Finally, put all controls in the DOM */
+		/* Step 3: Put all controls in the DOM */
 		if (realParent)
 			realParent.appendChild(parent);
 	}
-	function setup (nodes) {
+
+	this.setup = function (nodes) {
 		for (var i = nodes.length-1; i >= 0; i--) {
-			var id = nodes[i].id;
+			var id = sanitize(nodes[i].id);
 			var category = findCategory(id);
 			if (!category)
 				continue;
 			var radio = find(category + "Radio");
 			nodes[i].addEventListener("click", redirectClickTo(radio));
 			BuildManager(nodes[i]);
+			if (nodes[i].getAttribute("class") == "swappable") {
+				var alt = variants.getItem(id);
+				var radio = find(alt + "Radio");
+				radio.checked = false;
+				radio.click();
+			}
 		}
 	}
-	return {setup: setup};
 }
 var Change = new ChangeHistory;
 
@@ -391,7 +391,7 @@ var Settings = {
 
 function VariantsVault (asString) {
 	var __vars = {
-		"Helmet": "Helmet_Classic",
+		"Helmets": "Helmet_Classic",
 		"Chest": "Chest_Classic"
 	};
 	if (asString)
@@ -517,7 +517,7 @@ function onload () {
 	Download.attach(find("download_svg"), "image/svg+xml");
 	Download.attach(find("download_jpeg"), "image/jpeg");
 
-	Upload = new Uploader(window.location.search, Download);
+	var Upload = new Uploader(window.location.search, Download);
 	setupControlMenu();
 	setupDragAndDrop();
 	setupCaching();

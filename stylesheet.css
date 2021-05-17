@@ -237,7 +237,7 @@ legend {
 	scrollbar-width: none;
 }
 
-.invisible {
+.swappable {
 	visibility: hidden;
 }
 
