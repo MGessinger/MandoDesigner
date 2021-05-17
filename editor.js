@@ -7,7 +7,7 @@ function find (st) {
 }
 
 function SVGVault (vault) {
-	this.query = function (st) {
+	function query (st) {
 		var ch = vault.children;
 		for (var i = 0; i < ch.length; i++) {
 			var svg = ch[i];
@@ -19,11 +19,10 @@ function SVGVault (vault) {
 		}
 	}
 	this.load = function (name, onload) {
-		var local = this.query(name);
-		if (local) {
-			var copy = local.cloneNode(true);
-			return onload(copy);
-		}
+		var local = query(name);
+		if (local)
+			return onload(local);
+
 		var xhr = new XMLHttpRequest();
 		xhr.open("GET", "images/" + name + ".svg");
 		xhr.setRequestHeader("Cache-Control", "no-cache, max-age=10800");
@@ -36,9 +35,7 @@ function SVGVault (vault) {
 				} else {
 					var svg = xml.documentElement;
 					svg.setAttribute("id", name);
-					vault.appendChild(svg);
-					onload(svg.cloneNode(true));
-					resolve();
+					resolve( onload(svg) );
 				}
 			};
 			xhr.send();
@@ -47,9 +44,8 @@ function SVGVault (vault) {
 }
 var Vault = new SVGVault(find("vault"));
 
-function Builder (Change) {
+function Builder (afterUpload) {
 	var Picker = new PickerFactory(Change);
-	var afterUpload = false;
 	var icons = {
 		"Range Finder":	"\uE919",
 		"Main Antenna":	"\uE918",
@@ -60,7 +56,7 @@ function Builder (Change) {
 	}
 	var categories = {
 		"Helmet":	["Helmet"],
-		"UpperArmor":	["Biceps", "Chests", "ChestAttachments", "Collar", "Shoulders", "Gauntlets"],
+		"UpperArmor":	["Biceps", "Chest", "ChestAttachments", "Collar", "Shoulders", "Gauntlets"],
 		"LowerArmor":	["Shins", "Foot", "Knees", "Thighs", "Groin", "Waist"],
 		"SoftParts":	["Boots", "Suit", "Sleeves", "Gloves", "Vest"],
 		"Back":		["Back", "Front"],
@@ -80,11 +76,9 @@ function Builder (Change) {
 	}
 	function DOMParent (node) {
 		/* Step 1: Find the parent in the DOM */
-		var san = sanitize(node.id);
+		var san = sanitize(node.id).split("_",1)[0];
 		if (san in hax)
 			san = hax[san];
-		if (san.includes("_"))
-			return;
 		var parent = find(san + "Colors");
 		if (!parent) return;
 		/* Step 2: If the parent is empty, make a headline */
@@ -135,7 +129,8 @@ function Builder (Change) {
 
 	function BuildToggle (toggle, parent) {
 		/* Step 1: Build all DOM components */
-		DOMNode("p", {class: "separator"}, parent); /* Like a line break */
+		if (parent.childElementCount > 1)
+			DOMNode("p", {class: "separator"}, parent); /* Like a line break */
 		var label = DOMNode("label", {class: "pseudo_checkbox hidden"}, parent);
 
 		var span = DOMNode("span", {class: "pseudo_label"}, label);
@@ -261,26 +256,25 @@ function Builder (Change) {
 	}
 
 	function BuildManager (node, realParent) {
-		var parent = document.createDocumentFragment();
+		/* Step 0.1: Check if the node needs treatment */
 		var ch = node.children;
-
-		/* Step 0: Find an appropriate DOM parent */
+		if (!ch.length && node.tagName == "g")
+			return;
+		/* Step 0.2: Look for an appropriate DOM parent */
 		var possibleParent = DOMParent(node);
 		if (possibleParent)
 			realParent = possibleParent;
 
-		/* Step 1: Check if node has a named child. If not, build Color Picker for this node! */
-		var hasNamedChild = false;
+		/* Step 1: Check if node has a named child. If not, build ColorPicker for this node! */
+		var allNamed = (ch.length !== 0);
 		for (var i = 0; i < ch.length; i++)
-			hasNamedChild |= (ch[i].id !== "");
-		if (!hasNamedChild) {
-			if (!ch.length && node.tagName == "g")
-				return;
+			allNamed &= (ch[i].id !== "");
+		if (!allNamed)
 			return ColorPicker(node, realParent);
-		}
 
-		/* Step 2: Node has named children
+		/* Step 2: Node has only named children
 		 * -> map `BuildManager` over `ch`, but filter out .option and .toggle */
+		var parent = document.createDocumentFragment();
 		var options = [], toggles = [];
 		for (var i = 0; i < ch.length; i++) {
 			var cls = ch[i].getAttribute("class");
@@ -288,16 +282,16 @@ function Builder (Change) {
 				options.push(ch[i]);
 			else if (cls == "toggle")
 				toggles.push(ch[i]);
-			else
+			else {
 				BuildManager(ch[i], parent);
+			}
 		}
 
 		/* Step 3: Build controls for .option and .toggle */
 		var isEarcap = node.id.includes("Earcap");
 		if (options.length) {
-			if (isEarcap) {
+			if (isEarcap)
 				BuildCheckboxes(options, parent);
-			}
 			else
 				BuildDropDown(options, node.id, parent);
 		}
@@ -310,8 +304,7 @@ function Builder (Change) {
 		if (realParent)
 			realParent.appendChild(parent);
 	}
-	function setup (nodes, upload) {
-		afterUpload = upload; /* Set to true, if an upload just occurred */
+	function setup (nodes) {
 		for (var i = nodes.length-1; i >= 0; i--) {
 			var id = nodes[i].id;
 			var category = findCategory(id);
@@ -322,10 +315,9 @@ function Builder (Change) {
 			BuildManager(nodes[i]);
 		}
 	}
-	return {Manager: BuildManager, setup: setup};
+	return {setup: setup};
 }
 var Change = new ChangeHistory;
-var Build = new Builder(Change);
 
 var Settings = {
 	Sex: async function (female, upload) {
@@ -347,14 +339,22 @@ var Settings = {
 
 		Change.track = false; /* Do not track any settings during setup  */
 		var SVG = find("svg_wrapper");
+		var vault = find("vault");
+		var Build = new Builder(upload);
 		var helmet = Vault.load("Helmets", function (helmets) {
 			Build.setup([helmets], upload);
-			SVG.replaceChild(helmets, SVG.firstElementChild);
+			var old = SVG.firstElementChild;
+			SVG.replaceChild(helmets, old);
+			if (old.tagName == "svg")
+				vault.appendChild(old);
 		});
 		var body = Vault.load(body, function (body) {
-			Build.setup(body.children, upload);
-			SVG.replaceChild(body, SVG.lastElementChild);
+			Build.setup(body.children);
+			var old = SVG.lastElementChild;
+			SVG.replaceChild(body, old);
 			SVG.scrollIntoView({inline: "center"});
+			if (old.tagName == "svg")
+				vault.appendChild(old);
 		});
 		localStorage.setItem("female_sex", female.toString());
 		zoom();
@@ -375,6 +375,7 @@ var Settings = {
 		}
 		Vault.load(bckName, function(logo) {
 			Download.Logo = logo;
+			find("vault").appendChild(logo);
 			if (!keepBck) {
 				Download.Background = {type: "image/jpg", data: href};
 				var reset = find("reset_wrapper");

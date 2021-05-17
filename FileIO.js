@@ -102,8 +102,9 @@ function Uploader (queryString, D) {
 			D.Background = { type: "image/svg+xml", data: img.outerHTML };
 		} else {
 			var href = img.getAttribute("href");
-			var type = href.match(/^(?<=data:)image\/\w+/)
-			D.Background = { type: type, data: href };
+			var mime = href.match(/^data:image\/[\w+-.]+/);
+			if (!mime) return;
+			D.Background = { type: mime[0], data: href };
 		}
 	}
 
@@ -201,7 +202,7 @@ function Downloader () {
 
 	function encodeSVG (svg) {
 		var san = svg.replace(/\s+/g," ").replace(/"/g,"'");
-		return san;
+		return encodeURIComponent(san);
 	}
 
 	function SVGFromEditor () {
@@ -215,7 +216,7 @@ function Downloader () {
 		var copy = svg.cloneNode(true);
 		var str = xml.serializeToString(copy);
 		var svgEnc = encodeSVG(str);
-		var image64 = 'data:image/svg+xml,' + encodeURIComponent(svgEnc);
+		var image64 = 'data:image/svg+xml,' + svgEnc;
 		return image64;
 	}
 
@@ -272,8 +273,6 @@ function Downloader () {
 				"height": canvas.height,
 				"viewBox": [0, 0, canvas.width, canvas.height].join(" ")
 			});
-			var meta = SVGNode("metadata", {}, svgMain);
-			meta.innerHTML = " <rdf:RDF xmlns:rdf='http://www.w3.org/1999/02/22-rdf-syntax-ns#' xmlns:rdfs='http://www.w3.org/2000/01/rdf-schema#' xmlns:dc='http://purl.org/dc/elements/1.1/'> <rdf:Description> <dc:creator>MandoCreator</dc:creator> <dc:publisher>https://www.mandocreator.com</dc:publisher> <dc:description>Your Beskar'gam design - created by MandoCreator</dc:description> <dc:format>image/svg+xml</dc:format> <dc:type>Image</dc:type> <dc:title>MandoCreator - Ner Berskar'gam</dc:title> <dc:date>" + (new Date).toISOString() + "</dc:date> </rdf:Description> </rdf:RDF>";
 			if (bckSVG) {
 				svgMain.innerHTML = bckSVG;
 			} else {
@@ -285,6 +284,8 @@ function Downloader () {
 			}
 			var logo = logoSVG.cloneNode(true);
 			svgMain.appendChild(logo);
+			var meta = SVGNode("metadata", {}, svgMain);
+			meta.innerHTML = " <rdf:RDF xmlns:rdf='http://www.w3.org/1999/02/22-rdf-syntax-ns#' xmlns:rdfs='http://www.w3.org/2000/01/rdf-schema#' xmlns:dc='http://purl.org/dc/elements/1.1/'> <rdf:Description> <dc:creator>MandoCreator</dc:creator> <dc:publisher>https://www.mandocreator.com</dc:publisher> <dc:description>Your Beskar'gam design - created by MandoCreator</dc:description> <dc:format>image/svg+xml</dc:format> <dc:type>Image</dc:type> <dc:title>MandoCreator - Ner Berskar'gam</dc:title> <dc:date>" + (new Date).toISOString() + "</dc:date> </rdf:Description> </rdf:RDF>";
 			return svgMain;
 		},
 		attach: function (a, type) {
@@ -304,8 +305,10 @@ function Downloader () {
 					var bck = self.Background;
 					bck.appendChild(SVGFromEditor());
 					var str = xml.serializeToString(bck);
-					var document = "<?xml version='1.0' encoding='UTF-8'?>" + str;
-					blobURL = URL.createObjectURL(new Blob([encodeSVG(document)]));
+					var noEmptyLines = str.replace(/\n\s*\n/,"");
+					var document = "<?xml version='1.0' encoding='UTF-8'?>" + noEmptyLines;
+					var blob = new Blob([document], {type: "image/svg+xml"});
+					blobURL = URL.createObjectURL(blob);
 					this.setAttribute("href", blobURL);
 				});
 			} else {

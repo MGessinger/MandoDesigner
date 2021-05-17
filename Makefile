@@ -26,8 +26,8 @@ images/%.svg: pictures/%.svg | images
 			s|_Toggle|\" class=\"toggle|; \
 			s|Off|\" style=\"display:none|; \
 		}; \
-		s|Option|\" class=\"option|; \
-		/Helmets\|\"Chest..\"/ { \
+		s|_Option|\" class=\"option|; \
+		/\"\(Helmet\|Chest\)_.[^_]\+\(_.\)\?\"/ { \
 			s/ / class=\"invisible\" /; \
 		} \
 	" $< > $@;
