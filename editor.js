@@ -106,7 +106,7 @@ function Builder (afterUpload) {
 	function DOMParent (node) {
 		/* Step 1: Find the parent in the DOM */
 		var id = node.id;
-		var san = sanitize(id).split("_",1)[0];
+		var san = id.split("_",1)[0];
 		if (san in hax)
 			id = san = hax[san];
 		var parent = find(san + "Colors");
@@ -127,7 +127,7 @@ function Builder (afterUpload) {
 	function ColorPicker (target, parent) {
 		var wrapper = DOMNode("div", {class: "color_wrapper"}, parent);
 
-		var buttonID = sanitize(target.id) + "Color";
+		var buttonID = target.id + "Color";
 		var b = DOMNode("button", {class: "color_picker", id: buttonID}, wrapper);
 
 		var label = DOMNode("label", {class: "color_label hidden", for: buttonID}, wrapper);
@@ -153,7 +153,7 @@ function Builder (afterUpload) {
 		var span = DOMNode("span", {class: "pseudo_label"}, label);
 		span.innerText = prettify(toggle.id);
 
-		var id = sanitize(toggle.id) + "Toggle";
+		var id = toggle.id + "Toggle";
 		var input = DOMNode("input", {type: "checkbox", id: id, class: "armor_toggle"}, label);
 		var sp = DOMNode("span", {class: "slider"}, label);
 
@@ -188,7 +188,7 @@ function Builder (afterUpload) {
 				variants.setItem(id, this.value, "select");
 			for (var i in pairs) {
 				var p = pairs[i];
-				if (sanitize(p[0].id) == this.value) {
+				if (p[0].id == this.value) {
 					p[0].style.display = "inherit";
 					p[1].style.display = "";
 				} else {
@@ -202,7 +202,7 @@ function Builder (afterUpload) {
 	function BuildDropDown (options, name, parent) {
 		/* Step 1: Find or Build a <select>.
 		 * It might already exist, such as in the case of Back and Front Capes */
-		var id = sanitize(name) + "Select";
+		var id = name + "Select";
 		var select = find(id);
 		if (!select) {
 			var wrapper = DOMNode("div", {class: "select_wrapper hidden"}, parent); /* For arrow placement */
@@ -210,25 +210,27 @@ function Builder (afterUpload) {
 		}
 
 		/* Step 2: Iterate over the options, creating an <option> and Controls for each one */
-		var def = sanitize(options[options.length-1].id);
+		var def = options[options.length-1].id;
 		if (variants.hasItem(id))
 			def = variants.getItem(id);
 		var pairs = [];
 		while (options.length) {
 			var o = options.pop();
 			var label = prettify(o.id);
-			var o_id = sanitize(o.id);
 
 			/* Step 2.1: Build an <option> and attach it to the <select> */
-			var opt = DOMNode("option", {value: o_id, label: label}, select);
+			var opt = DOMNode("option", {value: o.id, label: label}, select);
 			opt.innerText = label;
+			if (o.id == def)
+				opt.selected = true;
 
 			/* Step 2.2: Build Controls */
-			var subParent = DOMNode("div", {id: o_id + "SubColors"}, parent);
+			var subParent = DOMNode("div", {id: o.id + "SubColors"});
 			BuildManager(o, subParent);
-			if (sanitize(o.id) == def)
-				opt.selected = true;
-			pairs.push([o,subParent]);
+			if (subParent.childElementCount > 0) {
+				parent.appendChild(subParent);
+				pairs.push([o,subParent]);
+			}
 		}
 
 		/* Step 3: Simulate a change event, to trigger all the right handlers */
@@ -246,7 +248,10 @@ function Builder (afterUpload) {
 				sublist.style.display = "none";
 				node.style.display = "";
 			}
-			variants.setItem(id, this.checked, "toggle");
+			if (this.checked)
+				variants.setItem(id, true, "toggle");
+			else
+				variants.removeItem(id, "toggle");
 		}
 	}
 	function BuildCheckboxes (options, parent) {
@@ -254,7 +259,7 @@ function Builder (afterUpload) {
 		while (options.length) {
 			var o = options.pop();
 			var title = prettify(o.id);
-			var id = sanitize(o.id) + "Toggle";
+			var id = o.id + "Toggle";
 
 			/* Step 2.1: Build a checkbox hidden behind an icon */
 			var input = DOMNode("input", {type: "checkbox", class: "checkbox", id: id}, icons_wrapper);
@@ -262,7 +267,7 @@ function Builder (afterUpload) {
 			label.innerText = icons[title];
 
 			/* Step 2.2: Build a sublist for all the colors to go in */
-			var sublist = DOMNode("div", {id: sanitize(o.id)+"SubColors"}, parent);
+			var sublist = DOMNode("div", {id: o.id+"SubColors"}, parent);
 			BuildManager(o, sublist);
 
 			/* Step 2.3: Attach and event handler to the checkbox */
@@ -320,19 +325,12 @@ function Builder (afterUpload) {
 
 	this.setup = function (nodes) {
 		for (var i = nodes.length-1; i >= 0; i--) {
-			var id = sanitize(nodes[i].id);
-			var category = findCategory(id);
+			var category = findCategory(nodes[i].id);
 			if (!category)
 				continue;
 			var radio = find(category + "Radio");
 			nodes[i].addEventListener("click", redirectClickTo(radio));
 			BuildManager(nodes[i]);
-			if (nodes[i].getAttribute("class") == "swappable") {
-				var alt = variants.getItem(id);
-				var radio = find(alt + "Radio");
-				radio.checked = false;
-				radio.click();
-			}
 		}
 	}
 }
@@ -407,9 +405,6 @@ function VariantsVault (asString) {
 		return key in __vars;
 	}
 	this.setItem = function (key, value, type) {
-		if (value.replace !== undefined)
-			value = sanitize(value);
-		key = sanitize(key);
 		if (value == __vars[key])
 			return;
 		var c = Change.format(type, __vars[key], value, key);
@@ -435,11 +430,6 @@ function VariantsVault (asString) {
 	}
 }
 var variants = new VariantsVault(localStorage.getItem("variants"));
-
-function sanitize (str) {
-	str = str.replace(/\W/g,"");
-	return str.replace(/(_M|_F)+($|_)/,"$2");
-}
 
 function setupControlMenu () {
 	/* Step 1: Settings and Controls */
