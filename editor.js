@@ -6,11 +6,11 @@ function find (st) {
 	return document.getElementById(st);
 }
 
-function SVGVault (vault) {
+function SVGVault () {
+	var vault = {};
 	function query (st) {
-		var ch = vault.children;
-		for (var i = 0; i < ch.length; i++) {
-			var svg = ch[i];
+		for (var i in vault) {
+			var svg = vault[i];
 			if (svg.id === st)
 				return svg;
 			var local = svg.getElementById(st);
@@ -18,10 +18,24 @@ function SVGVault (vault) {
 				return local;
 		}
 	}
-	this.load = function (name, onload) {
+	function finishUp (svg, onload, replace) {
+		var ret = undefined;
+		if (onload)
+			ret = onload(svg);
+		if (replace) {
+			var par = replace.parentNode;
+			par.replaceChild(svg, replace);
+			if (replace.tagname == "svg")
+				vault[name] = replace;
+		}
+		var oldID = replace.getAttribute("id");
+		if (oldID)
+			svg.setAttribute("id", oldID);
+	}
+	this.load = function (name, onload, replace) {
 		var local = query(name);
 		if (local)
-			return onload(local);
+			return finishUp(local, onload, replace);
 
 		var xhr = new XMLHttpRequest();
 		xhr.open("GET", "images/" + name + ".svg");
@@ -34,15 +48,15 @@ function SVGVault (vault) {
 					resolve(undefined);
 				} else {
 					var svg = xml.documentElement;
-					svg.setAttribute("id", name);
-					resolve( onload(svg) );
+					var ret = finishUp(svg, onload, replace);
+					resolve(ret);
 				}
 			};
 			xhr.send();
 		});
 	}
 }
-var Vault = new SVGVault(find("vault"));
+var Vault = new SVGVault();
 
 function Builder (afterUpload) {
 	var Picker = new PickerFactory(Change);
@@ -69,24 +83,6 @@ function Builder (afterUpload) {
 		return "";
 	}
 
-	var hax = { /* Store the location for all those parts, where it isn't apparent from the name */
-		"Vest": "Suit",
-	}
-	function DOMParent (id) {
-		/* Step 1: Find the parent in the DOM */
-		var san = sanitize(id).split("_",1)[0];
-		if (san in hax)
-			id = san = hax[san];
-		var parent = find(san + "Colors");
-		if (!parent) return;
-		/* Step 2: If the parent is empty, make a headline */
-		if (parent.childElementCount == 0) {
-			var par = DOMNode("h3", {class: "option_name hidden"}, parent);
-			par.innerText = prettify(id) + " Options:";
-		}
-		return parent;
-	}
-
 	function DOMNode (type, props, parent) {
 		var n = document.createElement(type);
 		for (var p in props)
@@ -102,6 +98,25 @@ function Builder (afterUpload) {
 				return;
 			target.click();
 		}
+	}
+
+	var hax = { /* Store the location for all those parts, where it isn't apparent from the name */
+		"Vest": "Suit",
+	}
+	function DOMParent (node) {
+		/* Step 1: Find the parent in the DOM */
+		var id = node.id;
+		var san = sanitize(id).split("_",1)[0];
+		if (san in hax)
+			id = san = hax[san];
+		var parent = find(san + "Colors");
+		if (!parent) return;
+		/* Step 2: If the parent is empty, make a headline */
+		if (parent.childElementCount == 0) {
+			var par = DOMNode("h3", {class: "option_name hidden"}, parent);
+			par.innerText = prettify(id) + " Options:";
+		}
+		return parent;
 	}
 
 	function prettify (str) {
@@ -127,8 +142,12 @@ function Builder (afterUpload) {
 
 	function BuildToggle (toggle, parent) {
 		/* Step 1: Build all DOM components */
-		if (parent.childElementCount > 1)
-			DOMNode("p", {class: "separator"}, parent); /* Like a line break */
+		if (parent.childElementCount != 0) {
+			var prev = parent.lastElementChild;
+			/* Build a (fancier) line-break */
+			if (!prev.matches(".option_name"))
+				DOMNode("hr", {}, parent);
+		}
 		var label = DOMNode("label", {class: "pseudo_checkbox hidden"}, parent);
 
 		var span = DOMNode("span", {class: "pseudo_label"}, label);
@@ -259,7 +278,7 @@ function Builder (afterUpload) {
 		if (!ch.length && node.tagName == "g")
 			return;
 		/* Step 0.2: Look for an appropriate DOM parent */
-		var possibleParent = DOMParent(node.id);
+		var possibleParent = DOMParent(node);
 		if (possibleParent)
 			realParent = possibleParent;
 
@@ -339,52 +358,39 @@ var Settings = {
 
 		Change.track = false; /* Do not track any settings during setup  */
 		var SVG = find("svg_wrapper");
-		var vault = find("vault");
 		var Build = new Builder(upload);
 		var helmet = Vault.load("Helmets", function (helmets) {
 			Build.setup([helmets], upload);
-			var old = SVG.firstElementChild;
-			SVG.replaceChild(helmets, old);
-			if (old.tagName == "svg")
-				vault.appendChild(old);
-		});
+		}, SVG.firstElementChild);
 		var body = Vault.load(body, function (body) {
 			Build.setup(body.children);
-			var old = SVG.lastElementChild;
-			SVG.replaceChild(body, old);
-			SVG.scrollIntoView({inline: "center"});
-			if (old.tagName == "svg")
-				vault.appendChild(old);
-		});
+		}, SVG.lastElementChild);
+
 		localStorage.setItem("female_sex", female.toString());
 		zoom();
 		await helmet;
 		await body;
+		SVG.scrollIntoView({inline: "center"});
 		Change.track = true;
 	},
 	DarkMode: function (darkMode, keepBck) {
 		var className = "light_mode";
 		var bckName = "LogoLight";
-		var logoName = "#titleLight";
 		var href = "assets/fog-reversed.jpg";
 		if (darkMode) {
 			className = "dark_mode";
 			bckName = "LogoDark";
-			logoName = "#titleDark";
 			href = "assets/fog-small.jpg";
 		}
 		Vault.load(bckName, function(logo) {
-			Download.Logo = logo;
-			find("vault").appendChild(logo);
+			Download.Logo = logo.cloneNode(true);
 			if (!keepBck) {
 				Download.Background = {type: "image/jpg", data: href};
 				var reset = find("reset_wrapper");
 				reset.style.display = "none";
 			}
-		});
+		}, find("title"));
 		document.body.className = className;
-		var use = find("title");
-		use.setAttribute("href", logoName);
 		localStorage.setItem("dark_mode", darkMode.toString());
 	}
 }
@@ -556,38 +562,35 @@ function toggleArmorSlide (slide) {
 	}
 }
 
-var callback = null;
-function hideSponsors (parent) {
-	var logos = parent.getElementsByClassName("sponsor_link");
-	for (var i = 0; i < logos.length; i++)
-		logos[i].style.display = "none";
-	var closer = parent.getElementsByClassName("close_sponsors")[0];
-	if (!closer)
-		return;
-	closer.style.display = "none";
-}
-
 function setSponsor (sponsor, href) {
 	var link = find(sponsor);
 	link.setAttribute("href", href);
+	link.style.display = "";
+	link.dataset.show = "true";
 
 	var img = link.getElementsByTagName("img")[0];
 	if (!img.hasAttribute("src"))
 		img.setAttribute("src", "assets/" + sponsor + ".png");
 	var parent = link.parentNode;
-	var close = parent.getElementsByTagName("button")[0];
-	callback = function () {
-		link.style.removeProperty("display");
-		close.style.removeProperty("display");
-	}
+	var closer = parent.getElementsByClassName("close_sponsors")[0];
+	closer.style.removeProperty("display");
+	closer.dataset.show = "true";
 }
 
 function UpdateSponsor (category) {
 	var parent = find(category + "Options");
-	hideSponsors(parent);
-	if (callback)
-		callback();
-	callback = null;
+	var logos = parent.getElementsByClassName("sponsor_link");
+	for (var i = 0; i < logos.length; i++) {
+		if (logos[i].dataset.show == "true")
+			delete logos[i].dataset.show;
+		else
+			logos[i].style.display = "none";
+	}
+	var closer = parent.getElementsByClassName("close_sponsors")[0];
+	if (closer.dataset.show == "true")
+		delete closer.dataset.show;
+	else
+		closer.style.display = "none";
 }
 
 function zoom (scale) {

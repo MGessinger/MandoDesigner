@@ -152,6 +152,13 @@ summary {
 	cursor: pointer;
 }
 
+hr {
+	height: 0;
+	border-color: var(--softColor);
+	border-style: solid none none none;
+	background: none;
+}
+
 .title {
 	display: block;
 	width: 25em;
@@ -597,12 +604,6 @@ footer {
 
 :checked + .checkbox_label {
 	color: var(--accent);
-}
-
-.separator {
-	height: 0px;
-	margin-top: 1em;
-	border-top: 1px solid var(--softColor);
 }
 
 .pseudo_checkbox {
