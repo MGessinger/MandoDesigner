@@ -20,14 +20,20 @@ images:
 	@mkdir -p images
 
 images/%.svg: pictures/%.svg | images
-	@sed " \
+	@sed " : top \
+		/>/ ! { \
+			N; \
+			b top; \
+		}; \
+		s|^\s*||; \
+		s|\s\{2,\}| |g; \
 		s|\s\+class=.[^\"\']\+[\"\']||; \
 		/Toggle/ { \
 			s|_Toggle|\" class=\"toggle|; \
 			s|Off|\" style=\"display:none|; \
 		}; \
 		s|_Option|\" class=\"option|; \
-		/\"\(Helmets\|Chest_.\)\"/ { \
+		/\"\(Helmets\|Chest\)\"/ { \
 			s/ / class=\"swappable\" /; \
 		}; \
 	" $< > $@;
