@@ -247,6 +247,9 @@ legend {
 .swappable {
 	visibility: hidden;
 }
+.swapslide {
+	display: none;
+}
 
 .option {
 	display: none;
@@ -463,7 +466,7 @@ footer {
 	border: 1px currentColor solid;
 	fill: white;
 	stroke: black;
-	stroke-width: 3px;
+	stroke-width: 0.3px;
 	pointer-events: none;
 }
 

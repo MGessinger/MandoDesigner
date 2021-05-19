@@ -27,13 +27,13 @@ images/%.svg: pictures/%.svg | images
 		}; \
 		s|^\s*||; \
 		s|\s\{2,\}| |g; \
-		s|\s\+class=.[^\"\']\+[\"\']||; \
+		/<svg/ ! s/\s\(class\|style\)=.[^\"\']\+[\"\']//g; \
 		/Toggle/ { \
 			s|_Toggle|\" class=\"toggle|; \
 			s|Off|\" style=\"display:none|; \
 		}; \
 		s|_Option|\" class=\"option|; \
-		/\"\(Helmets\|Chest\)\"/ { \
+		/\"Chest\"/ { \
 			s/ / class=\"swappable\" /; \
 		}; \
 	" $< > $@;

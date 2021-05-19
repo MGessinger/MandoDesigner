@@ -7,8 +7,8 @@ function resetSettings (cached) {
 		return JSON.parse(cache);
 	return {
 		undefined: "#FFFFFF",
-		"Bucket_BudgetBucketColor":	"#F74416",
-		"Visor_BudgetBucketColor":	"#000000",
+		"Bucket_Budget-BucketColor":	"#F74416",
+		"Visor_Budget-BucketColor":	"#000000",
 		"Rage_Gauntlet_RightColor":	"#08CB33",
 		"Rage_Gauntlet_LeftColor":	"#08CB33"
 	};
@@ -54,7 +54,7 @@ function Uploader (queryString, D) {
 		while (node = iter.nextNode()) {
 			var id = node.id;
 			if (node.style.fill) {
-				var bn = buttonName(id) + "Color";
+				var bn = id + "Color";
 				settings[bn] = node.style.fill;
 			}
 			var cls = node.getAttribute("class");
@@ -169,7 +169,6 @@ function Uploader (queryString, D) {
 }
 
 function Downloader () {
-	var SVG = find("svg_wrapper");
 	var xml = new XMLSerializer();
 	var img = new Image();
 	var canvas = find("canvas");
@@ -195,6 +194,15 @@ function Downloader () {
 				((cls == "toggle") && (display == "none")) ) {
 				parent = node.parentNode;
 				rem = node;
+			} else if (cls == "swappable") {
+				var ch = node.children;
+				for (var i = 0; i < ch.length;) {
+					console.log(ch[i]);
+					if (ch[i].style.visibility !== "visible")
+						node.removeChild(ch[i]);
+					else
+						i++;
+				}
 			}
 		}
 		return svg;
@@ -206,6 +214,7 @@ function Downloader () {
 	}
 
 	function SVGFromEditor () {
+		var SVG = find("main").firstElementChild;
 		var copy = SVG.cloneNode(true);
 		return prepareForExport(copy);
 	}

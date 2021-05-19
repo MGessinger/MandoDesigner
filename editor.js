@@ -18,24 +18,20 @@ function SVGVault () {
 				return local;
 		}
 	}
-	function finishUp (svg, onload, replace) {
+	function finishUp (name, svg, onload, replace) {
 		var ret = undefined;
 		if (onload)
 			ret = onload(svg);
+		vault[name] = svg;
 		if (replace) {
 			var par = replace.parentNode;
 			par.replaceChild(svg, replace);
-			if (replace.tagname == "svg")
-				vault[name] = replace;
 		}
-		var oldID = replace.getAttribute("id");
-		if (oldID)
-			svg.setAttribute("id", oldID);
 	}
 	this.load = function (name, onload, replace) {
 		var local = query(name);
 		if (local)
-			return finishUp(local, onload, replace);
+			return finishUp(name, local, onload, replace);
 
 		var xhr = new XMLHttpRequest();
 		xhr.open("GET", "images/" + name + ".svg");
@@ -48,7 +44,7 @@ function SVGVault () {
 					resolve(undefined);
 				} else {
 					var svg = xml.documentElement;
-					var ret = finishUp(svg, onload, replace);
+					var ret = finishUp(name, svg, onload, replace);
 					resolve(ret);
 				}
 			};
@@ -103,6 +99,21 @@ function Builder (afterUpload) {
 	var hax = { /* Store the location for all those parts, where it isn't apparent from the name */
 		"Vest": "Suit",
 	}
+	var variantID = null;
+	var swapFilter = document.createTreeWalker(document, NodeFilter.SHOW_ELEMENT,
+		{ acceptNode: function (node) {
+			if (node.getAttribute("class") == "swappable")
+				return NodeFilter.FILTER_ACCEPT;
+			variantID = node.id;
+			return NodeFilter.FILTER_REJECT;
+		} }
+	);
+	function attachSwapRadio (id, node) {
+		var radio = find(id + "Radio");
+		radio.addEventListener("change", function () {
+			node.dataset.show = "true";
+		});
+	}
 	function DOMParent (node) {
 		/* Step 1: Find the parent in the DOM */
 		var id = node.id;
@@ -112,6 +123,12 @@ function Builder (afterUpload) {
 		var parent = find(san + "Colors");
 		if (!parent) return;
 		/* Step 2: If the parent is empty, make a headline */
+		variantID = node.id;
+		swapFilter.currentNode = node;
+		if (swapFilter.parentNode()) {
+			parent = DOMNode("div", {class: "swapslide"}, parent);
+			attachSwapRadio(variantID, parent);
+		}
 		if (parent.childElementCount == 0) {
 			var par = DOMNode("h3", {class: "option_name hidden"}, parent);
 			par.innerText = prettify(id) + " Options:";
@@ -298,6 +315,7 @@ function Builder (afterUpload) {
 		 * -> map `BuildManager` over `ch`, but filter out .option and .toggle */
 		var parent = document.createDocumentFragment();
 		var options = [], toggles = [];
+		var parcls = node.getAttribute("class");
 		for (var i = 0; i < ch.length; i++) {
 			var cls = ch[i].getAttribute("class");
 			if (cls == "option")
@@ -306,6 +324,8 @@ function Builder (afterUpload) {
 				toggles.push(ch[i]);
 			else
 				BuildManager(ch[i], parent);
+			if (parcls == "swappable")
+				attachSwapRadio(ch[i].id, ch[i]);
 		}
 
 		/* Step 2.2: Build controls for .option and .toggle */
@@ -323,6 +343,31 @@ function Builder (afterUpload) {
 			realParent.appendChild(parent);
 	}
 
+	function setupSwapHandler (node, category) {
+		var options = find(category + "Options");
+		var slides = options.getElementsByClassName("swapslide");
+		var ch = node.children;
+		var typesList = options.getElementsByTagName("details")[0];
+		typesList.addEventListener("change", function () {
+			for (var i = 0; i < slides.length; i++) {
+				if ("show" in slides[i].dataset) {
+					slides[i].style.display = "block";
+					delete slides[i].dataset.show;
+				} else {
+					slides[i].style.display = "";
+				}
+			}
+			for (var j = 0; j < ch.length; j++) {
+				if ("show" in ch[j].dataset) {
+					ch[j].style.visibility = "visible";
+					delete ch[j].dataset.show;
+				} else {
+					ch[j].style.visibility = "";
+				}
+			}
+		})
+	}
+
 	this.setup = function (nodes) {
 		for (var i = nodes.length-1; i >= 0; i--) {
 			var category = findCategory(nodes[i].id);
@@ -331,8 +376,11 @@ function Builder (afterUpload) {
 			var radio = find(category + "Radio");
 			nodes[i].addEventListener("click", redirectClickTo(radio));
 			BuildManager(nodes[i]);
+			if (nodes[i].getAttribute("class") == "swappable")
+				setupSwapHandler(nodes[i], category);
 		}
 	}
+	this.parent = DOMParent;
 }
 var Change = new ChangeHistory;
 
@@ -355,20 +403,23 @@ var Settings = {
 		}
 
 		Change.track = false; /* Do not track any settings during setup  */
-		var SVG = find("svg_wrapper");
-		var Build = new Builder(upload);
-		var helmet = Vault.load("Helmets", function (helmets) {
-			Build.setup([helmets], upload);
-		}, SVG.firstElementChild);
+		var SVG = find("main").firstElementChild;
+		var helmet;
 		var body = Vault.load(body, function (body) {
+			var Build = new Builder(upload);
 			Build.setup(body.children);
-		}, SVG.lastElementChild);
+			var h = body.getElementById("Helmets");
+			helmet = Vault.load("Helmets", function (helmets) {
+				helmets.setAttribute("class", "swappable");
+				Build.setup([helmets], upload);
+			}, h);
+		}, SVG);
 
 		localStorage.setItem("female_sex", female.toString());
-		zoom();
-		await helmet;
 		await body;
+		zoom();
 		SVG.scrollIntoView({inline: "center"});
+		await helmet;
 		Change.track = true;
 	},
 	DarkMode: function (darkMode, keepBck) {
@@ -541,11 +592,14 @@ function toggleArmorSlide (slide) {
 	button.addEventListener("click", function(event) {
 		event.preventDefault();
 	});
+	var allSlides = folder.getElementsByClassName("slide");
 	return function (event) {
 		if (event.defaultPrevented) {
 			slide.classList.toggle("selected");
 			folder.classList.toggle("overview");
 		} else {
+			for (var i = 0; i < allSlides.length; i++)
+				allSlides[i].classList.remove("selected");
 			slide.classList.add("selected");
 			folder.classList.remove("overview");
 		}
@@ -586,7 +640,7 @@ function UpdateSponsor (category) {
 function zoom (scale) {
 	if (!scale)
 		scale = find("zoom").value;
-	var SVG = find("svg_wrapper");
+	var SVG = find("main").firstElementChild;
 	SVG.style.height = scale + "%";
 }
 
