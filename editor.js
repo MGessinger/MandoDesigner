@@ -108,10 +108,12 @@ function Builder (afterUpload) {
 			return NodeFilter.FILTER_REJECT;
 		} }
 	);
-	function attachSwapRadio (id, node) {
+	function attachSwapRadio (id, node, type) {
 		var radio = find(id + "Radio");
 		radio.addEventListener("change", function () {
 			node.dataset.show = "true";
+			if (type)
+				variants.setItem(type, id, "variant");
 		});
 	}
 	function DOMParent (node) {
@@ -290,6 +292,7 @@ function Builder (afterUpload) {
 			/* Step 2.3: Attach and event handler to the checkbox */
 			var handler = CheckboxChangeHandler(id, sublist, o);
 			input.addEventListener("change", handler);
+			input.checked = variants.getItem(id);
 			handler.bind(input)();
 		}
 	}
@@ -325,7 +328,7 @@ function Builder (afterUpload) {
 			else
 				BuildManager(ch[i], parent);
 			if (parcls == "swappable")
-				attachSwapRadio(ch[i].id, ch[i]);
+				attachSwapRadio(ch[i].id, ch[i], node.id);
 		}
 
 		/* Step 2.2: Build controls for .option and .toggle */
@@ -375,9 +378,18 @@ function Builder (afterUpload) {
 				continue;
 			var radio = find(category + "Radio");
 			nodes[i].addEventListener("click", redirectClickTo(radio));
+			if (radio.checked) {
+				radio.checked = false;
+				radio.click();
+			}
 			BuildManager(nodes[i]);
-			if (nodes[i].getAttribute("class") == "swappable")
+			if (nodes[i].getAttribute("class") == "swappable") {
 				setupSwapHandler(nodes[i], category);
+				var selected = variants.getItem(nodes[i].id);
+				var radio = find(selected + "Radio");
+				radio.checked = false;
+				radio.click();
+			}
 		}
 	}
 	this.parent = DOMParent;

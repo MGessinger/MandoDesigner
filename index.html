@@ -68,15 +68,15 @@
 			<div id="left_nav">
 				<span class="nav_icon">&#xE905;</span>
 				<div id="parts_list" class="sub_nav">
-					<input type="radio" name="parts_list" id="HelmetRadio" value="Helmet (Buy'ce)" onclick="openArmorFolder('Helmet')" checked hidden/>
+					<input type="radio" name="parts_list" id="HelmetRadio" value="Helmet (Buy'ce)" onchange="openArmorFolder('Helmet')" checked hidden/>
 					<label for="HelmetRadio" class="nav_label"><span class="nav_icon">&#xE905;</span>Helmet (Buy'ce)</label>
-					<input type="radio" name="parts_list" id="SoftPartsRadio" value="Flight Suit (Kute)" onclick="openArmorFolder('SoftParts')" hidden/>
+					<input type="radio" name="parts_list" id="SoftPartsRadio" value="Flight Suit (Kute)" onchange="openArmorFolder('SoftParts')" hidden/>
 					<label for="SoftPartsRadio" class="nav_label"><span class="nav_icon">&#xE907;</span>Flight Suit (Kute)</label>
-					<input type="radio" name="parts_list" id="UpperArmorRadio" value="Upper Body" onclick="openArmorFolder('UpperArmor')" hidden/>
+					<input type="radio" name="parts_list" id="UpperArmorRadio" value="Upper Body" onchange="openArmorFolder('UpperArmor')" hidden/>
 					<label for="UpperArmorRadio" class="nav_label"><span class="nav_icon">&#xE908;</span>Upper Body</label>
-					<input type="radio" name="parts_list" id="LowerArmorRadio" value="Lower Body" onclick="openArmorFolder('LowerArmor')" hidden/>
+					<input type="radio" name="parts_list" id="LowerArmorRadio" value="Lower Body" onchange="openArmorFolder('LowerArmor')" hidden/>
 					<label for="LowerArmorRadio" class="nav_label"><span class="nav_icon">&#xE906;</span>Lower Body</label>
-					<input type="radio" name="parts_list" id="BackRadio" value="Back" onclick="openArmorFolder('Back')" hidden/>
+					<input type="radio" name="parts_list" id="BackRadio" value="Back" onchange="openArmorFolder('Back')" hidden/>
 					<label for="BackRadio" class="nav_label"><span class="nav_icon">&#xE904;</span>Back (Norac)</label>
 				</div>
 				<span class="nav_icon">&#xE921;</span>
@@ -186,12 +186,12 @@
 								onclick="setSponsor('Lonewolf', 'https://bit.ly/33YeckM');">
 								<svg viewBox="0 0 80 80" class="preview_icon"><use href="#Helmet_Executioner"/></svg>
 								Executioner
-							</label><label class="type_button new">
+							</label><label class="type_button">
 								<input type="radio" name="helmet" id="Helmet_GruntRadio"
 								onclick="setSponsor('Lonewolf', 'https://bit.ly/3wJpWVi');">
 								<svg viewBox="0 0 80 80" class="preview_icon"><use href="#Helmet_Grunt"/></svg>
 								Grunt
-							</label><label class="type_button new">
+							</label><label class="type_button">
 								<input type="radio" name="helmet" id="Helmet_Ursa-WrenRadio"
 								onclick="setSponsor('Lonewolf', 'https://bit.ly/39X9R4l');">
 								<svg viewBox="0 0 80 80" class="preview_icon"><use href="#Helmet_Ursa-Wren"/></svg>
@@ -209,22 +209,22 @@
 						</details>
 						<details open>
 							<summary class="sponsor_title">Mynock's Den (sponsored)</summary>
-							<label class="type_button">
+							<label class="type_button new">
 								<input type="radio" name="helmet" id="Helmet_ReconRadio" class="new"
 								onclick="setSponsor('Mynock','https://bit.ly/3y6wXQB');">
 								<svg viewBox="0 0 80 80" class="preview_icon"><use href="#Helmet_Recon"/></svg>
 								Recon
-							</label><label class="type_button">
+							</label><label class="type_button new">
 								<input type="radio" name="helmet" id="Helmet_OperatorRadio" class="new"
 								onclick="setSponsor('Mynock','https://bit.ly/3hoYR4g');">
 								<svg viewBox="0 0 80 80" class="preview_icon"><use href="#Helmet_Operator"/></svg>
 								Operator
-							</label><label class="type_button">
+							</label><label class="type_button new">
 								<input type="radio" name="helmet" id="Helmet_GIRadio" class="new"
 								onclick="setSponsor('Mynock','https://bit.ly/3vYgWdu');">
 								<svg viewBox="0 0 80 80" class="preview_icon"><use href="#Helmet_GI"/></svg>
 								GI
-							</label><label class="type_button">
+							</label><label class="type_button new">
 								<input type="radio" name="helmet" id="Helmet_Shae-VizlaRadio" class="new"
 								onclick="setSponsor('Mynock','https://bit.ly/3hrUhSW');">
 								<svg viewBox="0 0 80 80" class="preview_icon"><use href="#Helmet_Shae-Vizla"/></svg>
@@ -238,7 +238,7 @@
 								onclick="setSponsor('Budget','#');">
 								<svg viewBox="0 0 80 80" class="preview_icon"><use href="#Helmet_Budget-Bucket"/></svg>
 								Budget
-							</label><label class="type_button new">
+							</label><label class="type_button">
 								<input type="radio" name="helmet" id="Helmet_RamikadycRadio">
 								<svg viewBox="0 0 80 80" class="preview_icon"><use href="#Helmet_Ramikadyc"/></svg>
 								Ramikadyc
@@ -266,7 +266,7 @@
 								<input type="radio" name="helmet" id="Helmet_AssassinRadio">
 								<svg viewBox="0 0 80 80" class="preview_icon"><use href="#Helmet_Assassin"/></svg>
 								Assassin
-							</label><label class="type_button new">
+							</label><label class="type_button">
 								<input type="radio" name="helmet" id="Helmet_NeoRadio">
 								<svg viewBox="0 0 80 80" class="preview_icon"><use href="#Helmet_Neo"/></svg>
 								Neo-Crusader

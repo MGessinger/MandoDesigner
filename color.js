@@ -315,9 +315,10 @@ function ChangeHistory () {
 	var self = this;
 
 	function undoSingleChange (type, targetID, value) {
+		if (type == "variant") /* Mandual Override */
+			targetID = value + "Radio";
 		var target = find(targetID);
-		if (!target)
-			return false;
+		if (!target) return false;
 		switch (type) {
 			case "select":
 				target.value = value;
@@ -326,6 +327,9 @@ function ChangeHistory () {
 			case "color":
 				target.style.background = value;
 				/* Fall-Through! */
+			case "variant":
+				target.checked = false;
+				/* Fall-through */
 			default:
 				target.click();
 				break;
@@ -334,13 +338,12 @@ function ChangeHistory () {
 	}
 
 	this.format = function (type, oldVal, newVal, target) {
-		var change = {
+		return {
 			"type": type,
 			"oldValue": oldVal,
 			"newValue": newVal,
 			"target": target
 		}
-		return change;
 	}
 
 	this.undo = function (redo) {
