@@ -117,6 +117,54 @@ function Builder (afterUpload) {
 				variants.setItem(type, id, "variant");
 		});
 	}
+	function BuildMirrorButton (headline, parent, thisSide) {
+		var b = DOMNode("button", {class: "mirror_button", title:"Mirror Settings"}, headline);
+		b.innerText = "\uE915";
+		var walker = document.createTreeWalker(parent, NodeFilter.SHOW_ELEMENT,
+			{ acceptNode: function (node) {
+				if (node.hasAttribute("class") && (node.id !== ""))
+					return NodeFilter.FILTER_ACCEPT;
+				return NodeFilter.FILTER_SKIP;
+			} }
+		);
+		var otherSide = (thisSide == "Left") ? "Right" : "Left";
+		var node;
+		b.addEventListener("click", function () {
+			var changes = [];
+			walker.currentNode = parent;
+			showPicker = Change.track = false;
+			while (node = walker.nextNode()) {
+				var c, newValue;
+				var mirrorImageName = node.id.replace(thisSide, otherSide);
+				var mirrorImage = find(mirrorImageName);
+				switch (node.getAttribute("class")) {
+					case "color_picker":
+						newValue = node.style.backgroundColor;
+						c = Change.format("color", mirrorImage.style.backgroundColor, newValue, mirrorImageName)
+						mirrorImage.style.backgroundColor = newValue;
+						mirrorImage.click();
+						break;
+					case "component_select":
+						newValue = node.value.replace(thisSide, otherSide);
+						c = Change.format("select", mirrorImage.value, newValue, mirrorImageName);
+						mirrorImage.value = newValue;
+						mirrorImage.dispatchEvent(new Event("change"));
+						break;
+					case "armor_toggle":
+						c = Change.format("toggle", mirrorImage.checked, node.checked, mirrorImageName);
+						if (node.checked ^ mirrorImage.checked)
+							mirrorImage.click();
+						break;
+					default:
+						c = {}
+				}
+				if ("target" in c) changes.push(c);
+			}
+			showPicker = Change.track = true;
+			if (changes.length > 0)
+				Change.push(changes);
+		});
+	}
 	function DOMParent (node) {
 		/* Step 1: Find the parent in the DOM */
 		var id = node.id;
@@ -125,16 +173,20 @@ function Builder (afterUpload) {
 			id = san = hax[san];
 		var parent = find(san + "Colors");
 		if (!parent) return;
-		/* Step 2: If the parent is empty, make a headline */
+		/* Step 2: Check for swappable armor pieces */
 		variantID = node.id;
 		swapFilter.currentNode = node;
 		if (swapFilter.parentNode()) {
 			parent = DOMNode("div", {class: "swapslide"}, parent);
 			attachSwapRadio(variantID, parent);
 		}
+		/* Step 3: If the parent is empty, make a headline */
 		if (parent.childElementCount == 0) {
 			var par = DOMNode("h3", {class: "option_name hidden"}, parent);
 			par.innerText = prettify(id) + " Options:";
+			var symmetric = id.match(/Left|Right/);
+			if (symmetric)
+				BuildMirrorButton(par, parent, symmetric[0]);
 		}
 		return parent;
 	}
@@ -168,6 +220,7 @@ function Builder (afterUpload) {
 			if (!prev.matches(".option_name"))
 				DOMNode("hr", {}, parent);
 		}
+		parent = DOMNode("div", {}, parent);
 		var label = DOMNode("label", {class: "pseudo_checkbox hidden"}, parent);
 
 		var span = DOMNode("span", {class: "pseudo_label"}, label);
@@ -178,6 +231,10 @@ function Builder (afterUpload) {
 		var sp = DOMNode("span", {class: "slider"}, label);
 
 		var subslide = DOMNode("div", {class: "subslide"}, parent);
+		if (id.startsWith("Right"))
+			BuildMirrorButton(label, parent, "Right");
+		else if (id.startsWith("Left"))
+			BuildMirrorButton(label, parent, "Left");
 
 		/* Step 2: Find the default value and attach an event handler */
 		var defaultOn = (toggle.style.display !== "none");

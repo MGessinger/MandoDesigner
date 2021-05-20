@@ -301,7 +301,7 @@ function PickerFactory (history) {
 			var oldValue = SVGNode.style.fill;
 			if (!oldValue)
 				return;
-			latestChange = history.format("color", oldValue, oldValue, button.id);
+			latestChange = history.format("color", oldValue, "", button.id);
 		});
 		var def = getDefaultColor(SVGNode, button.id);
 		onChange = input;
@@ -338,6 +338,8 @@ function ChangeHistory () {
 	}
 
 	this.format = function (type, oldVal, newVal, target) {
+		if (oldVal == newVal)
+			return {};
 		return {
 			"type": type,
 			"oldValue": oldVal,
@@ -361,7 +363,7 @@ function ChangeHistory () {
 		self.track = false;
 		var change = from.pop();
 		if (!change) {
-			showPicker = true;
+			showPicker =  self.track = true;
 			return;
 		} else if ("target" in change) {
 			undoSingleChange(change["type"], change["target"], change[key]);
