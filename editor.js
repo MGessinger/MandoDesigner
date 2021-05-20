@@ -62,7 +62,8 @@ function Builder (afterUpload) {
 		"Sub Antenna":	"\uE91B",
 		"Sensor Stalk":	"\uE91A",
 		"Antenna":	"\uE91C",
-		"Lear Cap":	"\uE91D"
+		"Lear Cap":	"\uE91D",
+		"Module":	"\uE922"
 	}
 	var categories = {
 		"Helmet":	["Helmet"],
@@ -534,30 +535,23 @@ function setupCaching () {
 
 function setupDragAndDrop () {
 	var main = find("main");
-	var mv = { dragged: false, drag: false };
+	var drag = false;
 	main.addEventListener("mousedown", function (event) {
 		if (event.buttons !== 1)
 			return;
-		mv = { drag: true, dragged: false };
+		drag = true;
 	});
 	main.addEventListener("mousemove", function (event) {
-		if (!mv.drag)
-			return;
-		mv.dragged = true;
+		if (!drag) return;
 		this.style.cursor = 'grabbing';
 		this.style.userSelect = 'none';
 		this.scrollTop -= event.movementY;
 		this.scrollLeft -= event.movementX;
 	});
 	main.addEventListener("mouseup", function () {
-		this.style.removeProperty("cursor");
-		this.style.removeProperty('user-select');
+		this.removeAttribute("style");
+		drag = false;
 	});
-	main.addEventListener("click", function (event) {
-		if (mv.dragged)
-			event.preventDefault();
-		mv = { drag: false, dragged: false }
-	}, true);
 }
 
 function onload () {
