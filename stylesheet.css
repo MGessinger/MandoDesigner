@@ -626,7 +626,7 @@ footer {
 }
 
 .slider {
-	height: 1.5em;
+	height: 100%;
 	width: 3em;
 	float: right;
 	margin-left: 1em;

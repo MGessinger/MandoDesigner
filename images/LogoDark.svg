@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
-<svg version="1.1" viewBox="0 0 420 70" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMinYMin">
+<svg id="title" version="1.1" viewBox="0 0 420 70" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMinYMin">
 <g id="titleDark">
 <polygon fill="#222" points="359.21,60 0,60 0,0 398.11,0"/>
 <polygon fill="#AB1F1F" points="402.87,0 361.38,64 0,64 0,70 374.62,70 420,0"/>
