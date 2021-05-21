@@ -36,18 +36,15 @@ function Uploader (queryString, D) {
 	});
 
 	function parseMando (svg) {
-		variants = new VariantsVault;
-		settings = resetSettings(false);
-
 		var iter = document.createNodeIterator(svg, NodeFilter.SHOW_ELEMENT,
 			{ acceptNode: function (node) {
-					if (!node.id)
-						return NodeFilter.FILTER_REJECT;
-					if (!(node.style.fill || node.hasAttribute("class")))
-						return NodeFilter.FILTER_SKIP;
-					return NodeFilter.FILTER_ACCEPT;
-				}
-			}
+				if (!node.id)
+					return NodeFilter.FILTER_REJECT;
+				node.id = node.id.replace(/_(M|F|Toggle(Off)?|Option)($|_)/g,"$3");
+				if (!(node.style.fill || node.hasAttribute("class")))
+					return NodeFilter.FILTER_SKIP;
+				return NodeFilter.FILTER_ACCEPT;
+			} }
 		);
 
 		var node;
@@ -57,24 +54,27 @@ function Uploader (queryString, D) {
 				var bn = id + "Color";
 				settings[bn] = node.style.fill;
 			}
-			var cls = node.getAttribute("class");
-			if (!cls)
-				continue;
-			if (cls == "toggle") {
-				variants.setItem(id, true);
-			} else if (cls == "option") {
-				var parent = node.parentNode;
-				if (parent.id.includes("Earcap"))
-					variants.setItem(id, true);
-				else {
-					var parName = parent.id + "_Option";
-					variants.setItem(parName, id);
-				}
-			} else if (id.includes("Current")) {
-				var cat = id.replace("_Current", "");
-				variants.setItem(cat, cls);
+			switch (node.getAttribute("class")) {
+				case "toggle":
+					variants.setItem(id + "Toggle", node.style.display !== "none");
+					break;
+				case "option":
+					var parent = node.parentNode;
+					if (parent.id.includes("Ear"))
+						variants.setItem(id + "Toggle", true);
+					else {
+						var parName = parent.id + "Select";
+						variants.setItem(parName, id);
+					}
+					break;
+				case "swappable":
+					var ch = node.firstElementChild;
+					variants.setItem(node.id, ch.id);
+					break;
 			}
 		}
+		localStorage.setItem("variants", variants.toString());
+		localStorage.setItem("settings", JSON.stringify(settings));
 	}
 
 	var svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
@@ -85,6 +85,7 @@ function Uploader (queryString, D) {
 		var mando = svg.lastElementChild;
 		var img = svg.firstElementChild;
 
+		reset(true);
 		parseMando(mando);
 		if (mando.id === "Female-Body") {
 			var sex_radio = find("female");
@@ -96,7 +97,7 @@ function Uploader (queryString, D) {
 			Settings.Sex(false, true);
 		}
 
-		var logo = svg.getElementById("titleDark");
+		var logo = (svg.getElementById("titleDark") != null);
 		Settings.DarkMode(logo, true);
 		if (img.tagName.toLowerCase() === "svg") {
 			D.Background = { type: "image/svg+xml", data: img.outerHTML };
@@ -135,6 +136,7 @@ function Uploader (queryString, D) {
 				return Settings.Sex(female, false);
 			var svg = xml.documentElement;
 			find("female").checked = female;
+			reset(true, true);
 			parseMando(svg);
 			Settings.Sex(female, true);
 		};
@@ -183,26 +185,35 @@ function Downloader () {
 				return NodeFilter.FILTER_SKIP;
 			} }
 		);
-		var node, parent, rem;
-		while (node = iter.nextNode()) {
-			if (parent)
+		var node, rem;
+		function advance () {
+			node = iter.nextNode();
+			if (rem) {
+				var parent = rem.parentNode;
 				parent.removeChild(rem);
-			parent = null;
-			var cls = node.getAttribute("class");
+			}
+			rem = null;
+			return node;
+		}
+		while (advance()) {
 			var display = node.style.display;
-			if (	((cls == "option") && (display !== "inherit")) ||
-				((cls == "toggle") && (display == "none")) ) {
-				parent = node.parentNode;
-				rem = node;
-			} else if (cls == "swappable") {
-				var ch = node.children;
-				for (var i = 0; i < ch.length;) {
-					console.log(ch[i]);
-					if (ch[i].style.visibility !== "visible")
-						node.removeChild(ch[i]);
-					else
-						i++;
-				}
+			switch (node.getAttribute("class")) {
+				case "option":
+					if (display !== "inherit")
+						rem = node;
+					break;
+				case "toggle":
+					if (display == "none")
+						node.innerHTML = "";
+					break;
+				case "swappable":
+					var ch = node.children;
+					for (var i = 0; i < ch.length;) {
+						if (ch[i].style.visibility !== "visible")
+							node.removeChild(ch[i]);
+						else
+							i++;
+					}
 			}
 		}
 		return svg;

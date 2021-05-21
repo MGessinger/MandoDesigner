@@ -8,30 +8,17 @@ function find (st) {
 
 function SVGVault () {
 	var vault = {};
-	function query (st) {
-		for (var i in vault) {
-			var svg = vault[i];
-			if (svg.id === st)
-				return svg;
-			var local = svg.getElementById(st);
-			if (local)
-				return local;
-		}
-	}
-	function finishUp (name, svg, onload, replace) {
-		var ret = undefined;
+	function finishUp (svg, onload, replace) {
 		if (onload)
-			ret = onload(svg);
-		vault[name] = svg;
-		if (replace) {
+			onload(svg);
+		if (replace && (replace != svg)) {
 			var par = replace.parentNode;
 			par.replaceChild(svg, replace);
 		}
 	}
 	this.load = function (name, onload, replace) {
-		var local = query(name);
-		if (local)
-			return finishUp(name, local, onload, replace);
+		if (name in vault)
+			return finishUp(vault[name], onload, replace);
 
 		var xhr = new XMLHttpRequest();
 		xhr.open("GET", "images/" + name + ".svg");
@@ -41,11 +28,12 @@ function SVGVault () {
 			xhr.onload = function () {
 				var xml = xhr.responseXML;
 				if (xhr.status !== 200 || !xml) {
-					resolve(undefined);
+					resolve(xhr.status);
 				} else {
 					var svg = xml.documentElement;
-					var ret = finishUp(name, svg, onload, replace);
-					resolve(ret);
+					vault[name] = svg;
+					finishUp(svg, onload, replace);
+					resolve(0);
 				}
 			};
 			xhr.send();
@@ -54,8 +42,9 @@ function SVGVault () {
 }
 var Vault = new SVGVault();
 
-function Builder (afterUpload) {
+function Builder () {
 	var Picker = new PickerFactory(Change);
+	var swapLists = [];
 	var icons = {
 		"Range Finder":	"\uE919",
 		"Main Antenna":	"\uE918",
@@ -109,14 +98,6 @@ function Builder (afterUpload) {
 			return NodeFilter.FILTER_REJECT;
 		} }
 	);
-	function attachSwapRadio (id, node, type) {
-		var radio = find(id + "Radio");
-		radio.addEventListener("change", function () {
-			node.dataset.show = "true";
-			if (type)
-				variants.setItem(type, id, "variant");
-		});
-	}
 	function BuildMirrorButton (headline, parent, thisSide) {
 		var b = DOMNode("button", {class: "mirror_button", title:"Mirror Settings"}, headline);
 		b.innerText = "\uE915";
@@ -178,7 +159,7 @@ function Builder (afterUpload) {
 		swapFilter.currentNode = node;
 		if (swapFilter.parentNode()) {
 			parent = DOMNode("div", {class: "swapslide"}, parent);
-			attachSwapRadio(variantID, parent);
+			swapLists.push(parent);
 		}
 		/* Step 3: If the parent is empty, make a headline */
 		if (parent.childElementCount == 0) {
@@ -238,8 +219,6 @@ function Builder (afterUpload) {
 
 		/* Step 2: Find the default value and attach an event handler */
 		var defaultOn = (toggle.style.display !== "none");
-		if (variants.hasItem(id))
-			defaultOn = variants.getItem(id);
 		var handler = function () {
 			if (this.checked) {
 				subslide.style.display = "";
@@ -254,7 +233,9 @@ function Builder (afterUpload) {
 				variants.removeItem(id, "toggle");
 		}
 		input.addEventListener("change", handler);
-		input.checked = !afterUpload && defaultOn;
+		input.checked = defaultOn;
+		if (variants.hasItem(id))
+			input.checked = variants.getItem(id);
 		handler.bind(input)();
 		return BuildManager(toggle, subslide);
 	}
@@ -304,10 +285,8 @@ function Builder (afterUpload) {
 			/* Step 2.2: Build Controls */
 			var subParent = DOMNode("div", {id: o.id + "SubColors"});
 			BuildManager(o, subParent);
-			if (subParent.childElementCount > 0) {
-				parent.appendChild(subParent);
-				pairs.push([o,subParent]);
-			}
+			parent.appendChild(subParent);
+			pairs.push([o,subParent]);
 		}
 
 		/* Step 3: Simulate a change event, to trigger all the right handlers */
@@ -355,6 +334,43 @@ function Builder (afterUpload) {
 		}
 	}
 
+	function attachSwapRadio (node, type) {
+		var radio = find(node.id + "Radio");
+		var s = swapLists;
+		radio.onchange = function () {
+			node.dataset.show = "true";
+			for (var i = 0; i < s.length; i++)
+				s[i].dataset.show = "true";
+			variants.setItem(type, node.id, "variant");
+		}
+		swapLists = [];
+	}
+
+	function setupSwapHandler (node, category) {
+		var options = find(category + "Options");
+		var slides = options.getElementsByClassName("swapslide");
+		var ch = node.children;
+		var typesList = options.getElementsByTagName("details")[0];
+		typesList.onchange = function () {
+			for (var i = 0; i < slides.length; i++) {
+				if ("show" in slides[i].dataset) {
+					slides[i].style.display = "block";
+					delete slides[i].dataset.show;
+				} else {
+					slides[i].style.display = "";
+				}
+			}
+			for (var j = 0; j < ch.length; j++) {
+				if ("show" in ch[j].dataset) {
+					ch[j].style.visibility = "visible";
+					delete ch[j].dataset.show;
+				} else {
+					ch[j].style.visibility = "";
+				}
+			}
+		}
+	}
+
 	function BuildManager (node, realParent) {
 		/* Step 0.1: Check if the node needs treatment */
 		var ch = node.children;
@@ -376,7 +392,7 @@ function Builder (afterUpload) {
 		 * -> map `BuildManager` over `ch`, but filter out .option and .toggle */
 		var parent = document.createDocumentFragment();
 		var options = [], toggles = [];
-		var parcls = node.getAttribute("class");
+		var isSwappable = (node.getAttribute("class") == "swappable");
 		for (var i = 0; i < ch.length; i++) {
 			var cls = ch[i].getAttribute("class");
 			if (cls == "option")
@@ -385,8 +401,8 @@ function Builder (afterUpload) {
 				toggles.push(ch[i]);
 			else
 				BuildManager(ch[i], parent);
-			if (parcls == "swappable")
-				attachSwapRadio(ch[i].id, ch[i], node.id);
+			if (isSwappable)
+				attachSwapRadio(ch[i], node.id);
 		}
 
 		/* Step 2.2: Build controls for .option and .toggle */
@@ -402,31 +418,6 @@ function Builder (afterUpload) {
 		/* Step 3: Put all controls in the DOM */
 		if (realParent)
 			realParent.appendChild(parent);
-	}
-
-	function setupSwapHandler (node, category) {
-		var options = find(category + "Options");
-		var slides = options.getElementsByClassName("swapslide");
-		var ch = node.children;
-		var typesList = options.getElementsByTagName("details")[0];
-		typesList.addEventListener("change", function () {
-			for (var i = 0; i < slides.length; i++) {
-				if ("show" in slides[i].dataset) {
-					slides[i].style.display = "block";
-					delete slides[i].dataset.show;
-				} else {
-					slides[i].style.display = "";
-				}
-			}
-			for (var j = 0; j < ch.length; j++) {
-				if ("show" in ch[j].dataset) {
-					ch[j].style.visibility = "visible";
-					delete ch[j].dataset.show;
-				} else {
-					ch[j].style.visibility = "";
-				}
-			}
-		})
 	}
 
 	this.setup = function (nodes) {
@@ -450,9 +441,9 @@ function Builder (afterUpload) {
 			}
 		}
 	}
-	this.parent = DOMParent;
 }
 var Change = new ChangeHistory;
+var Build = new Builder;
 
 var Settings = {
 	Sex: async function (female, upload) {
@@ -476,7 +467,6 @@ var Settings = {
 		var SVG = find("main").firstElementChild;
 		var helmet;
 		var body = Vault.load(body, function (body) {
-			var Build = new Builder(upload);
 			Build.setup(body.children);
 			var h = body.getElementById("Helmets");
 			helmet = Vault.load("Helmets", function (helmets) {
@@ -521,6 +511,7 @@ function VariantsVault (asString) {
 	};
 	if (asString)
 		__vars = JSON.parse(asString);
+	localStorage.setItem("variants", JSON.stringify(__vars));
 
 	this.hasItem = function (key) {
 		return key in __vars;
@@ -632,13 +623,12 @@ function onload () {
 	setupDragAndDrop();
 	setupCaching();
 	var nsw = navigator.serviceWorker;
-	if (!nsw)
-		return;
+	if (!nsw) return;
 	nsw.onmessage = function (event) {
 		var form = find("reload");
 		form.style.display = "";
 	};
-	//nsw.register("sw.js");
+	nsw.register("sw.js");
 }
 
 function openArmorFolder (category) {
@@ -725,11 +715,14 @@ function playKote () {
 	kote.setAttribute("src", "assets/KOTE.mp3");
 }
 
-function reset () {
-	var conf = confirm("Do you want to reset all settings? You will lose all colors and all armor options. This cannot be undone.")
+function reset (skipBuild, skipPrompt) {
+	var conf = skipPrompt || confirm("This will erase all settings, such as colors and armor pieces. Do you want to proceed? This cannot be undone.\n\nSave or save not. There is no undo.")
 		if (!conf) return;
 	variants = new VariantsVault;
 	settings = resetSettings(false);
+	Vault = new SVGVault();
+	if (skipBuild)
+		return;
 	var female = find("female").checked;
 	Settings.Sex(female);
 }

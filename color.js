@@ -271,9 +271,7 @@ function PickerFactory (history) {
 	}
 
 	function getDefaultColor (SVGNode, id) {
-		if (SVGNode.style.fill)
-			return SVGNode.style.fill;
-		else if (id in settings)
+		if (id in settings)
 			return settings[id];
 		return "#FFF";
 	}
