@@ -613,6 +613,7 @@ footer {
 .pseudo_checkbox {
 	display: block;
 	padding: 1em 1em 0 1em;
+	height: 1.5em;
 }
 
 .pseudo_label {

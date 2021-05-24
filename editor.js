@@ -559,6 +559,15 @@ function setupControlMenu () {
 	for (var i = 0; i < slides.length; i++) {
 		slides[i].addEventListener("click", toggleArmorSlide(slides[i]));
 	}
+
+	window.addEventListener("keydown", function (event) {
+		if (!event.ctrlKey)
+			return;
+		if (event.key == "z")
+			Change.undo();
+		else if (event.key == "y")
+			Change.undo(1)
+	});
 }
 
 function setupCaching () {
