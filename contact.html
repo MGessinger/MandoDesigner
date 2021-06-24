@@ -110,47 +110,10 @@
 				font-size: x-large;
 			}
 
-			fieldset {
-				display: flex;
-				padding: 0;
-				flex-wrap: wrap;
-				justify-content: space-between;
-				border: none;
-			}
-
-			input,
-			textarea {
-				color: inherit;
-				font: inherit;
-				padding: 0;
-				margin: 1em 0;
-				background: none;
-				border: none 1px #AB1F1F;
-				border-bottom-style: solid;
-			}
-
-			.narrow_input {
-				max-width: 48%;
-			}
-
-			.wide_input {
-				width: 100%;
-			}
-
-			textarea {
-				color: inherit;
-				font: inherit;
-				width: 100%;
-				resize: vertical;
-			}
-
-
-			button {
-				cursor: pointer;
-				padding: 1em 2em;
-				border: none;
-				background: #AB1F1F;
-				border-radius: 0.5em;
+			.label {
+				font-size: small;
+				color: white;
+				vertical-align: super;
 			}
 
 			h2 {
@@ -191,31 +154,23 @@
 						<h1>Follow Us</h1>
 						<a class="social" title="Like us on Facebook" href="https://www.facebook.com/MandoCreator">&#xE911;</a>
 						<a class="social" title="Follow us on Instagram" href="https://www.instagram.com/mandocreator/">&#xE91E;</a>
-						<a class="social" title="Join the Discord" href="https://discord.gg/9esuc6UKfT">&#xE912;</a>
 						<a class="social" title="Follow us on Twitter" href="https://twitter.com/MandoCreator">&#xE913;</a>
 					</div>
 				</div>
 				<p class="separator"></p>
-				<form action="image.php" method="POST">
-					<legend>
-						<h1>Contact Us</h1>
-						<p>Like the site or have some feedback on what to add next? Let us know!</p>
-					</legend>
-					<fieldset>
-						<input type="text" style="display:none" name="url" value="" autocomplete="off" />
-						<input type="text" class="narrow_input" placeholder="Name (optional)" name="name"/>
-						<input type="email" class="narrow_input" placeholder="Email (optional)" name="email"/>
-						<input type="text" class="wide_input" placeholder="Subject (example: Ibic jatne!)" name="subject" required/>
-						<textarea placeholder="Message (example: Gar Mando'ade jate, ijaat enteyo cuyir ori.)" name="message" required></textarea>
-						<span class="narrow_input">What color is Darth Vader's lightsaber?</span>
-						<input type="text" class="narrow_input" placeholder="Hint: It's not blue." name="phone" required />
-						<button class="submit" type="submit">Ke barycir <span class="detail">(Deploy)</span></button>
-					</fieldset>
-				</form>
+				<h1>Contact Us</h1>
+				<p>Like the site or have some feedback on what to add next? Let us know!</p>
+				<a class="social" title="Join the Discord" href="https://discord.gg/9esuc6UKfT">&#xE912;&nbsp;<span class="label">Join&nbsp;us&nbsp;on&nbsp;Discord!</span></a>
+				<a class="social" title="Email us" href="mailto:feedback@mandocreator.com">&#xF0E0;&nbsp;<span class="label">Email&nbsp;us!</span></a>
 				<p class="separator"></p>
 			</div>
 			<div id="changelog" class="half_screen">
 				<h1>Changelog</h1>
+				<h2>Version 3.2</h2>
+				<p>The best partnerships are those that last. In that spirit, AlterEgoArmory has increased their offer by four more Helmets. Enjoy their Rook, Vanguard, Foreman and Mountaineer!</p>
+				<h2>Version 3.1</h2>
+				<p>Once again we add a new partner to the site. Everybody, give a warm <i>Oya!</i> to Mynock's Den, who brings four of their helmets to the site: The Recon, the Operator, the GI as well Shae Vizla.</p>
+				<p>We also added the ability to use a wider variety of image formats as backgrounds in the SVG download. You can now use animated GIFs, among others.</p>
 				<h2>Version 3.0</h2>
 				<p>After a long wait, this update brings several new features, making the website better than ever before.</p>
 				<p>Check out the Gallery to browse through user-submitted designs looking for inspiration, and use the Creator to customize them further.</p>

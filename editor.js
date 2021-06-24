@@ -1,6 +1,8 @@
 /* MandoCreator */
 "use strict";
-var Download, Upload, Change;
+var variants = {};
+var unsavedChanges = false;
+var Picker, Download, Upload;
 
 function find (st) {
 	return document.getElementById(st);
@@ -8,27 +10,23 @@ function find (st) {
 
 function SVGVault (vault) {
 	function prepareSVGAttributes (svg) {
-		var iter = document.createNodeIterator(svg, NodeFilter.SHOW_ELEMENT,
-			{ acceptNode: function (n) {
-				return n.id ? NodeFilter.FILTER_ACCEPT : NodeFilter.FILTER_REJECT;
-			} } );
-		var node;
-		while (node = iter.nextNode()) {
-			var id = node.id;
-			var comp = id.match(/Option|Toggle/);
-			if (!comp)
-				continue;
-			node.setAttribute("class", comp[0].toLowerCase());
-			id = node.id = id.replace("_"+comp[0], "");
-			if (id.includes("Off")) {
-				node.id = id.replace("Off", "");
-				node.style.display = "none";
-			}
+		/* Assign classes based on ID components */
+		var options = svg.querySelectorAll("[id*=Option]");
+		for (var i = 0; i < options.length; i++)
+			options[i].setAttribute("class", "option");
+
+		var options = svg.querySelectorAll("[id*=Toggle]");
+		for (var i = 0; i < options.length; i++) {
+			options[i].setAttribute("class", "toggle");
+			if (options[i].id.includes("Off"))
+				options[i].style.display = "none";
 		}
 		vault.appendChild(svg);
 	}
 
 	this.query = function (st) {
+		if (!st)
+			return;
 		var ch = vault.children;
 		for (var i = 0; i < ch.length; i++) {
 			var svg = ch[i];
@@ -40,6 +38,8 @@ function SVGVault (vault) {
 		}
 	}
 	this.load = function (name, onload) {
+		if (!name)
+			return;
 		var local = this.query(name);
 		if (local) {
 			var copy = local.cloneNode(true);
@@ -68,10 +68,9 @@ function SVGVault (vault) {
 }
 var Vault = new SVGVault(find("vault"));
 
-function Settings (Change) {
+function Settings () {
 	var afterUpload = false;
 	var editor = find("editor");
-	var Picker = new PickerFactory(Change);
 	var icons = {
 		"Range Finder":	"\uE919",
 		"Main Antenna":	"\uE918",
@@ -79,7 +78,7 @@ function Settings (Change) {
 		"Sensor Stalk":	"\uE91A",
 		"Antenna":	"\uE91C",
 		"Lear Cap":	"\uE91D",
-		"Module":	"\ue922"
+		"Module":	"\uE922"
 	}
 
 	function DOMNode (type, props, parent) {
@@ -98,9 +97,11 @@ function Settings (Change) {
 	}
 
 	function listName (str) {
-		var component = str.split("_", 1)[0];
-		var clean = component.replace(/\W/g,"");
-		return clean;
+		if (!str)
+			return "";
+		var clean = str.replace(/\W/g,"");
+		var components = clean.split("_");
+		return components[0];
 	}
 
 	function prepareParent (SVGNode, parent) {
@@ -136,8 +137,8 @@ function Settings (Change) {
 
 			var defaultOn = !afterUpload && (SVGNode.style.display !== "none");
 			var varName = neutralize(SVGNode.id);
-			if (variants.hasItem(varName))
-				defaultOn = variants.getItem(varName);
+			if (varName in variants)
+				defaultOn = variants[varName];
 			var toggle = S.toggle.Subslide(parent, SVGNode, (SVGNode.style.display !== "none"));
 			check.checked = defaultOn;
 			toggle.bind({checked: defaultOn})();
@@ -161,8 +162,10 @@ function Settings (Change) {
 		return b;
 	}
 
-	var build = {
+	this.build = {
 		IO: function (SVGNode, category, parent) {
+			if (!SVGNode.id)
+				return;
 			var p = ColorPicker(SVGNode, parent);
 			var redirectToPicker = redirectClickTo(p);
 
@@ -171,15 +174,18 @@ function Settings (Change) {
 			if (radio.checked)
 				redirectToRadio();
 
+			var folder = find(category + "Options");
+			var folder_content = folder.getElementsByClassName("folder_content")[0];
+			var slides = folder.getElementsByClassName("slide");
 			SVGNode.addEventListener("click", function(event) {
 				if (event.defaultPrevented)
 					return;
 				redirectToRadio();
-				while (p && p.getAttribute("class") !== "slide")
-					p = p.parentElement;
-				if (p) {
-					var but = p.firstElementChild;
-					redirectClickTo(but)();
+				for (var i = 0; i < slides.length; i++) {
+					if (slides[i].contains(p)) {
+						var but = slides[i].firstElementChild;
+						redirectClickTo(but)();
+					}
 				}
 				redirectToPicker();
 			});
@@ -187,6 +193,7 @@ function Settings (Change) {
 		Dropdown: function (addons, category, parent, SVGName) {
 			var select = find(SVGName + "Select");
 			var useDefault = !select;
+			var defaultValue;
 			if (!select) {
 				var wrapper = DOMNode("div", {class: "select_wrapper hidden"}, parent);
 				select = DOMNode("select", {class: "component_select", id: SVGName + "Select"}, wrapper);
@@ -199,12 +206,13 @@ function Settings (Change) {
 				var neutral = neutralize(fullName);
 
 				/* Create an option in the select, and a hideable color list */
-				var opt = DOMNode("option", {label: name, value: neutral}, select);
+				var opt = DOMNode("option", {label: name, value: fullName}, select);
 				opt.innerText = name;
 
 				var san = listName(fullName);
 				var col = DOMNode("div", {id: san + "SubColors"}, parent);
-				if (variants.getItem(SVGName) == neutral) {
+				if (variants[SVGName] == neutral) {
+					defaultValue = fullName;
 					addons[i].style.display = "inherit";
 					useDefault = false;
 					opt.selected = true;
@@ -212,18 +220,22 @@ function Settings (Change) {
 					addons[i].style.removeProperty("display");
 					col.style.display = "none";
 				}
-				build.All(addons[i], category, col);
+				this.All(addons[i], category, col);
 				colors.push(col);
 			}
 			if (useDefault) {
 				addons[addons.length-1].style.display = "inherit";
 				colors[0].style.removeProperty("display");
+				defaultValue = addons[addons.length-1].id;
 			}
 
 			select.addEventListener("change", function() {
-				variants.setItem(SVGName, this.value, "select");
+				if (this.value == defaultValue)
+					delete variants[SVGName];
+				else
+					variants[SVGName] = neutralize(this.value);
 				for (var i = 0; i < addons.length; i++) {
-					if (neutralize(addons[i].id) === this.value)
+					if (addons[i].id === this.value)
 						addons[i].style.display = "inherit";
 					else
 						addons[i].style.removeProperty("display");
@@ -239,16 +251,18 @@ function Settings (Change) {
 			});
 			return select;
 		},
-		Attach: function (category, SVGNode) {
-			var identifier = listName(SVGNode.id);
+		Variant: function (category, pieceName, variantName) {
+			var fullyQualifiedName = pieceName + "_" + variantName;
+			var identifier = listName(pieceName);
 
 			var wrapper = find(identifier + "_Current");
-			var node = SVGNode.cloneNode(true);
-			if (!wrapper)
-				return console.log("Couldn't find ", identifier + "_Current");
+			var ref = Vault.query(fullyQualifiedName);
+			var node = ref.cloneNode(true);
 			wrapper.appendChild(node);
 
-			build.All(node, category);
+			var parent = prepareParent(node);
+			var SVGName = neutralize(fullyQualifiedName) + "_Option";
+			this.Dropdown(node.children, category, parent, SVGName);
 		},
 		Checkbox: function (addons, category, parent) {
 			var checkboxes = DOMNode("div", {class: "checkbox_list hidden"}, parent);
@@ -265,35 +279,41 @@ function Settings (Change) {
 
 				var san = listName(fullName);
 				var col = DOMNode("div", {id: san + "SubColors"}, parent);
-				if (variants.getItem(neutral)) {
+				if (variants[neutral]) {
 					addons[i].style.display = "inherit";
 					checkbox.checked = true;
 				} else {
 					addons[i].style.removeProperty("display");
 					col.style.display = "none";
 				}
-				build.All(addons[i], category, col);
+				this.All(addons[i], category, col);
 				checkbox.addEventListener("change", S.toggle.Sublist(col, addons[i], neutral));
 			}
 		},
 		All: function (SVGNode, category, parent) {
+			if (!SVGNode)
+				return;
 			parent = prepareParent(SVGNode, parent);
 			var ch = SVGNode.children;
 			for (var i = 0; i < ch.length; i++) {
-				if (!ch[i].id)
-					return build.IO(SVGNode, category, parent);
+				if (!ch[i].id && ch[i].tagName !== "title")
+					return this.IO(SVGNode, category, parent);
 			}
 			if (!ch.length) {
 				if (SVGNode.tagName === "g")
 					return;
-				return build.IO(SVGNode, category, parent);
+				return this.IO(SVGNode, category, parent);
 			}
 			var options = [];
 			var toggle = [];
-			var realParent = null;
-			if (document.contains(parent)) { /* Stay away from the DOM! */
-				realParent = parent;
-				parent = document.createDocumentFragment();
+			var SVGName = neutralize(SVGNode.id) + "_Option";
+			if (SVGName.includes("Earcap") || SVGName.includes("Ear-Cap")) {
+				var child = parent.lastElementChild;
+				if (!!child) {
+					if (child.getAttribute("class") == "color_wrapper")
+						DOMNode("br", {class: "hidden"}, parent);
+					DOMNode("br", {class: "hidden"}, parent);
+				}
 			}
 			for (var i = ch.length-1; i >= 0; i--) {
 				var className = ch[i].getAttribute("class");
@@ -302,23 +322,19 @@ function Settings (Change) {
 				else if (className == "toggle")
 					toggle.push(ch[i]);
 				else
-					build.All(ch[i], category, parent);
+					this.All(ch[i], category, parent);
 			}
-			var SVGName = neutralize(SVGNode.id) + "_Option";
 			if (options.length > 0) {
 				if (SVGName.includes("Earcap"))
-					build.Checkbox(options, category, parent);
+					this.Checkbox(options, category, parent);
 				else
-					build.Dropdown(options, category, parent, SVGName);
+					this.Dropdown(options, category, parent, SVGName);
 			}
 			/* defer toggles to the very last */
 			for (var i = 0; i < toggle.length; i++)
-				build.All(toggle[i], category, parent);
-			if (realParent)
-				realParent.appendChild(parent);
+				this.All(toggle[i], category, parent);
 		}
 	}
-	this.Build = build.All;
 	this.toggle = {
 		Slide: function (slide) {
 			slide.classList.toggle("selected");
@@ -336,9 +352,9 @@ function Settings (Change) {
 					SVGNode.style.display = "none";
 				}
 				if (this.checked == def)
-					variants.removeItem(varName, "subslide");
+					delete variants[varName];
 				else
-					variants.setItem(varName, this.checked, "subslide");
+					variants[varName] = this.checked;
 			}
 		},
 		Sublist: function (sublist, SVGNode, neutral) {
@@ -346,11 +362,11 @@ function Settings (Change) {
 				if (this.checked) {
 					sublist.style.removeProperty("display");
 					SVGNode.style.display = "inherit";
-					variants.setItem(neutral, true, "sublist");
+					variants[neutral] = true;
 				} else {
 					sublist.style.display = "none";
 					SVGNode.style.display = "none";
-					variants.removeItem(neutral, "sublist");
+					delete variants[neutral];
 				}
 			}
 		},
@@ -378,12 +394,10 @@ function Settings (Change) {
 				slides[i].innerHTML = "";
 			}
 
-			Vault.load(body, function (svg) {
-				S.setup(svg, sexSuffix, upload);
-			});
+			Vault.load(body, function (svg) { S.setup(svg, sexSuffix, upload); });
 			localStorage.setItem("female_sex", female.toString());
 		},
-		DarkMode: function (darkMode, keepBck) {
+		DarkMode: function (darkMode) {
 			var className = "light_mode";
 			var bckName = "LogoLight";
 			var logoName = "#titleLight";
@@ -396,15 +410,13 @@ function Settings (Change) {
 			}
 			Vault.load(bckName, function(logo) {
 				Download.Logo = logo;
-				if (!keepBck) {
-					Download.Background = {type: "image/jpg", data: href};
-					var reset = find("reset_wrapper");
-					reset.style.display = "none";
-				}
+				Download.Background = {type: "image/jpg", data: href};
 			});
 			document.body.className = className;
 			var use = find("title");
 			use.setAttribute("href", logoName);
+			var reset = find("reset_wrapper");
+			reset.style.display = "none";
 			localStorage.setItem("dark_mode", darkMode.toString());
 		}
 	}
@@ -414,8 +426,17 @@ function Settings (Change) {
 
 		var otherSide = (side == "Right" ? "Left" : "Right");
 		mirror.addEventListener("click", function () {
-			var changes = []
-			Change.track = false;
+			/* Mirror all the colors */
+			showPicker = false;
+			var buttons = parent.getElementsByClassName("color_picker");
+			for (var i = 0; i < buttons.length; i++) {
+				var mirrorImageName = buttons[i].id.replace(side, otherSide);
+				var mirrorImage = find(mirrorImageName);
+				if (!mirrorImage) /* Allow for asymmetric helmets */
+					continue;
+				mirrorImage.style.background = buttons[i].style.background;
+				mirrorImage.click();
+			}
 			/* Mirror all Checkboxes */
 			var checks = parent.getElementsByTagName("input");
 			for (var i = 0; i < checks.length; i++) {
@@ -423,16 +444,8 @@ function Settings (Change) {
 				var mirrorImage = find(mirrorImageName);
 				if (!mirrorImage)
 					continue;
-				if (mirrorImage.checked ^ checks[i].checked) {
-					changes.push(Change.format(
-						"sublist",
-						mirrorImage.checked,
-						checks[i].checked,
-						mirrorImageName,
-						true
-					));
+				if (mirrorImage.checked ^ checks[i].checked)
 					mirrorImage.click();
-				}
 			}
 			/* Mirror the checkbox in paragraph itself (if present) */
 			var top_check = paragraph.getElementsByTagName("input")[0];
@@ -440,16 +453,8 @@ function Settings (Change) {
 				var mirrorImageName = top_check.id.replace(side, otherSide);
 				var mirrorImage = find(mirrorImageName);
 				if (mirrorImage) {
-					if (mirrorImage.checked ^ top_check.checked) {
-						changes.push(Change.format(
-							"subslide",
-							mirrorImage.checked,
-							top_check.checked,
-							mirrorImageName,
-							true
-						));
+					if (mirrorImage.checked ^ top_check.checked)
 						mirrorImage.click();
-					}
 				}
 			}
 			/* Mirror all selects */
@@ -459,57 +464,14 @@ function Settings (Change) {
 				var mirrorImage = find(mirrorImageName);
 				if (!mirrorImage)
 					continue;
-				var singleChange = Change.format(
-					"select",
-					mirrorImage.value,
-					selects[i].value.replace(side, otherSide),
-					mirrorImageName,
-					true
-				);
-				changes.push(singleChange);
-				mirrorImage.value = singleChange.newValue;
+				mirrorImage.value = selects[i].value.replace(side, otherSide);
 				mirrorImage.dispatchEvent(new Event("change"));
 			}
-			/* Mirror all the colors */
-			showPicker = false;
-			var buttons = parent.getElementsByClassName("color_picker");
-			for (var i = 0; i < buttons.length; i++) {
-				var mirrorImageName = buttons[i].id.replace(side, otherSide);
-				var mirrorImage = find(mirrorImageName);
-				if (!mirrorImage) /* Allow for asymmetric helmets */
-					continue;
-				var singleChange = Change.format(
-					"color",
-					mirrorImage.style.backgroundColor,
-					buttons[i].style.backgroundColor,
-					mirrorImageName,
-					true
-				);
-				changes.push(singleChange);
-				mirrorImage.style.background = singleChange.newValue;
-				mirrorImage.click();
-			}
-			Change.track = true;
-			Change.push(changes);
 			showPicker = true;
 		});
 	}
-	var symmetric = ["Shoulders", "Biceps", "Gauntlets", "Thighs", "Knees", "Shins", "Foot"];
-	function buildBodyParts (self, ch, category) {
-		for (var i = 0; i < ch.length; i++) {
-			var n = ch[i];
-			if ( symmetric.includes(listName(n.id)) ) {
-				var ch2 = n.children;
-				for (var j = 0; j < ch2.length; j++)
-					build.Attach(category, ch2[j]);
-			} else {
-				build.Attach(category, n);
-			}
-		}
-	}
 	this.setup = async function (svg, sexSuffix, upload) {
 		afterUpload = upload; /* Set to true, if this function was called after an upload */
-		Change.track = false; /* Do not track Setup history */
 		var old_svg = editor.firstElementChild;
 		if (old_svg)
 			editor.replaceChild(svg, old_svg);
@@ -519,7 +481,7 @@ function Settings (Change) {
 		zoom(scale.value);
 		svg.scrollIntoView({inline: "center"});
 
-		var variant = variants.getItem("Helmet");
+		var variant = variants["Helmet"] || "Classic";
 		var helmet = Vault.load("Helmets", function() {
 			var button = find("Helmet_Variant_" + variant);
 			button.click();
@@ -527,121 +489,85 @@ function Settings (Change) {
 
 		var self = this; // Needed because 'this' changes scope in Promises
 		var upper = Vault.load("Upper-Armor_" + sexSuffix, function(svg) {
-			buildBodyParts(self, svg.children, "UpperArmor");
-			var variant = variants.getItem("Chest");
+			var variant = variants["Chest"] || "Classic";
 			var button = find("Chest_Variant_" + variant);
 			if (!button) button = find("Chest_Variant_" + variant + "_" + sexSuffix);
 			button.click();
+			var subgroups = ["Shoulder","Biceps","Gauntlets"];
+			for (var i = 0; i < subgroups.length; i++) {
+				self.build.Variant("UpperArmor", "Left-" + subgroups[i], sexSuffix);
+				self.build.Variant("UpperArmor", "Right-" + subgroups[i], sexSuffix);
+			}
+			self.build.Variant("UpperArmor", "Collar", sexSuffix + "_ToggleOff");
+			self.build.Variant("UpperArmor", "Chest-Attachments", sexSuffix);
 		});
 
 		var lower = Vault.load("Lower-Armor_" + sexSuffix, function(svg) {
-			buildBodyParts(self, svg.children, "LowerArmor");
+			switchToArmorVariant("LowerArmor", "Waist", sexSuffix);
+			self.build.Variant("LowerArmor", "Groin", sexSuffix);
+			var subgroups = ["Thigh", "Knee", "Shin", "Ankle", "Toe"];
+			for (var i = 0; i < subgroups.length; i++) {
+				self.build.Variant("LowerArmor", "Left-" + subgroups[i], sexSuffix);
+				self.build.Variant("LowerArmor", "Right-" + subgroups[i], sexSuffix);
+			}
 		});
 
-		var ch = svg.children;
-		for (var i = 0; i < ch.length; i++) {
-			var id = ch[i].id;
-			if (id.includes("Back") || id.includes("Front"))
-				build.All(ch[i], "Back");
-			else if (id.includes("Vest") || id.includes("Flight-Suit")) {
-				var parent = find("SoftPartsColors");
-				build.All(ch[i].lastElementChild, "FlightSuit", parent);
-			}
+		function findLocal(st) {
+			return svg.getElementById(st);
 		}
+		this.build.All(findLocal("Back_" + sexSuffix), "Back");
+		this.build.All(findLocal("Front_" + sexSuffix), "Back");
+		var parent = find("SoftPartsColors");
+		this.build.All(findLocal("Vest_" + sexSuffix), "FlightSuit", parent);
+		this.build.All(findLocal("Soft-Parts_" + sexSuffix), "FlightSuit", parent);
 
 		await helmet;
 		await upper;
 		await lower;
 		afterUpload = false;
-		Change.track = true;
+		unsavedChanges = false;
 	}
 }
-var Change = new ChangeHistory;
-var S = new Settings(Change);
-
-function VariantsVault (asString) {
-	var __vars = {
-		"Helmet": "Classic",
-		"Chest": "Classic"
-	};
-	if (asString) {
-		var simple = __vars;
-		__vars = JSON.parse(asString);
-		for (var i in simple) {
-			if (i in __vars)
-				continue;
-			__vars[i] = simple[i];
-		}
-	}
-
-	this.hasItem = function (key) {
-		return key in __vars;
-	}
-	this.setItem = function (key, value, type) {
-		if (value == __vars[key])
-			return;
-		var c = Change.format(type, __vars[key], value, key);
-		if (!c)
-			return;
-		Change.push(c);
-		__vars[key] = value;
-	}
-	this.getItem = function (key) {
-		return __vars[key];
-	}
-	this.removeItem = function (key, type) {
-		if (!(key in __vars))
-			return;
-		var c = Change.format(type, __vars[key], undefined, key);
-		if (!c)
-			return;
-		Change.push(c);
-		delete __vars[key];
-	}
-	this.toString = function () {
-		return JSON.stringify(__vars);
-	}
-}
-var variants = new VariantsVault(localStorage.getItem("variants"));
+var S = new Settings();
 
 function prettify (str) {
-	var components = str.split("_", 1);
+	if (!str)
+		return "";
+	var components = str.split("_");
 	var shortName = components[0];
 	return shortName.replace(/-/g, " ");
 }
 
 function neutralize (str) {
-	return str.replace(/(_M|_F)($|_)/,"$2");
+	if (!str)
+		return "";
+	return str.replace(/(_(M|F|Toggle(Off)?|Option))+($|_)/,"$4");
 }
 
 function buttonName (str) {
+	if (!str)
+		return "";
 	var clean = str.replace(/\W/g,"");
 	return neutralize(clean);
 }
 
 function setupWindow () {
-	if (window.innerWidth > 786) {
-		var settings_menu = find("settings");
-		settings_menu.classList.remove("settings_collapsed");
+	if (window.innerWidth < 786) {
+		var settings = find("settings");
+		settings.classList.add("settings_collapsed");
+		var types = settings.getElementsByClassName("armor_types");
+		for (var i = 0; i < types.length; i++)
+			types[i].style.height = "12em";
 	}
 
-	function cache () {
-		localStorage.setItem("settings", JSON.stringify(settings));
-		localStorage.setItem("variants", variants.toString());
-	}
-
-	window.addEventListener("pagehide", cache);
-	document.addEventListener("visibilitychange", function() {
-		switch (document.visibilityState) {
-			case "hidden":
-				cache();
-				break;
-			default:
-				variants = new VariantsVault(localStorage.getItem("variants"));
-				settings = resetSettings(true);
-				break;
-		}
-	})
+	window.addEventListener("beforeunload", function (event) {
+		if (!unsavedChanges)
+			return;
+		var message = "You should save your work. Do or do not, there is not try!";
+		event.preventDefault();
+		event.returnValue = message;
+		return message;
+	});
 
 	var main = find("editor");
 	var mv = { dragged: false, drag: false };
@@ -680,12 +606,10 @@ function onload () {
 	find("color_scheme_picker").checked = useDarkMode;
 	find("kote").volume = 0.15;
 
-	settings = resetSettings(true);
-
 	Download = new Downloader;
 	Download.attach(find("download_svg"), "image/svg+xml");
 	Download.attach(find("download_jpeg"), "image/jpeg");
-
+	Picker = new PickerFactory;
 	Upload = new Uploader(window.location.search, Download);
 	setupWindow();
 	var nsw = navigator.serviceWorker;
@@ -729,13 +653,15 @@ function setVariantButton (category, button) {
 
 function switchToArmorButton (category, pieceName, button) {
 	var name = button.dataset.name;
-	if (!name) return;
+	if (!name)
+		return;
 	var parent = setVariantButton(category, button);
 	hideSponsors(parent);
 	if (callback)
 		callback();
 	callback = null;
 
+	unsavedChanges = true;
 	switchToArmorVariant(category, pieceName, name);
 }
 
@@ -747,8 +673,8 @@ function switchToArmorVariant (category, pieceName, variantName) {
 	n.id = pieceName + "_Current";
 	n.setAttribute("class", variantName);
 	SVGparent.replaceChild(n, old);
-	S.Build(n, category);
-	variants.setItem(pieceName, neutralize(variantName), "variant");
+	S.build.All(n, category);
+	variants[pieceName] = neutralize(variantName);
 }
 
 var callback = null;
@@ -763,16 +689,17 @@ function hideSponsors (parent) {
 }
 
 function setSponsor (sponsor, href) {
-	var link = find(sponsor);
-	link.setAttribute("href", href);
-
-	var img = link.getElementsByTagName("img")[0];
-	if (!img.hasAttribute("src"))
-		img.setAttribute("src", "assets/" + sponsor + ".png");
-	var parent = link.parentNode;
-	var close = parent.getElementsByTagName("button")[0];
 	callback = function () {
+		var link = find(sponsor);
+		link.setAttribute("href", href);
 		link.style.removeProperty("display");
+
+		var img = link.getElementsByTagName("img")[0];
+		if (!img.hasAttribute("src"))
+			img.setAttribute("src", "assets/" + sponsor + ".png");
+
+		var parent = link.parentNode;
+		var close = parent.getElementsByTagName("button")[0];
 		close.style.removeProperty("display");
 	}
 }
@@ -805,13 +732,4 @@ function showRoll (type) {
 function playKote () {
 	var kote = find("kote");
 	kote.setAttribute("src", "assets/KOTE.mp3");
-}
-
-function reset () {
-	if (!confirm("Do you want to reset all settings? You will lose all colors and all armor options. This cannot be undone."))
-		return;
-	variants = new VariantsVault;
-	settings = resetSettings(false);
-	var female = find("female").checked;
-	S.set.Sex(female);
 }

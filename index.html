@@ -105,7 +105,7 @@
 				</div>
 				<span class="nav_icon">&#xE914;</span>
 				<div class="sub_nav">
-					<a id="donate" class="nav_label" target="_blank" href="https://www.paypal.com/donate?hosted_button_id=TJGV33MFJL26W">Donate</a>
+					<a id="donate" class="nav_label" target="_blank" href="https://www.paypal.com/donate?hosted_button_id=TJGV33MFJL26W">Donate to MandoCreator</a>
 				</div>
 			</div>
 		</nav>
@@ -154,6 +154,22 @@
 								onclick="setSponsor('AlterEgo','https://etsy.me/35mnHvm');">
 								<svg viewbox="0 75 700 700" class="preview_icon"><use href="#Helmet_Guardian"/></svg>
 								Guardian
+							</button><button id="Helmet_Variant_Vanguard" class="type_button new" data-name="Vanguard"
+								onclick="setSponsor('AlterEgo','https://etsy.me/3d85DZy');">
+								<svg viewbox="0 75 700 700" class="preview_icon"><use href="#Helmet_Vanguard"/></svg>
+								Vanguard
+							</button><button id="Helmet_Variant_Foreman" class="type_button new" data-name="Foreman"
+								onclick="setSponsor('AlterEgo','https://etsy.me/2T26gwO');">
+								<svg viewbox="0 75 700 700" class="preview_icon"><use href="#Helmet_Foreman"/></svg>
+								Foreman
+							</button><button id="Helmet_Variant_Mountaineer" class="type_button new" data-name="Mountaineer"
+								onclick="setSponsor('AlterEgo','https://etsy.me/2UDX6XX');">
+								<svg viewbox="0 75 700 700" class="preview_icon"><use href="#Helmet_Mountaineer"/></svg>
+								Mountaineer
+							</button><button id="Helmet_Variant_Rook" class="type_button new" data-name="Rook"
+								onclick="setSponsor('AlterEgo','https://etsy.me/3xPfdsa');">
+								<svg viewbox="0 75 700 700" class="preview_icon"><use href="#Helmet_Rook"/></svg>
+								Rook
 							</button>
 						</details>
 						<details open>
@@ -194,19 +210,19 @@
 						</details>
 						<details open>
 							<summary class="sponsor_title">Mynock's Den (sponsored)</summary>
-							<button id="Helmet_Variant_Recon" class="type_button new" data-name="Recon"
+							<button id="Helmet_Variant_Recon" class="type_button" data-name="Recon"
 								onclick="setSponsor('Mynock','https://bit.ly/3y6wXQB');">
 								<svg viewbox="0 75 700 700" class="preview_icon"><use href="#Helmet_Recon"/></svg>
 								Recon
-							</button><button id="Helmet_Variant_Operator" class="type_button new" data-name="Operator"
+							</button><button id="Helmet_Variant_Operator" class="type_button" data-name="Operator"
 								onclick="setSponsor('Mynock','https://bit.ly/3hoYR4g');">
 								<svg viewbox="0 75 700 700" class="preview_icon"><use href="#Helmet_Operator"/></svg>
 								Operator
-							</button><button id="Helmet_Variant_GI" class="type_button new" data-name="GI"
+							</button><button id="Helmet_Variant_GI" class="type_button" data-name="GI"
 								onclick="setSponsor('Mynock','https://bit.ly/3vYgWdu');">
 								<svg viewbox="0 75 700 700" class="preview_icon"><use href="#Helmet_GI"/></svg>
 								GI
-							</button><button id="Helmet_Variant_Shae-Vizla" class="type_button new" data-name="Shae-Vizla"
+							</button><button id="Helmet_Variant_Shae-Vizla" class="type_button" data-name="Shae-Vizla"
 								onclick="setSponsor('Mynock','https://bit.ly/3hrUhSW');">
 								<svg viewbox="0 75 700 700" class="preview_icon"><use href="#Helmet_Shae-Vizla"/></svg>
 								Shae Vizla
@@ -519,11 +535,8 @@
 		</form>
 
 		<footer>
-			<div>
-				<button class="undo_redo" onclick="Change.undo(0)">&#xe91f;</button>
-				<button class="reset" onclick="reset()">Reset</button>
-				<button class="undo_redo" style="transform:scale(-1,1);" onclick="Change.undo(1)">&#xe91f;</button>
-			</div>
+			<button class="undo_redo" onclick="Change.undo(0)">&#xe91f;</button>
+			<button class="undo_redo" style="transform:scale(-1,1);" onclick="Change.undo(1)">&#xe91f;</button>
 			<div class="zoom_wrapper">
 					<span class="zoom_icon" onclick="zoomInOut(-10)">&#xe916;</span
 					><input id="zoom" type="range" min="100" max="300" value="100" oninput="zoom(this.value)" /

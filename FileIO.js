@@ -1,19 +1,5 @@
 "use strict";
 
-var settings;
-function resetSettings (cached) {
-	var cache = localStorage.getItem("settings");
-	if (cached && cache)
-		return JSON.parse(cache);
-	return {
-		undefined: "#FFFFFF",
-		"Bucket_BudgetBucketColor":	"#F74416",
-		"Visor_BudgetBucketColor":	"#000000",
-		"Rage_Gauntlet_RightColor":	"#08CB33",
-		"Rage_Gauntlet_LeftColor":	"#08CB33"
-	};
-}
-
 function Uploader (queryString, D) {
 	var readerBck = new FileReader;
 	var file;
@@ -36,7 +22,7 @@ function Uploader (queryString, D) {
 	});
 
 	function parseMando (svg) {
-		variants = new VariantsVault;
+		variants = {}
 		settings = resetSettings(false);
 
 		var iter = document.createNodeIterator(svg, NodeFilter.SHOW_ELEMENT,
@@ -62,17 +48,17 @@ function Uploader (queryString, D) {
 				continue;
 			var neutral = neutralize(id);
 			if (cls == "toggle") {
-				variants.setItem(neutral, true);
+				variants[neutral] = true;
 			} else if (cls == "option") {
 				var parent = node.parentNode;
 				var parName = neutralize(parent.id) + "_Option";
 				if (parName.includes("Earcap"))
-					variants.setItem(neutral, true);
+					variants[neutral] = true;
 				else
-					variants.setItem(parName, neutral);
+					variants[parName] = neutral;
 			} else if (id.includes("Current")) {
 				var cat = id.replace("_Current", "");
-				variants.setItem(cat, neutralize(cls));
+				variants[cat] = neutralize(cls);
 			}
 		}
 	}
@@ -97,13 +83,15 @@ function Uploader (queryString, D) {
 		}
 
 		var logo = svg.getElementById("titleDark");
-		S.set.DarkMode(logo, true);
+		S.set.DarkMode(true);
 		if (img.tagName.toLowerCase() === "svg") {
-			D.Background = { type: "image/svg+xml", data: img.outerHTML };
+			D.Background = { type: "image/svg+xml", data: encodeURIComponent(img.outerHTML) };
 		} else {
 			var href = img.getAttribute("href");
-			var type = href.match(/^(?<=data:)image\/\w+/)
-			D.Background = { type: type, data: href };
+			var type = href.match(/^data:image\/\w+/)[0];
+			if (!type)
+				return;
+			D.Background = { type: type.substring(5), data: href };
 		}
 	}
 
@@ -162,8 +150,6 @@ function Uploader (queryString, D) {
 		}
 		S.set.Sex(female);
 	}
-	if (queryString)
-		history.replaceState(null, document.title, "?");
 	return parseMando;
 }
 
@@ -176,32 +162,32 @@ function Downloader () {
 	var logoSVG, bckImgURI, bckSVG;
 
 	function prepareForExport (svg) {
-		var iter = document.createNodeIterator(svg, NodeFilter.SHOW_ELEMENT,
-			{ "acceptNode": function (node) {
-				if (node.hasAttribute("class"))
-					return NodeFilter.FILTER_ACCEPT;
-				return NodeFilter.FILTER_SKIP;
-			} }
-		);
-		var node, parent, rem;
-		while (node = iter.nextNode()) {
-			if (parent)
-				parent.removeChild(rem);
-			parent = null;
-			var cls = node.getAttribute("class");
-			var display = node.style.display;
-			if (	((cls == "option") && (display !== "inherit")) ||
-				((cls == "toggle") && (display == "none")) ) {
-				parent = node.parentNode;
-				rem = node;
+		var options = svg.getElementsByClassName("option");
+		var i = 0;
+		while (i < options.length) {
+			if (options[i].style.display == "inherit") {
+				i++;
+				continue;
 			}
+			var parent = options[i].parentNode;
+			parent.removeChild(options[i]);
+		}
+		var toggles = svg.getElementsByClassName("toggle");
+		i = 0;
+		while (i < toggles.length) {
+			if (toggles[i].style.display !== "none") {
+				i++;
+				continue;
+			}
+			var parent = toggles[i].parentNode;
+			parent.removeChild(toggles[i]);
 		}
 		return svg;
 	}
 
 	function encodeSVG (svg) {
 		var san = svg.replace(/\s+/g," ").replace(/"/g,"'");
-		return san;
+		return encodeURIComponent(san);
 	}
 
 	function SVGFromEditor () {
@@ -216,7 +202,7 @@ function Downloader () {
 		var copy = svg.cloneNode(true);
 		var str = xml.serializeToString(copy);
 		var svgEnc = encodeSVG(str);
-		var image64 = 'data:image/svg+xml,' + encodeURIComponent(svgEnc);
+		var image64 = 'data:image/svg+xml,' + svgEnc;
 		return image64;
 	}
 
@@ -273,8 +259,6 @@ function Downloader () {
 				"height": canvas.height,
 				"viewBox": [0, 0, canvas.width, canvas.height].join(" ")
 			});
-			var meta = SVGNode("metadata", {}, svgMain);
-			meta.innerHTML = " <rdf:RDF xmlns:rdf='http://www.w3.org/1999/02/22-rdf-syntax-ns#' xmlns:rdfs='http://www.w3.org/2000/01/rdf-schema#' xmlns:dc='http://purl.org/dc/elements/1.1/'> <rdf:Description> <dc:creator>MandoCreator</dc:creator> <dc:publisher>https://www.mandocreator.com</dc:publisher> <dc:description>Your Beskar'gam design - created by MandoCreator</dc:description> <dc:format>image/svg+xml</dc:format> <dc:type>Image</dc:type> <dc:title>MandoCreator - Ner Berskar'gam</dc:title> <dc:date>" + (new Date).toISOString() + "</dc:date> </rdf:Description> </rdf:RDF>";
 			if (bckSVG) {
 				svgMain.innerHTML = bckSVG;
 			} else {
@@ -286,6 +270,8 @@ function Downloader () {
 			}
 			var logo = logoSVG.cloneNode(true);
 			svgMain.appendChild(logo);
+			var meta = SVGNode("metadata", {}, svgMain);
+			meta.innerHTML = " <rdf:RDF xmlns:rdf='http://www.w3.org/1999/02/22-rdf-syntax-ns#' xmlns:rdfs='http://www.w3.org/2000/01/rdf-schema#' xmlns:dc='http://purl.org/dc/elements/1.1/'> <rdf:Description> <dc:creator>MandoCreator</dc:creator> <dc:publisher>https://www.mandocreator.com</dc:publisher> <dc:description>Your Beskar'gam design - created by MandoCreator</dc:description> <dc:format>image/svg+xml</dc:format> <dc:type>Image</dc:type> <dc:title>MandoCreator - Ner Berskar'gam</dc:title> <dc:date>" + (new Date).toISOString() + "</dc:date> </rdf:Description> </rdf:RDF>";
 			return svgMain;
 		},
 		attach: function (a, type) {
@@ -306,7 +292,7 @@ function Downloader () {
 					bck.appendChild(SVGFromEditor());
 					var str = xml.serializeToString(bck);
 					var document = "<?xml version='1.0' encoding='UTF-8'?>" + str;
-					blobURL = URL.createObjectURL(new Blob([encodeSVG(document)]));
+					blobURL = URL.createObjectURL(new Blob([document]));
 					this.setAttribute("href", blobURL);
 				});
 			} else {
