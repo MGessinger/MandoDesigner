@@ -271,9 +271,7 @@ function PickerFactory (history) {
 	}
 
 	function getDefaultColor (SVGNode, id) {
-		if (SVGNode.style.fill)
-			return SVGNode.style.fill;
-		else if (id in settings)
+		if (id in settings)
 			return settings[id];
 		return "#FFF";
 	}
@@ -301,7 +299,7 @@ function PickerFactory (history) {
 			var oldValue = SVGNode.style.fill;
 			if (!oldValue)
 				return;
-			latestChange = history.format("color", oldValue, oldValue, button.id);
+			latestChange = history.format("color", oldValue, "", button.id);
 		});
 		var def = getDefaultColor(SVGNode, button.id);
 		onChange = input;
@@ -315,11 +313,10 @@ function ChangeHistory () {
 	var self = this;
 
 	function undoSingleChange (type, targetID, value) {
-		if (type == "variant")
-			targetID += value;
+		if (type == "variant") /* Mandual Override */
+			targetID = value + "Radio";
 		var target = find(targetID);
-		if (!target)
-			return false;
+		if (!target) return false;
 		switch (type) {
 			case "select":
 				target.value = value;
@@ -328,6 +325,9 @@ function ChangeHistory () {
 			case "color":
 				target.style.background = value;
 				/* Fall-Through! */
+			case "variant":
+				target.checked = false;
+				/* Fall-through */
 			default:
 				target.click();
 				break;
@@ -335,31 +335,15 @@ function ChangeHistory () {
 		return true;
 	}
 
-	this.format = function (type, oldVal, newVal, target, verbatim) {
-		var change = {
+	this.format = function (type, oldVal, newVal, target) {
+		if (oldVal == newVal)
+			return {};
+		return {
 			"type": type,
 			"oldValue": oldVal,
-			"newValue": newVal
+			"newValue": newVal,
+			"target": target
 		}
-		if (verbatim) /* Override the type argument, if the exact targetID is known */
-			type = "verbatim";
-		switch (type) {
-			case "subslide":
-				change.target = buttonName(target) + "Toggle";
-				break;
-			case "select":
-				change.target = target + "Select";
-				break;
-			case "sublist":
-				change.target = target + "_Check";
-				break;
-			case "variant":
-				change.target = target + "_Variant_";
-				break;
-			default:
-				change.target = target;
-		}
-		return change;
 	}
 
 	this.undo = function (redo) {
@@ -377,7 +361,7 @@ function ChangeHistory () {
 		self.track = false;
 		var change = from.pop();
 		if (!change) {
-			showPicker = true;
+			showPicker =  self.track = true;
 			return;
 		} else if ("target" in change) {
 			undoSingleChange(change["type"], change["target"], change[key]);

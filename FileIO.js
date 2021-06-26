@@ -1,5 +1,19 @@
 "use strict";
 
+var settings;
+function resetSettings (cached) {
+	var cache = localStorage.getItem("settings");
+	if (cached && cache)
+		return JSON.parse(cache);
+	return {
+		undefined: "#FFFFFF",
+		"Bucket_Budget-BucketColor":	"#F74416",
+		"Visor_Budget-BucketColor":	"#000000",
+		"Rage_Gauntlet_RightColor":	"#08CB33",
+		"Rage_Gauntlet_LeftColor":	"#08CB33"
+	};
+}
+
 function Uploader (queryString, D) {
 	var readerBck = new FileReader;
 	var file;
@@ -22,45 +36,56 @@ function Uploader (queryString, D) {
 	});
 
 	function parseMando (svg) {
-		variants = {}
-		settings = resetSettings(false);
-
 		var iter = document.createNodeIterator(svg, NodeFilter.SHOW_ELEMENT,
 			{ acceptNode: function (node) {
-					if (!node.id)
-						return NodeFilter.FILTER_REJECT;
-					if (!(node.style.fill || node.hasAttribute("class")))
-						return NodeFilter.FILTER_SKIP;
-					return NodeFilter.FILTER_ACCEPT;
-				}
-			}
+				if (!node.id)
+					return NodeFilter.FILTER_REJECT;
+				node.id = node.id.replace(/_(M|F|Toggle(Off)?|Option)($|_)/g,"$3");
+				if (!(node.style.fill || node.hasAttribute("class")))
+					return NodeFilter.FILTER_SKIP;
+				return NodeFilter.FILTER_ACCEPT;
+			} }
 		);
 
 		var node;
 		while (node = iter.nextNode()) {
-			var id = node.id;
+			var id = node.id.replace(/_Toggle(Off|On)?|_Option/, "");
 			if (node.style.fill) {
-				var bn = buttonName(id) + "Color";
+				var bn = id + "Color";
 				settings[bn] = node.style.fill;
 			}
-			var cls = node.getAttribute("class");
-			if (!cls)
-				continue;
-			var neutral = neutralize(id);
-			if (cls == "toggle") {
-				variants[neutral] = true;
-			} else if (cls == "option") {
-				var parent = node.parentNode;
-				var parName = neutralize(parent.id) + "_Option";
-				if (parName.includes("Earcap"))
-					variants[neutral] = true;
-				else
-					variants[parName] = neutral;
-			} else if (id.includes("Current")) {
-				var cat = id.replace("_Current", "");
-				variants[cat] = neutralize(cls);
+			switch (node.getAttribute("class")) {
+				case null:
+					break;
+				case "toggle":
+					variants.setItem(id + "Toggle", node.style.display !== "none");
+					break;
+				case "option":
+					var parent = node.parentNode;
+					if (parent.id.includes("Ear"))
+						variants.setItem(id + "Toggle", true);
+					else {
+						var parName = parent.id + "Select";
+						variants.setItem(parName, id);
+					}
+					break;
+				case "swappable":
+					var ch = node.firstElementChild;
+					variants.setItem(node.id, ch.id);
+					break;
+				default:
+					if (id.endsWith("Current")) {
+						var cls = node.getAttribute("class").replace(/_M|_F/,"");
+						var name = id.replace("_Current","");
+						if (name == "Helmet")
+							variants.setItem("Helmets", "Helmet_" + cls);
+						else if (name == "Chest")
+							variants.setItem("Chest", "Chest_" + cls);
+					}
 			}
 		}
+		localStorage.setItem("variants", variants.toString());
+		localStorage.setItem("settings", JSON.stringify(settings));
 	}
 
 	var svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
@@ -71,27 +96,27 @@ function Uploader (queryString, D) {
 		var mando = svg.lastElementChild;
 		var img = svg.firstElementChild;
 
+		reset(true);
 		parseMando(mando);
 		if (mando.id === "Female-Body") {
 			var sex_radio = find("female");
 			sex_radio.checked = true;
-			S.set.Sex(true, true);
+			Settings.Sex(true, true);
 		} else {
 			var sex_radio = find("male");
 			sex_radio.checked = true;
-			S.set.Sex(false, true);
+			Settings.Sex(false, true);
 		}
 
-		var logo = svg.getElementById("titleDark");
-		S.set.DarkMode(true);
+		var logo = (svg.getElementById("titleDark") != null);
+		Settings.DarkMode(logo, true);
 		if (img.tagName.toLowerCase() === "svg") {
-			D.Background = { type: "image/svg+xml", data: encodeURIComponent(img.outerHTML) };
+			D.Background = { type: "image/svg+xml", data: img.outerHTML };
 		} else {
 			var href = img.getAttribute("href");
-			var type = href.match(/^data:image\/\w+/)[0];
-			if (!type)
-				return;
-			D.Background = { type: type.substring(5), data: href };
+			var mime = href.match(/^data:image\/[\w+-.]+/);
+			if (!mime) return;
+			D.Background = { type: mime[0], data: href };
 		}
 	}
 
@@ -119,14 +144,15 @@ function Uploader (queryString, D) {
 		xhr.onload = function () {
 			var xml = this.responseXML;
 			if (this.status !== 200 || !xml)
-				return S.set.Sex(female, false);
+				return Settings.Sex(female, false);
 			var svg = xml.documentElement;
 			find("female").checked = female;
+			reset(true, true);
 			parseMando(svg);
-			S.set.Sex(female, true);
+			Settings.Sex(female, true);
 		};
 		xhr.onerror = function () {
-			S.set.Sex(female, false);
+			Settings.Sex(female, false);
 		};
 		xhr.send();
 	}
@@ -148,13 +174,14 @@ function Uploader (queryString, D) {
 			var sex_radio = find("female");
 			sex_radio.checked = true;
 		}
-		S.set.Sex(female);
+		Settings.Sex(female);
 	}
+	if (queryString)
+		history.replaceState(null, document.title, "?");
 	return parseMando;
 }
 
 function Downloader () {
-	var editor = find("editor");
 	var xml = new XMLSerializer();
 	var img = new Image();
 	var canvas = find("canvas");
@@ -162,25 +189,43 @@ function Downloader () {
 	var logoSVG, bckImgURI, bckSVG;
 
 	function prepareForExport (svg) {
-		var options = svg.getElementsByClassName("option");
-		var i = 0;
-		while (i < options.length) {
-			if (options[i].style.display == "inherit") {
-				i++;
-				continue;
+		var iter = document.createNodeIterator(svg, NodeFilter.SHOW_ELEMENT,
+			{ "acceptNode": function (node) {
+				if (node.hasAttribute("class"))
+					return NodeFilter.FILTER_ACCEPT;
+				return NodeFilter.FILTER_SKIP;
+			} }
+		);
+		var node, rem;
+		function advance () {
+			node = iter.nextNode();
+			if (rem) {
+				var parent = rem.parentNode;
+				parent.removeChild(rem);
 			}
-			var parent = options[i].parentNode;
-			parent.removeChild(options[i]);
+			rem = null;
+			return node;
 		}
-		var toggles = svg.getElementsByClassName("toggle");
-		i = 0;
-		while (i < toggles.length) {
-			if (toggles[i].style.display !== "none") {
-				i++;
-				continue;
+		while (advance()) {
+			var display = node.style.display;
+			switch (node.getAttribute("class")) {
+				case "option":
+					if (display !== "inherit")
+						rem = node;
+					break;
+				case "toggle":
+					if (display == "none")
+						node.innerHTML = "";
+					break;
+				case "swappable":
+					var ch = node.children;
+					for (var i = 0; i < ch.length;) {
+						if (ch[i].style.visibility !== "visible")
+							node.removeChild(ch[i]);
+						else
+							i++;
+					}
 			}
-			var parent = toggles[i].parentNode;
-			parent.removeChild(toggles[i]);
 		}
 		return svg;
 	}
@@ -191,8 +236,8 @@ function Downloader () {
 	}
 
 	function SVGFromEditor () {
-		var svg = editor.firstElementChild;
-		var copy = svg.cloneNode(true);
+		var SVG = find("main").firstElementChild;
+		var copy = SVG.cloneNode(true);
 		return prepareForExport(copy);
 	}
 
@@ -210,9 +255,14 @@ function Downloader () {
 		canvasCtx.clearRect(0, 0, canvas.width, canvas.height);
 		img.onload = function () {
 			/* Background Image */
-			canvas.width = this.width;
-			canvas.height = this.height;
-			canvasCtx.drawImage(this, 0, 0);
+			if (this.width > 1920) {
+				canvas.width = this.width;
+				canvas.height = this.height;
+			} else {
+				canvas.width = 1920;
+				canvas.height = this.height/this.width*1920;
+			}
+			canvasCtx.drawImage(this, 0, 0, canvas.width, canvas.height);
 			if (!href.startsWith("data"))
 				bckImgURI = canvas.toDataURL('image/jpeg');
 			else
@@ -250,7 +300,7 @@ function Downloader () {
 					bckSVG = null;
 			}
 			prepareCanvas(href);
-			editor.style.backgroundImage = "url(\"" + href + "\")";
+			document.body.style.backgroundImage = "url(\"" + href + "\")";
 		},
 		get Background () {
 			var svgMain = SVGNode("svg", {
@@ -291,8 +341,10 @@ function Downloader () {
 					var bck = self.Background;
 					bck.appendChild(SVGFromEditor());
 					var str = xml.serializeToString(bck);
-					var document = "<?xml version='1.0' encoding='UTF-8'?>" + str;
-					blobURL = URL.createObjectURL(new Blob([document]));
+					var noEmptyLines = str.replace(/\n\s*\n/,"");
+					var document = "<?xml version='1.0' encoding='UTF-8'?>" + noEmptyLines;
+					var blob = new Blob([document], {type: "image/svg+xml"});
+					blobURL = URL.createObjectURL(blob);
 					this.setAttribute("href", blobURL);
 				});
 			} else {

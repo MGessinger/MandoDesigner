@@ -158,7 +158,7 @@
 			var nsw = navigator.serviceWorker;
 			if (!nsw)
 				return;
-			nsw.register("../sw.js");
+			//nsw.register("../sw.js");
 		}
 	</script>
 	<body onload="loadSW()">
@@ -166,19 +166,44 @@
 			<img width="100%" src="../images/LogoDark.svg" alt="MandoCreator Logo"/>
 			<a class="return" href="../index.html"><span class="icon">&#xE90B;</span>Go Back</a>
 		</nav>
-		<main id="gallery"><?php
-				$files = scandir("male");
-				$count = count($files);
-				if ($count <= 2)
-					die("No images found in the gallery. Please contact the administrator of this site.");
-				for ($i = 2; $i < $count; $i++) {
-					$f = $files[$i];
-					$n = str_replace(".svg", "", $f);
-					echo "<svg viewBox='50 0 1700 3300' title='$n'>";
-					echo "<use alt='Armor Design titled $n' href='./wrapper_male.svg#$f' />";
-					echo "</svg>";
-				}
-		?></main>
+		<main id="gallery">
+			<svg viewBox="50 0 1700 3300" title="Ara"><use alt="Ara" href="./wrapper_male.svg#Ara.svg"></use></svg>
+			<svg viewBox="50 0 1700 3300" title="Beskar_Akaan" class="primary"><use alt="Beskar_Akaan" href="./wrapper_male.svg#Beskar_Akaan.svg"></use></svg>
+			<svg viewBox="50 0 1700 3300" title="Boba"><use alt="Boba" href="./wrapper_male.svg#Boba.svg"></use></svg>
+			<svg viewBox="50 0 1700 3300" title="BoldOne"><use alt="BoldOne" href="./wrapper_male.svg#BoldOne.svg"></use></svg>
+			<svg viewBox="50 0 1700 3300" title="Cardboardalorian"><use alt="Cardboardalorian" href="./wrapper_male.svg#Cardboardalorian.svg"></use></svg>
+			<svg viewBox="50 0 1700 3300" title="Commando"><use alt="Commando" href="./wrapper_male.svg#Commando.svg"></use></svg>
+			<svg viewBox="50 0 1700 3300" title="Din"><use alt="Din" href="./wrapper_male.svg#Din.svg"></use></svg>
+			<svg viewBox="50 0 1700 3300" title="Eao"><use alt="Eao" href="./wrapper_male.svg#Eao.svg"></use></svg>
+			<svg viewBox="50 0 1700 3300" title="Freyatos"><use alt="Freyatos" href="./wrapper_male.svg#Freyatos.svg"></use></svg>
+			<svg viewBox="50 0 1700 3300" title="Glorious"><use alt="Glorious" href="./wrapper_male.svg#Glorious.svg"></use></svg>
+			<svg viewBox="50 0 1700 3300" title="Hunter"><use alt="Hunter" href="./wrapper_male.svg#Hunter.svg"></use></svg>
+			<svg viewBox="50 0 1700 3300" title="Iluv-1"><use alt="Iluv-1" href="./wrapper_male.svg#Iluv-1.svg"></use></svg>
+			<svg viewBox="50 0 1700 3300" title="Iluv-2"><use alt="Iluv-2" href="./wrapper_male.svg#Iluv-2.svg"></use></svg>
+			<svg viewBox="50 0 1700 3300" title="Jango"><use alt="Jango" href="./wrapper_male.svg#Jango.svg"></use></svg>
+			<svg viewBox="50 0 1700 3300" title="Krix"><use alt="Krix" href="./wrapper_male.svg#Krix.svg"></use></svg>
+			<svg viewBox="50 0 1700 3300" title="Lear"><use alt="Lear" href="./wrapper_male.svg#Lear.svg"></use></svg>
+			<svg viewBox="50 0 1700 3300" title="Marine"><use alt="Marine" href="./wrapper_male.svg#Marine.svg"></use></svg>
+			<svg viewBox="50 0 1700 3300" title="Maritime"><use alt="Maritime" href="./wrapper_male.svg#Maritime.svg"></use></svg>
+			<svg viewBox="50 0 1700 3300" title="McQ"><use alt="McQ" href="./wrapper_male.svg#McQ.svg"></use></svg>
+			<svg viewBox="50 0 1700 3300" title="Miit"><use alt="Miit" href="./wrapper_male.svg#Miit.svg"></use></svg>
+			<svg viewBox="50 0 1700 3300" title="Mirshko"><use alt="Mirshko" href="./wrapper_male.svg#Mirshko.svg"></use></svg>
+			<svg viewBox="50 0 1700 3300" title="Neo"><use alt="Neo" href="./wrapper_male.svg#Neo.svg"></use></svg>
+			<svg viewBox="50 0 1700 3300" title="Nih"><use alt="Nih" href="./wrapper_male.svg#Nih.svg"></use></svg>
+			<svg viewBox="50 0 1700 3300" title="Niner"><use alt="Niner" href="./wrapper_male.svg#Niner.svg"></use></svg>
+			<svg viewBox="50 0 1700 3300" title="Ornate"><use alt="Ornate" href="./wrapper_male.svg#Ornate.svg"></use></svg>
+			<svg viewBox="50 0 1700 3300" title="Pilot-1"><use alt="Pilot-1" href="./wrapper_male.svg#Pilot-1.svg"></use></svg>
+			<svg viewBox="50 0 1700 3300" title="Pilot-2"><use alt="Pilot-2" href="./wrapper_male.svg#Pilot-2.svg"></use></svg>
+			<svg viewBox="50 0 1700 3300" title="Portal"><use alt="Portal" href="./wrapper_male.svg#Portal.svg"></use></svg>
+			<svg viewBox="50 0 1700 3300" title="Prudii"><use alt="Prudii" href="./wrapper_male.svg#Prudii.svg"></use></svg>
+			<svg viewBox="50 0 1700 3300" title="Quarrie"><use alt="Quarrie" href="./wrapper_male.svg#Quarrie.svg"></use></svg>
+			<svg viewBox="50 0 1700 3300" title="Rae"><use alt="Rae" href="./wrapper_male.svg#Rae.svg"></use></svg>
+			<svg viewBox="50 0 1700 3300" title="Razda_Ruur"><use alt="Razda_Ruur" href="./wrapper_male.svg#Razda_Ruur.svg"></use></svg>
+			<svg viewBox="50 0 1700 3300" title="Shrek"><use alt="Shrek" href="./wrapper_male.svg#Shrek.svg"></use></svg>
+			<svg viewBox="50 0 1700 3300" title="Sr2z"><use alt="Sr2z" href="./wrapper_male.svg#Sr2z.svg"></use></svg>
+			<svg viewBox="50 0 1700 3300" title="Teal"><use alt="Teal" href="./wrapper_male.svg#Teal.svg"></use></svg>
+			<svg viewBox="50 0 1700 3300" title="Xeno"><use alt="Xeno" href="./wrapper_male.svg#Xeno.svg"></use></svg>
+		</main>
 		<footer>
 			<form action="../index.html" method="GET">
 				<input type="text" id="preset" name="preset" style="display:none" />

@@ -1,5 +1,6 @@
 release: gallery pictures
 
+
 serve: release
 	php -S 0.0.0.0:8000
 
@@ -10,22 +11,32 @@ clean:
 .PHONY: clean
 
 #=========================IMAGES==========================
+LOGOS=images/LogoDark.svg images/LogoLight.svg
 
-MALE=images/Male-Body.svg images/Lower-Armor_M.svg images/Upper-Armor_M.svg
-FEMALE=images/Female-Body.svg images/Lower-Armor_F.svg images/Upper-Armor_F.svg
-NEUTRAL=images/LogoDark.svg images/LogoLight.svg images/Helmets.svg
-
-pictures: $(NEUTRAL) $(MALE) $(FEMALE)
+pictures: images/Helmets.svg images/Male_Master.svg $(LOGOS)
 	@touch pictures
 
 images:
-	@mkdir images
-
-images/%_F.svg: pictures/%_F.svg | images
-	@sed "s/[[:space:]]\+class=.[^\"\']\+[\"\']//; s/_M\([\"_]\)/_F\1/" $< > $@;
+	@mkdir -p images
 
 images/%.svg: pictures/%.svg | images
-	@sed "s/[[:space:]]\+class=.[^\"\']\+[\"\']//;" $< > $@;
+	@sed " : top \
+		/>/ ! { \
+			N; \
+			b top; \
+		}; \
+		s|^\s*||; \
+		s|\s\{2,\}| |g; \
+		/<svg/ ! s/\s\(class\|style\)=.[^\"\']\+[\"\']//g; \
+		/Toggle/ { \
+			s|_Toggle|\" class=\"toggle|; \
+			s|Off|\" style=\"display:none|; \
+		}; \
+		s|_Option|\" class=\"option|; \
+		/\"Chest\"/ { \
+			s/ / class=\"swappable\" /; \
+		}; \
+	" $< > $@;
 
 #=========================GALLERY=========================
 
@@ -46,23 +57,11 @@ wrapper_%.svg: $(RAW)
 				P; D; \
 			}; \
 			s|</svg>|</g>|; \
-			s|[[:space:]]\+id=[\'\"][^\'\"]*[\'\"]||g; \
+			s|\s\+id=[\'\"][^\'\"]*[\'\"]||g; \
 		" $*/$$i >> $@; done;
 	@echo "</svg>" >> $@;
 
 gallery/raw/%: gallery/male/% gallery/female/% | gallery/raw
-	@sed -E -s -i " \
-		/.<svg/ { s|.<svg|\n<svg|; D; }; \
-		s|(</svg>[[:space:]]*)+|</svg>|; \
-		s|>[[:space:]]+<|><|g; \
-		s/<(title|style)>[^<]*<\/(title|style)>//g; \
-	" $?;
-	@sed -E "\
-		s/\s(d|width|height)=[\'\"][^\'\"]*[\'\"]//g; \
-		s|<\w+\s*/>||g; \
-		s|<\w+\s*>\s*</\w+>||g; \
-		s/_(Toggle(Off)?|Option)//g; \
-	" $< > $@;
 
 gallery/raw:
 	@mkdir -p $@;
